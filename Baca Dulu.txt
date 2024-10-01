@@ -1,0 +1,27 @@
+Penambahan Fitur pada versi 4.1
+1. Master Kelompok Mapel
+2. Kompetensi Dasar perjadwal pelajaran
+3. Penilaian Diri Siswa
+4. Penilaian Teman Siswa perkelas
+5. PSB ONline
+   - Data Menu
+   - Data Halaman 
+   - Kode Aktivasi
+   - Data Pendaftar
+6. Journal KBM (Kegiatan Belajar Mengajar)
+
+Untuk administrator
+username : admin
+password : admin123
+
+untuk guru
+username : NIP masing2 guru
+password : password masing2 guru  *bisa dilihat di database table rb_guru
+
+
+=====================
+semoga bermanfaat.
+* Admin Lokomedia
+* www.members.lokomedia.web.id
+* 0857 1612 9917
+* dankrez48@gmail.com
