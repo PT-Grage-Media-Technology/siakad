@@ -118,8 +118,8 @@ if (isset($_POST[login])) {
   } else {
     var_dump($data);
     var_dump($pass);
-    echo "<script>window.alert('Maaf, Anda Tidak Memiliki akses');
-                                  window.location=('index.php?view=login')</script>";
+    // echo "<script>window.alert('Maaf, Anda Tidak Memiliki akses');
+    //                               window.location=('index.php?view=login')</script>";
   }
 }
 ?>
