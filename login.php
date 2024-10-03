@@ -88,6 +88,7 @@ if (isset($_POST['login'])) {
   // var_dump("admin :", $admin);
 
   $hitungadmin = mysql_num_rows($admin);
+  var_dump('hitung admin', $hitungadmin);
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
   if ($hitungadmin >= 1) {
