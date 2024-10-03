@@ -73,10 +73,12 @@
 <?php 
 
 if (isset($_POST[login])){
-  var_dump($_POST[login]);
+  
  $passlain=anti_injection($_POST[b]);
  $data=md5(anti_injection($_POST[b]));
  $pass=hash("sha512",$data);
+ var_dump($data);
+ var_dump($pass);
  $admin = mysql_query("SELECT * FROM rb_users WHERE username='".anti_injection($_POST[a])."' AND password='$pass'");
  $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='".anti_injection($_POST[a])."' AND password='$passlain'");
  $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='".anti_injection($_POST[a])."' AND password='$passlain'");
