@@ -73,6 +73,7 @@
 <?php 
 
 if (isset($_POST[login])){
+  var_dump($_POST[login]);
  $passlain=anti_injection($_POST[b]);
  $data=md5(anti_injection($_POST[b]));
  $pass=hash("sha512",$data);
@@ -82,7 +83,7 @@ if (isset($_POST[login])){
  
  $hitungadmin = mysql_num_rows($admin);
  $hitungguru = mysql_num_rows($guru);
- $hitungsiswa = mysql_num_rows($siswa);
+ $hitungsiswa = mysql_num_rows($siswa); 
  if ($hitungadmin >= 1){
     $r = mysql_fetch_array($admin);
     $_SESSION[id]     = $r[id_user];
