@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "db_siakad";
+$server = "153.92.15.8";
+$username = "u610515881_db_siakad";
+$password = "Siakad@1";
+$database = "u610515881_db_siakad";
 
 mysql_connect($server,$username,$password);
 mysql_select_db($database);
