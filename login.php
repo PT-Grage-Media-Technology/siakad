@@ -75,53 +75,50 @@
 
 <?php
 
-if (isset($_POST[login])) {
+if (isset($_POST['login'])) {
 
-  $passlain = anti_injection($_POST[b]);
-  $data = md5(anti_injection($_POST[b]));
+  $passlain = anti_injection($_POST['b']);
+  $data = md5(anti_injection($_POST['b']));
   $pass = hash("sha512", $data);
   var_dump('pass', $data);
   var_dump('pass sha512', $pass);
-  $admin = mysql_query("SELECT * FROM rb_users WHERE username='" . anti_injection($_POST[a]) . "' AND password='$pass'");
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST[a]) . "' AND password='$passlain'");
-  $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='" . anti_injection($_POST[a]) . "' AND password='$passlain'");
-  var_dump("admin :" , $admin);
+  $admin = mysql_query("SELECT * FROM rb_users WHERE username='" . anti_injection($_POST['a']) . "' AND password='$pass'");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
+  $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
+  var_dump("admin :", $admin);
 
   $hitungadmin = mysql_num_rows($admin);
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
   if ($hitungadmin >= 1) {
     $r = mysql_fetch_array($admin);
-    $_SESSION[id] = $r[id_user];
-    $_SESSION[namalengkap] = $r[nama_lengkap];
-    $_SESSION[level] = $r[level];
+    $_SESSION['id'] = $r['id_user'];
+    $_SESSION['namalengkap'] = $r['nama_lengkap'];
+    $_SESSION['level'] = $r['level'];
     include "config/user_agent.php";
-    mysql_query("INSERT INTO rb_users_aktivitas VALUES('','$r[id_user]','$ip','$user_browser $version','$user_os','$r[level]','" . date('H:i:s') . "','" . date('Y-m-d') . "')");
+    mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['id_user'] . "', '$ip', '$user_browser $version', '$user_os', '" . $r['level'] . "', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
   } elseif ($hitungguru >= 1) {
     $r = mysql_fetch_array($guru);
-    $_SESSION[id] = $r[nip];
-    $_SESSION[namalengkap] = $r[nama_guru];
-    $_SESSION[level] = 'guru';
+    $_SESSION['id'] = $r['nip'];
+    $_SESSION['namalengkap'] = $r['nama_guru'];
+    $_SESSION['level'] = 'guru';
     include "config/user_agent.php";
-    mysql_query("INSERT INTO rb_users_aktivitas VALUES('','$r[nip]','$ip','$user_browser $version','$user_os','guru','" . date('H:i:s') . "','" . date('Y-m-d') . "')");
+    mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nip'] . "', '$ip', '$user_browser $version', '$user_os', 'guru', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
   } elseif ($hitungsiswa >= 1) {
     $r = mysql_fetch_array($siswa);
-    $_SESSION[id] = $r[nisn];
-    $_SESSION[namalengkap] = $r[nama];
-    $_SESSION[kode_kelas] = $r[kode_kelas];
-    $_SESSION[angkatan] = $r[angkatan];
-    $_SESSION[level] = 'siswa';
+    $_SESSION['id'] = $r['nisn'];
+    $_SESSION['namalengkap'] = $r['nama'];
+    $_SESSION['kode_kelas'] = $r['kode_kelas'];
+    $_SESSION['angkatan'] = $r['angkatan'];
+    $_SESSION['level'] = 'siswa';
     include "config/user_agent.php";
-    mysql_query("INSERT INTO rb_users_aktivitas VALUES('','$r[nisn]','$ip','$user_browser $version','$user_os','siswa','" . date('H:i:s') . "','" . date('Y-m-d') . "')");
+    mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
   } else {
-    // var_dump($data);
-    // var_dump($pass);
-    // echo "<script>window.alert('Maaf, Anda Tidak Memiliki akses');
-    //                               window.location=('index.php?view=login')</script>";
     echo "gagal";
   }
 }
+
 ?>
