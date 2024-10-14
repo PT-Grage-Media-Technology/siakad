@@ -81,12 +81,9 @@ if (isset($_POST['login'])) {
   $data = md5(anti_injection($_POST['b']));
   $pass = hash("sha512", $data);
   
-  // var_dump('pass', $data);
-  // var_dump('pass sha512', $pass);
   $admin = mysql_query("SELECT * FROM rb_users WHERE username='" . anti_injection($_POST['a']) . "' AND password='$pass'");
   $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
   $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
-  // var_dump("admin :", $admin);
 
   $hitungadmin = mysql_num_rows($admin);
   $hitungguru = mysql_num_rows($guru);
