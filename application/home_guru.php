@@ -42,6 +42,7 @@
             <th>Selesai</th>
             <th>Ruangan</th>
             <th>Semester</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
