@@ -18,11 +18,9 @@
     <?php
     if ($_SESSION[level] == 'guru') {
       echo "<li><a href='index.php?view=guru&act=detailguru&id=$_SESSION[id]'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
-    } else {
-      echo "<li style='display:none;'><a href='#'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href="index.php?view=guru&act=detailguru&id=$_SESSION[id]"><i class="fa fa-dashboard"></i>
+    <!-- <li><a href="index.php?view=guru&act=detailguru&id=$_SESSION[id]"><i class="fa fa-dashboard"></i> -->
         <span>Dashboard</span></a></li>
     <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li>
