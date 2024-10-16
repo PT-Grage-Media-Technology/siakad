@@ -207,7 +207,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=journalguru&act=lihat&id=<?php echo $e[kodejdwl]; ?>'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                   </div>
               </form>
             </div>";
