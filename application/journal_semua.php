@@ -209,7 +209,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='#'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
@@ -270,7 +270,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='update' class='btn btn-info'>Update</button>
-                    <a href='#'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
