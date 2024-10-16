@@ -14,7 +14,7 @@
   <ul class="sidebar-menu">
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU
       <?php echo $level; ?></li>
-    <li><a href=""><i class="fa fa-dashboard"></i> <span>Jadwal Mengajar</span></a></li>
+    <li><a href="index.php"><i class="fa fa-dashboard"></i> <span>Jadwal Mengajar</span></a></li>
     <?php
     if ($_SESSION[level] == 'guru') {
       echo "<li><a href='index.php?view=guru&act=detailguru&id=$_SESSION[id]'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
