@@ -10,9 +10,15 @@
       // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
       $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
 
-      // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
-      $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-      ?>
+                  // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru dan redirect
+                  $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
+
+                  // Jika tahun tidak ada di URL, redirect dengan tahun terbaru
+                  // if (!isset($_GET['tahun'])) {
+                  //   header("Location: ?tahun=" . $latest_year['id_tahun_akademik']);
+                  //   exit();
+                  // }
+                  ?>
 
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
         <select name='tahun' style='padding:4px'>
