@@ -123,7 +123,7 @@
               if($_SESSION[level]=='siswa'){
                   include "application/home_siswa.php";
               }elseif($_SESSION[level]=='guru'){
-                  include "application/home_guru.php";
+                  include "application/index.php?view=guru&act=detailguru&id=$iden";
               }else{
                   echo "<div class='row'>";
                           include "application/home_admin_row1.php";
