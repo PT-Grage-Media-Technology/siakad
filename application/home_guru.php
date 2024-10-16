@@ -14,10 +14,10 @@
                   $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
 
                   // Jika tahun tidak ada di URL, redirect dengan tahun terbaru
-                  if (!isset($_GET['tahun'])) {
-                    header("Location: ?tahun=" . $latest_year['id_tahun_akademik']);
-                    exit();
-                  }
+                  // if (!isset($_GET['tahun'])) {
+                  //   header("Location: ?tahun=" . $latest_year['id_tahun_akademik']);
+                  //   exit();
+                  // }
                   ?>
 
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
