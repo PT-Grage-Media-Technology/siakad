@@ -105,7 +105,7 @@
                                                                       echo "<input type='radio' name='g' value='Ya' checked> Ya
                                                                              <input type='radio' name='g' value='Tidak'> Tidak";
                                                                   }else{
-                                                                      echo "<input type='radio' name='g' value='Ya'>
+                                                                      echo "<input type='radio' name='g' value='Ya'> Ya
                                                                              <input type='radio' name='g' value='Tidak' checked> Tidak";
                                                                   }
                   echo "</td></tr>
