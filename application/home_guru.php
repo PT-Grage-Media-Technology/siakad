@@ -8,8 +8,8 @@
 
         // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-        $nama_tahun = isset($_GET['tahun']) ? 
-          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] : 
+        $nama_tahun = isset($_GET['tahun']) ?
+          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
           $latest_year['nama_tahun'];
 
         echo "Jadwal Mengajar Anda - $nama_tahun";
@@ -67,6 +67,7 @@
                     <td>$r[jam_selesai]</td>
                     <td>$r[nama_ruangan]</td>
                     <td>$r[id_tahun_akademik]</td>
+                    <td><a class='btn btn-success btn-xs' href='view=journalguru'>Tujuan Pembelajaran</a></td>
                   </tr>";
             $no++;
           }
