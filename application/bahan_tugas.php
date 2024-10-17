@@ -147,7 +147,6 @@ if ($_GET[act] == '') {
                                   <th>Kategori</th>
                                   <th>Waktu Mulai</th>
                                   <th>Batas Waktu</th>
-                                  <th>Status Online</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
   }
