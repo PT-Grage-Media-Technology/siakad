@@ -368,8 +368,7 @@
                   </table>
                 </div><!-- /.box-body -->
                 </div>
-            </div>
-                                
+            </div>              
 <?php
 }elseif($_GET[act]=='detailabsensiswa'){ 
     echo "<div class='col-xs-12'>  
