@@ -141,7 +141,7 @@
                               <td>$r[keterangan]</td>";
     if ($_SESSION[level] != 'kepala') {
       echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=$d[kode_pelajaran]'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=<?php echo $d['kode_pelajaran']; ?>'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                                         <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
                                       </center></td>";
