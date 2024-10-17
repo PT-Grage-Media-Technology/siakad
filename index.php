@@ -122,10 +122,8 @@
           if ($_GET[view]=='home' OR $_GET[view]==''){
               if($_SESSION[level]=='siswa'){
                   include "application/home_siswa.php";
-              }elseif($_SESSION[level]=='guru'){  
-                header("Location: index.php?view=guru&act=detailguru&id=" . $_SESSION['id']);
-                exit(); // Pastikan untuk menghentikan eksekusi script setelah redirect
-                include "application/home_guru.php";
+              }elseif($_SESSION[level]=='guru'){
+                  include "application/home_guru.php";
               }else{
                   echo "<div class='row'>";
                           include "application/home_admin_row1.php";
