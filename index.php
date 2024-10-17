@@ -299,7 +299,7 @@ if (isset($_SESSION[id])) {
           } elseif ($_GET[view] == 'jadwalguru') {
             cek_session_guru();
             echo "<div class='row'>";
-            include "application/home_gur.php";
+            include "application/home_guru.php";
             echo "</div>";
           } elseif ($_GET[view] == 'absensiswa') {
             cek_session_guru();
