@@ -22,9 +22,14 @@
               $foto = 'foto_pegawai/'.$gu[foto];
            }     
       }elseif($_SESSION[level]=='guru'){
-          // Redirect ke halaman detail guru
-          header("Location: index.php?view=guru&act=detailguru&id=" . $_SESSION['id']);
-          exit(); // Pastikan untuk menghentikan eksekusi script setelah redirect
+          $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]'"));
+           $nama =  $iden[nama_guru];
+           $level = 'Guru / Pengajar';
+           if (trim($iden[foto])==''){
+              $foto = 'foto_siswa/no-image.jpg';
+           }else{
+              $foto = 'foto_pegawai/'.$iden[foto];
+           } 
       }elseif($_SESSION[level]=='siswa'){
           $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
            $nama =  $iden[nama];
@@ -117,8 +122,10 @@
           if ($_GET[view]=='home' OR $_GET[view]==''){
               if($_SESSION[level]=='siswa'){
                   include "application/home_siswa.php";
-              }elseif($_SESSION[level]=='guru'){
-                  include "application/home_guru.php";
+              }elseif($_SESSION[level]=='guru'){  
+                header("Location: index.php?view=guru&act=detailguru&id=" . $_SESSION['id']);
+                exit(); // Pastikan untuk menghentikan eksekusi script setelah redirect
+                include "application/home_guru.php";
               }else{
                   echo "<div class='row'>";
                           include "application/home_admin_row1.php";
