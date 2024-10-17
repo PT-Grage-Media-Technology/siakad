@@ -145,7 +145,7 @@ if ($_GET[act] == '') {
                                   <th style='width:40px'>No</th>
                                   <th>Nama Tugas</th>
                                   <th>Kategori</th>
-                                  <th>Waktu Mulai100</th>
+                                  <th>Waktu Mulai</th>
                                   <th>Batas Waktu</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
@@ -267,12 +267,12 @@ if ($_GET[act] == '') {
                             </td>
                           </tr>
                           <tr>
-                            <th scope='row'>Waktu Mulai99</th>      
-                            <td><input type='text' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='d'></td>
+                            <th scope='row'>Waktu Mulai</th>      
+                            <td><input type='timestamp' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='d'></td>
                           </tr>
                           <tr>
                             <th scope='row'>Waktu Selesai</th>    
-                            <td><input type='text' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='e'></td>
+                            <td><input type='timestamp' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='e'></td>
                           </tr>
                           <tr>
                             <th scope='row'>Keterangan</th>       
@@ -367,7 +367,7 @@ if ($_GET[act] == '') {
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th scope='row'>Waktu Mulai98</th>
+                                    <th scope='row'>Waktu Mulai</th>
                                     <td><input type='text' class='form-control' value='$s[tanggal_tugas]' name='d'></td>
                                   </tr>
                                   <tr>
