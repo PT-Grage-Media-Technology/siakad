@@ -94,7 +94,13 @@
 
   <?php
 } elseif ($_GET[act] == 'lihat') {
-  $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, d.nama_guru FROM `rb_jadwal_pelajaran` a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran JOIN rb_guru d ON a.nip=d.nip where a.kodejdwl='$_GET[id]'"));
+  $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+  FROM `rb_jadwal_pelajaran` a 
+  JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
+  JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
+  JOIN rb_guru d ON a.nip=d.nip 
+  WHERE a.kodejdwl='$_GET[id]'"));
+
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
@@ -141,7 +147,7 @@
                               <td>$r[keterangan]</td>";
     if ($_SESSION[level] != 'kepala') {
       echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=$_GET[id]'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=$d[kode_pelajaran]'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                                         <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
                                       </center></td>";
