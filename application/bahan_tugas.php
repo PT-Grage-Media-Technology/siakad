@@ -235,7 +235,6 @@ if ($_GET[act] == '') {
                   <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
                 </div>
                 <div class='box-body'>
-
                   <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                     <div class='table-responsive'>
                       <table class='table table-condensed table-bordered'>
@@ -289,8 +288,6 @@ if ($_GET[act] == '') {
                     <a href='index.php?view=bahantugas' class='btn btn-default pull-right'>Cancel</a>
                 </div>
               </form>
-
-
             </div>
           </div>";
 } elseif ($_GET[act] == 'edit') {
