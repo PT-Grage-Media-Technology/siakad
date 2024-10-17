@@ -133,79 +133,81 @@ cek_session_guru();
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
     $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
     echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Input Nilai UTS Siswa</b></h3>
-                  <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='POST'>
-                    <input type='hidden' name='id' value='$_GET[id]'>
-                    <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+      <div class='box box-info'>
+        <div class='box-header with-border'>
+          <h3 class='box-title'>Input Nilai UTS Siswa</b></h3>
+          <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='POST'>
+            <input type='hidden' name='id' value='$_GET[id]'>
+            <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+        </div>
+        <div class='box-body'>
 
-                </div>
-              <div class='box-body'>
+          <div class='col-md-12'>
+            <table class='table table-condensed table-hover'>
+              <tbody>
+                <input type='hidden' name='id' value='$s[kodekelas]'>
+                <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+                <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-              <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
+          <div class='col-md-12'>
+            <div class='table-responsive'>
+              <table class='table table-bordered table-striped'>
+                <tr>
+                  <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
+                  <th style='border:1px solid #e3e3e3' width='90px' rowspan='2'>NISN</th>
+                  <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Pengetahuan</center></th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Keterampilan</center></th>
+                </tr>
+                <tr>
+                  <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
+                </tr>
+                <tbody>";
+                $no = 1;
+                $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
+                while($r=mysql_fetch_array($tampil)){
+                  $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
+                  $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
+                  if ($cekpredikat >= 1){
+                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                  }else{
+                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
+                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
+                  }
+                    echo "<tr>
+                          <td>$no</td>
+                          <td>$r[nisn]</td>
+                          <td>$r[nama]</td>
+                          <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
+                          <td align=center><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
+                          <td align=center><input type='text' value='$grade1[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
+                          <td align=center><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
+                          <td align=center><input type='text' value='$grade2[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
+                        </tr>";
+                  $no++;
+                  }
+
+                echo "</tbody>
               </table>
-              </div>
+            </div>
+          </div>
 
-                <div class='col-md-12'>
-                  <table class='table table-bordered table-striped'>
-                      <tr>
-                        <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
-                        <th style='border:1px solid #e3e3e3' width='90px' rowspan='2'>NISN</th>
-                        <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
-                        <th style='border:1px solid #e3e3e3' colspan='2'><center>Pengetahuan</center></th>
-                        <th style='border:1px solid #e3e3e3' colspan='2'><center>Keterampilan</center></th>
-                      </tr>
-                      <tr>
-                        <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
-                        <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
-                        <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
-                        <th style='border:1px solid #e3e3e3'><center>predikat</center></th>
-                      </tr>
-                    <tbody>";
-                    $no = 1;
-                    $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
-                    while($r=mysql_fetch_array($tampil)){
-                      $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
-                      $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
-                      if ($cekpredikat >= 1){
-                        $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                        $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                      }else{
-                        $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
-                        $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
-                      }
-                        echo "<tr>
-                              <td>$no</td>
-                              <td>$r[nisn]</td>
-                              <td>$r[nama]</td>
-                              <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                              <td align=center><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
-                                        <td align=center><input type='text' value='$grade1[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
-                                        <td align=center><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
-                                        <td align=center><input type='text' value='$grade2[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
-                            </tr>";
-                      $no++;
-                      }
+          <div style='clear:both'></div>
+          <div class='box-footer'>
+            <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
+            <button type='reset' class='btn btn-default pull-right'>Cancel</button>
+          </div>
+          </form>
 
-                    echo "</tbody>
-                  </table>
-                </div>
-                <div style='clear:both'></div>
-                                <div class='box-footer'>
-                                  <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-                                  <button type='reset' class='btn btn-default pull-right'>Cancel</button>
-                                </div>
-                </form>
-
-            </div>";
+      </div>";
 
 }elseif($_GET[act]=='detailsiswa'){
 cek_session_siswa();
