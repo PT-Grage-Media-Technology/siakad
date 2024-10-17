@@ -19,7 +19,7 @@
       echo "<li><a href='index.php?view=guru&act=detailguru&id=$_SESSION[id]'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href="index.php"><i class="fa-solid fa-clipboard-list"></i> <span>Jadwal Mengajar</span></a></li>
+    <li><a href="index.php"><i class="fa fa-clipboard-list"></i> <span>Jadwal Mengajar</span></a></li>
     <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li>
     <li><a href="index.php?view=bahantugas&act=listbahantugasguru"><i class="fa fa-file"></i><span>Bahan dan
