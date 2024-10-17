@@ -1,50 +1,51 @@
-<?php 
-  session_start();
-  error_reporting(0);
-  include "config/koneksi.php";
-  include "config/library.php";
-  include "config/fungsi_indotgl.php";
-  include "config/fungsi_seo.php";
-  if (isset($_SESSION[id])){
-      if ($_SESSION[level]=='superuser'){
-          $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
-           $nama =  $iden[nama_lengkap];
-           $level = 'Administrator';
-           $foto = 'dist/img/user2-160x160.jpg';
-      }elseif($_SESSION[level]=='kepala'){
-          $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
-            $gu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$iden[username]'"));
-           $nama =  $iden[nama_lengkap];
-           $level = 'Kepala Sekolah';
-           if (trim($gu[foto])==''){
-              $foto = 'foto_siswa/no-image.jpg';
-           }else{
-              $foto = 'foto_pegawai/'.$gu[foto];
-           }     
-      }elseif($_SESSION[level]=='guru'){
-          $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]'"));
-           $nama =  $iden[nama_guru];
-           $level = 'Guru / Pengajar';
-           if (trim($iden[foto])==''){
-              $foto = 'foto_siswa/no-image.jpg';
-           }else{
-              $foto = 'foto_pegawai/'.$iden[foto];
-           } 
-      }elseif($_SESSION[level]=='siswa'){
-          $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
-           $nama =  $iden[nama];
-           $level = 'Siswa / Murid';
-           if (trim($iden[foto])==''){
-              $foto = 'foto_siswa/no-image.jpg';
-           }else{
-              $foto = 'foto_siswa/'.$iden[foto];
-           } 
-      }
+<?php
+session_start();
+error_reporting(0);
+include "config/koneksi.php";
+include "config/library.php";
+include "config/fungsi_indotgl.php";
+include "config/fungsi_seo.php";
+if (isset($_SESSION[id])) {
+  if ($_SESSION[level] == 'superuser') {
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
+    $nama = $iden[nama_lengkap];
+    $level = 'Administrator';
+    $foto = 'dist/img/user2-160x160.jpg';
+  } elseif ($_SESSION[level] == 'kepala') {
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
+    $gu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$iden[username]'"));
+    $nama = $iden[nama_lengkap];
+    $level = 'Kepala Sekolah';
+    if (trim($gu[foto]) == '') {
+      $foto = 'foto_siswa/no-image.jpg';
+    } else {
+      $foto = 'foto_pegawai/' . $gu[foto];
+    }
+  } elseif ($_SESSION[level] == 'guru') {
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]'"));
+    $nama = $iden[nama_guru];
+    $level = 'Guru / Pengajar';
+    if (trim($iden[foto]) == '') {
+      $foto = 'foto_siswa/no-image.jpg';
+    } else {
+      $foto = 'foto_pegawai/' . $iden[foto];
+    }
+  } elseif ($_SESSION[level] == 'siswa') {
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
+    $nama = $iden[nama];
+    $level = 'Siswa / Murid';
+    if (trim($iden[foto]) == '') {
+      $foto = 'foto_siswa/no-image.jpg';
+    } else {
+      $foto = 'foto_siswa/' . $iden[foto];
+    }
+  }
 
-      $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum where status_kurikulum='Ya'"));
-?>
-<!DOCTYPE html>
-<html>
+  $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum where status_kurikulum='Ya'"));
+  ?>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,14 +78,26 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    <style type="text/css"> .files{ position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; } </style>
+    <style type="text/css">
+      .files {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        filter: alpha(opacity=0);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        opacity: 0;
+        background-color: transparent;
+        color: transparent;
+      }
+    </style>
     <script type="text/javascript" src="plugins/jQuery/jquery-1.12.3.min.js"></script>
-    <script language="javascript" type="text/javascript"> 
+    <script language="javascript" type="text/javascript">
       var maxAmount = 160;
       function textCounter(textField, showCountField) {
         if (textField.value.length > maxAmount) {
           textField.value = textField.value.substring(0, maxAmount);
-        } else { 
+        } else {
           showCountField.value = maxAmount - textField.value.length;
         }
       }
@@ -95,21 +108,21 @@
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
-          <?php include "main-header.php"; ?>
+        <?php include "main-header.php"; ?>
       </header>
 
       <aside class="main-sidebar">
-            <?php 
-              if ($_SESSION[level]=='siswa'){
-                include "menu-siswa.php";
-              }elseif ($_SESSION[level]=='guru'){
-                include "menu-guru.php";
-              }elseif ($_SESSION[level]=='kepala'){
-                include "menu-kepsek.php";
-              }else{
-                include "menu-admin.php"; 
-              }
-            ?>
+        <?php
+        if ($_SESSION[level] == 'siswa') {
+          include "menu-siswa.php";
+        } elseif ($_SESSION[level] == 'guru') {
+          include "menu-guru.php";
+        } elseif ($_SESSION[level] == 'kepala') {
+          include "menu-kepsek.php";
+        } else {
+          include "menu-admin.php";
+        }
+        ?>
       </aside>
 
       <div class="content-wrapper">
@@ -118,305 +131,289 @@
         </section>
 
         <section class="content">
-        <?php 
-          if ($_GET[view]=='home' OR $_GET[view]==''){
-              if($_SESSION[level]=='siswa'){
-                  include "application/home_siswa.php";
-              }elseif($_SESSION[level]=='guru'){
-                  include "application/home_guru.php";
-              }else{
-                  echo "<div class='row'>";
-                          include "application/home_admin_row1.php";
-                  echo "</div>
+          <?php
+          if ($_GET[view] == 'home' or $_GET[view] == '') {
+            if ($_SESSION[level] == 'siswa') {
+              include "application/home_siswa.php";
+            } elseif ($_SESSION[level] == 'guru') {
+              $_GET['act'] = 'detailguru';
+              include "application/home_guru.php";
+            } else {
+              echo "<div class='row'>";
+              include "application/home_admin_row1.php";
+              echo "</div>
                         <div class='row'>";
-                          include "application/home_admin_row2.php";
-                  echo "</div>";
-              }
-          }
-
-          elseif ($_GET[view]=='psbmenu'){
+              include "application/home_admin_row2.php";
+              echo "</div>";
+            }
+          } elseif ($_GET[view] == 'psbmenu') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_menu.php";
+            include "application/psb_menu.php";
             echo "</div>";
-          }elseif ($_GET[view]=='psbhalaman'){
+          } elseif ($_GET[view] == 'psbhalaman') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_halaman.php";
+            include "application/psb_halaman.php";
             echo "</div>";
-          }elseif ($_GET[view]=='psbsma'){
+          } elseif ($_GET[view] == 'psbsma') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_pendaftaran.php";
+            include "application/psb_pendaftaran.php";
             echo "</div>";
-          }elseif ($_GET[view]=='psbsmk'){
+          } elseif ($_GET[view] == 'psbsmk') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_pendaftaran.php";
+            include "application/psb_pendaftaran.php";
             echo "</div>";
-          }elseif ($_GET[view]=='psbsmp'){
+          } elseif ($_GET[view] == 'psbsmp') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_pendaftaran.php";
+            include "application/psb_pendaftaran.php";
             echo "</div>";
-          }elseif ($_GET[view]=='psbaktivasi'){
+          } elseif ($_GET[view] == 'psbaktivasi') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/psb_aktivasi.php";
+            include "application/psb_aktivasi.php";
             echo "</div>";
-          }
-
-          elseif ($_GET[view]=='journalkbm'){
+          } elseif ($_GET[view] == 'journalkbm') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/journal_semua.php";
+            include "application/journal_semua.php";
             echo "</div>";
-          }elseif ($_GET[view]=='journalguru'){
+          } elseif ($_GET[view] == 'journalguru') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/journal_guru.php";
+            include "application/journal_guru.php";
             echo "</div>";
-          }elseif ($_GET[view]=='kompetensiguru'){
+          } elseif ($_GET[view] == 'kompetensiguru') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/kompetensidasar_guru.php";
+            include "application/kompetensidasar_guru.php";
             echo "</div>";
-          }
-
-          elseif ($_GET[view]=='siswa'){
+          } elseif ($_GET[view] == 'siswa') {
             echo "<div class='row'>";
-                    include "application/master_siswa.php";
+            include "application/master_siswa.php";
             echo "</div>";
-          }elseif ($_GET[view]=='guru'){
+          } elseif ($_GET[view] == 'guru') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/master_guru.php";
+            include "application/master_guru.php";
             echo "</div>";
-          }elseif ($_GET[view]=='wakilkepala'){
+          } elseif ($_GET[view] == 'wakilkepala') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_wakilkepala.php";
+            include "application/master_wakilkepala.php";
             echo "</div>";
-          }elseif ($_GET[view]=='admin'){
+          } elseif ($_GET[view] == 'admin') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_admin.php";
+            include "application/master_admin.php";
             echo "</div>";
-          }elseif ($_GET[view]=='kelas'){
+          } elseif ($_GET[view] == 'kelas') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_kelas.php";
+            include "application/master_kelas.php";
             echo "</div>";
-          }elseif ($_GET[view]=='tahunakademik'){
+          } elseif ($_GET[view] == 'tahunakademik') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_tahun_akademik.php";
+            include "application/master_tahun_akademik.php";
             echo "</div>";
-          }elseif ($_GET[view]=='gedung'){
+          } elseif ($_GET[view] == 'gedung') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_gedung.php";
+            include "application/master_gedung.php";
             echo "</div>";
-          }elseif ($_GET[view]=='ruangan'){
+          } elseif ($_GET[view] == 'ruangan') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_ruangan.php";
+            include "application/master_ruangan.php";
             echo "</div>";
-          }elseif ($_GET[view]=='golongan'){
+          } elseif ($_GET[view] == 'golongan') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_golongan.php";
+            include "application/master_golongan.php";
             echo "</div>";
-          }elseif ($_GET[view]=='ptk'){
+          } elseif ($_GET[view] == 'ptk') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_ptk.php";
+            include "application/master_ptk.php";
             echo "</div>";
-          }elseif ($_GET[view]=='matapelajaran'){
+          } elseif ($_GET[view] == 'matapelajaran') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_matapelajaran.php";
+            include "application/master_matapelajaran.php";
             echo "</div>";
-          }elseif ($_GET[view]=='jadwalpelajaran'){
+          } elseif ($_GET[view] == 'jadwalpelajaran') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_jadwalpelajaran.php";
+            include "application/master_jadwalpelajaran.php";
             echo "</div>";
-          }elseif ($_GET[view]=='jurusan'){
+          } elseif ($_GET[view] == 'jurusan') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_jurusan.php";
+            include "application/master_jurusan.php";
             echo "</div>";
-          }elseif ($_GET[view]=='kurikulum'){
+          } elseif ($_GET[view] == 'kurikulum') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_kurikulum.php";
+            include "application/master_kurikulum.php";
             echo "</div>";
-          }elseif ($_GET[view]=='predikat'){
+          } elseif ($_GET[view] == 'predikat') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_predikat.php";
+            include "application/master_predikat.php";
             echo "</div>";
-          }elseif ($_GET[view]=='statuspegawai'){
+          } elseif ($_GET[view] == 'statuspegawai') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_statuspegawai.php";
+            include "application/master_statuspegawai.php";
             echo "</div>";
-          }elseif ($_GET[view]=='identitas'){
+          } elseif ($_GET[view] == 'identitas') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_identitas.php";
+            include "application/master_identitas.php";
             echo "</div>";
-          }elseif ($_GET[view]=='kelompokmapel'){
+          } elseif ($_GET[view] == 'kelompokmapel') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_kelompokmapel.php";
+            include "application/master_kelompokmapel.php";
             echo "</div>";
-          }elseif ($_GET[view]=='kompetensidasar'){
+          } elseif ($_GET[view] == 'kompetensidasar') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_kompetensidasar.php";
+            include "application/master_kompetensidasar.php";
             echo "</div>";
-          }elseif ($_GET[view]=='penilaiandiri'){
+          } elseif ($_GET[view] == 'penilaiandiri') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_penilaiandiri.php";
+            include "application/master_penilaiandiri.php";
             echo "</div>";
-          }elseif ($_GET[view]=='penilaianteman'){
+          } elseif ($_GET[view] == 'penilaianteman') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/master_penilaianteman.php";
+            include "application/master_penilaianteman.php";
             echo "</div>";
-          }
-
-
-          elseif ($_GET[view]=='absensiswa'){
+          } elseif ($_GET[view] == 'absensiswa') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/absensi_siswa.php";
+            include "application/absensi_siswa.php";
             echo "</div>";
-          }elseif ($_GET[view]=='rekapabsensiswa'){
+          } elseif ($_GET[view] == 'rekapabsensiswa') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/absensi_siswa_rekap.php";
+            include "application/absensi_siswa_rekap.php";
             echo "</div>";
-          }elseif ($_GET[view]=='absenguru'){
+          } elseif ($_GET[view] == 'absenguru') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/absensi_guru.php";
+            include "application/absensi_guru.php";
             echo "</div>";
-          }elseif ($_GET[view]=='bahantugas'){
+          } elseif ($_GET[view] == 'bahantugas') {
             echo "<div class='row'>";
-                    include "application/bahan_tugas.php";
+            include "application/bahan_tugas.php";
             echo "</div>";
-          }elseif ($_GET[view]=='soal'){
+          } elseif ($_GET[view] == 'soal') {
             echo "<div class='row'>";
-                    include "application/quiz_ujian_soal.php";
+            include "application/quiz_ujian_soal.php";
             echo "</div>";
-          }elseif ($_GET[view]=='forum'){
+          } elseif ($_GET[view] == 'forum') {
             echo "<div class='row'>";
-                    include "application/forum_diskusi.php";
+            include "application/forum_diskusi.php";
             echo "</div>";
-          }elseif ($_GET[view]=='penilaiandirisiswa'){
+          } elseif ($_GET[view] == 'penilaiandirisiswa') {
             echo "<div class='row'>";
-                    include "application/penilaiandiri_siswa.php";
+            include "application/penilaiandiri_siswa.php";
             echo "</div>";
-          }elseif ($_GET[view]=='penilaiantemansiswa'){
+          } elseif ($_GET[view] == 'penilaiantemansiswa') {
             echo "<div class='row'>";
-                    include "application/penilaianteman_siswa.php";
+            include "application/penilaianteman_siswa.php";
             echo "</div>";
-          }
-
-
-          elseif ($_GET[view]=='raport'){
+          } elseif ($_GET[view] == 'raport') {
             echo "<div class='row'>";
-                    include "application/raport.php";
+            include "application/raport.php";
             echo "</div>";
-          }elseif ($_GET[view]=='raportuts'){
+          } elseif ($_GET[view] == 'raportuts') {
             echo "<div class='row'>";
-                    include "application/raport_uts.php";
+            include "application/raport_uts.php";
             echo "</div>";
-          }elseif ($_GET[view]=='raportcetak'){
+          } elseif ($_GET[view] == 'raportcetak') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/raport_cetak.php";
+            include "application/raport_cetak.php";
             echo "</div>";
-          }elseif ($_GET[view]=='raportcetakuts'){
+          } elseif ($_GET[view] == 'raportcetakuts') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/raport_cetak_uts.php";
+            include "application/raport_cetak_uts.php";
             echo "</div>";
-          }elseif ($_GET[view]=='capaianhasilbelajar'){
+          } elseif ($_GET[view] == 'capaianhasilbelajar') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/raport/raport_capaian_hasil_belajar.php";
+            include "application/raport/raport_capaian_hasil_belajar.php";
             echo "</div>";
-          }elseif ($_GET[view]=='extrakulikuler'){
+          } elseif ($_GET[view] == 'extrakulikuler') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/raport/raport_extrakulikuler.php";
+            include "application/raport/raport_extrakulikuler.php";
             echo "</div>";
-          }elseif ($_GET[view]=='prestasi'){
+          } elseif ($_GET[view] == 'prestasi') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/raport/raport_prestasi.php";
+            include "application/raport/raport_prestasi.php";
             echo "</div>";
-          }elseif ($_GET[view]=='bukuinduk'){
+          } elseif ($_GET[view] == 'bukuinduk') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/buku_induk.php";
+            include "application/buku_induk.php";
             echo "</div>";
-          }
-
-          elseif ($_GET[view]=='dokumentasi'){
+          } elseif ($_GET[view] == 'dokumentasi') {
             cek_session_admin();
             echo "<div class='row'>";
-                    include "application/dokumentasi.php";
+            include "application/dokumentasi.php";
             echo "</div>";
-          }elseif ($_GET[view]=='dokumentasiguru'){
+          } elseif ($_GET[view] == 'dokumentasiguru') {
             cek_session_guru();
             echo "<div class='row'>";
-                    include "application/dokumentasi_guru.php";
+            include "application/dokumentasi_guru.php";
             echo "</div>";
-          }elseif ($_GET[view]=='dokumentasisiswa'){
+          } elseif ($_GET[view] == 'dokumentasisiswa') {
             cek_session_siswa();
             echo "<div class='row'>";
-                    include "application/dokumentasi_siswa.php";
+            include "application/dokumentasi_siswa.php";
+            echo "</div>";
+          } elseif ($_GET[view] == 'sms') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/sms/sms.php";
+            echo "</div>";
+          } elseif ($_GET[view] == 'broadcast') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/sms/broadcast.php";
+            echo "</div>";
+          } elseif ($_GET[view] == 'autoreply') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/sms/autoreply.php";
+            echo "</div>";
+          } elseif ($_GET[view] == 'smstoweb') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/sms/sms_to_web.php";
+            echo "</div>";
+          } elseif ($_GET[view] == 'outboxautoreply') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/sms/outbox_autoreply.php";
             echo "</div>";
           }
-
-
-          elseif ($_GET[view]=='sms'){
-            cek_session_admin();
-            echo "<div class='row'>";
-                    include "application/sms/sms.php";
-            echo "</div>";
-          }elseif ($_GET[view]=='broadcast'){
-            cek_session_admin();
-            echo "<div class='row'>";
-                    include "application/sms/broadcast.php";
-            echo "</div>";
-          }elseif ($_GET[view]=='autoreply'){
-            cek_session_admin();
-            echo "<div class='row'>";
-                    include "application/sms/autoreply.php";
-            echo "</div>";
-          }elseif ($_GET[view]=='smstoweb'){
-            cek_session_admin();
-            echo "<div class='row'>";
-                    include "application/sms/sms_to_web.php";
-            echo "</div>";
-          }elseif ($_GET[view]=='outboxautoreply'){
-            cek_session_admin();
-            echo "<div class='row'>";
-                    include "application/sms/outbox_autoreply.php";
-            echo "</div>";
-          }
-        ?>
+          ?>
         </section>
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-          <?php include "footer.php"; ?>
+        <?php include "footer.php"; ?>
       </footer>
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
@@ -460,7 +457,7 @@
     <script src="dist/js/app.min.js"></script>
 
     <script>
-      $(function () { 
+      $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,
@@ -489,17 +486,20 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Berikan Siswa Nilai Essai</h4>
           </div>
-          <form method='POST' action='index.php?view=soal&act=semuajawabansiswa&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>&noinduk=<?php echo $_GET[noinduk]; ?>' class="form-horizontal">
+          <form method='POST'
+            action='index.php?view=soal&act=semuajawabansiswa&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>&noinduk=<?php echo $_GET[noinduk]; ?>'
+            class="form-horizontal">
             <div class="modal-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nilai Essai</label>
-                  <div class="col-sm-10">
-                    <input type="number" name='a' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Nilai Essai</label>
+                <div class="col-sm-10">
+                  <input type="number" name='a' class="form-control">
                 </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -514,19 +514,22 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Tambahkan Soal Essai</h4>
           </div>
-          <form method='POST' action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>' class="form-horizontal">
+          <form method='POST'
+            action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>'
+            class="form-horizontal">
             <div class="modal-body">
-                
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
-                  <div class="col-sm-10">
-                    <textarea rows='6' name='a' class="form-control" placeholder="Tuliskan Soal Essai..."></textarea>
-                  </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
+                <div class="col-sm-10">
+                  <textarea rows='6' name='a' class="form-control" placeholder="Tuliskan Soal Essai..."></textarea>
                 </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -541,59 +544,62 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Tambahkan Soal Objektif</h4>
           </div>
-          <form method='POST' action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>' class="form-horizontal">
+          <form method='POST'
+            action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>'
+            class="form-horizontal">
             <div class="modal-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
-                  <div class="col-sm-10">
-                    <textarea rows='3' name='a' class="form-control" placeholder="Tuliskan Soal Objektif..."></textarea>
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
+                <div class="col-sm-10">
+                  <textarea rows='3' name='a' class="form-control" placeholder="Tuliskan Soal Objektif..."></textarea>
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jawab A</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='b' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab A</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='b' class="form-control">
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jawab B</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='c' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab B</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='c' class="form-control">
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jawab C</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='d' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab C</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='d' class="form-control">
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jawab D</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='e' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab D</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='e' class="form-control">
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jawab E</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='f' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab E</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='f' class="form-control">
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Kunci</label>
-                  <div class="col-sm-10">
-                    <input style='width:50%' type="text" name='g' class="form-control">
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Kunci</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='g' class="form-control">
                 </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -604,10 +610,11 @@
       </div>
     </div>
   </body>
-</html>
 
-<?php 
-  }else{
-    include "login.php";
-  }
+  </html>
+
+<?php
+} else {
+  include "login.php";
+}
 ?>
