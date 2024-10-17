@@ -62,14 +62,16 @@
           <tbody>
             <?php
             if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
-                                            JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                              JOIN rb_guru c ON a.nip=c.nip 
-                                                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                                  JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                  where a.kode_kelas='$_GET[kelas]' 
-                                                    AND a.id_tahun_akademik='$_GET[tahun]' 
-                                                      AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' ORDER BY a.hari DESC");
+              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan 
+              FROM rb_jadwal_pelajaran a 
+              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+              JOIN rb_guru c ON a.nip=c.nip 
+              JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+              JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+              WHERE a.kode_kelas='$_GET[kelas]' 
+              AND a.id_tahun_akademik='$_GET[tahun]' 
+              AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
+              ORDER BY a.hari DESC");
 
             }
             $no = 1;
