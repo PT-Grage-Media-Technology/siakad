@@ -235,7 +235,62 @@ if ($_GET[act] == '') {
                   <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
                 </div>
                 <div class='box-body'>
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+
+  //                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+  //                   <div class='table-responsive'>
+  //                     <table class='table table-condensed table-bordered'>
+  //                       <tbody>
+  //                         <tr>
+  //                           <th width='120px' scope='row'>Kategori</th> 
+  //                           <td>
+  //                             <select class='form-control' name='a'> 
+  //                               <option value='0' selected>- Pilih Kategori Tugas -</option>";
+  // $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
+  // while ($a = mysql_fetch_array($kategori)) {
+  //   echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
+  // }
+  // echo "</select>
+  //                           </td>
+  //                         </tr>
+  //                         <tr>
+  //                           <th scope='row'>Nama File</th>        
+  //                           <td><input type='text' class='form-control' name='b'></td>
+  //                         </tr>
+  //                         <tr>
+  //                           <th scope='row'>File</th>             
+  //                           <td>
+  //                             <div style='position:relative;'>
+  //                               <a class='btn btn-primary' href='javascript:;'>
+  //                                 <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
+  //                                 <input type='file' class='files' name='c' onchange='$('#upload-file-info').html($(this).val());' style='display:none;'>
+  //                               </a> 
+  //                               <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  //                             </div>
+  //                           </td>
+  //                         </tr>
+  //                         <tr>
+  //                           <th scope='row'>Waktu Mulai</th>      
+  //                           <td><input type='timestamp' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='d'></td>
+  //                         </tr>
+  //                         <tr>
+  //                           <th scope='row'>Waktu Selesai</th>    
+  //                           <td><input type='timestamp' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='e'></td>
+  //                         </tr>
+  //                         <tr>
+  //                           <th scope='row'>Keterangan</th>       
+  //                           <td><input type='text' class='form-control' name='f'></td>
+  //                         </tr>
+  //                       </tbody>
+  //                     </table>
+  //                   </div>
+  //               </div>
+  //               <div class='box-footer'>
+  //                   <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+  //                   <a href='index.php?view=bahantugas' class='btn btn-default pull-right'>Cancel</a>
+  //               </div>
+  //             </form>
+
+  <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
   <div class='table-responsive'>
     <table class='table table-condensed table-bordered'>
       <tbody>
