@@ -29,7 +29,7 @@
       </div><!-- /.box-header -->
 
       <div class="box-body">
-        <div class="table-responsive"> <!-- Added this div for horizontal scroll -->
+        <div class="table-responsive"> <!-- Wrapper ini hanya untuk membuat tabel bisa di-scroll secara horizontal -->
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
