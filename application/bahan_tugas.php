@@ -145,7 +145,7 @@ if ($_GET[act] == '') {
                                   <th style='width:40px'>No</th>
                                   <th>Nama Tugas</th>
                                   <th>Kategori</th>
-                                  <th>Waktu Mulai99</th>
+                                  <th>Waktu Mulai</th>
                                   <th>Batas Waktu</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
@@ -267,7 +267,7 @@ if ($_GET[act] == '') {
                             </td>
                           </tr>
                           <tr>
-                            <th scope='row'>Waktu Mulai</th>      
+                            <th scope='row'>Waktu Mulai99</th>      
                             <td><input type='text' class='form-control' value='" . date("Y-m-d H:i:s") . "' name='d'></td>
                           </tr>
                           <tr>
@@ -367,7 +367,7 @@ if ($_GET[act] == '') {
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th scope='row'>Waktu Mulai</th>
+                                    <th scope='row'>Waktu Mulai98</th>
                                     <td><input type='text' class='form-control' value='$s[tanggal_tugas]' name='d'></td>
                                   </tr>
                                   <tr>
