@@ -1,101 +1,109 @@
-<?php if ($_GET[act]==''){ ?> 
-            <div class="col-xs-12">  
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Semua Data Guru </h3>
-                  <?php if($_SESSION[level]!='kepala'){ ?>
-                  <a class='pull-right btn btn-primary btn-sm' href='index.php?view=guru&act=tambahguru'>Tambahkan Data Guru</a>
-                  <?php } ?>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>NIP</th>
-                        <th>Nama Lengkap</th>
-                        <th>Jenis Kelamin</th>
-                        <th>No Telpon</th>
-                        <th>Status Pegawai</th>
-                        <th>Jenis PTK</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                  <?php 
-                    $tampil = mysql_query("SELECT * FROM rb_guru a 
-                                          LEFT JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
-                                            LEFT JOIN rb_status_kepegawaian c ON a.id_status_kepegawaian=c.id_status_kepegawaian 
-                                              LEFT JOIN rb_jenis_ptk d ON a.id_jenis_ptk=d.id_jenis_ptk
-                                              ORDER BY a.nip DESC");
-                    $no = 1;
-                    while($r=mysql_fetch_array($tampil)){
-                    $tanggal = tgl_indo($r[tgl_posting]);
-                    echo "<tr><td>$no</td>
-                              <td>$r[nip]</td>
-                              <td>$r[nama_guru]</td>
-                              <td>$r[jenis_kelamin]</td>
-                              <td>$r[hp]</td>
-                              <td>$r[status_kepegawaian]</td>
-                              <td>$r[jenis_ptk]</td>";
-                              if($_SESSION[level]!='kepala'){
-                        echo "<td><center>
-                                <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='?view=guru&act=editguru&id=$r[nip]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=guru&hapus=$r[nip]'><span class='glyphicon glyphicon-remove'></span></a>
-                              </center></td>";
-                              }else{
-                                echo "<td><center>
-                                <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
-                              </center></td>";
-                              }
-                            echo "</tr>";
-                      $no++;
-                      }
-                      if (isset($_GET[hapus])){
-                          mysql_query("DELETE FROM rb_guru where nip='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=guru';</script>";
-                      }
+<?php if ($_GET[act] == '') { ?>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header d-flex justify-content-between align-items-center">
+            <h3 class="box-title">Semua Data Guru</h3>
+            <?php if ($_SESSION[level] != 'kepala') { ?>
+              <a class='btn btn-primary btn-sm' href='index.php?view=guru&act=tambahguru'>Tambahkan Data Guru</a>
+            <?php } ?>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped table-responsive">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIP</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jenis Kelamin</th>
+                  <th>No Telpon</th>
+                  <th>Status Pegawai</th>
+                  <th>Jenis PTK</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $tampil = mysql_query("SELECT * FROM rb_guru a 
+                                      LEFT JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
+                                      LEFT JOIN rb_status_kepegawaian c ON a.id_status_kepegawaian=c.id_status_kepegawaian 
+                                      LEFT JOIN rb_jenis_ptk d ON a.id_jenis_ptk=d.id_jenis_ptk
+                                      ORDER BY a.nip DESC");
+                $no = 1;
+                while ($r = mysql_fetch_array($tampil)) {
+                  echo "<tr>
+                          <td>$no</td>
+                          <td>$r[nip]</td>
+                          <td>$r[nama_guru]</td>
+                          <td>$r[jenis_kelamin]</td>
+                          <td>$r[hp]</td>
+                          <td>$r[status_kepegawaian]</td>
+                          <td>$r[jenis_ptk]</td>";
+                  if ($_SESSION[level] != 'kepala') {
+                    echo "<td>
+                            <center>
+                              <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
+                              <a class='btn btn-success btn-xs' title='Edit Data' href='?view=guru&act=editguru&id=$r[nip]'><span class='glyphicon glyphicon-edit'></span></a>
+                              <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=guru&hapus=$r[nip]'><span class='glyphicon glyphicon-remove'></span></a>
+                            </center>
+                          </td>";
+                  } else {
+                    echo "<td>
+                            <center>
+                              <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
+                            </center>
+                          </td>";
+                  }
+                  echo "</tr>";
+                  $no++;
+                }
+                if (isset($_GET[hapus])) {
+                  mysql_query("DELETE FROM rb_guru WHERE nip='$_GET[hapus]'");
+                  echo "<script>document.location='index.php?view=guru';</script>";
+                }
+                ?>
+              </tbody>
+            </table>
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </div>
 
-                  ?>
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div>
-<?php 
-}elseif($_GET[act]=='tambahguru'){
-  if (isset($_POST[tambah])){
-      $rtrw = explode('/',$_POST[al]);
-      $rt = $rtrw[0];
-      $rw = $rtrw[1];
-      $dir_gambar = 'foto_pegawai/';
-      $filename = basename($_FILES['ax']['name']);
-      $filenamee = date("YmdHis").'-'.basename($_FILES['ax']['name']);
-      $uploadfile = $dir_gambar . $filenamee;
-      if ($filename != ''){      
-        if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
-          mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
+<?php
+} elseif ($_GET[act] == 'tambahguru') {
+  if (isset($_POST[tambah])) {
+    $rtrw = explode('/', $_POST[al]);
+    $rt = $rtrw[0];
+    $rw = $rtrw[1];
+    $dir_gambar = 'foto_pegawai/';
+    $filename = basename($_FILES['ax']['name']);
+    $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
+    $uploadfile = $dir_gambar . $filenamee;
+    if ($filename != '') {
+      if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
+        mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
                            '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
                            '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
                            '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
                            '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
                            '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
                            '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','$filenamee')");
-        }
-      }else{
-          mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
+      }
+    } else {
+      mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
                            '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
                            '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
                            '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
                            '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
                            '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
                            '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-      }
-      echo "<script>document.location='index.php?view=guru&act=detailguru&id=".$_POST[aa]."';</script>";
+    }
+    echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[aa] . "';</script>";
   }
 
-    echo "<div class='col-md-12'>
+  echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Tambah Data Guru</h3>
@@ -112,19 +120,19 @@
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' name='ad'></td></tr>
                     <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
-                                                                          <option value='0' selected>- Pilih Jenis Kelamin -</option>"; 
-                                                                            $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
-                                                                            while($a = mysql_fetch_array($jk)){
-                                                                                echo "<option value='$a[id_jenis_kelamin]'>$a[jenis_kelamin]</option>";
-                                                                            }
-                                                                            echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Jenis Kelamin -</option>";
+  $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
+  while ($a = mysql_fetch_array($jk)) {
+    echo "<option value='$a[id_jenis_kelamin]'>$a[jenis_kelamin]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Agama</th>                  <td><select class='form-control' name='ag'> 
-                                                                          <option value='0' selected>- Pilih Agama -</option>"; 
-                                                                            $agama = mysql_query("SELECT * FROM rb_agama");
-                                                                            while($a = mysql_fetch_array($agama)){
-                                                                                echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Agama -</option>";
+  $agama = mysql_query("SELECT * FROM rb_agama");
+  while ($a = mysql_fetch_array($agama)) {
+    echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' name='ah'></td></tr>
                     <tr><th scope='row'>No Telpon</th>              <td><input type='text' class='form-control' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' name='aj'></td></tr>
@@ -137,39 +145,39 @@
                     <tr><th scope='row'>NUPTK</th>                  <td><input type='text' class='form-control' name='aq'></td></tr>
                     <tr><th scope='row'>Bidang Studi</th>           <td><input type='text' class='form-control' name='ar'></td></tr>
                     <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as'> 
-                                                                          <option value='0' selected>- Pilih Jenis PTK -</option>"; 
-                                                                            $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
-                                                                            while($a = mysql_fetch_array($ptk)){
-                                                                                echo "<option value='$a[id_jenis_ptk]'>$a[jenis_ptk]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Jenis PTK -</option>";
+  $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
+  while ($a = mysql_fetch_array($ptk)) {
+    echo "<option value='$a[id_jenis_ptk]'>$a[jenis_ptk]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Tugas Tambahan</th>         <td><input type='text' class='form-control' name='at'></td></tr>
                     <tr><th scope='row'>Status Pegawai</th>         <td><select class='form-control' name='au'> 
-                                                                          <option value='0' selected>- Pilih Status Kepegawaian -</option>"; 
-                                                                            $status_kepegawaian = mysql_query("SELECT * FROM rb_status_kepegawaian");
-                                                                            while($a = mysql_fetch_array($status_kepegawaian)){
-                                                                                echo "<option value='$a[id_status_kepegawaian]'>$a[status_kepegawaian]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Kepegawaian -</option>";
+  $status_kepegawaian = mysql_query("SELECT * FROM rb_status_kepegawaian");
+  while ($a = mysql_fetch_array($status_kepegawaian)) {
+    echo "<option value='$a[id_status_kepegawaian]'>$a[status_kepegawaian]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Status Keaktifan</th>       <td><select class='form-control' name='av'> 
-                                                                          <option value='0' selected>- Pilih Status Keaktifan -</option>"; 
-                                                                            $status_keaktifan = mysql_query("SELECT * FROM rb_status_keaktifan");
-                                                                            while($a = mysql_fetch_array($status_keaktifan)){
-                                                                                echo "<option value='$a[id_status_keaktifan]'>$a[nama_status_keaktifan]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Keaktifan -</option>";
+  $status_keaktifan = mysql_query("SELECT * FROM rb_status_keaktifan");
+  while ($a = mysql_fetch_array($status_keaktifan)) {
+    echo "<option value='$a[id_status_keaktifan]'>$a[nama_status_keaktifan]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Status Nikah</th>           <td><select class='form-control' name='aw'> 
-                                                                          <option value='0' selected>- Pilih Status Pernikahan -</option>"; 
-                                                                            $status_pernikahan = mysql_query("SELECT * FROM rb_status_pernikahan");
-                                                                            while($a = mysql_fetch_array($status_pernikahan)){
-                                                                                echo "<option value='$a[id_status_pernikahan]'>$a[status_pernikahan]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Pernikahan -</option>";
+  $status_pernikahan = mysql_query("SELECT * FROM rb_status_pernikahan");
+  while ($a = mysql_fetch_array($status_pernikahan)) {
+    echo "<option value='$a[id_status_pernikahan]'>$a[status_pernikahan]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Foto</th>             <td><div style='position:relative;''>
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Browse..."; ?>
-                                                                            <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
-                                                                          <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
+  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                   </tbody>
@@ -186,12 +194,12 @@
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' name='bf'></td></tr>
                     <tr><th scope='row'>Golongan</th>               <td><select class='form-control' name='bg'> 
-                                                                          <option value='0' selected>- Pilih Golongan -</option>"; 
-                                                                            $golongan = mysql_query("SELECT * FROM rb_golongan");
-                                                                            while($a = mysql_fetch_array($golongan)){
-                                                                                echo "<option value='$a[id_golongan]'>$a[nama_golongan]</option>";
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Golongan -</option>";
+  $golongan = mysql_query("SELECT * FROM rb_golongan");
+  while ($a = mysql_fetch_array($golongan)) {
+    echo "<option value='$a[id_golongan]'>$a[nama_golongan]</option>";
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Sumber Gaji</th>            <td><input type='text' class='form-control' value='$s[sumber_gaji]' name='bh'></td></tr>
 
                     <tr><th scope='row'>Ahli Laboratorium</th>      <td><input type='text' class='form-control' name='bi'></td></tr>
@@ -221,18 +229,18 @@
               </div>
             </form>
             </div>";
-}elseif($_GET[act]=='editguru'){
-  if (isset($_POST[update1])){
-      $rtrw = explode('/',$_POST[al]);
-      $rt = $rtrw[0];
-      $rw = $rtrw[1];
-      $dir_gambar = 'foto_pegawai/';
-      $filename = basename($_FILES['ax']['name']);
-      $filenamee = date("YmdHis").'-'.basename($_FILES['ax']['name']);
-      $uploadfile = $dir_gambar . $filenamee;
-      if ($filename != ''){      
-        if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
-          mysql_query("UPDATE rb_guru SET 
+} elseif ($_GET[act] == 'editguru') {
+  if (isset($_POST[update1])) {
+    $rtrw = explode('/', $_POST[al]);
+    $rt = $rtrw[0];
+    $rw = $rtrw[1];
+    $dir_gambar = 'foto_pegawai/';
+    $filename = basename($_FILES['ax']['name']);
+    $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
+    $uploadfile = $dir_gambar . $filenamee;
+    if ($filename != '') {
+      if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
+        mysql_query("UPDATE rb_guru SET 
                            nip          = '$_POST[aa]',
                            password     = '$_POST[ab]',
                            nama_guru         = '$_POST[ac]',
@@ -282,9 +290,9 @@
                            kewarganegaraan = '$_POST[bu]',
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
-        }
-      }else{
-          mysql_query("UPDATE rb_guru SET 
+      }
+    } else {
+      mysql_query("UPDATE rb_guru SET 
                            nip          = '$_POST[aa]',
                            password     = '$_POST[ab]',
                            nama_guru         = '$_POST[ac]',
@@ -333,13 +341,13 @@
                            kewarganegaraan = '$_POST[bu]',
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
-      }
-      echo "<script>document.location='index.php?view=guru&act=detailguru&id=".$_POST[id]."';</script>";
+    }
+    echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
   }
 
-    $detail = mysql_query("SELECT * FROM rb_guru where nip='$_GET[id]'");
-    $s = mysql_fetch_array($detail);
-    echo "<div class='col-md-12'>
+  $detail = mysql_query("SELECT * FROM rb_guru where nip='$_GET[id]'");
+  $s = mysql_fetch_array($detail);
+  echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Edit Data Guru</h3>
@@ -351,12 +359,12 @@
                   <tbody>
                     <input type='hidden' name='id' value='$s[nip]'>
                     <tr><th style='background-color:#E7EAEC' width='160px' rowspan='25'>";
-                        if (trim($s[foto])==''){
-                          echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
-                        }else{
-                          echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
-                        }
-                        echo "</th>
+  if (trim($s[foto]) == '') {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
+  } else {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
+  }
+  echo "</th>
                     </tr>
                     <input type='hidden' name='id' value='$s[nip]'>
                     <tr><th width='120px' scope='row'>Nip</th>      <td><input type='text' class='form-control' value='$s[nip]' name='aa'></td></tr>
@@ -365,27 +373,27 @@
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' value='$s[tempat_lahir]' name='ad'></td></tr>
                     <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' value='$s[tanggal_lahir]' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
-                                                                          <option value='0' selected>- Pilih Jenis Kelamin -</option>"; 
-                                                                            $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
-                                                                            while($a = mysql_fetch_array($jk)){
-                                                                              if ($a[id_jenis_kelamin] == $s[id_jenis_kelamin]){
-                                                                                echo "<option value='$a[id_jenis_kelamin]' selected>$a[jenis_kelamin]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_jenis_kelamin]'>$a[jenis_kelamin]</option>";
-                                                                              }
-                                                                            }
-                                                                            echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Jenis Kelamin -</option>";
+  $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
+  while ($a = mysql_fetch_array($jk)) {
+    if ($a[id_jenis_kelamin] == $s[id_jenis_kelamin]) {
+      echo "<option value='$a[id_jenis_kelamin]' selected>$a[jenis_kelamin]</option>";
+    } else {
+      echo "<option value='$a[id_jenis_kelamin]'>$a[jenis_kelamin]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Agama</th>                  <td><select class='form-control' name='ag'> 
-                                                                          <option value='0' selected>- Pilih Agama -</option>"; 
-                                                                            $agama = mysql_query("SELECT * FROM rb_agama");
-                                                                            while($a = mysql_fetch_array($agama)){
-                                                                              if ($a[id_agama] == $s[id_agama]){
-                                                                                echo "<option value='$a[id_agama]' selected>$a[nama_agama]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Agama -</option>";
+  $agama = mysql_query("SELECT * FROM rb_agama");
+  while ($a = mysql_fetch_array($agama)) {
+    if ($a[id_agama] == $s[id_agama]) {
+      echo "<option value='$a[id_agama]' selected>$a[nama_agama]</option>";
+    } else {
+      echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
                     <tr><th scope='row'>No Telpon</th>              <td><input type='text' class='form-control' value='$s[telepon]' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' value='$s[email]' name='aj'></td></tr>
@@ -398,55 +406,55 @@
                     <tr><th scope='row'>NUPTK</th>                  <td><input type='text' class='form-control' value='$s[nuptk]' name='aq'></td></tr>
                     <tr><th scope='row'>Bidang Studi</th>           <td><input type='text' class='form-control' value='$s[pengawas_bidang_studi]' name='ar'></td></tr>
                     <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as'> 
-                                                                          <option value='0' selected>- Pilih Jenis PTK -</option>"; 
-                                                                            $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
-                                                                            while($a = mysql_fetch_array($ptk)){
-                                                                              if ($a[id_jenis_ptk] == $s[id_jenis_ptk]){
-                                                                                echo "<option value='$a[id_jenis_ptk]' selected>$a[jenis_ptk]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_jenis_ptk]'>$a[jenis_ptk]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Jenis PTK -</option>";
+  $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
+  while ($a = mysql_fetch_array($ptk)) {
+    if ($a[id_jenis_ptk] == $s[id_jenis_ptk]) {
+      echo "<option value='$a[id_jenis_ptk]' selected>$a[jenis_ptk]</option>";
+    } else {
+      echo "<option value='$a[id_jenis_ptk]'>$a[jenis_ptk]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Tugas Tambahan</th>         <td><input type='text' class='form-control' value='$s[tugas_tambahan]' name='at'></td></tr>
                     <tr><th scope='row'>Status Pegawai</th>         <td><select class='form-control' name='au'> 
-                                                                          <option value='0' selected>- Pilih Status Kepegawaian -</option>"; 
-                                                                            $status_kepegawaian = mysql_query("SELECT * FROM rb_status_kepegawaian");
-                                                                            while($a = mysql_fetch_array($status_kepegawaian)){
-                                                                              if ($a[id_status_kepegawaian] == $s[id_status_kepegawaian]){
-                                                                                echo "<option value='$a[id_status_kepegawaian]' selected>$a[status_kepegawaian]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_status_kepegawaian]'>$a[status_kepegawaian]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Kepegawaian -</option>";
+  $status_kepegawaian = mysql_query("SELECT * FROM rb_status_kepegawaian");
+  while ($a = mysql_fetch_array($status_kepegawaian)) {
+    if ($a[id_status_kepegawaian] == $s[id_status_kepegawaian]) {
+      echo "<option value='$a[id_status_kepegawaian]' selected>$a[status_kepegawaian]</option>";
+    } else {
+      echo "<option value='$a[id_status_kepegawaian]'>$a[status_kepegawaian]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Status Keaktifan</th>       <td><select class='form-control' name='av'> 
-                                                                          <option value='0' selected>- Pilih Status Keaktifan -</option>"; 
-                                                                            $status_keaktifan = mysql_query("SELECT * FROM rb_status_keaktifan");
-                                                                            while($a = mysql_fetch_array($status_keaktifan)){
-                                                                              if ($a[id_status_keaktifan] == $s[id_status_keaktifan]){
-                                                                                echo "<option value='$a[id_status_keaktifan]' selected>$a[nama_status_keaktifan]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_status_keaktifan]'>$a[nama_status_keaktifan]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Keaktifan -</option>";
+  $status_keaktifan = mysql_query("SELECT * FROM rb_status_keaktifan");
+  while ($a = mysql_fetch_array($status_keaktifan)) {
+    if ($a[id_status_keaktifan] == $s[id_status_keaktifan]) {
+      echo "<option value='$a[id_status_keaktifan]' selected>$a[nama_status_keaktifan]</option>";
+    } else {
+      echo "<option value='$a[id_status_keaktifan]'>$a[nama_status_keaktifan]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Status Nikah</th>           <td><select class='form-control' name='aw'> 
-                                                                          <option value='0' selected>- Pilih Status Pernikahan -</option>"; 
-                                                                            $status_pernikahan = mysql_query("SELECT * FROM rb_status_pernikahan");
-                                                                            while($a = mysql_fetch_array($status_pernikahan)){
-                                                                              if ($a[id_status_pernikahan] == $s[id_status_pernikahan]){
-                                                                                echo "<option value='$a[id_status_pernikahan]' selected>$a[status_pernikahan]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_status_pernikahan]'>$a[status_pernikahan]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Status Pernikahan -</option>";
+  $status_pernikahan = mysql_query("SELECT * FROM rb_status_pernikahan");
+  while ($a = mysql_fetch_array($status_pernikahan)) {
+    if ($a[id_status_pernikahan] == $s[id_status_pernikahan]) {
+      echo "<option value='$a[id_status_pernikahan]' selected>$a[status_pernikahan]</option>";
+    } else {
+      echo "<option value='$a[id_status_pernikahan]'>$a[status_pernikahan]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Ganti Foto</th>             <td><div style='position:relative;''>
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Browse..."; ?>
-                                                                            <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
-                                                                          <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
+  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                   </tbody>
@@ -463,16 +471,16 @@
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' value='$s[tmt_pengangkatan]' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' value='$s[lembaga_pengangkatan]' name='bf'></td></tr>
                     <tr><th scope='row'>Golongan</th>               <td><select class='form-control' name='bg'> 
-                                                                          <option value='0' selected>- Pilih Golongan -</option>"; 
-                                                                            $golongan = mysql_query("SELECT * FROM rb_golongan");
-                                                                            while($a = mysql_fetch_array($golongan)){
-                                                                              if ($a[id_golongan] == $s[id_golongan]){
-                                                                                echo "<option value='$a[id_golongan]' selected>$a[nama_golongan]</option>";
-                                                                              }else{
-                                                                                echo "<option value='$a[id_golongan]'>$a[nama_golongan]</option>";
-                                                                              }
-                                                                            }
-                                                                  echo "</select></td></tr>
+                                                                          <option value='0' selected>- Pilih Golongan -</option>";
+  $golongan = mysql_query("SELECT * FROM rb_golongan");
+  while ($a = mysql_fetch_array($golongan)) {
+    if ($a[id_golongan] == $s[id_golongan]) {
+      echo "<option value='$a[id_golongan]' selected>$a[nama_golongan]</option>";
+    } else {
+      echo "<option value='$a[id_golongan]'>$a[nama_golongan]</option>";
+    }
+  }
+  echo "</select></td></tr>
                     <tr><th scope='row'>Sumber Gaji</th>            <td><input type='text' class='form-control' value='$s[sumber_gaji]' name='bh'></td></tr>
 
                     <tr><th scope='row'>Ahli Laboratorium</th>      <td><input type='text' class='form-control' value='$s[keahlian_laboratorium]' name='bi'></td></tr>
@@ -502,8 +510,8 @@
               </div>
             </form>
             </div>";
-}elseif($_GET[act]=='detailguru'){
-    $detail = mysql_query("SELECT a.*, b.jenis_kelamin, c.status_kepegawaian, d.jenis_ptk, e.nama_agama, f.nama_status_keaktifan, g.nama_golongan, h.status_pernikahan 
+} elseif ($_GET[act] == 'detailguru') {
+  $detail = mysql_query("SELECT a.*, b.jenis_kelamin, c.status_kepegawaian, d.jenis_ptk, e.nama_agama, f.nama_status_keaktifan, g.nama_golongan, h.status_pernikahan 
                                 FROM rb_guru a LEFT JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
                                   LEFT JOIN rb_status_kepegawaian c ON a.id_status_kepegawaian=c.id_status_kepegawaian 
                                     LEFT JOIN rb_jenis_ptk d ON a.id_jenis_ptk=d.id_jenis_ptk 
@@ -512,8 +520,8 @@
                                           LEFT JOIN rb_golongan g ON a.id_golongan=g.id_golongan
                                             LEFT JOIN rb_status_pernikahan h ON a.id_status_pernikahan=h.id_status_pernikahan
                                               where a.nip='$_GET[id]'");
-    $s = mysql_fetch_array($detail);
-    echo "<div class='col-md-12'>
+  $s = mysql_fetch_array($detail);
+  echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Detail Data Guru</h3>
@@ -525,15 +533,15 @@
                   <tbody>
                     <input type='hidden' name='id' value='$s[nip]'>
                     <tr><th style='background-color:#E7EAEC' width='160px' rowspan='25'>";
-                        if (trim($s[foto])==''){
-                          echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
-                        }else{
-                          echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
-                        }
-                      if($_SESSION[level]!='kepala'){
-                        echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-                      }
-                        echo "</th>
+  if (trim($s[foto]) == '') {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
+  } else {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
+  }
+  if ($_SESSION[level] != 'kepala') {
+    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+  }
+  echo "</th>
                     </tr>
                     <tr><th width='120px' scope='row'>Nip</th>      <td>$s[nip]</td></tr>
                     <tr><th scope='row'>Password</th>               <td>$s[password]</td></tr>
@@ -596,5 +604,5 @@
               </div>
             </form>
             </div>";
-}  
+}
 ?>
