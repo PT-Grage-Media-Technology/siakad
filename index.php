@@ -138,7 +138,7 @@ if (isset($_SESSION[id])) {
             } elseif ($_SESSION[level] == 'guru') {
               $_GET['act'] = 'detailguru';
               include "application/home_guru.php";
-              include "application/home_guru.php";
+              include "application/master_guru.php";
             } else {
               echo "<div class='row'>";
               include "application/home_admin_row1.php";
