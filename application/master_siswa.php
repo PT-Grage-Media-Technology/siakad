@@ -40,7 +40,13 @@ if ($_GET[act]==''){
 
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='siswa'>
-                    <input type="number" name='angkatan' style='padding:3px' placeholder='Angkatan' value='<?php echo $_GET[angkatan]; ?>'>
+                    <?php 
+                    // Ambil angkatan dengan nilai terbesar
+                    $angkatan_query = mysql_query("SELECT MAX(angkatan) as max_angkatan FROM rb_siswa");
+                    $angkatan_data = mysql_fetch_array($angkatan_query);
+                    $max_angkatan = $angkatan_data['max_angkatan'];
+                    ?>
+                    <input type="number" name='angkatan' style='padding:3px' placeholder='Angkatan' value='<?php echo $max_angkatan; ?>'>
                     <select name='kelas' style='padding:4px'>
                         <?php 
                             echo "<option value=''>- Filter Kelas -</option>";
