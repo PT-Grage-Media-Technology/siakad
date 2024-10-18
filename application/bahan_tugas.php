@@ -306,6 +306,7 @@ if (isset($_POST[tambah])){
 }elseif($_GET[act]=='edit'){
 cek_session_guru();
 if (isset($_POST[update])){
+  var_dump($_POST);
       $dir_gambar = 'files/';
       $filename = basename($_FILES['c']['name']);
       $filenamee = date("YmdHis").'-'.basename($_FILES['c']['name']);
