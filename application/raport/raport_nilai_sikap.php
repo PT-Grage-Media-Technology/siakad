@@ -42,6 +42,7 @@
                     <ul id='myTabs' class='nav nav-tabs' role='tablist'>
                       <li role='presentation' class='active'><a href='#spiritual' id='spiritual-tab' role='tab' data-toggle='tab' aria-controls='spiritual' aria-expanded='true'>Penilaian Spiritual </a></li>
                       <li role='presentation' class=''><a href='#sosial' role='tab' id='sosial-tab' data-toggle='tab' aria-controls='sosial' aria-expanded='false'>Penilaian Sosial</a></li>
+                      <li role='presentation' class=''><a href='#pengetahuan' role='tab' id='pengetahuan-tab' data-toggle='tab' aria-controls='pengetahuan' aria-expanded='false'>Penilaian Sosial</a></li>
                     </ul><br>
             <div id='myTabContent' class='tab-content'>";
 
@@ -88,6 +89,12 @@
                                   <button type='reset' class='btn btn-default pull-right'>Cancel</button>
                                 </div>
                             </form>
+                            </div>";
+
+                      echo "<div role='tabpanel' class='tab-pane fade active in' id='spiritual' aria-labelledby='spiritual-tab'>";
+                      echo "<div class='col-md-12'>
+                      </h1>tes aja ini mah</h1>
+                            </div>
                             </div>";
 
 
