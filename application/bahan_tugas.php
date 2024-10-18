@@ -280,11 +280,11 @@ if (isset($_POST[tambah])){
                       </tr>
                       <tr>
                         <th scope='row'>Waktu Mulai</th>
-                        <td><input type='datetime-local' class='form-control' value='".date("Y-m-d H:i:s")."' name='d'></td>
+                        <td><input type='datetime' class='form-control' value='".date("Y-m-d H:i:s")."' name='d'></td>
                       </tr>
                       <tr>
                         <th scope='row'>Waktu Selesai</th>
-                        <td><input type='datetime-local' class='form-control' value='".date("Y-m-d H:i:s")."' name='e'></td>
+                        <td><input type='datetime' class='form-control' value='".date("Y-m-d H:i:s")."' name='e'></td>
                       </tr>
                       <tr>
                         <th scope='row'>Keterangan</th>
