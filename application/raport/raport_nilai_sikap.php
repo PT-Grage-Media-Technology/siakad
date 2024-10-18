@@ -109,7 +109,6 @@ if (isset($_GET[delete])){
                       echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
                       echo "<div class='col-md-12'>
                                 <h1>sasajs</h1>
-          <div class='panel-body'>
               <table class='table table-bordered table-striped'>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
@@ -239,7 +238,6 @@ if (isset($_GET[delete])){
 
                                 echo "</tbody>
                             </table>
-                            </div>
                 </div>
                             </div>";
 
@@ -290,6 +288,7 @@ if (isset($_GET[delete])){
                             </form>
                             </div>
                   </div>
+                  
               </div>
           </div>
         </div>
