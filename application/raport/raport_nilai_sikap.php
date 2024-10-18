@@ -23,7 +23,7 @@
       }else{
         mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
       }
-  echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
+  echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
 }
 
 if (isset($_GET[delete])){
@@ -109,7 +109,6 @@ if (isset($_GET[delete])){
                       echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
                       echo "<div class='col-md-12'>
                                 <h1>sasajs</h1>
-
           <div class='panel-body'>
               <table class='table table-bordered table-striped'>
                                 <tr>
@@ -250,15 +249,6 @@ if (isset($_GET[delete])){
                       echo "<div class='col-md-12'>
                                 <h1>sasajs</h1>
 
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
-              </table>
-              </div>
 
           <div class='panel-body'>
               <table class='table table-bordered table-striped'>
@@ -390,6 +380,7 @@ if (isset($_GET[delete])){
 
                                 echo "</tbody>
                             </table>
+                            </div>
                 </div>
                             </div>";
 
