@@ -266,8 +266,8 @@ if ($_GET[act] == '') {
                         <td>
                           <select class='form-control' name='g'>
                             <option value='0' selected>- Pilih Status Tugas -</option>
-                            <option value='active' selected>Active</option>
-                            <option value='inactive' selected>Inactive</option>
+                            <option value='active'>Active</option>
+                            <option value='inactive'>Inactive</option>
                           </select>
                         </td>
                       </tr>
@@ -377,8 +377,8 @@ if ($_GET[act] == '') {
                         <td>
                           <select class='form-control' name='g' value='$s[status]'>
                             <option value='0' selected>- Pilih Status Tugas -</option>
-                            <option value='active' selected>Active</option>
-                            <option value='inactive' selected>Inactive</option>
+                            <option value='active' value='$s[status]' selected>Active</option>
+                            <option value='inactive' value='$s[status]' selected>Inactive</option>
                           </select>
                         </td>
                       </tr>
