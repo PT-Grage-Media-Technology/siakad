@@ -138,7 +138,9 @@
                     <tbody>";
   $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
   $no = 1;
+  $today = date('Y-m-d'); // Ambil tanggal hari ini
   while ($r = mysql_fetch_array($tampil)) {
+     $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : ''; // Validasi tanggal
     echo "<tr><td>$no</td>
                               <td>$r[hari]</td>
                               <td>" . tgl_indo($r[tanggal]) . "</td>
@@ -147,7 +149,7 @@
                               <td>$r[keterangan]</td>";
     if ($_SESSION[level] != 'kepala') {
       echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]' $buttonDisabled><span class='glyphicon glyphicon-edit'>Absen</span></a>
                                         <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
                                       </center></td>";
