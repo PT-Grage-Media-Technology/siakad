@@ -370,6 +370,16 @@ if ($_GET[act] == '') {
   }
   echo "</select>
                     </td></tr>
+                     <tr>
+                        <th width='120px' scope='row'>Status</th>
+                        <td>
+                          <select class='form-control' name='g'>
+                            <option value='0' selected>- Pilih Status Tugas -</option>
+                            <option value='active' selected>Active</option>
+                            <option value='inactive' selected>Inactive</option>
+                          </select>
+                        </td>
+                      </tr>
                     <tr><th scope='row'>Nama File</th>        <td><input type='text' class='form-control' name='b' value='$s[nama_file]'></td></tr>
                     <tr><th scope='row'>Ganti File</th>             <td><div style='position:relative;''>
                                                                           <a class='btn btn-primary' href='javascript:;'>
