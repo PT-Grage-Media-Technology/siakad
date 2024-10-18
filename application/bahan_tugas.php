@@ -278,14 +278,15 @@ if (isset($_POST[tambah])){
                           </div>
                         </td>
                       </tr>
-                      <tr>
+                    <tr>
                         <th scope='row'>Waktu Mulai</th>
-                        <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='d'></td>
-                      </tr>
-                      <tr>
+                    <td><input type='datetime-local' class='form-control' value='<?php echo date("Y-m-d\TH:i"); ?>' name='d'></td>
+                    </tr>
+                    <tr>
                         <th scope='row'>Waktu Selesai</th>
-                        <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='e'></td>
-                      </tr>
+                        <td><input type='datetime-local' class='form-control' value='<?php echo date("Y-m-d\TH:i"); ?>' name='e'></td>
+                    </tr>
+
                       <tr>
                         <th scope='row'>Keterangan</th>
                         <td><input type='text' class='form-control' name='f'></td>
