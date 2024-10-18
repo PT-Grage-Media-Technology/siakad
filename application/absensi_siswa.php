@@ -189,8 +189,7 @@
                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
                     <tr><th scope='row'>Tujuan Pembelajaran</th>           <td>$j[materi]</td></tr>
-                                        <a class='btn btn-danger btn-xs' title='Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugasguru'><span class='glyphicon glyphicon-remove'>Tugas</span></a>
-                    <tr><th scope='row'></th></tr>
+                    <tr><th scope='row'><a class='btn btn-success btn-xs' title='Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugasguru'><span class='glyphicon glyphicon-remove'>Tugas</span></a></th></tr>
                   </tbody>
               </table>
               </div>
