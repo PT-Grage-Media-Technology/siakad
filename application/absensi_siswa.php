@@ -189,7 +189,7 @@
                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
                     <tr><th scope='row'>Tujuan Pembelajaran</th>           <td>$j[materi]</td></tr>
-                    <tr><th scope='row'><a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[kode_jdwl]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-tasks'>Tugas</span></a></th></tr>
+                    <tr><th scope='row'><a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-tasks'>Tugas</span></a></th></tr>
                   </tbody>
               </table>
               </div>
