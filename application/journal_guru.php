@@ -140,7 +140,7 @@
   $no = 1;
   $today = date('Y-m-d'); // Ambil tanggal hari ini
   while ($r = mysql_fetch_array($tampil)) {
-     $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : ''; // Validasi tanggal
+    $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : ''; // Validasi tanggal
     $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]"; // Link absen
     echo "<tr><td>$no</td>
                               <td>$r[hari]</td>
@@ -151,6 +151,8 @@
     if ($_SESSION[level] != 'kepala') {
       echo "<td style='width:80px !important'><center>
                 <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                 <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
+                                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
               </center></td>";
     }
     echo "</tr>";
@@ -286,4 +288,3 @@
             </div>";
 }
 ?>
-
