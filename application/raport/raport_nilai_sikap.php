@@ -89,19 +89,17 @@
                                 </div>
                             </form>
                             </div>";
-
-
-                      // Ini Halaman unutk Nilai Sosial
-                echo "<div role='tabpanel' class='tab-pane fade' id='sosial' aria-labelledby='sosial-tab'>
-                      <div class='col-md-12'>
+                  // Ini Halaman unutk Nilai Spiritual
+                      echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
+                      echo "<div class='col-md-12'>
                             <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
-                            <input type='hidden' value='sosial' name='status'>
+                            <input type='hidden' value='spiritual' name='status'>
                             <table class='table table-bordered table-striped'>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
                                   <th style='border:1px solid #e3e3e3' width='80px' rowspan='2'>NISN</th>
                                   <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
-                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian Sosial</center></th>
+                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian Spiritual</center></th>
                                 </tr>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3;'><center>Positif</center></th>
@@ -112,7 +110,7 @@
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
-                                $des = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND status='sosial'"));
+                                $des = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND status='spiritual'"));
                                   echo "<tr>
                                         <td>$no</td>
                                         <td>$r[nisn]</td>
@@ -136,8 +134,9 @@
                             </form>
                             </div>";
 
+
                       // Ini Halaman unutk Nilai Sosial
-                echo "<div role='tabpanel' class='tab-pane fade' id='pengetahuan' aria-labelledby='pengetahuan-tab'>
+                echo "<div role='tabpanel' class='tab-pane fade' id='sosial' aria-labelledby='sosial-tab'>
                       <div class='col-md-12'>
                             <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
                             <input type='hidden' value='sosial' name='status'>
