@@ -109,7 +109,7 @@ if ($_GET[act] == '') {
                 <div class='box-header with-border'>
                   <h3 class='box-title'>List Upload Bahan dan Tugas</b></h3>";
   if ($_SESSION[level] == 'guru') {
-    echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugasguru'>Kembali</a>";
+    echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='javascript:history.back()'>Kembali</a>";
   } elseif ($_SESSION[level] == 'siswa') {
     echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugassiswa'>Kembali</a>";
   } else {
@@ -316,8 +316,6 @@ if ($_GET[act] == '') {
 } elseif ($_GET[act] == 'edit') {
   cek_session_guru();
   if (isset($_POST[update])) {
-    // var_dump($_POST);
-    // exit;
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
     $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
@@ -372,16 +370,6 @@ if ($_GET[act] == '') {
   }
   echo "</select>
                     </td></tr>
-                     <tr>
-                        <th width='120px' scope='row'>Status</th>
-                        <td>
-                          <select class='form-control' name='g' value='$s[status]'>
-                            <option value='0' selected>- Pilih Status Tugas -</option>
-                            <option value='active' selected>Active</option>
-                            <option value='inactive' selected>Inactive</option>
-                          </select>
-                        </td>
-                      </tr>
                     <tr><th scope='row'>Nama File</th>        <td><input type='text' class='form-control' name='b' value='$s[nama_file]'></td></tr>
                     <tr><th scope='row'>Ganti File</th>             <td><div style='position:relative;''>
                                                                           <a class='btn btn-primary' href='javascript:;'>
