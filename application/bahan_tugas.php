@@ -180,7 +180,8 @@ if ($_GET[act] == '') {
             <td>$r[status]</td>";
 
     // Cek level superuser
-    if ($_SESSION['level'] == 'superuser') {
+    // if ($_SESSION['level'] == 'superuser') {
+    if (true) {
       echo "<td>";
       if ($r['id_kategori_elearning'] == '1') {
         echo "<a style='margin-right:5px; width:106px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download </a>";
