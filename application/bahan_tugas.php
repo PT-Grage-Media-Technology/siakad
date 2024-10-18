@@ -159,7 +159,7 @@ cek_session_siswa();
                               <td>$r[nama_kategori_elearning]</td>
                               <td>$r[tanggal_tugas] WIB</td>
                               <td>$r[tanggal_selesai] WIB</td>
-                              <td>$r[status] WIB</td>";
+                              <td>$r[status]</td>";
                           if ($_SESSION[level]=='superuser'){
                               echo "<td>";
                                 if ($r[id_kategori_elearning]=='1'){
