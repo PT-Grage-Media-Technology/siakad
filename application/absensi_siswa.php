@@ -177,7 +177,7 @@
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$filtertgl") . "</b></h3>
+                  <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
                 </div>
               <div class='box-body'>
 
