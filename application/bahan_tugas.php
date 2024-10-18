@@ -229,48 +229,80 @@ if (isset($_POST[tambah])){
       }
   }
 
-    echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
-                </div>
-              <div class='box-body'>
+  echo "<div class='col-md-12'>
+          <div class='box box-info'>
+            <div class='box-header with-border'>
+              <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
+            </div>
+            <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
-                  <tbody>
-                    <tr><th width='120px' scope='row'>Kategori</th> <td><select class='form-control' name='a'> 
-                             <option value='0' selected>- Pilih Kategori Tugas -</option>"; 
-                              $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
-                                  while($a = mysql_fetch_array($kategori)){
-                                       echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
-                                  }
-                             echo "</select>
-                    </td></tr>
-                    <tr><th scope='row'>Nama File</th>        <td><input type='text' class='form-control' name='b'></td></tr>
-                    <tr><th scope='row'>File</th>             <td><div style='position:relative;''>
-                                                                          <a class='btn btn-primary' href='javascript:;'>
-                                                                            <i class='fa fa-search'></i> Cari File Bahan atau Tugas..."; ?>
-                                                                            <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-                                                                          <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                                                                        </div>
-                    </td></tr>
-                    <tr><th scope='row'>Waktu Mulai</th>      <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='d'></td></tr>
-                    <tr><th scope='row'>Waktu Selesai</th>    <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='e'></td></tr>
-                    <tr><th scope='row'>Keterangan</th>       <td><input type='text' class='form-control' name='f'></td></tr>
-                    
-                  </tbody>
+                    <tbody>
+                      <tr>
+                        <th width='120px' scope='row'>Kategori</th>
+                        <td>
+                          <select class='form-control' name='a'>
+                            <option value='0' selected>- Pilih Kategori Tugas -</option>"; 
+                            $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
+                            while ($a = mysql_fetch_array($kategori)) {
+                              echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
+                            }
+                            echo "</select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th width='120px' scope='row'>Status</th>
+                        <td>
+                          <select class='form-control' name='g'>
+                            <option value='0' selected>- Pilih Status Tugas -</option>
+                            <option value='active' selected>Active</option>
+                            <option value='inactive' selected>Inactive</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>Nama File</th>
+                        <td><input type='text' class='form-control' name='b'></td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>File</th>
+                        <td>
+                          <div style='position:relative;'>
+                            <a class='btn btn-primary' href='javascript:;'>
+                              <i class='fa fa-search'></i> Cari File Bahan atau Tugas...";
+                            ?>
+                            <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+                            <?php echo "</a>
+                            <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>Waktu Mulai</th>
+                        <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='d'></td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>Waktu Selesai</th>
+                        <td><input type='text' class='form-control' value='".date("Y-m-d H:i:s")."' name='e'></td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>Keterangan</th>
+                        <td><input type='text' class='form-control' name='f'></td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
-                
               </div>
               <div class='box-footer'>
-                    <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
-                    
-                  </div>
-              </form>
-            </div>";
+                <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                <a href='index.php?view=bahantugas'>
+                  <button class='btn btn-default pull-right'>Cancel</button>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>";
 }elseif($_GET[act]=='edit'){
 cek_session_guru();
 if (isset($_POST[update])){
@@ -286,6 +318,7 @@ if (isset($_POST[update])){
                                                file_upload           = '$filenamee',
                                                tanggal_tugas         = '$_POST[d]',
                                                tanggal_selesai       = '$_POST[e]',
+                                               'status'              = '$_POST[g]',
                                                keterangan            = '$_POST[f]' where id_elearning='$_GET[edit]'");
             echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=".$_GET[jdwl]."&id=".$_GET[id]."&kd=".$_GET[kd]."';</script>";
         }else{
