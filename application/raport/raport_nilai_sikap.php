@@ -17,19 +17,6 @@
         }
         echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
-    if (isset($_POST[simpan-pengetahuan])){
-      if ($_POST[status]=='Update'){
-        mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai1='$_POST[b]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
-      }else{
-        mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
-      }
-  echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
-}
-
-if (isset($_GET[delete])){
-  mysql_query("DELETE FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[delete]'");
-  echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
-}
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
     $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
@@ -55,8 +42,6 @@ if (isset($_GET[delete])){
                     <ul id='myTabs' class='nav nav-tabs' role='tablist'>
                       <li role='presentation' class='active'><a href='#spiritual' id='spiritual-tab' role='tab' data-toggle='tab' aria-controls='spiritual' aria-expanded='true'>Penilaian Spiritual </a></li>
                       <li role='presentation' class=''><a href='#sosial' role='tab' id='sosial-tab' data-toggle='tab' aria-controls='sosial' aria-expanded='false'>Penilaian Sosial</a></li>
-                      <li role='presentation' class=''><a href='#pengetahuan' role='tab' id='pengetahuan-tab' data-toggle='tab' aria-controls='pengetahuan' aria-expanded='false'>Penilaian Pengetahuan</a></li>
-                      <li role='presentation' class=''><a href='#keterampilan' role='tab' id='keterampilan-tab' data-toggle='tab' aria-controls='keterampilan' aria-expanded='false'>Penilaian Keterampilan</a></li>
                     </ul><br>
             <div id='myTabContent' class='tab-content'>";
 
@@ -105,60 +90,6 @@ if (isset($_GET[delete])){
                             </form>
                             </div>";
 
-                  // Ini Halaman unutk Nilai Spiritual
-                      echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
-                      echo "<div class='col-md-12'>
-                            <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
-                            <input type='hidden' value='spiritual' name='status'>
-                            <table class='table table-bordered table-striped'>
-                                <tr>
-                                  <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
-                                  <th style='border:1px solid #e3e3e3' width='80px' rowspan='2'>NISN</th>
-                                  <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
-                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian Spiritual</center></th>
-                                </tr>
-                                <tr>
-                                  <th style='border:1px solid #e3e3e3;'><center>Positif</center></th>
-                                  <th style='border:1px solid #e3e3e3;'><center>Negatif</center></th>
-                                  <th style='border:1px solid #e3e3e3;'><center>Desktipsi</center></th>
-                                </tr>
-                              <tbody>";
-                              $no = 1;
-                              $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
-                              while($r=mysql_fetch_array($tampil)){
-                                $des = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND status='spiritual'"));
-                                  echo "<tr>
-                                        <td>$no</td>
-                                        <td>$r[nisn]</td>
-                                        <td>$r[nama]</td>
-                                        <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                                        <td align=center><textarea name='a".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Positif...'>$des[positif]</textarea></td>
-                                        <td align=center><textarea name='b".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Negatif...'>$des[negatif]</textarea></td>
-                                        <td align=center><textarea name='c".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Deskripsi...'>$des[deskripsi]</textarea></td>
-                                      </tr>";
-                                  $no++;
-                                }
-
-                                echo "</tbody>
-                            </table>
-                            </div>
-                            <div style='clear:both'></div>
-                                <div class='box-footer'>
-                                  <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-                                  <button type='reset' class='btn btn-default pull-right'>Cancel</button>
-                                </div>
-                            </form>
-                            </div>";
-
-                  // // Ini Halaman unutk Nilai pengetahuan
-                  //     echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
-                  //     echo "<div class='col-md-12'>
-                  //               <h1>sasajs</h1>
-             
-                  //             </div>
-                  //           </div>";
-
-
 
                       // Ini Halaman unutk Nilai Sosial
                 echo "<div role='tabpanel' class='tab-pane fade' id='sosial' aria-labelledby='sosial-tab'>
@@ -203,9 +134,53 @@ if (isset($_GET[delete])){
                                   <button type='reset' class='btn btn-default pull-right'>Cancel</button>
                                 </div>
                             </form>
+                            </div>";
+
+                      // Ini Halaman unutk Nilai Sosial
+                echo "<div role='tabpanel' class='tab-pane fade' id='pengetahuan' aria-labelledby='pengetahuan-tab'>
+                      <div class='col-md-12'>
+                            <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
+                            <input type='hidden' value='sosial' name='status'>
+                            <table class='table table-bordered table-striped'>
+                                <tr>
+                                  <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
+                                  <th style='border:1px solid #e3e3e3' width='80px' rowspan='2'>NISN</th>
+                                  <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
+                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian Sosial</center></th>
+                                </tr>
+                                <tr>
+                                  <th style='border:1px solid #e3e3e3;'><center>Positif</center></th>
+                                  <th style='border:1px solid #e3e3e3;'><center>Negatif</center></th>
+                                  <th style='border:1px solid #e3e3e3;'><center>Desktipsi</center></th>
+                                </tr>
+                              <tbody>";
+                              $no = 1;
+                              $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
+                              while($r=mysql_fetch_array($tampil)){
+                                $des = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND status='sosial'"));
+                                  echo "<tr>
+                                        <td>$no</td>
+                                        <td>$r[nisn]</td>
+                                        <td>$r[nama]</td>
+                                        <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
+                                        <td align=center><textarea name='a".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Positif...'>$des[positif]</textarea></td>
+                                        <td align=center><textarea name='b".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Negatif...'>$des[negatif]</textarea></td>
+                                        <td align=center><textarea name='c".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Deskripsi...'>$des[deskripsi]</textarea></td>
+                                      </tr>";
+                                  $no++;
+                                }
+
+                                echo "</tbody>
+                            </table>
+                            </div>
+                            <div style='clear:both'></div>
+                                <div class='box-footer'>
+                                  <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
+                                  <button type='reset' class='btn btn-default pull-right'>Cancel</button>
+                                </div>
+                            </form>
                             </div>
                   </div>
-                  
               </div>
           </div>
         </div>
