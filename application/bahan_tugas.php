@@ -316,6 +316,8 @@ if ($_GET[act] == '') {
 } elseif ($_GET[act] == 'edit') {
   cek_session_guru();
   if (isset($_POST[update])) {
+    var_dump($_POST);
+    exit;
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
     $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
@@ -373,7 +375,7 @@ if ($_GET[act] == '') {
                      <tr>
                         <th width='120px' scope='row'>Status</th>
                         <td>
-                          <select class='form-control' name='g'>
+                          <select class='form-control' name='g' value='$s[status]'>
                             <option value='0' selected>- Pilih Status Tugas -</option>
                             <option value='active' selected>Active</option>
                             <option value='inactive' selected>Inactive</option>
