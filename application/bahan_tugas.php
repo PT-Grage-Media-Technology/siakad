@@ -181,18 +181,8 @@ if ($_GET[act] == '') {
 
     // Cek level superuser
     // if ($_SESSION['level'] == 'superuser') {
-    // if (true) {
-    //   echo "<td>";
-    if ($_SESSION['level'] == 'superuser') {
+    if (true) {
       echo "<td>";
-      // Tampilkan tombol action untuk superuser
-      echo "<a class='btn btn-info btn-xs' href='download.php?file=$r[file_upload]'>Download</a>";
-      // Tambah tombol lain jika perlu
-      echo "</td>";
-  } else {
-      // Jika bukan superuser, tambahkan kolom kosong
-      echo "<td></td>";
-  }
   
       if ($r['id_kategori_elearning'] == '1') {
         echo "<a style='margin-right:5px; width:106px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download </a>";
