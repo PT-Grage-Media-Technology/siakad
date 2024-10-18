@@ -193,37 +193,7 @@
               </table>
               </div>
 
-              <form action='index.php?view=absensiswa&act=tampilabsen&id=$_GET[id]&kd=$_GET[kd]' method='POST' class='col-md-7 pull-right' style='margin-bottom:5px'>
-                <div class='col-xs-3'><select name='tgl' class='form-control'><option selected>- Tanggal -</option>";
-  for ($n = 1; $n <= 31; $n++) {
-    if ($tgle == $n) {
-      echo "<option value='$n' selected>$n</option>";
-    } else {
-      echo "<option value='$n'>$n</option>";
-    }
-  }
-  echo "</select></div> <div class='col-xs-4'><select name='bln' class='form-control'><option selected>- Bulan -</option>";
-  $blnn = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-  for ($n = 1; $n <= 12; $n++) {
-    if ($blnee == $n) {
-      echo "<option value='$n' selected>$blnn[$n]</option>";
-    } else {
-      echo "<option value='$n'>$blnn[$n]</option>";
-    }
-  }
-  echo "</select></div> <div class='col-xs-3'><select name='thn' class='form-control'><option selected>- Tahun -</option>";
-  $tahunn = date("Y");
-  for ($n = 2015; $n <= $tahunn; $n++) {
-    if ($tahun == $n) {
-      echo "<option value='$n' selected>$n</option>";
-    } else {
-      echo "<option value='$n'>$n</option>";
-    }
-  }
-  echo "</select></div> 
-                        <input name='lihat' class='btn btn-primary' type='submit' value='Lihat Absen'>
-              </form>
-
+             
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
               <input type='hidden' name='tgla' value='$tglc'>
               <input type='hidden' name='blna' value='$blnc'>
