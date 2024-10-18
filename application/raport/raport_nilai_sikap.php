@@ -95,7 +95,7 @@
                       echo "<div role='tabpanel' class='tab-pane fade active in' id='pengetahuan' aria-labelledby='pengetahuan-tab'>";
                       echo "<div class='col-md-12'>
                                 <h1>sasajs</h1>
-                           
+                           </div>
                             </div>";
 
 
