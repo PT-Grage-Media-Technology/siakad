@@ -377,10 +377,9 @@ if ($_GET[act] == '') {
                      <tr>
                         <th width='120px' scope='row'>Status</th>
                         <td>
-                          <select class='form-control' name='g' value='$s[status]'>
-                            <option value='0' selected>- Pilih Status Tugas -</option>
-                            <option value='active' value='$s[status]' selected>Active</option>
-                            <option value='inactive' value='$s[status]' selected>Inactive</option>
+                          <select class='form-control' name='g'>
+                              <option value='active' " . ($s['status'] == 'active' ? 'selected' : '') . ">Active</option>
+                              <option value='inactive' " . ($s['status'] == 'inactive' ? 'selected' : '') . ">Inactive</option>
                           </select>
                         </td>
                       </tr>
