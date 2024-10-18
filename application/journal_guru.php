@@ -141,6 +141,7 @@
   $today = date('Y-m-d'); // Ambil tanggal hari ini
   while ($r = mysql_fetch_array($tampil)) {
      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : ''; // Validasi tanggal
+    $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]"; // Link absen
     echo "<tr><td>$no</td>
                               <td>$r[hari]</td>
                               <td>" . tgl_indo($r[tanggal]) . "</td>
@@ -148,19 +149,9 @@
                               <td>$r[materi]</td>
                               <td>$r[keterangan]</td>";
     if ($_SESSION[level] != 'kepala') {
-      if ($r['tanggal'] <= $today) { // Validasi tanggal
-        echo "<td style='width:80px !important'><center>
-            <a class='btn btn-success btn-xs' title='Absen Siswa' href='index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]' onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-        </center></td>";
-      } else {
-        echo "<td style='width:80px !important'><center>
-            <span class='glyphicon glyphicon-edit'>Absen</span>
-        </center></td>";
-      }
       echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
-                                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
-                                      </center></td>";
+                <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+              </center></td>";
     }
     echo "</tr>";
     $no++;
