@@ -43,7 +43,7 @@
                       <li role='presentation' class='active'><a href='#spiritual' id='spiritual-tab' role='tab' data-toggle='tab' aria-controls='spiritual' aria-expanded='true'>Penilaian Spiritual </a></li>
                       <li role='presentation' class=''><a href='#sosial' role='tab' id='sosial-tab' data-toggle='tab' aria-controls='sosial' aria-expanded='false'>Penilaian Sosial</a></li>
                       <li role='presentation' class=''><a href='#pengetahuan' role='tab' id='pengetahuan-tab' data-toggle='tab' aria-controls='pengetahuan' aria-expanded='false'>Penilaian Pengetahuan</a></li>
-                      <li role='presentation' class=''><a href='#keterampilan' role='tab' id='keterampilan-tab' data-toggle='tab' aria-controls='keterampilan' aria-expanded='false'>Penilaian Keterampilan</a></li>
+                      <li role='presentation' class=''><a href='#keterampilan' role='tab' id='keterampilan-tab' data-toggle='tab' aria-controls='keterampilan' aria-expanded='false'>Penilaian keterampilan</a></li>
                     </ul><br>
             <div id='myTabContent' class='tab-content'>";
 
@@ -104,56 +104,6 @@
                                   <th style='border:1px solid #e3e3e3' width='80px' rowspan='2'>NISN</th>
                                   <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
                                   <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian Sosial</center></th>
-                                </tr>
-                                <tr>
-                                  <th style='border:1px solid #e3e3e3;'><center>Positif</center></th>
-                                  <th style='border:1px solid #e3e3e3;'><center>Negatif</center></th>
-                                  <th style='border:1px solid #e3e3e3;'><center>Desktipsi</center></th>
-                                </tr>
-                              <tbody>";
-                              $no = 1;
-                              $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
-                              while($r=mysql_fetch_array($tampil)){
-                                $des = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND status='sosial'"));
-                                  echo "<tr>
-                                        <td>$no</td>
-                                        <td>$r[nisn]</td>
-                                        <td>$r[nama]</td>
-                                        <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                                        <td align=center><textarea name='a".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Positif...'>$des[positif]</textarea></td>
-                                        <td align=center><textarea name='b".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Negatif...'>$des[negatif]</textarea></td>
-                                        <td align=center><textarea name='c".$no."' class='form-control' style='width:100%; color:blue' placeholder=' Tuliskan Deskripsi...'>$des[deskripsi]</textarea></td>
-                                      </tr>";
-                                  $no++;
-                                }
-
-                                echo "</tbody>
-                            </table>
-                            </div>
-                            <div style='clear:both'></div>
-                                <div class='box-footer'>
-                                  <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-                                  <button type='reset' class='btn btn-default pull-right'>Cancel</button>
-                                </div>
-                            </form>
-                            </div>
-                  </div>
-              </div>
-          </div>
-        </div>
-      </div>";
-
-                      // Ini Halaman unutk Nilai pengetahuan
-                echo "<div role='tabpanel' class='tab-pane fade' id='pengetahuan' aria-labelledby='pengetahuan-tab'>
-                      <div class='col-md-12'>
-                            <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
-                            <input type='hidden' value='pengetahuan' name='status'>
-                            <table class='table table-bordered table-striped'>
-                                <tr>
-                                  <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
-                                  <th style='border:1px solid #e3e3e3' width='80px' rowspan='2'>NISN</th>
-                                  <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
-                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian pengetahuan</center></th>
                                 </tr>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3;'><center>Positif</center></th>
