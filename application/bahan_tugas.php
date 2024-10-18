@@ -141,7 +141,8 @@ cek_session_siswa();
                         <th>Nama Tugas</th>
                         <th>Kategori</th>
                         <th>Waktu Mulai</th>
-                        <th>Batas Waktu</th>";
+                        <th>Batas Waktu</th>
+                        <th>Status</th>";
                         if ($_SESSION[level]!='kepala'){
                           echo "<th>Action</th>";
                         }
@@ -157,7 +158,8 @@ cek_session_siswa();
                               <td style='color:red'>$r[nama_file]</td>
                               <td>$r[nama_kategori_elearning]</td>
                               <td>$r[tanggal_tugas] WIB</td>
-                              <td>$r[tanggal_selesai] WIB</td>";
+                              <td>$r[tanggal_selesai] WIB</td>
+                              <td>$r[status] WIB</td>";
                           if ($_SESSION[level]=='superuser'){
                               echo "<td>";
                                 if ($r[id_kategori_elearning]=='1'){
@@ -219,14 +221,14 @@ if (isset($_POST[tambah])){
       $uploadfile = $dir_gambar . $filenamee;
       if ($filename != ''){      
         if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-          mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]')");
+          mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
             echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=".$_GET[jdwl]."&id=".$_GET[id]."&kd=".$_GET[kd]."';</script>";
         }else{
           echo "<script>window.alert('Gagal Tambahkan Data Bahan dan Tugas.');
                       window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=".$_GET[jdwl]."&id=".$_GET[id]."&kd=".$_GET[kd]."'</script>";
         }
       }else{
-        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]')");
+        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
         echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=".$_GET[jdwl]."&id=".$_GET[id]."&kd=".$_GET[kd]."';</script>";
       }
   }
