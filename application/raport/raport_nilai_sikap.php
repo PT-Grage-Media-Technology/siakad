@@ -178,7 +178,7 @@
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit]'"));
                                       $name = 'Update';
                                   }else{
-                                      $name = 'Simpan';
+                                      $name = 'Simpan123';
                                   }
                                   if ($_GET[nisn]==$r[nisn]){
                                     echo "<form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
