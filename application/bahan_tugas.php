@@ -221,8 +221,8 @@ if ($_GET[act] == '') {
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+    var_dump($_POST);
+    exit;
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
     $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
