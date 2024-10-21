@@ -8,13 +8,12 @@
           $c   = $_POST['c'.$ia];
           $nisn   = $_POST['nisn'.$ia];
           
-          // Debugging: Cek nilai yang akan disimpan
-          var_dump($a, $b, $c, $nisn);
+        
           
           if ($a != '' OR $b != '' OR $c != ''){
             $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_sikap where kodejdwl='$_POST[jdwl]' AND nisn='$nisn' AND status='$_POST[status]'"));
             // Debugging: Cek hasil pengecekan
-            var_dump($cek);
+          
             
             if ($cek >= '1'){
               mysql_query("UPDATE rb_nilai_sikap SET positif='$a', negatif='$b', deskripsi='$c' where kodejdwl='$_GET[jdwl]' AND nisn='$nisn' AND status='$_POST[status]'");
@@ -39,7 +38,6 @@
 
     if (isset($_GET['delete'])){
         // Debugging: Cek ID yang akan dihapus
-        var_dump($_GET['delete']);
         
         mysql_query("DELETE FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[delete]'");
         echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
