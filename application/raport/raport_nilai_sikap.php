@@ -2,6 +2,7 @@
     if (isset($_POST[simpan-sikap])){
         // Debugging: Cek data yang diterima
         var_dump($_POST);
+        exit();
         
         $juml = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$juml; $ia++){
