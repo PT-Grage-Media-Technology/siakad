@@ -1,9 +1,6 @@
 <?php 
     if (isset($_POST['simpan-sikap'])){
         // Debugging: Cek data yang diterima
-        var_dump($_POST);
-        exit();
-        
         $juml = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$juml; $ia++){
           $a   = $_POST['a'.$ia];
@@ -29,9 +26,8 @@
         echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
     
-    if (isset($_POST['simpan'])){
+    if (isset($_POST['simpan-pengetahuan'])){
         // Debugging: Cek data yang diterima
-        var_dump($_POST);
         
         if ($_POST['status']=='Update'){
           mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai1='$_POST[b]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
@@ -215,7 +211,7 @@
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='submit' name='simpan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
+                                        <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
                                       </form>";
                                   }else{
@@ -235,7 +231,7 @@
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='submit' name='simpan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
+                                        <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
                                       </form>";
                                   }
