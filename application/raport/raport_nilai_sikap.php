@@ -146,7 +146,7 @@
                               <th style='border:1px solid #e3e3e3' width='30px'>No</th>
                               <th style='border:1px solid #e3e3e3' width='80px'>NISN</th>
                               <th style='border:1px solid #e3e3e3' width='190px'>Nama Lengkap</th>
-                              <th style='border:1px solid #e3e3e3'>Penilaian Keterampilan</th>
+                              <th style='border:1px solid #e3e3e3'>Penilaian12121 Keterampilan</th>
                             </tr>
                           <tbody>";
                           $no = 1;
