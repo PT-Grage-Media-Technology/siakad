@@ -1,5 +1,5 @@
 <?php 
-    if (isset($_POST[simpan-sikap])){
+    if (isset($_POST['simpan-sikap'])){
         // Debugging: Cek data yang diterima
         var_dump($_POST);
         exit();
@@ -29,11 +29,11 @@
         echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
     
-    if (isset($_POST[simpan])){
+    if (isset($_POST['simpan'])){
         // Debugging: Cek data yang diterima
         var_dump($_POST);
         
-        if ($_POST[status]=='Update'){
+        if ($_POST['status']=='Update'){
           mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai1='$_POST[b]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
         }else{
           mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
@@ -41,7 +41,7 @@
         echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
     }
 
-    if (isset($_GET[delete])){
+    if (isset($_GET['delete'])){
         // Debugging: Cek ID yang akan dihapus
         var_dump($_GET['delete']);
         
