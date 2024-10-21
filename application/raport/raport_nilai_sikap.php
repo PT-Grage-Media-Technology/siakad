@@ -23,12 +23,12 @@
             }else{
               mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
             }
-        echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
+        echo "<script>document.location='index.php?view=raport&act=listsiswasikapsikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
     }
 
     if (isset($_GET[delete])){
         mysql_query("DELETE FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[delete]'");
-        echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
+        echo "<script>document.location='index.php?view=raport&act=listsiswasikapsikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
     }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
@@ -178,7 +178,7 @@
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit]'"));
                                       $name = 'Update';
                                   }else{
-                                      $name = 'Simpan123';
+                                      $name = 'Simpan';
                                   }
                                   if ($_GET[nisn]==$r[nisn]){
                                     echo "<form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
