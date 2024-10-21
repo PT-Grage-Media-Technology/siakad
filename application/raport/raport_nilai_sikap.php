@@ -138,17 +138,6 @@
 
             // Halaman Nilai pengetahuan (baru)
             echo "<div role='tabpanel' class='tab-pane fade' id='pengetahuan' aria-labelledby='pengetahuan-tab'>
-                  <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
-              </table>
-              </div>
-
           <div class='panel-body'>
               <table class='table table-bordered table-striped'>
                                 <tr>
