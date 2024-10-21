@@ -332,7 +332,7 @@ if ($_GET[act] == '') {
                                                file_upload           = '$filenamee',
                                                tanggal_tugas         = '$_POST[d]',
                                                tanggal_selesai       = '$_POST[e]',
-                                               'status'              = '$_POST[g]',
+                                               status                = '$_POST[g]',
                                                keterangan            = '$_POST[f]' where id_elearning='$_GET[edit]'");
         echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
       } else {
@@ -345,6 +345,7 @@ if ($_GET[act] == '') {
                                                nama_file             = '$_POST[b]',
                                                tanggal_tugas         = '$_POST[d]',
                                                tanggal_selesai       = '$_POST[e]',
+                                               status                = '$_POST[g]',
                                                keterangan            = '$_POST[f]' where id_elearning='$_GET[edit]'");
       echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
     }
@@ -391,8 +392,8 @@ if ($_GET[act] == '') {
 <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
-                    <tr><th scope='row'>Waktu Mulai</th>      <td><input type='text' class='form-control' value='$s[tanggal_tugas]' name='d'></td></tr>
-                    <tr><th scope='row'>Waktu Selesai</th>    <td><input type='text' class='form-control' value='$s[tanggal_selesai]' name='e'></td></tr>
+                    <tr><th scope='row'>Waktu Mulai</th>      <td><input type='datetime-local' class='form-control' value='$s[tanggal_tugas]' name='d'></td></tr>
+                    <tr><th scope='row'>Waktu Selesai</th>    <td><input type='datetime-local' class='form-control' value='$s[tanggal_selesai]' name='e'></td></tr>
                     <tr><th scope='row'>Keterangan</th>       <td><input type='text' class='form-control' name='f' value='$s[keterangan]'></td></tr>
                     
                   </tbody>
