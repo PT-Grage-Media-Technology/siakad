@@ -332,7 +332,7 @@ if ($_GET[act] == '') {
                                                file_upload           = '$filenamee',
                                                tanggal_tugas         = '$_POST[d]',
                                                tanggal_selesai       = '$_POST[e]',
-                                               status              = '$_POST[g]',
+                                               status                = '$_POST[g]',
                                                keterangan            = '$_POST[f]' where id_elearning='$_GET[edit]'");
         echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
       } else {
@@ -345,6 +345,7 @@ if ($_GET[act] == '') {
                                                nama_file             = '$_POST[b]',
                                                tanggal_tugas         = '$_POST[d]',
                                                tanggal_selesai       = '$_POST[e]',
+                                               status                = '$_POST[g]',
                                                keterangan            = '$_POST[f]' where id_elearning='$_GET[edit]'");
       echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
     }
