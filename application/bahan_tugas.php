@@ -391,8 +391,8 @@ if ($_GET[act] == '') {
 <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
-                    <tr><th scope='row'>Waktu Mulai</th>      <td><input type='text' class='form-control' value='$s[tanggal_tugas]' name='d'></td></tr>
-                    <tr><th scope='row'>Waktu Selesai</th>    <td><input type='text' class='form-control' value='$s[tanggal_selesai]' name='e'></td></tr>
+                    <tr><th scope='row'>Waktu Mulai</th>      <td><input type='datetime-local' class='form-control' value='$s[tanggal_tugas]' name='d'></td></tr>
+                    <tr><th scope='row'>Waktu Selesai</th>    <td><input type='datetime-local' class='form-control' value='$s[tanggal_selesai]' name='e'></td></tr>
                     <tr><th scope='row'>Keterangan</th>       <td><input type='text' class='form-control' name='f' value='$s[keterangan]'></td></tr>
                     
                   </tbody>
