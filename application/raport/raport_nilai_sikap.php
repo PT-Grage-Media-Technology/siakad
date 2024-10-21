@@ -197,7 +197,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='submit' name='simpan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
+                                        <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
                                       </form>";
   } else {
