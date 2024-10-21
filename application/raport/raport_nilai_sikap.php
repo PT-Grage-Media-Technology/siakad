@@ -281,11 +281,7 @@
 
                                 echo "</tbody>
                             </table>
-                        <div class='box-footer'>
-                          <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-                          <button type='reset' class='btn btn-default pull-right'>Cancel</button>
-                        </div>
-                        </form>
+                       
                         </div>
                         </div>";
             // Halaman Nilai Keterampilan (baru)
@@ -423,7 +419,7 @@
 
                                 echo "</tbody>
                             </table>
-                        </form>
+                 
                         </div>
                         </div>";
         
