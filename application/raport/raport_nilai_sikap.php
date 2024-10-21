@@ -200,8 +200,8 @@ if (isset($_GET['delete-keterampilan'])){
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
-                                  if (isset($_GET[edit])){
-                                      $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit]'"));
+                                  if (isset($_GET['edit_pengetahuan'])){
+                                      $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
                                   }else{
                                       $name = 'Simpan';
@@ -270,7 +270,7 @@ if (isset($_GET['delete-keterampilan'])){
                                         <td align=center>".number_format($ratarata)."</td>
                                         <td align=center>$grade1[grade]</td>
                                         <td>$n[deskripsi]</td>
-                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
+                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
                                       </tr>";
                                     }
@@ -334,8 +334,8 @@ if (isset($_GET['delete-keterampilan'])){
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
-                                  if (isset($_GET[edit])){
-                                      $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_keterampilan where id_nilai_keterampilan='$_GET[edit]'"));
+                                  if (isset($_GET['edit_keterampilan'])){
+                                      $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_keterampilan where id_nilai_keterampilan='$_GET[edit_keterampilan]'"));
                                       $name = 'Update';
                                   }else{
                                       $name = 'Simpan';
@@ -407,7 +407,7 @@ if (isset($_GET['delete-keterampilan'])){
                                         <td align=center>".number_format($ratarata)."</td>
                                         <td align=center>$grade1[grade]</td>
                                         <td>$n[deskripsi]</td>
-                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit=".$n[id_nilai_keterampilan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
+                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_keterampilan=".$n[id_nilai_keterampilan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_keterampilan=".$n[id_nilai_keterampilan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
                                       </tr>";
                                     }
