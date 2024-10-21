@@ -44,7 +44,7 @@
     }
 
     if (isset($_POST['simpan-keterampilan'])){
-      if ($_POST[status]=='Update'){
+      if ($_POST['status']=='Update'){
         mysql_query("UPDATE rb_nilai_keterampilan SET kd='$_POST[a]', nilai1='$_POST[b]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', nilai6='$_POST[g]', deskripsi='$_POST[h]' where id_nilai_keterampilan='$_POST[id]'");
       }else{
         mysql_query("INSERT INTO rb_nilai_keterampilan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[h]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
