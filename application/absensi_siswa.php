@@ -174,47 +174,66 @@
   } else {
     $blnee = substr($bulane, 0, 2);
   }
-  echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
-                </div>
-              <div class='box-body'>
+  echo "
+<div class='col-md-12'>
+    <div class='box box-info'>
+        <div class='box-header with-border'>
+            <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
+        </div>
+        <div class='box-body'>
+            <div class='col-md-12'>
+                <table class='table table-condensed table-hover'>
+                    <tbody>
+                        <input type='hidden' name='id' value='$s[kode_kelas]'>
+                        <tr>
+                            <th width='120px' scope='row'>Kode Kelas</th>
+                            <td>$d[kode_kelas]</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Nama Kelas</th>
+                            <td>$d[nama_kelas]</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Mata Pelajaran</th>
+                            <td>$m[namamatapelajaran]</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Tujuan Pembelajaran</th>
+                            <td>$j[materi]</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>
+                                <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                                    <span class='glyphicon glyphicon-tasks'></span>
+                                    <span class=''>Tugas</span>
+                                </a>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-              <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kode_kelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                    <tr><th scope='row'>Tujuan Pembelajaran</th>           <td>$j[materi]</td></tr>
-                    <tr><th scope='row'><a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-tasks'>Tugas</span></a></th></tr>
-                  </tbody>
-              </table>
-              </div>
-
-             
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-              <input type='hidden' name='tgla' value='$tglc'>
-              <input type='hidden' name='blna' value='$blnc'>
-              <input type='hidden' name='thna' value='$thn'>
-              <input type='hidden' name='kelas' value='$_GET[id]'>
-              <input type='hidden' name='pelajaran' value='$_GET[kd]'>
-              <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+            <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                <input type='hidden' name='tgla' value='$tglc'>
+                <input type='hidden' name='blna' value='$blnc'>
+                <input type='hidden' name='thna' value='$thn'>
+                <input type='hidden' name='kelas' value='$_GET[id]'>
+                <input type='hidden' name='pelajaran' value='$_GET[kd]'>
+                <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                 <div class='col-md-12'>
-                  <table class='table table-condensed table-bordered table-striped'>
-                      <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>NIPD</th>
-                        <th>NISN</th>
-                        <th>Nama Siswa</th>
-                        <th>Jenis Kelamin</th>
-                        <th width='120px'>Kehadiran</th>
-                      </tr>
-                    </thead>
-                    <tbody>";
+                    <table class='table table-condensed table-bordered table-striped'>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIPD</th>
+                                <th>NISN</th>
+                                <th>Nama Siswa</th>
+                                <th>Jenis Kelamin</th>
+                                <th width='120px'>Kehadiran</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
 
   $no = 1;
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
