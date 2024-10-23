@@ -93,7 +93,7 @@
 
 
   <?php
-} elseif ($_GET[act] == 'lihat') {
+} elseif ($_GET['act'] == 'lihat') {
   $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
   FROM `rb_jadwal_pelajaran` a 
   JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
@@ -101,17 +101,17 @@
   JOIN rb_guru d ON a.nip=d.nip 
   WHERE a.kodejdwl='$_GET[id]'"));
 
-  echo "<div class='col-xs-12'>  
+  echo "<div class='col-xs-12 col-md-12'>  
               <div class='box'>
                 <div class='box-header'>
                   <h3 class='box-title'>Journal Kegiatan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
-  if ($_SESSION[level] != 'kepala') {
+  if ($_SESSION['level'] != 'kepala') {
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Journal</a>";
   }
   echo "</div>
                 <div class='box-body'>
-                  <div class='col-md-12'>
+                  <div class='table-responsive'>
                   <table class='table table-condensed table-hover'>
                       <tbody>
                         <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
@@ -121,6 +121,7 @@
                   </table>
                   </div>
 
+                  <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
                     <thead>
                       <tr>
@@ -130,7 +131,7 @@
                         <th style='width:70px'>Jam Ke</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>";
-  if ($_SESSION[level] != 'kepala') {
+  if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
   }
   echo "</tr>
@@ -138,17 +139,17 @@
                     <tbody>";
   $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
   $no = 1;
-  $today = date('Y-m-d'); // Ambil tanggal hari ini
+  $today = date('Y-m-d');
   while ($r = mysql_fetch_array($tampil)) {
-    $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : ''; // Validasi tanggal
-    $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]"; // Link absen
+    $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+    $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
     echo "<tr><td>$no</td>
                               <td>$r[hari]</td>
                               <td>" . tgl_indo($r[tanggal]) . "</td>
                               <td align=center>$r[jam_ke]</td>
                               <td>$r[materi]</td>
                               <td>$r[keterangan]</td>";
-    if ($_SESSION[level] != 'kepala') {
+    if ($_SESSION['level'] != 'kepala') {
       echo "<td style='width:80px !important'><center>
                 <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                  <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
@@ -159,14 +160,14 @@
     $no++;
   }
 
-  if (isset($_GET[hapus])) {
+  if (isset($_GET['hapus'])) {
     mysql_query("DELETE FROM rb_journal_list where id_journal='$_GET[hapus]'");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
 
   echo "<tbody>
                   </table>
-                </div>
+                  </div>
                 </div>
             </div>";
 
