@@ -1,40 +1,38 @@
 <?php if ($_GET[act] == '') { ?>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-xs-12">
         <div class="box">
           <div class="box-header d-flex justify-content-between align-items-center">
             <h3 class="box-title">Semua Data Guru</h3>
-            <?php if ($_SESSION['level'] != 'kepala') { ?>
+            <?php if ($_SESSION[level] != 'kepala') { ?>
               <a class='btn btn-primary btn-sm' href='index.php?view=guru&act=tambahguru'>Tambahkan Data Guru</a>
             <?php } ?>
           </div><!-- /.box-header -->
-
           <div class="box-body">
-            <div class="table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>NIP</th>
-                    <th>Nama Lengkap</th>
-                    <th>Jenis Kelamin</th>
-                    <th>No Telpon</th>
-                    <th>Status Pegawai</th>
-                    <th>Jenis PTK</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $tampil = mysql_query("SELECT * FROM rb_guru a 
+            <table id="example1" class="table table-bordered table-striped table-responsive">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIP</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jenis Kelamin</th>
+                  <th>No Telpon</th>
+                  <th>Status Pegawai</th>
+                  <th>Jenis PTK</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $tampil = mysql_query("SELECT * FROM rb_guru a 
                                       LEFT JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
                                       LEFT JOIN rb_status_kepegawaian c ON a.id_status_kepegawaian=c.id_status_kepegawaian 
                                       LEFT JOIN rb_jenis_ptk d ON a.id_jenis_ptk=d.id_jenis_ptk
                                       ORDER BY a.nip DESC");
-                  $no = 1;
-                  while ($r = mysql_fetch_array($tampil)) {
-                    echo "<tr>
+                $no = 1;
+                while ($r = mysql_fetch_array($tampil)) {
+                  echo "<tr>
                           <td>$no</td>
                           <td>$r[nip]</td>
                           <td>$r[nama_guru]</td>
@@ -42,40 +40,38 @@
                           <td>$r[hp]</td>
                           <td>$r[status_kepegawaian]</td>
                           <td>$r[jenis_ptk]</td>";
-                    if ($_SESSION['level'] != 'kepala') {
-                      echo "<td>
+                  if ($_SESSION[level] != 'kepala') {
+                    echo "<td>
                             <center>
                               <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
                               <a class='btn btn-success btn-xs' title='Edit Data' href='?view=guru&act=editguru&id=$r[nip]'><span class='glyphicon glyphicon-edit'></span></a>
                               <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=guru&hapus=$r[nip]'><span class='glyphicon glyphicon-remove'></span></a>
                             </center>
                           </td>";
-                    } else {
-                      echo "<td>
+                  } else {
+                    echo "<td>
                             <center>
                               <a class='btn btn-info btn-xs' title='Lihat Detail' href='?view=guru&act=detailguru&id=$r[nip]'><span class='glyphicon glyphicon-search'></span></a>
                             </center>
                           </td>";
-                    }
-                    echo "</tr>";
-                    $no++;
                   }
-                  if (isset($_GET['hapus'])) {
-                    mysql_query("DELETE FROM rb_guru WHERE nip='$_GET[hapus]'");
-                    echo "<script>document.location='index.php?view=guru';</script>";
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div><!-- /.table-responsive -->
+                  echo "</tr>";
+                  $no++;
+                }
+                if (isset($_GET[hapus])) {
+                  mysql_query("DELETE FROM rb_guru WHERE nip='$_GET[hapus]'");
+                  echo "<script>document.location='index.php?view=guru';</script>";
+                }
+                ?>
+              </tbody>
+            </table>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
-      </div><!-- /.col-12 -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+      </div>
+    </div>
+  </div>
 
-
-  <?php
+<?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $rtrw = explode('/', $_POST[al]);
@@ -525,97 +521,88 @@
                                             LEFT JOIN rb_status_pernikahan h ON a.id_status_pernikahan=h.id_status_pernikahan
                                               where a.nip='$_GET[id]'");
   $s = mysql_fetch_array($detail);
-  echo "<div class='container'>
-        <div class='row'>
-          <div class='col-12'>
-            <div class='box box-info'>
-              <div class='box-header with-border'>
-                <h3 class='box-title'>Detail Data Guru</h3>
-              </div>
+  echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>Detail Data Guru</h3>
+                </div>
               <div class='box-body'>
-                <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                  <div class='row'>
-                    <div class='col-md-7 col-sm-12'>
-                      <div class='table-responsive'>
-                        <table class='table table-condensed table-bordered'>
-                          <tbody>
-                            <input type='hidden' name='id' value='$s[nip]'>
-                            <tr><th style='background-color:#E7EAEC' width='160px' rowspan='25'>";
-if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid' src='foto_siswa/no-image.jpg'>";
-} else {
-    echo "<img class='img-thumbnail img-fluid' src='foto_pegawai/$s[foto]'>";
-}
-if ($_SESSION[level] != 'kepala') {
+              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                <div class='col-md-7'>
+                  <table class='table table-condensed table-bordered'>
+                  <tbody>
+                    <input type='hidden' name='id' value='$s[nip]'>
+                    <tr><th style='background-color:#E7EAEC' width='160px' rowspan='25'>";
+  if (trim($s[foto]) == '') {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
+  } else {
+    echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
+  }
+  if ($_SESSION[level] != 'kepala') {
     echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-}
-echo "</th></tr>
-                            <tr><th width='120px' scope='row'>Nip</th> <td>$s[nip]</td></tr>
-                            <tr><th scope='row'>Password</th> <td>$s[password]</td></tr>
-                            <tr><th scope='row'>Nama Lengkap</th> <td>$s[nama_guru]</td></tr>
-                            <tr><th scope='row'>Tempat Lahir</th> <td>$s[tempat_lahir]</td></tr>
-                            <tr><th scope='row'>Tanggal Lahir</th> <td>$s[tanggal_lahir]</td></tr>
-                            <tr><th scope='row'>Jenis Kelamin</th> <td>$s[jenis_kelamin]</td></tr>
-                            <tr><th scope='row'>Agama</th> <td>$s[nama_agama]</td></tr>
-                            <tr><th scope='row'>No Hp</th> <td>$s[hp]</td></tr>
-                            <tr><th scope='row'>No Telpon</th> <td>$s[telepon]</td></tr>
-                            <tr><th scope='row'>Alamat Email</th> <td>$s[email]</td></tr>
-                            <tr><th scope='row'>Alamat</th> <td>$s[alamat_jalan]</td></tr>
-                            <tr><th scope='row'>RT/RW</th> <td>$s[rt]/$s[rw]</td></tr>
-                            <tr><th scope='row'>Dusun</th> <td>$s[nama_dusun]</td></tr>
-                            <tr><th scope='row'>Kelurahan</th> <td>$s[desa_kelurahan]</td></tr>
-                            <tr><th scope='row'>Kecamatan</th> <td>$s[kecamatan]</td></tr>
-                            <tr><th scope='row'>Kode Pos</th> <td>$s[kode_pos]</td></tr>
-                            <tr><th scope='row'>NUPTK</th> <td>$s[nuptk]</td></tr>
-                            <tr><th scope='row'>Bidang Studi</th> <td>$s[pengawas_bidang_studi]</td></tr>
-                            <tr><th scope='row'>Jenis PTK</th> <td>$s[jenis_ptk]</td></tr>
-                            <tr><th scope='row'>Tugas Tambahan</th> <td>$s[tugas_tambahan]</td></tr>
-                            <tr><th scope='row'>Status Pegawai</th> <td>$s[status_kepegawaian]</td></tr>
-                            <tr><th scope='row'>Status Keaktifan</th> <td>$s[nama_status_keaktifan]</td></tr>
-                            <tr><th scope='row'>Status Nikah</th> <td>$s[status_pernikahan]</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+  }
+  echo "</th>
+                    </tr>
+                    <tr><th width='120px' scope='row'>Nip</th>      <td>$s[nip]</td></tr>
+                    <tr><th scope='row'>Password</th>               <td>$s[password]</td></tr>
+                    <tr><th scope='row'>Nama Lengkap</th>           <td>$s[nama_guru]</td></tr>
+                    <tr><th scope='row'>Tempat Lahir</th>           <td>$s[tempat_lahir]</td></tr>
+                    <tr><th scope='row'>Tanggal Lahir</th>          <td>$s[tanggal_lahir]</td></tr>
+                    <tr><th scope='row'>Jenis Kelamin</th>          <td>$s[jenis_kelamin]</td></tr>
+                    <tr><th scope='row'>Agama</th>                  <td>$s[nama_agama]</td></tr>
+                    <tr><th scope='row'>No Hp</th>                  <td>$s[hp]</td></tr>
+                    <tr><th scope='row'>No Telpon</th>              <td>$s[telepon]</td></tr>
+                    <tr><th scope='row'>Alamat Email</th>           <td>$s[email]</td></tr>
+                    <tr><th scope='row'>Alamat</th>                 <td>$s[alamat_jalan]</td></tr>
+                    <tr><th scope='row'>RT/RW</th>                  <td>$s[rt]/$s[rw]</td></tr>
+                    <tr><th scope='row'>Dusun</th>                  <td>$s[nama_dusun]</td></tr>
+                    <tr><th scope='row'>Kelurahan</th>              <td>$s[desa_kelurahan]</td></tr>
+                    <tr><th scope='row'>Kecamatan</th>              <td>$s[kecamatan]</td></tr>
+                    <tr><th scope='row'>Kode Pos</th>               <td>$s[kode_pos]</td></tr>
+                    <tr><th scope='row'>NUPTK</th>                  <td>$s[nuptk]</td></tr>
+                    <tr><th scope='row'>Bidang Studi</th>           <td>$s[pengawas_bidang_studi]</td></tr>
+                    <tr><th scope='row'>Jenis PTK</th>              <td>$s[jenis_ptk]</td></tr>
+                    <tr><th scope='row'>Tugas Tambahan</th>         <td>$s[tugas_tambahan]</td></tr>
+                    <tr><th scope='row'>Status Pegawai</th>         <td>$s[status_kepegawaian]</td></tr>
+                    <tr><th scope='row'>Status Keaktifan</th>       <td>$s[nama_status_keaktifan]</td></tr>
+                    <tr><th scope='row'>Status Nikah</th>           <td>$s[status_pernikahan]</td></tr>
+                  </tbody>
+                  </table>
+                </div>
 
-                    <div class='col-md-5 col-sm-12'>
-                      <div class='table-responsive'>
-                        <table class='table table-condensed table-bordered'>
-                          <tbody>
-                            <tr><th width='150px' scope='row'>NIK</th> <td>$s[nik]</td></tr>
-                            <tr><th scope='row'>SK CPNS</th> <td>$s[sk_cpns]</td></tr>
-                            <tr><th scope='row'>Tanggal CPNS</th> <td>$s[tanggal_cpns]</td></tr>
-                            <tr><th scope='row'>SK Pengangkat</th> <td>$s[sk_pengangkatan]</td></tr>
-                            <tr><th scope='row'>TMT Pengangkat</th> <td>$s[tmt_pengangkatan]</td></tr>
-                            <tr><th scope='row'>Lemb. Pengangkat</th> <td>$s[lembaga_pengangkatan]</td></tr>
-                            <tr><th scope='row'>Golongan</th> <td>$s[nama_golongan]</td></tr>
-                            <tr><th scope='row'>Sumber Gaji</th> <td>$s[sumber_gaji]</td></tr>
-                            <tr><th scope='row'>Ahli Laboratorium</th> <td>$s[keahlian_laboratorium]</td></tr>
-                            <tr><th scope='row'>Nama Ibu Kandung</th> <td>$s[nama_ibu_kandung]</td></tr>
-                            <tr><th scope='row'>Nama Suami/Istri</th> <td>$s[nama_suami_istri]</td></tr>
-                            <tr><th scope='row'>Nip Suami/Istri</th> <td>$s[nip_suami_istri]</td></tr>
-                            <tr><th scope='row'>Pekerjaan Suami/Istri</th> <td>$s[pekerjaan_suami_istri]</td></tr>
-                            <tr><th scope='row'>TMT PNS</th> <td>$s[tmt_pns]</td></tr>
-                            <tr><th scope='row'>Lisensi Kepsek</th> <td>$s[lisensi_kepsek]</td></tr>
-                            <tr><th scope='row'>Jml Sekolah Binaan</th> <td>$s[jumlah_sekolah_binaan]</td></tr>
-                            <tr><th scope='row'>Diklat Kepengawasan</th> <td>$s[diklat_kepengawasan]</td></tr>
-                            <tr><th scope='row'>Mampu Handle KK</th> <td>$s[mampu_handle_kk]</td></tr>
-                            <tr><th scope='row'>Keahlian Breile</th> <td>$s[keahlian_breile]</td></tr>
-                            <tr><th scope='row'>Keahlian B.Isyarat</th> <td>$s[keahlian_bahasa_isyarat]</td></tr>
-                            <tr><th scope='row'>Kewarganegaraan</th> <td>$s[kewarganegaraan]</td></tr>
-                            <tr><th scope='row'>NIY NIGK</th> <td>$s[niy_nigk]</td></tr>
-                            <tr><th scope='row'>NPWP</th> <td>$s[npwp]</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                <div class='col-md-5'>
+                  <table class='table table-condensed table-bordered'>
+                  <tbody>
+                    <tr><th width='150px' scope='row'>NIK</th>      <td>$s[nik]</td></tr>
+                    <tr><th scope='row'>SK CPNS</th>                <td>$s[sk_cpns]</td></tr>
+                    <tr><th scope='row'>Tanggal CPNS</th>           <td>$s[tanggal_cpns]</td></tr>
+                    <tr><th scope='row'>SK Pengangkat</th>          <td>$s[sk_pengangkatan]</td></tr>
+                    <tr><th scope='row'>TMT Pengangkat</th>         <td>$s[tmt_pengangkatan]</td></tr>
+                    <tr><th scope='row'>Lemb. Pengangkat</th>       <td>$s[lembaga_pengangkatan]</td></tr>
+                    <tr><th scope='row'>Golongan</th>               <td>$s[nama_golongan]</td></tr>
+                    <tr><th scope='row'>Sumber Gaji</th>            <td>$s[sumber_gaji]</td></tr>
+
+                    <tr><th scope='row'>Ahli Laboratorium</th>  <td>$s[keahlian_laboratorium]</td></tr>
+                    <tr><th scope='row'>Nama Ibu Kandung</th>            <td>$s[nama_ibu_kandung]</td></tr>
+                    <tr><th scope='row'>Nama Suami/Istri</th>            <td>$s[nama_suami_istri]</td></tr>
+                    <tr><th scope='row'>Nip Suami/Istri</th>            <td>$s[nip_suami_istri]</td></tr>
+                    <tr><th scope='row'>Pekerjaan Suami/Istri</th>            <td>$s[pekerjaan_suami_istri]</td></tr>
+                    <tr><th scope='row'>TMT PNS</th>            <td>$s[tmt_pns]</td></tr>
+                    <tr><th scope='row'>Lisensi Kepsek</th>            <td>$s[lisensi_kepsek]</td></tr>
+                    <tr><th scope='row'>Jml Sekolah Binaan</th>            <td>$s[jumlah_sekolah_binaan]</td></tr>
+                    <tr><th scope='row'>Diklat Kepengawasan</th>            <td>$s[diklat_kepengawasan]</td></tr>
+                    <tr><th scope='row'>Mampu Handle KK</th>            <td>$s[mampu_handle_kk]</td></tr>
+                    <tr><th scope='row'>Keahlian Breile</th>            <td>$s[keahlian_breile]</td></tr>
+                    <tr><th scope='row'>Keahlian B.Isyarat</th>            <td>$s[keahlian_bahasa_isyarat]</td></tr>
+                    <tr><th scope='row'>Kewarganegaraan</th>            <td>$s[kewarganegaraan]</td></tr>
+                    <tr><th scope='row'>NIY NIGK</th>            <td>$s[niy_nigk]</td></tr>
+                    <tr><th scope='row'>NPWP</th>                   <td>$s[npwp]</td></tr>
+
+                  </tbody>
+                  </table>
+                </div> 
               </div>
-            </div>
-          </div>
-        </div>
-      </div>";
-
+            </form>
+            </div>";
 }
 ?>
