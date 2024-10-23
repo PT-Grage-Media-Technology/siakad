@@ -158,7 +158,7 @@
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   // $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kd]'"));
-  $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]'"));
+  $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
 
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
@@ -177,7 +177,7 @@
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$filtertgl") . "</b></h3>
+                  <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
                 </div>
               <div class='box-body'>
 
@@ -188,42 +188,13 @@
                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                    <tr><th scope='row'>Tujuan Pembelajaran 12345</th>           <td>$j[materi]</td></tr>
+                    <tr><th scope='row'>Tujuan Pembelajaran</th>           <td>$j[materi]</td></tr>
+                    <tr><th scope='row'><a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-tasks'>Tugas</span></a></th></tr>
                   </tbody>
               </table>
               </div>
 
-              <form action='index.php?view=absensiswa&act=tampilabsen&id=$_GET[id]&kd=$_GET[kd]' method='POST' class='col-md-7 pull-right' style='margin-bottom:5px'>
-                <div class='col-xs-3'><select name='tgl' class='form-control'><option selected>- Tanggal -</option>";
-  for ($n = 1; $n <= 31; $n++) {
-    if ($tgle == $n) {
-      echo "<option value='$n' selected>$n</option>";
-    } else {
-      echo "<option value='$n'>$n</option>";
-    }
-  }
-  echo "</select></div> <div class='col-xs-4'><select name='bln' class='form-control'><option selected>- Bulan -</option>";
-  $blnn = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-  for ($n = 1; $n <= 12; $n++) {
-    if ($blnee == $n) {
-      echo "<option value='$n' selected>$blnn[$n]</option>";
-    } else {
-      echo "<option value='$n'>$blnn[$n]</option>";
-    }
-  }
-  echo "</select></div> <div class='col-xs-3'><select name='thn' class='form-control'><option selected>- Tahun -</option>";
-  $tahunn = date("Y");
-  for ($n = 2015; $n <= $tahunn; $n++) {
-    if ($tahun == $n) {
-      echo "<option value='$n' selected>$n</option>";
-    } else {
-      echo "<option value='$n'>$n</option>";
-    }
-  }
-  echo "</select></div> 
-                        <input name='lihat' class='btn btn-primary' type='submit' value='Lihat Absen'>
-              </form>
-
+             
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
               <input type='hidden' name='tgla' value='$tglc'>
               <input type='hidden' name='blna' value='$blnc'>
