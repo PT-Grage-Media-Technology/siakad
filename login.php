@@ -90,6 +90,7 @@ if (isset($_POST['login'])) {
   $hitungadmin = mysql_num_rows($admin);
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
+  $hitungkurikulum = mysql_num_rows($kurikulum);
   if ($hitungadmin >= 1) {
     $r = mysql_fetch_array($admin);
     $_SESSION['id'] = $r['id_user'];
@@ -116,9 +117,8 @@ if (isset($_POST['login'])) {
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
-  }elseif($kurikulum >=1){
-    var_dump($kurikulum);
-    exit();
+  }elseif($hitungkurikulum >=1){
+   echo "sasa";
   } else {
     echo "gagal";
   }
