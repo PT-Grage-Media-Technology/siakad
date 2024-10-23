@@ -1,31 +1,61 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL); // Aktifkan laporan semua jenis error untuk debugging
+ini_set('display_errors', 1); // Tampilkan error langsung di browser
+
 include "config/koneksi.php";
 include "config/library.php";
 include "config/fungsi_indotgl.php";
 include "config/fungsi_seo.php";
 
 if (isset($_SESSION['id'])) {
+    // Debugging session
+    echo "<pre>";
+    print_r($_SESSION);
+    echo "</pre>";
+
     if ($_SESSION['level'] == 'superuser') {
         $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
         $nama = $iden['nama_lengkap'];
         $level = 'Administrator';
         $foto = 'dist/img/user2-160x160.jpg';
+        
+        // Debugging query result
+        echo "<pre>";
+        print_r($iden);
+        echo "</pre>";
+
     } elseif ($_SESSION['level'] == 'kepala') {
         $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
         $gu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$iden[username]'"));
         $nama = $iden['nama_lengkap'];
         $level = 'Kepala Sekolah';
         $foto = (trim($gu['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $gu['foto'];
+
+        // Debugging query result
+        echo "<pre>";
+        print_r($gu);
+        echo "</pre>";
+
     } elseif ($_SESSION['level'] == 'guru') {
         $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]'"));
         $nama = $iden['nama_guru'];
         $level = 'Guru / Pengajar';
         $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
         
+        // Debugging query result
+        echo "<pre>";
+        print_r($iden);
+        echo "</pre>";
+        
         // Cek apakah guru juga memiliki jabatan kurikulum
         $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=6"));
+
+        // Debugging query result for kurikulum
+        echo "<pre>";
+        print_r($kurikulum);
+        echo "</pre>";
+
         if ($kurikulum) {
             $_SESSION['is_kurikulum'] = true; // Set flag jika guru juga merangkap kurikulum
         }
@@ -35,15 +65,31 @@ if (isset($_SESSION['id'])) {
         $nama = $iden['nama_guru'];
         $level = 'Guru / Waka Kurikulum'; // Gabungkan role guru dan kurikulum
         $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
+
+        // Debugging query result
+        echo "<pre>";
+        print_r($iden);
+        echo "</pre>";
     } elseif ($_SESSION['level'] == 'siswa') {
         $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
         $nama = $iden['nama'];
         $level = 'Siswa / Murid';
         $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_siswa/' . $iden['foto'];
+
+        // Debugging query result
+        echo "<pre>";
+        print_r($iden);
+        echo "</pre>";
     }
 
     // Ambil data kurikulum aktif
     $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum WHERE status_kurikulum='Ya'"));
+
+    // Debugging kurikulum data
+    echo "<pre>";
+    print_r($kurikulum);
+    echo "</pre>";
+
 ?>
 
   <!DOCTYPE html>
