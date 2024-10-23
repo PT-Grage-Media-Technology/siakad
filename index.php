@@ -30,6 +30,15 @@ if (isset($_SESSION[id])) {
     } else {
       $foto = 'foto_pegawai/' . $iden[foto];
     }
+  } elseif ($_SESSION[level] == 'wakaKurikulum') {
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]' AND jenis_ptk='Waka Kurikulum'"));
+    $nama = $iden[nama_guru];
+    $level = 'Kurikulum';
+    if (trim($iden[foto]) == '') {
+      $foto = 'foto_siswa/no-image.jpg';
+    } else {
+      $foto = 'foto_pegawai/' . $iden[foto];
+    }
   } elseif ($_SESSION[level] == 'siswa') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
     $nama = $iden[nama];
