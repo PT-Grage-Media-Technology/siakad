@@ -80,17 +80,17 @@ if (isset($_POST['login'])) {
   $passlain = anti_injection($_POST['b']);
   $data = md5(anti_injection($_POST['b']));
   $pass = hash("sha512", $data);
-  
+
+  // Query untuk admin, guru, siswa, dan kurikulum
   $admin = mysql_query("SELECT * FROM rb_users WHERE username='" . anti_injection($_POST['a']) . "' AND password='$pass'");
   $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
   $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
-  $kurikulum = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain' AND id_jenis_ptk = 6");
-
-
+  
+  // Pengecekan jumlah hasil query
   $hitungadmin = mysql_num_rows($admin);
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
-  $hitungkurikulum = mysql_num_rows($kurikulum);
+
   if ($hitungadmin >= 1) {
     $r = mysql_fetch_array($admin);
     $_SESSION['id'] = $r['id_user'];
@@ -104,16 +104,14 @@ if (isset($_POST['login'])) {
     $_SESSION['id'] = $r['nip'];
     $_SESSION['namalengkap'] = $r['nama_guru'];
     $_SESSION['level'] = 'guru';
+    
+    // Tambahan cek untuk kurikulum (id_jenis_ptk = 6)
+    if ($r['id_jenis_ptk'] == 6) {
+      $_SESSION['is_kurikulum'] = true;  // Menandai bahwa guru ini juga merangkap sebagai kurikulum
+    }
+
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nip'] . "', '$ip', '$user_browser $version', '$user_os', 'guru', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
-    echo "<script>document.location='index.php';</script>";
-  }elseif($hitungkurikulum >=1){
-    $r = mysql_fetch_array($kurikulum);
-    $_SESSION['id'] = $r['nip'];
-    $_SESSION['namalengkap'] = $r['nama_guru'];
-    $_SESSION['level'] = 'wakaKurikulum'; // Role baru untuk guru kurikulum
-    include "config/user_agent.php";
-    mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nip'] . "', '$ip', '$user_browser $version', '$user_os', 'guru_kurikulum', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
   } elseif ($hitungsiswa >= 1) {
     $r = mysql_fetch_array($siswa);
@@ -125,7 +123,7 @@ if (isset($_POST['login'])) {
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
-  }else {
+  } else {
     echo "gagal";
   }
 }

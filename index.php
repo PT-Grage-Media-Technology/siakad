@@ -30,7 +30,7 @@ if (isset($_SESSION[id])) {
     } else {
       $foto = 'foto_pegawai/' . $iden[foto];
     }
-  } elseif ($_SESSION[level] == 'wakaKurikulum') {
+  } elseif ($_SESSION['is_kurikulum'] = 'true') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]' AND id_jenis_ptk=6"));
     $nama = 'testing kuri';
     $level = 'wakaKurikulum';
