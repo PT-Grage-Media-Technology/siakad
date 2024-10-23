@@ -107,6 +107,14 @@ if (isset($_POST['login'])) {
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nip'] . "', '$ip', '$user_browser $version', '$user_os', 'guru', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
+  }elseif($hitungkurikulum >=1){
+    $r = mysql_fetch_array($kurikulum);
+    $_SESSION['id'] = $r['nip'];
+    $_SESSION['namalengkap'] = $r['nama_guru'];
+    $_SESSION['level'] = 'wakaKurikulum'; // Role baru untuk guru kurikulum
+    include "config/user_agent.php";
+    mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nip'] . "', '$ip', '$user_browser $version', '$user_os', 'guru_kurikulum', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
+    echo "<script>document.location='index.php';</script>";
   } elseif ($hitungsiswa >= 1) {
     $r = mysql_fetch_array($siswa);
     $_SESSION['id'] = $r['nisn'];
@@ -117,9 +125,7 @@ if (isset($_POST['login'])) {
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
-  }elseif($hitungkurikulum >=1){
-   echo "sasa";
-  } else {
+  }else {
     echo "gagal";
   }
 }
