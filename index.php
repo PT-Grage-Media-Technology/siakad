@@ -128,7 +128,9 @@ if (isset($_SESSION[id])) {
           include "menu-guru.php";
         } elseif ($_SESSION[level] == 'kepala') {
           include "menu-kepsek.php";
-        } else {
+        } elseif($level == 'wakaKurikulum') {
+          include "menu-kurikulum.php";
+        }else {
           include "menu-admin.php";
         }
         ?>
