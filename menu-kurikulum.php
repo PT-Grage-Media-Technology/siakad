@@ -13,7 +13,7 @@
   <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU
-      <?php echo $level; ?></li>
+      <?php echo $level_kuri; ?></li>
       <?php
     if ($_SESSION[level] == 'guru') {
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";

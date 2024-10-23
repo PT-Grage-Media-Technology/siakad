@@ -34,7 +34,7 @@ if (isset($_SESSION['id'])) {
     // Jika guru juga kurikulum, kita bisa beri label tambahan
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=6"));
     $nama = $iden['nama_guru'];
-    $level = 'Guru / Waka Kurikulum'; // Gabungkan role guru dan kurikulum
+    $level_kuri = 'Guru / Waka Kurikulum'; // Gabungkan role guru dan kurikulum
     $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
   } elseif ($_SESSION['level'] == 'siswa') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
