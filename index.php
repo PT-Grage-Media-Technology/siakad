@@ -315,6 +315,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/home_guru.php";
             echo "</div>";
+          }elseif ($_GET[view] == 'aktivitaspembelajaran') {
+            cek_session_guru();
+            echo "<div class='row'>";
+            include "application/aktivitas_pembelajaran.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'absensiswa') {
             cek_session_guru();
             echo "<div class='row'>";
