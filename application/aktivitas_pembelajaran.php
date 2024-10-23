@@ -34,16 +34,13 @@
           <thead>
             <tr>
               <th style='width:20px'>No</th>
-              <th>Kode Pelajaran</th>
-              <th>Jadwal Pelajaran</th>
-              <th>Kelas</th>
               <th>Guru</th>
-              <th>Hari</th>
-              <th>Mulai</th>
-              <th>Selesai</th>
-              <th>Ruangan</th>
-              <th>Semester</th>
-              <th>Aksi</th>
+              <th>Nip</th>
+              <th>Nama Guru</th>
+              <th>Waktu</th>
+              <th>Kelas</th>
+              <th>Mapel</th>
+              <th>Tujuan Pembelajaran</th>
             </tr>
           </thead>
           <tbody>
@@ -66,9 +63,6 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>$r[jam_mulai]</td>
-                      <td>$r[jam_selesai]</td>
-                      <td>$r[nama_ruangan]</td>
-                      <td>$r[id_tahun_akademik]</td>
                       <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
                     </tr>";
               $no++;
