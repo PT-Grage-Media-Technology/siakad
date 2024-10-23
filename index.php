@@ -32,7 +32,7 @@ if (isset($_SESSION[id])) {
     }
   } elseif ($_SESSION[level] == 'wakaKurikulum') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru where nip='$_SESSION[id]' AND id_jenis_ptk=6"));
-    $nama = $iden[nama_guru];
+    $nama = 'testing kuri';
     $level = 'Kurikulum';
     if (trim($iden[foto]) == '') {
       $foto = 'foto_siswa/no-image.jpg';
