@@ -188,7 +188,7 @@
                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                    <tr><th scope='row'>Tujuan Pembelajaran</th>           <td>$j[materi]</td></tr>
+                    <tr><th scope='row'>Tujuan Pembelajaran 12345</th>           <td>$j[materi]</td></tr>
                   </tbody>
               </table>
               </div>
