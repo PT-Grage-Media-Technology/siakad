@@ -16,7 +16,7 @@
       <?php echo $level; ?></li>
       <?php
     if ($_SESSION[level] == 'guru') {
-      echo "<li><a href='index.php?view=guru&act=detailguru&id=$_SESSION[id]'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
+      echo "<li><a href='index.php'></i> <span>Dashboard</span></a></li>";
     }
     ?>
     <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> <span>Jadwal Mengajar</span></a></li>
