@@ -117,19 +117,26 @@ if (isset($_SESSION['id'])) {
 
       <aside class="main-sidebar">
         <?php
-        if ($_SESSION[level] == 'siswa') {
+        if ($_SESSION['level'] == 'siswa') {
           include "menu-siswa.php";
-        } elseif ($_SESSION[level] == 'guru') {
-          include "menu-guru.php";
-        } elseif ($_SESSION[level] == 'kepala') {
+        } elseif ($_SESSION['level'] == 'guru') {
+          // Jika guru juga merangkap kurikulum, tampilkan menu kurikulum
+          if (isset($_SESSION['is_kurikulum']) && $_SESSION['is_kurikulum'] == true) {
+            include "menu-kurikulum.php"; // Menu untuk Waka Kurikulum
+          } else {
+            include "menu-guru.php"; // Menu reguler untuk Guru
+          }
+        } elseif ($_SESSION['level'] == 'kepala') {
           include "menu-kepsek.php";
-        } elseif ($level == 'wakaKurikulum') {
-          include "menu-kurikulum.php";
+        } elseif ($_SESSION['level'] == 'superuser') {
+          include "menu-admin.php"; // Menu untuk Admin atau Superuser
         } else {
+          // Jika tidak ada level yang cocok, default ke menu admin
           include "menu-admin.php";
         }
         ?>
       </aside>
+
 
       <div class="content-wrapper">
         <section class="content-header">
