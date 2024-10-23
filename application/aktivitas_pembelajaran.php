@@ -77,13 +77,13 @@
   <thead>
     <tr>
       <th style='width:20px'>No</th>
-      <th>Nip</th><!-- rb_guru -->
-      <th>Nama Guru</th><!-- rb_guru -->
-      <th>Hari</th><!-- rb_journal_list -->
-      <th>Tanggal</th><!-- rb_journal_list -->
-      <th>Jam</th><!-- rb_journal_list -->
-      <th>Kode Kelas</th><!-- rb_jadwal_pelajaran -->
-      <th>Kode Mapel</th><!-- rb_jadwal_pelajaran -->
+      <th>Nip</th>
+      <th>Nama Guru</th>
+      <th>Hari</th>
+      <th>Tanggal</th>
+      <th>Jam</th>
+      <th>Kode Kelas</th>
+      <th>Kode Mapel</th>
       <th>Tujuan Pembelajaran</th>
     </tr>
   </thead>
@@ -107,13 +107,13 @@
     while ($r = mysql_fetch_array($tampil)) {
       echo "<tr>
               <td>$no</td>
-              <td>$r[nip]</td> <!-- Kolom nip dari tabel rb_guru -->
-              <td>$r[nama_guru]</td> <!-- Kolom nama_guru dari tabel rb_guru -->
-              <td>$r[hari]</td> <!-- Kolom hari dari tabel rb_journal_list -->
-              <td>$r[tanggal]</td> <!-- Kolom tanggal dari tabel rb_journal_list -->
-              <td>$r[jam]</td> <!-- Kolom jam dari tabel rb_journal_list -->
-              <td>$r[kode_kelas]</td> <!-- Kolom kode_kelas dari tabel rb_jadwal_pelajaran -->
-              <td>$r[kode_pelajaran]</td> <!-- Kolom kode_pelajaran dari tabel rb_jadwal_pelajaran -->
+              <td>$r[nip]</td> 
+              <td>$r[nama_guru]</td>
+              <td>$r[hari]</td> 
+              <td>$r[tanggal]</td> 
+              <td>$r[jam]</td> 
+              <td>$r[kode_kelas]</td> 
+              <td>$r[kode_pelajaran]</td> 
               <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
             </tr>";
       $no++; // Increment nomor urut
