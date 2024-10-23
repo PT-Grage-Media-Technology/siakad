@@ -205,7 +205,7 @@
                             <th scope='row'>
                                 <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
                                     <span class='glyphicon glyphicon-tasks'></span>
-                                    <span class=''>Tugas</span>
+                                    <span class=''>Tugas1234</span>
                                 </a>
                             </th>
                         </tr>
