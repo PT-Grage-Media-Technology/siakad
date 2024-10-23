@@ -84,6 +84,8 @@ if (isset($_POST['login'])) {
   $admin = mysql_query("SELECT * FROM rb_users WHERE username='" . anti_injection($_POST['a']) . "' AND password='$pass'");
   $guru = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
   $siswa = mysql_query("SELECT * FROM rb_siswa WHERE nisn='" . anti_injection($_POST['a']) . "' AND password='$passlain'");
+  $kurikulum = mysql_query("SELECT * FROM rb_guru WHERE nip='" . anti_injection($_POST['a']) . "' AND password='$passlain' AND id_jenis_ptk = 6");
+
 
   $hitungadmin = mysql_num_rows($admin);
   $hitungguru = mysql_num_rows($guru);
@@ -114,6 +116,9 @@ if (isset($_POST['login'])) {
     include "config/user_agent.php";
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
+  }elseif($kurikulum >=1){
+    var_dump($kurikulum);
+    exit();
   } else {
     echo "gagal";
   }
