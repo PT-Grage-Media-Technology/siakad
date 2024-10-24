@@ -203,11 +203,11 @@
                         </tr>
                         <tr>
                             <th scope='row'>
-                                <a class='btn btn-success btn-sm d-flex flex-column align-items-center' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
-                                  
+                                <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                                  <div class='d-flex flex-column align-items-center'>
                                       <span class='fas fa-tasks' style='font-size:28px; margin-bottom:5px;'></span>
                                       <span style='font-size:20px;'>Tugas</span>
-                                  
+                                  </div>
                                 </a>
                             </th>
                         </tr>
