@@ -206,7 +206,7 @@
                                 <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
                                   <div class='d-flex flex-column'>
                                     <span class='glyphicon glyphicon-tasks' style='font-size:18px; margin-right:5px;'></span>
-                                    <span class='' style='font-size:16px;'>Tugas</span>
+                                    <span class='' style='font-size:16px;'>Tugas123</span>
                                   </div>
                                 </a>
                             </th>
