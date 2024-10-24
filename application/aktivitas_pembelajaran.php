@@ -5,7 +5,7 @@
         <?php
         // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
         $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-        var_dump($latest_year);
+        
 
         // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
@@ -55,6 +55,8 @@
                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
                                    ORDER BY a.hari DESC");
+
+            var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
