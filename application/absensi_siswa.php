@@ -180,7 +180,7 @@
         <div class='box-header with-border'>
             <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
         </div>
-        <div class='box-body'>
+        <div class='box-body mb-3'>
             <div class='col-md-12'>
                 <table class='table table-condensed table-hover'>
                     <tbody>
