@@ -201,17 +201,13 @@
                             <th scope='row'>Tujuan Pembelajaran</th>
                             <td>$j[materi]</td>
                         </tr>
-                        <tr>
-                            <th scope='row'>
-                                <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
-                                  <div class='d-flex flex-column'>
-                                    <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
-                                    <div class='' style='font-size:14px;'>Tugas</div>
-                                  </div>
-                                </a>
-                            </th>
-                        </tr>
                     </tbody>
+                      <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                          <div class='d-flex flex-column'>
+                            <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                            <div class='' style='font-size:14px;'>Tugas</div>
+                          </div>
+                       </a>
                 </table>
             </div>
 
