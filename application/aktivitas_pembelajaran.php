@@ -18,7 +18,7 @@
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
 
-          <input type="hidden" name="view" value="aktivitaspembelajaran">
+          <!-- <input type="hidden" name="view" value="aktivitaspembelajaran"> -->
 
           <!-- Filter Tanggal -->
           <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
