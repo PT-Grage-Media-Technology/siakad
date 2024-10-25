@@ -87,9 +87,9 @@
                                   JOIN rb_guru g ON jl.users = g.nip 
                                   JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
                                   JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-                                  JOIN rb_mata_pelajaran c ON   a.kode_pelajaran = c.kode_pelajaran 
+                                  JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
                                   JOIN rb_guru d ON a.nip = d.nip
-                                  WHERE DAY(jl.waktu_input) = '$tanggal_dipilih'
+                                  -- WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' -- Hapus filter berdasarkan tanggal
                                   ORDER BY jl.waktu_input DESC");
             // $tampil = mysql_query("SELECT * FROM rb_journal_list");
 
