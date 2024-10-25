@@ -71,7 +71,6 @@
       <th>Hari</th>
       <th>Tanggal</th>
       <th>Jam</th>
-      <th>Kode Kelas</th>
       <th>Nama Mapel</th>
       <th>Tujuan Pembelajaran</th>
     </tr>
