@@ -96,7 +96,7 @@ ORDER BY jl.waktu_input DESC;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
-                      <td>$r[users]</td>
+                      <td>$r[nip]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
