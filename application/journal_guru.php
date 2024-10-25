@@ -122,7 +122,7 @@
                       </tbody>
                   </table>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=33&kd=MK15&id=X.MIPA.1&tahun=20162'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=MK15&id=X.MIPA.1&tahun=20162'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-list-alt' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Nilai UTS</div>
