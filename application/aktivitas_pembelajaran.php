@@ -71,7 +71,7 @@
               <th>Nama Guru</th>
               <th>Hari</th>
               <th>Tanggal</th>
-              <th style='width:20px'>Jam ke</th>
+              <th style='width:40px'>Jam ke</th>
               <th>Nama Mapel</th>
               <th>Tujuan Pembelajaran</th>
             </tr>
@@ -101,7 +101,7 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td>$r[jam_ke]</td>
+                      <td><center>$r[jam_ke]</td>
                       <td>$r[namamatapelajaran]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
