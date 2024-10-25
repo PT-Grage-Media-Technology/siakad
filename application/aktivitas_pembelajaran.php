@@ -22,7 +22,7 @@
 
           <!-- Filter Tanggal -->
           <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-            <option value='' <?php echo !isset($_GET['tanggal']) ? 'selected' : ''; ?>>- Pilih Tanggal -</option>
+            
             <?php
             $today = date('j'); // Mengambil tanggal hari ini
             $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
