@@ -5,6 +5,7 @@
         <?php
         // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
         $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+        
 
         // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
@@ -12,7 +13,7 @@
           mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
           $latest_year['nama_tahun'];
 
-        echo "Jadwal Mengajar Anda - $nama_tahun";
+        echo "Aktivitas Pembelajaran Anda - $nama_tahun";
         ?>
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
@@ -30,46 +31,63 @@
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
+        <!-- <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th style='width:20px'>No</th>
-              <th>Guru</th>
-              <th>Nip</th>
-              <th>Nama Guru</th>
-              <th>Waktu</th>
-              <th>Kelas</th>
-              <th>Mapel</th>
+              <th>Nip</th>rb_guru
+              <th>Nama Guru</th>rb_guru
+              <th>hari</th>rbj_ournal_list
+              <th>tanggal</th>rbj_ournal_list
+              <th>jam</th>rbj_ournal_list
+              <th>Kode Kelas</th>rb_jadwal_pelajaran
+              <th>Kode Mapel</th>rb_jadwal_pelajaran
               <th>Tujuan Pembelajaran</th>
             </tr>
           </thead>
           <tbody>
-            <?php
-            $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
-                                   FROM rb_jadwal_pelajaran a 
-                                   JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                   JOIN rb_guru c ON a.nip=c.nip 
-                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                   WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
-                                   ORDER BY a.hari DESC");
+        
+          </tbody>
+        </table> -->
+
+        <table id="example1" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th style='width:20px'>No</th>
+      <th>Nip</th>
+      <th>Nama Guru</th>
+      <th>Hari</th>
+      <th>Tanggal</th>
+      <th>Jam</th>
+      <th>Kode Kelas</th>
+      <th>Nama Mapel</th>
+      <th>Tujuan Pembelajaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+            $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE DATE(waktu_input) = CURDATE()");
+
+            var_dump(mysql_fetch_array($tampil));
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
-                      <td>$r[kode_pelajaran]</td>
-                      <td>$r[namamatapelajaran]</td>
-                      <td>$r[nama_kelas]</td>
+                      <td>$r[users]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
-                      <td>$r[jam_mulai]</td>
+                      <td>".tgl_indo($r['tanggal'])."</td>
+                      <td>$r[jam]</td>
+                      <td>$r[kode_kelas]</td>
+                      <td>$r[kode_pelajaran]</td>
                       <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
                     </tr>";
               $no++;
             }
             ?>
-          </tbody>
-        </table>
+  </tbody>
+</table>
+
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div>

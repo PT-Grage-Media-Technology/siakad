@@ -180,7 +180,7 @@
         <div class='box-header with-border'>
             <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
         </div>
-        <div class='box-body'>
+        <div class='box-body mb-3'>
             <div class='col-md-12'>
                 <table class='table table-condensed table-hover'>
                     <tbody>
@@ -201,18 +201,14 @@
                             <th scope='row'>Tujuan Pembelajaran</th>
                             <td>$j[materi]</td>
                         </tr>
-                        <tr>
-                            <th scope='row'>
-                                <a class='btn btn-success btn-sm' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
-                                  <div class='d-flex flex-column'>
-                                    <span class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></span>
-                                    <span class='' style='font-size:16px;'>Tugas</span>
-                                  </div>
-                                </a>
-                            </th>
-                        </tr>
                     </tbody>
-                </table>
+                  </table>
+                    <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                        <div class='d-flex flex-column align-items-center'>
+                          <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                          <div class='' style='font-size:14px;'>Tugas</div>
+                        </div>
+                     </a>
             </div>
 
             <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
