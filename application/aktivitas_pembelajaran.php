@@ -28,6 +28,8 @@
           ?>
         </select>
       </form>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right'
+        action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
         <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
@@ -38,6 +40,7 @@
           }
           ?>
         </select>
+      </form>
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
