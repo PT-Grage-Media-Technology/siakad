@@ -93,10 +93,9 @@
             WHERE DATE(jl.waktu_input) = '$tanggal_hari_ini' 
             ORDER BY jl.waktu_input DESC");
 
-            // Mengganti var_dump dengan print_r untuk output yang lebih rapi
-            while ($row = mysql_fetch_array($tampil)) {
-                echo "<pre>" . print_r($row, true) . "</pre>";
-            }
+
+
+                  var_dump(mysql_fetch_array($tampil));
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
