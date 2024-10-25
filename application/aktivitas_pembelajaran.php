@@ -27,6 +27,7 @@
           }
           ?>
         </select>
+        </form>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
           <input type="hidden" name="view" value="aktivitaspembelajaran">
 
@@ -43,7 +44,8 @@
             }
             ?>
           </select>
-
+          </form>
+            <form>
           <!-- Filter Bulan -->
           <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
             <option value='' <?php echo !isset($_GET['bulan']) ? 'selected' : ''; ?>>- Pilih Bulan -</option>
