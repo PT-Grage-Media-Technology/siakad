@@ -540,7 +540,7 @@
                         <table class='table table-condensed table-bordered'>
                           <tbody>
                             <input type='hidden' name='id' value='$s[nip]'>
-                             <th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
+                             <tr><th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
   if (trim($s[foto]) == '') {
     echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
   } else {
