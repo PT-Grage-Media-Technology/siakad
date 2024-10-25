@@ -110,7 +110,10 @@
             JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
             JOIN rb_guru d ON a.nip=d.nip 
             WHERE a.kodejdwl='$r[kodejdwl]'"));
-            var_dump($d); // Menambahkan var_dump untuk menampilkan data yang diambil
+
+            if ($d === false) {
+                echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
+            }
             ?>
           </tbody>
 
