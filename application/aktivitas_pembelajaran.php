@@ -28,8 +28,8 @@
           ?>
         </select>
       </form>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action="index.php?view=aktivitaspembelajarana" method='GET'>
-        <select name='tanggal' style='padding:4px' onchange='this.form.action = "index.php?view=aktivitaspembelajaran&tgl=" + this.value; this.form.submit()'>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right' action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
+        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
@@ -82,7 +82,9 @@
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih
-            $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE DATE(waktu_input) = CURDATE() AND DAY(waktu_input) = '$tanggal_dipilih'");
+            $tampil = mysql_query("SELECT jl.*, g.nama_guru FROM rb_journal_list jl 
+                                  JOIN rb_guru g ON jl.users = g.nip 
+                                  WHERE DATE(jl.waktu_input) = CURDATE() AND DAY(jl.waktu_input) = '$tanggal_dipilih'");
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
@@ -93,8 +95,7 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>".tgl_indo($r['tanggal'])."</td>
-                      <td>$r[jam]</td>
-                      <td>$r[kode_kelas]</td>
+                      <td>$r[jam_ke]</td>
                       <td>$r[kode_pelajaran]</td>
                       <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
                     </tr>";
