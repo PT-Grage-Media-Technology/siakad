@@ -19,7 +19,7 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> <span>Ini kurikulum</span></a></li>
+    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> <span>Jadwal Mengajar</span></a></li>
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="fa fa-clipboard"></i> <span>Aktivitas Pembelajaran</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
