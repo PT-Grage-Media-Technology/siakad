@@ -203,7 +203,6 @@ cek_session_guru();
           <div style='clear:both'></div>
           <div class='box-footer'>
             <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-            <button type='reset' class='btn btn-default pull-right'>Cancel</button>
           </div>
           </form>
 
