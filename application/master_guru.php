@@ -587,7 +587,6 @@
         </table>
     </div>
 </div>
-msam
 
                     <div class='col-md-5 col-sm-12'>
                       <div class='table-responsive'>
