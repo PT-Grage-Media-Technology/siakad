@@ -94,7 +94,6 @@
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
-            $kodejdwl_terakhir = null; // Menyimpan kodejdwl terakhir
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
@@ -102,7 +101,7 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td><center>$r[jam_ke]</td>
+                      <td><center>$r[kodejdwl]</td>
                       <td>$r[namamatapelajaran]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
