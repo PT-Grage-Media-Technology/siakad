@@ -540,16 +540,16 @@
                         <table class='table table-condensed table-bordered'>
                           <tbody>
                             <input type='hidden' name='id' value='$s[nip]'>
-                             <tr><th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
-  if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-  } else {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-  }
-  if ($_SESSION[level] != 'kepala') {
-    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-  }
-  echo "</th></tr>
+                             <th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
+                              if (trim($s[foto]) == '') {
+                                echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
+                              } else {
+                                echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
+                              }
+                              if ($_SESSION[level] != 'kepala') {
+                                echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+                              }
+                              echo "</th></tr>
                             <tr><th width='120px' scope='row'>Nip</th> <td>$s[nip]</td></tr>
                             <tr><th scope='row'>Password</th> <td>$s[password]</td></tr>
                             <tr><th scope='row'>Nama Lengkap</th> <td>$s[nama_guru]</td></tr>
