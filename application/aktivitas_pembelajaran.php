@@ -113,7 +113,7 @@
             JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
             JOIN rb_guru d ON a.nip=d.nip 
             WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
-            // var_dump($kodejdwl_terakhir); // Hapus var_dump jika tidak diperlukan
+            var_dump($kodejdwl_terakhir); // Hapus var_dump jika tidak diperlukan
             if ($d === false) {
                 echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
             }
