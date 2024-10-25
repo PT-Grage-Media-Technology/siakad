@@ -83,15 +83,15 @@
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
             $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-                                  FROM rb_journal_list jl 
-                                  JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-                                  JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-                                  JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-                                  JOIN rb_guru d ON a.nip = d.nip
-                                  WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
-                                  ORDER BY jl.waktu_input DESC"); 
+FROM rb_journal_list jl 
+JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+JOIN rb_guru d ON jl.users = d.nip
+ORDER BY jl.waktu_input DESC;
+");
 
-            // Hapus var_dump untuk menampilkan semua data
+            // var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
@@ -101,7 +101,7 @@
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
                       <td><center>$r[kodejdwl]</td>
-                      <td>$r[namamatapelajaran]</td>
+                      <td>$r[materi]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
               $no++;
@@ -121,7 +121,7 @@
             ?>
           </tbody>
 
-          
+
         </table>
 
       </div><!-- /.table-responsive -->
