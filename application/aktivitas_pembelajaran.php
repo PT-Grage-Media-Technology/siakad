@@ -71,7 +71,7 @@
               <th>Nama Guru</th>
               <th>Hari</th>
               <th>Tanggal</th>
-              <th>Jam ke</th>
+              <th style='width:20px'>Jam ke</th>
               <th>Nama Mapel</th>
               <th>Tujuan Pembelajaran</th>
             </tr>
@@ -105,7 +105,6 @@
                       <td>$r[namamatapelajaran]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
-              $kodejdwl_terakhir = $r['kodejdwl']; // Simpan kodejdwl terakhir
               $no++;
             }
 
