@@ -16,7 +16,7 @@
         echo "Aktivitas Pembelajaran Guru - $nama_tahun";
         ?>
       </h3>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right d-flex' action='' method='GET'>
         <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tahun Akademik -</option>
           <?php
