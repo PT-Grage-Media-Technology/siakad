@@ -29,19 +29,18 @@
         </select>
       </form>
       <form style='margin-right:5px; margin-top:0px' class='pull-right'
-        action="index.php?view=aktivitaspembelajaran&tgl=<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : ''; ?>" method='GET'>
+        action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
         <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
-          for ($i = 1; $i <= 31; $i++) {
+          for ($i = 1; $i <= 30; $i++) {
             $selected = (isset($_GET['tanggal']) && $_GET['tanggal'] == $i) ? 'selected' : '';
             echo "<option value='$i' $selected>$i</option>";
           }
           ?>
         </select>
       </form>
-      
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
