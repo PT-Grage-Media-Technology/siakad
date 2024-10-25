@@ -27,19 +27,35 @@
           }
           ?>
         </select>
-        </form>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
           <input type="hidden" name="view" value="aktivitaspembelajaran">
+
+          <!-- Filter Tanggal -->
           <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+            <option value='' <?php echo !isset($_GET['tanggal']) ? 'selected' : ''; ?>>- Pilih Tanggal -</option>
             <?php
             $today = date('j'); // Mengambil tanggal hari ini
-            $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Mengatur default ke tanggal hari ini jika belum ada pilihan
+            $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
             
             for ($i = 1; $i <= 31; $i++) {
               $selected = ($selectedTanggal == $i) ? 'selected' : '';
               echo "<option value='$i' $selected>$i</option>";
             }
+            ?>
+          </select>
 
+          <!-- Filter Bulan -->
+          <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+            <option value='' <?php echo !isset($_GET['bulan']) ? 'selected' : ''; ?>>- Pilih Bulan -</option>
+            <?php
+            $currentMonth = date('n'); // Mengambil bulan saat ini
+            $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
+            $bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            for ($i = 1; $i <= 12; $i++) {
+              $selected = ($selectedBulan == $i) ? 'selected' : '';
+              echo "<option value='$i' $selected>{$bulanNama[$i - 1]}</option>";
+            }
             ?>
           </select>
         </form>
