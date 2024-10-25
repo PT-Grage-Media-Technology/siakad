@@ -27,22 +27,22 @@
           }
           ?>
         </select>
-      </form>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action="" method="GET">
-        <input type="hidden" name="view" value="aktivitaspembelajaran">
-        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-          <option value=''>- Pilih Tanggal -</option>
-          <?php
-          $today = date('j'); // Mengambil tanggal hari ini
-          $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Mengatur default ke tanggal hari ini jika belum ada pilihan
-          
-          for ($i = 1; $i <= 31; $i++) {
-            $selected = ($selectedTanggal == $i) ? 'selected' : '';
-            echo "<option value='$i' $selected>$i</option>";
-          }
-          ?>
-        </select>
-      </form>
+        <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
+          <input type="hidden" name="view" value="aktivitaspembelajaran">
+          <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+            <option value=''>- Pilih Tanggal -</option>
+            <?php
+            $today = date('j'); // Mengambil tanggal hari ini
+            $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Mengatur default ke tanggal hari ini jika belum ada pilihan
+            
+            for ($i = 1; $i <= 31; $i++) {
+              $selected = ($selectedTanggal == $i) ? 'selected' : '';
+              echo "<option value='$i' $selected>$i</option>";
+            }
+            ?>
+          </select>
+        </form>
+
 
 
     </div><!-- /.box-header -->
