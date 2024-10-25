@@ -91,7 +91,7 @@ JOIN rb_guru d ON jl.users = d.nip
 ORDER BY jl.waktu_input DESC;
 ");
 
-            var_dump($tampil);
+            // var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
