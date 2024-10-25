@@ -101,7 +101,12 @@
           <tbody>
             <?php
             // Mengambil tanggal yang dipilih dari GET
+            // Ambil tanggal dan bulan yang dipilih dari GET
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+            $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
+
+            // Debugging: Tampilkan nilai yang dipilih
+            var_dump($tanggal_dipilih, $bulan_dipilih);
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
             $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
@@ -114,7 +119,7 @@
             AND MONTH(jl.tanggal) = '$bulan_dipilih'
             ORDER BY jl.waktu_input DESC;
             ");
-            
+
             // var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
