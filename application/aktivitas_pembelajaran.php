@@ -102,8 +102,7 @@
   <tbody>
     <?php
     // Query untuk mengambil data dari beberapa tabel
-    $tampil = mysql_query("
-      SELECT a.*, e.nip, b.nama_guru, a.hari, a.tanggal, a.jam, a.kode_kelas, a.kode_pelajaran 
+    $tampil = mysql_query("SELECT a.*, e.nip, b.nama_guru, a.hari, a.tanggal, a.jam, a.kode_kelas, a.kode_pelajaran 
       FROM rb_jadwal_pelajaran a
       JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
       JOIN rb_guru c ON a.nip=c.nip 
