@@ -526,33 +526,35 @@
                                               where a.nip='$_GET[id]'");
   $s = mysql_fetch_array($detail);
   echo "<div class='container'>
-  <div class='row'>
-    <div class='col-12'>
-      <div class='box box-info'>
-        <div class='box-header with-border'>
-          <h3 class='box-title'>Detail Data Guru</h3>
-        </div>
-        
-        <div class='box-body'>
-          <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-            <div class='row'>
-              <div class='col-md-7 col-sm-12'>
-                <div class='table-responsive'>
-                  <table class='table table-condensed table-bordered'>
-                    <tbody>
-                      <input type='hidden' name='id' value='$s[nip]'>
-                      
-                      <!-- Image for Mobile View -->
-                      <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
-                        <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
-                          ";
-  if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-  } else {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-  }
-  echo "</th>
-                      </tr>
+                  <div class='row'>
+                    <div class='col-12'>
+                      <div class='box box-info'>
+                        <div class='box-header with-border'>
+                          <h3 class='box-title'>Detail Data Guru</h3>
+                        </div>
+                        
+                        <div class='box-body'>
+                          <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                            <div class='row'>
+                              <div class='col-md-7 col-sm-12'>
+                                <div class='table-responsive'>
+                                  <table class='table table-condensed table-bordered'>
+                                    <tbody>
+                                      <input type='hidden' name='id' value='$s[nip]'>
+                                      
+                                      <!-- Image for Mobile View -->
+                                      <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
+                                      <center>
+                                        <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
+                                          ";
+                  if (trim($s[foto]) == '') {
+                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
+                  } else {
+                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
+                  }
+                  echo "</th>
+                  </center>
+                                      </tr>
 
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
