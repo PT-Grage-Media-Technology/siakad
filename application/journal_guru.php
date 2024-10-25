@@ -293,6 +293,7 @@
                               <option value='Rabu'" . ($e[hari] == 'Rabu' ? ' selected' : '') . ">Rabu</option>
                               <option value='Kamis'" . ($e[hari] == 'Kamis' ? ' selected' : '') . ">Kamis</option>
                               <option value='Jumat'" . ($e[hari] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                              <option value='Sabtu'" . ($e[hari] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                           </select>
                       </td>
                     </tr>
