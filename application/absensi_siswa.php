@@ -260,7 +260,7 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              if (strtotime($_GET['tgl']) > strtotime(date('Y-m-d'))) {
+                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                 echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                 // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
                               } else {
