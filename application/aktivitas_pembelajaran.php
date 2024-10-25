@@ -82,14 +82,13 @@
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
-            $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-                                  FROM rb_journal_list jl 
-                                  JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-                                  JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-                                  JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-                                  JOIN rb_guru d ON a.nip = d.nip
-                                  WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
-                                  ORDER BY jl.waktu_input DESC");
+            $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran 
+            FROM rb_journal_list jl 
+            JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+            JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+            JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+            WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
+            ORDER BY jl.waktu_input DESC");
 
             // Debugging: Tampilkan query yang dijalankan
             echo "Query: SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
