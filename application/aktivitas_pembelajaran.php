@@ -57,6 +57,7 @@
                                    ORDER BY a.hari DESC");
 
             var_dump($tampil);
+            exit();
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
