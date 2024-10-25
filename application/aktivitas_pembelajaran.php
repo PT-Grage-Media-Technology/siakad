@@ -90,7 +90,7 @@
                                   JOIN rb_mata_pelajaran c ON   a.kode_pelajaran = c.kode_pelajaran 
                                   JOIN rb_guru d ON a.nip = d.nip 
                                   WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
-                                  AND jl.users IS NOT NULL  -- Menampilkan semua tanpa filter berdasarkan guru
+                                  -- Hapus filter berdasarkan guru
                                   ORDER BY jl.waktu_input DESC");
 
             // Hapus var_dump untuk menampilkan semua data
