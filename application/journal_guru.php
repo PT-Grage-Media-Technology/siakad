@@ -101,7 +101,7 @@
   JOIN rb_guru d ON a.nip=d.nip 
   WHERE a.kodejdwl='$_GET[id]'"));
 
-  var_dump($d);
+  var_dump($_GET['id']);
 
   echo "<div class='col-xs-12 col-md-12'>  
               <div class='box'>
