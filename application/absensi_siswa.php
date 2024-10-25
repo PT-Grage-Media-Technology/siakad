@@ -245,7 +245,9 @@
         $sekarangabsen = date("Y-m-d");
       }
     }
-    var_dump(tgl_indo($_GET['tgl']));
+    var_dump('1=' . tgl_indo($_GET['tgl']));
+    var_dump('2=' . tgl_indo($_GET['tgl']));
+    var_dump('3=' . date('Y-m-d'));
     exit;
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     echo "<tr bgcolor=$warna>
