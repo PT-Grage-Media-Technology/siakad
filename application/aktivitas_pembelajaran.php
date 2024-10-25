@@ -46,26 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php
-            $tampil = mysql_query("SELECT * FROM rb_journal_list");
-
-            var_dump($tampil);
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              echo "<tr>
-                      <td>$no</td>
-                      <td>$r[nip]</td>
-                      <td>$r[nama_guru]</td>
-                      <td>$r[hari]</td>
-                      <td>$r[tanggal]</td>
-                      <td>$r[jam]</td>
-                      <td>$r[kode_kelas]</td>
-                      <td>$r[kode_pelajaran]</td>
-                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
-                    </tr>";
-              $no++;
-            }
-            ?>
+        
           </tbody>
         </table> -->
 
@@ -95,7 +76,7 @@
                       <td>$r[users]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
-                      <td>$r[tanggal]</td>
+                      <td><?php echo date('d F Y', strtotime($r[tanggal])); ?></td>
                       <td>$r[jam]</td>
                       <td>$r[kode_kelas]</td>
                       <td>$r[kode_pelajaran]</td>
