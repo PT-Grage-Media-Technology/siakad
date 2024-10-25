@@ -191,11 +191,11 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                   <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                    <tr><th width='140px' scope='row'>Kelas</th>   <td><select class='form-control' name='a'>";
+                    <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
   $kelas = mysql_query("SELECT * FROM rb_kelas");
   while ($a = mysql_fetch_array($kelas)) {
     if ($e[kode_kelas] == $a[kode_kelas]) {
-      echo "<option value='$a[kode_kelas]' selected>$a[nama_kelas]</option>";
+      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
     }
   }
   echo "</select>
