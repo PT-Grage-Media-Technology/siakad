@@ -83,22 +83,23 @@
     // Inisialisasi nomor
     $no = 1;
     var_dump($tampil);
+    exit();
     
     // Loop untuk menampilkan hasil query
-    while ($r = mysql_fetch_array($tampil)) {
-      echo "<tr>
-              <td>$no</td>
-              <td>$r[nip]</td> 
-              <td>$r[nama_guru]</td>
-              <td>$r[hari]</td> 
-              <td>$r[tanggal]</td> 
-              <td>$r[jam]</td> 
-              <td>$r[kode_kelas]</td> 
-              <td>$r[kode_pelajaran]</td> 
-              <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
-            </tr>";
-      $no++; // Increment nomor urut
-    }
+    // while ($r = mysql_fetch_array($tampil)) {
+    //   echo "<tr>
+    //           <td>$no</td>
+    //           <td>$r[nip]</td> 
+    //           <td>$r[nama_guru]</td>
+    //           <td>$r[hari]</td> 
+    //           <td>$r[tanggal]</td> 
+    //           <td>$r[jam]</td> 
+    //           <td>$r[kode_kelas]</td> 
+    //           <td>$r[kode_pelajaran]</td> 
+    //           <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
+    //         </tr>";
+    //   $no++; // Increment nomor urut
+    // }
     ?>
   </tbody>
 </table>
