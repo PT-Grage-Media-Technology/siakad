@@ -101,7 +101,7 @@
   JOIN rb_guru d ON a.nip=d.nip 
   WHERE a.kodejdwl='$_GET[id]'"));
 
-  // var_dump($_GET['id']);
+  var_dump($d);
 
   echo "<div class='col-xs-12 col-md-12'>  
               <div class='box'>
@@ -121,6 +121,14 @@
                         <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
                       </tbody>
                   </table>
+
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='glyphicon glyphicon-list-alt' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Nilai UTS</div>
+                    </div>
+                  </a>
+                  
                   </div>
 
                   <div class='table-responsive'>

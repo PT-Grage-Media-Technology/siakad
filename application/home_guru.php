@@ -69,7 +69,7 @@
                       <td>$r[jam_selesai]</td>
                       <td>$r[nama_ruangan]</td>
                       <td>$r[id_tahun_akademik]</td>
-                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
+                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Tujuan Pembelajaran</a></td>
                     </tr>";
               $no++;
             }
