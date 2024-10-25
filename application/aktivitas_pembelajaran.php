@@ -27,10 +27,12 @@
           }
           ?>
         </select>
+        </form>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
           <input type="hidden" name="view" value="aktivitaspembelajaran">
           <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-            <option value=''>- Pilih Tanggal -</option>
+          <option value='<?php echo $today; ?>' selected>- Pilih Tanggal - <?php echo $today; ?></option>
+            
             <?php
             $today = date('j'); // Mengambil tanggal hari ini
             $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Mengatur default ke tanggal hari ini jika belum ada pilihan
@@ -39,6 +41,7 @@
               $selected = ($selectedTanggal == $i) ? 'selected' : '';
               echo "<option value='$i' $selected>$i</option>";
             }
+
             ?>
           </select>
         </form>
