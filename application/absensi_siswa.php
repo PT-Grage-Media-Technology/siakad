@@ -255,10 +255,10 @@
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                               if (tgl_indo($_GET['tgl']) > date('Y-m-d')) {
-                                echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                 // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
                             } else {
-                                echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+                                echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
                                 // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
                             }
                             
