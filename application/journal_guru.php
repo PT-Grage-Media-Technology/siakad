@@ -101,6 +101,8 @@
   JOIN rb_guru d ON a.nip=d.nip 
   WHERE a.kodejdwl='$_GET[id]'"));
 
+  var_dump($_GET['id']);
+
   echo "<div class='col-xs-12 col-md-12'>  
               <div class='box'>
                 <div class='box-header'>
@@ -200,11 +202,11 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>   <td><select class='form-control' name='b'>";
+                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>   <td hidden><select class='form-control' name='b' hidden>";
   $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
   while ($a = mysql_fetch_array($mapel)) {
     if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-      echo "<option value='$a[kode_pelajaran]' selected>$a[namamatapelajaran]</option>";
+      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
     }
   }
   echo "</select>
@@ -260,11 +262,11 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>   <td><select class='form-control' name='b'>";
+                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>   <td hidden><select class='form-control' name='b' hidden>";
   $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
   while ($a = mysql_fetch_array($mapel)) {
     if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-      echo "<option value='$a[kode_pelajaran]' selected>$a[namamatapelajaran]</option>";
+      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
     }
   }
   echo "</select>

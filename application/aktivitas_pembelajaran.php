@@ -5,7 +5,7 @@
         <?php
         // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
         $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-        
+
 
         // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
@@ -28,7 +28,8 @@
           ?>
         </select>
       </form>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right'
+        action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
         <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
@@ -63,20 +64,20 @@
         </table> -->
 
         <table id="example1" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style='width:20px'>No</th>
-      <th>Nip</th>
-      <th>Nama Guru</th>
-      <th>Hari</th>
-      <th>Tanggal</th>
-      <th>Jam ke</th>
-      <th>Nama Mapel</th>
-      <th>Tujuan Pembelajaran</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php
+          <thead>
+            <tr>
+              <th style='width:20px'>No</th>
+              <th>Nip</th>
+              <th>Nama Guru</th>
+              <th>Hari</th>
+              <th>Tanggal</th>
+              <th>Jam ke</th>
+              <th>Nama Mapel</th>
+              <th>Tujuan Pembelajaran</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
             // Mengambil tanggal yang dipilih dari GET
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
@@ -84,6 +85,8 @@
             $tampil = mysql_query("SELECT jl.*, g.nama_guru FROM rb_journal_list jl 
                                   JOIN rb_guru g ON jl.users = g.nip 
                                   WHERE DATE(jl.waktu_input) = CURDATE() AND DAY(jl.waktu_input) = '$tanggal_dipilih'");
+
+           
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
@@ -93,16 +96,29 @@
                       <td>$r[users]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
-                      <td>".tgl_indo($r['tanggal'])."</td>
+                      <td>" . tgl_indo($r['tanggal']) . "</td>
                       <td>$r[jam_ke]</td>
-                      <td>$r[kode_pelajaran]</td>
+                      <td>$r[kodejdwl]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
               $no++;
             }
+
+            $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+            FROM `rb_jadwal_pelajaran` a 
+            JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
+            JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
+            JOIN rb_guru d ON a.nip=d.nip 
+            WHERE a.kodejdwl='$r[kodejdwl]'"));
+            var_dump($r['kodejdwl']);
+            if ($d === false) {
+                echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
+            }
             ?>
-  </tbody>
-</table>
+          </tbody>
+
+          
+        </table>
 
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
