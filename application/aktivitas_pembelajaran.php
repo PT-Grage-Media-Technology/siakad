@@ -103,6 +103,8 @@
                   WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
                   ORDER BY jl.waktu_input DESC";
 
+                  var_dump(mysql_fetch_array($tampil));
+
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
