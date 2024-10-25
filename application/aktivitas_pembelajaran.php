@@ -13,7 +13,7 @@
           mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
           $latest_year['nama_tahun'];
 
-        echo "Aktivitas Pembelajaran Anda - $nama_tahun";
+        echo "Aktivitas Pembelajaran Guru - $nama_tahun";
         ?>
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
@@ -68,7 +68,7 @@
   <?php
             $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE DATE(waktu_input) = CURDATE()");
 
-            var_dump(mysql_fetch_array($tampil));
+            // Hapus var_dump untuk menampilkan semua data
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
