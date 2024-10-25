@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <tbody>
-           
+        
           </tbody>
         </table> -->
 
@@ -60,47 +60,31 @@
       <th>Tanggal</th>
       <th>Jam</th>
       <th>Kode Kelas</th>
-      <th>Kode Mapel</th>
+      <th>Nama Mapel</th>
       <th>Tujuan Pembelajaran</th>
     </tr>
   </thead>
   <tbody>
-    <?php
-    // Query untuk mengambil data dari beberapa tabel
-    $tampil = mysql_query("SELECT a.*, e.nip, b.nama_guru, a.hari, a.tanggal, a.jam, a.kode_kelas, a.kode_pelajaran 
-      FROM rb_jadwal_pelajaran a
-      JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-      JOIN rb_guru c ON a.nip=c.nip 
-      JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-      JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-      WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
-      ORDER BY a.hari DESC");
+  <?php
+            $tampil = mysql_query("SELECT * FROM rb_journal_list");
 
-    if (!$tampil) {
-        die('Query Error: ' . mysql_error());
-    }
-
-    // Inisialisasi nomor
-    $no = 1;
-    var_dump($tampil);
-    exit();
-    
-    // Loop untuk menampilkan hasil query
-    // while ($r = mysql_fetch_array($tampil)) {
-    //   echo "<tr>
-    //           <td>$no</td>
-    //           <td>$r[nip]</td> 
-    //           <td>$r[nama_guru]</td>
-    //           <td>$r[hari]</td> 
-    //           <td>$r[tanggal]</td> 
-    //           <td>$r[jam]</td> 
-    //           <td>$r[kode_kelas]</td> 
-    //           <td>$r[kode_pelajaran]</td> 
-    //           <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
-    //         </tr>";
-    //   $no++; // Increment nomor urut
-    // }
-    ?>
+            var_dump(mysql_fetch_array($tampil));
+            $no = 1;
+            while ($r = mysql_fetch_array($tampil)) {
+              echo "<tr>
+                      <td>$no</td>
+                      <td>$r[users]</td>
+                      <td>$r[nama_guru]</td>
+                      <td>$r[hari]</td>
+                      <td>".tgl_indo($r['tanggal'])."</td>
+                      <td>$r[jam]</td>
+                      <td>$r[kode_kelas]</td>
+                      <td>$r[kode_pelajaran]</td>
+                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
+                    </tr>";
+              $no++;
+            }
+            ?>
   </tbody>
 </table>
 
