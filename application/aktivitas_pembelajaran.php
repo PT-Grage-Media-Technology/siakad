@@ -34,7 +34,7 @@
         <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
-          for ($i = 1; $i <= 30; $i++) {
+          for ($i = 1; $i <= 31; $i++) {
             $selected = (isset($_GET['tanggal']) && $_GET['tanggal'] == $i) ? 'selected' : '';
             echo "<option value='$i' $selected>$i</option>";
           }
@@ -102,7 +102,7 @@ ORDER BY jl.waktu_input DESC;
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td><center>$r[kodejdwl]</td>
+                      <td><center>$r[jam_ke]</td>
                       <td>$r[materi]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
