@@ -91,7 +91,7 @@ JOIN rb_guru d ON jl.users = d.nip  // Mengubah join untuk mengambil nama guru b
 ORDER BY jl.waktu_input DESC;
 ");
 
-            // Hapus var_dump untuk menampilkan semua data
+            var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
