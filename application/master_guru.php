@@ -541,8 +541,23 @@
                         <table class='table table-condensed table-bordered'>
                           <tbody>
                             <input type='hidden' name='id' value='$s[nip]'>
-                            <th class='d-none d-md-table-cell' style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>                            
-                            <th class='d-md-none' style='background-color:#E7EAEC; text-align: center; width: 320px;' rowspan='0'>";
+                            <script>
+                                  function adjustMobileView() {
+                                      const thElement = document.getElementById('responsive-th');
+                                      if (window.innerWidth <= 768) {
+                                          thElement.setAttribute('rowspan', '0');
+                                          thElement.setAttribute('width', '320px');
+                                          thElement.style.justifyContent = 'center';
+                                      } else {
+                                          thElement.setAttribute('rowspan', '25');
+                                          thElement.setAttribute( 'width', '160px');
+                                          thElement.style.justifyContent = '';
+                                      }
+                                  }
+                                  window.addEventListener('load', adjustMobileView);
+                                  window.addEventListener('resize', adjustMobileView);
+                            </script>
+                             <th id='responsive-th' class='d-table-cell' style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
                               if (trim($s[foto]) == '') {
                                 echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
                               } else {
