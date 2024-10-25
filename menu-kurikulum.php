@@ -19,7 +19,7 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> <span>Ini kurikulum</span></a></li>
+    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> <span>Jadwal Mengajar</span></a></li>
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="fa fa-clipboard"></i> <span>Aktivitas Pembelajaran</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
@@ -28,7 +28,7 @@
     <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a>
     </li>
     <li><a href="index.php?view=forum&act=detailguru"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li>
-    <li><a href="index.php?view=kompetensiguru"><i class="fa fa-tags"></i> <span>Kompetensi Dasar</span></a></li>
+    <!-- <li><a href="index.php?view=kompetensiguru"><i class="fa fa-tags"></i> <span>Kompetensi Dasar</span></a></li> -->
     <!-- <li><a href="index.php?view=journalguru"><i class="fa fa-list"></i> <span>Journal KBM</span></a></li> -->
     <li class="treeview">
       <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i
