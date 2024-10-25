@@ -67,9 +67,8 @@
   <tbody>
     <?php
     // Query untuk mengambil data dari beberapa tabel
-    $tampil = mysql_query("SELECT a.*, e.nip, b.nama_guru, a.hari, a.tanggal, a.jam, a.kode_kelas, a.kode_pelajaran 
+    $tampil = mysql_query("SELECT a.*, c.nip, c.nama_guru, a.hari, a.tanggal, a.jam, a.kode_kelas, a.kode_pelajaran 
       FROM rb_jadwal_pelajaran a
-      JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
       JOIN rb_guru c ON a.nip=c.nip 
       JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
       JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
