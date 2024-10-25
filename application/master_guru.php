@@ -541,7 +541,8 @@
                         <table class='table table-condensed table-bordered'>
                           <tbody>
                             <input type='hidden' name='id' value='$s[nip]'>
-                             <th class='d-table-cell d-md-table-cell d-md-none' style='background-color:#E7EAEC; text-align: center; width: 160px; width: 320px; justify-content: center;'>";
+                            <th class='d-none d-md-table-cell' style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>                            
+                            <th class='d-md-none' style='background-color:#E7EAEC; text-align: center; width: 320px;' rowspan='0'>";
                               if (trim($s[foto]) == '') {
                                 echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
                               } else {
