@@ -75,7 +75,7 @@
   </div><!-- /.container-fluid -->
 
 
-<?php
+  <?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $rtrw = explode('/', $_POST[al]);
@@ -458,7 +458,7 @@
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Browse..."; ?>
   <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                   </tbody>
@@ -536,34 +536,34 @@
                         <div class='box-body'>
                           <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                             <div class='row'>
-                              <div class='col-md-7 col-sm-12'>
-                                <div class='table-responsive'>
-                                  <table class='table table-condensed table-bordered'>
-                                    <tbody>
-                                      <input type='hidden' name='id' value='$s[nip]'>
-                                      
-                                      <!-- Image for Mobile View -->
-                                      <div class='col-md-5 col-sm-12'>
+                                          <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>
                   <table class='table table-condensed table-bordered'>
                     <tbody>
-                     <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
+                       <!-- Image for Mobile View -->
+                                      <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
                                       <center>
                                         <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
                                           ";
-                  if (trim($s[foto]) == '') {
-                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-                  } else {
-                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-                  }
-                  echo "</th>
+  if (trim($s[foto]) == '') {
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
+  } else {
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
+  }
+  echo "</th>
                   </center>
                                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
+                              <div class='col-md-7 col-sm-12'>
+                                <div class='table-responsive'>
+                                  <table class='table table-condensed table-bordered'>
+                                    <tbody>
+                                      <input type='hidden' name='id' value='$s[nip]'>
                                       
+                                     
 
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
@@ -608,39 +608,8 @@
                 </div>
               </div>
 
-              <div class='col-md-5 col-sm-12'>
-                <div class='table-responsive'>
-                  <table class='table table-condensed table-bordered'>
-                    <tbody>
-                      <tr><th width='150px' scope='row'>NIK</th> <td>$s[nik]</td></tr>
-                      <tr><th scope='row'>SK CPNS</th> <td>$s[sk_cpns]</td></tr>
-                      <tr><th scope='row'>Tanggal CPNS</th> <td>$s[tanggal_cpns]</td></tr>
-                      <tr><th scope='row'>SK Pengangkat</th> <td>$s[sk_pengangkatan]</td></tr>
-                      <tr><th scope='row'>TMT Pengangkat</th> <td>$s[tmt_pengangkatan]</td></tr>
-                      <tr><th scope='row'>Lemb. Pengangkat</th> <td>$s[lembaga_pengangkatan]</td></tr>
-                      <tr><th scope='row'>Golongan</th> <td>$s[nama_golongan]</td></tr>
-                      <tr><th scope='row'>Sumber Gaji</th> <td>$s[sumber_gaji]</td></tr>
-                      <tr><th scope='row'>Ahli Laboratorium</th> <td>$s[keahlian_laboratorium]</td></tr>
-                      <tr><th scope='row'>Nama Ibu Kandung</th> <td>$s[nama_ibu_kandung]</td></tr>
-                      <tr><th scope='row'>Nama Suami/Istri</th> <td>$s[nama_suami_istri]</td></tr>
-                      <tr><th scope='row'>Nip Suami/Istri</th> <td>$s[nip_suami_istri]</td></tr>
-                      <tr><th scope='row'>Pekerjaan Suami/Istri</th> <td>$s[pekerjaan_suami_istri]</td></tr>
-                      <tr><th scope='row'>TMT PNS</th> <td>$s[tmt_pns]</td></tr>
-                      <tr><th scope='row'>Lisensi Kepsek</th> <td>$s[lisensi_kepsek]</td></tr>
-                      <tr><th scope='row'>Jml Sekolah Binaan</th> <td>$s[jumlah_sekolah_binaan]</td></tr>
-                      <tr><th scope='row'>Diklat Kepengawasan</th> <td>$s[diklat_kepengawasan]</td></tr>
-                      <tr><th scope='row'>Mampu Handle KK</th> <td>$s[mampu_handle_kk]</td></tr>
-                      <tr><th scope='row'>Keahlian Breile</th> <td>$s[keahlian_breile]</td></tr>
-                      <tr><th scope='row'>Keahlian B.Isyarat</th> <td>$s[keahlian_bahasa_isyarat]</td></tr>
-                      <tr><th scope='row'>Kewarganegaraan</th> <td>$s[kewarganegaraan]</td></tr>
-                      <tr><th scope='row'>NIY NIGK</th> <td>$s[niy_nigk]</td></tr>
-                      <tr><th scope='row'>NPWP</th> <td>$s[npwp]</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              
+
+
             </div>
           </form>
         </div>
