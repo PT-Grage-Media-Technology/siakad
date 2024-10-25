@@ -79,7 +79,7 @@
       <th>Tanggal</th>
       <th>Jam</th>
       <th>Kode Kelas</th>
-      <th>Kode Mapel</th>
+      <th>Nama Mapel</th>
       <th>Tujuan Pembelajaran</th>
     </tr>
   </thead>
@@ -89,21 +89,21 @@
 
             var_dump(mysql_fetch_array($tampil));
             $no = 1;
-            // while ($r = mysql_fetch_array($tampil)) {
-            //   echo "<tr>
-            //           <td>$no</td>
-            //           <td>$r[nip]</td>
-            //           <td>$r[nama_guru]</td>
-            //           <td>$r[hari]</td>
-            //           <td>$r[tanggal]</td>
-            //           <td>$r[jam]</td>
-            //           <td>$r[kode_kelas]</td>
-            //           <td>$r[kode_pelajaran]</td>
-            //           <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
-            //         </tr>";
-            //   $no++;
-            // }
-            // ?>
+            while ($r = mysql_fetch_array($tampil)) {
+              echo "<tr>
+                      <td>$no</td>
+                      <td>$r[users]</td>
+                      <td>$r[nama_guru]</td>
+                      <td>$r[hari]</td>
+                      <td>$r[tanggal]</td>
+                      <td>$r[jam]</td>
+                      <td>$r[kode_kelas]</td>
+                      <td>$r[kode_pelajaran]</td>
+                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></td>
+                    </tr>";
+              $no++;
+            }
+            ?>
   </tbody>
 </table>
 
