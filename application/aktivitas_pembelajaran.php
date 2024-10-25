@@ -81,13 +81,16 @@
             // Mengambil tanggal yang dipilih dari GET
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
-            // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
+            // Mengambil tanggal hari ini
+            $tanggal_hari_ini = date('Y-m-d');
+
+            // Ubah query untuk memfilter berdasarkan tanggal lengkap
             $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran 
             FROM rb_journal_list jl 
             JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
             JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
             JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-            WHERE DAY(jl.waktu_input) = '$tanggal_dipilih' 
+            WHERE DATE(jl.waktu_input) = '$tanggal_hari_ini' 
             ORDER BY jl.waktu_input DESC");
 
             // Debugging: Tampilkan query yang dijalankan
