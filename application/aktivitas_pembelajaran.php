@@ -71,7 +71,7 @@
               <th>Nama Guru</th>
               <th>Hari</th>
               <th>Tanggal</th>
-              <th style='width:40px'>Jam ke</th>
+              <th style='width:60px'>Jam ke</th>
               <th>Nama Mapel</th>
               <th>Tujuan Pembelajaran</th>
             </tr>
