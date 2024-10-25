@@ -28,7 +28,7 @@
           ?>
         </select>
       </form>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right' method='GET'>
         <select name='tanggal' style='padding:4px' onchange='this.form.action = "index.php?view=aktivitaspembelajaran&tgl=" + this.value; this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
