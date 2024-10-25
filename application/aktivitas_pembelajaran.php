@@ -77,6 +77,7 @@
               <th>Hari</th>
               <th>Tanggal</th>
               <th style='width:60px'>Jam ke</th>
+              <th>Kelas</th>
               <th>Nama Mapel</th>
               <th>Tujuan Pembelajaran</th>
             </tr>
@@ -107,6 +108,7 @@ ORDER BY jl.waktu_input DESC;
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
                       <td><center>$r[jam_ke]</td>
+                      <td>$r[nama_kelas]</td>
                       <td>$r[namamatapelajaran]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
