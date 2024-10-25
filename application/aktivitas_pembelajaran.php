@@ -50,7 +50,7 @@
               <th>Nip</th>rb_guru
               <th>Nama Guru</th>rb_guru
               <th>hari</th>rbj_ournal_list
-              <th>tanggal</th>rbj_journal_list
+              <th>tanggal</th>rbj_ournal_list
               <th>jam</th>rbj_journal_list
               <th>Kode Kelas</th>rb_jadwal_pelajaran
               <th>Kode Mapel</th>rb_jadwal_pelajaran
@@ -81,9 +81,8 @@
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih
-            $tampil = mysql_query("SELECT jl.*, g.nama_guru, mp.nama_mapel FROM rb_journal_list jl 
+            $tampil = mysql_query("SELECT jl.*, g.nama_guru FROM rb_journal_list jl 
                                   JOIN rb_guru g ON jl.users = g.nip 
-                                  JOIN rb_mata_pelajaran mp ON jl.kodejdwl = mp.kodejdwl
                                   WHERE DATE(jl.waktu_input) = CURDATE() AND DAY(jl.waktu_input) = '$tanggal_dipilih'");
 
             // Hapus var_dump untuk menampilkan semua data
