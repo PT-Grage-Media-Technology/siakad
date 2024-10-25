@@ -254,8 +254,15 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              var_dump($r);
-                            "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                              if (tgl_indo($_GET['tgl']) > date('Y-m-d')) {
+                                echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
+                            } else {
+                                echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+                                // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
+                            }
+                            
+                           
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
       if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
