@@ -29,7 +29,7 @@
         </select>
       </form>
       <form style='margin-right:5px; margin-top:0px' class='pull-right'
-        action="index.php?view=aktivitaspembelajaran&tgl=" method='GET'>
+        action="index.php?view=aktivitaspembelajaran&tgl=<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : ''; ?>" method='GET'>
         <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
@@ -41,6 +41,7 @@
           ?>
         </select>
       </form>
+      
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
@@ -88,7 +89,7 @@ JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
 JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
 JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
 JOIN rb_guru d ON jl.users = d.nip
-WHERE jl.tanggal = '$tanggal_dipilih' 
+WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
 ORDER BY jl.waktu_input DESC;
 ");
 
