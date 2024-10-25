@@ -248,7 +248,7 @@
     // var_dump('1=' . tgl_indo($_GET['tgl']));
     // var_dump('2=' . $_GET['tgl']);
     // var_dump('3=' . date('Y-m-d'));
-    var_dump(strtotime($_GET['tgl']) > strtotime(date('Y-m-d')));
+    var_dump(strtotime($_GET['tgl']) < strtotime(date('Y-m-d')));
     var_dump(strtotime($_GET['tgl']));
     var_dump(strtotime(date('Y-m-d')));
     // exit;
