@@ -532,59 +532,56 @@
               <div class='box-header with-border'>
                 <h3 class='box-title'>Detail Data Guru</h3>
               </div>
-            <div class="container p-4">
-  <form method="POST" class="w-full" enctype="multipart/form-data">
-    <div class="flex flex-col md:flex-row gap-4">
-      <!-- Profile Image Section -->
-      <div class="w-full md:w-1/3 text-center mb-4">
-        <div class="bg-white rounded-lg shadow p-4">
-          <?php if (trim($s['foto']) == ''): ?>
-            <img class="w-full h-auto rounded-lg mx-auto mb-4" src="foto_siswa/no-image.jpg" alt="Profile">
-          <?php else: ?>
-            <img class="w-full h-auto rounded-lg mx-auto mb-4" src="foto_pegawai/<?php echo $s['foto']; ?>" alt="Profile">
-          <?php endif; ?>
-          
-          <?php if ($_SESSION['level'] != 'kepala'): ?>
-            <a href="index.php?view=guru&act=editguru&id=<?php echo $_GET['id']; ?>" 
-               class="inline-block w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">
-              Edit Profile
-            </a>
-          <?php endif; ?>
+              <div class='box-body'>
+  <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+    <div class='row'>
+      <!-- Kolom Gambar Lebih Besar -->
+      <div class='col-md-12 col-sm-12'>
+        <div class='table-responsive'>
+          <table class='table table-condensed table-bordered'>
+            <tbody>
+              <input type='hidden' name='id' value='$s[nip]'>
+              <tr>
+                <th style='background-color:#E7EAEC' width='100%' rowspan='25'>
+                  <!-- Gambar Persegi Besar dengan Bootstrap -->
+                  <?php if (trim($s[foto]) == ''): ?>
+                    <img class='img-thumbnail img-fluid w-100 h-auto' src='foto_siswa/no-image.jpg'>
+                  <?php else: ?>
+                    <img class='img-thumbnail img-fluid w-100 h-auto' src='foto_pegawai/<?php echo $s[foto]; ?>'>
+                  <?php endif; ?>
+                  <?php if ($_SESSION[level] != 'kepala'): ?>
+                    <a href='index.php?view=guru&act=editguru&id=<?php echo $_GET[id]; ?>' class='btn btn-success btn-block'>Edit Profile</a>
+                  <?php endif; ?>
+                </th>
+              </tr>
+              <!-- Data Guru -->
+              <tr><th width='120px' scope='row'>Nip</th> <td><?php echo $s[nip]; ?></td></tr>
+              <tr><th scope='row'>Password</th> <td><?php echo $s[password]; ?></td></tr>
+              <tr><th scope='row'>Nama Lengkap</th> <td><?php echo $s[nama_guru]; ?></td></tr>
+              <!-- Tambahkan baris lainnya sesuai kebutuhan -->
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- Profile Details Section -->
-      <div class="w-full md:w-2/3">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Personal Info -->
-          <div class="bg-white rounded-lg shadow p-4">
-            <table class="w-full">
-              <tbody>
-                <tr><th class="py-2 px-4 bg-gray-50">NIP</th><td class="py-2 px-4"><?php echo $s['nip']; ?></td></tr>
-                <tr><th class="py-2 px-4 bg-gray-50">Nama Lengkap</th><td class="py-2 px-4"><?php echo $s['nama_guru']; ?></td></tr>
-                <tr><th class="py-2 px-4 bg-gray-50">Email</th><td class="py-2 px-4"><?php echo $s['email']; ?></td></tr>
-                <tr><th class="py-2 px-4 bg-gray-50">No HP</th><td class="py-2 px-4"><?php echo $s['hp']; ?></td></tr>
-                <!-- Add other personal details as needed -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Additional Info -->
-          <div class="bg-white rounded-lg shadow p-4">
-            <table class="w-full">
-              <tbody>
-                <tr><th class="py-2 px-4 bg-gray-50">Bidang Studi</th><td class="py-2 px-4"><?php echo $s['pengawas_bidang_studi']; ?></td></tr>
-                <tr><th class="py-2 px-4 bg-gray-50">Status Pegawai</th><td class="py-2 px-4"><?php echo $s['status_kepegawaian']; ?></td></tr>
-                <tr><th class="py-2 px-4 bg-gray-50">Golongan</th><td class="py-2 px-4"><?php echo $s['nama_golongan']; ?></td></tr>
-                <!-- Add other additional details as needed -->
-              </tbody>
-            </table>
-          </div>
+      <!-- Kolom Data Tambahan -->
+      <div class='col-md-12 col-sm-12'>
+        <div class='table-responsive'>
+          <table class='table table-condensed table-bordered'>
+            <tbody>
+              <tr><th width='150px' scope='row'>NIK</th> <td><?php echo $s[nik]; ?></td></tr>
+              <tr><th scope='row'>SK CPNS</th> <td><?php echo $s[sk_cpns]; ?></td></tr>
+              <tr><th scope='row'>Tanggal CPNS</th> <td><?php echo $s[tanggal_cpns]; ?></td></tr>
+              <tr><th scope='row'>SK Pengangkat</th> <td><?php echo $s[sk_pengangkatan]; ?></td></tr>
+              <!-- Tambahkan baris lainnya sesuai kebutuhan -->
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </form>
 </div>
+
             </div>
           </div>
         </div>
