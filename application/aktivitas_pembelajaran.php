@@ -87,7 +87,7 @@ FROM rb_journal_list jl
 JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
 JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
 JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-JOIN rb_guru d ON a.nip = d.nip
+JOIN rb_guru d ON a.nip = jl.users
 ORDER BY jl.waktu_input DESC;
 ");
 
@@ -96,7 +96,7 @@ ORDER BY jl.waktu_input DESC;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
-                      <td>$r[nip]</td>
+                      <td>$r[users]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
