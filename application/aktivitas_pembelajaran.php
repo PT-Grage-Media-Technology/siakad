@@ -28,6 +28,18 @@
           ?>
         </select>
       </form>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+          <option value=''>- Pilih Tanggal -</option>
+          <?php
+          // Menambahkan opsi tanggal dari 1 hingga 30
+          for ($i = 1; $i <= 30; $i++) {
+            $selected = (isset($_GET['tanggal']) && $_GET['tanggal'] == $i) ? 'selected' : '';
+            echo "<option value='$i' $selected>$i</option>";
+          }
+          ?>
+        </select>
+      </form>
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
@@ -39,7 +51,7 @@
               <th>Nama Guru</th>rb_guru
               <th>hari</th>rbj_ournal_list
               <th>tanggal</th>rbj_ournal_list
-              <th>jam</th>rbj_ournal_list
+              <th>jam</th>rbj_journal_list
               <th>Kode Kelas</th>rb_jadwal_pelajaran
               <th>Kode Mapel</th>rb_jadwal_pelajaran
               <th>Tujuan Pembelajaran</th>
@@ -66,7 +78,11 @@
   </thead>
   <tbody>
   <?php
-            $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE DATE(waktu_input) = CURDATE()");
+            // Ambil tanggal yang dipilih dari GET
+            $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+
+            // Ubah query untuk memfilter berdasarkan tanggal yang dipilih
+            $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE DATE(waktu_input) = CURDATE() AND DAY(waktu_input) = '$tanggal_dipilih'");
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
