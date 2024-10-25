@@ -29,7 +29,7 @@
         </select>
       </form>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+        <select name='tanggal' style='padding:4px' onchange='this.form.action = "index.php?view=aktivitaspembelajaran&tgl=" + this.value; this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
@@ -78,7 +78,7 @@
   </thead>
   <tbody>
   <?php
-            // Ambil tanggal yang dipilih dari GET
+            // Mengambil tanggal yang dipilih dari GET
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih
