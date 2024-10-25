@@ -47,10 +47,6 @@
           </thead>
           <tbody>
             <?php
-            // Aktifkan error reporting
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
-
             $tampil = mysql_query("SELECT a.*, e.nip, b.nama_guru, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
                                    FROM rb_jadwal_pelajaran a 
                                    JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
@@ -60,12 +56,7 @@
                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
                                    ORDER BY a.hari DESC");
 
-            // Cek apakah query berhasil
-            if (!$tampil) {
-                echo "Query gagal: " . mysql_error();
-            } else {
-                var_dump($tampil); // Pastikan ini dipanggil sebelum output HTML
-            }
+            var_dump(mysql_fetch_array($tampil));
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
