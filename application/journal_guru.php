@@ -215,15 +215,16 @@
                     <tr>
                         <th scope='row'>Hari</th>
                         <td>
-                            <select class='form-control' name='c'>
-                                <option value='Senin' <?= ($hari_ini == 'Senin') ? 'selected' : '' ?>>Senin</option>
-                                <option value='Selasa' <?= ($hari_ini == 'Selasa') ? 'selected' : '' ?>>Selasa</option>
-                                <option value='Rabu' <?= ($hari_ini == 'Rabu') ? 'selected' : '' ?>>Rabu</option>
-                                <option value='Kamis' <?= ($hari_ini == 'Kamis') ? 'selected' : '' ?>>Kamis</option>
-                                <option value='Jumat' <?= ($hari_ini == 'Jumat') ? 'selected' : '' ?>>Jumat</option>
+                            <select class='form-control name='c'>
+                                <option value='Senin'>Senin</option>
+                                <option value='Selasa'>Selasa</option>
+                                <option value='Rabu'>Rabu</option>
+                                <option value='Kamis'>Kamis</option>
+                                <option value='Jumat'>Jumat</option>
                             </select>
                         </td>
                     </tr>
+
 
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
