@@ -258,13 +258,13 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              if ($_GET['tgl'] > date('Y-m-d')) {
+                              if (strtotime($_GET['tgl']) > strtotime(date('Y-m-d'))) {
                                 echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                 // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
-                            } else {
-                                echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-                                // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
-                            }
+                              } else {
+                                  echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                  // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
+                              }
                             
                            
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
