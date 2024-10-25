@@ -71,7 +71,7 @@
               <th>Nama Guru</th>
               <th>Hari</th>
               <th>Tanggal</th>
-              <th>Jam ke</th>
+              <th style='width:60px'>Jam ke</th>
               <th>Nama Mapel</th>
               <th>Tujuan Pembelajaran</th>
             </tr>
@@ -81,16 +81,19 @@
             // Mengambil tanggal yang dipilih dari GET
             $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 
-            // Ubah query untuk memfilter berdasarkan tanggal yang dipilih
-            $tampil = mysql_query("SELECT jl.*, g.nama_guru FROM rb_journal_list jl 
-                                  JOIN rb_guru g ON jl.users = g.nip 
-                                  WHERE DATE(jl.waktu_input) = CURDATE() AND DAY(jl.waktu_input) = '$tanggal_dipilih'");
+            // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
+            $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+FROM rb_journal_list jl 
+JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+JOIN rb_guru d ON jl.users = d.nip
+WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+ORDER BY jl.waktu_input DESC;
+");
 
-           
-
-            // Hapus var_dump untuk menampilkan semua data
+            // var_dump($tampil);
             $no = 1;
-            $kodejdwl_terakhir = null; // Menyimpan kodejdwl terakhir
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
@@ -98,29 +101,28 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td>$r[jam_ke]</td>
-                      <td>$r[kodejdwl]</td>
+                      <td><center>$r[kodejdwl]</td>
+                      <td>$r[materi]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
-              $kodejdwl_terakhir = $r['kodejdwl']; // Simpan kodejdwl terakhir
               $no++;
             }
 
-            // Gunakan kodejdwl_terakhir di sini
-            $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-            FROM `rb_jadwal_pelajaran` a 
-            JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
-            JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
-            JOIN rb_guru d ON a.nip=d.nip 
-            WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
-            // var_dump($kodejdwl_terakhir); // Hapus var_dump jika tidak diperlukan
-            if ($d === false) {
-                echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
-            }
+            // // Gunakan kodejdwl_terakhir di sini
+            // $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+            // FROM `rb_jadwal_pelajaran` a 
+            // JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
+            // JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
+            // JOIN rb_guru d ON a.nip=d.nip 
+            // WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
+            // var_dump($d); // Hapus var_dump jika tidak diperlukan
+            // if ($d === false) {
+            //     echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
+            // }
             ?>
           </tbody>
 
-          
+
         </table>
 
       </div><!-- /.table-responsive -->
