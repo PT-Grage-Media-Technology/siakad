@@ -37,7 +37,6 @@
         
           <!-- Filter Bulan -->
           <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
-            <option value='' <?php echo !isset($_GET['bulan']) ? 'selected' : ''; ?>>- Pilih Bulan -</option>
             <?php
             $currentMonth = date('n'); // Mengambil bulan saat ini
             $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
