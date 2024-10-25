@@ -104,13 +104,13 @@
               $no++;
             }
 
-            var_dump($d); // Menambahkan var_dump untuk menampilkan data yang diambil
             $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
             FROM `rb_jadwal_pelajaran` a 
             JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
             JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
             JOIN rb_guru d ON a.nip=d.nip 
             WHERE a.kodejdwl='$r[kodejdwl]'"));
+            var_dump($d); // Menambahkan var_dump untuk menampilkan data yang diambil
             ?>
           </tbody>
 
