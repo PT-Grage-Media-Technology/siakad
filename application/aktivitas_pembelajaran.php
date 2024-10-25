@@ -105,15 +105,16 @@
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
             $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-FROM rb_journal_list jl 
-JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-JOIN rb_guru d ON jl.users = d.nip
-WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
-ORDER BY jl.waktu_input DESC;
-");
-
+            FROM rb_journal_list jl 
+            JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+            JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+            JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+            JOIN rb_guru d ON jl.users = d.nip
+            WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+            AND MONTH(jl.tanggal) = '$bulan_dipilih'
+            ORDER BY jl.waktu_input DESC;
+            ");
+            
             // var_dump($tampil);
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
