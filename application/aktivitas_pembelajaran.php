@@ -70,7 +70,7 @@
       <th>Nama Guru</th>
       <th>Hari</th>
       <th>Tanggal</th>
-      <th>Jam</th>
+      <th>Jam ke</th>
       <th>Nama Mapel</th>
       <th>Tujuan Pembelajaran</th>
     </tr>
