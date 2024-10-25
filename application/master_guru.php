@@ -75,7 +75,7 @@
   </div><!-- /.container-fluid -->
 
 
-  <?php
+<?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $rtrw = explode('/', $_POST[al]);
@@ -458,7 +458,7 @@
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Browse..."; ?>
   <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
-  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                   </tbody>
@@ -536,34 +536,25 @@
                         <div class='box-body'>
                           <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                             <div class='row'>
-                                          <div class='col-md-5 col-sm-12'>
-                <div class='table-responsive'>
-                  <table class='table table-condensed table-bordered'>
-                    <tbody>
-                       <!-- Image for Mobile View -->
-                                      <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
-                                      <center>
-                                        <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
-                                          ";
-  if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-  } else {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-  }
-  echo "</th>
-                  </center>
-                                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
                               <div class='col-md-7 col-sm-12'>
                                 <div class='table-responsive'>
                                   <table class='table table-condensed table-bordered'>
                                     <tbody>
                                       <input type='hidden' name='id' value='$s[nip]'>
                                       
-                                     
+                                      <!-- Image for Mobile View -->
+                                      <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
+                                      <center>
+                                        <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
+                                          ";
+                  if (trim($s[foto]) == '') {
+                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
+                  } else {
+                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
+                  }
+                  echo "</th>
+                  </center>
+                                      </tr>
 
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
@@ -608,7 +599,7 @@
                 </div>
               </div>
 
-            <div class='col-md-5 col-sm-12'>
+              <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>
                   <table class='table table-condensed table-bordered'>
                     <tbody>
@@ -639,7 +630,7 @@
                   </table>
                 </div>
               </div>
-
+              
             </div>
           </form>
         </div>
