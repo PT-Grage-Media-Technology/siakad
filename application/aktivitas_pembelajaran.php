@@ -76,7 +76,7 @@
                       <td>$r[users]</td>
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
-                      <td><?php echo date('d F Y', strtotime($r[tanggal])); ?></td>
+                      <td>".tgl_indo($r['tanggal'])."</td>
                       <td>$r[jam]</td>
                       <td>$r[kode_kelas]</td>
                       <td>$r[kode_pelajaran]</td>
