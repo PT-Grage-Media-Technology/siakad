@@ -248,7 +248,7 @@
     var_dump('1=' . tgl_indo($_GET['tgl']));
     var_dump('2=' . $_GET['tgl']);
     var_dump('3=' . date('Y-m-d'));
-    exit;
+    // exit;
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -257,7 +257,7 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              if (tgl_indo($_GET['tgl']) > date('Y-m-d')) {
+                              if ($_GET['tgl'] > date('Y-m-d')) {
                                 echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                 // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
                             } else {
