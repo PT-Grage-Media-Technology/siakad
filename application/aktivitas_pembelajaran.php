@@ -66,7 +66,7 @@
   </thead>
   <tbody>
   <?php
-            $tampil = mysql_query("SELECT * FROM rb_journal_list");
+            $tampil = mysql_query("SELECT * FROM rb_journal_list WHERE waktu_input = CURDATE()");
 
             var_dump(mysql_fetch_array($tampil));
             $no = 1;
