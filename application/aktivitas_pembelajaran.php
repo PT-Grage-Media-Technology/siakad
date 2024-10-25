@@ -84,7 +84,7 @@
             $tampil = mysql_query("SELECT jl.*, g.nama_guru, mp.nama_mapel FROM rb_journal_list jl 
                                   JOIN rb_guru g ON jl.users = g.nip 
                                   JOIN rb_mata_pelajaran mp ON jl.kodejdwl = mp.kodejdwl
-                                  WHERE DATE(jl.waktu_input) = CURDATE() AND DAY(jl.waktu_input) = '$tanggal_dipilih'");
+                                  WHERE DATE(jl.tanggal) = CURDATE() AND DAY(jl.tanggal) = '$tanggal_dipilih'");
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
