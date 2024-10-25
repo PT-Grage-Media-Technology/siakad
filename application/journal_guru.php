@@ -127,9 +127,9 @@
                     </div>
                   </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=33&kd=MK15&id=X.MIPA.1&tahun=20162'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
                     <div class='d-flex flex-column align-items-center'>
-                      <div class='glyphicon glyphicon-list-alt' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Nilai Raport</div>
                     </div>
                   </a>
