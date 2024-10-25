@@ -28,7 +28,7 @@
           ?>
         </select>
       </form>
-        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+        <select name='tgl' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tanggal -</option>
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
