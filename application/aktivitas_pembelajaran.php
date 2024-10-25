@@ -34,7 +34,7 @@
           <option value=''>- Pilih Tanggal -</option>
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
-          for ($i = 1; $i <= 30; $i++) {
+          for ($i = 1; $i <= 31; $i++) {
             $selected = (isset($_GET['tanggal']) && $_GET['tanggal'] == $i) ? 'selected' : '';
             echo "<option value='$i' $selected>$i</option>";
           }
@@ -88,7 +88,7 @@ JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
 JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
 JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
 JOIN rb_guru d ON jl.users = d.nip
-WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+WHERE jl.tanggal = '$tanggal_dipilih' 
 ORDER BY jl.waktu_input DESC;
 ");
 
