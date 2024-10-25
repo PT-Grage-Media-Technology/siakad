@@ -43,7 +43,8 @@
             }
             ?>
           </select>
-
+          </form>
+            <form>
           <!-- Filter Bulan -->
           <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
             <option value='' <?php echo !isset($_GET['bulan']) ? 'selected' : ''; ?>>- Pilih Bulan -</option>
