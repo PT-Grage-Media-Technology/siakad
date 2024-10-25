@@ -76,6 +76,10 @@
       WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
       ORDER BY a.hari DESC");
 
+    if (!$tampil) {
+        die('Query Error: ' . mysql_error());
+    }
+
     // Inisialisasi nomor
     $no = 1;
     var_dump($tampil);
