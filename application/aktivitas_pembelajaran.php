@@ -33,7 +33,7 @@
           <?php
           // Menambahkan opsi tanggal dari 1 hingga 30
           for ($i = 1; $i <= 30; $i++) {
-            $selected = (isset($_GET['tanggal']) && $_GET['tanggal'] == $i) ? 'selected' : '';
+            $selected = (isset($_GET['tgl']) && $_GET['tgl'] == $i) ? 'selected' : '';
             echo "<option value='$i' $selected>$i</option>";
           }
           ?>
@@ -76,7 +76,7 @@
           <tbody>
             <?php
             // Mengambil tanggal yang dipilih dari GET
-            $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+            $tanggal_dipilih = isset($_GET['tgl']) ? $_GET['tgl'] : date('d');
 
             // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
             $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
