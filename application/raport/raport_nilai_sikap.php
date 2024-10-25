@@ -126,7 +126,6 @@ if (isset($_GET['delete-keterampilan'])){
                   <div style='clear:both'></div>
                   <div class='box-footer'>
                     <button type='submit' name='simpan-sikap' class='btn btn-info'>Simpan</button>
-                    <button type='reset' class='btn btn-default pull-right'>Cancel</button>
                   </div>
                   </form>
                   </div>";
@@ -170,7 +169,6 @@ if (isset($_GET['delete-keterampilan'])){
                         <div style='clear:both'></div>
                         <div class='box-footer'>
                           <button type='submit' name='simpan-sikap' class='btn btn-info'>Simpan</button>
-                          <button type='reset' class='btn btn-default pull-right'>Cancel</button>
                         </div>
                         </form>
                         </div>";
