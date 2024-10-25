@@ -90,6 +90,7 @@
 
             // Hapus var_dump untuk menampilkan semua data
             $no = 1;
+            $kodejdwl_terakhir = null; // Menyimpan kodejdwl terakhir
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
@@ -101,16 +102,18 @@
                       <td>$r[kodejdwl]</td>
                       <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
                     </tr>";
+              $kodejdwl_terakhir = $r['kodejdwl']; // Simpan kodejdwl terakhir
               $no++;
             }
 
+            // Gunakan kodejdwl_terakhir di sini
             $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
             FROM `rb_jadwal_pelajaran` a 
             JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
             JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
             JOIN rb_guru d ON a.nip=d.nip 
-            WHERE a.kodejdwl='$r[kodejdwl]'"));
-            var_dump($r['kodejdwl']);
+            WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
+            // var_dump($kodejdwl_terakhir); // Hapus var_dump jika tidak diperlukan
             if ($d === false) {
                 echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
             }
