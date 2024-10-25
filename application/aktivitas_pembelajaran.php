@@ -87,7 +87,7 @@
   <?php
             $tampil = mysql_query("SELECT * FROM rb_journal_list");
 
-            var_dump($tampil);
+            var_dump(mysql_fetch_array($tampil));
             $no = 1;
             // while ($r = mysql_fetch_array($tampil)) {
             //   echo "<tr>
