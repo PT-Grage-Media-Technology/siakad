@@ -535,48 +535,59 @@
               <div class='box-body'>
                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                   <div class='row'>
-                    <div class='col-md-7 col-sm-12'>
-                      <div class='table-responsive'>
-                        <table class='table table-condensed table-bordered'>
-                          <tbody>
-                            <input type='hidden' name='id' value='$s[nip]'>
-                             <tr><th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
-  if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-  } else {
-    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-  }
-  if ($_SESSION[level] != 'kepala') {
-    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-  }
-  echo "</th></tr>
-                            <tr><th width='120px' scope='row'>Nip</th> <td>$s[nip]</td></tr>
-                            <tr><th scope='row'>Password</th> <td>$s[password]</td></tr>
-                            <tr><th scope='row'>Nama Lengkap</th> <td>$s[nama_guru]</td></tr>
-                            <tr><th scope='row'>Tempat Lahir</th> <td>$s[tempat_lahir]</td></tr>
-                            <tr><th scope='row'>Tanggal Lahir</th> <td>$s[tanggal_lahir]</td></tr>
-                            <tr><th scope='row'>Jenis Kelamin</th> <td>$s[jenis_kelamin]</td></tr>
-                            <tr><th scope='row'>Agama</th> <td>$s[nama_agama]</td></tr>
-                            <tr><th scope='row'>No Hp</th> <td>$s[hp]</td></tr>
-                            <tr><th scope='row'>No Telpon</th> <td>$s[telepon]</td></tr>
-                            <tr><th scope='row'>Alamat Email</th> <td>$s[email]</td></tr>
-                            <tr><th scope='row'>Alamat</th> <td>$s[alamat_jalan]</td></tr>
-                            <tr><th scope='row'>RT/RW</th> <td>$s[rt]/$s[rw]</td></tr>
-                            <tr><th scope='row'>Dusun</th> <td>$s[nama_dusun]</td></tr>
-                            <tr><th scope='row'>Kelurahan</th> <td>$s[desa_kelurahan]</td></tr>
-                            <tr><th scope='row'>Kecamatan</th> <td>$s[kecamatan]</td></tr>
-                            <tr><th scope='row'>Kode Pos</th> <td>$s[kode_pos]</td></tr>
-                            <tr><th scope='row'>NUPTK</th> <td>$s[nuptk]</td></tr>
-                            <tr><th scope='row'>Bidang Studi</th> <td>$s[pengawas_bidang_studi]</td></tr>
-                            <tr><th scope='row'>Jenis PTK</th> <td>$s[jenis_ptk]</td></tr>
-                            <tr><th scope='row'>Tugas Tambahan</th> <td>$s[tugas_tambahan]</td></tr>
-                            <tr><th scope='row'>Status Pegawai</th> <td>$s[status_kepegawaian]</td></tr>
-                            <tr><th scope='row'>Status Keaktifan</th> <td>$s[nama_status_keaktifan]</td></tr>
-                            <tr><th scope='row'>Status Nikah</th> <td>$s[status_pernikahan]</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                    <div class="col-md-7 col-sm-12">
+    <div class="row">
+        <!-- Profile Image and Edit Button -->
+        <div class="col-12 text-center mb-3">
+            <!-- Profile Image -->
+            <?php if (trim($s['foto']) == ''): ?>
+                <img class="img-thumbnail img-fluid w-100" src="foto_siswa/no-image.jpg">
+            <?php else: ?>
+                <img class="img-thumbnail img-fluid w-100" src="foto_pegawai/<?php echo $s['foto']; ?>">
+            <?php endif; ?>
+
+            <!-- Edit Profile Button -->
+            <?php if ($_SESSION['level'] != 'kepala'): ?>
+                <a href="index.php?view=guru&act=editguru&id=<?php echo $_GET['id']; ?>" class="btn btn-success btn-block mt-2">
+                    Edit Profile
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Detail Data Table -->
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered">
+            <tbody>
+                <input type="hidden" name="id" value="<?php echo $s['nip']; ?>">
+                <tr><th width="120px" scope="row">Nip</th> <td><?php echo $s['nip']; ?></td></tr>
+                <tr><th scope="row">Password</th> <td><?php echo $s['password']; ?></td></tr>
+                <tr><th scope="row">Nama Lengkap</th> <td><?php echo $s['nama_guru']; ?></td></tr>
+                <tr><th scope="row">Tempat Lahir</th> <td><?php echo $s['tempat_lahir']; ?></td></tr>
+                <tr><th scope="row">Tanggal Lahir</th> <td><?php echo $s['tanggal_lahir']; ?></td></tr>
+                <tr><th scope="row">Jenis Kelamin</th> <td><?php echo $s['jenis_kelamin']; ?></td></tr>
+                <tr><th scope="row">Agama</th> <td><?php echo $s['nama_agama']; ?></td></tr>
+                <tr><th scope="row">No Hp</th> <td><?php echo $s['hp']; ?></td></tr>
+                <tr><th scope="row">No Telpon</th> <td><?php echo $s['telepon']; ?></td></tr>
+                <tr><th scope="row">Alamat Email</th> <td><?php echo $s['email']; ?></td></tr>
+                <tr><th scope="row">Alamat</th> <td><?php echo $s['alamat_jalan']; ?></td></tr>
+                <tr><th scope="row">RT/RW</th> <td><?php echo $s['rt']; ?>/<?php echo $s['rw']; ?></td></tr>
+                <tr><th scope="row">Dusun</th> <td><?php echo $s['nama_dusun']; ?></td></tr>
+                <tr><th scope="row">Kelurahan</th> <td><?php echo $s['desa_kelurahan']; ?></td></tr>
+                <tr><th scope="row">Kecamatan</th> <td><?php echo $s['kecamatan']; ?></td></tr>
+                <tr><th scope="row">Kode Pos</th> <td><?php echo $s['kode_pos']; ?></td></tr>
+                <tr><th scope="row">NUPTK</th> <td><?php echo $s['nuptk']; ?></td></tr>
+                <tr><th scope="row">Bidang Studi</th> <td><?php echo $s['pengawas_bidang_studi']; ?></td></tr>
+                <tr><th scope="row">Jenis PTK</th> <td><?php echo $s['jenis_ptk']; ?></td></tr>
+                <tr><th scope="row">Tugas Tambahan</th> <td><?php echo $s['tugas_tambahan']; ?></td></tr>
+                <tr><th scope="row">Status Pegawai</th> <td><?php echo $s['status_kepegawaian']; ?></td></tr>
+                <tr><th scope="row">Status Keaktifan</th> <td><?php echo $s['nama_status_keaktifan']; ?></td></tr>
+                <tr><th scope="row">Status Nikah</th> <td><?php echo $s['status_pernikahan']; ?></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+msam
 
                     <div class='col-md-5 col-sm-12'>
                       <div class='table-responsive'>
