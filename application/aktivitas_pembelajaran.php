@@ -18,7 +18,6 @@
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
 
-        <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
           <input type="hidden" name="view" value="aktivitaspembelajaran">
 
           <!-- Filter Tanggal -->
@@ -50,6 +49,18 @@
             }
             ?>
           </select>
+
+                  <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+          <option value=''>- Pilih Tahun Akademik -</option>
+          <?php
+          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+          while ($k = mysql_fetch_array($tahun)) {
+            $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+            echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
+          }
+          ?>
+        </select>
+        </form>
       
 
 
