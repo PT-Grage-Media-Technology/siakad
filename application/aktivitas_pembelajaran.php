@@ -31,6 +31,7 @@
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action="?" method="GET">
           <input type="hidden" name="view" value="aktivitaspembelajaran">
           <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+          <option value='<?php echo $today; ?>' selected>- Pilih Tanggal - <?php echo $today; ?></option>
             
             <?php
             $today = date('j'); // Mengambil tanggal hari ini
@@ -42,7 +43,6 @@
             }
 
             ?>
-            <option value='<?php echo $today; ?>' selected>- Pilih Tanggal -</option>
           </select>
         </form>
 
