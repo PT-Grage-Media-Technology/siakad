@@ -210,9 +210,8 @@
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Tugas</div>
                     </div>
-                </a>
+                 </a>
             </div>
-
             <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <input type='hidden' name='tgla' value='$tglc'>
                 <input type='hidden' name='blna' value='$blnc'>
@@ -220,20 +219,20 @@
                 <input type='hidden' name='kelas' value='$_GET[id]'>
                 <input type='hidden' name='pelajaran' value='$_GET[kd]'>
                 <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                
-                <div class='table-responsive'>
-                    <table class='table table-condensed table-bordered table-striped'>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NIPD</th>
-                                <th>NISN</th>
-                                <th>Nama Siswa</th>
-                                <th>Jenis Kelamin</th>
-                                <th width='120px'>Kehadiran</th>
-                            </tr>
-                        </thead>
-                        <tbody>";
+                <div class='col-md-12'>
+                    <div class='table-responsive'>
+                        <table class='table table-condensed table-bordered table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIPD</th>
+                                    <th>NISN</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th width='120px'>Kehadiran</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
 
 
   $no = 1;
@@ -251,19 +250,19 @@
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     echo "<tr bgcolor=$warna>
-                            <td>$no</td>
-                            <td>$r[nipd]</td>
-                            <td>$r[nisn]</td>
-                            <td>$r[nama]</td>
-                            <td>$r[jenis_kelamin]</td>
-                              <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-    } else {
-      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-    }
-
-
+                                <td>$no</td>
+                                <td>$r[nipd]</td>
+                                <td>$r[nisn]</td>
+                                <td>$r[nama]</td>
+                                <td>$r[jenis_kelamin]</td>
+                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                    echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+                                  } else {
+                                      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                  }
+                            
+                           
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
       if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
@@ -275,26 +274,26 @@
     echo "</select></td>";
     echo "</tr>";
     $no++;
-  }
+}
 
-
-  echo "</tbody>
-                  </table>
+echo "</tbody>
+                    </table>
                 </div>
-              </div>";
-
-  if ($_SESSION['level'] != 'kepala') {
-    $tglAbsen = $_GET['tgl'];
-    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
-
-    echo "<div class='box-footer'>
-                          <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
-                        </div>";
-  }
-
-  echo "</form>
+            </div>
         </div>";
 
+if ($_SESSION['level'] != 'kepala') {
+$tglAbsen = $_GET['tgl'];
+$isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+
+echo "<div class='box-footer'>
+        <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
+      </div>";
+}
+
+echo "</form>
+  </div>";
+  
   if (isset($_POST[simpann])) {
     $jml_data = count($_POST[nisn]);
     $nisn = $_POST[nisn];
