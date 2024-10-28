@@ -262,19 +262,6 @@
                     <tr>
                       <th scope='row'>Pilih Guru</th>
                       <td>
-                         <select name='tahun' style='padding:4px'>
-                            <?php
-                            echo "<option value=''>- Pilih Tahun Akademik -</option>";
-                            $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
-                            while ($k = mysql_fetch_array($tahun)) {
-                              if ($_GET[tahun] == $k[id_tahun_akademik]) {
-                                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-                              } else {
-                                echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-                              }
-                            }
-                            ?>
-                          </select>
                           
                       </td>
                     </tr>
