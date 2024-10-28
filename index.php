@@ -343,11 +343,13 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/quiz_ujian_soal.php";
             echo "</div>";
-          } elseif ($_GET[view] == 'forum') {
-            echo "<div class='row'>";
-            include "application/forum_diskusi.php";
-            echo "</div>";
-          } elseif ($_GET[view] == 'penilaiandirisiswa') {
+          } 
+          // elseif ($_GET[view] == 'forum') {
+          //   echo "<div class='row'>";
+          //   include "application/forum_diskusi.php";
+          //   echo "</div>";
+          // } 
+          elseif ($_GET[view] == 'penilaiandirisiswa') {
             echo "<div class='row'>";
             include "application/penilaiandiri_siswa.php";
             echo "</div>";
