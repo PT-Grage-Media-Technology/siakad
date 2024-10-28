@@ -163,7 +163,7 @@
   $no = 1;
   $today = date('Y-m-d');
   if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
-    echo "<tr><td colspan='6' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
+    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
   } else {
     while ($r = mysql_fetch_array($tampil)) {
       $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
