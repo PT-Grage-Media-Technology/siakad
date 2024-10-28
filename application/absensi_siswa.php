@@ -182,33 +182,35 @@
         </div>
         <div class='box-body mb-3'>
             <div class='col-md-12'>
-                <table class='table table-condensed table-hover'>
-                    <tbody>
-                        <input type='hidden' name='id' value='$s[kode_kelas]'>
-                        <tr>
-                            <th width='120px' scope='row'>Kode Kelas</th>
-                            <td>$d[kode_kelas]</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>Nama Kelas</th>
-                            <td>$d[nama_kelas]</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>Mata Pelajaran</th>
-                            <td>$m[namamatapelajaran]</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>Tujuan Pembelajaran</th>
-                            <td>$j[materi]</td>
-                        </tr>
-                    </tbody>
-                  </table>
-                    <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
-                        <div class='d-flex flex-column align-items-center'>
-                          <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
-                          <div class='' style='font-size:14px;'>Tugas</div>
-                        </div>
-                     </a>
+                <div class='table-responsive'>
+                    <table class='table table-condensed table-hover'>
+                        <tbody>
+                            <input type='hidden' name='id' value='$s[kode_kelas]'>
+                            <tr>
+                                <th width='120px' scope='row'>Kode Kelas</th>
+                                <td>$d[kode_kelas]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Nama Kelas</th>
+                                <td>$d[nama_kelas]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Mata Pelajaran</th>
+                                <td>$m[namamatapelajaran]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Tujuan Pembelajaran</th>
+                                <td>$j[materi]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Tugas</div>
+                    </div>
+                </a>
             </div>
 
             <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -218,7 +220,8 @@
                 <input type='hidden' name='kelas' value='$_GET[id]'>
                 <input type='hidden' name='pelajaran' value='$_GET[kd]'>
                 <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                <div class='col-md-12'>
+                
+                <div class='table-responsive'>
                     <table class='table table-condensed table-bordered table-striped'>
                         <thead>
                             <tr>
@@ -254,15 +257,13 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-                                // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
-                              } else {
-                                  echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-                                  // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
-                              }
-                            
-                           
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+    } else {
+      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+    }
+
+
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
       if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
@@ -276,23 +277,23 @@
     $no++;
   }
 
+
   echo "</tbody>
                   </table>
                 </div>
               </div>";
-              
-              if ($_SESSION['level'] != 'kepala') {
-                  // Ambil tanggal absen dari GET
-                  $tglAbsen = $_GET['tgl']; // Misalnya, tgl diambil dari query string
-                  $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
-              
-                  echo "<div class='box-footer'>
+
+  if ($_SESSION['level'] != 'kepala') {
+    $tglAbsen = $_GET['tgl'];
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+
+    echo "<div class='box-footer'>
                           <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
                         </div>";
-              }
- 
+  }
+
   echo "</form>
-            </div>";
+        </div>";
 
   if (isset($_POST[simpann])) {
     $jml_data = count($_POST[nisn]);
