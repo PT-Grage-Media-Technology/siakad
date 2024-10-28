@@ -10,7 +10,7 @@ echo "<div class='col-xs-12 col-md-12'>
         <option value=''>- Pilih Tahun Akademik -</option>";
 $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
 while ($k = mysql_fetch_array($tahun)) {
-  $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+  $selected = ($_GET[tahun] == $k[id_tahun_akademik]) ? 'selected' : '';
   echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
 }
 
