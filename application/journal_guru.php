@@ -134,7 +134,7 @@
                     </div>
                   </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Forum Diskusi</div>
