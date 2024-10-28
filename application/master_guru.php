@@ -545,14 +545,13 @@
                                       <!-- Image for Mobile View -->
                                       <tr class='d-md-none'> <!-- Hanya tampil di perangkat mobile -->
                                       <center>
-                                        <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
                                           ";
                   if (trim($s[foto]) == '') {
                     echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
                   } else {
                     echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
                   }
-                  echo "</th>
+                  echo "
                   </center>
                                       </tr>
 
