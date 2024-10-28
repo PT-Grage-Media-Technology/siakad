@@ -565,7 +565,7 @@
     echo "<img class='img-thumbnail img-fluid' src='foto_pegawai/$s[foto]'>";
   }
   if ($_SESSION[level] != 'kepala') {
-    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+    // echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   }
   echo "</th>
                       </tr>
