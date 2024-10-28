@@ -1,15 +1,15 @@
 <?php
 if ($_GET[act] == '') {
   cek_session_admin();
-?>
+  ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-                                echo "Jadwal Pelajaran";
-                              } else {
-                                echo "Jadwal Pelajaran Pada Tahun " . date('Y');
-                              } ?></h3>
+          echo "Jadwal Pelajaran";
+        } else {
+          echo "Jadwal Pelajaran Pada Tahun " . date('Y');
+        } ?></h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='bahantugas'>
           <select name='tahun' style='padding:4px'>
@@ -99,7 +99,7 @@ if ($_GET[act] == '') {
       ?>
     </div>
   </div>
-<?php
+  <?php
 } elseif ($_GET[act] == 'listbahantugas') {
   cek_session_siswa();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
@@ -164,10 +164,18 @@ if ($_GET[act] == '') {
                            ORDER BY a.id_elearning");
   } else {
     // Tampilkan semua tugas untuk user selain siswa
+    // ... existing code ...
+    $tanggal_hari_ini = date('Y-m-d'); // Mendapatkan tanggal hari ini
     $tampil = mysql_query("SELECT * FROM rb_elearning a 
-                           JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
-                           WHERE kodejdwl='$_GET[jdwl]' 
-                           ORDER BY a.id_elearning");
+                       JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
+                       WHERE kodejdwl='$_GET[jdwl]' 
+                       AND DATE(tanggal_tugas) = '$tanggal_hari_ini' 
+                       ORDER BY a.id_elearning");
+
+    if (mysql_num_rows($tampil) == 0) {
+      echo "<tr><td colspan='6' style='color:red'>Tidak ada tugas untuk hari ini.</td></tr>";
+    }
+    // ... existing code ..
   }
 
   while ($r = mysql_fetch_array($tampil)) {
@@ -183,7 +191,7 @@ if ($_GET[act] == '') {
     // if ($_SESSION['level'] == 'superuser') {
     if (true) {
       echo "<td>";
-  
+
       if ($r['id_kategori_elearning'] == '1') {
         echo "<a style='margin-right:5px; width:106px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download </a>";
       } else {
@@ -192,8 +200,7 @@ if ($_GET[act] == '') {
       echo "<a class='btn btn-success btn-xs' title='Edit Bahan dan Tugas' href='index.php?view=bahantugas&act=edit&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&edit=$r[id_elearning]'><span class='glyphicon glyphicon-edit'></span></a>
               <a class='btn btn-danger btn-xs' title='Delete Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&hapus=$r[id_elearning]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-trash'></span></a>
               </td></tr>";
-    }
-     elseif ($_SESSION[level] == 'guru') {
+    } elseif ($_SESSION[level] == 'guru') {
       if ($r[id_kategori_elearning] == '1') {
         echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
       } else {
@@ -208,8 +215,8 @@ if ($_GET[act] == '') {
 
   if (isset($_GET['hapus'])) {
     mysql_query("DELETE FROM rb_elearning WHERE id_elearning='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=".$_GET['jdwl']."&id=".$_GET['id']."&kd=".$_GET['kd']."';</script>";
-}
+    echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+  }
 
 
   echo "</tbody>
@@ -283,9 +290,9 @@ if ($_GET[act] == '') {
                           <div style='position:relative;'>
                             <a class='btn btn-primary' href='javascript:;'>
                               <i class='fa fa-search'></i> Cari File Bahan atau Tugas...";
-?>
+  ?>
   <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a>
+  <?php echo "</a>
                             <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                           </div>
                         </td>
@@ -389,7 +396,7 @@ if ($_GET[act] == '') {
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <i class='fa fa-search'></i> <b>Ganti File :</b> $s[file_upload]"; ?>
   <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                     <tr><th scope='row'>Waktu Mulai</th>      <td><input type='datetime-local' class='form-control' value='$s[tanggal_tugas]' name='d'></td></tr>
@@ -410,15 +417,15 @@ if ($_GET[act] == '') {
             </div>";
 } elseif ($_GET[act] == 'listbahantugasguru') {
   cek_session_guru();
-?>
+  ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php if (isset($_GET[tahun])) {
-                                echo "Bahan dan Tugas";
-                              } else {
-                                echo "Bahan dan Tugas Pada " . date('Y');
-                              } ?></h3>
+          echo "Bahan dan Tugas";
+        } else {
+          echo "Bahan dan Tugas Pada " . date('Y');
+        } ?></h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='bahantugas'>
           <input type="hidden" name='act' value='listbahantugasguru'>
@@ -500,18 +507,18 @@ if ($_GET[act] == '') {
     </div>
   </div>
 
-<?php
+  <?php
 } elseif ($_GET[act] == 'listbahantugassiswa') {
   cek_session_siswa();
-?>
+  ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-                                echo "Bahan dan Tugas";
-                              } else {
-                                echo "Bahan dan Tugas " . date('Y');
-                              } ?></h3>
+          echo "Bahan dan Tugas";
+        } else {
+          echo "Bahan dan Tugas " . date('Y');
+        } ?></h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='bahantugas'>
           <input type="hidden" name='act' value='listbahantugassiswa'>
@@ -638,7 +645,7 @@ if ($_GET[act] == '') {
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
     <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                     <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='a'></textarea></td></tr>
