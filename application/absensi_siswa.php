@@ -282,8 +282,11 @@
               </div>";
   if ($_SESSION[level] != 'kepala') {
     echo "<div class='box-footer'>
-                      <button type='submit' name='simpann' class='btn btn-info pull-right' 
-                      <?php if (strtotime(date('Y-m-d')) > strtotime($filtertgl)) echo 'disabled'a; ?>>Simpan Absensi</button>
+                  <?php if (strtotime(date('Y-m-d')) > strtotime($_GET[tgl])) { ?>
+                    <button type='submit' name='simpann' class='btn btn-info pull-right' disabled>Simpan Absensi</button>
+                  <?php } else { ?>
+                    <button type='submit' name='simpann' class='btn btn-info pull-right'>Simpan Absensi</button>
+                  <?php } ?>
                 </div>";
   }
   echo "</form>
