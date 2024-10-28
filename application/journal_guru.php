@@ -107,7 +107,7 @@
                   <h3 class='box-title'>Tujuan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
   if ($_SESSION['level'] != 'kepala') {
-    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Journal</a>";
+    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
   }
   echo "</div>
                 <div class='box-body'>
@@ -134,7 +134,7 @@
                     </div>
                   </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='fa fa-users' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Forum Diskusi</div>
@@ -142,7 +142,7 @@
                   </a>
                   
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='fa fa-th-list' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Quiz / Ujian Online</div>
@@ -183,11 +183,11 @@
                                 <td>$r[materi]</td>
                                 <td>$r[keterangan]</td>";
       if ($_SESSION['level'] != 'kepala') {
-        echo "<td style='width:80px !important'><center>
+        echo "<td style='width: 200px; !important'><center>
                   <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
+                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
                  <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
-              <span class='glyphicon glyphicon-remove'> Hapus</span>
+              <span class='glyphicon glyphicon-remove'>Hapus</span>
           </a>
                 </center></td>";
       }
