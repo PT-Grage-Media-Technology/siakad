@@ -136,8 +136,16 @@
 
                   <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]'>
                     <div class='d-flex flex-column align-items-center'>
-                      <div class='	fa fa-users' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='fa fa-users' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Forum Diskusi</div>
+                    </div>
+                  </a>
+                  
+
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='fa fa-th-list' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Quiz / Ujian Online</div>
                     </div>
                   </a>
                   
