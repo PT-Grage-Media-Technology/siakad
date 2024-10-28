@@ -137,7 +137,7 @@
                   <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Forum Diskusi 1234</div>
+                      <div class='' style='font-size:14px;'>Forum Diskusi</div>
                     </div>
                   </a>
                   
@@ -175,7 +175,7 @@
       echo "<td style='width:80px !important'><center>
                 <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                  <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
-                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'>sas</span></a>
+                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
               </center></td>";
     }
     echo "</tr>";
