@@ -327,8 +327,7 @@ echo "</form>
           }
         }
       } else {
-        echo "INSERT INTO rb_absensi_siswa VALUES('','" . $_POST['jdwl'] . "','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')";
-        mysql_query("INSERT INTO rb_absensi_siswa VALUES('','" . $_POST['jdwl'] . "','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
+        mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
           if ($a[$i] == 'A') {
