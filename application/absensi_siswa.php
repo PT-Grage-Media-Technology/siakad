@@ -219,6 +219,7 @@
                 <input type='hidden' name='kelas' value='$_GET[id]'>
                 <input type='hidden' name='pelajaran' value='$_GET[kd]'>
                 <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+                <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
                 <div class='col-md-12'>
                     <div class='table-responsive'>
                         <table class='table table-condensed table-bordered table-striped'>
