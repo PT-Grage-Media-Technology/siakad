@@ -4,9 +4,9 @@
       <div class="box-header">
         <h3 class="box-title">
           <?php if (isset($_GET[tahun])) {
-            echo "Journal Kegiatan Belajar Mengajar anda";
+            echo "Tujuan Belajar Mengajar anda";
           } else {
-            echo "Journal Kegiatan Belajar Mengajar anda pada " . date('Y');
+            echo "Tujuan Belajar Mengajar anda pada " . date('Y');
           } ?>
         </h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
@@ -104,7 +104,7 @@
   echo "<div class='col-xs-12 col-md-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Journal Kegiatan Belajar Mengajar</h3>
+                  <h3 class='box-title'>Tujuan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Journal</a>";
