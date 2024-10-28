@@ -1,4 +1,12 @@
 <?php
+// Fetch the latest academic year
+$tahunQuery = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1");
+$latestTahunRow = mysql_fetch_array($tahunQuery);
+$latestTahunId = $latestTahunRow['id_tahun_akademik'];
+
+// Set the selected year based on the GET parameter or default to the latest year
+$selectedTahunId = !empty($_GET['tahun']) ? $_GET['tahun'] : $latestTahunId;
+
 echo "<div class='col-xs-12'>  
           <div class='box'>
             <div class='box-header'>
@@ -6,18 +14,17 @@ echo "<div class='col-xs-12'>
               <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                 <input type='hidden' name='view' value='raportuts'>
                 <input type='hidden' name='act' value='detailsiswa'>
-                <select name='tahun' style='padding:4px'>
+                <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
                   <option value=''>- Pilih Tahun Akademik -</option>";
 
 // Fetch academic years
 $tahunQuery = mysql_query("SELECT * FROM rb_tahun_akademik");
 while ($tahunRow = mysql_fetch_array($tahunQuery)) {
-  $selected = ($_GET['tahun'] == $tahunRow['id_tahun_akademik']) ? "selected" : "";
+  $selected = ($selectedTahunId == $tahunRow['id_tahun_akademik']) ? "selected" : "";
   echo "<option value='{$tahunRow['id_tahun_akademik']}' $selected>{$tahunRow['nama_tahun']}</option>";
 }
 
 echo "          </select>
-                <input type='submit' style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
               </form>
             </div>
             <div class='box-body'>
@@ -38,7 +45,7 @@ echo "          </select>
                 </tr>";
 
 // Check if the academic year is selected
-if (empty($_GET['tahun'])) {
+if (empty($selectedTahunId)) {
   echo "<tr><td colspan='7'><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
 } else {
   // Fetch subject groups
@@ -50,7 +57,7 @@ if (empty($_GET['tahun'])) {
     $mapelQuery = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
                                                 JOIN rb_mata_pelajaran b ON a.kode_pelajaran = b.kode_pelajaran 
                                                 WHERE a.kode_kelas = '{$_SESSION['kode_kelas']}' 
-                                                  AND a.id_tahun_akademik = '{$_GET['tahun']}' 
+                                                  AND a.id_tahun_akademik = '$selectedTahunId' 
                                                   AND b.id_kelompok_mata_pelajaran = '{$kelompokRow['id_kelompok_mata_pelajaran']}'
                                                   AND b.kode_kurikulum = '{$kurikulum['kode_kurikulum']}'");
 
