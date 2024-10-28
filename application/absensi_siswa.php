@@ -280,11 +280,17 @@
                   </table>
                 </div>
               </div>";
-  if ($_SESSION[level] != 'kepala') {
-    echo "<div class='box-footer'>
-                      <button type='submit' name='simpann' class='btn btn-info pull-right'>Simpan Absensi</button>
-                </div>";
-  }
+              
+              if ($_SESSION['level'] != 'kepala') {
+                  // Ambil tanggal absen dari GET
+                  $tglAbsen = $_GET['tgl']; // Misalnya, tgl diambil dari query string
+                  $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+              
+                  echo "<div class='box-footer'>
+                          <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
+                        </div>";
+              }
+ 
   echo "</form>
             </div>";
 
