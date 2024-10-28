@@ -266,7 +266,7 @@
                               $guru = mysql_query("SELECT * FROM rb_guru");
                               while ($g = mysql_fetch_array($guru)) {
                                 if ($e[nip] == $g[nip]) {
-                                  echo "<option value='$g[nip]' selected>$g[nama_guru]</option>";
+                                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
                                 }
                               }
                               echo "</select>
