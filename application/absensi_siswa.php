@@ -295,7 +295,7 @@ echo "<div class='box-footer'>
 echo "</form>
   </div>";
   
-  if (isset($_POST[simpann])) {
+  if (isset($_POST['simpann'])) {
     $jml_data = count($_POST[nisn]);
     $nisn = $_POST[nisn];
     $a = $_POST[a];
@@ -303,6 +303,7 @@ echo "</form>
     $e = $_POST[thna];
     $f = $_POST[blna];
     $g = $_POST[tgla];
+    $h = $_POST[kodejdwl];
 
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_POST[jdwl]' AND nisn='" . $nisn[$i] . "' AND tanggal='" . $e . "-" . $f . "-" . $g . "'");
