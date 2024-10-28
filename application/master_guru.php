@@ -558,16 +558,16 @@
 
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
-                        <th style='background-color:#E7EAEC; text-align: center;' width='160px' rowspan='25'>";
-  if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail img-fluid' src='foto_siswa/no-image.jpg'>";
-  } else {
-    echo "<img class='img-thumbnail img-fluid' src='foto_pegawai/$s[foto]'>";
-  }
-  if ($_SESSION[level] != 'kepala') {
-    // echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-  }
-  echo "</th>
+                        ";
+                  if (trim($s[foto]) == '') {
+                    echo "<img class='img-thumbnail img-fluid' src='foto_siswa/no-image.jpg'>";
+                  } else {
+                    // echo "<img class='img-thumbnail img-fluid' src='foto_pegawai/$s[foto]'>";
+                  }
+                  if ($_SESSION[level] != 'kepala') {
+                    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+                  }
+                  echo "
                       </tr>
 
                       <!-- Data Tabel -->
