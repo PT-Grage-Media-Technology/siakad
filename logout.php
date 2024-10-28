@@ -1,16 +1,22 @@
 <?php
-session_start();
-
-echo "<script>
-    if (confirm('Apakah Anda yakin akan logout?')) {
-        // Jika dikonfirmasi, lanjutkan dengan session destroy
-        " . session_destroy() . ";
-        alert('Sukses Keluar dari sistem.');
-        window.location = 'index.php';
-    } else {
-        // Jika batal, refresh halaman
-        window.location.reload();
-    }
-</script>";
-die();
+  session_start();
+  
+  echo "<script>
+          if (confirm('Apakah anda yakin akan logout?')) {
+            " . 
+              "window.location.href = 'logout.php?action=logout';
+            " . "
+          } else {
+            window.history.back();
+          }
+        </script>";
+        
+  if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    session_destroy();
+    echo "<script>
+            window.alert('Sukses Keluar dari sistem.');
+            window.location = 'index.php';
+          </script>";
+    die();
+  }
 ?>
