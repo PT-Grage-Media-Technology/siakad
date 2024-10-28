@@ -29,4 +29,4 @@
             <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
           </ul>
         </section>
-        laode nurya
+        <!-- laode nurya -->
