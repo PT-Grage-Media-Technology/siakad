@@ -310,7 +310,7 @@ if ($_GET[act] == '') {
         <h3 class="box-title">
           <?php
           if (isset($_GET['tahun'])) {
-            echo "Forum Diskusi 123";
+            echo "Forum Diskusi";
           } else {
             echo "Forum Diskusi Pada " . date('Y');
           }
