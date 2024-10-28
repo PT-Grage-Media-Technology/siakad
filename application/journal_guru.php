@@ -259,10 +259,17 @@
                           </select>
                       </td>
                     </tr>
-                    <tr>
+                   <tr>
                       <th scope='row'>Pilih Guru</th>
                       <td>
-                          
+                        <select class='form-control' name='guru'>
+                          <?php
+                          $guru = mysql_query("SELECT nip, nama_guru FROM rb_guru");
+                          while ($g = mysql_fetch_array($guru)) {
+                              echo "<option value='{$g['nip']}'>{$g['nama_guru']}</option>";
+                          }
+                          ?>
+                        </select>
                       </td>
                     </tr>
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
