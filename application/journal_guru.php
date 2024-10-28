@@ -134,7 +134,7 @@
                     </div>
                   </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]'>
+                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Forum Diskusi</div>
@@ -162,30 +162,26 @@
   $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
   $no = 1;
   $today = date('Y-m-d');
-  if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
-    echo "<tr><td colspan='6' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan tidak ada data
-  } else {
-    while ($r = mysql_fetch_array($tampil)) {
-      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
-      echo "<tr><td>$no</td>
-                                <td>$r[hari]</td>
-                                <td>" . tgl_indo($r[tanggal]) . "</td>
-                                <td align=center>$r[jam_ke]</td>
-                                <td>$r[materi]</td>
-                                <td>$r[keterangan]</td>";
-      if ($_SESSION['level'] != 'kepala') {
-        echo "<td style='width:80px !important'><center>
-                  <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
-                 <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
-              <span class='glyphicon glyphicon-remove'> Hapus</span>
-          </a>
-                </center></td>";
-      }
-      echo "</tr>";
-      $no++;
+  while ($r = mysql_fetch_array($tampil)) {
+    $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+    $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+    echo "<tr><td>$no</td>
+                              <td>$r[hari]</td>
+                              <td>" . tgl_indo($r[tanggal]) . "</td>
+                              <td align=center>$r[jam_ke]</td>
+                              <td>$r[materi]</td>
+                              <td>$r[keterangan]</td>";
+    if ($_SESSION['level'] != 'kepala') {
+      echo "<td style='width:80px !important'><center>
+                <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                 <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
+               <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+            <span class='glyphicon glyphicon-remove'> Hapus</span>
+        </a>
+              </center></td>";
     }
+    echo "</tr>";
+    $no++;
   }
 
   if (isset($_GET['hapus'])) {
@@ -342,7 +338,6 @@
             </div>";
 }
 ?>
-
 
 
 
