@@ -296,8 +296,12 @@ echo "</form>
   </div>";
   
   if (isset($_POST['simpann'])) {
+    // Debugging: Cek apakah data POST ada
+    var_dump($_POST);
+    // Debugging: Cek apakah 'simpann' ada di POST
     var_dump(isset($_POST['simpann']));
     exit;
+
     $jml_data = count($_POST[nisn]);
     $nisn = $_POST[nisn];
     $a = $_POST[a];
@@ -308,8 +312,17 @@ echo "</form>
     $h = $_POST[kodejdwl];
 
     for ($i = 1; $i <= $jml_data; $i++) {
+      // Debugging: Cek nilai dari nisn dan a
+      var_dump($nisn[$i], $a[$i]);
+      
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_POST[jdwl]' AND nisn='" . $nisn[$i] . "' AND tanggal='" . $e . "-" . $f . "-" . $g . "'");
+      // Debugging: Cek hasil query
+      var_dump($cek);
+      
       $total = mysql_num_rows($cek);
+      // Debugging: Cek jumlah data yang ditemukan
+      var_dump($total);
+      
       if ($total >= 1) {
         mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' where nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
@@ -329,9 +342,7 @@ echo "</form>
           }
         }
       } else {
-        $sad = mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
-        var_dump($sad);
-        exit;
+        mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
           if ($a[$i] == 'A') {
@@ -350,6 +361,8 @@ echo "</form>
         }
       }
     }
+    // Debugging: Cek URL setelah redirect
+    var_dump('index.php?view=absensiswa&act=tampilabsen&id=' . $_POST[kelas] . '&kd=' . $_POST[pelajaran] . '&jdwl=' . $_POST[jdwl] . '&gettgl=' . $e . '-' . $f . '-' . $g);
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&jdwl=" . $_POST[jdwl] . "&gettgl=" . $e . "-" . $f . "-" . $g . "';</script>";
   }
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
