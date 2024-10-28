@@ -236,7 +236,7 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>   <td hidden><select class='form-control' name='b' hidden>";
+                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
   $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
   while ($a = mysql_fetch_array($mapel)) {
     if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
@@ -259,12 +259,15 @@
                           </select>
                       </td>
                     </tr>
-                   <tr>
-                      <th scope='row'>Pilih Guru</th>
-                      <td>
-                    
-                      </td>
-                    </tr>
+                     <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
+  $kelas = mysql_query("SELECT * FROM rb_kelas");
+  while ($a = mysql_fetch_array($kelas)) {
+    if ($e[kode_kelas] == $a[kode_kelas]) {
+      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+    }
+  }
+  echo "</select>
+                    </td></tr>
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
