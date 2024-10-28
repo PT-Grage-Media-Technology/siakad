@@ -309,6 +309,7 @@ echo "</form>
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_POST[jdwl]' AND nisn='" . $nisn[$i] . "' AND tanggal='" . $e . "-" . $f . "-" . $g . "'");
       $total = mysql_num_rows($cek);
       if ($total >= 1) {
+        var_dump(array('nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'jdwl' => $_POST['jdwl'])); // Menambahkan var_dump untuk debug
         mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' where nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
@@ -327,6 +328,7 @@ echo "</form>
           }
         }
       } else {
+        var_dump(array('jdwl' => $_POST['jdwl'], 'nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'tanggal' => $e . "-" . $f . "-" . $g, 'timestamp' => date('Y-m-d H:i:s')));
         mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
@@ -518,3 +520,4 @@ echo "</form>
                   </div>";
 }
 ?>
+
