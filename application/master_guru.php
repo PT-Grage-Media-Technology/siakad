@@ -75,7 +75,7 @@
   </div><!-- /.container-fluid -->
 
 
-<?php
+  <?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $rtrw = explode('/', $_POST[al]);
@@ -358,17 +358,22 @@
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='col-md-7'>
-                  <table class='table table-condensed table-bordered'>
+               <div class='row'>
+                  <div class='col-md-7 col-sm-12'>
+                     <div class='table-responsive'>
+                        <table class='table table-condensed table-bordered'>
                   <tbody>
                     <input type='hidden' name='id' value='$s[nip]'>
-                    <tr><th style='background-color:#E7EAEC' width='160px' rowspan='25'>";
+                      <tr class='d-md-none'> 
+                          <center>
+                              <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>";
   if (trim($s[foto]) == '') {
-    echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/no-image.jpg'>";
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
   } else {
-    echo "<img class='img-thumbnail' style='width:155px' src='foto_pegawai/$s[foto]'>";
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
   }
   echo "</th>
+                           </center>
                     </tr>
                     <input type='hidden' name='id' value='$s[nip]'>
                     <tr><th width='120px' scope='row'>Nip</th>      <td><input type='text' class='form-control' value='$s[nip]' name='aa'></td></tr>
@@ -387,8 +392,8 @@
     }
   }
   echo "</select></td></tr>
-                    <tr><th scope='row'>Agama</th>                  <td><select class='form-control' name='ag'> 
-                                                                          <option value='0' selected>- Pilih Agama -</option>";
+                                  <tr><th scope='row'>Agama</th>                  <td><select class='form-control' name='ag'> 
+                                                                                        <option value='0' selected>- Pilih Agama -</option>";
   $agama = mysql_query("SELECT * FROM rb_agama");
   while ($a = mysql_fetch_array($agama)) {
     if ($a[id_agama] == $s[id_agama]) {
@@ -398,7 +403,7 @@
     }
   }
   echo "</select></td></tr>
-                    <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
+                                  <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
                     <tr><th scope='row'>No Telpon</th>              <td><input type='text' class='form-control' value='$s[telepon]' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' value='$s[email]' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' value='$s[alamat_jalan]' name='ak'></td></tr>
@@ -458,12 +463,13 @@
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Browse..."; ?>
   <input type='file' class='files' name='ax' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+  <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                                         </div>
                     </td></tr>
                   </tbody>
                   </table>
                 </div>
+              </div>
 
                 <div class='col-md-5'>
                   <table class='table table-condensed table-bordered'>
@@ -547,22 +553,22 @@
                                       <center>
                                         <th style='background-color:#E7EAEC; text-align: center;' colspan='2'>
                                           ";
-                  if (trim($s[foto]) == '') {
-                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
-                  } else {
-                    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
-                  }
-                  echo "</th>
-                  </center>
+  if (trim($s[foto]) == '') {
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_siswa/no-image.jpg'>";
+  } else {
+    echo "<img class='img-thumbnail img-fluid w-100' src='foto_pegawai/$s[foto]'>";
+  }
+  echo "</th>
+                                                      </center>
                                       </tr>
 
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
-                  if ($_SESSION[level] != 'kepala') {
-                    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
-                  }
-                  echo "
+  if ($_SESSION[level] != 'kepala') {
+    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+  }
+  echo "
                       </tr>
 
                       <!-- Data Tabel -->
