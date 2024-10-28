@@ -282,11 +282,18 @@
               </div>";
   if ($_SESSION[level] != 'kepala') {
     echo "<div class='box-footer'>
-                  <?php if (strtotime(date('Y-m-d')) > strtotime($_GET[tgl])) { ?>
+                  <?php 
+                  // Cek apakah tanggal saat ini lebih besar dari tanggal yang diberikan
+                  if (strtotime(date('Y-m-d')) > strtotime($_GET[tgl])) { 
+                  ?>
                     <button type='submit' name='simpann' class='btn btn-info pull-right' disabled>Simpan Absensi</button>
-                  <?php } else { ?>
+                  <?php 
+                  } else { 
+                  ?>
                     <button type='submit' name='simpann' class='btn btn-info pull-right'>Simpan Absensi</button>
-                  <?php } ?>
+                  <?php 
+                  } 
+                  ?>
                 </div>";
   }
   echo "</form>
@@ -514,3 +521,4 @@
                   </div>";
 }
 ?>
+
