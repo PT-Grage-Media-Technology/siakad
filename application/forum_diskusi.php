@@ -413,9 +413,9 @@ if ($_GET[act] == '') {
       <div class="box-header">
         <h3 class="box-title">
           <?php if (isset($_GET['kelas']) and isset($_GET['tahun'])) {
-            echo "Forum Diskusi 123";
+            echo "Forum Diskusi";
           } else {
-            echo "Forum Diskusi 123" . date('Y');
+            echo "Forum Diskusi" . date('Y');
           } ?>
         </h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
