@@ -165,9 +165,9 @@ if ($_GET[act] == '') {
   } else {
     // Tampilkan semua tugas untuk user selain siswa
     $tampil = mysql_query("SELECT * FROM rb_elearning a 
-                           JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
-                           WHERE kodejdwl='$_GET[jdwl]' 
-                           ORDER BY a.id_elearning");
+    JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
+    WHERE kodejdwl='$_GET[jdwl]' 
+    AND DATE(tanggal_tugas) = CURDATE()"); 
   }
 
   while ($r = mysql_fetch_array($tampil)) {
