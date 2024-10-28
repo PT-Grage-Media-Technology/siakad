@@ -137,7 +137,7 @@
                   <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Forum Diskusi 1234</div>
+                      <div class='' style='font-size:14px;'>Forum Diskusi</div>
                     </div>
                   </a>
                   
@@ -175,36 +175,17 @@
       echo "<td style='width:80px !important'><center>
                 <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                  <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'></span></a>
-                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
+                                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&hapus=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-remove'></span></a>
               </center></td>";
     }
     echo "</tr>";
     $no++;
   }
 
-
-  // Periksa apakah parameter 'hapus' dan 'jdwl' ada
-  if (isset($_GET['hapus']) && isset($_GET['jdwl'])) {
-      // Pastikan nilai adalah integer untuk keamanan
-      $id_journal = intval($_GET['hapus']);
-      $jdwl = intval($_GET['jdwl']);
-  
-      // Menggunakan prepared statement untuk query DELETE
-      $stmt = $koneksi->prepare("DELETE FROM rb_journal_list WHERE id_journal = ?");
-      $stmt->bind_param("i", $id_journal);
-  
-      // Eksekusi query dan cek keberhasilannya
-      if ($stmt->execute()) {
-          echo "<script>alert('Data berhasil dihapus!');</script>";
-          echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$jdwl';</script>";
-      } else {
-          echo "<script>alert('Penghapusan gagal: " . $stmt->error . "');</script>";
-      }
-  
-      // Tutup statement setelah digunakan
-      $stmt->close();
+  if (isset($_GET['hapus'])) {
+    mysql_query("DELETE FROM rb_journal_list where id_journal='$_GET[hapus]'");
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
-  
 
   echo "<tbody>
                   </table>
