@@ -230,7 +230,7 @@
                                 <th width='120px'>Kehadiran</th>
                             </tr>
                         </thead>
-                        <tbody>";
+                      <tbody>";
 
 
   $no = 1;
@@ -254,15 +254,14 @@
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                               <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-                                // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
-                              } else {
-                                  echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-                                  // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
-                              }
-                            
-                           
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><select disabled style='width:100%;' name='a[$no]' class='form-control'>";
+      // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa depan
+    } else {
+      echo "<td><select style='width:100%;' name='a[$no]' class='form-control'>";
+      // Tambahkan opsi atau pengaturan tambahan untuk tanggal di masa lalu atau hari ini
+    }
+
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
       if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
@@ -280,17 +279,17 @@
                   </table>
                 </div>
               </div>";
-              
-              if ($_SESSION['level'] != 'kepala') {
-                  // Ambil tanggal absen dari GET
-                  $tglAbsen = $_GET['tgl']; // Misalnya, tgl diambil dari query string
-                  $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
-              
-                  echo "<div class='box-footer'>
+
+  if ($_SESSION['level'] != 'kepala') {
+    // Ambil tanggal absen dari GET
+    $tglAbsen = $_GET['tgl']; // Misalnya, tgl diambil dari query string
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+
+    echo "<div class='box-footer'>
                           <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
                         </div>";
-              }
- 
+  }
+
   echo "</form>
             </div>";
 
