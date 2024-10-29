@@ -277,6 +277,8 @@
                             echo "</select>
                         </td>
                     </tr>";
+                    } else {
+                      echo "<input type='hiiden' class='form-control' value='$_SESSION[id]' name='g'>";
                     }
                     echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
