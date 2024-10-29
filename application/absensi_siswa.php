@@ -179,10 +179,10 @@
                   </div>
                   <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl={$_GET['idjr']}&id={$_GET['id']}&kd={$_GET['kd']}'>
                       <div class='d-flex flex-column align-items-center'>
-                        <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
-                        <div class='' style='font-size:14px;'>Tugas</div>
+                          <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                          <div class='' style='font-size:14px;'>Tugas</div>
                       </div>
-                   </a>
+                  </a>
               </div>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                   <input type='hidden' name='tgla' value='$tglc'>
@@ -298,6 +298,7 @@
       }
       echo "<script>window.location='?view=absensi&act=tampilabsen&jdwl={$_GET['idjr']}&id={$_GET['id']}&kd={$_GET['kd']}&tgl=$tglAbsen';</script>";
   }
+
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
