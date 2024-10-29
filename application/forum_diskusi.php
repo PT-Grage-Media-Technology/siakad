@@ -107,13 +107,13 @@ if ($_GET[act] == '') {
 <?php
 } elseif ($_GET[act] == 'list') {
   cek_session_siswa();
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
-  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
+  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Daftar Topic Forum Diskusi</b></h3>";
-  if ($_SESSION[level] != 'siswa' and $_SESSION[level] != 'kepala') {
+                  <h3 class='box-title'>Daftar Topic Forum Diskusi</h3>";
+  if ($_SESSION['level'] != 'siswa' && $_SESSION['level'] != 'kepala') {
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=forum&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Buat Topic Baru</a>";
   }
   echo "</div>
@@ -131,7 +131,8 @@ if ($_GET[act] == '') {
               </div>
 
                 <div class='col-md-12'>
-                  <table id='example1' class='table table-condensed table-bordered table-striped'>
+                  <div class='table-responsive'>
+                    <table id='example1' class='table table-condensed table-bordered table-striped'>
                       <thead>
                       <tr>
                         <th style='width:40px'>No</th>
@@ -144,15 +145,15 @@ if ($_GET[act] == '') {
                     <tbody>";
 
   $no = 1;
-  $tampil = mysql_query("SELECT * FROM rb_forum_topic where kodejdwl='$_GET[jdwl]' ORDER BY id_forum_topic DESC");
+  $tampil = mysql_query("SELECT * FROM rb_forum_topic WHERE kodejdwl='$_GET[jdwl]' ORDER BY id_forum_topic DESC");
   while ($r = mysql_fetch_array($tampil)) {
-    $ko = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_forum_komentar where id_forum_topic='$r[id_forum_topic]'"));
+    $ko = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_forum_komentar WHERE id_forum_topic='$r[id_forum_topic]'"));
     echo "<tr>
                             <td>$no</td>
                             <td style='color:red'>$r[judul_topic]</td>
                             <td>$ko[total] Balasan</td>
                             <td>$r[waktu] WIB</td>";
-    if ($_SESSION[level] == 'siswa' or $_SESSION[level] == 'kepala') {
+    if ($_SESSION['level'] == 'siswa' || $_SESSION['level'] == 'kepala') {
       echo "<td style='width:100px'><a class='btn btn-success btn-xs' title='Lihat Detail' href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$r[id_forum_topic]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-th-list'></span> Lihat Balasan</a></td>";
     } else {
       echo "<td style='width:140px'><a class='btn btn-success btn-xs' title='Lihat Detail' href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$r[id_forum_topic]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-th-list'></span> Lihat Balasan</a>
@@ -164,9 +165,9 @@ if ($_GET[act] == '') {
     $no++;
   }
 
-  if (isset($_GET[hapus])) {
-    mysql_query("DELETE FROM rb_quiz_ujian where id_quiz_ujian='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+  if (isset($_GET['hapus'])) {
+    mysql_query("DELETE FROM rb_quiz_ujian WHERE id_quiz_ujian='$_GET[hapus]'");
+    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
   }
 
   echo "</tbody>
@@ -175,8 +176,8 @@ if ($_GET[act] == '') {
               </div>
               </form>
             </div>";
-
-} elseif ($_GET[act] == 'tambah') {
+}
+ elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST[tambah])) {
     $waktu = date("Y-m-d H:i:s");
