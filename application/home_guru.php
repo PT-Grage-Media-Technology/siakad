@@ -16,6 +16,8 @@
         ?>
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+        <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+        <input type="hidden" name="view" value="jadwalguru">
         <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tahun Akademik -</option>
           <?php
@@ -27,7 +29,8 @@
           ?>
         </select>
       </form>
-    </div><!-- /.box-header -->
+    </div>
+    <!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
         <table id="example1" class="table table-bordered table-striped">
