@@ -120,7 +120,7 @@
             ORDER BY jl.waktu_input DESC;
             ");
 
-            var_dump(mysql_fetch_array($tampil));
+            // var_dump(mysql_fetch_array($tampil));
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
@@ -135,7 +135,7 @@
                       <td>
                           <center>
                             <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
-                            <a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                            <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
                           </center>
                       </td>
                     </tr>";
