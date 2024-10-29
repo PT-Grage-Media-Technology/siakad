@@ -709,7 +709,7 @@ if ($_GET[act] == '') {
                                   <option value='D'>D</option>
                                   <option value='F'>F</option>
                                 </select>
-                                <button type='submit' name='nilai_jawaban' class='btn btn-info'>✅</button>
+                                <button type='submit' name='nilai_jawaban' class='btn btn-sm btn-info'>a</button>
                                 </form>
                               </td>
                               <td style='width:70px !important'><center>
@@ -719,7 +719,7 @@ if ($_GET[act] == '') {
     $no++;
   }
 
-  if($_POST['nilai_jawaban']){
+  if(isset($_POST['nilai_jawaban'])){
     mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawaban='$_POST[id_elearning_jawaban]'");
   }
 
