@@ -216,7 +216,7 @@ $today = date('Y-m-d');
       <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
       <td>$r[materi]</td>
       <td>$r[keterangan]</td>";
-      
+
       if ($_SESSION['level'] != 'kepala') {
         echo "<td style='width: 200px; !important'><center>
                   <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
@@ -244,6 +244,8 @@ $today = date('Y-m-d');
 
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
+    var_dump($_POST);
+
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
