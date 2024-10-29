@@ -383,7 +383,7 @@
         }
       }
     }
-    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&idjr=" . $_POST[jdwl] . "&gettgl=" . $e . "-" . $f . "-" . $g . "';</script>";
+    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&idjr=" . $_POST[jdwl] . "';</script>";
   } 
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
