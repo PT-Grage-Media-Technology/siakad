@@ -97,7 +97,7 @@
               <th style='width:60px'>Jam ke</th>
               <th>Kelas</th>
               <th>Nama Mapel</th>
-              <th>Tujuan Pembelajaran</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +120,7 @@
             ORDER BY jl.waktu_input DESC;
             ");
 
-            // var_dump($tampil);
+            var_dump(mysql_fetch_array($tampil));
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
@@ -129,10 +129,15 @@
                       <td>$r[nama_guru]</td>
                       <td>$r[hari]</td>
                       <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td><center>$r[jam_ke]</td>
+                      <td>$r[jam_ke]</td>
                       <td>$r[kode_kelas]</td>
                       <td>$r[namamatapelajaran]</td>
-                      <td><center><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Tujuan Pembelajaran</a></center></td>
+                      <td>
+                          <center>
+                            <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
+                            <a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=MK15&idjr=33&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                          </center>
+                      </td>
                     </tr>";
               $no++;
             }
