@@ -308,30 +308,43 @@
     $tanggal = $e . "-" . $f . "-" . $g;
 
     for ($i = 0; $i < $jml_data; $i++) {
+        // Cek jika data absensi siswa sudah ada
         $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$h' AND nisn='" . $nisn[$i] . "' AND tanggal='$tanggal'");
         $total = mysql_num_rows($cek);
 
         if ($total >= 1) {
-            // Jika sudah ada data, maka lakukan update pada absensi siswa
+            // Jika data absensi siswa sudah ada, lakukan update
             $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$h' AND tanggal='$tanggal'");
-
-            // Update atau insert pada absensi guru
-            $cekGuru = mysql_query("SELECT * FROM rb_absensi_guru WHERE kodejdwl='$h' AND nip='$nip' AND tanggal='$tanggal'");
-            if (mysql_num_rows($cekGuru) > 0) {
-                // Jika sudah ada data absensi guru, lakukan update
-                $updateAbsensiGuru = mysql_query("UPDATE rb_absensi_guru SET kode_kehadiran = '$kdhadir' WHERE nip='$nip' AND kodejdwl='$h' AND tanggal='$tanggal'");
-            } else {
-                // Jika belum ada data absensi guru, lakukan insert
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$h', '$nip', '$kdhadir', '$tanggal', '" . date('Y-m-d H:i:s') . "')");
+            
+            if (!$updateAbsensiSiswa) {
+                echo "Gagal memperbarui absensi siswa: " . mysql_error();
+                continue;
             }
         } else {
-            // Jika belum ada data, maka lakukan insert pada absensi siswa
+            // Jika data absensi siswa belum ada, lakukan insert
             $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$h', '" . $nisn[$i] . "', '" . $a[$i] . "', '$tanggal', '" . date('Y-m-d H:i:s') . "')");
 
-            // Insert pada absensi guru jika belum ada data
-            $cekGuru = mysql_query("SELECT * FROM rb_absensi_guru WHERE kodejdwl='$h' AND nip='$nip' AND tanggal='$tanggal'");
-            if (mysql_num_rows($cekGuru) == 0) {
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$h', '$nip', '$kdhadir', '$tanggal', '" . date('Y-m-d H:i:s') . "')");
+            if (!$insertAbsensiSiswa) {
+                echo "Gagal menambahkan absensi siswa: " . mysql_error();
+                continue;
+            }
+        }
+
+        // Update atau insert pada absensi guru
+        $cekGuru = mysql_query("SELECT * FROM rb_absensi_guru WHERE kodejdwl='$h' AND nip='$nip' AND tanggal='$tanggal'");
+        if (mysql_num_rows($cekGuru) > 0) {
+            // Jika data absensi guru sudah ada, lakukan update
+            $updateAbsensiGuru = mysql_query("UPDATE rb_absensi_guru SET kode_kehadiran = '$kdhadir' WHERE nip='$nip' AND kodejdwl='$h' AND tanggal='$tanggal'");
+            
+            if (!$updateAbsensiGuru) {
+                echo "Gagal memperbarui absensi guru: " . mysql_error();
+            }
+        } else {
+            // Jika data absensi guru belum ada, lakukan insert
+            $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$h', '$nip', '$kdhadir', '$tanggal', '" . date('Y-m-d H:i:s') . "')");
+
+            if (!$insertAbsensiGuru) {
+                echo "Gagal menambahkan absensi guru: " . mysql_error();
             }
         }
 
@@ -340,16 +353,24 @@
             $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nisn='" . $nisn[$i] . "'"));
             $statush = ($a[$i] == 'A') ? 'Alpa' : (($a[$i] == 'S') ? 'Sakit' : 'Izin');
             $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $g-$f-$e : $statush";
+
             if ($cs['no_telpon_ayah'] != '') {
-                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
+                $insertSmsAyah = mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
+                if (!$insertSmsAyah) {
+                    echo "Gagal mengirim SMS ke ayah: " . mysql_error();
+                }
             } elseif ($cs['no_telpon_ibu'] != '') {
-                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
+                $insertSmsIbu = mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
+                if (!$insertSmsIbu) {
+                    echo "Gagal mengirim SMS ke ibu: " . mysql_error();
+                }
             }
         }
     }
 
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&jdwl=$h&gettgl=$tanggal';</script>";
 }
+
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
