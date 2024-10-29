@@ -720,6 +720,7 @@ if ($_GET[act] == '') {
   }
 
   if(isset($_POST['nilai_jawaban'])){
+    var_dump('masuk');
     mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawaban='$_POST[id_elearning_jawaban]'");
   }
 
