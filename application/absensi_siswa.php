@@ -328,7 +328,7 @@
         } else {
           echo "Gagal menambahkan absensi ke tabel siswa: " . mysql_error();
         }
-        
+
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
           if ($a[$i] == 'A') {
@@ -383,8 +383,8 @@
         }
       }
     }
-    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&jdwl=" . $_POST[jdwl] . "&gettgl=" . $e . "-" . $f . "-" . $g . "';</script>";
-  }
+    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&idjr=" . $_POST[jdwl] . "&gettgl=" . $e . "-" . $f . "-" . $g . "';</script>";
+  } 
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
