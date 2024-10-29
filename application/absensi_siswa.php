@@ -249,10 +249,7 @@
       }
     }
 
-    $query = "SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'";
-    var_dump($query); // Menampilkan query yang akan dieksekusi
-    $a = mysql_fetch_array(mysql_query($query));
-    var_dump($a);
+    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
