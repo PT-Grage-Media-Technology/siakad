@@ -699,9 +699,12 @@ if ($_GET[act] == '') {
                               <td>$r[nama]</td>
                               <td>$r[keterangan]</td>
                               <td>$r[waktu] WIB</td>
-                              <td>
-                                $r[nilai]
-                                <form method='POST' class='form-horizontal' action=''>
+                              <td>";
+                              if($r[nilai]){
+                                echo"$r[nilai]";
+                              } else{
+                                echo"
+                                  <form method='POST' class='form-horizontal' action=''>
                                   <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
                                   <select name='nilai' style='padding:4px'>
                                     <option value='A'>A</option>
@@ -711,8 +714,9 @@ if ($_GET[act] == '') {
                                     <option value='F'>F</option>
                                   </select>
                                   <button type='submit' name='nilai_jawaban' class='btn btn-sm btn-info'>a</button>
-                                </form>
-                              </td>
+                                </form>";
+                              }
+                              echo"</td>
                               <td style='width:70px !important'><center>
                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
                               </center></td>";
