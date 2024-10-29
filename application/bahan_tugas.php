@@ -623,7 +623,7 @@ if ($_GET[act] == '') {
                           window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
       }
     }
-
+    
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -702,15 +702,15 @@ if ($_GET[act] == '') {
                               <td>
                                 $r[nilai]
                                 <form method='POST' class='form-horizontal' action=''>
-                                <input type='hidden' name='id_elearning_jawaban' value='$r[id_elearning_jawab]'>
-                                <select name='nilai' style='padding:4px'>
-                                  <option value='A'>A</option>
-                                  <option value='B'>B</option>
-                                  <option value='C'>C</option>
-                                  <option value='D'>D</option>
-                                  <option value='F'>F</option>
-                                </select>
-                                <button type='submit' name='nilai_jawaban' class='btn btn-sm btn-info'>a</button>
+                                  <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                  <select name='nilai' style='padding:4px'>
+                                    <option value='A'>A</option>
+                                    <option value='B'>B</option>
+                                    <option value='C'>C</option>
+                                    <option value='D'>D</option>
+                                    <option value='F'>F</option>
+                                  </select>
+                                  <button type='submit' name='nilai_jawaban' class='btn btn-sm btn-info'>a</button>
                                 </form>
                               </td>
                               <td style='width:70px !important'><center>
@@ -721,7 +721,7 @@ if ($_GET[act] == '') {
   }
 
   if(isset($_POST['nilai_jawaban'])){
-    $coba = mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawaban='$_POST[id_elearning_jawaban]'");
+    $coba = mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
     var_dump($coba);
   }
 
