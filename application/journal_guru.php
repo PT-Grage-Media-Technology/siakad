@@ -262,24 +262,23 @@
                               <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                           </select>
                       </td>
-                    </tr>
-                     <tr>
-                         <th scope='row'>Pilih Guru</th>   
-                         <td>
-                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
-                             <select style='color: #ffff' class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
-                              $guru = mysql_query("SELECT * FROM rb_guru");
-                              while ($g = mysql_fetch_array($guru)) {
-                                echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                              }
-                              echo "</select>
-                              
-
-                          </td>
-                    </tr>
-
-
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                    </tr>";
+                    
+                    if($_SESSION['level'] != 'guru'){
+                      echo" <tr>
+                        <th scope='row'>Pilih Guru</th>   
+                        <td>
+                        <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                            <select style='color: #ffff' class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
+                            $guru = mysql_query("SELECT * FROM rb_guru");
+                            while ($g = mysql_fetch_array($guru)) {
+                              echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+                            }
+                            echo "</select>
+                        </td>
+                    </tr>";
+                    }
+                    echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
