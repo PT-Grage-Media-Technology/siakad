@@ -304,6 +304,8 @@ echo "</form>
     $f = $_POST[blna];
     $g = $_POST[tgla];
     $h = $_POST[kodejdwl];
+    $nip = $_SESSION[id];
+    $kdhadir = 'H';
 
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_POST[jdwl]' AND nisn='" . $nisn[$i] . "' AND tanggal='" . $e . "-" . $f . "-" . $g . "'");
@@ -331,7 +333,11 @@ echo "</form>
         }
       } else {
         // var_dump(array('jdwl' => $_POST['jdwl'], 'nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'tanggal' => $e . "-" . $f . "-" . $g, 'timestamp' => date('Y-m-d H:i:s')));
-        mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
+        $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('','$_POST[jdwl]','" . $nisn[$i] . "','" . $a[$i] . "','" . $e . "-" . $f . "-" . $g . "','" . date('Y-m-d H:i:s') . "')");
+        if ($insertAbsensiSiswa) {
+          // Tambahkan query untuk insert ke rb_absensi_guru
+          mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
+        }
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
           if ($a[$i] == 'A') {
