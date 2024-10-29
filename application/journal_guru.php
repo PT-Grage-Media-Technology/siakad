@@ -266,13 +266,14 @@
                      <tr>
                          <th scope='row'>Pilih Guru</th>   
                          <td>
-                             <select class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
+                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                             <select style='color: #ffff' class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
                               $guru = mysql_query("SELECT * FROM rb_guru");
                               while ($g = mysql_fetch_array($guru)) {
                                 echo "<option value='$g[nip]'>$g[nama_guru]</option>";
                               }
                               echo "</select>
-                              <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                              
 
                           </td>
                     </tr>
