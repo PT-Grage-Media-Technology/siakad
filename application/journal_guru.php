@@ -163,6 +163,7 @@
                         <th>Hari</th>
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Jam Ke</th>
+                        <th style='width:70px'>Guru</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>";
   if ($_SESSION['level'] != 'kepala') {
@@ -183,6 +184,7 @@
       echo "<tr><td>$no</td>
                                 <td>$r[hari]</td>
                                 <td>" . tgl_indo($r[tanggal]) . "</td>
+                                <td align=center>$r[jam_ke]</td>
                                 <td align=center>$r[jam_ke]</td>
                                 <td>$r[materi]</td>
                                 <td>$r[keterangan]</td>";
