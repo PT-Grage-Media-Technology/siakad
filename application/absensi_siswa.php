@@ -251,7 +251,7 @@
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     var_dump($a);
-    exit;
+    
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
                                 <td>$r[nipd]</td>
