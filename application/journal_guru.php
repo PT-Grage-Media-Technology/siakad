@@ -1,6 +1,5 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
 <?php if ($_GET[act] == '') { ?>
@@ -267,12 +266,15 @@
                      <tr>
                          <th scope='row'>Pilih Guru</th>   
                          <td>
-                             <select class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
+                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                             <select style='color: #ffff' class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
                               $guru = mysql_query("SELECT * FROM rb_guru");
                               while ($g = mysql_fetch_array($guru)) {
                                 echo "<option value='$g[nip]'>$g[nama_guru]</option>";
                               }
                               echo "</select>
+                              
+
                           </td>
                     </tr>
 
