@@ -105,200 +105,286 @@
     </div>
   </div>
   <?php
-} elseif ($_GET['act'] == 'tampilabsen') {
-  if (isset($_GET['gettgl'])) {
-      $filtertgl = $_GET['gettgl'];
-      $exp = explode('-', $_GET['gettgl']);
-      $tglc = $exp[2];
-      $blnc = $exp[1];
-      $thn = $exp[0];
+} elseif ($_GET[act] == 'tampilabsen') {
+  if ($_GET[gettgl]) {
+    $filtertgl = $_GET[gettgl];
+    $exp = explode('-', $_GET[gettgl]);
+    $tglc = $exp[2];
+    $blnc = $exp[1];
+    $thn = $exp[0];
   } else {
-      $tgl = isset($_POST['tgl']) ? $_POST['tgl'] : date("d");
-      $bln = isset($_POST['bln']) ? $_POST['bln'] : date("m");
-      $thn = isset($_POST['thn']) ? $_POST['thn'] : date("Y");
+    if (isset($_POST[tgl])) {
+      $tgl = $_POST[tgl];
+    } else {
+      $tgl = date("d");
+    }
+    if (isset($_POST[bln])) {
+      $bln = $_POST[bln];
+    } else {
+      $bln = date("m");
+    }
+    if (isset($_POST[thn])) {
+      $thn = $_POST[thn];
+    } else {
+      $thn = date("Y");
+    }
+    $lebartgl = strlen($tgl);
+    $lebarbln = strlen($bln);
 
-      $tglc = str_pad($tgl, 2, '0', STR_PAD_LEFT);
-      $blnc = str_pad($bln, 2, '0', STR_PAD_LEFT);
+    switch ($lebartgl) {
+      case 1: {
+        $tglc = "0" . $tgl;
+        break;
+      }
+      case 2: {
+        $tglc = $tgl;
+        break;
+      }
+    }
 
-      $filtertgl = "$thn-$blnc-$tglc";
+    switch ($lebarbln) {
+      case 1: {
+        $blnc = "0" . $bln;
+        break;
+      }
+      case 2: {
+        $blnc = $bln;
+        break;
+      }
+    }
+
+    $filtertgl = $thn . "-" . $blnc . "-" . $tglc;
   }
-
-  // Ambil data kelas
-  $kelasQuery = "SELECT * FROM rb_kelas WHERE kode_kelas = '{$_GET['id']}'";
-  $kelasResult = mysqli_query($conn, $kelasQuery);
-  $d = mysqli_fetch_array($kelasResult);
-
-  // Ambil data mata pelajaran
-  $pelajaranQuery = "SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran = '{$_GET['kd']}'";
-  $pelajaranResult = mysqli_query($conn, $pelajaranQuery);
-  $m = mysqli_fetch_array($pelajaranResult);
-
-  // Ambil data jadwal
-  $journalQuery = "SELECT * FROM rb_journal_list WHERE kodejdwl = '{$_GET['idjr']}' AND tanggal = '{$_GET['tgl']}' AND jam_ke = '{$_GET['jam']}'";
-  $journalResult = mysqli_query($conn, $journalQuery);
-  $j = mysqli_fetch_array($journalResult);
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
+  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+  // $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kd]'"));
+  $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
 
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
   $bulane = $ex[1];
   $tanggal = $ex[2];
-
-  $tgle = ltrim($tanggal, '0');
-  $blnee = ltrim($bulane, '0');
-
+  if (substr($tanggal, 0, 1) == '0') {
+    $tgle = substr($tanggal, 1, 1);
+  } else {
+    $tgle = substr($tanggal, 0, 2);
+  }
+  if (substr($bulane, 0, 1) == '0') {
+    $blnee = substr($bulane, 1, 1);
+  } else {
+    $blnee = substr($bulane, 0, 2);
+  }
   echo "
-  <div class='col-md-12'>
-      <div class='box box-info'>
-          <div class='box-header with-border'>
-              <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo($_GET['tgl']) . "</b></h3>
-          </div>
-          <div class='box-body mb-3'>
-              <div class='col-md-12'>
-                  <div class='table-responsive'>
-                      <table class='table table-condensed table-hover'>
-                          <tbody>
-                              <input type='hidden' name='id' value='{$s['kode_kelas']}'>
-                              <tr>
-                                  <th width='120px' scope='row'>Kode Kelas</th>
-                                  <td>{$d['kode_kelas']}</td>
-                              </tr>
-                              <tr>
-                                  <th scope='row'>Nama Kelas</th>
-                                  <td>{$d['nama_kelas']}</td>
-                              </tr>
-                              <tr>
-                                  <th scope='row'>Mata Pelajaran</th>
-                                  <td>{$m['namamatapelajaran']}</td>
-                              </tr>
-                              <tr>
-                                  <th scope='row'>Tujuan Pembelajaran</th>
-                                  <td>{$j['materi']}</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl={$_GET['idjr']}&id={$_GET['id']}&kd={$_GET['kd']}'>
-                      <div class='d-flex flex-column align-items-center'>
-                          <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
-                          <div class='' style='font-size:14px;'>Tugas</div>
-                      </div>
-                  </a>
-              </div>
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                  <input type='hidden' name='tgla' value='$tglc'>
-                  <input type='hidden' name='blna' value='$blnc'>
-                  <input type='hidden' name='thna' value='$thn'>
-                  <input type='hidden' name='kelas' value='{$_GET['id']}'>
-                  <input type='hidden' name='pelajaran' value='{$_GET['kd']}'>
-                  <input type='hidden' name='jdwl' value='{$_GET['idjr']}'>
-                  <div class='col-md-12'>
-                      <div class='table-responsive'>
-                          <table class='table table-condensed table-bordered table-striped'>
-                              <thead>
-                                  <tr>
-                                      <th>No</th>
-                                      <th>NIPD</th>
-                                      <th>NISN</th>
-                                      <th>Nama Siswa</th>
-                                      <th>Jenis Kelamin</th>
-                                      <th width='120px'>Kehadiran</th>
-                                  </tr>
-                              </thead>
-                              <tbody>";
+<div class='col-md-12'>
+    <div class='box box-info'>
+        <div class='box-header with-border'>
+            <h3 class='box-title'>Data Absensi Siswa Pada : <b style='color:red'>" . tgl_indo("$_GET[tgl]") . "</b></h3>
+        </div>
+        <div class='box-body mb-3'>
+            <div class='col-md-12'>
+                <div class='table-responsive'>
+                    <table class='table table-condensed table-hover'>
+                        <tbody>
+                            <input type='hidden' name='id' value='$s[kode_kelas]'>
+                            <tr>
+                                <th width='120px' scope='row'>Kode Kelas</th>
+                                <td>$d[kode_kelas]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Nama Kelas</th>
+                                <td>$d[nama_kelas]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Mata Pelajaran</th>
+                                <td>$m[namamatapelajaran]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Tujuan Pembelajaran</th>
+                                <td>$j[materi]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Tugas</div>
+                    </div>
+                 </a>
+            </div>
+            <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                <input type='hidden' name='tgla' value='$tglc'>
+                <input type='hidden' name='blna' value='$blnc'>
+                <input type='hidden' name='thna' value='$thn'>
+                <input type='hidden' name='kelas' value='$_GET[id]'>
+                <input type='hidden' name='pelajaran' value='$_GET[kd]'>
+                <input type='hidden' name='jdwl' value='$_GET[idjr]'>
+                <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
+                <div class='col-md-12'>
+                    <div class='table-responsive'>
+                        <table class='table table-condensed table-bordered table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIPD</th>
+                                    <th>NISN</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th width='120px'>Kehadiran</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+
 
   $no = 1;
-  $siswaQuery = "SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin = b.id_jenis_kelamin WHERE a.kode_kelas = '{$_GET['id']}' ORDER BY a.id_siswa";
-  $siswaResult = mysqli_query($conn, $siswaQuery);
-
-  while ($r = mysqli_fetch_array($siswaResult)) {
-      $sekarangabsen = isset($_GET['gettgl']) ? $_GET['gettgl'] : (isset($_POST['lihat']) ? "$thn-$blnc-$tglc" : date("Y-m-d"));
-
-      $absensiQuery = "SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '{$_GET['jdwl']}' AND tanggal = '$sekarangabsen' AND nisn = '{$r['nisn']}'";
-      $absensiResult = mysqli_query($conn, $absensiQuery);
-      $a = mysqli_fetch_array($absensiResult);
-      
-      echo "<tr>
-              <td>$no</td>
-              <td>{$r['nipd']}</td>
-              <td>{$r['nisn']}</td>
-              <td>{$r['nama']}</td>
-              <td>{$r['jenis_kelamin']}</td>
-              <input type='hidden' value='{$r['nisn']}' name='nisn[$no]'>";
-      
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-          echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+  $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+  while ($r = mysql_fetch_array($tampil)) {
+    if ($_GET[gettgl]) {
+      $sekarangabsen = $_GET[gettgl];
+    } else {
+      if (isset($_POST[lihat])) {
+        $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
       } else {
-          echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+        $sekarangabsen = date("Y-m-d");
       }
+    }
 
-      $kehadiranQuery = "SELECT * FROM rb_kehadiran";
-      $kehadiranResult = mysqli_query($conn, $kehadiranQuery);
-      while ($k = mysqli_fetch_array($kehadiranResult)) {
-          $selected = ($a['kode_kehadiran'] == $k['kode_kehadiran']) ? 'selected' : '';
-          echo "<option value='{$k['kode_kehadiran']}' $selected>* {$k['nama_kehadiran']}</option>";
+    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
+    echo "<tr bgcolor=$warna>
+                                <td>$no</td>
+                                <td>$r[nipd]</td>
+                                <td>$r[nisn]</td>
+                                <td>$r[nama]</td>
+                                <td>$r[jenis_kelamin]</td>
+                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+    } else {
+      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+    }
+
+
+    $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
+    while ($k = mysql_fetch_array($kehadiran)) {
+      if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
+        echo "<option value='$k[kode_kehadiran]' selected>* $k[nama_kehadiran]</option>";
+      } else {
+        echo "<option value='$k[kode_kehadiran]'>$k[nama_kehadiran]</option>";
       }
-      echo "</select></td>";
-      echo "</tr>";
-      $no++;
+    }
+    echo "</select></td>";
+    echo "</tr>";
+    $no++;
   }
 
   echo "</tbody>
-              </table>
-          </div>
-      </div>
-  </div>";
+                    </table>
+                </div>
+            </div>
+        </div>";
 
   if ($_SESSION['level'] != 'kepala') {
-      $tglAbsen = $_GET['tgl'];
-      $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+    $tglAbsen = $_GET['tgl'];
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
 
-      echo "<div class='box-footer'>
-          <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
-        </div>";
+    echo "<div class='box-footer'>
+        <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
+      </div>";
   }
 
   echo "</form>
   </div>";
 
   if (isset($_POST['simpann'])) {
-      $jml_data = count($_POST['nisn']);
-      $nisn = $_POST['nisn'];
-      $a = $_POST['a'];
+    $jml_data = count($_POST[nisn]);
+    $nisn = $_POST[nisn];
+    $a = $_POST[a];
 
-      $e = $_POST['thna'];
-      $f = $_POST['blna'];
-      $g = $_POST['tgla'];
-      $h = $_POST['jdwl'];
-      $nip = $_SESSION['id'];
+    $e = $_POST[thna];
+    $f = $_POST[blna];
+    $g = $_POST[tgla];
+    $h = $_POST[kodejdwl];
+    $nip = $_SESSION[id];
+    $kdhadir = 'H';
 
-      for ($i = 1; $i <= $jml_data; $i++) {
-          $cekQuery = "SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$h' AND nisn = '{$nisn[$i]}' AND tanggal = '$e-$f-$g'";
-          $cekResult = mysqli_query($conn, $cekQuery);
+    for ($i = 1; $i <= $jml_data; $i++) {
+      $cek = mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_POST[jdwl]' AND nisn='" . $nisn[$i] . "' AND tanggal='" . $e . "-" . $f . "-" . $g . "'");
+      $total = mysql_num_rows($cek);
+      if ($total >= 1) {
+        // var_dump(array('nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'jdwl' => $_POST['jdwl'])); 
+        // exit;// Menambahkan var_dump untuk debug
+        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' where nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
+         // Periksa apakah query insert ke rb_absensi_siswa berhasil
+         if ($updateAbsensiSiswa) {
+          // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
 
-          if (mysqli_num_rows($cekResult) > 0) {
-              $updateQuery = "UPDATE rb_absensi_siswa SET kode_kehadiran = '$a[$i]', nip = '$nip' WHERE kodejdwl = '$h' AND nisn = '{$nisn[$i]}' AND tanggal = '$e-$f-$g'";
-              mysqli_query($conn, $updateQuery);
+          // Periksa apakah insert ke rb_absensi_guru berhasil
+          if ($insertAbsensiGuru) {
+            echo "Absensi berhasil ditambahkan untuk siswa dan guru.";
           } else {
-              $insertQuery = "INSERT INTO rb_absensi_siswa (kodejdwl, tanggal, nisn, kode_kehadiran, nip) VALUES ('$h', '$e-$f-$g', '{$nisn[$i]}', '$a[$i]', '$nip')";
-              mysqli_query($conn, $insertQuery);
+            echo "Gagal menambahkan absensi ke tabel guru: " . mysql_error();
           }
+        } else {
+          echo "Gagal menambahkan absensi ke tabel siswa: " . mysql_error();
+        }
 
-          if ($a[$i] != 'H') {
-              $parentQuery = "SELECT * FROM rb_siswa WHERE nisn = '{$nisn[$i]}'";
-              $parentResult = mysqli_query($conn, $parentQuery);
-              $parentData = mysqli_fetch_assoc($parentResult);
-
-              $no_hp = $parentData['no_hp'];
-              $msg = "Yth. Orang Tua/Wali, anak Anda {$parentData['nama']} Absen pada " . tgl_indo($tglAbsen) . " dengan status {$a[$i]}.";
-
-              if ($no_hp != '') {
-                  kirim_sms($no_hp, $msg);
-              }
+        $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
+        if ($a[$i] != 'H') {
+          if ($a[$i] == 'A') {
+            $statush = 'Alpa';
+          } elseif ($a[$i] == 'S') {
+            $statush = 'Sakit';
+          } elseif ($a[$i] == 'I') {
+            $statush = 'Izin';
           }
+          $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $g-$f-$e : $statush";
+          if ($cs[no_telpon_ayah] != '') {
+            mysql_query("INSERT INTO rb_sms VALUES('','$cs[no_telpon_ayah]','$isi_pesan')");
+          } elseif ($cs[no_telpon_ibu] != '') {
+            mysql_query("INSERT INTO rb_sms VALUES('','$cs[no_telpon_ibu]','$isi_pesan')");
+          }
+        }
+      } else {
+        // var_dump(array('jdwl' => $_POST['jdwl'], 'nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'tanggal' => $e . "-" . $f . "-" . $g, 'timestamp' => date('Y-m-d H:i:s')));
+        // Insert data ke tabel rb_absensi_siswa
+        $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
+
+        // Periksa apakah query insert ke rb_absensi_siswa berhasil
+        if ($insertAbsensiSiswa) {
+          // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
+
+          // Periksa apakah insert ke rb_absensi_guru berhasil
+          if ($insertAbsensiGuru) {
+            echo "Absensi berhasil ditambahkan untuk siswa dan guru.";
+          } else {
+            echo "Gagal menambahkan absensi ke tabel guru: " . mysql_error();
+          }
+        } else {
+          echo "Gagal menambahkan absensi ke tabel siswa: " . mysql_error();
+        }
+
+        $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
+        if ($a[$i] != 'H') {
+          if ($a[$i] == 'A') {
+            $statush = 'Alpa';
+          } elseif ($a[$i] == 'S') {
+            $statush = 'Sakit';
+          } elseif ($a[$i] == 'I') {
+            $statush = 'Izin';
+          }
+          $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $g-$f-$e : $statush";
+          if ($cs[no_telpon_ayah] != '') {
+            mysql_query("INSERT INTO rb_sms VALUES('','$cs[no_telpon_ayah]','$isi_pesan')");
+          } elseif ($cs[no_telpon_ibu] != '') {
+            mysql_query("INSERT INTO rb_sms VALUES('','$cs[no_telpon_ibu]','$isi_pesan')");
+          }
+        }
       }
-      echo "<script>window.location='?view=absensi&act=tampilabsen&jdwl={$_GET['idjr']}&id={$_GET['id']}&kd={$_GET['kd']}&tgl=$tglAbsen';</script>";
-  }
-
+    }
+    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST[kelas] . "&kd=" . $_POST[pelajaran] . "&idjr=" . $_POST[jdwl] . "&tgl=" . $_GET[tgl] . "&jam=".$_GET[jam]. "';</script>";
+  } 
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
