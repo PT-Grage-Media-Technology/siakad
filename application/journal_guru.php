@@ -1,6 +1,5 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
 <?php if ($_GET[act] == '') { ?>
@@ -264,17 +263,20 @@
                           </select>
                       </td>
                     </tr>
-                     <tr>
-                         <th scope='row'>Pilih Guru</th>   
-                         <td>
-                             <select class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
-                              $guru = mysql_query("SELECT * FROM rb_guru");
-                              while ($g = mysql_fetch_array($guru)) {
-                                echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                              }
-                              echo "</select>
-                          </td>
-                    </tr>
+                    <tr>
+            <th scope="row">Pilih Guru</th>
+            <td>
+              <select class="form-control" name="g">
+                <option value="">-- Pilih Nama Guru --</option>
+                <?php
+                $guru = mysql_query("SELECT * FROM rb_guru");
+                while ($g = mysql_fetch_array($guru)) {
+                  echo "<option value='{$g['nip']}'>{$g['nama_guru']}</option>";
+                }
+                ?>
+              </select>
+            </td>
+          </tr>
 
 
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
