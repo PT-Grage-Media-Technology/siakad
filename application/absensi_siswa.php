@@ -313,8 +313,22 @@
       if ($total >= 1) {
         // var_dump(array('nisn' => $nisn[$i], 'kehadiran' => $a[$i], 'jdwl' => $_POST['jdwl'])); 
         // exit;// Menambahkan var_dump untuk debug
-        mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' where nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
+        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' where nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
+         // Periksa apakah query insert ke rb_absensi_siswa berhasil
+         if ($updateAbsensiSiswa) {
+          // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
 
+          // Periksa apakah insert ke rb_absensi_guru berhasil
+          if ($insertAbsensiGuru) {
+            echo "Absensi berhasil ditambahkan untuk siswa dan guru.";
+          } else {
+            echo "Gagal menambahkan absensi ke tabel guru: " . mysql_error();
+          }
+        } else {
+          echo "Gagal menambahkan absensi ke tabel siswa: " . mysql_error();
+        }
+        
         $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='" . $nisn[$i] . "'"));
         if ($a[$i] != 'H') {
           if ($a[$i] == 'A') {
