@@ -3,6 +3,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
+<style>
+    .dropdown-menu .inner {
+        background-color: white !important;
+    }
+    .dropdown-menu .inner .dropdown-item {
+        color: #000 !important;
+    }
+</style>
+
+
 <?php if ($_GET[act] == '') { ?>
   <div class="col-xs-12">
     <div class="box">
@@ -377,6 +387,7 @@ $(document).ready(function(){
     });
 });
 </script>
+
             </div>";
 }
 ?>
