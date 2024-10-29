@@ -263,8 +263,8 @@
                           </select>
                       </td>
                     </tr>";
-                    var_dump($_SESSION['level']);
-                    if($_SESSION['level'] != 'guru'){
+                    // var_dump($_SESSION['level']);
+                    if($_SESSION['is_kurikulum']){
                       echo" <tr>
                         <th scope='row'>Pilih Guru</th>   
                         <td>
