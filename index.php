@@ -261,7 +261,7 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/master_jadwalpelajaran.php";
             echo "</div>";
