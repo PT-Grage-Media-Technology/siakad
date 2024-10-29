@@ -704,17 +704,17 @@ if ($_GET[act] == '') {
                                 echo"$r[nilai]";
                               } else{
                                 echo"
-                                  <form method='POST' class='form-horizontal' action=''>
-                                  <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                                  <select name='nilai' style='padding:4px'>
-                                    <option value='A'>A</option>
-                                    <option value='B'>B</option>
-                                    <option value='C'>C</option>
-                                    <option value='D'>D</option>
-                                    <option value='F'>F</option>
-                                  </select>
-                                  <button type='submit' name='nilai_jawaban' class='btn btn-sm btn-info'>a</button>
-                                </form>";
+                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                                      <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                                          <option value=''>Pilih Nilai</option>
+                                          <option value='A'>A</option>
+                                          <option value='B'>B</option>
+                                          <option value='C'>C</option>
+                                          <option value='D'>D</option>
+                                          <option value='F'>F</option>
+                                      </select>
+                                  </form>";
                               }
                               echo"</td>
                               <td style='width:70px !important'><center>
@@ -803,3 +803,15 @@ if ($_GET[act] == '') {
             </div>";
 }
 ?>
+
+<script>
+function submitFormWithAlert(selectElement) {
+    const selectedValue = selectElement.value;
+    if (selectedValue) {
+        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
+        if (confirmSubmit) {
+            document.getElementById('nilaiForm').submit();
+        }
+    }
+}
+</script>
