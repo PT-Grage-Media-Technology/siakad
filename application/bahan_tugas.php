@@ -698,12 +698,10 @@ if ($_GET[act] == '') {
                               <td>$r[nama]</td>
                               <td>$r[keterangan]</td>
                               <td>$r[waktu] WIB</td>
-                              <td>$r[nilai]</td>
-                              <td style='width:70px !important'><center>
-                                <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
+                              <td>
+                                $r[nilai]
                                 <form method='POST' class='form-horizontal' action=''>
-                                <select name='h' style='padding:4px'>
-                                  <option value=''>- Pilih Tahun Akademik -</option>
+                                <select name='nilai' style='padding:4px'>
                                   <option value='A'>A</option>
                                   <option value='B'>B</option>
                                   <option value='C'>C</option>
@@ -712,6 +710,9 @@ if ($_GET[act] == '') {
                                 </select>
                                 <button type='submit' name='nilai' class='btn btn-info'>Nilai Jawaban</button>
                                 </form>
+                              </td>
+                              <td style='width:70px !important'><center>
+                                <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
                               </center></td>";
     echo "</tr>";
     $no++;
