@@ -702,7 +702,7 @@ if ($_GET[act] == '') {
                               <td>
                                 $r[nilai]
                                 <form method='POST' class='form-horizontal' action=''>
-                                <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                <input type='hidden' name='id_elearning_jawaban' value='$r[id_elearning_jawab]'>
                                 <select name='nilai' style='padding:4px'>
                                   <option value='A'>A</option>
                                   <option value='B'>B</option>
