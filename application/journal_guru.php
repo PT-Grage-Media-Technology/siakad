@@ -272,6 +272,7 @@
                                 echo "<option value='$g[nip]'>$g[nama_guru]</option>";
                               }
                               echo "</select>
+                              <small>coba aja ini mah</small>
                           </td>
                     </tr>
 
