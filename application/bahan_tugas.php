@@ -624,12 +624,6 @@ if ($_GET[act] == '') {
       }
     }
 
-  
-    if(isset($_POST['nilai_jawaban'])){
-      $coba = mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawaban='$_POST[id_elearning_jawaban]'");
-      var_dump($coba);
-      echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-    }
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -724,6 +718,12 @@ if ($_GET[act] == '') {
                               </center></td>";
     echo "</tr>";
     $no++;
+  }
+
+  if(isset($_POST['nilai_jawaban'])){
+    $coba = mysql_query("UPDATE rb_elearning_jawaban SET nilai='$_POST[nilai]' where id_elearning_jawaban='$_POST[id_elearning_jawaban]'");
+    var_dump($coba);
+    echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
   echo "</table>
