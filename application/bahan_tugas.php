@@ -687,6 +687,7 @@ if ($_GET[act] == '') {
                         <th>Nama Lengkap</th>
                         <th>Keterangan</th>
                         <th>Waktu Kirim</th>
+                        <th>Nilai</th>
                         <th>Action</th>
                       </tr>";
   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
@@ -697,6 +698,7 @@ if ($_GET[act] == '') {
                               <td>$r[nama]</td>
                               <td>$r[keterangan]</td>
                               <td>$r[waktu] WIB</td>
+                              <td>$r[nilai] / 100</td>
                               <td style='width:70px !important'><center>
                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
                               </center></td>";
