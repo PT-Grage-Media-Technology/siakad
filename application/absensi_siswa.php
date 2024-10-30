@@ -331,7 +331,7 @@
         if ($total >= 1) {
             // Update kehadiran siswa
             $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "', nilai='" . $nilai[$i] . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
-            var_dump($updateAbsensiSiswa);
+            var_dump($nilai[$i]);
             exit;
             if ($updateAbsensiSiswa && !$guruInserted) {
                 // Hanya insert ke rb_absensi_guru sekali setelah semua siswa diupdate
