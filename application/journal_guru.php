@@ -248,7 +248,7 @@ $today = date('Y-m-d');
     exit;
 
     $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
+    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[x]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   }
 
@@ -303,7 +303,7 @@ $today = date('Y-m-d');
                         <th scope='row'>Pilih Guru</th>   
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
-                            <select style='color: #ffff' class='selectpicker form-control' name='g' data-live-search='true' data-show-subtext='true'>";
+                            <select style='color: #ffff' class='selectpicker form-control' name='x' data-live-search='true' data-show-subtext='true'>";
                             $guru = mysql_query("SELECT * FROM rb_guru");
                             while ($g = mysql_fetch_array($guru)) {
                               echo "<option value='$g[nip]'>$g[nama_guru]</option>";
