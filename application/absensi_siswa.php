@@ -256,14 +256,14 @@
                                 <td>$r[nipd]</td>
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]</td>
+                                <td>$r[jenis_kelamin]$r[nilai]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 } else {
-                                  echo "<td>$r[nilai]<select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
                                 echo "<option value='A'>A</option>";
