@@ -264,9 +264,9 @@
                                   } else {
                                     echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
                                   }
-                                  echo "<option value='A' selected>A</option>";
-                                  echo "<option value='B' selected>B</option>";
-                                  echo "<option value='C' selected>C</option>";
+                                  echo "<option value='A'>A</option>";
+                                  echo "<option value='B' >B</option>";
+                                  echo "<option value='C' >C</option>";
                                   echo "<option value='D' selected>D</option>";
     echo "</select></td>";
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
