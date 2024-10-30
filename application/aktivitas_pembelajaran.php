@@ -111,19 +111,17 @@
               $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
   
   
-              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,ag.status_kehadiran
-                      FROM rb_journal_list jl 
-                      JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-                      JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-                      JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-                      JOIN rb_guru d ON jl.users = d.nip
-                      LEFT JOIN rb_absensi_guru ag ON d.nip = ag.nip 
-                      AND DAY(ag.tanggal) = '$tanggal_dipilih' 
-                      AND MONTH(ag.tanggal) = '$bulan_dipilih'
-                      WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
-                      AND MONTH(jl.tanggal) = '$bulan_dipilih'
-                      ORDER BY jl.waktu_input DESC;");
-
+              // Ubah query untuk memfilter berdasarkan tanggal yang dipilih, ambil data kelas, dan filter berdasarkan users
+              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+              FROM rb_journal_list jl 
+              JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+              JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+              JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+              JOIN rb_guru d ON jl.users = d.nip
+              WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+              AND MONTH(jl.tanggal) = '$bulan_dipilih'
+              ORDER BY jl.waktu_input DESC;
+              ");
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
   
