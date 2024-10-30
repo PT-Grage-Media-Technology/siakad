@@ -101,45 +101,88 @@
             </tr>
           </thead>
           <tbody>
+            
             <?php
-            // Mengambil tanggal yang dipilih dari GET
-            // Ambil tanggal dan bulan yang dipilih dari GET
-            $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
-            $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
-
-
-            // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
-            $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-            FROM rb_journal_list jl 
-            JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-            JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-            JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-            JOIN rb_guru d ON jl.users = d.nip
-            WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
-            AND MONTH(jl.tanggal) = '$bulan_dipilih'
-            ORDER BY jl.waktu_input DESC;
-            ");
-
-            // var_dump(mysql_fetch_array($tampil));
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              echo "<tr>
-                      <td>$no</td>
-                      <td>$r[users]</td>
-                      <td>$r[nama_guru]</td>
-                      <td>$r[hari]</td>
-                      <td>" . tgl_indo($r['tanggal']) . "</td>
-                      <td>$r[jam_ke]</td>
-                      <td>$r[kode_kelas]</td>
-                      <td>$r[namamatapelajaran]</td>
-                      <td>
-                          <center>
-                            <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
-                            <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
-                          </center>
-                      </td>
-                    </tr>";
-              $no++;
+            if($_SESSION['is_kurikulum']){
+              // Mengambil tanggal yang dipilih dari GET
+              // Ambil tanggal dan bulan yang dipilih dari GET
+              $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+              $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
+  
+  
+              // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
+              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+              FROM rb_journal_list jl 
+              JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+              JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+              JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+              JOIN rb_guru d ON jl.users = d.nip
+              WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+              AND MONTH(jl.tanggal) = '$bulan_dipilih'
+              ORDER BY jl.waktu_input DESC;
+              ");
+  
+              // var_dump(mysql_fetch_array($tampil));
+              $no = 1;
+              while ($r = mysql_fetch_array($tampil)) {
+                echo "<tr>
+                        <td>$no</td>
+                        <td>$r[users]</td>
+                        <td>$r[nama_guru]</td>
+                        <td>$r[hari]</td>
+                        <td>" . tgl_indo($r['tanggal']) . "</td>
+                        <td>$r[jam_ke]</td>
+                        <td>$r[kode_kelas]</td>
+                        <td>$r[namamatapelajaran]</td>
+                        <td>
+                            <center>
+                              <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
+                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                            </center>
+                        </td>
+                      </tr>";
+                $no++;
+              }
+            }else{
+               // Mengambil tanggal yang dipilih dari GET
+              // Ambil tanggal dan bulan yang dipilih dari GET
+              $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+              $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
+  
+  
+              // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
+              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+              FROM rb_journal_list jl 
+              JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+              JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+              JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+              JOIN rb_guru d ON jl.users = d.nip
+              WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+              AND MONTH(jl.tanggal) = '$bulan_dipilih'
+              ORDER BY jl.waktu_input DESC;
+              ");
+  
+              // var_dump(mysql_fetch_array($tampil));
+              $no = 1;
+              while ($r = mysql_fetch_array($tampil)) {
+                echo "<tr>
+                        <td>$no</td>
+                        <td>$r[users]</td>
+                        <td>$r[nama_guru]</td>
+                        <td>$r[hari]</td>
+                        <td>" . tgl_indo($r['tanggal']) . "</td>
+                        <td>$r[jam_ke]</td>
+                        <td>$r[kode_kelas]</td>
+                        <td>$r[namamatapelajaran]Guru Biasa</td>
+                        <td>
+                            <center>
+                              <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
+                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                            </center>
+                        </td>
+                      </tr>";
+                $no++;
+              }
             }
 
             // // Gunakan kodejdwl_terakhir di sini
