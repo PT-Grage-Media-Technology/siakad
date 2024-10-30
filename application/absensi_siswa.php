@@ -264,7 +264,7 @@
                                   echo"
                                   <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                                       <input type='hidden' name='a[$no]' value='a[$no]'>
-                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                                      <select name='nilai' style='padding:4px' onchange='submitNilai(this)'>
                                           <option value=''>Pilih Nilai</option>
                                           <option value='A'>A</option>
                                           <option value='B'>B</option>
@@ -568,4 +568,16 @@
                   </div>";
 }
 ?>
+
+<script>
+function submitNilai(selectElement) {
+    const selectedValue = selectElement.value;
+    if (selectedValue) {
+        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
+        if (confirmSubmit) {
+            document.getElementById('nilaiForm').submit();
+        }
+    }
+}
+</script>
 
