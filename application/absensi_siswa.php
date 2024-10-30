@@ -249,6 +249,7 @@
         $sekarangabsen = date("Y-m-d");
       }
     }
+    var_dump($r['nilai']);
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     echo "<tr bgcolor=$warna>
@@ -256,7 +257,7 @@
                                 <td>$r[nipd]</td>
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]$r[nilai]</td>
+                                <td>$r[jenis_kelamin]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                               // Menampilkan dropdown 'nilai'
