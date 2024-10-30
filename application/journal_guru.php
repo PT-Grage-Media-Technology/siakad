@@ -391,7 +391,7 @@ $today = date('Y-m-d');
                                 <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
                                 $guru = mysql_query("SELECT * FROM rb_guru");
                                 while ($g = mysql_fetch_array($guru)) {
-                                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+                                  echo "<option value='$g[nip]'" . ($e[nip] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
                                 }
                                 echo "</select>
                             </td>
