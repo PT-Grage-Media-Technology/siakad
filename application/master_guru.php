@@ -534,7 +534,6 @@
   $s = mysql_fetch_array($detail);
   echo "<div class='container'>
 
-          <!-- Modal -->
         <div class='modal fade' id='autoOpenModal' tabindex='-1' aria-labelledby='autoOpenModalLabel' aria-hidden='true'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
