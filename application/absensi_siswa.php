@@ -257,18 +257,24 @@
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]</td>
-                               
-                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                    echo "<td><select disabled style='width:100px;' name='nilai' class='form-control'>";
-                                  } else {
-                                    echo "<td><select style='width:100px;' name='nilai' class='form-control'>";
-                                  }
-                                  echo "<option value='A'>A</option>";
-                                  echo "<option value='B' >B</option>";
-                                  echo "<option value='C' >C</option>";
-                                  echo "<option value='D'>D</option>";
-    echo "</select></td>";
+                                <td>";
+                                if($r[nilai]){
+                                  echo"$r[nilai]";
+                                }else{
+                                  echo"
+                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                                      <input type='hidden' name='a[$no]' value='a[$no]'>
+                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                                          <option value=''>Pilih Nilai</option>
+                                          <option value='A'>A</option>
+                                          <option value='B'>B</option>
+                                          <option value='C'>C</option>
+                                          <option value='D'>D</option>
+                                          <option value='F'>F</option>
+                                      </select>
+                                  </form>";
+                                }
+    echo "</td>";
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
