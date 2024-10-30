@@ -260,7 +260,7 @@
                                 <td>$r[nipd]</td>
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]$a[nilai]</td>
+                                <td>$r[jenis_kelamin]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                               // Menampilkan dropdown 'nilai'
@@ -270,10 +270,10 @@
                                   echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
-                                echo "<option value='A'>A</option>";
-                                echo "<option value='B'>B</option>";
-                                echo "<option value='C'>C</option>";
-                                echo "<option value='D'>D</option>";
+                                echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
+                                echo "<option value='B' " . ($a['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
+                                echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
+                                echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
 
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
