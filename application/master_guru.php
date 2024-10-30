@@ -550,7 +550,6 @@
                 </div>
             </div>
         </div>
-        11312
 
                   <div class='row'>
                     <div class='col-12'>
@@ -669,6 +668,7 @@
 <script>
   // Menampilkan modal saat halaman selesai dimuat
   $(document).ready(function() {
-      $('#autoOpenModal').modal('show');
-  });
+    console.log("Page loaded, attempting to show modal");
+    $('#autoOpenModal').modal('show');
+});
 </script>
