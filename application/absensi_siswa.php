@@ -304,7 +304,7 @@
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
 
     echo "<div class='box-footer'>
-        <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
+        <button type='submit' name='simpann' class='btn btn-info pull-right $isDisabled' >Simpan Absensi</button>
       </div>";
   }
 
