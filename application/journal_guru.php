@@ -244,8 +244,8 @@ $today = date('Y-m-d');
 
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+    var_dump($_POST);
+    exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[x]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
