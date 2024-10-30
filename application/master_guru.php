@@ -1,25 +1,6 @@
 <?php if ($_GET[act] == '') { ?>
   <div class="container-fluid">
 
-  <!-- Modal -->
-<div class="modal fade" id="autoOpenModal" tabindex="-1" aria-labelledby="autoOpenModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoOpenModalLabel">Welcome!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                This modal opens automatically when the page loads.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-11312
-
     <div class="row">
       <div class="col-12">
         <div class="box">
@@ -552,6 +533,26 @@
                                               where a.nip='$_GET[id]'");
   $s = mysql_fetch_array($detail);
   echo "<div class='container'>
+
+          <!-- Modal -->
+        <div class='modal fade' id='autoOpenModal' tabindex='-1' aria-labelledby='autoOpenModalLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title' id='autoOpenModalLabel'>Welcome!</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                    </div>
+                    <div class='modal-body'>
+                        This modal opens automatically when the page loads.
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        11312
+
                   <div class='row'>
                     <div class='col-12'>
                       <div class='box box-info'>
