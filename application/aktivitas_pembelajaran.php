@@ -174,7 +174,7 @@
                         <td>" . tgl_indo($r['tanggal']) . "</td>
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
-                        <td>$r[namamatapelajaran]Guru Biasa</td>
+                        <td>$r[namamatapelajaran]</td>
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
