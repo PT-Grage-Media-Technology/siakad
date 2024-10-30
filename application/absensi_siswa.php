@@ -353,7 +353,8 @@
         } else {
             // Insert data ke tabel rb_absensi_siswa
             $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
-
+            var_dump($insertAbsensiSiswa);
+            exit;
             if ($insertAbsensiSiswa && !$guruInserted) {
                 // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
