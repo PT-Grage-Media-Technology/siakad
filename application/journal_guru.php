@@ -163,6 +163,7 @@
                         <th>Hari</th>
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Jam Ke</th>
+                        <th style='width:220px'>Guru</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>";
   if ($_SESSION['level'] != 'kepala') {
@@ -171,21 +172,51 @@
   echo "</tr>
                     </thead>
                     <tbody>";
-  $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
-  $no = 1;
-  $today = date('Y-m-d');
-  if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
-    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
-  } else {
+  // $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
+  // $no = 1;
+  // $today = date('Y-m-d');
+
+  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                      FROM rb_journal_list jl 
+                      LEFT JOIN rb_guru g ON jl.users = g.nip 
+                      WHERE jl.kodejdwl='$_GET[id]' 
+                      ORDER BY jl.id_journal DESC");
+$no = 1;
+$today = date('Y-m-d');
+
+  // if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
+  //   echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
+  // } else {
+  //   while ($r = mysql_fetch_array($tampil)) {
+  //     $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+  //     $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+
+  if (mysql_num_rows($tampil) == 0) {
+    // Cek jika tidak ada data
+    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
+} else {
     while ($r = mysql_fetch_array($tampil)) {
-      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
-      echo "<tr><td>$no</td>
-                                <td>$r[hari]</td>
-                                <td>" . tgl_indo($r[tanggal]) . "</td>
-                                <td align=center>$r[jam_ke]</td>
-                                <td>$r[materi]</td>
-                                <td>$r[keterangan]</td>";
+        // Logika untuk mengatur status button absen
+        $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+        $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+
+      // echo "<tr><td>$no</td>
+      //                           <td>$r[hari]</td>
+      //                           <td>" . tgl_indo($r[tanggal]) . "</td>
+      //                           <td align=center>$r[jam_ke]</td>
+      //                           <td align=center>$r[nama_guru]</td>
+      //                           <td>$r[materi]</td>
+      //                           <td>$r[keterangan]</td>";
+
+      echo "<tr>
+      <td>$no</td>
+      <td>$r[hari]</td>
+      <td>" . tgl_indo($r['tanggal']) . "</td>
+      <td align=center>$r[jam_ke]</td>
+      <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
+      <td>$r[materi]</td>
+      <td>$r[keterangan]</td>";
+
       if ($_SESSION['level'] != 'kepala') {
         echo "<td style='width: 200px; !important'><center>
                   <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
@@ -213,6 +244,8 @@
 
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
+    var_dump($_POST);
+
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
@@ -277,6 +310,8 @@
                             echo "</select>
                         </td>
                     </tr>";
+                    } else {
+                      echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='g'>";
                     }
                     echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
