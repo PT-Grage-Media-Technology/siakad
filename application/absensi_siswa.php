@@ -331,7 +331,13 @@
         if ($total >= 1) {
             // Update kehadiran siswa
             $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . ", nilai='" . $nilai . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
-
+            var_dump([
+              'updateAbsensiSiswa' => $updateAbsensiSiswa,
+              'nisn' => $nisn,
+              'a' => $a,
+              'nilai' => $nilai,
+              'tanggal' => $e . "-" . $f . "-" . $g
+          ]);
             if ($updateAbsensiSiswa && !$guruInserted) {
                 // Hanya insert ke rb_absensi_guru sekali setelah semua siswa diupdate
                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
