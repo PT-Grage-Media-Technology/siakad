@@ -115,6 +115,7 @@
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
               FROM rb_journal_list jl 
               JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+              JOIN rb_absensi_guru b ON jl.users = b.nip
               JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
               JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
               JOIN rb_guru d ON jl.users = d.nip
@@ -123,10 +124,9 @@
               ORDER BY jl.waktu_input DESC;
               ");
 
-              $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
+              // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru");
   
-              var_dump($kehadiran);
-              exit;
+              // var_dump(mysql_fetch_array($tampil));
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr>
@@ -138,7 +138,7 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>$r[namamatapelajaran]</td>
+                        <td>$r[kode_kehadiran]</td>
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
