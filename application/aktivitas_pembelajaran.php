@@ -119,7 +119,6 @@
               JOIN rb_guru d ON jl.users = d.nip
               WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
               AND MONTH(jl.tanggal) = '$bulan_dipilih'
-              AND jl.users = '$user_id'  // Tambahkan filter berdasarkan users
               ORDER BY jl.waktu_input DESC;
               ");
   
