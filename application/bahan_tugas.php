@@ -706,6 +706,7 @@ if ($_GET[act] == '') {
                                 echo"
                                   <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                                       <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                      <input type='hidden' name='nilai_jawaban' value=''>
                                       <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
                                           <option value=''>Pilih Nilai</option>
                                           <option value='A'>A</option>
