@@ -97,6 +97,7 @@
               <th style='width:60px'>Jam ke</th>
               <th>Kelas</th>
               <th>Nama Mapel</th>
+              <th>Kehadiran</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -121,6 +122,8 @@
               AND MONTH(jl.tanggal) = '$bulan_dipilih'
               ORDER BY jl.waktu_input DESC;
               ");
+
+              // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
   
               // var_dump(mysql_fetch_array($tampil));
               $no = 1;
@@ -133,6 +136,7 @@
                         <td>" . tgl_indo($r['tanggal']) . "</td>
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
+                        <td>$r[namamatapelajaran]</td>
                         <td>$r[namamatapelajaran]</td>
                         <td>
                             <center>

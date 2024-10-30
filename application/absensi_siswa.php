@@ -301,11 +301,14 @@
 
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
-    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
+    if(strtotime(date('Y-m-d')) > strtotime($tglAbsen)){
 
-    echo "<div class='box-footer'>
-        <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
-      </div>";
+    }else{
+      echo "<div class='box-footer'>
+          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
+        </div>";
+    }
   }
 
   echo "</form>
