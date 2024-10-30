@@ -706,6 +706,7 @@ if ($_GET[act] == '') {
                                 echo"
                                   <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                                       <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                      <input type='hidden' name='nilai_jawaban' value=''>
                                       <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
                                           <option value=''>Pilih Nilai</option>
                                           <option value='A'>A</option>
@@ -726,9 +727,9 @@ if ($_GET[act] == '') {
 
   if(isset($_POST['nilai_jawaban'])){
     $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
-    var_dump($coba);
+    // var_dump($coba);
     
-    // echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+    echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
   }
 
   echo "</table>
