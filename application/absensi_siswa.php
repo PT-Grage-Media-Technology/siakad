@@ -331,7 +331,7 @@
 
         if ($total >= 1) {
             // Update kehadiran siswa
-            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
+            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "', nilai='" . $nilai[$i] . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
 
             if ($updateAbsensiSiswa && !$guruInserted) {
                 // Hanya insert ke rb_absensi_guru sekali setelah semua siswa diupdate
@@ -353,7 +353,7 @@
             }
         } else {
             // Insert data ke tabel rb_absensi_siswa
-            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
+            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "','" . $nilai[$i] . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
 
             if ($insertAbsensiSiswa && !$guruInserted) {
                 // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
