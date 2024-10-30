@@ -260,7 +260,7 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   if($r[nilai]){
-                                    echo "$r[nilai]";
+                                    echo "dadsas";
                                   }else{
                                     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                       echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
