@@ -250,7 +250,7 @@
       }
     }
     
-    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
+    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]'"));
     var_dump($_GET['idjr']);
     var_dump($sekarangabsen);
     var_dump($r['nisn']);
