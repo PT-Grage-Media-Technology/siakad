@@ -739,38 +739,40 @@ if ($_GET[act] == '') {
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Daftar Ujian dan Quiz Online</b></h3>
-                  if ($_SESSION[level] != 'siswa') {
-                    <a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Tambahkan Data</a>
-                    }
-                </div>
-              <div class='box-body'>
+  <div class='box box-info'>
+      <div class='box-header with-border'>
+          <h3 class='box-title'>Daftar Ujian dan Quiz Online</h3>";
 
-              <div class='col-md-12'>
+// Cek level pengguna
+if ($_SESSION['level'] != 'siswa') {
+echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Tambahkan Data</a>";
+}
+
+echo "      </div>
+      <div class='box-body'>
+          <div class='col-md-12'>
               <table class='table table-condensed table-hover'>
                   <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+                      <input type='hidden' name='id' value='$s[kodekelas]'>
+                      <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+                      <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+                      <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
                   </tbody>
               </table>
-              </div>
-
-                <div class='col-md-12'>
-                  <table id='example1' class='table table-condensed table-bordered table-striped'>
-                      <thead>
+          </div>
+          <div class='col-md-12'>
+              <table id='example1' class='table table-condensed table-bordered table-striped'>
+                  <thead>
                       <tr>
-                        <th style='width:40px'>No</th>
-                        <th>Kategori</th>
-                        <th>Keterangan</th>
-                        <th>Batas Waktu</th>
-                        <th style='width:80px'>Action</th>
+                          <th style='width:40px'>No</th>
+                          <th>Kategori</th>
+                          <th>Keterangan</th>
+                          <th>Batas Waktu</th>
+                          <th style='width:80px'>Action</th>
                       </tr>
-                    </thead>
-                    <tbody>";
+                  </thead>
+                  <tbody>";
+
 
   $no = 1;
   $tampil = mysql_query("SELECT * FROM rb_quiz_ujian a JOIN rb_kategori_quiz_ujian b ON a.id_kategori_quiz_ujian=b.id_kategori_quiz_ujian where a.kodejdwl='$_GET[jdwl]' ORDER BY a.id_quiz_ujian");
