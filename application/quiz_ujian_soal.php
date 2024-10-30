@@ -112,9 +112,12 @@ if ($_GET[act] == '') {
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Daftar Ujian dan Quiz Online</b></h3>";
-  if ($_SESSION[level] != 'siswa') {
+  // if ($_SESSION[level] != 'siswa') {
+  //   echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Tambahkan Data</a>";
+  // }
+ 
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Tambahkan Data</a>";
-  }
+  
   echo "</div>
               <div class='box-body'>
 
