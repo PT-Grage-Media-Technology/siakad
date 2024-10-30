@@ -251,7 +251,7 @@
     }
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
-    // var_dump($r);
+    var_dump($_GET['idjr']);
     var_dump($a);
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
