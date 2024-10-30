@@ -143,7 +143,7 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>$r[kodejdwl]</td>
+                        <td>$r[kode_kehadiran]</td>
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
