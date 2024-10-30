@@ -310,6 +310,8 @@
   </div>";
 
   if (isset($_POST['simpann'])) {
+    var_dump($_POST);
+    exit;
     $jml_data = count($_POST['nisn']);
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
