@@ -163,7 +163,7 @@
                         <th>Hari</th>
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Jam Ke</th>
-                        <th style='width:220px'>Guru</th>
+                        <th style='width:220px' align=center>Guru</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>";
   if ($_SESSION['level'] != 'kepala') {
@@ -248,7 +248,7 @@ $today = date('Y-m-d');
     exit;
 
     $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[x]','" . date('Y-m-d H:i:s') . "','$_SESSION[id]')");
+    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   }
 
@@ -303,7 +303,7 @@ $today = date('Y-m-d');
                         <th scope='row'>Pilih Guru</th>   
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
-                            <select style='color: #ffff' class='selectpicker form-control' name='x' data-live-search='true' data-show-subtext='true'>";
+                            <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
                             $guru = mysql_query("SELECT * FROM rb_guru");
                             while ($g = mysql_fetch_array($guru)) {
                               echo "<option value='$g[nip]'>$g[nama_guru]</option>";
@@ -312,7 +312,7 @@ $today = date('Y-m-d');
                         </td>
                     </tr>";
                     } else {
-                      echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='g'>";
+                      echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
                     }
                     echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
