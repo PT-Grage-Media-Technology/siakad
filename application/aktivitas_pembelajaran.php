@@ -116,7 +116,6 @@
               FROM rb_journal_list jl 
               JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
               JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-              JOIN rb_absensi_guru v ON jl.users = v.nip
               JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
               JOIN rb_guru d ON jl.users = d.nip
               WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
@@ -138,7 +137,7 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>$r[kode_kehadiran]</td>
+                        <td>$r[namamatapelajaran]</td>
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
