@@ -240,20 +240,20 @@
   $no = 1;
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
-    if ($_GET[gettgl]) {
-      $sekarangabsen = $_GET[gettgl];
-    } else {
-      if (isset($_POST[lihat])) {
-        $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
-      } else {
-        $sekarangabsen = date("Y-m-d");
-      }
-    }
+    // if ($_GET[gettgl]) {
+    //   $sekarangabsen = $_GET[gettgl];
+    // } else {
+    //   if (isset($_POST[lihat])) {
+    //     $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
+    //   } else {
+    //     $sekarangabsen = date("Y-m-d");
+    //   }
+    // }
     
-    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='36' AND tanggal='2024-10-30' AND nisn='9991268756'"));
-    // var_dump($_GET['idjr']);
-    // var_dump($sekarangabsen);
-    // var_dump($r['nisn']);
+    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='date(Y-m-d)' AND nisn='$r[nisn]'"));
+    var_dump($_GET['idjr']);
+    var_dump($sekarangabsen);
+    var_dump($r['nisn']);
     var_dump($a);
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
