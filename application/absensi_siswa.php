@@ -240,19 +240,18 @@
   $no = 1;
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
-    if ($_GET[gettgl]) {
-      $sekarangabsen = $_GET[gettgl];
-    } else {
-      if (isset($_POST[lihat])) {
-        $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
-      } else {
-        $sekarangabsen = date("Y-m-d");
-      }
-    }
+    // if ($_GET[gettgl]) {
+    //   $sekarangabsen = $_GET[gettgl];
+    // } else {
+    //   if (isset($_POST[lihat])) {
+    //     $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
+    //   } else {
+    //     $sekarangabsen = date("Y-m-d");
+    //   }
+    // }
     
-    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
-    var_dump($_GET['idjr']);
-    var_dump($a);
+    $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
+    
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
                                 <td>$r[nipd]</td>
@@ -268,10 +267,10 @@
                                   echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
-                                echo "<option value='A'>A</option>";
-                                echo "<option value='B'>B</option>";
-                                echo "<option value='C'>C</option>";
-                                echo "<option value='D'>D</option>";
+                                echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
+                                echo "<option value='B' " . ($a['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
+                                echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
+                                echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
 
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
@@ -318,7 +317,8 @@
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
     $nilai = $_POST['nilai'];
-    $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
+    // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
+    $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'H';
