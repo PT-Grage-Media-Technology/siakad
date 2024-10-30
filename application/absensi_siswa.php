@@ -105,7 +105,7 @@
     </div>
   </div>
   <?php
-} elseif ($_GET[act] == 'tampilabsen') {
+}  elseif ($_GET[act] == 'tampilabsen') {
   if ($_GET[gettgl]) {
     $filtertgl = $_GET[gettgl];
     $exp = explode('-', $_GET[gettgl]);
@@ -252,44 +252,35 @@
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[jdwl]' AND tanggal='$sekarangabsen' AND nisn='$r[nisn]'"));
     echo "<tr bgcolor=$warna>
-      <td>$no</td>
-      <td>$r[nipd]</td>
-      <td>$r[nisn]</td>
-      <td>$r[nama]</td>
-      <td>$r[nilai]</td>";
+                                <td>$no</td>
+                                <td>$r[nipd]</td>
+                                <td>$r[nisn]</td>
+                                <td>$r[nama]</td>
+                                <td>$r[jenis_kelamin]</td>
+                               
+                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                              // Menampilkan dropdown 'nilai'
+                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                  echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                } else {
+                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                }
+                                echo "<option value='A'>A</option>";
+                                echo "<option value='B'>B</option>";
+                                echo "<option value='C'>C</option>";
+                                echo "<option value='D'>D</option>";
+                                echo "</select></td>";
 
-    // Input hidden untuk NISN
-    echo "<input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                    echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+                                  } else {
+                                    echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                  }
 
-    // Cek jika ada nilai, tampilkan nilainya; jika tidak, tampilkan dropdown
-    if ($r['nilai']) {
-      // Jika nilai sudah ada, tampilkan nilainya secara langsung
-      echo "<td>" . htmlspecialchars($r['nilai']) . "</td>";
-    } else {
-      // Jika nilai belum ada, tampilkan dropdown
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
-      } else {
-        echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
-      }
-      echo "<option value='A'>A</option>";
-      echo "<option value='B'>B</option>";
-      echo "<option value='C'>C</option>";
-      echo "<option value='D'>D</option>";
-      echo "</select></td>";
-    }
 
-    // Cek jika ada kehadiran, tampilkan dropdown kehadiran
-    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-    } else {
-      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-    }
-
-    // Ambil dan tampilkan pilihan kehadiran dari database
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
-      if ($a['kode_kehadiran'] == $k['kode_kehadiran']) {
+      if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
         echo "<option value='$k[kode_kehadiran]' selected>* $k[nama_kehadiran]</option>";
       } else {
         echo "<option value='$k[kode_kehadiran]'>$k[nama_kehadiran]</option>";
@@ -297,7 +288,6 @@
     }
     echo "</select></td>";
     echo "</tr>";
-
     $no++;
   }
 
@@ -332,45 +322,45 @@
     $guruInserted = false;
 
     for ($i = 1; $i <= $jml_data; $i++) {
-      $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
-      $total = mysql_num_rows($cek);
+        $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
+        $total = mysql_num_rows($cek);
 
-      if ($total >= 1) {
-        // Update data jika sudah ada di tabel
-        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
+        if ($total >= 1) {
+            // Update data jika sudah ada di tabel
+            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
                                                SET kode_kehadiran='" . $a[$i] . "', nilai='" . $nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-        if ($updateAbsensiSiswa && !$guruInserted) {
-          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
-          $guruInserted = true;
-        }
-      } else {
-        // Insert data jika belum ada di tabel
-        $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
+            if ($updateAbsensiSiswa && !$guruInserted) {
+                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
+                $guruInserted = true;
+            }
+        } else {
+            // Insert data jika belum ada di tabel
+            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
                                                VALUES('', '$kodejdwl', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai[$i] . "', '$tgl', NOW())");
-        if ($insertAbsensiSiswa && !$guruInserted) {
-          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
-          $guruInserted = true;
+            if ($insertAbsensiSiswa && !$guruInserted) {
+                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
+                $guruInserted = true;
+            }
         }
-      }
 
-      // Proses pengiriman SMS jika ada ketidakhadiran
-      if ($a[$i] != 'H') {
-        $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nisn='" . $nisn[$i] . "'"));
-        $statush = ($a[$i] == 'A') ? 'Alpa' : (($a[$i] == 'S') ? 'Sakit' : 'Izin');
-        $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $tgl : $statush";
+        // Proses pengiriman SMS jika ada ketidakhadiran
+        if ($a[$i] != 'H') {
+            $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nisn='" . $nisn[$i] . "'"));
+            $statush = ($a[$i] == 'A') ? 'Alpa' : (($a[$i] == 'S') ? 'Sakit' : 'Izin');
+            $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $tgl : $statush";
 
-        if ($cs['no_telpon_ayah'] != '') {
-          mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
-        } elseif ($cs['no_telpon_ibu'] != '') {
-          mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
+            if ($cs['no_telpon_ayah'] != '') {
+                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
+            } elseif ($cs['no_telpon_ibu'] != '') {
+                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
+            }
         }
-      }
     }
 
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
-  }
+}
 
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
@@ -542,3 +532,4 @@
                   </div>";
 }
 ?>
+
