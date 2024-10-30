@@ -263,8 +263,9 @@
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 } else {
-                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td>$r[nilai]<select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
+
                                 echo "<option value='A'>A</option>";
                                 echo "<option value='B'>B</option>";
                                 echo "<option value='C'>C</option>";
