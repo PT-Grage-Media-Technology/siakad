@@ -700,22 +700,19 @@ if ($_GET[act] == '') {
                               <td>$r[keterangan]</td>
                               <td>$r[waktu] WIB</td>
                               <td>";
-                              if($r[nilai]){
-                                echo"$r[nilai]";
-                              } else{
-                                echo"
-                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
-                                      <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
-                                          <option value=''>Pilih Nilai</option>
-                                          <option value='A'>A</option>
-                                          <option value='B'>B</option>
-                                          <option value='C'>C</option>
-                                          <option value='D'>D</option>
-                                          <option value='F'>F</option>
-                                      </select>
-                                  </form>";
-                              }
+                              $selected_nilai = $r['nilai'] ? $r['nilai'] : ''; // Ambil nilai dari DB jika ada
+                              echo"
+                                <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                                    <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                                        <option value=''>Pilih Nilai</option>
+                                        <option value='A' " . ($selected_nilai == 'A' ? 'selected' : '') . ">A</option>
+                                        <option value='B' " . ($selected_nilai == 'B' ? 'selected' : '') . ">B</option>
+                                        <option value='C' " . ($selected_nilai == 'C' ? 'selected' : '') . ">C</option>
+                                        <option value='D' " . ($selected_nilai == 'D' ? 'selected' : '') . ">D</option>
+                                        <option value='F' " . ($selected_nilai == 'F' ? 'selected' : '') . ">F</option>
+                                    </select>
+                                </form>";
                               echo"</td>
                               <td style='width:70px !important'><center>
                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
