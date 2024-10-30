@@ -264,16 +264,7 @@
                                   } else {
                                     echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
                                   }
-
-
-    $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
-    while ($k = mysql_fetch_array($kehadiran)) {
-      if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
-        echo "<option value='$k[kode_kehadiran]' selected>* $k[nama_kehadiran]</option>";
-      } else {
-        echo "<option value='$k[kode_kehadiran]'>$k[nama_kehadiran]</option>";
-      }
-    }
+                                  echo "<option value='A' selected>A</option>";
     echo "</select></td>";
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
