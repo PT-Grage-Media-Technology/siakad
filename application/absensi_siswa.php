@@ -260,9 +260,9 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                    echo "<td><select disabled style='width:100px;' name='nilai' class='form-control'>";
+                                    echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
                                   } else {
-                                    echo "<td><select style='width:100px;' name='nilai' class='form-control'>";
+                                    echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                   }
                                   echo "<option value='A'>A</option>";
                                   echo "<option value='B' >B</option>";
