@@ -331,7 +331,7 @@ $today = date('Y-m-d');
                                                 jam_ke = '$_POST[e]',
                                                 materi = '$_POST[f]',
                                                 keterangan = '$_POST[g]',
-                                                users = '$_SESSION[id]' where id_journal='$_POST[id]'");
+                                                users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   }
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
@@ -402,7 +402,7 @@ $today = date('Y-m-d');
                       
                     echo "</td>
                     </tr>
-                    
+
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
