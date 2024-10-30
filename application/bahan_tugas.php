@@ -727,9 +727,9 @@ if ($_GET[act] == '') {
 
   if(isset($_POST['nilai_jawaban'])){
     $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
-    var_dump($coba);
+    // var_dump($coba);
     
-    // echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+    echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
   }
 
   echo "</table>
