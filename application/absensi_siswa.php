@@ -257,24 +257,18 @@
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]</td>
-                                <td>";
-                                if($r[nilai]){
-                                  echo"$r[nilai]";
-                                }else{
-                                  echo"
-                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
-                                      <input type='hidden' name='a[$no]' value='a[$no]'>
-                                      <select name='nilai' style='padding:4px' onchange='submitNilai(this)'>
-                                          <option value=''>Pilih Nilai</option>
-                                          <option value='A'>A</option>
-                                          <option value='B'>B</option>
-                                          <option value='C'>C</option>
-                                          <option value='D'>D</option>
-                                          <option value='F'>F</option>
-                                      </select>
-                                  </form>";
-                                }
-    echo "</td>";
+                               
+                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                    echo "<td><select disabled style='width:100px;' name='nilai' class='form-control'>";
+                                  } else {
+                                    echo "<td><select style='width:100px;' name='nilai' class='form-control'>";
+                                  }
+                                  echo "<option value='A'>A</option>";
+                                  echo "<option value='B' >B</option>";
+                                  echo "<option value='C' >C</option>";
+                                  echo "<option value='D'>D</option>";
+    echo "</select></td>";
                                   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
@@ -325,7 +319,8 @@
     $nip = $_SESSION['id'];
     $nilai = $_POST['nilai'];
     $kdhadir = 'H';
-   
+    var_dump($nilai);
+    exit;
     
     // Variabel untuk menentukan apakah kita perlu memasukkan ke rb_absensi_guru
     $guruInserted = false;
@@ -336,14 +331,8 @@
 
         if ($total >= 1) {
             // Update kehadiran siswa
-            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . ", nilai='" . $nilai . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
-          //   var_dump([
-          //     'updateAbsensiSiswa' => $updateAbsensiSiswa,
-          //     'nisn' => $nisn,
-          //     'a' => $a,
-          //     'nilai' => $nilai,
-          //     'tanggal' => $e . "-" . $f . "-" . $g
-          // ]);
+            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa SET kode_kehadiran = '" . $a[$i] . "' WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$_POST[jdwl]'");
+
             if ($updateAbsensiSiswa && !$guruInserted) {
                 // Hanya insert ke rb_absensi_guru sekali setelah semua siswa diupdate
                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
@@ -364,15 +353,8 @@
             }
         } else {
             // Insert data ke tabel rb_absensi_siswa
-            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
-            // var_dump([
-            //     'insertAbsensiSiswa' => $insertAbsensiSiswa,
-            //     'nisn' => $nisn,
-            //     'a' => $a,
-            //     'nilai' => $nilai,
-            //     'tanggal' => $e . "-" . $f . "-" . $g
-            // ]);
-            // exit;
+            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa VALUES('', '$_POST[jdwl]', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
+
             if ($insertAbsensiSiswa && !$guruInserted) {
                 // Jika berhasil, lanjutkan insert ke tabel rb_absensi_guru
                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$_POST[jdwl]', '" . $nip . "', '" . $kdhadir . "', '" . $e . "-" . $f . "-" . $g . "', '" . date('Y-m-d H:i:s') . "')");
@@ -568,16 +550,4 @@
                   </div>";
 }
 ?>
-
-<script>
-function submitNilai(selectElement) {
-    const selectedValue = selectElement.value;
-    if (selectedValue) {
-        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
-        if (confirmSubmit) {
-            document.getElementById('nilaiForm').submit();
-        }
-    }
-}
-</script>
 
