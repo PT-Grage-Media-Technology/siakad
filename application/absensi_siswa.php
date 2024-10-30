@@ -302,7 +302,7 @@
 
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
-    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'disabled' : '';
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
 
     echo "<div class='box-footer'>
         <button type='submit' name='simpann' class='btn btn-info pull-right' $isDisabled>Simpan Absensi</button>
