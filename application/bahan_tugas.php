@@ -623,6 +623,7 @@ if ($_GET[act] == '') {
                           window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
       }
     }
+    
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -687,6 +688,7 @@ if ($_GET[act] == '') {
                         <th>Nama Lengkap</th>
                         <th>Keterangan</th>
                         <th>Waktu Kirim</th>
+                        <th>Nilai</th>
                         <th>Action</th>
                       </tr>";
   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
@@ -697,11 +699,36 @@ if ($_GET[act] == '') {
                               <td>$r[nama]</td>
                               <td>$r[keterangan]</td>
                               <td>$r[waktu] WIB</td>
+                              <td>";
+                              if($r[nilai]){
+                                echo"$r[nilai]";
+                              } else{
+                                echo"
+                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                                      <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                                          <option value=''>Pilih Nilai</option>
+                                          <option value='A'>A</option>
+                                          <option value='B'>B</option>
+                                          <option value='C'>C</option>
+                                          <option value='D'>D</option>
+                                          <option value='F'>F</option>
+                                      </select>
+                                  </form>";
+                              }
+                              echo"</td>
                               <td style='width:70px !important'><center>
                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
                               </center></td>";
     echo "</tr>";
     $no++;
+  }
+
+  if(isset($_POST['nilai_jawaban'])){
+    $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
+    // var_dump($coba);
+    
+    echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
   }
 
   echo "</table>
@@ -778,3 +805,15 @@ if ($_GET[act] == '') {
             </div>";
 }
 ?>
+
+<script>
+function submitFormWithAlert(selectElement) {
+    const selectedValue = selectElement.value;
+    if (selectedValue) {
+        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
+        if (confirmSubmit) {
+            document.getElementById('nilaiForm').submit();
+        }
+    }
+}
+</script>
