@@ -320,7 +320,8 @@
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
     $nilai = $_POST['nilai'];
-    $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
+    // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
+    $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'H';
