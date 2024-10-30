@@ -256,7 +256,7 @@
       <td>$r[nipd]</td>
       <td>$r[nisn]</td>
       <td>$r[nama]</td>
-      <td>$r[jenis_kelamin]</td>";
+      <td>$r[nilai]</td>";
 
     // Input hidden untuk NISN
     echo "<input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
