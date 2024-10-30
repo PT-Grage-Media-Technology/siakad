@@ -259,23 +259,28 @@
                                 <td>$r[jenis_kelamin]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                              // Menampilkan dropdown 'nilai'
-                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                } else {
-                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                }
-                                echo "<option value='A'>A</option>";
-                                echo "<option value='B'>B</option>";
-                                echo "<option value='C'>C</option>";
-                                echo "<option value='D'>D</option>";
-                                echo "</select></td>";
-
-                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                    echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-                                  } else {
-                                    echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                  if($r[nilai]){
+                                    echo "$r[nilai]";
+                                  }else{
+                                    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                      echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                    } else {
+                                      echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                    }
+                                    echo "<option value='A'>A</option>";
+                                    echo "<option value='B'>B</option>";
+                                    echo "<option value='C'>C</option>";
+                                    echo "<option value='D'>D</option>";
+                                    echo "</select></td>";
+    
+                                      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                        echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+                                      } else {
+                                        echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+                                      }
                                   }
+                              // Menampilkan dropdown 'nilai'
+                               
 
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
