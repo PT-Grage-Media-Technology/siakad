@@ -159,6 +159,23 @@
                       </tr>";
                 $no++;
               }
+              if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['users'])) {
+                // Mendapatkan NIP pengguna
+                $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                $pesan = 'tes aja';
+                $tanggal = date('Y-m-d');
+            
+                // Prepare the insert query to notify about absence
+                $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
+
+                // Execute the insert query
+                $insertResult = mysql_query($insertQuery);
+                if ($insertResult) {
+                  echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                } else {
+                  echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                }
+              }
             } else {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
@@ -201,23 +218,7 @@
                 $no++;
               }
               // Check if form is submitted
-              if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['users'])) {
-                // Mendapatkan NIP pengguna
-                $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
-                $pesan = 'tes aja';
-                $tanggal = date('Y-m-d');
             
-                // Prepare the insert query to notify about absence
-                $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
-
-                // Execute the insert query
-                $insertResult = mysql_query($insertQuery);
-                if ($insertResult) {
-                  echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                } else {
-                  echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
-                }
-              }
             }
 
             // // Gunakan kodejdwl_terakhir di sini
