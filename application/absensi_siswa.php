@@ -540,8 +540,10 @@
 <?php
 if (isset($_GET['id_pemberitahuan'])) {
   $id_pemberitahuan = $_GET['id_pemberitahuan'];
-
-  $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan = '$id_pemberitahuan'");
+  // Menjalankan query update
+  $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan_guru = '$id_pemberitahuan'");
+} else {
+  echo "<script>alert('Parameter id_pemberitahuan tidak ditemukan.');</script>";
 }
 ?>
 
