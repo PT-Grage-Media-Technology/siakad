@@ -608,18 +608,13 @@
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>
 
-                <!-- Tombol untuk membuka modal -->
-              <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-                Buka Modal
-              </button>
-
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                   <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
                       <div class='modal-header'>
                         <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                        <h4 class='modal-title' id='myModalLabel'>Judul Modal</h4>
+                        <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>
                         <table id='example1' class='table table-bordered table-striped'>
@@ -648,7 +643,6 @@
                       </div>
                       <div class='modal-footer'>
                         <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
-                        <button type='button' class='btn btn-primary'>Simpan perubahan</button>
                       </div>
                     </div>
                   </div>
