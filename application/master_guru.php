@@ -637,8 +637,8 @@
                             <td>$no</td>
                             <td>$p[pesan]</td>
                             <td>$p[waktu_dikirim]</td>
-                            <td>
-                            </td>
+                             <td> <a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]'>Absen</a></td>
+                          
                           </tr>";
                           $no++;
                           }
