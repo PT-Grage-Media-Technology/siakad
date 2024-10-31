@@ -146,17 +146,16 @@
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE nip_guru='$r[users]', is_read=1, kode_kelas='$r[kode_kelas]', kode_mapel='$r[kode_pelajaran]', id_tujuan_pembelajaran='$r[id_journal]', tanggal_absen='$r[tanggal]', jam_ke='$r[jam_ke]'");
 
                         echo"
-                        <td>
-                            <?php 
-                            if (isset($r[kode_kehadiran])) {
-                                echo $r[kode_kehadiran];
+                        <td>"; 
+                            if (isset($r['kode_kehadiran'])) {
+                                echo "$r[kode_kehadiran]";
                             } else {
-                                echo '<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                                echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                                         <input type='hidden' name='users' value='' . $r[users] . ''>
                                         <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
-                                      </form>';
+                                      </form>";
                             }
-                            ?>
+                            echo"
                         </td>
 
                         <td>
