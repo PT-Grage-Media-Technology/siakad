@@ -149,7 +149,7 @@
                         <td>"; 
                             if (isset($r['kode_kehadiran'])) {
                                 // echo "$r[kode_kehadiran]";
-                                echo "$pe, $coba";
+                                echo "$pemberitahuan, $coba";
                             } else {
                                 echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                                         <input type='hidden' name='users' value='' . $r[users] . ''>
