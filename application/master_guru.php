@@ -622,7 +622,7 @@
                         <h4 class='modal-title' id='myModalLabel'>Judul Modal</h4>
                       </div>
                       <div class='modal-body'>
-                        <table>
+                        <table id='example1' class='table table-bordered table-striped'>
                           <tr>
                             <th>No</th>
                             <th>Pesan</th>
