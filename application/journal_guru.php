@@ -126,6 +126,9 @@
     
     <!-- Container grid dengan margin dan padding yang seragam -->
     <div style='max-width: 200px; margin: 10px auto; padding: 10px;'>
+  <style>
+    @media (min-width: 1024px) { div[style] { margin: 10px; } }
+  </style>
   <!-- Grid container dengan 2 baris, 2 kolom -->
   <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
     <!-- Tombol Nilai UTS -->
