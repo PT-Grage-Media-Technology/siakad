@@ -143,18 +143,30 @@
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>";
 
-                        $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE nip_guru='$r[users]' AND is_read=0 AND kode_kelas='$r[kode_kelas]' AND kode_mapel='$r[kode_pelajaran]' AND id_tujuan_pembelajaran='$r[id_journal]' AND tanggal_absen='$r[tanggal]' AND jam_ke='$r[jam_ke]'");
+                        $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
+                                                      WHERE nip_guru='$r[users]' 
+                                                      AND is_read=0 
+                                                      AND kode_kelas='$r[kode_kelas]' 
+                                                      AND kode_mapel='$r[kode_pelajaran]' 
+                                                      AND id_tujuan_pembelajaran='$r[id_journal]' 
+                                                      AND tanggal_absen='$r[tanggal]' 
+                                                      AND jam_ke='$r[jam_ke]'");
+
                         $pe = mysql_fetch_array($pemberitahuan);
                         echo"
                         <td>"; 
                             if (isset($r['kode_kehadiran'])) {
                                 // echo "$r[kode_kehadiran]";
-                                echo "$pemberitahuan, $coba";
+                                echo "$pemberitahuan, $pe";
                             } else {
+                              if(mysql_num_rows($pemberitahuan) > 0){
+                                echo "Sudah Kirim Pemberitahuan";
+                              } else {
                                 echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                                         <input type='hidden' name='users' value='' . $r[users] . ''>
                                         <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                       </form>";
+                              }
                             }
                             echo"
                         </td>
