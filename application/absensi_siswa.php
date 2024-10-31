@@ -324,6 +324,7 @@
     $nip = $_SESSION['id'];
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
+    $jam_ke = $_GET['jam'];
     $guruInserted = false;
 
     for ($i = 1; $i <= $jml_data; $i++) {
@@ -336,7 +337,7 @@
                                                SET kode_kehadiran='" . $a[$i] . "', nilai='" . $nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
             if ($updateAbsensiSiswa && !$guruInserted) {
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
+                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
                 $guruInserted = true;
             }
         } else {
@@ -344,7 +345,7 @@
             $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
                                                VALUES('', '$kodejdwl', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai[$i] . "', '$tgl', NOW())");
             if ($insertAbsensiSiswa && !$guruInserted) {
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir', '$tgl', NOW())");
+                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
                 $guruInserted = true;
             }
         }
