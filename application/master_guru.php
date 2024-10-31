@@ -1,6 +1,7 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 <?php if ($_GET[act] == '') { ?>
+  
   <div class="container-fluid">
 
     <div class="row">
@@ -543,6 +544,7 @@
                         </div>
                         
                         <div class='box-body'>
+                        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
                         
                         <!-- Modal -->
                         <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
