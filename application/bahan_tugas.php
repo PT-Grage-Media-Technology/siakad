@@ -205,7 +205,8 @@ if ($_GET[act] == '') {
                                             <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=jawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a>";
       }
       echo "<a style='margin-left:3px' class='btn btn-warning btn-xs' title='Edit $r[nama_kategori_elearning]' href='index.php?view=bahantugas&act=edit&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "&edit=$r[id_elearning]'><span class='glyphicon glyphicon-edit'></span></a>
-                                        <a class='btn btn-danger btn-xs' title='Delete $r[nama_kategori_elearning]' href='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "&hapus=$r[id_elearning]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
+                                        <a class='btn btn-danger btn-xs' title='Delete $r[nama_kategori_elearning]' href='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "&hapus=$r[id_elearning]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td></tr>
+                                        <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=jawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a>";
     }
     $no++;
   }
@@ -669,12 +670,12 @@ if ($_GET[act] == '') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Daftar Siswa yang Mengrimkan Jawaban Tugas </h3>
+                  <h3 class='box-title'>Daftar Siswa yang Mengirimkan Jawaban Tugas </h3>
                   <a class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]'>Kembali</a>
                 </div>
 
                 <div class='col-md-12'>
-                <table class='table table-condensed table-hover'>
+                <table class='table table-condensed table-hover' style='overflow-x: auto; display: block;'>
                     <tbody>
                       <input type='hidden' name='id' value='$s[kode_kelas]'>
                       <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
@@ -685,7 +686,7 @@ if ($_GET[act] == '') {
                 </div>
 
                 <div class='box-body'>
-                <table class='table table-bordered table-striped'>
+                <table class='table table-bordered table-striped' style='overflow-x: auto; display: block;'>
                       <tr>
                         <th style='width:40px'>No</th>
                         <th>NISN</th>
@@ -695,6 +696,7 @@ if ($_GET[act] == '') {
                         <th>Nilai</th>
                         <th>Action</th>
                       </tr>";
+
   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
@@ -730,7 +732,6 @@ if ($_GET[act] == '') {
 
   if(isset($_POST['nilai_jawaban'])){
     $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
-    // var_dump($coba);
     
     echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
   }
@@ -738,6 +739,7 @@ if ($_GET[act] == '') {
   echo "</table>
                     </div>
                   </div>";
+
 } elseif ($_GET[act] == 'jawaban') {
   cek_session_guru();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
