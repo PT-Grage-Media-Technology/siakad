@@ -142,7 +142,14 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>" . (isset($r['kode_kehadiran']) ? $r['kode_kehadiran'] : '<a class="btn btn-primary btn-xs" href="">Peringatkan</a>') . "</td>
+                      <td>" . (isset($r['kode_kehadiran'])
+                  ? $r['kode_kehadiran']
+                  : "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                    <input type='hidden' name='users' value='" . $r['users'] . "'>
+                    <button class='btn btn-primary btn-xs' type='submit'>Peringatkan</button>
+                    </form>") .
+                  "</td> 
+
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
@@ -192,6 +199,24 @@
                         </td>
                       </tr>";
                 $no++;
+              }
+              // Check if form is submitted
+              if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['users'])) {
+                // Mendapatkan NIP pengguna
+                $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                $pesan = 'tes aja';
+                $tanggal = date('Y-m-d');
+            
+                // Prepare the insert query to notify about absence
+                $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
+
+                // Execute the insert query
+                $insertResult = mysql_query($insertQuery);
+                if ($insertResult) {
+                  echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                } else {
+                  echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                }
               }
             }
 
