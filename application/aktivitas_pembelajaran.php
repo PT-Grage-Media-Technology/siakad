@@ -162,10 +162,12 @@
                               if(mysql_num_rows($pemberitahuan) > 0){
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
-                                echo "<form action='index.php?view=aktivitaspembelajaran&act=peringatkan' method='POST'>
-                                        <input type='hidden' name='users' value='$r[users]'>
-                                        <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
-                                      </form>";
+                                echo "
+                                <form method='POST' id='pemberitahuan' onsubmit='return submitFormWithAlert()'>
+                                    <input type='hidden' name='users' value='$r[users]'>
+                                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
+                                </form>";
+                                
                               }
                             }
                             echo"
@@ -273,3 +275,17 @@
     </div><!-- /.box-body -->
   </div>
 </div>
+
+<script>
+function submitFormWithAlert() {
+    // Pesan konfirmasi
+    const confirmSubmit = confirm("Apakah Anda yakin ingin mengirimkan peringatan?");
+    if (confirmSubmit) {
+        // Jika konfirmasi "OK", form akan disubmit
+        document.getElementById('pemberitahuan').submit();
+        return true;
+    }
+    // Jika konfirmasi "Cancel", form tidak akan disubmit
+    return false;
+}
+</script>
