@@ -669,32 +669,36 @@ if ($_GET[act] == '') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Daftar Siswa yang Mengrimkan Jawaban Tugas </h3>
+                  <h3 class='box-title'>Daftar Siswa yang Mengirimkan Jawaban Tugas </h3>
                   <a class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]'>Kembali</a>
                 </div>
 
                 <div class='col-md-12'>
-                <table class='table table-condensed table-hover'>
-                    <tbody>
-                      <input type='hidden' name='id' value='$s[kode_kelas]'>
-                      <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                      <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                    </tbody>
-                </table>
+                <div class='table-responsive'>
+                  <table class='table table-condensed table-hover'>
+                      <tbody>
+                        <input type='hidden' name='id' value='$s[kode_kelas]'>
+                        <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+                        <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                        <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+                      </tbody>
+                  </table>
+                </div>
                 </div>
 
                 <div class='box-body'>
-                <table class='table table-bordered table-striped'>
-                      <tr>
-                        <th style='width:40px'>No</th>
-                        <th>NISN</th>
-                        <th>Nama Lengkap</th>
-                        <th>Keterangan</th>
-                        <th>Waktu Kirim</th>
-                        <th>Nilai</th>
-                        <th>Action</th>
-                      </tr>";
+                <div class='table-responsive'>
+                  <table class='table table-bordered table-striped'>
+                        <tr>
+                          <th style='width:40px'>No</th>
+                          <th>NISN</th>
+                          <th>Nama Lengkap</th>
+                          <th>Keterangan</th>
+                          <th>Waktu Kirim</th>
+                          <th>Nilai</th>
+                          <th>Action</th>
+                        </tr>";
+
   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
