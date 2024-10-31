@@ -624,8 +624,9 @@
                             <th>Waktu Dikirim</th>
                             <th>Action</th>
                           </tr>";
-                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
+                          if($adaPemberitahuan){
+                            $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
@@ -638,6 +639,13 @@
                           $no++;
                           
                           }
+                          }else{
+                            echo " 
+                          <tr>
+                            <td>jangan lupa pulang</td>
+                          </tr>";
+                          }
+                          
                           echo"
                         </table>
                       </div>
