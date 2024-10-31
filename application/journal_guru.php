@@ -118,7 +118,7 @@
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='200px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
@@ -129,7 +129,7 @@
   <!-- Grid container dengan 2 baris, 2 kolom -->
   <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
     <!-- Tombol Nilai UTS -->
-    <a class='btn btn-success' style='width: 160px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
+    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
        href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
       <div style='text-align: center;'>
         <div class='glyphicon glyphicon-list-alt' style='font-size: 20px; margin-bottom: 4px;'></div>
