@@ -628,14 +628,14 @@
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
                           </tr>";
-                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru");
+                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0");
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
                           <tr>
-                            <td>No</td>
-                            <td>Pesan</td>
-                            <td>Waktu Dikirim</td>
+                            <td>$no</td>
+                            <td>$p[pesan]</td>
+                            <td>$p[waktu_dikirim]</td>
                           </tr>";
                           $no++;
                           }
