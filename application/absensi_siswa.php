@@ -323,7 +323,7 @@
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
     $kodejdwl = $_POST['jdwl'];
-    $kdhadir = 'H';
+    $kdhadir = 'Hadir';
     $guruInserted = false;
 
     for ($i = 1; $i <= $jml_data; $i++) {

@@ -18,38 +18,38 @@
       </h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
 
-          <input type="hidden" name="view" value="aktivitaspembelajaran">
+        <input type="hidden" name="view" value="aktivitaspembelajaran">
 
-          <!-- Filter Tanggal -->
-          <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-            
-            <?php
-            $today = date('j'); // Mengambil tanggal hari ini
-            $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
-            
-            for ($i = 1; $i <= 31; $i++) {
-              $selected = ($selectedTanggal == $i) ? 'selected' : '';
-              echo "<option value='$i' $selected>$i</option>";
-            }
-            ?>
-          </select>
+        <!-- Filter Tanggal -->
+        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
 
-        
-          <!-- Filter Bulan -->
-          <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
-            <?php
-            $currentMonth = date('n'); // Mengambil bulan saat ini
-            $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
-            $bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+          <?php
+          $today = date('j'); // Mengambil tanggal hari ini
+          $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
+          
+          for ($i = 1; $i <= 31; $i++) {
+            $selected = ($selectedTanggal == $i) ? 'selected' : '';
+            echo "<option value='$i' $selected>$i</option>";
+          }
+          ?>
+        </select>
 
-            for ($i = 1; $i <= 12; $i++) {
-              $selected = ($selectedBulan == $i) ? 'selected' : '';
-              echo "<option value='$i' $selected>{$bulanNama[$i - 1]}</option>";
-            }
-            ?>
-          </select>
 
-                  <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <!-- Filter Bulan -->
+        <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+          <?php
+          $currentMonth = date('n'); // Mengambil bulan saat ini
+          $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
+          $bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+          for ($i = 1; $i <= 12; $i++) {
+            $selected = ($selectedBulan == $i) ? 'selected' : '';
+            echo "<option value='$i' $selected>{$bulanNama[$i - 1]}</option>";
+          }
+          ?>
+        </select>
+
+        <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tahun Akademik -</option>
           <?php
           $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
@@ -59,8 +59,8 @@
           }
           ?>
         </select>
-        </form>
-      
+      </form>
+
 
 
 
@@ -102,29 +102,34 @@
             </tr>
           </thead>
           <tbody>
-            
+
             <?php
-            if($_SESSION['is_kurikulum']){
+            if ($_SESSION['is_kurikulum']) {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
               $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
               $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
-  
-  
-              // Ubah query untuk memfilter berdasarkan tanggal yang dipilih, ambil data kelas, dan filter berdasarkan users
-              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-              FROM rb_journal_list jl 
-              JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-              JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-              JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-              JOIN rb_guru d ON jl.users = d.nip
-              WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
-              AND MONTH(jl.tanggal) = '$bulan_dipilih'
-              ORDER BY jl.waktu_input DESC;
-              ");
+
+
+              $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
+              (SELECT kode_kehadiran 
+               FROM rb_absensi_guru ag 
+               WHERE ag.nip = jl.users 
+               AND ag.tanggal = jl.tanggal 
+               LIMIT 1) AS kode_kehadiran
+      FROM rb_journal_list jl 
+      JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+      JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+      JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+      JOIN rb_guru d ON jl.users = d.nip
+      WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+      AND MONTH(jl.tanggal) = '$bulan_dipilih'
+      ORDER BY jl.waktu_input DESC;
+      ");
+
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
-  
+            
               // var_dump(mysql_fetch_array($tampil));
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
@@ -137,7 +142,7 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>$r[kodejdwl]</td>
+                        <td>" . (isset($r['kode_kehadiran']) ? $r['kode_kehadiran'] : '<a class="btn btn-primary btn-xs" href="">Peringatkan</a>') . "</td>
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
@@ -147,13 +152,13 @@
                       </tr>";
                 $no++;
               }
-            }else{
-               // Mengambil tanggal yang dipilih dari GET
+            } else {
+              // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
               $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
               $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
-  
-  
+
+
               // Ubah query untuk memfilter berdasarkan tanggal yang dipilih dan ambil data kelas
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
               FROM rb_journal_list jl 
@@ -166,7 +171,7 @@
               AND jl.users = '{$_SESSION['id']}'
               ORDER BY jl.waktu_input DESC;
               ");
-  
+
               // var_dump(mysql_fetch_array($tampil));
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {

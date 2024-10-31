@@ -115,45 +115,57 @@
   }
   echo "</div>
                 <div class='box-body'>
-                  <div class='table-responsive'>
-                  <table class='table table-condensed table-hover'>
-                      <tbody>
-                        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
-                        <tr><th scope='row'>Nama Guru</th>           <td>$d[nama_guru]</td></tr>
-                        <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
-                      </tbody>
-                  </table>
+  <div class='table-responsive'>
+    <table class='table table-condensed table-hover'>
+      <tbody>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+        <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
+        <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
+      </tbody>
+    </table>
+    
+    <!-- Tambahkan container untuk grid -->
+    <div class='d-flex flex-wrap justify-content-center' style='gap: 10px; max-width: 400px; margin: 0 auto;'>
+      <!-- Baris 1: 2 icon pertama -->
+      <div class='d-flex' style='width: 100%; justify-content: center; gap: 10px;'>
+        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Nilai UTS' 
+           href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+          <div class='d-flex flex-column align-items-center'>
+            <div class='glyphicon glyphicon-list-alt' style='font-size: 28px;'></div>
+            <div style='font-size: 14px;'>Nilai UTS</div>
+          </div>
+        </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-                    <div class='d-flex flex-column align-items-center'>
-                      <div class='glyphicon glyphicon-list-alt' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Nilai UTS</div>
-                    </div>
-                  </a>
+        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Nilai Raport'
+           href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+          <div class='d-flex flex-column align-items-center'>
+            <div class='glyphicon glyphicon-book' style='font-size: 28px;'></div>
+            <div style='font-size: 14px;'>Nilai Raport</div>
+          </div>
+        </a>
+      </div>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-                    <div class='d-flex flex-column align-items-center'>
-                      <div class='	glyphicon glyphicon-book' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Nilai Raport</div>
-                    </div>
-                  </a>
+      <!-- Baris 2: 2 icon terakhir -->
+      <div class='d-flex' style='width: 100%; justify-content: center; gap: 10px;'>
+        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Forum Diskusi'
+           href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+          <div class='d-flex flex-column align-items-center'>
+            <div class='fa fa-users' style='font-size: 28px;'></div>
+            <div style='font-size: 14px;'>Forum Diskusi</div>
+          </div>
+        </a>
 
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-                    <div class='d-flex flex-column align-items-center'>
-                      <div class='fa fa-users' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Forum Diskusi</div>
-                    </div>
-                  </a>
-                  
-
-                  <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-                    <div class='d-flex flex-column align-items-center'>
-                      <div class='fa fa-th-list' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Quiz / Ujian Online</div>
-                    </div>
-                  </a>
-                  
-                  </div>
+        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Quiz/Ujian Online'
+           href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+          <div class='d-flex flex-column align-items-center'>
+            <div class='fa fa-th-list' style='font-size: 28px;'></div>
+            <div style='font-size: 14px;'>Quiz/Ujian Online</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
                   <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
