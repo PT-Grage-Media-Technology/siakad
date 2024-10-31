@@ -163,23 +163,16 @@
                  // Mendapatkan NIP pengguna
                  $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
                  
-                 // Tambahkan var_dump untuk memeriksa nilai $nip
-                 var_dump($nip); // Menampilkan nilai NIP yang diterima
-                 
                  $pesan = 'tes aja';
-                 var_dump($pesan); // Menampilkan nilai NIP yang diterima
                  $tanggal = date('Y-m-d');
-                 var_dump($tanggal); // Menampilkan nilai NIP yang diterima
              
                  // Prepare the insert query to notify about absence
-                 $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, 0, $tanggal )";
-                 var_dump($insertQuery);
+                 $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('$nip', '$pesan', 0, '$tanggal')";
  
                  // Execute the insert query
                  $insertResult = mysql_query($insertQuery);
                  if ($insertResult) {
                    echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                   
                  } else {
                    echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
                  }
