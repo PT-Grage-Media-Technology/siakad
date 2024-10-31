@@ -161,8 +161,6 @@
               }
               if (isset($_POST['peringatkan'])) {
                  // Mendapatkan NIP pengguna
-                 var_dump($_POST['peringatkan']);
-                 exit;
                  $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
                  $pesan = 'tes aja';
                  $tanggal = date('Y-m-d');
@@ -174,6 +172,8 @@
                  $insertResult = mysql_query($insertQuery);
                  if ($insertResult) {
                    echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                 header('Location: index.php?view=aktivitaspembelajaran');
+                 exit();
                  } else {
                    echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
                  }
