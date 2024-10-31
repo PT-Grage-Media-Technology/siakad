@@ -540,24 +540,10 @@
 <?php
 if (isset($_GET['id_pemberitahuan'])) {
   $id_pemberitahuan = $_GET['id_pemberitahuan'];
-
-  // Cek isi dari $id_pemberitahuan
-  var_dump($id_pemberitahuan);
-
   // Menjalankan query update
   $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan_guru = '$id_pemberitahuan'");
-  
-  // Debug hasil dari $update
-  var_dump($update);
-
-  // Jika ada error, tampilkan errornya
-  if (!$update) {
-      echo "Error: " . mysql_error();
-  } else {
-      echo "Data berhasil diperbarui.";
-  }
 } else {
-  echo "Parameter id_pemberitahuan tidak ditemukan.";
+  echo "<script>alert('Parameter id_pemberitahuan tidak ditemukan.');</script>";
 }
 ?>
 
