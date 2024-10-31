@@ -124,42 +124,43 @@
       </tbody>
     </table>
     
-    <!-- Tambahkan container untuk grid -->
-    <div class='d-flex flex-wrap justify-content-center' style='gap: 10px; max-width: 400px; margin: 0 auto;'>
-      <!-- Baris 1: 2 icon pertama -->
-      <div class='d-flex' style='width: 100%; justify-content: center; gap: 10px;'>
-        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Nilai UTS' 
+    <!-- Container grid dengan margin dan padding yang seragam -->
+    <div style='max-width: 300px; margin: 20px auto; padding: 10px;'>
+      <!-- Grid container dengan 2 baris, 2 kolom -->
+      <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px;'>
+        <!-- Tombol Nilai UTS -->
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;' 
            href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-          <div class='d-flex flex-column align-items-center'>
-            <div class='glyphicon glyphicon-list-alt' style='font-size: 28px;'></div>
-            <div style='font-size: 14px;'>Nilai UTS</div>
+          <div style='text-align: center;'>
+            <div class='glyphicon glyphicon-list-alt' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Nilai UTS</div>
           </div>
         </a>
 
-        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Nilai Raport'
+        <!-- Tombol Nilai Raport -->
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-          <div class='d-flex flex-column align-items-center'>
-            <div class='glyphicon glyphicon-book' style='font-size: 28px;'></div>
-            <div style='font-size: 14px;'>Nilai Raport</div>
+          <div style='text-align: center;'>
+            <div class='glyphicon glyphicon-book' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Nilai Raport</div>
           </div>
         </a>
-      </div>
 
-      <!-- Baris 2: 2 icon terakhir -->
-      <div class='d-flex' style='width: 100%; justify-content: center; gap: 10px;'>
-        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Forum Diskusi'
+        <!-- Tombol Forum Diskusi -->
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-          <div class='d-flex flex-column align-items-center'>
-            <div class='fa fa-users' style='font-size: 28px;'></div>
-            <div style='font-size: 14px;'>Forum Diskusi</div>
+          <div style='text-align: center;'>
+            <div class='fa fa-users' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Forum Diskusi</div>
           </div>
         </a>
 
-        <a class='btn btn-success mb-2' style='flex: 1; max-width: 160px;' title='Quiz/Ujian Online'
+        <!-- Tombol Quiz/Ujian -->
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-          <div class='d-flex flex-column align-items-center'>
-            <div class='fa fa-th-list' style='font-size: 28px;'></div>
-            <div style='font-size: 14px;'>Quiz/Ujian Online</div>
+          <div style='text-align: center;'>
+            <div class='fa fa-th-list' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Quiz/Ujian Online</div>
           </div>
         </a>
       </div>
