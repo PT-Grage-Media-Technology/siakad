@@ -638,7 +638,7 @@
                             <td>$no</td>
                             <td>$p[pesan]</td>
                             <td>$p[waktu_dikirim]</td>
-                            <td> <a class='btn btn-warning btn-xs' name='absen' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan]'>Absen</a></td>
+                            <td> <a class='btn btn-warning btn-xs' name='absen' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
                           </tr>";
                           $no++;
                           if (isset($_GET['id_pemberitahuan']) && isset($_GET['absen'])) {
