@@ -628,7 +628,7 @@
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
                           </tr>";
-                          $pemberitahuan = mysql_query("SELECT * FROM pemberitahuan_guru");
+                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru");
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
