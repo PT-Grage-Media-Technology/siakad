@@ -149,7 +149,7 @@
                                                       AND is_read=0 
                                                       AND kode_kelas='$r[kode_kelas]' 
                                                       AND kode_mapel='$r[kode_pelajaran]' 
-                                                      AND id_tujuan_pembelajaran='$r[id_journal]' 
+                                                      AND id_tujuan_pembelajaran='$r[kodejdwl]' 
                                                       AND tanggal_absen='$r[tanggal]' 
                                                       AND jam_ke='$r[jam_ke]'");
 
@@ -174,7 +174,7 @@
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
-                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[kodejdwl]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
                             </center>
                         </td>
                       </tr>";
@@ -187,7 +187,7 @@
                    $pesan = 'tes aja';
                    $tanggal = date('Y-m-d H:i:s');
                
-                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[id_journal]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
+                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
                    if ($insertResult) {
                      echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
                    } else {
@@ -232,7 +232,7 @@
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
-                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[id_journal]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
+                              <a class='btn btn-primary btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[kodejdwl]&tgl=$r[tanggal]&jam=$r[jam_ke]'>Absensi</a>
                             </center>
                         </td>
                       </tr>";
