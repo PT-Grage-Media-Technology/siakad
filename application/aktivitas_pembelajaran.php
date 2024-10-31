@@ -180,10 +180,9 @@
                       </tr>";
                 $no++;
                 
-                if (isset($_POST['peringatkan'])) {
+                if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                    // Mendapatkan NIP pengguna
                    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
-                   echo $nip;
                    
                    $pesan = 'tes aja';
                    $tanggal = date('Y-m-d H:i:s');
