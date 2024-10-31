@@ -175,8 +175,6 @@
                 }
 
               }
-              // Dump data untuk debugging
-              var_dump($nip, $pesan, $tanggal, $insertQuery, $insertResult);
 
             } else {
               // Mengambil tanggal yang dipilih dari GET
