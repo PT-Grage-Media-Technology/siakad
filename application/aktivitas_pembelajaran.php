@@ -189,7 +189,6 @@
                
                    $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
                    var_dump($insertResult);
-                   exit;
                 }
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
