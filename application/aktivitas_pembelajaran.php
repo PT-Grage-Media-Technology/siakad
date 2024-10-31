@@ -160,7 +160,23 @@
                 $no++;
               }
               if (isset($_POST['peringatkan'])) {
-                echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                 // Mendapatkan NIP pengguna
+                 var_dump($_POST['peringatkan']);
+                 exit;
+                 $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                 $pesan = 'tes aja';
+                 $tanggal = date('Y-m-d');
+             
+                 // Prepare the insert query to notify about absence
+                 $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
+ 
+                 // Execute the insert query
+                 $insertResult = mysql_query($insertQuery);
+                 if ($insertResult) {
+                   echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                 } else {
+                   echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                 }
             }
             } else {
               // Mengambil tanggal yang dipilih dari GET
