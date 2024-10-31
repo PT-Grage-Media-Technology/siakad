@@ -630,6 +630,7 @@
                             <th>Action</th>
                           </tr>";
                           $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0");
+                          $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
@@ -694,7 +695,14 @@
   </div>";
 }
 ?>
-
+<script>
+    $(document).ready(function() {
+        // Mengecek apakah ada pemberitahuan untuk ditampilkan
+        <?php if ($adaPemberitahuan): ?>
+            $('#myModal').modal('show');
+        <?php endif; ?>
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
