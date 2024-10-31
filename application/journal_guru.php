@@ -125,15 +125,15 @@
     </table>
     
     <!-- Container grid dengan margin dan padding yang seragam -->
-    <div style='max-width: 150px; margin: 15px auto; padding: 4px;'>
+    <div style='max-width: 300px; margin: 20px auto; padding: 6px;'>
       <!-- Grid container dengan 2 baris, 2 kolom -->
       <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px;'>
         <!-- Tombol Nilai UTS -->
         <a class='btn btn-success' style='height: 70px; padding: 6px; display: flex; align-items: center; justify-content: center;' 
            href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='glyphicon glyphicon-list-alt' style='font-size: 32px; margin-bottom: 8px;'></div>
-            <div style='font-size: 14px; line-height: 1.2;'>Nilai UTS</div>
+            <div class='glyphicon glyphicon-list-alt' style='font-size: 22px; margin-bottom: 4px;'></div>
+            <div style='font-size: 4px; line-height: 1.2;'>Nilai UTS</div>
           </div>
         </a>
 
@@ -141,8 +141,8 @@
         <a class='btn btn-success' style='height: 70px; padding: 6px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='glyphicon glyphicon-book' style='font-size: 32px; margin-bottom: 8px;'></div>
-            <div style='font-size: 14px; line-height: 1.2;'>Nilai Raport</div>
+            <div class='glyphicon glyphicon-book' style='font-size: 22px; margin-bottom: 4px;'></div>
+            <div style='font-size: 4px; line-height: 1.2;'>Nilai Raport</div>
           </div>
         </a>
 
@@ -150,8 +150,8 @@
         <a class='btn btn-success' style='height: 70px; padding: 6px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='fa fa-users' style='font-size: 32px; margin-bottom: 8px;'></div>
-            <div style='font-size: 14px; line-height: 1.2;'>Forum Diskusi</div>
+            <div class='fa fa-users' style='font-size: 22px; margin-bottom: 4px;'></div>
+            <div style='font-size: 4px; line-height: 1.2;'>Forum Diskusi</div>
           </div>
         </a>
 
@@ -159,8 +159,8 @@
         <a class='btn btn-success' style='height: 70px; padding: 10px; display: flex; align-items: center; justify-content: center;'
            href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='fa fa-th-list' style='font-size: 32px; margin-bottom: 8px;'></div>
-            <div style='font-size: 14px; line-height: 1.2;'>Quiz/Ujian Online</div>
+            <div class='fa fa-th-list' style='font-size: 22px; margin-bottom: 4px;'></div>
+            <div style='font-size: 4px; line-height: 1.2;'>Quiz/Ujian Online</div>
           </div>
         </a>
       </div>
