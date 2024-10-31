@@ -162,6 +162,10 @@
               if (isset($_POST['peringatkan'])) {
                  // Mendapatkan NIP pengguna
                  $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                 
+                 // Tambahkan var_dump untuk memeriksa nilai $nip
+                 var_dump($nip); // Menampilkan nilai NIP yang diterima
+                 
                  $pesan = 'tes aja';
                  $tanggal = date('Y-m-d');
              
@@ -172,12 +176,12 @@
                  $insertResult = mysql_query($insertQuery);
                  if ($insertResult) {
                    echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                 header('Location: index.php?view=aktivitaspembelajaran');
-                 exit();
+                   
                  } else {
                    echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
                  }
             }
+            
             } else {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
