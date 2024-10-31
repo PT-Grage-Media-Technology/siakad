@@ -190,7 +190,7 @@
                    if ($insertResult) {
                      echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
                    } else {
-                     echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                     
                    }
                 }
 
