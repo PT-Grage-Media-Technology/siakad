@@ -623,16 +623,17 @@
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
                           </tr>";
-                          $tampil = mysql_query("SELECT * FROM pemberitahuan_guru");
+                          $pemberitahuan = mysql_query("SELECT * FROM pemberitahuan_guru");
                           $no = 1;
-                          while ($r = mysql_fetch_array($tampil)) {
+                          while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
                           <tr>
                             <td>No</td>
                             <td>Pesan</td>
                             <td>Waktu Dikirim</td>
                           </tr>";
-
+                          $no++;
+                          }
                           echo"
                         </table>
                       </div>
