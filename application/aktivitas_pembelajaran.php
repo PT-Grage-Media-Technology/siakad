@@ -167,7 +167,6 @@
                                     <input type='hidden' name='users[$no]' value='$r[users]'>
                                     <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                 </form>";
-
                                 
                               }
                             }
@@ -192,7 +191,12 @@
                   
                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru 
                                                VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
-                 echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
+                  
+                  if ($insertResult) {
+                      echo "<script>alert('Pemberitahuan berhasil dikirim.'); document.location='index.php?view=aktivitaspembelajaran';</script>";
+                  } else {
+                      echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                  }
               }
               
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
@@ -281,7 +285,14 @@
 
 <script>
 function submitFormWithAlert() {
+    // Pesan konfirmasi
     const confirmSubmit = confirm("Apakah Anda yakin ingin mengirimkan peringatan?");
-    return confirmSubmit; // Jika "OK" diklik, form dikirimkan; jika "Cancel", form batal.
+    if (confirmSubmit) {
+        // Jika konfirmasi "OK", form akan disubmit
+        document.getElementById('pemberitahuan').submit();
+        return true;
+    }
+    // Jika konfirmasi "Cancel", form tidak akan disubmit
+    return false;
 }
 </script>
