@@ -624,9 +624,9 @@
                             <th>Waktu Dikirim</th>
                             <th>Action</th>
                           </tr>";
+                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
                           if($adaPemberitahuan){
-                            $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
@@ -637,7 +637,6 @@
                             <td> <a class='btn btn-warning btn-xs' name='absen' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
                           </tr>";
                           $no++;
-                          
                           }
                           }else{
                             echo " 
@@ -700,9 +699,8 @@
 <script>
     $(document).ready(function() {
         // Mengecek apakah ada pemberitahuan untuk ditampilkan
-        <?php if ($adaPemberitahuan): ?>
             $('#myModal').modal('show');
-        <?php endif; ?>
+      
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
