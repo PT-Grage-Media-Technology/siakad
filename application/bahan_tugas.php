@@ -724,7 +724,6 @@ if ($_GET[act] == '') {
                               echo"</td>
                               <td style='width:70px !important'><center>
                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
-                                <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=jawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a>
                               </center></td>";
     echo "</tr>";
     $no++;
