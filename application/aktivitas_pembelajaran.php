@@ -166,7 +166,7 @@
                    $tanggal = date('Y-m-d H:i:s');
                
                    // Prepare the insert query to notify about absence
-                   $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[id_journal]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')";
+                   $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('', '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[id_journal]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')";
    
                    // Execute the insert query
                    $insertResult = mysql_query($insertQuery);
