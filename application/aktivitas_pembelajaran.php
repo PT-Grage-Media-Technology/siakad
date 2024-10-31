@@ -156,7 +156,7 @@
                         echo"
                         <td>"; 
                             if (isset($r['kode_kehadiran'])) {
-                                echo "$r[kode_kehadiran]1212";
+                                echo "$r[kode_kehadiran]";
                             } else {
                               if(mysql_num_rows($pemberitahuan) > 0){
                                 echo "Sudah Kirim Pemberitahuan";
