@@ -627,6 +627,7 @@
                             <th>No</th>
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
+                            <th>Action</th>
                           </tr>";
                           $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0");
                           $no = 1;
@@ -636,6 +637,9 @@
                             <td>$no</td>
                             <td>$p[pesan]</td>
                             <td>$p[waktu_dikirim]</td>
+                            <td>
+                              <a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]>Absen</a>
+                            </td>
                           </tr>";
                           $no++;
                           }
