@@ -142,7 +142,14 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                        <td>" . (isset($r['kode_kehadiran']) ? $r['kode_kehadiran'] : '<a class="btn btn-primary btn-xs" href="">Peringatkan</a>') . "</td>
+                      <td>" . (isset($r['kode_kehadiran'])
+                  ? $r['kode_kehadiran']
+                  : "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                    <input type='hidden' name='users' value='" . $r['users'] . "'>
+                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
+                    </form>") .
+                  "</td> 
+
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
@@ -152,6 +159,9 @@
                       </tr>";
                 $no++;
               }
+              if (isset($_POST['peringatkan'])) {
+                echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+            }
             } else {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
@@ -193,6 +203,8 @@
                       </tr>";
                 $no++;
               }
+              // Check if form is submitted
+            
             }
 
             // // Gunakan kodejdwl_terakhir di sini
