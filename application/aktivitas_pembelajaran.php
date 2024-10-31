@@ -130,7 +130,7 @@
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
             
-              var_dump(mysql_fetch_array($tampil));
+              // var_dump(mysql_fetch_array($tampil));
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr>
