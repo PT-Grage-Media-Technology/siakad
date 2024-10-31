@@ -622,7 +622,7 @@
                       $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
                      
                         if ($totalPemberitahuan) {
-                          echo "<h1 style='color:red;'>Jangan Lupa Mengabsen Siswanya</h1>";
+                          echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
                         } else {
                           echo "";
                         }
