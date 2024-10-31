@@ -608,6 +608,11 @@
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>
 
+                <!-- Tombol untuk membuka modal -->
+              <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+                Buka Modal
+              </button>
+
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                   <div class='modal-dialog' role='document'>
@@ -622,7 +627,19 @@
                             <th>No</th>
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
-                          </tr>
+                          </tr>";
+                          $pemberitahuan = mysql_query("SELECT * FROM pemberitahuan_guru");
+                          $no = 1;
+                          while ($p = mysql_fetch_array($pemberitahuan)) {
+                          echo " 
+                          <tr>
+                            <td>No</td>
+                            <td>Pesan</td>
+                            <td>Waktu Dikirim</td>
+                          </tr>";
+                          $no++;
+                          }
+                          echo"
                         </table>
                       </div>
                       <div class='modal-footer'>
@@ -678,12 +695,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        // Membuka modal secara otomatis saat halaman dimuat
-        $('#myModal').modal('show');
-    });
-</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
