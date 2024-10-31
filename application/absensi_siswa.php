@@ -545,7 +545,7 @@ if (isset($_GET['id_pemberitahuan'])) {
   var_dump($id_pemberitahuan);
 
   // Menjalankan query update
-  $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan = '$id_pemberitahuan'");
+  $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan_guru = '$id_pemberitahuan'");
   
   // Debug hasil dari $update
   var_dump($update);
