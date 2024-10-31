@@ -144,7 +144,7 @@
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>";
 
-                $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
+                        $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
                                                       WHERE nip_guru='$r[users]' 
                                                       AND is_read=0 
                                                       AND kode_kelas='$r[kode_kelas]' 
@@ -153,22 +153,22 @@
                                                       AND tanggal_absen='$r[tanggal]' 
                                                       AND jam_ke='$r[jam_ke]'");
 
-                $pe = mysql_fetch_array($pemberitahuan);
-                echo "
-                        <td>";
-                if (isset($r['kode_kehadiran'])) {
-                  echo "$r[kode_kehadiran]";
-                } else {
-                  if (mysql_num_rows($pemberitahuan) > 0) {
-                    echo "Sudah Kirim Pemberitahuan";
-                  } else {
-                    echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                        $pe = mysql_fetch_array($pemberitahuan);
+                        echo"
+                        <td>"; 
+                            if (isset($r['kode_kehadiran'])) {
+                                echo "$r[kode_kehadiran]";
+                            } else {
+                              if(mysql_num_rows($pemberitahuan) > 0){
+                                echo "Sudah Kirim Pemberitahuan";
+                              } else {
+                                echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                                         <input type='hidden' name='users' value='' . $r[users] . ''>
                                         <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                       </form>";
-                  }
-                }
-                echo "
+                              }
+                            }
+                            echo"
                         </td>
 
                         <td>
@@ -179,30 +179,20 @@
                         </td>
                       </tr>";
                 $no++;
-
+                
                 if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
-                  // Mendapatkan NIP pengguna
-                  $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
-            
-                  $pesan = 'tes aja';
-                  $tanggal = date('Y-m-d H:i:s');
-                  // Tampilkan nilai variabel untuk memastikan mereka sudah benar
-                  echo "NIP: " . $nip . "<br>";
-                  echo "Pesan: " . $pesan . "<br>";
-                  echo "Kode Kelas: " . $r['kode_kelas'] . "<br>";
-                  echo "Kode Pelajaran: " . $r['kode_pelajaran'] . "<br>";
-                  echo "Kode Jadwal: " . $r['kodejdwl'] . "<br>";
-                  echo "Tanggal: " . $r['tanggal'] . "<br>";
-                  echo "Jam ke: " . $r['jam_ke'] . "<br>";
-                  echo "Tanggal Waktu Insert: " . $tanggal . "<br>";
-
-                  $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
-                  var_dump($insertResult);
-                  if ($insertResult) {
-                    echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                  } else {
-                    echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
-                  }
+                   // Mendapatkan NIP pengguna
+                   $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                   
+                   $pesan = 'tes aja';
+                   $tanggal = date('Y-m-d H:i:s');
+               
+                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
+                   if ($insertResult) {
+                     echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                   } else {
+                     echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                   }
                 }
 
               }
