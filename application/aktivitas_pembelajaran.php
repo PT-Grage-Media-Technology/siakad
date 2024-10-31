@@ -146,7 +146,7 @@
                   ? $r['kode_kehadiran']
                   : "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                     <input type='hidden' name='users' value='" . $r['users'] . "'>
-                    <button class='btn btn-primary btn-xs' type='submit'>Peringatkan</button>
+                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                     </form>") .
                   "</td> 
 
@@ -159,23 +159,9 @@
                       </tr>";
                 $no++;
               }
-              if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['users'])) {
-                // Mendapatkan NIP pengguna
-                $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
-                $pesan = 'tes aja';
-                $tanggal = date('Y-m-d');
-            
-                // Prepare the insert query to notify about absence
-                $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
-
-                // Execute the insert query
-                $insertResult = mysql_query($insertQuery);
-                if ($insertResult) {
-                  echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                } else {
-                  echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
-                }
-              }
+              if (isset($_POST['peringatkan'])) {
+                echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+            }
             } else {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
