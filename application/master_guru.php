@@ -619,8 +619,9 @@
                       <div class='modal-body'>";
                       // Validasi untuk menampilkan pesan
                       $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
-                      $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
-                        if ($totalPemberitahuan > 0) {
+                      $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
+                     
+                        if ($totalPemberitahuan) {
                           echo "<h1>Jangan Lupa Mengabsen Siswanya</h1>";
                         } else {
                           echo "<h1>Tidak Ada Pemberitahuan Baru</h1>";
@@ -632,7 +633,7 @@
                             <th>Waktu Dikirim</th>
                             <th>Action</th>
                           </tr>";
-                          
+                          $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
