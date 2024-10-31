@@ -699,9 +699,8 @@
 <script>
     $(document).ready(function() {
         // Mengecek apakah ada pemberitahuan untuk ditampilkan
-        <?php if ($adaPemberitahuan): ?>
             $('#myModal').modal('show');
-        <?php endif; ?>
+      
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
