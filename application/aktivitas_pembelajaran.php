@@ -117,20 +117,20 @@
                WHERE ag.nip = jl.users 
                AND ag.tanggal = jl.tanggal 
                LIMIT 1) AS kode_kehadiran
-      FROM rb_journal_list jl 
-      JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
-      JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
-      JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-      JOIN rb_guru d ON jl.users = d.nip
-      WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
-      AND MONTH(jl.tanggal) = '$bulan_dipilih'
-      ORDER BY jl.waktu_input DESC;
-      ");
+                FROM rb_journal_list jl 
+                JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
+                JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
+                JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
+                JOIN rb_guru d ON jl.users = d.nip
+                WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
+                AND MONTH(jl.tanggal) = '$bulan_dipilih'
+                ORDER BY jl.waktu_input DESC;
+                ");
 
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
             
-              // var_dump(mysql_fetch_array($tampil));
+              var_dump(mysql_fetch_array($tampil));
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr>
@@ -142,13 +142,13 @@
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>
-                      <td>" . (isset($r['kode_kehadiran'])
-                  ? $r['kode_kehadiran']
-                  : "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
-                    <input type='hidden' name='users' value='" . $r['users'] . "'>
-                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
-                    </form>") .
-                  "</td> 
+                        <td>" . (isset($r['kode_kehadiran'])
+                        ? $r['kode_kehadiran']
+                        : "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                          <input type='hidden' name='users' value='" . $r['users'] . "'>
+                          <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
+                          </form>") .
+                        "</td> 
 
                         <td>
                             <center>
