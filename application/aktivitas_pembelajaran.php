@@ -167,10 +167,13 @@
                  var_dump($nip); // Menampilkan nilai NIP yang diterima
                  
                  $pesan = 'tes aja';
+                 var_dump($pesan); // Menampilkan nilai NIP yang diterima
                  $tanggal = date('Y-m-d');
+                 var_dump($tanggal); // Menampilkan nilai NIP yang diterima
              
                  // Prepare the insert query to notify about absence
                  $insertQuery = "INSERT INTO rb_pemberitahuan_guru VALUES ('',$nip, $pesan, NULL, $tanggal )";
+                 var_dump($insertQuery);
  
                  // Execute the insert query
                  $insertResult = mysql_query($insertQuery);
@@ -181,7 +184,7 @@
                    echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
                  }
             }
-            
+
             } else {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
