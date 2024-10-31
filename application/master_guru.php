@@ -623,7 +623,7 @@
                         if ($adaPemberitahuan = mysql_num_rows($pemberitahuan) = 0) {
                           echo "<h1>Jangan Lupa Mengabsen Siswanya</h1>";
                         } else {
-                          echo "<h1>Tidak Ada Pemberitahuan Baru</h1>";
+                          echo "";
                         }
                         echo"<table id='example1' class='table table-bordered table-striped'>
                           <tr>
