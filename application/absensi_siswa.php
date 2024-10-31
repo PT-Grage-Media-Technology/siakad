@@ -537,4 +537,11 @@
                   </div>";
 }
 ?>
+<?php
+if (isset($_GET['id_pemberitahuan'])) {
+  $id_pemberitahuan = $_GET['id_pemberitahuan'];
+
+  $update = mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan = '$id_pemberitahuan'");
+}
+?>
 
