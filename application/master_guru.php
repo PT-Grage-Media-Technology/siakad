@@ -638,10 +638,17 @@
                             <td>$no</td>
                             <td>$p[pesan]</td>
                             <td>$p[waktu_dikirim]</td>
-                             <td> <a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]'>Absen</a></td>
-                          
+                            <td> <a class='btn btn-warning btn-xs' name='absen' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
                           </tr>";
                           $no++;
+                          if (isset($_GET['id_pemberitahuan']) && isset($_GET['absen'])) {
+                            $id_pemberitahuan = $_GET['id_pemberitahuan'];
+                            $redirect_url = $_GET['absen'];
+                            
+                            // Update status `is_read` menjadi 1 (sudah dibaca)
+                            // $query = "UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan = '$id_pemberitahuan'";
+                            mysql_query("UPDATE rb_pemberitahuan_guru SET is_read = 1 WHERE id_pemberitahuan = '$id_pemberitahuan'");
+                        }
                           }
                           echo"
                         </table>
