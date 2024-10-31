@@ -1,6 +1,7 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 <?php if ($_GET[act] == '') { ?>
+  
   <div class="container-fluid">
 
     <div class="row">
@@ -543,29 +544,6 @@
                         </div>
                         
                         <div class='box-body'>
-                        
-                        <!-- Modal -->
-                        <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                          <div class='modal-dialog'>
-                            <div class='modal-content'>
-                              <div class='modal-header'>
-                                <h5 class='modal-title' id='exampleModalLabel'>Judul Modal</h5>
-                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                              </div>
-                              <div class='modal-body'>
-                                Isi dari modal ini. Anda bisa menambahkan teks, form, atau konten lainnya di sini.
-                              </div>
-                              <div class='modal-footer'>
-                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Tutup</button>
-                                <button type='button' class='btn btn-primary'>Simpan perubahan</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Tombol untuk membuka modal -->
-                        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                          Buka Modal
-                        </button>
 
                           <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                             <div class='row'>
@@ -629,6 +607,32 @@
 
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>
+
+                <!-- Tombol untuk membuka modal -->
+                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+                  Buka Modal
+                </button>
+
+                <!-- Modal -->
+                <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+                  <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <h4 class='modal-title' id='myModalLabel'>Judul Modal</h4>
+                      </div>
+                      <div class='modal-body'>
+                        Isi dari modal ini. Anda bisa menambahkan teks, form, atau konten lainnya di sini.
+                      </div>
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
+                        <button type='button' class='btn btn-primary'>Simpan perubahan</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
                   <table class='table table-condensed table-bordered'>
                     <tbody>
                       <tr><th width='150px' scope='row'>NIK</th> <td>$s[nik]</td></tr>
@@ -673,12 +677,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  // Menampilkan modal saat halaman selesai dimuat
-  $(document).ready(function() {
-    console.log("Page loaded, attempting to show modal");
-    $('#autoOpenModal').modal('show');
-});
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
