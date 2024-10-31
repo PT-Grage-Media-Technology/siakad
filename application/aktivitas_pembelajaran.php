@@ -144,12 +144,12 @@
                         <td>$r[namamatapelajaran]</td>";
 
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE nip_guru='$r[users]', is_read=1, kode_kelas='$r[kode_kelas]', kode_mapel='$r[kode_pelajaran]', id_tujuan_pembelajaran='$r[id_journal]', tanggal_absen='$r[tanggal]', jam_ke='$r[jam_ke]'");
-
+                        $coba = "SELECT * FROM rb_pemberitahuan_guru WHERE nip_guru='$r[users]', is_read=1, kode_kelas='$r[kode_kelas]', kode_mapel='$r[kode_pelajaran]', id_tujuan_pembelajaran='$r[id_journal]', tanggal_absen='$r[tanggal]', jam_ke='$r[jam_ke]'";
                         echo"
                         <td>"; 
                             if (isset($r['kode_kehadiran'])) {
                                 // echo "$r[kode_kehadiran]";
-                                echo "$pemberitahuan";
+                                echo "$pemberitahuan, $coba";
                             } else {
                                 echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
                                         <input type='hidden' name='users' value='' . $r[users] . ''>
