@@ -618,12 +618,12 @@
                       </div>
                       <div class='modal-body'>";
                       // Validasi untuk menampilkan pesan
-                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
-                          $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
-                        if ($adaPemberitahuan = mysql_num_rows($pemberitahuan) = 0) {
+                      $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
+                      $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
+                        if (mysql_num_rows($pemberitahuan) = 0) {
                           echo "<h1>Jangan Lupa Mengabsen Siswanya</h1>";
                         } else {
-                          echo "";
+                          echo "<h1>Tidak Ada Pemberitahuan Baru</h1>";
                         }
                         echo"<table id='example1' class='table table-bordered table-striped'>
                           <tr>
