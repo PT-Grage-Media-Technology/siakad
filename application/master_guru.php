@@ -617,6 +617,7 @@
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>
+                      <h1>Jangan Lupa Mengabsen Siswanya</h1>
                         <table id='example1' class='table table-bordered table-striped'>
                           <tr>
                             <th>No</th>
@@ -626,7 +627,6 @@
                           </tr>";
                           $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
-                          if($adaPemberitahuan){
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
@@ -638,12 +638,7 @@
                           </tr>";
                           $no++;
                           }
-                          }else{
-                            echo " 
-                          <tr>
-                            <td>jangan lupa pulang</td>
-                          </tr>";
-                          }
+          
                           
                           echo"
                         </table>
