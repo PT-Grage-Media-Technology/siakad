@@ -114,50 +114,53 @@
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
   }
   echo "</div>
-               <div class='box-body'>
+                <div class='box-body'>
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='120px' scope='row'>Nama Kelas</th> <td><?php echo $d['nama_kelas']; ?></td></tr>
-        <tr><th scope='row'>Nama Guru</th> <td><?php echo $d['nama_guru']; ?></td></tr>
-        <tr><th scope='row'>Mata Pelajaran</th> <td><?php echo $d['namamatapelajaran']; ?></td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+        <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
+        <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
     </table>
     
-    <!-- Wadah grid dengan margin dan padding yang seragam -->
-    <div style='max-width: 280px; margin: 15px auto; padding: 8px;'>
-      <!-- Wadah grid dengan 2 baris, 2 kolom -->
-      <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 12px;'>
+    <!-- Container grid dengan margin dan padding yang seragam -->
+    <div style='max-width: 300px; margin: 20px auto; padding: 10px;'>
+      <!-- Grid container dengan 2 baris, 2 kolom -->
+      <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px;'>
         <!-- Tombol Nilai UTS -->
-        <a class='btn btn-success' style='height: 90px; padding: 8px; display: flex; align-items: center; justify-content: center;' 
-           href='index.php?view=raportuts&act=listsiswa&jdwl=<?php echo $_GET["id"]; ?>&kd=<?php echo $d["kode_pelajaran"]; ?>&id=<?php echo $d["kode_kelas"]; ?>&tahun=<?php echo $_GET["tahun"]; ?>'>
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;' 
+           href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='glyphicon glyphicon-list-alt' style='font-size: 24px; margin-bottom: 6px;'></div>
-            <div style='font-size: 12px; line-height: 1.2;'>Nilai UTS</div>
+            <div class='glyphicon glyphicon-list-alt' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Nilai UTS</div>
           </div>
         </a>
+
         <!-- Tombol Nilai Raport -->
-        <a class='btn btn-success' style='height: 90px; padding: 8px; display: flex; align-items: center; justify-content: center;'
-           href='index.php?view=raport&act=listsiswasikap&jdwl=<?php echo $_GET["id"]; ?>&kd=<?php echo $d["kode_pelajaran"]; ?>&id=<?php echo $d["kode_kelas"]; ?>&tahun=<?php echo $_GET["tahun"]; ?>'>
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
+           href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='glyphicon glyphicon-book' style='font-size: 24px; margin-bottom: 6px;'></div>
-            <div style='font-size: 12px; line-height: 1.2;'>Nilai Raport</div>
+            <div class='glyphicon glyphicon-book' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Nilai Raport</div>
           </div>
         </a>
+
         <!-- Tombol Forum Diskusi -->
-        <a class='btn btn-success' style='height: 90px; padding: 8px; display: flex; align-items: center; justify-content: center;'
-           href='index.php?view=forum&act=list&jdwl=<?php echo $_GET["id"]; ?>&kd=<?php echo $d["kodejdwl"]; ?>&id=<?php echo $d["kode_kelas"]; ?>&kd=<?php echo $d["kode_pelajaran"]; ?>&tahun=<?php echo $_GET["tahun"]; ?>'>
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
+           href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='fa fa-users' style='font-size: 24px; margin-bottom: 6px;'></div>
-            <div style='font-size: 12px; line-height: 1.2;'>Forum Diskusi</div>
+            <div class='fa fa-users' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Forum Diskusi</div>
           </div>
         </a>
-        <!-- Tombol Ujian Online -->
-        <a class='btn btn-success' style='height: 90px; padding: 8px; display: flex; align-items: center; justify-content: center;'
-           href='index.php?view=soal&act=listsoalsiswa&jdwl=<?php echo $_GET["id"]; ?>&kd=<?php echo $d["kodejdwl"]; ?>&id=<?php echo $d["kode_kelas"]; ?>&kd=<?php echo $d["kode_pelajaran"]; ?>&tahun=<?php echo $_GET["tahun"]; ?>'>
+
+        <!-- Tombol Quiz/Ujian -->
+        <a class='btn btn-success' style='height: 120px; padding: 10px; display: flex; align-items: center; justify-content: center;'
+           href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
           <div style='text-align: center;'>
-            <div class='fa fa-th-list' style='font-size: 24px; margin-bottom: 6px;'></div>
-            <div style='font-size: 12px; line-height: 1.2;'>Ujian Online</div>
+            <div class='fa fa-th-list' style='font-size: 32px; margin-bottom: 8px;'></div>
+            <div style='font-size: 14px; line-height: 1.2;'>Quiz/Ujian Online</div>
           </div>
         </a>
       </div>
