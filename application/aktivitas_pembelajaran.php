@@ -164,8 +164,7 @@
                               } else {
                                 echo "
                                 <form method='POST' id='pemberitahuan' onsubmit='return submitFormWithAlert()'>
-                                    <input type='hidden' name='users' value='$r[id_journal]'>
-                                    <input type='hidden' name='users' value='$r[users]'>
+                                    <input type='hidden' name='users[$no]' value='$r[users]'>
                                     <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
