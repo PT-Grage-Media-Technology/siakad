@@ -112,11 +112,11 @@
 
 
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
-              (SELECT status_kehadiran 
+              (SELECT kode_kehadiran 
                FROM rb_absensi_guru ag 
                WHERE ag.nip = jl.users 
                AND ag.tanggal = jl.tanggal 
-               LIMIT 1) AS status_kehadiran
+               LIMIT 1) AS kode_kehadiran
       FROM rb_journal_list jl 
       JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
       JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
