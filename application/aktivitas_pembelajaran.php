@@ -162,7 +162,7 @@
                               if(mysql_num_rows($pemberitahuan) > 0){
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
-                                echo "<form action='index.php?view=aktivitaspembelajaran' method='POST'>
+                                echo "<form action='index.php?view=aktivitaspembelajaran&act=peringatkan' method='POST'>
                                         <input type='hidden' name='users' value='$r[users]'>
                                         <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                       </form>";
