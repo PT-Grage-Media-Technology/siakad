@@ -627,6 +627,7 @@
                             <th>No</th>
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
+                            <th>Action</th>
                           </tr>";
                           $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0");
                           $no = 1;
@@ -636,6 +637,8 @@
                             <td>$no</td>
                             <td>$p[pesan]</td>
                             <td>$p[waktu_dikirim]</td>
+                            <td>
+                            </td>
                           </tr>";
                           $no++;
                           }
