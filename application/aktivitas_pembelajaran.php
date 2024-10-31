@@ -164,7 +164,7 @@
                               } else {
                                 echo "
                                 <form method='POST' id='pemberitahuan' onsubmit='return submitFormWithAlert()'>
-                                    <input type='hidden' name='users[$no]' value='$r[users]'>
+                                    <input type='hidden' name='users' value='$r[users]'>
                                     <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
@@ -182,23 +182,15 @@
                       </tr>";
                 $no++;
                 
-                if (isset($_POST['peringatkan']) && isset($_POST['users'][$no]) && $_POST['users'][$no] == $r['users']) {
-                  // Mendapatkan NIP pengguna dari array users
-                  $nip = mysql_real_escape_string($_POST['users'][$no]); // Menyantisisasi input
-                  
-                  $pesan = 'tes aja';
-                  $tanggal = date('Y-m-d H:i:s');
-                  
-                  $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru 
-                                               VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
-                  
-                  if ($insertResult) {
-                      echo "<script>alert('Pemberitahuan berhasil dikirim.'); document.location='index.php?view=aktivitaspembelajaran';</script>";
-                  } else {
-                      echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
-                  }
-              }
-              
+                if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
+                   // Mendapatkan NIP pengguna
+                   $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                   
+                   $pesan = 'tes aja';
+                   $tanggal = date('Y-m-d H:i:s');
+               
+                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
+                }
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
                 //    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
