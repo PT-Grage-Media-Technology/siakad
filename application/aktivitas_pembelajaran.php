@@ -116,6 +116,7 @@
                FROM rb_absensi_guru ag 
                WHERE ag.nip = jl.users 
                AND ag.tanggal = jl.tanggal 
+               AND ag.jam_ke = jl.jam_ke  
                LIMIT 1) AS kode_kehadiran
                 FROM rb_journal_list jl 
                 JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
