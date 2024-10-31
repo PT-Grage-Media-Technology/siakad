@@ -536,22 +536,29 @@
   $s = mysql_fetch_array($detail);
   echo "<div class='container'>
 
-        <div class='modal fade' id='autoOpenModal' tabindex='-1' aria-labelledby='autoOpenModalLabel' aria-hidden='true'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <h5 class='modal-title' id='autoOpenModalLabel'>Welcome!</h5>
-                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                    </div>
-                    <div class='modal-body'>
-                        This modal opens automatically when the page loads.
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                    </div>
-                </div>
+        <!-- Modal -->
+        <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+          <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Judul Modal</h5>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+              </div>
+              <div class='modal-body'>
+                Isi dari modal ini. Anda bisa menambahkan teks, form, atau konten lainnya di sini.
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Tutup</button>
+                <button type='button' class='btn btn-primary'>Simpan perubahan</button>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- Tombol untuk membuka modal -->
+        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+          Buka Modal
+        </button>
+
 
                   <div class='row'>
                     <div class='col-12'>
