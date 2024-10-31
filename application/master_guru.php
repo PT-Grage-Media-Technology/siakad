@@ -616,17 +616,24 @@
                         <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
-                      <div class='modal-body'>
-                        <table id='example1' class='table table-bordered table-striped'>
+                      <div class='modal-body'>";
+                      // Validasi untuk menampilkan pesan
+                      $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
+                      $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
+                     
+                        if ($totalPemberitahuan) {
+                          echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
+                        } else {
+                          echo "";
+                        }
+                        echo"<table id='example1' class='table table-bordered table-striped'>
                           <tr>
                             <th>No</th>
                             <th>Pesan</th>
                             <th>Waktu Dikirim</th>
                             <th>Action</th>
                           </tr>";
-                          $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
                           $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
-                          if($adaPemberitahuan){
                           $no = 1;
                           while ($p = mysql_fetch_array($pemberitahuan)) {
                           echo " 
@@ -638,12 +645,7 @@
                           </tr>";
                           $no++;
                           }
-                          }else{
-                            echo " 
-                          <tr>
-                            <td>jangan lupa pulang</td>
-                          </tr>";
-                          }
+          
                           
                           echo"
                         </table>
