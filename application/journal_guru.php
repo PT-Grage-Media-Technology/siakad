@@ -127,7 +127,7 @@
     <!-- Container grid dengan margin dan padding yang seragam -->
     <div style='max-width: 300px; margin: 10px auto; padding: 10px;'>
   <!-- Grid container dengan 2 baris, 2 kolom -->
-  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 10px;'>
+  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
     <!-- Tombol Nilai UTS -->
     <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
        href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
