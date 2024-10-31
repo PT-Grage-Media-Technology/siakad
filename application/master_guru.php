@@ -617,7 +617,24 @@
                         <h4 class='modal-title' id='myModalLabel'>Judul Modal</h4>
                       </div>
                       <div class='modal-body'>
-                        Isi dari modal ini. Anda bisa menambahkan teks, form, atau konten lainnya di sini.
+                        <table>
+                          <tr>
+                            <th>No</th>
+                            <th>Pesan</th>
+                            <th>Waktu Dikirim</th>
+                          </tr>";
+                          $tampil = mysql_query("SELECT * FROM pemberitahuan_guru");
+                          $no = 1;
+                          while ($r = mysql_fetch_array($tampil)) {
+                          echo " 
+                          <tr>
+                            <td>No</td>
+                            <td>Pesan</td>
+                            <td>Waktu Dikirim</td>
+                          </tr>";
+
+                          echo"
+                        </table>
                       </div>
                       <div class='modal-footer'>
                         <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
