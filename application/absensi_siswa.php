@@ -239,7 +239,7 @@
 
   $no = 1;
   $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND DATE(tanggal_tugas)='$_GET[tgl]'");
-  $tugas = mysql_fetch_array($tugas);
+  $data_tugas = mysql_fetch_array($tugas);
   $jumlah_data = mysql_num_rows($tugas);
   echo "Jumlah data: " . $jumlah_data;
   // var_dump($tugas);
