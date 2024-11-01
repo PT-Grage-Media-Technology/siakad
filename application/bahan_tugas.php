@@ -227,13 +227,13 @@ if ($_GET[act] == '') {
 
 }elseif($_GET[act] == 'bahantugassiswa'){
   cek_session_siswa();
-  echo"cek siswa";
+  echo"ini siswa";
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>List Upload Bahan dan Tugas</b></h3>";
+                  <h3 class='box-title'>List Tugas</b></h3>";
   echo "</div>
               <div class='box-body'>
 
@@ -269,20 +269,11 @@ if ($_GET[act] == '') {
 
   $no = 1;
 
-  // Periksa level user
-  if ($_SESSION['level'] == 'siswa') {
-    // Hanya tampilkan tugas dengan status 'active' untuk siswa
+ 
     $tampil = mysql_query("SELECT * FROM rb_elearning a 
                            JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
                            WHERE kodejdwl='$_GET[jdwl]' AND a.status='active' 
                            ORDER BY a.id_elearning");
-  } else {
-    // Tampilkan semua tugas untuk user selain siswa
-    $tampil = mysql_query("SELECT * FROM rb_elearning a 
-                           JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
-                           WHERE kodejdwl='$_GET[jdwl]' 
-                           ORDER BY a.id_elearning");
-  }
 
   while ($r = mysql_fetch_array($tampil)) {
     echo "<tr>
@@ -291,37 +282,9 @@ if ($_GET[act] == '') {
             <td>$r[nama_kategori_elearning]</td>
             <td>$r[tanggal_tugas] WIB</td>
             <td>$r[tanggal_selesai] WIB</td>
+            <td>$r[status]</td>
             <td>$r[status]</td>";
-
-    // Cek level superuser
-    if (true) {
-      echo "<td>";
-
-      if ($r['id_kategori_elearning'] == '1') {
-        echo "<a style='margin-right:5px; width:106px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download </a>";
-      } else {
-        echo "<a style='margin-right:5px; width:106px' class='btn btn-success btn-xs' title='Jawaban Bahan dan Tugas' href='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Jawaban </a>";
-      }
-
-      // UNTUK MENAMPILKAN ACTION DAPUS DAN EDIT KECUALI ROLE SISWA
-      if ($_SESSION['level'] != 'siswa') {
-        echo "<a class='btn btn-success btn-xs' title='Edit Bahan dan Tugas' href='index.php?view=bahantugas&act=edit&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&edit=$r[id_elearning]'><span class='glyphicon glyphicon-edit'></span></a>
-              <a class='btn btn-danger btn-xs' title='Delete Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&hapus=$r[id_elearning]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-trash'></span></a>
-              </td></tr>";
-    }
-    } elseif ($_SESSION['level'] == 'guru') {
-      if ($r['id_kategori_elearning'] == '1') {
-        echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
-      } else {
-        echo "<td><a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
-        <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=jawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a>";
-      }
-      echo "<a style='margin-left:3px' class='btn btn-warning btn-xs' title='Edit $r[nama_kategori_elearning]' href='index.php?view=bahantugas&act=edit&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "&edit=$r[id_elearning]'><span class='glyphicon glyphicon-edit'></span></a>
-                                        <a class='btn btn-danger btn-xs' title='Delete $r[nama_kategori_elearning]' href='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "&hapus=$r[id_elearning]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
-    }elseif($_SESSION['level'] == ''){
-      echo "<td><a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
-      <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-upload'></span> Kirim</a>";
-    }
+    echo "</tr>";
     $no++;
   }
   echo "</tbody>
