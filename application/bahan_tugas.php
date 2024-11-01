@@ -284,7 +284,13 @@ if ($_GET[act] == '') {
             <td>$r[tanggal_tugas] WIB</td>
             <td>$r[tanggal_selesai] WIB</td>
             <td>$r[status]</td>
-            <td>$r[status]</td>";
+            <td>";
+            if ($r['id_kategori_elearning'] == '1') {
+              echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
+            } else {
+              echo "<td><a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
+              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a><td>";
+            }
     echo "</tr>";
     $no++;
   }
