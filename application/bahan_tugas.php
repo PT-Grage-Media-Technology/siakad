@@ -326,7 +326,7 @@ elseif ($_GET[act] == 'tambah') {
     }
   }
 
-  echo "<div class='col-md-12 mx-5'>
+  echo "<div class='col-12'>
           <div class='row'>
             <div class='col-12'>
               <div class='box box-info'>
