@@ -163,9 +163,9 @@
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
                                 echo "
-                                <form method='POST' id='pemberitahuan' onsubmit='return submitFormWithAlert()'>
+                                <form method='POST' id='pemberitahuan' action=''>
                                     <input type='hidden' name='users' value='$r[users]'>
-                                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
+                                    <button class='btn btn-primary btn-xs' type='submit' onclick='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
                               }
