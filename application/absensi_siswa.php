@@ -238,11 +238,11 @@
 
 
   $no = 1;
-  $query = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND DATE(tanggal_tugas)='$_GET[tgl]'");
-  $tugas = mysql_fetch_array($query);
-  $jumlah_data = mysql_num_rows($query);
-  // var_dump($tugas);
+  $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND DATE(tanggal_tugas)='$_GET[tgl]'");
+  $tugas = mysql_fetch_array($tugas);
+  $jumlah_data = mysql_num_rows($tugas);
   echo "Jumlah data: " . $jumlah_data;
+  // var_dump($tugas);
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
     // if ($_GET[gettgl]) {
@@ -266,7 +266,7 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
-                                if(mysql_num_rows($query) > 0 ){
+                                if(mysql_num_rows($tugas) > 0 ){
                                        
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
