@@ -617,42 +617,33 @@
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
-                      // Validasi untuk menampilkan pesan
+                     // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
+                      echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
+
+                      // Query pemberitahuan seperti sebelumnya
                       $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
-                      $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
-                     
-                        // if ($totalPemberitahuan) {
-                        //   echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
-                        // } else {
-                        //   echo "";
-                        // }
 
-                        if ($totalPemberitahuan) {
-                          echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
-                        } else {
-                          echo "";
-                        }
-
-                       
-                        echo"<table id='example1' class='table table-bordered table-striped'>
+                      // Tampilkan tabel pemberitahuan
+                      echo "<table id='example1' class='table table-bordered table-striped'>
                           <tr>
-                            <th>No</th>
-                            <th>Pesan</th>
-                            <th>Waktu Dikirim</th>
-                            <th>Action</th>
+                              <th>No</th>
+                              <th>Pesan</th>
+                              <th>Waktu Dikirim</th>
+                              <th>Action</th>
                           </tr>";
-                          $adaPemberitahuan = mysql_num_rows($pemberitahuan) > 0;
-                          $no = 1;
-                          while ($p = mysql_fetch_array($pemberitahuan)) {
-                          echo " 
-                          <tr>
-                            <td>$no</td>
-                            <td>$p[pesan]</td>
-                            <td>$p[waktu_dikirim]</td>
-                            <td> <a class='btn btn-warning btn-xs' name='absen' href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
+
+                      // Cek apakah ada pemberitahuan
+                      $no = 1;
+                      while ($p = mysql_fetch_array($pemberitahuan)) {
+                          echo "<tr>
+                              <td>$no</td>
+                              <td>$p[pesan]</td>
+                              <td>$p[waktu_dikirim]</td>
+                              <td><a class='btn btn-warning btn-xs' name='absen' 
+                                  href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
                           </tr>";
                           $no++;
-                          }
+                      }
           
                           
                           echo"
