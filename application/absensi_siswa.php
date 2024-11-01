@@ -283,12 +283,13 @@
                                 echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
                               }
-                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                  
+                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
                                     echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
                                   }
-                              
+                             
 
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
