@@ -267,7 +267,19 @@
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
                                 if(mysql_num_rows($query) > 0 ){
-                                  echo"hehe";
+                                       
+                              // Menampilkan dropdown 'nilai'
+                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                  echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                } else {
+                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                }
+
+                                echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A baru</option>";
+                                echo "<option value='B' " . ($a['nilai'] == 'B' ? 'selected' : '') . ">B baru</option>";
+                                echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
+                                echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
+                                echo "</select></td>";
                                 }else{
                                   
                               // Menampilkan dropdown 'nilai'
