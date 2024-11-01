@@ -243,8 +243,8 @@
   $jumlah_data = mysql_num_rows($tugas);
   echo "Jumlah data: " . $jumlah_data;
 
-  $jawaban_tugas = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]'"));
-  var_dump($jawaban_tugas,$data_tugas['id_elearning']);
+  $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
+  var_dump($nilai);
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
     // if ($_GET[gettgl]) {
