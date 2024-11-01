@@ -146,7 +146,7 @@
 
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
                                                       WHERE nip_guru='$r[users]' 
-                                                      AND is_read=0 
+                                                      AND is_read=1 
                                                       AND kode_kelas='$r[kode_kelas]' 
                                                       AND kode_mapel='$r[kode_pelajaran]' 
                                                       AND id_tujuan_pembelajaran='$r[kodejdwl]' 
@@ -169,7 +169,6 @@
                                     <input type='hidden' name='jam_ke' value='$r[jam_ke]'>
                                     <button class='btn btn-primary btn-xs' type='submit' onsubmit='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
                                 </form>";
-                                
                               }
                             }
                             echo"
