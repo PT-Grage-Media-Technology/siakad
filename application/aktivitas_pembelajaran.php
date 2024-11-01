@@ -163,11 +163,11 @@
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
                                 echo "
-                                <form method='POST' id='pemberitahuan' action=''>
+                                <form method='POST' id='pemberitahuan' action='' onsubmit='return submitFormWithAlert()'>
                                     <input type='hidden' name='users' value='$r[users]'>
                                     <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
                                     <input type='hidden' name='jam_ke' value='$r[jam_ke]'>
-                                    <button class='btn btn-primary btn-xs' type='submit' onclick='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
+                                    <button class='btn btn-primary btn-xs' type='submit' onsubmit='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
                               }
