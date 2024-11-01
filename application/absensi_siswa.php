@@ -278,8 +278,8 @@
                                   echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
-                                echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A baru</option>";
-                                echo "<option value='B' " . ($nilai['nilai'] == 'B' ? 'selected' : '') . ">B baru</option>";
+                                echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
+                                echo "<option value='B' " . ($nilai['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
                                 echo "<option value='C' " . ($nilai['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
                                 echo "<option value='D' " . ($nilai['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
