@@ -228,25 +228,12 @@ if ($_GET[act] == '') {
 }elseif($_GET[act] == 'bahantugassiswa'){
   cek_session_siswa();
   echo"cek siswa";
-
-  cek_session_siswa();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>List Upload Bahan dan Tugas</b></h3>";
-  if ($_SESSION['level'] == 'guru') {
-    echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='javascript:history.back()'>Kembali</a>";
-  } elseif ($_SESSION['level'] == 'siswa') {
-    echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugassiswa'>Kembali</a>";
-  } else {
-    echo "<a style='margin-left:4px' class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas'>Kembali</a>";
-  }
-
-  if ($_SESSION['level'] == 'guru' or $_SESSION['level'] == 'superuser') {
-    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=bahantugas&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'>Tambahkan Data</a>";
-  }
   echo "</div>
               <div class='box-body'>
 
@@ -275,9 +262,6 @@ if ($_GET[act] == '') {
                         <th>Waktu Mulai</th>
                         <th>Batas Waktu</th>
                         <th>Status</th>";
-  if ($_SESSION['level'] != 'kepala') {
-    echo "<th>Action</th>";
-  }
   echo "</tr>
                     </thead>
                     <tbody>";
