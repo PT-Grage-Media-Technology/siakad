@@ -261,7 +261,8 @@ if ($_GET[act] == '') {
                         <th>Kategori</th>
                         <th>Waktu Mulai</th>
                         <th>Batas Waktu</th>
-                        <th>Status</th>";
+                        <th>Status</th>
+                        <th>Action</th>";
   echo "</tr>
                     </thead>
                     <tbody>";
