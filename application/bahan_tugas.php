@@ -333,7 +333,7 @@ elseif ($_GET[act] == 'tambah') {
             </div>
             <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='col-md-12'>
+                <div class='col-md-10'>
                   <table class='table table-condensed table-bordered'>
                     <tbody>
                       <tr>
