@@ -341,11 +341,11 @@ elseif ($_GET[act] == 'tambah') {
                         <td>
                           <select class='form-control' name='a'>
                             <option value='0' selected>- Pilih Kategori Tugas -</option>";
-  $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
-  while ($a = mysql_fetch_array($kategori)) {
-    echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
-  }
-  echo "</select>
+                        $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
+                        while ($a = mysql_fetch_array($kategori)) {
+                          echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
+                        }
+                        echo "</select>
                         </td>
                       </tr>
                       <tr>
@@ -368,9 +368,9 @@ elseif ($_GET[act] == 'tambah') {
                           <div style='position:relative;'>
                             <a class='btn btn-primary' href='javascript:;'>
                               <i class='fa fa-search'></i> Cari File Bahan atau Tugas...";
-  ?>
-  <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-  <?php echo "</a>
+                            ?>
+                            <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+                            <?php echo "</a>
                             <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                           </div>
                         </td>
