@@ -326,7 +326,7 @@ elseif ($_GET[act] == 'tambah') {
     }
   }
 
-  echo "<div class='col-12'>
+  echo "<div class='col-10'>
           <div class='box box-info'>
             <div class='box-header with-border'>
               <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
