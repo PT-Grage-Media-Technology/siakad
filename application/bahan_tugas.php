@@ -324,7 +324,12 @@ if ($_GET[act] == '') {
     }
     $no++;
   }
-
+  echo "</tbody>
+  </table>
+</div>
+</div>
+</form>
+</div>";
 } 
 
 
