@@ -256,7 +256,7 @@
     //   }
     // }
     $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
-  var_dump($nilai);
+ 
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
   
@@ -278,10 +278,10 @@
                                   echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
-                                echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A baru</option>";
-                                echo "<option value='B' " . ($a['nilai'] == 'B' ? 'selected' : '') . ">B baru</option>";
-                                echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
-                                echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
+                                echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A baru</option>";
+                                echo "<option value='B' " . ($nilai['nilai'] == 'B' ? 'selected' : '') . ">B baru</option>";
+                                echo "<option value='C' " . ($nilai['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
+                                echo "<option value='D' " . ($nilai['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
                                 }else{
                                   
