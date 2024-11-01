@@ -243,7 +243,23 @@
                         <td>" . tgl_indo($r['tanggal']) . "</td>
                         <td>$r[jam_ke]</td>
                         <td>$r[kode_kelas]</td>
-                        <td>$r[namamatapelajaran]</td>
+                        <td>$r[namamatapelajaran]</td>";
+
+                        echo"
+                        <td>"; 
+                            if (isset($r['kode_kehadiran'])) {
+                                echo "$r[kode_kehadiran]";
+                            } else {
+                              if(mysql_num_rows($pemberitahuan) > 0){
+                                echo "Sudah Kirim Pemberitahuan";
+                              } else {
+                                echo "
+                                Anda Belom Mengisikehadiran";
+                              }
+                            }
+                            echo"
+                        </td>
+
                         <td>
                             <center>
                               <a class='btn btn-warning btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'>Detail Tujuan Pembelajaran Guru</a>
