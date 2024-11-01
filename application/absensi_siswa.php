@@ -262,8 +262,13 @@
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
                                   $tugas = "SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'";
-                                  // Menghapus var_dump yang tidak diperlukan
-                                  var_dump($tugas);
+                                  // Menjalankan query dan mengambil hasilnya
+                                  $result_tugas = mysql_query($tugas);
+                                  var_dump( $result_tugas);
+                                  // // Menampilkan data yang diambil
+                                  // while ($row = mysql_fetch_array($result_tugas)) {
+                                  //     echo "Judul Tugas: " . $row['judul_tugas'] . "<br>"; // Ganti 'judul_tugas' dengan nama kolom yang sesuai
+                                  // }
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
