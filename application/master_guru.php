@@ -618,7 +618,9 @@
                       </div>
                       <div class='modal-body'>";
                      // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
-                      echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
+                     echo "<div style='background-color: black; padding: 10px;'>
+                            <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
+                            </div>";
 
                       // Query pemberitahuan seperti sebelumnya
                       $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
