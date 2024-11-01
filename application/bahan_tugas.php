@@ -226,7 +226,7 @@ if ($_GET[act] == '') {
             </div>";
 
 }elseif($_GET[act] == 'bahantugassiswa'){
-  cek_session_siswa();
+  cek_session_guru();
   echo"cek siswa";
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
