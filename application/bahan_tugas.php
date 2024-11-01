@@ -222,7 +222,7 @@ if ($_GET[act] == '') {
               </form>
             </div>";
 
-}elseif($_GET[act] == 'listbahantugassiswa'){
+}elseif($_GET[act] == 'bahantugassiswa'){
   cek_session_siswa();
   echo"cek siswa";
 
