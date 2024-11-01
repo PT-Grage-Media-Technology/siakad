@@ -784,49 +784,67 @@ elseif ($_GET[act] == 'tambah') {
                         <th>Action</th>
                       </tr>";
 
-  // Ambil id tugas dari URL (asumsikan parameter 'id' adalah id tugas)
-$id_tugas = $_GET['id']; // Tambahkan ini untuk mendapatkan id tugas aktif
+ // Ambil id tugas dari URL
+$id_tugas = (int)$_GET['ide']; // Pastikan menggunakan parameter yang benar (ide)
 
-// Modifikasi query untuk menampilkan hanya jawaban sesuai tugas yang dibuat
-$tampil = mysql_query("SELECT * FROM rb_elearning_jawab a 
+// Modifikasi query dengan menambahkan kondisi yang lebih spesifik
+$tampil = mysql_query("SELECT a.*, b.* 
+                      FROM rb_elearning_jawab a 
                       JOIN rb_siswa b ON a.nisn=b.nisn 
-                      WHERE a.id_elearning='$id_tugas'  
+                      JOIN rb_elearning c ON a.id_elearning=c.id_elearning
+                      WHERE a.id_elearning='$id_tugas' 
+                      AND c.id_guru='$_SESSION[id]'
                       ORDER BY a.id_elearning_jawab DESC");
+
+// Periksa apakah query berhasil
+if(!$tampil) {
+    echo "Error: " . mysql_error();
+    exit;
+}
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
-    echo "<tr>
-            <td>$no</td>
-            <td>$r[nisn]</td>
-            <td>$r[nama]</td>
-            <td>$r[keterangan]</td>
-            <td>$r[waktu] WIB</td>
-            <td>";
-    
-    if($r['nilai']){
-        echo "$r[nilai]";
-    } else {
-        echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
-                <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
-                    <option value=''>Pilih Nilai</option>
-                    <option value='A'>A</option>
-                    <option value='B'>B</option>
-                    <option value='C'>C</option>
-                    <option value='D'>D</option>
-                    <option value='F'>F</option>
-                </select>
-              </form>";
+    // Tambahkan pengecekan apakah jawaban ini memang untuk tugas yang dipilih
+    if($r['id_elearning'] == $id_tugas) {
+        echo "<tr>
+                <td>$no</td>
+                <td>$r[nisn]</td>
+                <td>$r[nama]</td>
+                <td>$r[keterangan]</td>
+                <td>$r[waktu] WIB</td>
+                <td>";
+        
+        if($r['nilai']){
+            echo "$r[nilai]";
+        } else {
+            echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                    <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                        <option value=''>Pilih Nilai</option>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                        <option value='C'>C</option>
+                        <option value='D'>D</option>
+                        <option value='F'>F</option>
+                    </select>
+                  </form>";
+        }
+        
+        echo "</td>
+              <td style='width:70px !important'><center>
+                <a class='btn btn-success btn-xs' title='Download Tugas' 
+                   href='download.php?file=$r[file_tugas]'>
+                  <span class='glyphicon glyphicon-download'></span> Download
+                </a>
+              </center></td>
+            </tr>";
+        $no++;
     }
-    
-    echo "</td>
-          <td style='width:70px !important'><center>
-            <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'>
-              <span class='glyphicon glyphicon-download'></span> Download
-            </a>
-          </center></td>
-        </tr>";
-    $no++;
+}
+
+// Jika tidak ada data yang ditampilkan
+if($no == 1) {
+    echo "<tr><td colspan='7' class='text-center'>Belum ada jawaban untuk tugas ini</td></tr>";
 }
 
   if(isset($_POST['nilai_jawaban'])){
