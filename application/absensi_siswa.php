@@ -265,7 +265,7 @@
                                   // Mengambil data tugas dari hasil query
                                   while ($row = mysql_fetch_array($tugas)) {
                                       // Lakukan sesuatu dengan $row, misalnya menampilkan judul tugas
-                                      echo "Judul Tugas: " . $row['judul_tugas'] . "<br>"; // Ganti 'judul_tugas' dengan nama kolom yang sesuai
+                                      echo "Judul Tugas: " . $row['nama_file'] . "<br>"; // Ganti 'judul_tugas' dengan nama kolom yang sesuai
                                   }
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
