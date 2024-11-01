@@ -34,7 +34,7 @@ function cek_session_guru(){
 
 function cek_session_siswa(){
 	$level = $_SESSION[level];
-	if ($level == ''){
+	if ($level != 'siswa'){
 		echo "<script>document.location='index.php';</script>";
 	}
 }
