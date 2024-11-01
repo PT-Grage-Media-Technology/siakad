@@ -163,9 +163,9 @@
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
                                 echo "
-                                <form method='POST' id='pemberitahuan' onsubmit='return submitFormWithAlert()'>
+                                <form method='POST' id='pemberitahuan' action=''>
                                     <input type='hidden' name='users' value='$r[users]'>
-                                    <button class='btn btn-primary btn-xs' type='submit' name='peringatkan'>Peringatkan</button>
+                                    <button class='btn btn-primary btn-xs' type='submit' onclick='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
                               }
@@ -190,6 +190,8 @@
                    $tanggal = date('Y-m-d H:i:s');
                
                    $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
+
+                   echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
                 }
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
