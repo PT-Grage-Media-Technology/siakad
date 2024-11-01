@@ -253,8 +253,7 @@
                               if(mysql_num_rows($pemberitahuan) > 0){
                                 echo "Sudah Kirim Pemberitahuan";
                               } else {
-                                echo "
-                                Anda Belom Mengisikehadiran";
+                                echo "Anda Belom Mengisi kehadiran";
                               }
                             }
                             echo"
