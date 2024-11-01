@@ -241,7 +241,6 @@
   $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND DATE(tanggal_tugas)='$_GET[tgl]'");
   $data_tugas = mysql_fetch_array($tugas);
   $jumlah_data = mysql_num_rows($tugas);
-  echo "Jumlah data: " . $jumlah_data;
 
   
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
