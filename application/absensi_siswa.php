@@ -260,6 +260,8 @@
                                 <td>$r[jenis_kelamin]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                                  $tugas = "SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'";
+                                 var_dump($tugas);
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
