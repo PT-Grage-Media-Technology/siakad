@@ -619,13 +619,16 @@
                       <div class='modal-body'>";
                       // Validasi untuk menampilkan pesan
                       $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
-                      $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
+                      // $totalPemberitahuan = mysql_num_rows($pemberitahuan) < 1;
                      
-                        if ($totalPemberitahuan) {
-                          echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
-                        } else {
-                          echo "";
-                        }
+                        // if ($totalPemberitahuan) {
+                        //   echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
+                        // } else {
+                        //   echo "";
+                        // }
+
+                        echo "<h1 style='color:red;'>Absen Guru di hitung ketika guru mengabsen siswanya</h1>";
+                       
                         echo"<table id='example1' class='table table-bordered table-striped'>
                           <tr>
                             <th>No</th>
