@@ -393,9 +393,7 @@ elseif ($_GET[act] == 'tambah') {
               </div>
               <div class='box-footer'>
                 <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                <a href='index.php?view=bahantugas'>
-                  <button class='btn btn-default pull-right'>Cancel</button>
-                </a>
+                <button type='button' class='btn btn-default pull-right' onclick='history.back()'>Cancel</button>
               </div>
             </form>
           </div>
