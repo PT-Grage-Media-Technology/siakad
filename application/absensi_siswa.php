@@ -251,7 +251,8 @@
     // }
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
-    
+    $tugas = mysql_fetch_array(mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]'"));
+    var_dump($tugas);
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
                                 <td>$r[nipd]</td>
@@ -261,8 +262,7 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
-                                  $tugas = mysql_fetch_array(mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'"));
-                                  var_dump($tugas);
+                                
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
