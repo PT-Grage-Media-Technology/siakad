@@ -188,7 +188,7 @@
                    // Mendapatkan NIP pengguna
                    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
                    
-                   $pesan = 'tes aja';
+                   $pesan = 'Segera Absen Muridnya';
                    $tanggal = date('Y-m-d H:i:s');
                
                    $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");

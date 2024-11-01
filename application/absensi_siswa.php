@@ -238,6 +238,11 @@
 
 
   $no = 1;
+  $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND DATE(tanggal_tugas)='$_GET[tgl]'");
+  $data_tugas = mysql_fetch_array($tugas);
+  $jumlah_data = mysql_num_rows($tugas);
+
+  
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
     // if ($_GET[gettgl]) {
@@ -249,9 +254,11 @@
     //     $sekarangabsen = date("Y-m-d");
     //   }
     // }
+    $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
+ 
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
-    
+  
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
                                 <td>$r[nipd]</td>
@@ -261,9 +268,22 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
-                                  $tugas = "SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'";
-                                  // Menghapus var_dump yang tidak diperlukan
-                                  var_dump($tugas);
+                                if(mysql_num_rows($tugas) > 0 ){
+                                       
+                              // Menampilkan dropdown 'nilai'
+                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                  echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                } else {
+                                  echo "<td><select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                }
+
+                                echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
+                                echo "<option value='B' " . ($nilai['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
+                                echo "<option value='C' " . ($nilai['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
+                                echo "<option value='D' " . ($nilai['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
+                                echo "</select></td>";
+                                }else{
+                                  
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                   echo "<td><select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
@@ -276,12 +296,14 @@
                                 echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
                                 echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
-
-                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                              }
+                                  
+                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
                                     echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
                                   }
+                             
 
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
