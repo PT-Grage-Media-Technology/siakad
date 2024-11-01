@@ -165,6 +165,8 @@
                                 echo "
                                 <form method='POST' id='pemberitahuan' action=''>
                                     <input type='hidden' name='users' value='$r[users]'>
+                                    <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                                    <input type='hidden' name='jam_ke' value='$r[jam_ke]'>
                                     <button class='btn btn-primary btn-xs' type='submit' onclick='return submitFormWithAlert()' name='peringatkan'>Peringatkan</button>
                                 </form>";
                                 
@@ -182,7 +184,8 @@
                       </tr>";
                 $no++;
                 
-                if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
+                if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users'] &&
+                    $_POST['kodejdwl'] == $r['kodejdwl'] && $_POST['jam_ke'] == $r['jam_ke']) {
                    // Mendapatkan NIP pengguna
                    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
                    
