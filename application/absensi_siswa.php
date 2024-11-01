@@ -261,7 +261,9 @@
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
-                                  $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'");
+                                  $tugas = mysql_query("SELECT * FROM rb_elearning WHERE kodejdwl='$_GET[idjr]' AND tanggal_tugas='$_GET[tgl]'")
+         or die("Query error: " . mysql_error());
+
                                   $data = mysql_fetch_assoc($tugas);
                                   var_dump($data);  // Untuk menampilkan informasi lengkap mengenai variabel
 
