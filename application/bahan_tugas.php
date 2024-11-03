@@ -696,105 +696,201 @@ if ($_GET[act] == '') {
                         <th>Action</th>
                       </tr>";
 
-  $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
-  $no = 1;
-  while ($r = mysql_fetch_array($tampil)) {
-    echo "<tr><td>$no</td>
-                              <td>$r[nisn]</td>
-                              <td>$r[nama]</td>
-                              <td>$r[keterangan]</td>
-                              <td>$r[waktu] WIB</td>
-                              <td>";
-                              if($r[nilai]){
-                                echo"$r[nilai]";
-                              } else{
-                                echo"
-                                  <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
-                                      <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
-                                          <option value=''>Pilih Nilai</option>
-                                          <option value='A'>A</option>
-                                          <option value='B'>B</option>
-                                          <option value='C'>C</option>
-                                          <option value='D'>D</option>
-                                          <option value='F'>F</option>
-                                      </select>
-                                  </form>";
-                              }
-                              echo"</td>
-                              <td style='width:70px !important'><center>
-                                <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
-                              </center></td>";
-    echo "</tr>";
-    $no++;
-  }
+//   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
+//   $no = 1;
+//   while ($r = mysql_fetch_array($tampil)) {
+//     echo "<tr><td>$no</td>
+//                               <td>$r[nisn]</td>
+//                               <td>$r[nama]</td>
+//                               <td>$r[keterangan]</td>
+//                               <td>$r[waktu] WIB</td>
+//                               <td>";
+//                               if($r[nilai]){
+//                                 echo"$r[nilai]";
+//                               } else{
+//                                 echo"
+//                                   <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+//                                       <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+//                                       <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+//                                           <option value=''>Pilih Nilai</option>
+//                                           <option value='A'>A</option>
+//                                           <option value='B'>B</option>
+//                                           <option value='C'>C</option>
+//                                           <option value='D'>D</option>
+//                                           <option value='F'>F</option>
+//                                       </select>
+//                                   </form>";
+//                               }
+//                               echo"</td>
+//                               <td style='width:70px !important'><center>
+//                                 <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
+//                               </center></td>";
+//     echo "</tr>";
+//     $no++;
+//   }
 
-  if(isset($_POST['nilai_jawaban'])){
-    $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
+//   if(isset($_POST['nilai_jawaban'])){
+//     $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
     
-    echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+//     echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+//   }
+
+//   echo "</table>
+//                     </div>
+//                   </div>";
+
+// } elseif ($_GET[act] == 'jawaban') {
+//   cek_session_guru();
+//   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
+//   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+//   $t = mysql_fetch_array(mysql_query("SELECT * FROM rb_elearning where id_elearning='$_GET[ide]'"));
+//   echo "<div class='col-md-12'>
+//               <div class='box box-info'>
+//                 <div class='box-header with-border'>
+//                   <h3 class='box-title'>List Upload Bahan dan Tugas</b></h3>
+//                 </div>
+//               <div class='box-body'>
+
+//               <div class='col-md-12'>
+//               <table class='table table-condensed table-hover'>
+//                   <tbody>
+//                     <input type='hidden' name='id' value='$s[kodekelas]'>
+//                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+//                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+//                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+//                     <tr><th scope='row'>Nama Tugas</th>               <td>$t[nama_file]</td></tr>
+//                   </tbody>
+//               </table>
+//               </div>
+
+//               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+//               <input type='hidden' name='kelas' value='$_GET[id]'>
+//               <input type='hidden' name='pelajaran' value='$_GET[kd]'>
+//                 <div class='col-md-12'>
+//                   <table id='example1' class='table table-condensed table-bordered table-striped'>
+//                       <thead>
+//                       <tr>
+//                         <th style='width:40px'>No</th>
+//                         <th>NISN</th>
+//                         <th>Nama Siswa</th>
+//                         <th>Pesan Siswa</th>
+//                         <th>Waktu Kirim</th>";
+//   if ($_SESSION[level] != 'kepala') {
+//     echo "<th>Action</th>";
+//   }
+//   echo "</tr>
+//                     </thead>
+//                     <tbody>";
+
+//   $no = 1;
+//   $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn where a.id_elearning='$_GET[ide]' ORDER BY a.id_elearning_jawab DESC");
+//   while ($r = mysql_fetch_array($tampil)) {
+//     echo "<tr>
+//                               <td>$no</td>
+//                               <td style='color:red'>$r[nisn]</td>
+//                               <td>$r[nama]</td>
+//                               <td>$r[keterangan]</td>
+//                               <td>$r[waktu] WIB</td>
+//                               <td>
+//                                 <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
+//                               </td></tr>";
+//     $no++;
+//   }
+// $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn ORDER BY a.id_elearning_jawab DESC");
+  // $no = 1;
+  // while ($r = mysql_fetch_array($tampil)) {
+  //   echo "<tr><td>$no</td>
+  //                             <td>$r[nisn]</td>
+  //                             <td>$r[nama]</td>
+  //                             <td>$r[keterangan]</td>
+  //                             <td>$r[waktu] WIB</td>
+  //                             <td>";
+  //                             if($r[nilai]){
+  //                               echo"$r[nilai]";
+  //                             } else{
+  //                               echo"
+  //                                 <form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+  //                                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+  //                                     <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+  //                                         <option value=''>Pilih Nilai</option>
+  //                                         <option value='A'>A</option>
+  //                                         <option value='B'>B</option>
+  //                                         <option value='C'>C</option>
+  //                                         <option value='D'>D</option>
+  //                                         <option value='F'>F</option>
+  //                                     </select>
+  //                                 </form>";
+  //                             }
+  //                             echo"</td>
+  //                             <td style='width:70px !important'><center>
+  //                               <a class='btn btn-success btn-xs' title='Download Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
+  //                             </center></td>";
+  //   echo "</tr>";
+  //   $no++;
+  // }
+
+
+  // Ambil id tugas dari URL
+  $id_tugas = (int)$_GET['ide']; // Pastikan menggunakan parameter yang benar (ide)
+
+  // Modifikasi query dengan menambahkan kondisi yang lebih spesifik
+  $tampil = mysql_query("SELECT a.*, b.* 
+                        FROM rb_elearning_jawab a 
+                        JOIN rb_siswa b ON a.nisn=b.nisn 
+                        JOIN rb_elearning c ON a.id_elearning=c.id_elearning
+                        WHERE a.id_elearning='$id_tugas' 
+                        AND c.id_guru='$_SESSION[id]'
+                        ORDER BY a.id_elearning_jawab DESC");
+  
+  // Periksa apakah query berhasil
+  if(!$tampil) {
+      echo "Error: " . mysql_error();
+      exit;
   }
-
-  echo "</table>
-                    </div>
-                  </div>";
-
-} elseif ($_GET[act] == 'jawaban') {
-  cek_session_guru();
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
-  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
-  $t = mysql_fetch_array(mysql_query("SELECT * FROM rb_elearning where id_elearning='$_GET[ide]'"));
-  echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>List Upload Bahan dan Tugas</b></h3>
-                </div>
-              <div class='box-body'>
-
-              <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                    <tr><th scope='row'>Nama Tugas</th>               <td>$t[nama_file]</td></tr>
-                  </tbody>
-              </table>
-              </div>
-
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-              <input type='hidden' name='kelas' value='$_GET[id]'>
-              <input type='hidden' name='pelajaran' value='$_GET[kd]'>
-                <div class='col-md-12'>
-                  <table id='example1' class='table table-condensed table-bordered table-striped'>
-                      <thead>
-                      <tr>
-                        <th style='width:40px'>No</th>
-                        <th>NISN</th>
-                        <th>Nama Siswa</th>
-                        <th>Pesan Siswa</th>
-                        <th>Waktu Kirim</th>";
-  if ($_SESSION[level] != 'kepala') {
-    echo "<th>Action</th>";
-  }
-  echo "</tr>
-                    </thead>
-                    <tbody>";
-
+  
   $no = 1;
-  $tampil = mysql_query("SELECT * FROM rb_elearning_jawab a JOIN rb_siswa b ON a.nisn=b.nisn where a.id_elearning='$_GET[ide]' ORDER BY a.id_elearning_jawab DESC");
   while ($r = mysql_fetch_array($tampil)) {
-    echo "<tr>
-                              <td>$no</td>
-                              <td style='color:red'>$r[nisn]</td>
-                              <td>$r[nama]</td>
-                              <td>$r[keterangan]</td>
-                              <td>$r[waktu] WIB</td>
-                              <td>
-                                <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_tugas]'><span class='glyphicon glyphicon-download'></span> Download</a>
-                              </td></tr>";
-    $no++;
+      // Tambahkan pengecekan apakah jawaban ini memang untuk tugas yang dipilih
+      if($r['id_elearning'] == $id_tugas) {
+          echo "<tr>
+                  <td>$no</td>
+                  <td>$r[nisn]</td>
+                  <td>$r[nama]</td>
+                  <td>$r[keterangan]</td>
+                  <td>$r[waktu] WIB</td>
+                  <td>";
+          
+          if($r['nilai']){
+              echo "$r[nilai]";
+          } else {
+              echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
+                      <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                      <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                          <option value=''>Pilih Nilai</option>
+                          <option value='A'>A</option>
+                          <option value='B'>B</option>
+                          <option value='C'>C</option>
+                          <option value='D'>D</option>
+                          <option value='F'>F</option>
+                      </select>
+                    </form>";
+          }
+          
+          echo "</td>
+                <td style='width:70px !important'><center>
+                  <a class='btn btn-success btn-xs' title='Download Tugas' 
+                     href='download.php?file=$r[file_tugas]'>
+                    <span class='glyphicon glyphicon-download'></span> Download
+                  </a>
+                </center></td>
+              </tr>";
+          $no++;
+      }
+  }
+  
+  // Jika tidak ada data yang ditampilkan
+  if($no == 1) {
+      echo "<tr><td colspan='7' class='text-center'>Belum ada jawaban untuk tugas ini</td></tr>";
   }
 
   if (isset($_GET[hapus])) {
