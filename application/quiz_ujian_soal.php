@@ -373,7 +373,7 @@ if ($_GET[act] == '') {
                                               ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
                                                 AND b.id_quiz_ujian='$_GET[idsoal]'"));
 
-    if ($to[total] <= 0 or $es[total] <= 0) {
+    if ($to['total'] <= 0 or $es['total'] <= 0) {
       $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
     } else {
       $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
@@ -735,7 +735,7 @@ if ($_GET[act] == '') {
 
   <?php
 } elseif ($_GET[act] == 'listsoalsiswa') {
-  cek_session_siswa();
+  // cek_session_siswa();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>

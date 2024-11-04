@@ -52,7 +52,8 @@
   echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
 }
 
-if (isset($_GET['delete-keterampilan'])){
+if (isset($_GET['delete_keterampilan'])){
+  
   mysql_query("DELETE FROM rb_nilai_keterampilan where id_nilai_keterampilan='$_GET[delete_keterampilan]'");
   echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
 }
@@ -346,13 +347,13 @@ if (isset($_GET['delete-keterampilan'])){
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_keterampilan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='text' name='a' value='$e[kd]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='b' value='$e[nilai1]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='c' value='$e[nilai2]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='d' value='$e[nilai3]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='e' value='$e[nilai4]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='f' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='g' value='$e[nilai6]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='a1' value='$e[kd]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='b1' value='$e[nilai1]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='c1' value='$e[nilai2]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='d1' value='$e[nilai3]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='e1' value='$e[nilai4]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='f1' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='g1' value='$e[nilai6]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='h' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
@@ -365,15 +366,15 @@ if (isset($_GET['delete-keterampilan'])){
                                         <td>$no</td>
                                         <td style='font-size:12px' id='$r[nisn]'>$r[nama]</td>
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
-                                        <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
+                                        <input type='hidden' name='id' value='$e[id_nilai_keterampilan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='text' name='a' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='b' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='c' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='d' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='e' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='f' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' name='g' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='a1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='b1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='c1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='d1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='e1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='f1' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' name='g1' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='h' style='width:100%; padding:0px'></td>

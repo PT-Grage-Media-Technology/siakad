@@ -106,7 +106,6 @@ if ($_GET[act] == '') {
 
 <?php
 } elseif ($_GET[act] == 'list') {
-  cek_session_siswa();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
