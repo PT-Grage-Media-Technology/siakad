@@ -262,7 +262,7 @@
                         $coba = "SELECT * FROM rb_absensi_guru 
                                                       WHERE nip='$r[users]' 
                                                       AND kodejdwl='$r[kodejdwl]' 
-                                                      AND tanggal='date('Y-m-d')'";
+                                                      AND tanggal='$r[tanggal]'";
                         
                         var_dump($coba);
 
