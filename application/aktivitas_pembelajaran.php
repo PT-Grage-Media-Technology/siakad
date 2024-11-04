@@ -255,7 +255,8 @@
                                                       AND jam_ke='$r[jam_ke]'");
 
                         $pe = mysql_fetch_array($pemberitahuan);
-
+                        var_dump(mysql_num_rows($pemberitahuan));
+                        var_dump(isset($r['kode_kehadiran']));
                         echo"
                         <td>"; 
                             if (isset($r['kode_kehadiran'])) {
