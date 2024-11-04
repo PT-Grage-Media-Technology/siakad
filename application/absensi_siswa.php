@@ -252,15 +252,6 @@
                           where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
 
   while ($r = mysql_fetch_array($tampil)) {
-    // if ($_GET[gettgl]) {
-    //   $sekarangabsen = $_GET[gettgl];
-    // } else {
-    //   if (isset($_POST[lihat])) {
-    //     $sekarangabsen = $thn . "-" . $blnc . "-" . $tglc;
-    //   } else {
-    //     $sekarangabsen = date("Y-m-d");
-    //   }
-    // }
 
     $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
  
