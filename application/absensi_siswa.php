@@ -278,9 +278,9 @@
                                        
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo "<td>22<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td>Nilai Tugas<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 } else {
-                                  echo "<td>22<select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td>Nilai Tugas<select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
                                 echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
@@ -292,9 +292,9 @@
                                   
                               // Menampilkan dropdown 'nilai'
                                 if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo "<td>11<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td>Nilai Sikap<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 } else {
-                                  echo "<td>11<select style='width:100px;' name='nilai[$no]' class='form-control'>";
+                                  echo "<td>Nilai Sikap<select style='width:100px;' name='nilai[$no]' class='form-control'>";
                                 }
 
                                 echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
