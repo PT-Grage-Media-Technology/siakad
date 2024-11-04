@@ -245,14 +245,19 @@
                         <td>$r[kode_kelas]</td>
                         <td>$r[namamatapelajaran]</td>";
 
-                        $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
-                                                      WHERE nip_guru='$r[users]' 
-                                                      AND is_read=1 
-                                                      AND kode_kelas='$r[kode_kelas]' 
-                                                      AND kode_mapel='$r[kode_pelajaran]' 
-                                                      AND id_tujuan_pembelajaran='$r[kodejdwl]' 
-                                                      AND tanggal_absen='$r[tanggal]' 
-                                                      AND jam_ke='$r[jam_ke]'");
+                        // $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
+                        //                               WHERE nip_guru='$r[users]' 
+                        //                               AND is_read=1 
+                        //                               AND kode_kelas='$r[kode_kelas]' 
+                        //                               AND kode_mapel='$r[kode_pelajaran]' 
+                        //                               AND id_tujuan_pembelajaran='$r[kodejdwl]' 
+                        //                               AND tanggal_absen='$r[tanggal]' 
+                        //                               AND jam_ke='$r[jam_ke]'");
+
+                        $pemberitahuan = mysql_query("SELECT * FROM rb_absensi_guru 
+                                                      WHERE nip='$r[users]' 
+                                                      AND kodejdwl='$r[kodejdwl]' 
+                                                      AND tanggal='date(Y-m-d)'");
 
                         $pe = mysql_fetch_array($pemberitahuan);
                         var_dump(mysql_num_rows($pemberitahuan));
