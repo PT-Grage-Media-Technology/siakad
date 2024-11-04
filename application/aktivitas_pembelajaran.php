@@ -257,11 +257,13 @@
                         $pemberitahuan = mysql_query("SELECT * FROM rb_absensi_guru 
                                                       WHERE nip='$r[users]' 
                                                       AND kodejdwl='$r[kodejdwl]' 
+                                                      AND jam_ke='$r[jam_ke]' 
                                                       AND tanggal='$r[tanggal]'");
 
                         $coba = "SELECT * FROM rb_absensi_guru 
                                                       WHERE nip='$r[users]' 
                                                       AND kodejdwl='$r[kodejdwl]' 
+                                                      AND jam_ke='$r[jam_ke]' 
                                                       AND tanggal='$r[tanggal]'";
                         
                         var_dump($coba);
@@ -272,14 +274,10 @@
                         var_dump(isset($r['kode_kehadiran']));
                         echo"
                         <td>"; 
-                            if (isset($r['kode_kehadiran'])) {
-                                echo "$r[kode_kehadiran]";
+                            if (mysql_num_rows($pemberitahuan) > 0) {
+                                echo "$pe[kode_kehadiran]";
                             } else {
-                              if(mysql_num_rows($pemberitahuan) > 0){
-                                echo "Sudah Kirim Pemberitahuan";
-                              } else {
                                 echo "Anda Belom Mengisi kehadiran";
-                              }
                             }
                             echo"
                         </td>
