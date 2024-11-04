@@ -353,6 +353,18 @@ elseif ($_GET[act] == 'tambah') {
                                 </select>
                               </td>
                             </tr>
+                            <tr><th width='120px' scope='row'>Kategori</th> <td><select class='form-control' name='a'> 
+                             <option value='0' selected>- Pilih Kategori Tugas -</option>";
+                            $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
+                            while ($a = mysql_fetch_array($kategori)) {
+                              if ($s[id_kategori_elearning] == $a[id_kategori_elearning]) {
+                                echo "<option value='$a[id_kategori_elearning]' selected>$a[nama_kategori_elearning]</option>";
+                              } else {
+                                echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
+                              }
+                            }
+                            echo "</select>
+                    </td></tr>
                             <tr>
                               <th width='120px' scope='row'>Status</th>
                               <td>
