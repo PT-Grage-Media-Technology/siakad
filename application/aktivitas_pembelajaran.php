@@ -266,12 +266,8 @@
                                                       AND jam_ke='$r[jam_ke]' 
                                                       AND tanggal='$r[tanggal]'";
                         
-                        var_dump($coba);
-
 
                         $pe = mysql_fetch_array($pemberitahuan);
-                        var_dump(mysql_num_rows($pemberitahuan));
-                        var_dump(isset($r['kode_kehadiran']));
                         echo"
                         <td>"; 
                             if (mysql_num_rows($pemberitahuan) > 0) {
