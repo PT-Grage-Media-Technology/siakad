@@ -339,20 +339,20 @@ elseif ($_GET[act] == 'tambah') {
                       <div class='col-12'>
                         <table class='table table-condensed table-bordered'>
                           <tbody>
-                            <tr> 
-                              <th width='120px' scope='row'>Kategori</th>
-                              <td>
-                                <select class='form-control' name='a'>
-                                  <option value='0' selected>- Pilih Kategori Tugas -</option>
-                                  <?php
-                                    $kategori = mysql_query('SELECT * FROM rb_kategori_elearning');
-                                    while ($a = mysql_fetch_array($kategori)) {
-                                      echo '<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>';
-                                    }
-                                  ?>
-                                </select>
-                              </td>
-                            </tr>
+                            // <tr> 
+                            //   <th width='120px' scope='row'>Kategori</th>
+                            //   <td>
+                            //     <select class='form-control' name='a'>
+                            //       <option value='0' selected>- Pilih Kategori Tugas -</option>
+                            //       <?php
+                            //         $kategori = mysql_query('SELECT * FROM rb_kategori_elearning');
+                            //         while ($a = mysql_fetch_array($kategori)) {
+                            //           echo '<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>';
+                            //         }
+                            //       ?>
+                            //     </select>
+                            //   </td>
+                            // </tr>
                             <tr><th width='120px' scope='row'>Kategori</th> <td><select class='form-control' name='a'> 
                              <option value='0' selected>- Pilih Kategori Tugas -</option>";
                             $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
