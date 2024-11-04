@@ -381,11 +381,11 @@ elseif ($_GET[act] == 'tambah') {
                             </tr>
                             <tr>
                               <th scope='row'>Waktu Mulai</th>
-                              <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?>' ></td>
+                              <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
                             </tr>
                             <tr>
                               <th scope='row'>Waktu Selesai</th>
-                              <td><input type='datetime-local' class='form-control' name='e' value='<?php echo date('Y-m-d\TH:i'); ?>'></td>
+                              <td><input type='datetime-local' class='form-control' name='e' value='<?php echo date('Y-m-d\TH:i'); ?></td>
                             </tr>
                             <tr>
                               <th scope='row'>Keterangan</th>
