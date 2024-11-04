@@ -259,6 +259,14 @@
                                                       AND kodejdwl='$r[kodejdwl]' 
                                                       AND tanggal='date(Y-m-d)'");
 
+                        $coba = "SELECT * FROM rb_absensi_guru 
+                                                      WHERE nip='$r[users]' 
+                                                      AND kodejdwl='$r[kodejdwl]' 
+                                                      AND tanggal='date(Y-m-d)'";
+                        
+                        var_dump($coba);
+
+
                         $pe = mysql_fetch_array($pemberitahuan);
                         var_dump(mysql_num_rows($pemberitahuan));
                         var_dump(isset($r['kode_kehadiran']));
