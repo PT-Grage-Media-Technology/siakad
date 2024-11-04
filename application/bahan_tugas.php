@@ -227,7 +227,6 @@ if ($_GET[act] == '') {
 
 }elseif($_GET[act] == 'bahantugassiswa'){
   cek_session_siswa();
-  echo"ini siswa";
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
