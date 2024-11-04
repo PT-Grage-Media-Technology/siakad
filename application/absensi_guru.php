@@ -186,7 +186,7 @@ if ($_GET[act]==''){
 <?php 
     if (isset($_POST[simpan])){
       $jml_data = count($_POST[nip]);
-      $nip = $_POST[nip];
+      $nip = $_SESSION[id];
       $kode_pelajaran = $_POST[kode_pelajaran];
       $kode_kelas = $_POST[kode_kelas];
       $jdwl = $_POST[jdwl];
