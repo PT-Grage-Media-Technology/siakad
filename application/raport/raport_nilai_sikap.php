@@ -268,7 +268,7 @@ if (isset($_GET['delete-keterampilan'])){
                                         <td align=center>".number_format($ratarata)."</td>
                                         <td align=center>$grade1[grade]</td>
                                         <td>$n[deskripsi]</td>
-                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
+                                        <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
                                       </tr>";
                                     }
@@ -406,7 +406,7 @@ if (isset($_GET['delete-keterampilan'])){
                                         <td align=center>$grade1[grade]</td>
                                         <td>$n[deskripsi]</td>
                                         <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_keterampilan=".$n[id_nilai_keterampilan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
-                                                        <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_keterampilan=".$n[id_nilai_keterampilan]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
+                                                        <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_keterampilan=".$n[id_nilai_keterampilan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
                                       </tr>";
                                     }
                                       $maxn = mysql_fetch_array(mysql_query("SELECT deskripsi, GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6) as tertinggi FROM rb_nilai_keterampilan where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' ORDER BY tertinggi DESC LIMIT 1"));
