@@ -53,16 +53,8 @@
 }
 
 if (isset($_GET['delete-keterampilan'])){
-  echo "<script>console.log('Dumping data for debugging purposes...');</script>";
-  // Dump data yang relevan
-  $delete_id = $_GET['delete_keterampilan'];
-  $nisn = $_GET['nisn'];
   
-  // Menampilkan data untuk debugging
-  var_dump($delete_id, $nisn);
-  exit; // Menghentikan eksekusi skrip
-
-  mysql_query("DELETE FROM rb_nilai_keterampilan where id_nilai_keterampilan='$delete_id'");
+  mysql_query("DELETE FROM rb_nilai_keterampilan where id_nilai_keterampilan='$_GET[delete_keterampilan]'");
   echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
 }
 
