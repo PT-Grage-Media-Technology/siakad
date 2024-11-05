@@ -783,7 +783,7 @@ elseif ($_GET[act] == 'tambah') {
                               <!-- Tombol untuk Menutup Modal -->
                               <span onclick='closeModal()' style='position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer;'>&times;</span>
                               <!-- Gambar di dalam Modal -->
-                              <img src='files/$elearning[file_upload]' alt='Gambar Elearning' width='350px'>
+                              <img src='files/$elearning[file_upload]' alt='Gambar Elearning' width='370px'>
                           </div>
                       </div>
                     </tbody>
