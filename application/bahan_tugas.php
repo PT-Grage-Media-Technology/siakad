@@ -761,6 +761,7 @@ elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+  $elearning = mysql_fetch_array(mysql_query("SELECT * FROM rb_elearning where id_elearning='$_GET[ide]'"));
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
@@ -775,6 +776,7 @@ elseif ($_GET[act] == 'tambah') {
                       <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                       <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+                      <tr><th scope='row'>Preview Gambar</th>           <td><img src='files/$elearning[file_upload]' alt='Gambar Elearning' width='350px'></td></tr>
                     </tbody>
                 </table>
                 </div>
