@@ -697,50 +697,29 @@ elseif ($_GET[act] == 'tambah') {
                 window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
   } else {
     if (isset($_POST['kirimkan'])) {
-      // Debug data POST
-      var_dump($_POST); // Debug data POST untuk memastikan data terkirim
-      echo "<br>";
-  
-      // Debug data FILES
-      var_dump($_FILES); // Debug data FILES untuk memeriksa file yang diunggah
-      echo "<br>";
-  
-      // Memastikan $_GET berfungsi dengan baik
-      var_dump($_GET); // Debug data GET untuk memeriksa nilai parameter URL
-      echo "<br>";
-  
-      exit; // Gunakan exit untuk menghentikan eksekusi sementara, agar dapat melihat hasil var_dump
-      
       $dir_gambar = 'files/';
       $filename = basename($_FILES['c']['name']);
       $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
       $uploadfile = $dir_gambar . $filenamee;
-  
-      // Debug filename dan uploadfile
-      var_dump($filename);
-      var_dump($filenamee);
-      var_dump($uploadfile);
-      echo "<br>";
   
       if ($filename != '') {
           $waktuu = date("Y-m-d H:i:s");
   
           // Cek hasil move_uploaded_file
           if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-              var_dump("File berhasil diunggah"); // Debug sukses upload
+              // Ganti mysql_query dengan mysqli_query atau PDO
               mysql_query("INSERT INTO rb_elearning_jawab VALUES ('','$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
               echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
           } else {
-              var_dump("Gagal upload file"); // Debug kegagalan upload
               echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
                       window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
           }
       } else {
-          var_dump("Tidak ada file yang dipilih"); // Debug jika tidak ada file
           echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
                   window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
       }
   }
+  
   
     
 
