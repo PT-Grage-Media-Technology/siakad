@@ -365,15 +365,17 @@ elseif ($_GET[act] == 'tambah') {
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
                             <tr>
-                              <th scope='row'>File123</th>
+                              <th scope='row'>File</th>
                               <td>
-                               <div class='d-flex align-items-center'>
-                                <a class='btn btn-primary' href='javascript:;' onclick=\"document.querySelector('.files').click();\">
-                                    <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                </a>
-                                <input type='file' class='files' name='c' style='display:none;' onchange=\"document.getElementById('upload-file-info').innerHTML = this.value;\">
-                                <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                            </div>
+                                <div class='d-flex align-items-center'>
+                                    <a class='btn btn-primary' href='javascript:;' onclick='$('.files').click();'>
+                                        <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
+                                    </a>
+                                    <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
+                                    <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
+                                </div>
+
+
                               </td>
                             </tr>
                             <tr>
@@ -693,9 +695,7 @@ elseif ($_GET[act] == 'tambah') {
     echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
                 window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
   } else {
-    if (isset($_POST['kirimkan'])) {
-      var_dump($_POST['kirimkan']);
-      exit;
+    if (isset($_POST[kirimkan])) {
       $dir_gambar = 'files/';
       $filename = basename($_FILES['c']['name']);
       $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
@@ -719,20 +719,19 @@ elseif ($_GET[act] == 'tambah') {
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Kirimkan Tugas3333</h3>
+                  <h3 class='box-title'>Kirimkan Tugas</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <tr><th width=120px scope='row'>Nama File</th>             
-                    <td><div style='position:relative;''>
-                    <a class='btn btn-primary' href='javascript:;'>
-                    <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
-                    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-                    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                    </div>
+                    <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
+                                                                          <a class='btn btn-primary' href='javascript:;'>
+                                                                            <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                                        </div>
                     </td></tr>
                     <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='a'></textarea></td></tr>
                     
