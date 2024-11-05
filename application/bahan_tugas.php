@@ -801,6 +801,7 @@ $tampil = mysql_query("SELECT a.*, b.*
                       JOIN rb_elearning c ON a.id_elearning=c.id_elearning
                       WHERE a.id_elearning='$id_tugas' 
                       -- AND c.id_guru='$_SESSION[id]'
+                      AND c.kodejdwl='$_GET[jdwl]'
                       ORDER BY a.id_elearning_jawab DESC");
 
 // Periksa apakah query berhasil
