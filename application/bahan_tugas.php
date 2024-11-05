@@ -709,7 +709,7 @@ elseif ($_GET[act] == 'tambah') {
           if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
               // Ganti mysql_query dengan mysqli_query atau PDO
               mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu', NULL)");
-              echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
+              echo "<script>window.alert('Berhasil Kirim Tugas');
               window.location='index.php?view=bahantugas&act=bahantugassiswa&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
           } else {
               echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
