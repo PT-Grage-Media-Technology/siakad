@@ -368,13 +368,18 @@ elseif ($_GET[act] == 'tambah') {
                               <th scope='row'>File123</th>
                               <td>
                                 <div class='d-flex align-items-center'>
-                                    <input type='file' class='files' name='c' onchange='$('#upload-file-info').html($(this).val());'>
                                     <a class='btn btn-primary' href='javascript:;' onclick='$('.files').click();'>
                                         <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
                                     </a>
                                     <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
                                     <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
                                 </div>
+
+
+                              </td>
+                              <td>
+                                  <input type='file' class='files' name='c' onchange='$('#upload-file-info').html($(this).val());'>
+
 
 
                               </td>
