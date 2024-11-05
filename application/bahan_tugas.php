@@ -779,8 +779,8 @@ elseif ($_GET[act] == 'tambah') {
                 </table>
                 </div>
 
-                <div class='box-body'>
-                <table class='table table-bordered table-striped' style='overflow-x: auto; display: block;'>
+                <div class='box-body' style='overflow-x: auto; display: block;'>
+                <table class='table table-bordered table-striped' >
                       <tr>
                         <th style='width:40px'>No</th>
                         <th style='width:90px'>NISN</th>
