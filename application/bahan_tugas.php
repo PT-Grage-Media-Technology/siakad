@@ -783,10 +783,10 @@ elseif ($_GET[act] == 'tambah') {
                 <table class='table table-bordered table-striped' style='overflow-x: auto; display: block;'>
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>NISN</th>
+                        <th style='width:90px'>NISN</th>
                         <th>Nama Lengkap</th>
                         <th>Keterangan</th>
-                        <th>Waktu Kirim</th>
+                        <th style='width:100px'>Waktu Kirim</th>
                         <th>Nilai</th>
                         <th>Action</th>
                       </tr>";
