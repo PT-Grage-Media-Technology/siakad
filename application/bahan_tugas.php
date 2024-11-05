@@ -688,34 +688,40 @@ elseif ($_GET[act] == 'tambah') {
   </div>
 
   <?php
-} elseif ($_GET[act] == 'kirim') {
-  cek_session_siswa();
-  $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab where id_elearning='$_GET[ide]' AND nisn='$iden[nisn]'"));
-  if ($cek[total] >= 1) {
-    echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
-                window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-  } else {
-    if (isset($_POST['kirimkan'])) {
-      var_dump($_POST['kirimkan']);
-      exit;
-      $dir_gambar = 'files/';
-      $filename = basename($_FILES['c']['name']);
-      $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
-      $uploadfile = $dir_gambar . $filenamee;
-      if ($filename != '') {
-        $waktuu = date("Y-m-d H:i:s");
-        if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-          mysql_query("INSERT INTO rb_elearning_jawab VALUES ('','$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
-          echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-        } else {
-          echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
-                          window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
+// Periksa jika form dikirim
+if ($_GET['act'] == 'kirim') {
+    cek_session_siswa();
+    $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab WHERE id_elearning='" . $_GET['ide'] . "' AND nisn='" . $iden['nisn'] . "'"));
+    
+    if ($cek['total'] >= 1) {
+        echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
+                window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+    } else {
+        if (isset($_POST['kirimkan'])) {
+            $dir_gambar = 'files/';
+            $filename = basename($_FILES['c']['name']);
+            $filenamee = date("YmdHis") . '-' . $filename;
+            $uploadfile = $dir_gambar . $filenamee;
+            
+            if ($filename != '') {
+                $waktuu = date("Y-m-d H:i:s");
+                
+                if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
+                    mysql_query("INSERT INTO rb_elearning_jawab (id_elearning, nisn, keterangan, file_tugas, waktu) VALUES ('" . $_GET['ide'] . "', '" . $iden['nisn'] . "', '" . $_POST['a'] . "', '$filenamee', '$waktuu')");
+                    echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+                } else {
+                    echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
+                          window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+                }
+            } else {
+                echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
+                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+            }
         }
-      } else {
-        echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
-                          window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-      }
     }
+}
+?>
+
     
 
     echo "<div class='col-md-12'>
