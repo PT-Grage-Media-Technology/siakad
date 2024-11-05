@@ -365,7 +365,7 @@ elseif ($_GET[act] == 'tambah') {
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
                             <tr>
-                              <th scope='row'>File</th>
+                              <th scope='row'>File123</th>
                               <td>
                                 <div class='d-flex align-items-center'>
                                     <input type='file' class='files' name='c' onchange='$('#upload-file-info').html($(this).val());'>
