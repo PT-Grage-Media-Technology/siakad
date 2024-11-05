@@ -776,7 +776,16 @@ elseif ($_GET[act] == 'tambah') {
                       <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                       <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                      <tr><th scope='row'>Preview Gambar</th>           <td><img src='files/$elearning[file_upload]' alt='Gambar Elearning' width='350px'></td></tr>
+                      <tr><th scope='row'>Preview Gambar</th>           <td><button type='button' onclick='openModal()'>Lihat Gambar</button></td></tr>
+                      <!-- Modal -->
+                      <div id='imageModal' style='display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;'>
+                          <div style='position: relative; background-color: white; padding: 20px; max-width: 90%; max-height: 90%;'>
+                              <!-- Tombol untuk Menutup Modal -->
+                              <span onclick='closeModal()' style='position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer;'>&times;</span>
+                              <!-- Gambar di dalam Modal -->
+                              <img src='files/<?php echo $elearning[file_uploadd]; ?>' alt='Gambar Elearning' width='100%'>
+                          </div>
+                      </div>
                     </tbody>
                 </table>
                 </div>
@@ -876,5 +885,13 @@ function submitFormWithAlert(selectElement) {
             document.getElementById('nilaiForm').submit();
         }
     }
+}
+
+function openModal() {
+    document.getElementById('imageModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
 }
 </script>
