@@ -814,6 +814,7 @@ if(!$tampil) {
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
     // Tambahkan pengecekan apakah jawaban ini memang untuk tugas yang dipilih
+    echo $r;
     if($r['id_elearning'] == $id_tugas) {
         echo "<tr>
                 <td>$no</td>
