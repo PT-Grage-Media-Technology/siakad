@@ -868,7 +868,4 @@ function submitFormWithAlert(selectElement) {
     }
 }
 
-    $('#file-upload-btn').on('click', function() {
-        $('#file-upload').click();
-    });
 </script>
