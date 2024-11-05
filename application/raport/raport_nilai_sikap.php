@@ -66,7 +66,7 @@ if (isset($_GET['delete_keterampilan'])){
               <h3 class='box-title'>Input Nilai Sikap Siswa</b></h3>
             </div>
         
-    <div class='box-body'>
+    <div class='box-body' style='overflow-x: auto; display: block;'>
           <div class='col-md-12'>
           <table class='table table-condensed table-hover'>
               <tbody>
