@@ -802,6 +802,7 @@ $tampil = mysql_query("SELECT a.*, b.*
                       WHERE a.id_elearning='$id_tugas' 
                       -- AND c.id_guru='$_SESSION[id]'
                       AND c.kodejdwl='$_GET[jdwl]'
+                      WHERE DATE(a.waktu) = CURDATE()
                       ORDER BY a.id_elearning_jawab DESC");
 
 // Periksa apakah query berhasil
