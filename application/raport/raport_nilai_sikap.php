@@ -176,7 +176,7 @@ if (isset($_GET['delete_keterampilan'])){
 
             // Halaman Nilai pengetahuan (baru)
             echo "<div role='tabpanel' class='tab-pane fade' id='pengetahuan' aria-labelledby='pengetahuan-tab'>
-          <div class='panel-body'>
+          <div class='panel-body' style='overflow-x: auto; display: block;'>
               <table class='table table-bordered table-striped'>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
@@ -312,7 +312,7 @@ if (isset($_GET['delete_keterampilan'])){
             // Halaman Nilai Keterampilan (baru)
             echo "<div role='tabpanel' class='tab-pane fade' id='keterampilan' aria-labelledby='keterampilan-tab'>
 
-          <div class='panel-body'>
+          <div class='panel-body' style='overflow-x: auto; display: block;'>
               <table class='table table-bordered table-striped'>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
