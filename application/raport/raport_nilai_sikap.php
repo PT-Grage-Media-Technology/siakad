@@ -133,7 +133,7 @@ if (isset($_GET['delete_keterampilan'])){
 
             // Halaman Nilai Sosial
             echo "<div role='tabpanel' class='tab-pane fade' id='sosial' aria-labelledby='sosial-tab'>
-                  <div class='col-md-12'>
+                  <div class='col-md-12 ' style='overflow-x: auto; display: block;'>
                         <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
                         <input type='hidden' value='sosial' name='status'>
                         <table class='table table-bordered table-striped'>
