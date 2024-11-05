@@ -366,7 +366,15 @@ elseif ($_GET[act] == 'tambah') {
                             </tr>
                             <tr>
                               <th scope='row'>File123</th>
-                              
+                              <td>
+                               <div class='d-flex align-items-center'>
+                                <a class='btn btn-primary' href='javascript:;' onclick=\"document.querySelector('.files').click();\">
+                                    <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
+                                </a>
+                                <input type='file' class='files' name='c' style='display:none;' onchange=\"document.getElementById('upload-file-info').innerHTML = this.value;\">
+                                <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
+                            </div>
+                              </td>
                             </tr>
                             <tr>
                               <th scope='row'>Waktu Mulai</th>
