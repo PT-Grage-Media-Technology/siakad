@@ -636,15 +636,21 @@
 
                       // Cek apakah ada pemberitahuan
                       $no = 1;
-                      while ($p = mysql_fetch_array($pemberitahuan)) {
+                      if(mysql_num_rows($pemberitahuan) > 0){
+                        while ($p = mysql_fetch_array($pemberitahuan)) {
+                            echo "<tr>
+                                <td>$no</td>
+                                <td>$p[pesan]</td>
+                                <td>$p[waktu_dikirim]</td>
+                                <td><a class='btn btn-warning btn-xs' name='absen' 
+                                href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
+                                </tr>";
+                                $no++;
+                          }
+                        } else {
                           echo "<tr>
-                              <td>$no</td>
-                              <td>$p[pesan]</td>
-                              <td>$p[waktu_dikirim]</td>
-                              <td><a class='btn btn-warning btn-xs' name='absen' 
-                                  href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
+                            <td>Tidak ada data</td>
                           </tr>";
-                          $no++;
                       }
           
                           
