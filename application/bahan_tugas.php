@@ -690,8 +690,8 @@ elseif ($_GET[act] == 'tambah') {
   <?php
 } elseif ($_GET[act] == 'kirim') {
   cek_session_siswa();
-  // $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab where id_elearning='$_GET[ide]' AND nisn='$iden[nisn]'"));
-  var_dump($iden['nisn']);
+  $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab where id_elearning='$_GET[ide]' AND nisn='$iden[nisn]'"));
+  // var_dump($iden['nisn']);
   if ($cek[total] >= 1) {
     echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
                 window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
@@ -727,7 +727,7 @@ elseif ($_GET[act] == 'tambah') {
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Kirimkan Tugas333</h3>
+                  <h3 class='box-title'>Kirimkan Tugas</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
