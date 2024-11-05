@@ -90,7 +90,7 @@ if (isset($_GET['delete_keterampilan'])){
 
             // Halaman Nilai Spiritual
             echo "<div role='tabpanel' class='tab-pane fade active in' id='spiritual' aria-labelledby='spiritual-tab'>";
-            echo "<div class='col-md-12'>
+            echo "<div class='col-md-12' style='overflow-x: auto; display: block;'>
                   <form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
                   <input type='hidden' value='spiritual' name='status'>
                   <table class='table table-bordered table-striped'>
