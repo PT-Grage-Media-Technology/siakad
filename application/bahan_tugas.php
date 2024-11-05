@@ -288,7 +288,7 @@ if ($_GET[act] == '') {
               echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
             } else {
               echo "<td><a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
-              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]'><span class='glyphicon glyphicon-upload'></span> Jawaban Tugas</a><td>";
+              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a><td>";
             }
     echo "</tr>";
     $no++;
@@ -691,29 +691,37 @@ elseif ($_GET[act] == 'tambah') {
 } elseif ($_GET[act] == 'kirim') {
   cek_session_siswa();
   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab where id_elearning='$_GET[ide]' AND nisn='$iden[nisn]'"));
+  // var_dump($iden['nisn']);
   if ($cek[total] >= 1) {
     echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
-                window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
+               window.location='index.php?view=bahantugas&act=bahantugassiswa&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
   } else {
-    if (isset($_POST[kirimkan])) {
+    if (isset($_POST['kirimkan'])) {
       $dir_gambar = 'files/';
       $filename = basename($_FILES['c']['name']);
       $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
       $uploadfile = $dir_gambar . $filenamee;
+  
       if ($filename != '') {
-        $waktuu = date("Y-m-d H:i:s");
-        if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-          mysql_query("INSERT INTO rb_elearning_jawab VALUES ('','$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
-          echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-        } else {
-          echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
-                          window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-        }
+          $waktuu = date("Y-m-d H:i:s");
+  
+          // Cek hasil move_uploaded_file
+          if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
+              // Ganti mysql_query dengan mysqli_query atau PDO
+              mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu', NULL)");
+              echo "<script>window.alert('Berhasil Kirim Tugas');
+              window.location='index.php?view=bahantugas&act=bahantugassiswa&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+          } else {
+              echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
+                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+          }
       } else {
-        echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
-                          window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
+          echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
+                  window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
       }
-    }
+  }
+  
+  
     
 
     echo "<div class='col-md-12'>
@@ -771,14 +779,14 @@ elseif ($_GET[act] == 'tambah') {
                 </table>
                 </div>
 
-                <div class='box-body'>
-                <table class='table table-bordered table-striped' style='overflow-x: auto; display: block;'>
+                <div class='box-body' style='overflow-x: auto; display: block;'>
+                <table class='table table-bordered table-striped' >
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>NISN</th>
+                        <th style='width:90px'>NISN</th>
                         <th>Nama Lengkap</th>
                         <th>Keterangan</th>
-                        <th>Waktu Kirim</th>
+                        <th style='width:100px'>Waktu Kirim</th>
                         <th>Nilai</th>
                         <th>Action</th>
                       </tr>";
@@ -788,12 +796,14 @@ $id_tugas = (int)$_GET['ide']; // Pastikan menggunakan parameter yang benar (ide
 
 // Modifikasi query dengan menambahkan kondisi yang lebih spesifik
 $tampil = mysql_query("SELECT a.*, b.* 
-                      FROM rb_elearning_jawab a 
-                      JOIN rb_siswa b ON a.nisn=b.nisn 
-                      JOIN rb_elearning c ON a.id_elearning=c.id_elearning
-                      WHERE a.id_elearning='$id_tugas' 
-                      AND c.id_guru='$_SESSION[id]'
-                      ORDER BY a.id_elearning_jawab DESC");
+                                FROM rb_elearning_jawab a 
+                                JOIN rb_siswa b ON a.nisn = b.nisn 
+                                JOIN rb_elearning c ON a.id_elearning = c.id_elearning 
+                                WHERE a.id_elearning = '$id_tugas' 
+                                AND c.kodejdwl = '$_GET[jdwl]' 
+                                AND DATE(a.waktu) = CURDATE() 
+                                ORDER BY a.id_elearning_jawab DESC");
+
 
 // Periksa apakah query berhasil
 if(!$tampil) {
