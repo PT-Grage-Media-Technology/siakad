@@ -696,6 +696,8 @@ elseif ($_GET[act] == 'tambah') {
                 window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
   } else {
     if (isset($_POST['kirimkan'])) {
+      var_dump($_POST);
+      exit;
       $dir_gambar = 'files/';
       $filename = basename($_FILES['c']['name']);
       $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
@@ -719,7 +721,7 @@ elseif ($_GET[act] == 'tambah') {
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Kirimkan Tugas</h3>
+                  <h3 class='box-title'>Kirimkan Tugas333</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
