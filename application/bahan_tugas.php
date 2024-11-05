@@ -776,7 +776,7 @@ elseif ($_GET[act] == 'tambah') {
                       <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                       <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                      <tr><th scope='row'>Preview Gambar</th>           <td>$elearning[nama_file]</td></tr>
+                      <tr><th scope='row'>Preview Gambar</th>           <td><img src='files/<?php echo $elearning['nama_file']; ?>' alt='Gambar Elearning'></td></tr>
                     </tbody>
                 </table>
                 </div>
