@@ -708,18 +708,8 @@ elseif ($_GET[act] == 'tambah') {
           // Cek hasil move_uploaded_file
           if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
               // Ganti mysql_query dengan mysqli_query atau PDO
-              // mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
-              $result = mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu', NULL)");
-              if (!$result) {
-                  echo "Hasil Query: Gagal<br>";
-                  echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
-              } else {
-                  echo "Hasil Query: Berhasil<br>";
-              }
+              mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu', NULL)");
               // Jika Anda ingin menampilkan detail lebih lanjut, Anda bisa menambahkan:
-              echo "Query: INSERT INTO rb_elearning_jawab VALUES ('','$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')";
-              exit;
-              echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
           } else {
               echo "<script>window.alert('Gagal Kirimkan Data Tugas.');
                       window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
