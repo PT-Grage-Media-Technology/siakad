@@ -728,10 +728,10 @@ elseif ($_GET[act] == 'tambah') {
                   <tbody>
                     <tr><th width=120px scope='row'>Nama File</th>             
                     <td><div style='position:relative;''>
-                    <a class='btn btn-primary' href='javascript:;'>
-                    <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
-                    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-                    <?php echo "</a>
+                   <a class='btn btn-primary' href='javascript:;' id='file-upload-btn'>
+                    <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim...
+                    </a>
+                    <input type='file' class='files' name='c' id='file-upload' style='display: none;' onchange='$(\"#upload-file-info\").html($(this).val());'>
                     <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                     </div>
                     </td></tr>
@@ -867,5 +867,9 @@ function submitFormWithAlert(selectElement) {
         }
     }
 }
+
+$('#file-upload-btn').on('click', function() {
+        $('#file-upload').click();
+    });
 
 </script>
