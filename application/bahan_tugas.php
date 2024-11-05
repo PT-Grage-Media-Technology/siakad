@@ -742,7 +742,7 @@ elseif ($_GET[act] == 'tambah') {
                 
               </div>
               <div class='box-footer'>
-                    <button type='submit' name='kirimkan' class='btn btn-info'>Kirimkan Tugas</button>
+                    <button type='submit' name='kirimkan' class='btn btn-info'>Kirimkan Tugas123</button>
                     <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
