@@ -796,14 +796,14 @@ $id_tugas = (int)$_GET['ide']; // Pastikan menggunakan parameter yang benar (ide
 
 // Modifikasi query dengan menambahkan kondisi yang lebih spesifik
 $tampil = mysql_query("SELECT a.*, b.* 
-                      FROM rb_elearning_jawab a 
-                      JOIN rb_siswa b ON a.nisn=b.nisn 
-                      JOIN rb_elearning c ON a.id_elearning=c.id_elearning
-                      WHERE a.id_elearning='$id_tugas' 
-                      -- AND c.id_guru='$_SESSION[id]'
-                      AND c.kodejdwl='$_GET[jdwl]'
-                      WHERE DATE(a.waktu) = CURDATE()
-                      ORDER BY a.id_elearning_jawab DESC");
+                                FROM rb_elearning_jawab a 
+                                JOIN rb_siswa b ON a.nisn = b.nisn 
+                                JOIN rb_elearning c ON a.id_elearning = c.id_elearning 
+                                WHERE a.id_elearning = '$id_tugas' 
+                                AND c.kodejdwl = '$_GET[jdwl]' 
+                                AND DATE(a.waktu) = CURDATE() 
+                                ORDER BY a.id_elearning_jawab DESC");
+
 
 // Periksa apakah query berhasil
 if(!$tampil) {
