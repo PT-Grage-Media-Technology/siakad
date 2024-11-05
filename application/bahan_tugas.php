@@ -709,7 +709,7 @@ elseif ($_GET[act] == 'tambah') {
           if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
               // Ganti mysql_query dengan mysqli_query atau PDO
               // mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
-              $result = mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu')");
+              $result = mysql_query("INSERT INTO rb_elearning_jawab VALUES (NULL,'$_GET[ide]','$iden[nisn]','$_POST[a]','$filenamee','$waktuu', NULL)");
               if (!$result) {
                   echo "Hasil Query: Gagal<br>";
                   echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
