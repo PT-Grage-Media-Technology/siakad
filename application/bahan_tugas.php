@@ -691,6 +691,7 @@ elseif ($_GET[act] == 'tambah') {
 } elseif ($_GET[act] == 'kirim') {
   cek_session_siswa();
   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_elearning_jawab where id_elearning='$_GET[ide]' AND nisn='$iden[nisn]'"));
+  var_dump($iden['nisn']);
   if ($cek[total] >= 1) {
     echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
                 window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
