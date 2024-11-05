@@ -694,7 +694,7 @@ elseif ($_GET[act] == 'tambah') {
   // var_dump($iden['nisn']);
   if ($cek[total] >= 1) {
     echo "<script>window.alert('Maaf, Anda Sudah Mengirimkan Tugas ini Sebelumnya.');
-                window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
+               window.location='index.php?view=bahantugas&act=bahantugassiswa&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
   } else {
     if (isset($_POST['kirimkan'])) {
       $dir_gambar = 'files/';
