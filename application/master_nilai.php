@@ -8,9 +8,9 @@
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-        <p><input type="text"> = <input type="text"> - <input type="text"></p>
+        <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 30px;"> = <input type="text" style="width: 150px;"> - <input type="text" style="width: 150px;">
+          <input type="text" placeholder="Nilai Huruf" style="width: 30px;" value="A"> = <input type="text" style="width: 150px;"> - <input type="text" style="width: 150px;">
         </p>
 
       </div><!-- /.table-responsive -->
