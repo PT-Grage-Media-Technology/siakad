@@ -17,15 +17,15 @@
                           // Ambil nilai dari setiap kolom dan gunakan htmlspecialchars untuk keamanan
                           var_dump($row);
                           exit;
-                          $nilaiHuruf = htmlspecialchars($row['nilai_huruf']);  
-                          $nilaiMin = htmlspecialchars($row['nilai_min']);      
-                          $nilaiMax = htmlspecialchars($row['nilai_max']);      
+                          $nilaiHuruf = htmlspecialchars($row['kode_nilai']);  
+                          $nilaiMin = htmlspecialchars($row['nilai_angka']);      
+                          // $nilaiMax = htmlspecialchars($row['nilai_max']);      
                   
                           // Tampilkan data dalam format input HTML
                           echo "<p>";
                           echo "<input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$nilaiHuruf'> = ";
                           echo "<input type='text' style='width: 50px;' value='$nilaiMin'> - ";
-                          echo "<input type='text' style='width: 50px;' value='$nilaiMax'>";
+                          echo "<input type='text' style='width: 50px;' value=''>";
                           echo "</p>";
                       }
                   } else {
