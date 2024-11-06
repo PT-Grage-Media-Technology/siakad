@@ -11,7 +11,7 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                     $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                    echo $tampil;
+                    var_dump($tampil);
                     
 
         ?>
