@@ -12,8 +12,7 @@
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
                   $kriteriaNilai = mysql_fetch_assoc($tampil);
-                  echo $kriteriaNilai['kode_nilai'][0]; // Mengambil data dari array ke-0
-                  echo $kriteriaNilai['kode_nilai'][1]; // Mengambil data dari array ke-0
+                  echo $kriteriaNilai; // Mengambil data dari array ke-0
 
        
         echo"<p>
