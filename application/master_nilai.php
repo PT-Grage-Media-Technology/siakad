@@ -15,28 +15,28 @@
                   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
 
        
-        echo"<p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai[1]['nilai_angka']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='D'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='E'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>";
+        // echo"<p>
+        //     <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai[1]['nilai_angka']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
+        // </p>
+        // <p>
+        //   <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        // </p>
+        // <p>
+        //   <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        // </p>
+        // <p>
+        //   <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='D'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        // </p>
+        // <p>
+        //   <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='E'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        // </p>
+        // <p>
+        //   <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        // </p>";
         ?>
-
+            
         <p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='<?php echo $kriteriaNilai[1]['kode_nilai']; ?>'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value="<?php echo $kriteriaNilai['kode_nilai']; ?>"> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
         </p>
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
