@@ -12,27 +12,27 @@
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
                   $kriteriaNilai = mysql_fetch_array($tampil);
-                  echo $kriteriaNilai[0];
+                  echo $kriteriaNilai;
 
        
-        echo'<p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="A"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
+        echo"<p>
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[kode_nilai]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="B"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='B'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="C"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="D"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='D'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="E"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='E'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
-          <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="F"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
-        </p>';
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+        </p>";
         ?>
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
