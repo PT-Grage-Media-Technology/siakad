@@ -10,7 +10,7 @@
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
         <p><input type="text"> = <input type="text"> - <input type="text"></p>
         <p>
-          <input type="text" class="form-control d-inline" placeholder="Nilai Huruf" style="width: 30px;"> = <input type="text" class="form-control d-inline" style="width: 150px;"> - <input type="text" class="form-control d-inline" style="width: 150px;">
+          <input type="text" class="form-control" placeholder="Nilai Huruf" style="width: 30px;"> = <input type="text" class="form-control" style="width: 150px;"> - <input type="text" class="form-control" style="width: 150px;">
         </p>
 
       </div><!-- /.table-responsive -->
