@@ -11,29 +11,15 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                  echo $tampil;
-                  $kriteriaNilai = mysql_fetch_array($tampil);
-                  echo $kriteriaNilai; // Mengambil data dari array ke-0
 
-       
-        echo"<p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai[0]}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai[1]}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='D'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='E'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>";
+                  while ($kriteriaNilai = mysql_fetch_array($tampil)) {
+                      // Akses data dengan nama kolom
+                      $id = $kriteriaNilai['id']; // Misalnya kolom id
+                      $kode_nilai = $kriteriaNilai['kode_nilai']; // Kolom kode_nilai
+                      $nilai_min = $kriteriaNilai['nilai_min']; // Kolom nilai_min
+                      
+                      echo "ID: $id, Kode Nilai: $kode_nilai, Nilai Min: $nilai_min<br>";
+                  }
         ?>
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
