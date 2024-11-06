@@ -13,7 +13,7 @@
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
                   while($kriteriaNilai = mysql_fetch_array($tampil)){
 
-                      var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
+                    //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
                       echo $kriteriaNilai[1]['kode_nilai'];
                   }
 
