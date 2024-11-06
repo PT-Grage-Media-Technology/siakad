@@ -12,7 +12,7 @@
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
                   $kriteriaNilai = mysql_fetch_array($tampil);
-                  echo $kriteriaNilai;
+                  echo $kriteriaNilai[1];
 
        
         echo"<p>
