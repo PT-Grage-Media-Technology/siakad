@@ -11,7 +11,24 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                     $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                    var_dump($tampil);
+                    // var_dump($tampil);
+
+                    if ($tampil) {
+                      while ($row = mysql_fetch_assoc($tampil)) {
+                          // Anggap tabel `rb_kriteria_nilai` memiliki kolom `nilai_huruf`, `nilai_min`, dan `nilai_max`
+                          $nilaiHuruf = $row['nilai_huruf'];  // Misalnya: A, B, C
+                          $nilaiMin = $row['nilai_min'];      // Misalnya: 80, 70, 60
+                          $nilaiMax = $row['nilai_max'];      // Misalnya: 100, 89, 79
+                  
+                          echo "<p>";
+                          echo "<input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$nilaiHuruf'> = ";
+                          echo "<input type='text' style='width: 50px;' value='$nilaiMin'> - ";
+                          echo "<input type='text' style='width: 50px;' value='$nilaiMax'>";
+                          echo "</p>";
+                      }
+                  } else {
+                      echo "Tidak ada data yang ditemukan.";
+                  }
                     
 
         ?>
