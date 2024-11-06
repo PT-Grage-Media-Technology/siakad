@@ -11,8 +11,10 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                  $kriteriaNilai = mysql_fetch_array($tampil);
-                  var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
+                  while($kriteriaNilai = mysql_fetch_array($tampil)){
+
+                      var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
+                  }
 
        
         // echo"<p>
