@@ -15,14 +15,14 @@
 
                     //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
                       echo $kriteriaNilai['kode_nilai'][0];
-                  }
+                  
 
        
         echo"<p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]['nilai_angka']'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['nilai_angka']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
         </p>
         <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['nilai_angka']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
@@ -36,6 +36,7 @@
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>";
+    }
         ?>
             
         <p>
