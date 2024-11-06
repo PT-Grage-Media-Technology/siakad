@@ -14,7 +14,7 @@
                   while($kriteriaNilai = mysql_fetch_array($tampil)){
 
                     //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-                      echo $kriteriaNilai['kode_nilai'][0];
+                      echo $kriteriaNilai['kode_nilai'][1];
                   }
 
        
