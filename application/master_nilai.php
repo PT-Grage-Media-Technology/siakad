@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Data Ruangan </h3>
+        <h3 class="box-title">Data Nilai </h3>
         <?php if ($_SESSION['level'] != 'kepala') { ?>
           <a class='pull-right btn btn-primary btn-sm' href='index.php?view=ruangan&act=tambah'>Tambahkan Data</a>
         <?php } ?>
