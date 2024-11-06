@@ -36,7 +36,7 @@
         ?>
             
         <p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value="<?php echo $kriteriaNilai['kode_nilai']; ?>"> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value="<?php echo $kriteriaNilai[1]['kode_nilai']; ?>"> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$kriteriaNilai[1]'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
