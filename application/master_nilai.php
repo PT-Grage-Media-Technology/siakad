@@ -14,12 +14,12 @@
                   while($kriteriaNilai = mysql_fetch_array($tampil)){
 
                     //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-                      echo $kriteriaNilai['kode_nilai'][0];
+                    //   echo $kriteriaNilai['kode_nilai'][0];
                   
 
        
         echo"<p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>";
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='{$kriteriaNilai['nilai_angka']}'> - <input type='text' style='width: 50px;'>";
     }
         ?>
             
