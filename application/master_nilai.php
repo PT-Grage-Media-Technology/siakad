@@ -11,31 +11,14 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
+                  $kriteriaNilai = mysql_fetch_array($tampil);
+                  echo $kriteriaNilai;
 
-                  if ($tampil) {
-                      while ($row = mysql_fetch_assoc($tampil)) {
-                          // Ambil nilai dari setiap kolom dan gunakan htmlspecialchars untuk keamanan
-                          // var_dump($row);
-                          // exit;
-                          $nilaiHuruf = htmlspecialchars($row['kode_nilai']);  
-                          $nilaiMin = htmlspecialchars($row['nilai_angka']);      
-                          // $nilaiMax = htmlspecialchars($row['nilai_max']);      
-                  
-                          // Tampilkan data dalam format input HTML
-                          echo "<p>";
-                          echo "<input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$nilaiHuruf'> = ";
-                          echo "<input type='text' style='width: 50px;' value='$nilaiMin'> - ";
-                          echo "<input type='text' style='width: 50px;' value=''>";
-                          echo "</p>";
-                      }
-                  } else {
-                      echo "Tidak ada data yang ditemukan.";
-                  }
-        ?>
-        <p>
+       
+        echo'<p>
           <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="A"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
         </p>
-        <!-- <p>
+        <p>
           <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="B"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
         </p>
         <p>
@@ -49,8 +32,8 @@
         </p>
         <p>
           <input type="text" placeholder="Nilai Huruf" style="width: 40px;" value="F"> = <input type="text" style="width: 50px;"> - <input type="text" style="width: 50px;">
-        </p> -->
-
+        </p>';
+        ?>
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div><!-- /.box -->
