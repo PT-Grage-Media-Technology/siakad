@@ -15,6 +15,8 @@
                   if ($tampil) {
                       while ($row = mysql_fetch_assoc($tampil)) {
                           // Ambil nilai dari setiap kolom dan gunakan htmlspecialchars untuk keamanan
+                          var_dump($row);
+                          exit;
                           $nilaiHuruf = htmlspecialchars($row['nilai_huruf']);  
                           $nilaiMin = htmlspecialchars($row['nilai_min']);      
                           $nilaiMax = htmlspecialchars($row['nilai_max']);      
