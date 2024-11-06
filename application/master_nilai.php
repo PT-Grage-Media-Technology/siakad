@@ -16,7 +16,7 @@
 
        
         echo"<p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai1[0]}Q'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai1[0]}DSDS'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='B'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
