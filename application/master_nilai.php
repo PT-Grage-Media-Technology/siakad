@@ -22,7 +22,7 @@
             <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['nilai_angka']}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>;
         </p>
         <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['nilai_angka'][1]}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
+          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai'][1]}'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
         </p>
         <p>
           <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='C'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
