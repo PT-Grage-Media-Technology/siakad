@@ -24,7 +24,7 @@
                            echo "<p>";
                            echo "<input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='$nilaiHuruf'> = ";
                            echo "<input type='text' style='width: 50px;' value='$nilaiMin'> - ";
-                           echo "<input type='text' style='width: 50px;' value='$nilaiMax'>";
+                           echo "<input type='text' style='width: 50px;' value='fsdfdd'>";
                            echo "</p>";
                        }
                    } else {
