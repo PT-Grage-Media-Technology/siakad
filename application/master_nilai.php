@@ -9,7 +9,7 @@
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-          <h1>tes aja</h1>
+          <p><input type="text"> = <input type="text"> - <input type="text"></p>
         </div><!-- /.table-responsive -->
       </div><!-- /.box-body -->
     </div><!-- /.box -->
