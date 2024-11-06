@@ -11,7 +11,7 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                  $kriteriaNilai = mysql_fetch_array($tampil);
+                  $kriteriaNilai = mysql_fetch_assoc($tampil);
                   echo $kriteriaNilai[1];
 
        
