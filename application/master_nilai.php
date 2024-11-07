@@ -2,9 +2,9 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Data Nilai </h3>
-      <?php if ($_SESSION['level'] != 'kepala') { ?>
+      <!-- <?php if ($_SESSION['level'] != 'kepala') { ?>
         <a class='pull-right btn btn-primary btn-sm' href='index.php?view=ruangan&act=tambah'>Tambahkan Data</a>
-      <?php } ?>
+      <?php } ?> -->
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
@@ -47,7 +47,7 @@
         }
 
         // Tombol Update untuk mengupdate semua data
-        echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
+        echo "<button type='submit' name='update' class='pull-left btn btn-primary btn-sm mt-2'>Update Semua</button>";
         echo "</form>";
 
         ?>
