@@ -267,6 +267,7 @@
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]$a[nilai]</td>
+                                <td>tes</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
@@ -317,7 +318,7 @@
       }
     }
     echo "</select></td>";
-    echo "<td>tes aja</td>";
+   
     echo "</tr>";
     $no++;
   }
