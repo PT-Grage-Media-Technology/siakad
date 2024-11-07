@@ -267,9 +267,14 @@
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]$a[nilai]</td>
-                                <td>$r[jenis_kelamin]</td>
+                                <td>";
+                                if($r['nilai']){
+                                  echo"<input type='number' value='$r[nilai]' name='nilai[$no]'>";
+                                }else{
+                                  echo"<input type='number' value='0' name='nilai[$no]'>";
+                                }
                                
-                                  <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+                                  echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
                                 if(mysql_num_rows($tugas) > 0 ){
                                        
