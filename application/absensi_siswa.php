@@ -231,6 +231,7 @@
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Nilai</th>
+                                    <th>Predikat</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
@@ -316,6 +317,7 @@
       }
     }
     echo "</select></td>";
+    echo "<td>tes aja</td>";
     echo "</tr>";
     $no++;
   }
