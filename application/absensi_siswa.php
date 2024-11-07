@@ -266,7 +266,7 @@
                                 <td>$r[nipd]</td>
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]$a[nilai]</td>
+                                <td>$r[jenis_kelamin]</td>
                                 <td>";
                                 if(mysql_num_rows($tugas) > 0 ){
                                 if($r['nilai']){
@@ -280,6 +280,10 @@
                                 }else{
                                   echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
+                              }
+                              $predikat = mysql_query("SELECT * FROM rb_kriteria_nilai");
+                              if($predikat['nilai_bawah'] >= $r['nilai'] &&  $predikat['nilai_atas'] <= $r['nilai'] ){
+                                echo"<td>$predikat[kode_nilai]</td>";
                               }
                                echo"<td>ABC PREDIKAT</td>";
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
