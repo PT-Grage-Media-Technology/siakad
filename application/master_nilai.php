@@ -47,7 +47,7 @@
         }
 
         // Tombol Update untuk mengupdate semua data
-        echo "<button type='submit' name='update' class='btn btn-primary btn-sm mt-4'>Update Semua</button>";
+        echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
         echo "</form>";
 
         ?>
