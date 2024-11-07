@@ -19,7 +19,7 @@
 
        
         echo"<p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_atas']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_bawah']) . "'>";
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_bawah']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
     }
         ?>
             
