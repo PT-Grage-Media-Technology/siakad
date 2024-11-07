@@ -267,7 +267,7 @@
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]$a[nilai]</td>
-                                
+                                <td>$r[jenis_kelamin]</td>
                                
                                   <input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
                                   // Mengambil data tugas dari tabel rb_elearning
@@ -300,7 +300,7 @@
                                 echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
                                 echo "</select></td>";
                               }
-                                  echo"<td>tes</td>";
+                                  echo"";
                               if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
