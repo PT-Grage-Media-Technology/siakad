@@ -27,22 +27,19 @@
         ?>
 
         <?php
-        $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-        while ($kriteriaNilai = mysql_fetch_array($tampil)) {
-
-          //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-          //   echo $kriteriaNilai['kode_nilai'][0];
-        
-
-
-          echo "<form method='POST' action=''>
-          <p>ID: {$kriteriaNilai['id']}</p>
-          <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
-          <input type='text' name='kode_nilai' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
-          = <input type='text' name='nilai_bawah' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
-          - <input type='text' name='nilai_atas' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
-          <button type='submit' name='update' class='btn btn-primary btn-sm'>Update</button>
-      </form>";
+       $query = mysql_query("SELECT * FROM rb_kriteria_nilai WHERE id = '$id'");
+       $kriteriaNilai = mysql_fetch_array($query);
+       
+       // Jika data ditemukan, tampilkan dalam form
+       if ($kriteriaNilai) {
+           echo "<form method='POST' action=''>
+               <p>ID: {$kriteriaNilai['id']}</p>
+               <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
+               <input type='text' name='kode_nilai' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
+               = <input type='text' name='nilai_bawah' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
+               - <input type='text' name='nilai_atas' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
+               <button type='submit' name='update' class='btn btn-primary btn-sm'>Update</button>
+           </form>";
         }
         echo "<a class='pull-left btn btn-primary btn-sm' name='update' href='index.php?view=nilai'>Simpan</a>";
         ?>
