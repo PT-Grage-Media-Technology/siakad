@@ -11,7 +11,8 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php
         if (isset($_POST['update'])) {
-
+          var_dump($_POST);
+          exit;
           $id = $_POST['id'];
           $kode_nilai = $_POST['kode_nilai'];
           $nilai_bawah = $_POST['nilai_bawah'];
@@ -34,13 +35,14 @@
         
 
 
-          echo "<p>
-            <input type='text' style='width: 50px;'  name='id' value='" . ($kriteriaNilai['id']) . "' hidden>
-            <input type='text' placeholder='Nilai Huruf'  name='kode_nilai'  style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = 
-            <input type='text' style='width: 50px;' name='nilai_bawah'  value='" . ($kriteriaNilai['nilai_bawah']) . "'> - 
-            <input type='text' style='width: 50px;'  name='nilai_atas' value='" . ($kriteriaNilai['nilai_atas']) . "'>
-            </p>";
-
+          echo "<form method='POST' action=''>
+          <p>ID: {$kriteriaNilai['id']}</p>
+          <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
+          <input type='text' name='kode_nilai' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
+          = <input type='text' name='nilai_bawah' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
+          - <input type='text' name='nilai_atas' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
+          <button type='submit' name='update' class='btn btn-primary btn-sm'>Update</button>
+      </form>";
         }
         echo "<a class='pull-left btn btn-primary btn-sm' name='update' href='index.php?view=nilai'>Simpan</a>";
         ?>
