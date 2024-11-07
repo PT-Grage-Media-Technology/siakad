@@ -9,22 +9,40 @@
     <div class="box-body">
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
-        <?php 
-                  $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                  while($kriteriaNilai = mysql_fetch_array($tampil)){
+        <?php
+        if (isset($_POST['update'])) {
+          $id = $_POST['id'];
+          $kode_nilai = $_POST['kode_nilai'];
+          $nilai_bawah = $_POST['nilai_bawah'];
+          $nilai_atas = $_POST['nilai_atas'];
 
-                    //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-                    //   echo $kriteriaNilai['kode_nilai'][0];
-                  
+          // Query untuk update data berdasarkan ID
+          $query = "UPDATE rb_kriteria_nilai SET kode_nilai = '$kode_nilai', nilai_bawah = '$nilai_bawah', nilai_atas = '$nilai_atas' WHERE id = '$id'";
 
-       
-        echo"<p>{$kriteriaNilai['id']}
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_bawah']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
-
-          }
-          echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai&act=simpan'>Simpan</a>";
+          mysql_query($query);
+          echo "Data berhasil diupdate!";
+        }
         ?>
-            
+
+        <?php
+        $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
+        while ($kriteriaNilai = mysql_fetch_array($tampil)) {
+
+          //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
+          //   echo $kriteriaNilai['kode_nilai'][0];
+        
+
+
+          echo "<p>
+            <input type='text' style='width: 50px;'  name='id' value='" . ($kriteriaNilai['nilai_atas']) . "'>
+            <input type='text' placeholder='Nilai Huruf'  name='kode_nilai'  style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = 
+            <input type='text' style='width: 50px;' name='nilai_bawah'  value='" . ($kriteriaNilai['nilai_bawah']) . "'> - 
+            <input type='text' style='width: 50px;'  name='nilai_atas' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
+
+        }
+        echo "<a class='pull-left btn btn-primary btn-sm' name='update' href='index.php?view=nilai'>Simpan</a>";
+        ?>
+
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div><!-- /.box -->
