@@ -17,13 +17,14 @@
             $kode_nilai = $_POST['kode_nilai'][$key];
             $nilai_bawah = $_POST['nilai_bawah'][$key];
             $nilai_atas = $_POST['nilai_atas'][$key];
-            
+            echo $nilai_bawah;
             // Query untuk update data berdasarkan ID
             $update_query = "UPDATE rb_kriteria_nilai SET 
                                 kode_nilai = '$kode_nilai', 
                                 nilai_bawah = '$nilai_bawah', 
                                 nilai_atas = '$nilai_atas' 
                              WHERE id = '$id'";
+            mysql_query($update_query); 
         }
       }
         ?>
