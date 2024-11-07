@@ -269,9 +269,9 @@
                                 <td>$r[jenis_kelamin]$a[nilai]</td>
                                 <td>";
                                 if($r['nilai']){
-                                  echo"<input type='number' value='$r[nilai]' name='nilai[$no]' style='width:25px;'>";
+                                  echo"<input type='number' value='$r[nilai]' name='nilai[$no]' style='width:50px;'>";
                                 }else{
-                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:25px;'>";
+                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
                                
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
