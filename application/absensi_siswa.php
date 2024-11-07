@@ -268,44 +268,22 @@
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]$a[nilai]</td>
                                 <td>";
+                                if(mysql_num_rows($tugas) > 0 ){
                                 if($r['nilai']){
-                                  echo"<input type='number' value='$r[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
                                 }else{
                                   echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
+                              }else{
+                                if($r['nilai']){
+                                  echo"<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                }else{
+                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
+                                }
+                              }
                                
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                                  // Mengambil data tugas dari tabel rb_elearning
-                                if(mysql_num_rows($tugas) > 0 ){
-                                       
-                              // Menampilkan dropdown 'nilai'
-                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo "<td>Nilai Tugas<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                } else {
-                                  echo "<td>Nilai Tugas<select style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                }
-
-                                echo "<option value='A' " . ($nilai['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
-                                echo "<option value='B' " . ($nilai['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
-                                echo "<option value='C' " . ($nilai['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
-                                echo "<option value='D' " . ($nilai['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
-                                echo "</select></td>";
-                                }else{
                                   
-                              // Menampilkan dropdown 'nilai'
-                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo "<td>Nilai Sikap<select disabled style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                } else {
-                                  echo "<td>Nilai Sikap<select style='width:100px;' name='nilai[$no]' class='form-control'>";
-                                }
-
-                                echo "<option value='A' " . ($a['nilai'] == 'A' ? 'selected' : '') . ">A</option>";
-                                echo "<option value='B' " . ($a['nilai'] == 'B' ? 'selected' : '') . ">B</option>";
-                                echo "<option value='C' " . ($a['nilai'] == 'C' ? 'selected' : '') . ">C</option>";
-                                echo "<option value='D' " . ($a['nilai'] == 'D' ? 'selected' : '') . ">D</option>";
-                                echo "</select></td>";
-                              }
-                                  echo"";
                               if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
