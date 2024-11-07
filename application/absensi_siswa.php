@@ -285,7 +285,6 @@
                               if($predikat['nilai_bawah'] >= $r['nilai'] &&  $predikat['nilai_atas'] <= $r['nilai'] ){
                                 echo"<td>$predikat[kode_nilai]</td>";
                               }
-                               echo"<td>ABC PREDIKAT</td>";
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
                               if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
