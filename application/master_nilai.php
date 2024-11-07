@@ -11,8 +11,6 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                  echo"<p>
-                  <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_angka']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_angka'] - 1) . "'>";
                   while($kriteriaNilai = mysql_fetch_array($tampil)){
 
                     //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
