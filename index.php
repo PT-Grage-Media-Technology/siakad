@@ -270,11 +270,10 @@ if (isset($_SESSION['id'])) {
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
             if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true'){
-              
+              echo "<div class='row'>";
+              include "application/master_jadwalpelajaran.php";
+              echo "</div>";
             }
-            echo "<div class='row'>";
-            include "application/master_jadwalpelajaran.php";
-            echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
             cek_session_guru();
             echo "<div class='row'>";
