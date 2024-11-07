@@ -247,6 +247,7 @@ if (isset($_SESSION['id'])) {
             echo "</div>";
           } elseif ($_GET[view] == 'nilai') {
             cek_session_admin();
+            $_SESSION['is_kurikulum'];
             echo "<div class='row'>";
             include "application/master_nilai.php";
             echo "</div>";
