@@ -11,8 +11,8 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php
         if (isset($_POST['update'])) {
-          var_dump($_POST);
-          exit;
+          // var_dump($_POST);
+          // exit;
           foreach ($_POST['id'] as $key => $id) {
             $kode_nilai = $_POST['kode_nilai'][$key];
             $nilai_bawah = $_POST['nilai_bawah'][$key];
