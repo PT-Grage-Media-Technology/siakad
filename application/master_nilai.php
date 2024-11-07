@@ -37,7 +37,7 @@
 
         // Loop untuk menampilkan semua data dalam satu form
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
-          echo "<p>ID: {$kriteriaNilai['id']}</p>
+          echo "<p>
         <input type='hidden' name='id[]' value='{$kriteriaNilai['id']}'>
         <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
         = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
