@@ -27,7 +27,7 @@
         ?>
 
         <?php
-       $query = mysql_query("SELECT * FROM rb_kriteria_nilai WHERE id = '$id'");
+       $query = mysql_query("SELECT * FROM rb_kriteria_nilai");
        $kriteriaNilai = mysql_fetch_array($query);
        
        // Jika data ditemukan, tampilkan dalam form
