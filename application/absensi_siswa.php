@@ -281,9 +281,9 @@
                                   echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
                               }
-                               
+                               echo"<td>ABC PREDIKAT</td>";
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-                                  
+
                               if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
                                     echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
                                   } else {
