@@ -13,42 +13,43 @@
         if (isset($_POST['update'])) {
           var_dump($_POST);
           exit;
-          $id = $_POST['id'];
-          $kode_nilai = $_POST['kode_nilai'];
-          $nilai_bawah = $_POST['nilai_bawah'];
-          $nilai_atas = $_POST['nilai_atas'];
-
-          // Query untuk update data berdasarkan ID
-          $query = "UPDATE rb_kriteria_nilai SET kode_nilai = '$kode_nilai', nilai_bawah = '$nilai_bawah', nilai_atas = '$nilai_atas' WHERE id = '$id'";
-
-          mysql_query($query);
-          echo "Data berhasil diupdate!";
+          foreach ($_POST['id'] as $key => $id) {
+            $kode_nilai = $_POST['kode_nilai'][$key];
+            $nilai_bawah = $_POST['nilai_bawah'][$key];
+            $nilai_atas = $_POST['nilai_atas'][$key];
+            
+            // Query untuk update data berdasarkan ID
+            $update_query = "UPDATE rb_kriteria_nilai SET 
+                                kode_nilai = '$kode_nilai', 
+                                nilai_bawah = '$nilai_bawah', 
+                                nilai_atas = '$nilai_atas' 
+                             WHERE id = '$id'";
         }
+      }
         ?>
 
         <?php
         $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
-        while ($kriteriaNilai = mysql_fetch_array($tampil)) {
 
-          //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-          //   echo $kriteriaNilai['kode_nilai'][0];
-        
-          echo"<p>ID: {$kriteriaNilai['id']}</p>
-          <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
-          <input type='text' name='kode_nilai' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
-          = <input type='text' name='nilai_bawah' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
-          - <input type='text' name='nilai_atas' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
-          ";
+        //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
+        //   echo $kriteriaNilai['kode_nilai'][0];
+        // Form untuk mengupdate semua data
+        echo "<form method='POST' action=''>";
 
-          echo "<form method='POST' action=''>
-           <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
-          <input type='text' name='kode_nilai' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
-          = <input type='text' name='nilai_bawah' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
-          - <input type='text' name='nilai_atas' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
-            <button type='submit' name='update' class='btn btn-primary btn-sm'>Update</button>
-            </form>";
+        // Loop untuk menampilkan semua data dalam satu form
+        while ($kriteriaNilai = mysqli_fetch_array($tampil)) {
+          echo "<p>ID: {$kriteriaNilai['id']}</p>
+        <input type='hidden' name='id[]' value='{$kriteriaNilai['id']}'>
+        <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
+        = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
+        - <input type='text' name='nilai_atas[]' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
+        <br>";
         }
-        echo "<a class='pull-left btn btn-primary btn-sm' name='update' href='index.php?view=nilai'>Simpan</a>";
+
+        // Tombol Update untuk mengupdate semua data
+        echo "<button type='submit' name='update' class='btn btn-primary btn-sm'>Update Semua</button>";
+        echo "</form>";
+
         ?>
 
       </div><!-- /.table-responsive -->
