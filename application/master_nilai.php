@@ -21,8 +21,8 @@
         echo"<p>{$kriteriaNilai['id']}
             <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_bawah']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
 
-            echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai&act=simpan'>Simpan</a>";
-        }
+          }
+          echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai&act=simpan'>Simpan</a>";
         ?>
             
       </div><!-- /.table-responsive -->
