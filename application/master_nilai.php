@@ -37,7 +37,8 @@
             <input type='text' style='width: 50px;'  name='id' value='" . ($kriteriaNilai['id']) . "'>
             <input type='text' placeholder='Nilai Huruf'  name='kode_nilai'  style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = 
             <input type='text' style='width: 50px;' name='nilai_bawah'  value='" . ($kriteriaNilai['nilai_bawah']) . "'> - 
-            <input type='text' style='width: 50px;'  name='nilai_atas' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
+            <input type='text' style='width: 50px;'  name='nilai_atas' value='" . ($kriteriaNilai['nilai_atas']) . "'>
+            </p>";
 
         }
         echo "<a class='pull-left btn btn-primary btn-sm' name='update' href='index.php?view=nilai'>Simpan</a>";
