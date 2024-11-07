@@ -18,29 +18,13 @@
                   
 
        
-        echo"<p>
+        echo"<p>{$kriteriaNilai['id']}
             <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_bawah']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_atas']) . "'>";
-    }
+
+            echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai&act=simpan'>Simpan</a>";
+        }
         ?>
             
-        <!-- <p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value="<?php echo $kriteriaNilai['kode_nilai']; ?>"> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='<?php echo $kriteriaNilai['kode_nilai']; ?>'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='<?php echo $kriteriaNilai['kode_nilai']; ?>'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='D'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='E'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p>
-        <p>
-          <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='F'> = <input type='text' style='width: 50px;'> - <input type='text' style='width: 50px;'>
-        </p> -->
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div><!-- /.box -->
