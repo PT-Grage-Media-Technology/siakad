@@ -11,13 +11,11 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php
         if (isset($_POST['update'])) {
-          // var_dump($_POST);
-          // exit;
           foreach ($_POST['id'] as $key => $id) {
             $kode_nilai = $_POST['kode_nilai'][$key];
             $nilai_bawah = $_POST['nilai_bawah'][$key];
             $nilai_atas = $_POST['nilai_atas'][$key];
-            echo $nilai_bawah;
+
             // Query untuk update data berdasarkan ID
             $update_query = "UPDATE rb_kriteria_nilai SET 
                                 kode_nilai = '$kode_nilai', 
