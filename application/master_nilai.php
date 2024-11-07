@@ -11,11 +11,11 @@
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php 
          // Query untuk mengambil data dengan nilai 100 secara spesifik
-    $nilaiA = mysql_query("SELECT * FROM rb_kriteria_nilai WHERE id = 2");
+    $nilaiA = mysql_query("SELECT * FROM rb_kriteria_nilai WHERE id = 1");
     $A = mysql_fetch_array($nilaiA);
 
     echo"<p>
-            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='100'> = <input type='text' style='width: 50px;' value='" . ($A['nilai_angka']) . "'> - <input type='text' style='width: 50px;' value='" . ($kriteriaNilai['nilai_angka'] - 1) . "'>";
+            <input type='text' placeholder='Nilai Huruf' style='width: 40px;' value='{$A['kode_nilai']}'> = <input type='text' style='width: 50px;' value='" . ('100') . "'> - <input type='text' style='width: 50px;' value='" . ($A['nilai_angka'] - 1) . "'>";
                   $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
                   while($kriteriaNilai = mysql_fetch_array($tampil)){
 
