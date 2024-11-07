@@ -269,8 +269,9 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            cek_session_admin();
-            $_SESSION['is_kurikulum'];
+            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true'){
+              
+            }
             echo "<div class='row'>";
             include "application/master_jadwalpelajaran.php";
             echo "</div>";
