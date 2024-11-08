@@ -268,7 +268,7 @@
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]</td>
                                 <td>";
-  
+
     // Cek apakah tugas ada
     if (mysql_num_rows($tugas) > 0) {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
@@ -284,20 +284,32 @@
       }
     }
 
-      // Query untuk mendapatkan data predikat
+    // Query untuk mendapatkan semua data predikat
     $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
-    $predikatData = mysql_fetch_array($predikatQuery);
-  
+
     // Ambil nilai sesuai nomor siswa
     $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
     var_dump($nilaiSiswa); // Memeriksa nilai siswa
-    var_dump($predikatData); // Memeriksa data predikat
 
-    // Cek apakah nilai siswa berada dalam rentang predikat
-    if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-        echo "<td>tes aja $predikatData[kode_nilai]</td>"; 
+    // Variabel untuk menyimpan kode nilai yang cocok
+    $kode_nilai = '';
+
+    // Loop melalui semua hasil data predikat
+    while ($predikatData = mysql_fetch_array($predikatQuery)) {
+      var_dump($predikatData); // Memeriksa data predikat
+
+      // Cek apakah nilai siswa berada dalam rentang predikat
+      if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+        $kode_nilai = $predikatData['kode_nilai'];
+        break; // Hentikan loop setelah menemukan predikat yang sesuai
+      }
+    }
+
+    // Output kode predikat yang cocok, jika ada
+    if ($kode_nilai) {
+      echo "<td>Predikat: $kode_nilai</td>";
     } else {
-        echo "<td>tes ga $predikatData[kode_nilai]</td>"; 
+      echo "<td>Predikat: Tidak ada predikat yang sesuai</td>";
     }
 
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
