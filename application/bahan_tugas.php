@@ -802,6 +802,7 @@ elseif ($_GET[act] == 'tambah') {
                         <th>Keterangan</th>
                         <th style='width:100px'>Waktu Kirim</th>
                         <th>Nilai</th>
+                        <th>Predikat</th>
                         <th>Action</th>
                       </tr>";
 
@@ -853,6 +854,34 @@ while ($r = mysql_fetch_array($tampil)) {
           // Redirect setelah query dijalankan
           echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
       }
+
+       // Query untuk mendapatkan semua data predikat
+    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+
+    // Ambil nilai sesuai nomor siswa
+    $nilaiSiswa = isset($r['nilai']) ? $r['nilai'] : 0; // Pastikan nilai ada
+    // var_dump($nilaiSiswa); // Memeriksa nilai siswa
+
+    // Variabel untuk menyimpan kode nilai yang cocok
+    $kode_nilai = '';
+
+    // Loop melalui semua hasil data predikat
+    while ($predikatData = mysql_fetch_array($predikatQuery)) {
+      // var_dump($predikatData); // Memeriksa data predikat
+
+      // Cek apakah nilai siswa berada dalam rentang predikat
+      if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+        $kode_nilai = $predikatData['kode_nilai'];
+        break; // Hentikan loop setelah menemukan predikat yang sesuai
+      }
+    }
+
+    // Output kode predikat yang cocok, jika ada
+    if ($kode_nilai && $nilaiSiswa) {
+      echo "<td>$kode_nilai</td>";
+    } else {
+      echo "<td>Tidak ada predikat yang sesuai</td>";
+    }
       
         
         echo "</td>
