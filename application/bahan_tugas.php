@@ -857,15 +857,8 @@ while ($r = mysql_fetch_array($tampil)) {
           // Menghapus exit agar proses dapat melanjutkan ke query
           $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='{$_POST['nilai']}' WHERE id_elearning_jawab='{$_POST['id_elearning_jawab']}'");
       
-          // Mengecek apakah query berhasil dijalankan
-          if ($coba) {
-              echo "<script>alert('Nilai berhasil diperbarui!');</script>";
-          } else {
-              echo "<script>alert('Gagal memperbarui nilai.');</script>";
-          }
-      
           // Redirect setelah query dijalankan
-          echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
+          // echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
       }
       
         
