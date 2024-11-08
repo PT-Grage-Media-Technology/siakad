@@ -269,9 +269,17 @@
                                 <td>$r[jenis_kelamin]</td>
                                 <td>";
                                 if(mysql_num_rows($tugas) > 0 ){
-                                  echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                    echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;' disabled>";
+                                  }else{
+                                    echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                  }
                               } else {
-                                  echo"nilai sikap<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+                                  echo"nilai sikap<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;' disabled>";
+                                }else{
+                                  echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
+                                }
                                
                               }
                               
