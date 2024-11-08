@@ -268,10 +268,7 @@
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]</td>
                                 <td>";
-    // Query untuk mendapatkan data predikat
-    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
-    $predikatData = mysql_fetch_array($predikatQuery);
-
+  
     // Cek apakah tugas ada
     if (mysql_num_rows($tugas) > 0) {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
@@ -287,16 +284,21 @@
       }
     }
 
-    // Ambil nilai sesuai nomor siswa
-    $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
-    var_dump($nilaiSiswa); // Memeriksa nilai siswa
-    var_dump($predikatData); // Memeriksa data predikat
+    // Query untuk mendapatkan data predikat
+    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+    // Mengambil semua data predikat
+    while ($predikatData = mysql_fetch_array($predikatQuery)) {
+        // Ambil nilai sesuai nomor siswa
+        $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
+        var_dump($nilaiSiswa); // Memeriksa nilai siswa
+        var_dump($predikatData); // Memeriksa data predikat
 
-    // Cek apakah nilai siswa berada dalam rentang predikat
-    if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-        echo "<td>tes aja $predikatData[kode_nilai]</td>"; 
-    } else {
-        echo "<td>tes ga $predikatData[kode_nilai]</td>"; 
+        // Cek apakah nilai siswa berada dalam rentang predikat
+        if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+            echo "<td>tes aja $predikatData[kode_nilai]</td>"; 
+        } else {
+            echo "<td>tes ga $predikatData[kode_nilai]</td>"; 
+        }
     }
 
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
