@@ -842,16 +842,16 @@ while ($r = mysql_fetch_array($tampil)) {
             echo "$r[nilai]";
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
-                  <input type='hidden' name='id_elearning_jawab' value='<?php echo $r[id_elearning_jawab]; ?>'>
-                  <input 
-                      type='number' 
-                      name='nilai' 
-                      style='padding:4px; -moz-appearance: textfield; appearance: textfield;' 
-                      onchange='submitFormWithAlert(this)' 
-                      placeholder='Masukkan Nilai'
-                  >
-              </form>
-                ";
+                    <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
+                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                        <option value=''>Pilih Nilai</option>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                        <option value='C'>C</option>
+                        <option value='D'>D</option>
+                        <option value='F'>F</option>
+                    </select>
+                  </form>";
         }
         
         echo "</td>
@@ -881,16 +881,15 @@ if($no == 1) {
 ?>
 
 <script>
-function submitFormWithAlert(inputElement) {
-    const inputValue = inputElement.value;
-    if (inputValue) {
-        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${inputValue}?`);
+function submitFormWithAlert(selectElement) {
+    const selectedValue = selectElement.value;
+    if (selectedValue) {
+        const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
         if (confirmSubmit) {
             document.getElementById('nilaiForm').submit();
         }
     }
 }
-
 
 function openModal() {
     document.getElementById('imageModal').style.display = 'flex';
