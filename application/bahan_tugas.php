@@ -850,10 +850,10 @@ while ($r = mysql_fetch_array($tampil)) {
                   </form>";
         }
 
-        if (isset($_POST['nilai_jawaban'])) {
+        if (isset($_POST['nilai'])) {
           // Memeriksa data yang dikirimkan melalui form
-          var_dump($_POST['nilai_jawaban']);
-          exit; // Menampilkan isi $_POST untuk melihat data yang dikirim
+          // var_dump($_POST['nilai']);
+          // exit; // Menampilkan isi $_POST untuk melihat data yang dikirim
           // Menghapus exit agar proses dapat melanjutkan ke query
           $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='{$_POST['nilai']}' WHERE id_elearning_jawab='{$_POST['id_elearning_jawab']}'");
       
