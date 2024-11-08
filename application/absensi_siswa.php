@@ -105,7 +105,7 @@
     </div>
   </div>
   <?php
-}  elseif ($_GET[act] == 'tampilabsen') {
+} elseif ($_GET[act] == 'tampilabsen') {
   if ($_GET[gettgl]) {
     $filtertgl = $_GET[gettgl];
     $exp = explode('-', $_GET[gettgl]);
@@ -247,7 +247,7 @@
   $data_tugas = mysql_fetch_array($tugas);
   $jumlah_data = mysql_num_rows($tugas);
 
-  
+
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON 
                           a.id_jenis_kelamin=b.id_jenis_kelamin 
                           where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
@@ -255,12 +255,12 @@
   while ($r = mysql_fetch_array($tampil)) {
 
     $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
- 
-    
+
+
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                         where kodejdwl='$_GET[idjr]' AND 
                                         tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
-  
+
     echo "<tr bgcolor=$warna>
                                 <td>$no</td>
                                 <td>$r[nipd]</td>
@@ -268,45 +268,48 @@
                                 <td>$r[nama]</td>
                                 <td>$r[jenis_kelamin]</td>
                                 <td>";
-                                if(mysql_num_rows($tugas) > 0 ){
-                                  if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                    echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;' disabled>";
-                                  }else{
-                                    echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
-                                  }
-                              } else {
-                                if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                  echo"nilai sikap<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;' disabled>";
-                                }else{
-                                  echo"nilai tugas<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
-                                }
-                               
-                              }
-                              
-                              // Ambil semua kriteria nilai
-                              $predikat = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                              $predikat_data = array();
-                              while ($row = mysql_fetch_array($predikat)) {
-                                  $predikat_data[] = $row; // Simpan semua kriteria nilai dalam array
-                              }
+    // Query untuk mendapatkan data predikat
+    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
 
-                              // Cek nilai dan tentukan predikat
-                              $predikat_nama = '';
-                              foreach ($predikat_data as $kriteria) {
-                                  if ($kriteria['nilai_bawah'] <= $r['nilai'] && $kriteria['nilai_atas'] >= $r['nilai']) {
-                                      $predikat_nama = $kriteria['kode_nilai'];
-                                      break; // Keluar dari loop jika predikat ditemukan
-                                  }
-                              }
-                              echo "<td>$predikat_nama</td>"; // Tampilkan predikat
-                                  echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+    // Cek apakah tugas ada
+    if (mysql_num_rows($tugas) > 0) {
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+      } else {
+        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
+      }
+    } else {
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+      } else {
+        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
 
-                              if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-                                    echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
-                                  } else {
-                                    echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
-                                  }
-                             
+      }
+    }
+
+    // Inisialisasi variabel untuk menyimpan predikat
+    $kode_nilai = '';
+
+    // Loop untuk menentukan predikat berdasarkan nilai
+    while ($predikat = mysql_fetch_assoc($predikatQuery)) {
+      if ($r['nilai'] >= $predikat['nilai_bawah'] && $r['nilai'] <= $predikat['nilai_atas']) {
+        $kode_nilai = $predikat['kode_nilai'];
+        break; // Hentikan loop setelah menemukan predikat yang sesuai
+      }
+    }
+
+    // Tampilkan kode predikat jika ditemukan
+    if ($kode_nilai) {
+      echo "<td>$kode_nilai</td>";
+    }
+    echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
+
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+    } else {
+      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+    }
+
 
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
@@ -318,7 +321,7 @@
       }
     }
     echo "</select></td>";
-   
+
     echo "</tr>";
     $no++;
   }
@@ -332,9 +335,9 @@
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
-    if(strtotime(date('Y-m-d')) > strtotime($tglAbsen)){
+    if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
 
-    }else{
+    } else {
       echo "<div class='box-footer'>
           <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
         </div>";
@@ -358,45 +361,45 @@
     $guruInserted = false;
 
     for ($i = 1; $i <= $jml_data; $i++) {
-        $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
-        $total = mysql_num_rows($cek);
+      $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
+      $total = mysql_num_rows($cek);
 
-        if ($total >= 1) {
-            // Update data jika sudah ada di tabel
-            $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
+      if ($total >= 1) {
+        // Update data jika sudah ada di tabel
+        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
                                                SET kode_kehadiran='" . $a[$i] . "', nilai='" . $nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-            if ($updateAbsensiSiswa && !$guruInserted) {
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
-                $guruInserted = true;
-            }
-        } else {
-            // Insert data jika belum ada di tabel
-            $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
+        if ($updateAbsensiSiswa && !$guruInserted) {
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+          $guruInserted = true;
+        }
+      } else {
+        // Insert data jika belum ada di tabel
+        $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
                                                VALUES('', '$kodejdwl', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai[$i] . "', '$tgl', NOW())");
-            if ($insertAbsensiSiswa && !$guruInserted) {
-                $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
-                $guruInserted = true;
-            }
+        if ($insertAbsensiSiswa && !$guruInserted) {
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+          $guruInserted = true;
         }
+      }
 
-        // Proses pengiriman SMS jika ada ketidakhadiran
-        if ($a[$i] != 'H') {
-            $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nisn='" . $nisn[$i] . "'"));
-            $statush = ($a[$i] == 'A') ? 'Alpa' : (($a[$i] == 'S') ? 'Sakit' : 'Izin');
-            $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $tgl : $statush";
+      // Proses pengiriman SMS jika ada ketidakhadiran
+      if ($a[$i] != 'H') {
+        $cs = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nisn='" . $nisn[$i] . "'"));
+        $statush = ($a[$i] == 'A') ? 'Alpa' : (($a[$i] == 'S') ? 'Sakit' : 'Izin');
+        $isi_pesan = "Diberitahukan kepada Yth Bpk/Ibk, Bahwa anak anda $cs[nama], $cs[nama_kelas] absensi Hari ini Tanggal $tgl : $statush";
 
-            if ($cs['no_telpon_ayah'] != '') {
-                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
-            } elseif ($cs['no_telpon_ibu'] != '') {
-                mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
-            }
+        if ($cs['no_telpon_ayah'] != '') {
+          mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ayah]', '$isi_pesan')");
+        } elseif ($cs['no_telpon_ibu'] != '') {
+          mysql_query("INSERT INTO rb_sms VALUES('', '$cs[no_telpon_ibu]', '$isi_pesan')");
         }
+      }
     }
 
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
-}
+  }
 
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
@@ -577,4 +580,3 @@ if (isset($_GET['id_pemberitahuan'])) {
   echo "";
 }
 ?>
-
