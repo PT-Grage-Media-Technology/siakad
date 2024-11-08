@@ -289,7 +289,7 @@
 
     if($a['nilai'] >= $predikatQuery['nilai_bawah']){
 
-      echo"<td>tes aja</td>"; 
+      echo"<td>tes aja $predikatQuery[nilai_bawah]</td>"; 
     }else{
       echo"<td>tes ga</td>"; 
     }
