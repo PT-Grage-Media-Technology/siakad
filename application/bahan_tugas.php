@@ -819,12 +819,7 @@ $tampil = mysql_query("SELECT a.*, b.*
                                 ORDER BY a.id_elearning_jawab DESC");
 
 
-// Periksa apakah query berhasil
-if(isset($_POST['nilai_jawaban'])){
-  $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
-  
-  echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
-}
+
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
@@ -836,7 +831,7 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td>$r[nisn]</td>
                 <td>$r[nama]</td>
                 <td>$r[keterangan]</td>
-                <td>$r[waktu] WIB</td>
+                <td>$r[waktu] WIB $r[nilai]</td>
                 <td>";
         
         if($r['nilai']){
@@ -858,6 +853,12 @@ while ($r = mysql_fetch_array($tampil)) {
             </tr>";
         $no++;
     }
+    // Periksa apakah query berhasil
+if(isset($_POST['nilai_jawaban'])){
+  $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
+  
+  echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+}
 }
 
 // Jika tidak ada data yang ditampilkan
