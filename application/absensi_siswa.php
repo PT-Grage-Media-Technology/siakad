@@ -284,15 +284,17 @@
         echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
       } else {
         echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
-
       }
     }
 
-    if($a['nilai'][$no] >= $predikatData['nilai_bawah']){
-      echo"<td>tes aja $predikatData[nilai_bawah]</td>"; 
-    }else{
-      echo"<td>tes ga $predikatData[nilai_bawah]</td>"; 
+    // Ambil nilai sesuai nomor siswa
+    $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
+    if ($nilaiSiswa >= $predikatData['nilai_bawah']) {
+      echo "<td>tes aja $predikatData[nilai_bawah]</td>"; 
+    } else {
+      echo "<td>tes ga $predikatData[nilai_bawah]</td>"; 
     }
+    
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
