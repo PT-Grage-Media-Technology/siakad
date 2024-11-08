@@ -820,6 +820,11 @@ $tampil = mysql_query("SELECT a.*, b.*
 
 
 // Periksa apakah query berhasil
+if(isset($_POST['nilai_jawaban'])){
+  $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
+  
+  echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
+}
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
