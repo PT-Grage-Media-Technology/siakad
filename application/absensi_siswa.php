@@ -288,7 +288,7 @@
       }
     }
 
-    if($a['nilai'] >= $predikatData['nilai_bawah']){
+    if($a['nilai'][$no] >= $predikatData['nilai_bawah']){
       echo"<td>tes aja $predikatData[nilai_bawah]</td>"; 
     }else{
       echo"<td>tes ga $predikatData[nilai_bawah]</td>"; 
