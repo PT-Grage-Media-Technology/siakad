@@ -278,7 +278,7 @@
                                 if($r['nilai']){
                                   echo"<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;'>";
                                 }else{
-                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='0bukan tugas' name='nilai[$no]' style='width:50px;'>";
                                 }
                               }
                               $predikat = mysql_query("SELECT * FROM rb_kriteria_nilai");
