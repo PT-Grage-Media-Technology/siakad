@@ -286,22 +286,7 @@
 
       }
     }
-
-    // Inisialisasi variabel untuk menyimpan predikat
-    $kode_nilai = '';
-
-    // Loop untuk menentukan predikat berdasarkan nilai
-    while ($predikat = mysql_fetch_assoc($predikatQuery)) {
-      if ($r['nilai'] >= $predikat['nilai_bawah'] && $r['nilai'] <= $predikat['nilai_atas']) {
-        $kode_nilai = $predikat['kode_nilai'];
-        break; // Hentikan loop setelah menemukan predikat yang sesuai
-      }
-    }
-
-    // Tampilkan kode predikat jika ditemukan
-    if ($kode_nilai) {
-      echo "<td>$kode_nilai</td>";
-    }
+    echo"<td>tes aja</td>"; 
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
