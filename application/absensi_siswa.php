@@ -270,15 +270,15 @@
                                 <td>";
                                 if(mysql_num_rows($tugas) > 0 ){
                                 if($r['nilai']){
-                                  echo"<input type='number' value='$nilai[nilai]1' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='$nilai[nilai]' name='nilai[$no]' style='width:50px;'>";
                                 }else{
-                                  echo"<input type='number' value='0w' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
                               }else{
                                 if($r['nilai']){
-                                  echo"<input type='number' value='$a[nilai]2' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='$a[nilai]' name='nilai[$no]' style='width:50px;'>";
                                 }else{
-                                  echo"<input type='number' value='0s' name='nilai[$no]' style='width:50px;'>";
+                                  echo"<input type='number' value='0' name='nilai[$no]' style='width:50px;'>";
                                 }
                               }
                               $predikat = mysql_query("SELECT * FROM rb_kriteria_nilai");
