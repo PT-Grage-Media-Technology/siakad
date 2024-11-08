@@ -290,6 +290,8 @@
     if($a['nilai'] >= $predikatQuery['nilai_bawah']){
 
       echo"<td>tes aja</td>"; 
+    }else{
+      echo"<td>tes ga</td>"; 
     }
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
