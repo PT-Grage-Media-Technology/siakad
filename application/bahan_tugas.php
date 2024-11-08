@@ -820,26 +820,6 @@ $tampil = mysql_query("SELECT a.*, b.*
 
 
 // Periksa apakah query berhasil
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // Cek apakah nilai dan id_elearning_jawab ada di POST
-  if (isset($_POST['nilai']) && isset($_POST['id_elearning_jawab'])) {
-      $nilai = $_POST['nilai'];
-      $id_elearning_jawab = $_POST['id_elearning_jawab'];
-      
-      // Pastikan input tidak kosong atau berbahaya
-      $nilai = mysql_real_escape_string($nilai);
-      $id_elearning_jawab = mysql_real_escape_string($id_elearning_jawab);
-
-      // Jalankan query untuk update nilai
-      $query = "UPDATE rb_elearning_jawab SET nilai = '$nilai' WHERE id_elearning_jawab = '$id_elearning_jawab'";
-      
-      if (mysql_query($query)) {
-          echo "Nilai berhasil diperbarui!";
-      } else {
-          echo "Terjadi kesalahan saat memperbarui nilai!";
-      }
-  }
-}
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
@@ -859,13 +839,15 @@ while ($r = mysql_fetch_array($tampil)) {
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                    <input 
-                    type='number' 
-                    name='nilai' 
-                    style='padding:4px; -moz-appearance: textfield; appearance: textfield;' 
-                    onchange='submitFormWithAlert(this)' 
-                    placeholder='Masukkan Nilai'
-                        >                  </form>";
+                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                        <option value=''>Pilih Nilai</option>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                        <option value='C'>C</option>
+                        <option value='D'>D</option>
+                        <option value='F'>F</option>
+                    </select>
+                  </form>";
         }
         
         echo "</td>
