@@ -283,11 +283,22 @@
                                
                               }
                               
+                              // Ambil semua kriteria nilai
                               $predikat = mysql_query("SELECT * FROM rb_kriteria_nilai");
-                              var_dump($predikat);
-                              if($predikat['nilai_bawah'] >= $r['nilai'] &&  $predikat['nilai_atas'] <= $r['nilai'] ){
-                                echo"<td>$predikat[kode_nilai]</td>";
+                              $predikat_data = array();
+                              while ($row = mysql_fetch_array($predikat)) {
+                                  $predikat_data[] = $row; // Simpan semua kriteria nilai dalam array
                               }
+
+                              // Cek nilai dan tentukan predikat
+                              $predikat_nama = '';
+                              foreach ($predikat_data as $kriteria) {
+                                  if ($kriteria['nilai_bawah'] <= $r['nilai'] && $kriteria['nilai_atas'] >= $r['nilai']) {
+                                      $predikat_nama = $kriteria['kode_nilai'];
+                                      break; // Keluar dari loop jika predikat ditemukan
+                                  }
+                              }
+                              echo "<td>$predikat_nama</td>"; // Tampilkan predikat
                                   echo"</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
                               if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
