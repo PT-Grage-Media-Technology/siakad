@@ -286,7 +286,11 @@
 
       }
     }
-    echo"<td>tes aja</td>"; 
+
+    if($a['nilai'] >= $predikatQuery['nilai_bawah']){
+
+      echo"<td>tes aja</td>"; 
+    }
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
