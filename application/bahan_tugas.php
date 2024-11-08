@@ -819,25 +819,7 @@ $tampil = mysql_query("SELECT a.*, b.*
                                 ORDER BY a.id_elearning_jawab DESC");
 
 
-// Periksa apakah query berhasil
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Pastikan data yang dibutuhkan ada
-  if (isset($_POST['nilai']) && isset($_POST['id_elearning_jawab'])) {
-      // Ambil nilai dari form
-      $nilai = $_POST['nilai'];
-      $id_elearning_jawab = $_POST['id_elearning_jawab'];
-      
-      // Sanitasi data (gunakan mysql_real_escape_string jika masih menggunakan mysql_* lama)
-      $nilai = mysql_real_escape_string($nilai);
-      $id_elearning_jawab = mysql_real_escape_string($id_elearning_jawab);
-      
-      // Jalankan query update
-      mysql_query("UPDATE rb_eleraning_jawab SET nilai = '$nilai' WHERE id_elearning_jawab = '$id_elearning_jawab'");
-      
-      // Tampilkan pesan sukses atau arahkan pengguna ke halaman lain
-      echo "<script>alert('Nilai berhasil diperbarui!');</script>";
-  }
-}
+// Periksa apakah query berhasi
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
@@ -857,7 +839,14 @@ while ($r = mysql_fetch_array($tampil)) {
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                    <input name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                        <option value=''>Pilih Nilai</option>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                        <option value='C'>C</option>
+                        <option value='D'>D</option>
+                        <option value='F'>F</option>
+                    </select>
                   </form>";
         }
         
