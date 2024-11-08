@@ -306,7 +306,7 @@
     }
 
     // Output kode predikat yang cocok, jika ada
-    if ($kode_nilai) {
+    if ($kode_nilai && $nilaiSiswa) {
       echo "<td>$kode_nilai</td>";
     } else {
       echo "<td>Tidak ada predikat yang sesuai</td>";
