@@ -819,19 +819,19 @@ $tampil = mysql_query("SELECT a.*, b.*
                                 ORDER BY a.id_elearning_jawab DESC");
 
 
+// Periksa apakah query berhasil
 
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
     // Tambahkan pengecekan apakah jawaban ini memang untuk tugas yang dipilih
-    echo $tampil;
     if($r['id_elearning'] == $id_tugas) {
         echo "<tr>
                 <td>$no</td>
                 <td>$r[nisn]</td>
                 <td>$r[nama]</td>
                 <td>$r[keterangan]</td>
-                <td>$r[waktu] WIB $r[nilai]</td>
+                <td>$r[waktu] WIB</td>
                 <td>";
         
         if($r['nilai']){
@@ -839,8 +839,23 @@ while ($r = mysql_fetch_array($tampil)) {
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                    <input name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
+                        <option value=''>Pilih Nilai</option>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                        <option value='C'>C</option>
+                        <option value='D'>D</option>
+                        <option value='F'>F</option>
+                    </select>
                   </form>";
+        }
+
+        if(isset($_POST['nilai_jawaban'])){
+          var_dump($_POST);
+          exit;
+          $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
+          
+          echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
         }
         
         echo "</td>
@@ -853,12 +868,6 @@ while ($r = mysql_fetch_array($tampil)) {
             </tr>";
         $no++;
     }
-    // Periksa apakah query berhasil
-if(isset($_POST['nilai_jawaban'])){
-  $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='$_POST[nilai]' where id_elearning_jawab='$_POST[id_elearning_jawab]'");
-  
-  echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]';</script>";
-}
 }
 
 // Jika tidak ada data yang ditampilkan
