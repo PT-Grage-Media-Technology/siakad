@@ -291,7 +291,7 @@
     if($a['nilai'] >= $predikatData['nilai_bawah']){
       echo"<td>tes aja $predikatData[nilai_bawah]</td>"; 
     }else{
-      echo"<td>tes ga</td>"; 
+      echo"<td>tes ga $predikatData[nilai_bawah]</td>"; 
     }
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
 
