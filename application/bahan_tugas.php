@@ -843,14 +843,7 @@ while ($r = mysql_fetch_array($tampil)) {
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
-                        <option value=''>Pilih Nilai</option>
-                        <option value='A'>A</option>
-                        <option value='B'>B</option>
-                        <option value='C'>C</option>
-                        <option value='D'>D</option>
-                        <option value='F'>F</option>
-                    </select>
+                    <input type='number' name='nilai' style='padding:4px; -moz-appearance: textfield; appearance: textfield;' onchange='submitFormWithAlert(this)' placeholder='Masukkan Nilai'>
                   </form>";
         }
         
