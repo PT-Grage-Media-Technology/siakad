@@ -835,7 +835,7 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td>";
         
         if($r['nilai']){
-            echo "$r[nilai]";
+            echo "<input name='nilai' value='$r[nilai]' type='number' style='padding:4px' disabled/>";
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
