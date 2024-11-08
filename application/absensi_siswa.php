@@ -296,7 +296,7 @@
 
     // Loop melalui semua hasil data predikat
     while ($predikatData = mysql_fetch_array($predikatQuery)) {
-      var_dump($predikatData); // Memeriksa data predikat
+      // var_dump($predikatData); // Memeriksa data predikat
 
       // Cek apakah nilai siswa berada dalam rentang predikat
       if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
