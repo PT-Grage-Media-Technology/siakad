@@ -289,7 +289,7 @@
 
     // Ambil nilai sesuai nomor siswa
     $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
-    var_dump($nilaiSiswa); // Memeriksa nilai siswa
+    // var_dump($nilaiSiswa); // Memeriksa nilai siswa
 
     // Variabel untuk menyimpan kode nilai yang cocok
     $kode_nilai = '';
@@ -307,9 +307,9 @@
 
     // Output kode predikat yang cocok, jika ada
     if ($kode_nilai) {
-      echo "<td>Predikat: $kode_nilai</td>";
+      echo "<td>$kode_nilai</td>";
     } else {
-      echo "<td>Predikat: Tidak ada predikat yang sesuai</td>";
+      echo "<td>Tidak ada predikat yang sesuai</td>";
     }
 
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
