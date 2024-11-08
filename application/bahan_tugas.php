@@ -819,7 +819,7 @@ $tampil = mysql_query("SELECT a.*, b.*
                                 ORDER BY a.id_elearning_jawab DESC");
 
 
-// Periksa apakah query berhasi
+// Periksa apakah query berhasil
 
 $no = 1;
 while ($r = mysql_fetch_array($tampil)) {
@@ -839,14 +839,7 @@ while ($r = mysql_fetch_array($tampil)) {
         } else {
             echo "<form method='POST' class='form-horizontal' action='' id='nilaiForm'>
                     <input type='hidden' name='id_elearning_jawab' value='$r[id_elearning_jawab]'>
-                    <select name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
-                        <option value=''>Pilih Nilai</option>
-                        <option value='A'>A</option>
-                        <option value='B'>B</option>
-                        <option value='C'>C</option>
-                        <option value='D'>D</option>
-                        <option value='F'>F</option>
-                    </select>
+                    <input name='nilai' style='padding:4px' onchange='submitFormWithAlert(this)'>
                   </form>";
         }
         
