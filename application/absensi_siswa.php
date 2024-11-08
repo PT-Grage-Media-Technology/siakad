@@ -270,6 +270,7 @@
                                 <td>";
     // Query untuk mendapatkan data predikat
     $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+    $predikatData = mysql_fetch_array($predikatQuery);
 
     // Cek apakah tugas ada
     if (mysql_num_rows($tugas) > 0) {
@@ -287,9 +288,8 @@
       }
     }
 
-    if($a['nilai'] >= $predikatQuery['nilai_bawah']){
-
-      echo"<td>tes aja $predikatQuery[nilai_bawah]</td>"; 
+    if($a['nilai'] >= $predikatData['nilai_bawah']){
+      echo"<td>tes aja $predikatData[nilai_bawah]</td>"; 
     }else{
       echo"<td>tes ga</td>"; 
     }
