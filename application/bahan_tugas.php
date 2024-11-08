@@ -858,7 +858,7 @@ while ($r = mysql_fetch_array($tampil)) {
           $coba = mysql_query("UPDATE rb_elearning_jawab SET nilai='{$_POST['nilai']}' WHERE id_elearning_jawab='{$_POST['id_elearning_jawab']}'");
       
           // Redirect setelah query dijalankan
-          // echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
+          echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
       }
       
         
