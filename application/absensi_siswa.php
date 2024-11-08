@@ -290,10 +290,10 @@
     // Ambil nilai sesuai nomor siswa
     $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
     var_dump($nilaiSiswa);
-    if ($nilaiSiswa >= $predikatData['nilai_bawah']) {
-      echo "<td>tes aja $predikatData[nilai_bawah]</td>"; 
+    if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+      echo "<td>tes aja $predikatData[kode_nilai]</td>"; 
     } else {
-      echo "<td>tes ga $predikatData[nilai_bawah]</td>"; 
+      echo "<td>tes ga $predikatData[kode_nilai]</td>"; 
     }
 
     echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
