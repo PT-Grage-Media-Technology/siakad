@@ -20,18 +20,8 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-clipboard"></i> <span>Agenda Mengajar</span>
-        <i class="fa fa-caret-down"></i>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a href="index.php?view=jadwalguru">Lihat Jadwal</a></li>
-        <li><a href="index.php?view=tambahjadwal">Tambah Jadwal</a></li>
-        <li><a href="index.php?view=editjadwal">Edit Jadwal</a></li>
-        <li><a href="index.php?view=hapusjadwal">Hapus Jadwal</a></li>
-      </ul>
-    </li>
+        <li><a href="index.php?view=jadwalguru"><span>Agenda Mengajar</span></a></li>
+    
 
     <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a>
     </li>
