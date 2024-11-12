@@ -146,7 +146,7 @@
 
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
                                                       WHERE nip_guru='$r[users]' 
-                                                      AND is_read=1 
+                                                      AND is_read=0 
                                                       AND kode_kelas='$r[kode_kelas]' 
                                                       AND kode_mapel='$r[kode_pelajaran]' 
                                                       AND id_tujuan_pembelajaran='$r[kodejdwl]' 
