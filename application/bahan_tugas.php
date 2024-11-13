@@ -690,8 +690,7 @@ elseif ($_GET[act] == 'tambah') {
       </div>
     </div><!-- /.box-body -->
   </div>
-  </div>
-
+</div>
 
   <?php
 } elseif ($_GET[act] == 'kirim') {
