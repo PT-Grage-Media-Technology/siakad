@@ -21,12 +21,17 @@
     ?>
     <li><a href=""><i class="fa fa-user-check"></i><span>Rekap Absensi</span></a></li>
 
-    <li></li>
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <li class="treeview">
-      <a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a>
+      <a></i><span>Modul Mengajar</span></a>
       <ul class="treeview-menu">
+        <li>
+          <a href="index.php?view=jadwalguru">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            <span>Aktivitas Mengajar</span>
+          </a>
+        </li>
         <li>
           <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
             <i class="glyphicon glyphicon-list-alt"></i>
