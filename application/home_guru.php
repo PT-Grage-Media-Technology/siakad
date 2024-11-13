@@ -59,8 +59,11 @@
                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
                                    ORDER BY a.hari DESC");
+            var_dump(mysql_fetch_array($tampil));
+
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
+              var_dump($r);
               echo "<tr>
                       <td>$no</td>
                       <td>$r[kode_pelajaran]</td>
