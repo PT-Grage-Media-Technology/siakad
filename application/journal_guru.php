@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
@@ -60,7 +59,6 @@
                                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                                     JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                                                     where a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
-
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                               JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
@@ -96,7 +94,7 @@
   </div>
 
 
-  <?php
+<?php
 } elseif ($_GET['act'] == 'lihat') {
   $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
   FROM `rb_jadwal_pelajaran` a 
@@ -200,8 +198,8 @@
                       LEFT JOIN rb_guru g ON jl.users = g.nip 
                       WHERE jl.kodejdwl='$_GET[id]' 
                       ORDER BY jl.id_journal DESC");
-$no = 1;
-$today = date('Y-m-d');
+  $no = 1;
+  $today = date('Y-m-d');
 
   // if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
   //   echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
@@ -213,11 +211,11 @@ $today = date('Y-m-d');
   if (mysql_num_rows($tampil) == 0) {
     // Cek jika tidak ada data
     echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
-} else {
+  } else {
     while ($r = mysql_fetch_array($tampil)) {
-        // Logika untuk mengatur status button absen
-        $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-        $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+      // Logika untuk mengatur status button absen
+      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
 
       echo "<tr>
       <td>$no</td>
@@ -252,7 +250,6 @@ $today = date('Y-m-d');
                   </div>
                 </div>
             </div>";
-
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
     // var_dump($_POST);
@@ -309,24 +306,24 @@ $today = date('Y-m-d');
                       </td>
                     </tr>";
 
-                    if($_SESSION['is_kurikulum']){
-                      echo" <tr>
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
                         <th scope='row'>Pilih Guru</th>   
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                            $guru = mysql_query("SELECT * FROM rb_guru");
-                            while ($g = mysql_fetch_array($guru)) {
-                              echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                            }
-                            echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+    }
+    echo "</select>
                         </td>
                     </tr>";
-                    } else {
-                      echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                    }
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
 
-                    echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
@@ -341,7 +338,6 @@ $today = date('Y-m-d');
                   </div>
               </form>
             </div>";
-
 } elseif ($_GET[act] == 'edit') {
   if (isset($_POST[update])) {
     $d = tgl_simpan($_POST[d]);
@@ -402,24 +398,24 @@ $today = date('Y-m-d');
                     <tr>
                       <td>";
 
-                        if($_SESSION['is_kurikulum']){
-                          echo" <tr>
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
                             <th scope='row'>Pilih Guru</th>   
                             <td>
                             <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                                 <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                                $guru = mysql_query("SELECT * FROM rb_guru");
-                                while ($g = mysql_fetch_array($guru)) {
-                                  echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
-                                }
-                                echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
+    }
+    echo "</select>
                             </td>
                         </tr>";
-                        } else {
-                          echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                        }
-                      
-                    echo "</td>
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
+
+  echo "</td>
                     </tr>
 
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
@@ -452,8 +448,3 @@ $(document).ready(function(){
             </div>";
 }
 ?>
-
-
-
-
-

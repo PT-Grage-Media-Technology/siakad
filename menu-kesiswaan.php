@@ -13,51 +13,24 @@
   <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU
-      <?php echo $level; ?></li>
+      <?php echo $level; ?>
+    </li>
     <?php
     if ($_SESSION[level] == 'guru') {
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href=""><i class="fa fa-user-check"></i><span>Rekap Absensi</span></a></li>
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li>
-    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
+      <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
+    
 
-    <li>
-      <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-        <i class="glyphicon glyphicon-list-alt"></i>
-        <span>Nilai UTS</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-        <i class="glyphicon glyphicon glyphicon-book"></i>
-        <span>Nilai Raport</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-        <i class="fa fa-users"></i>
-        <span>Forum Diskusi</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-        <i class="fa fa-th-list"></i>
-        <span>Quiz/Ujian Online</span>
-      </a>
-    </li>
-
-
+    <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Kesiswaan tes</span></a></li>
+    <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
+    <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
     <!-- <li><a href="index.php?view=bahantugas&act=listbahantugasguru"><i class="fa fa-file"></i><span>Bahan dan
           Tugas</span></a></li> -->
-    <!-- <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a> -->
-    <!-- </li> -->
+    <!-- <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li> -->
     <!-- <li><a href="index.php?view=forum&act=detailguru"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
     <!-- <li><a href="index.php?view=kompetensiguru"><i class="fa fa-tags"></i> <span>Kompetensi Dasar</span></a></li> -->
     <!-- <li><a href="index.php?view=journalguru"><i class="fa fa-list"></i> <span>Journal KBM</span></a></li> -->
