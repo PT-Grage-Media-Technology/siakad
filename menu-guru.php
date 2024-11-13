@@ -23,34 +23,35 @@
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> Aktivitas Pembelajaran</a></li>
     <li><a href=""><i class="fa fa-user-check"></i><span>Rekap Absensi</span></a></li>
 
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa fa-user-check"></i>
         <span>Modul Pengajaran</span>
       </a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-bs-display="static">
         <li>
-          <a href="">
+          <a class="dropdown-item" href="index.php?view=jadwalguru">
             <i class="glyphicon glyphicon-list-alt"></i> Nilai UTS
           </a>
         </li>
         <li>
-          <a href="">
+          <a class="dropdown-item" href="index.php?view=aktivitaspembelajaran">
             <i class="glyphicon glyphicon-book"></i> Nilai Raport
           </a>
         </li>
         <li>
-          <a href="">
+          <a class="dropdown-item" href="#">
             <i class="glyphicon glyphicon-book"></i> Forum Diskusi
           </a>
         </li>
         <li>
-          <a href="">
+          <a class="dropdown-item" href="#">
             <i class="glyphicon glyphicon-book"></i> Quiz/Ujian Online
           </a>
         </li>
       </ul>
     </li>
+
 
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
