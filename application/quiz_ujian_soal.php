@@ -648,10 +648,10 @@ if ($_GET[act] == '') {
             echo "Quiz dan Ujian Online " . date('Y');
           } ?>
         </h3>
-        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-          <input type="hidden" name='view' value='soal'>
-          <input type="hidden" name='act' value='detailsiswa'>
-          <select name='tahun' style='padding:4px'>
+        <form style="margin-right:5px; margin-top:0px; display: flex; flex-wrap: wrap; justify-content: flex-end;" class="pull-right" action="" method="GET">
+          <input type="hidden" name="view" value="soal">
+          <input type="hidden" name="act" value="detailsiswa">
+          <select name="tahun" style="padding:4px; font-size: 14px; width: auto;">
             <?php
             echo "<option value=''>- Pilih Tahun Akademik -</option>";
             $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
@@ -664,74 +664,75 @@ if ($_GET[act] == '') {
             }
             ?>
           </select>
-          <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
+          <input type="submit" style="margin-top:-4px; margin-left:5px; font-size: 14px;" class="btn btn-success btn-sm" value="Lihat">
         </form>
-
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th style='width:20px'>No</th>
-              <th>Kode</th>
-              <th>Jadwal Pelajaran</th>
-              <th>Kelas</th>
-              <th>Guru</th>
-              <th>Hari</th>
-              <th>Mulai</th>
-              <th>Selesai</th>
-              <th>Ruangan</th>
-              <th>Semester</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            if (isset($_GET[tahun])) {
-              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
-                                            JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                              JOIN rb_guru c ON a.nip=c.nip 
-                                                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+        <div class="table-responsive">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20px">No</th>
+                <th>Kode</th>
+                <th>Jadwal Pelajaran</th>
+                <th>Kelas</th>
+                <th>Guru</th>
+                <th>Hari</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Ruangan</th>
+                <th>Semester</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (isset($_GET[tahun])) {
+                $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
+                                              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                                                JOIN rb_guru c ON a.nip=c.nip 
+                                                  JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                                                      where a.kode_kelas='$_SESSION[kode_kelas]' 
+                                                        AND a.id_tahun_akademik='$_GET[tahun]'
+                                                          AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
+                                                            ORDER BY a.hari DESC");
+              } else {
+                $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
+                                              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                                                JOIN rb_guru c ON a.nip=c.nip 
+                                                  JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                                   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                  where a.kode_kelas='$_SESSION[kode_kelas]' 
-                                                    AND a.id_tahun_akademik='$_GET[tahun]'
-                                                      AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
-                                                        ORDER BY a.hari DESC");
-
-            } else {
-              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
-                                            JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                              JOIN rb_guru c ON a.nip=c.nip 
-                                                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                                JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                  where a.kode_kelas='$_SESSION[kode_kelas]' 
-                                                    AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'
-                                                     AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
-            }
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              $total = mysql_num_rows(mysql_query("SELECT * FROM rb_quiz_ujian where kodejdwl='$r[kodejdwl]'"));
-              echo "<tr><td>$no</td>
-                              <td>$r[kode_pelajaran]</td>
-                              <td>$r[namamatapelajaran]</td>
-                              <td>$r[nama_kelas]</td>
-                              <td>$r[nama_guru]</td>
-                              <td>$r[hari]</td>
-                              <td>$r[jam_mulai]</td>
-                              <td>$r[jam_selesai]</td>
-                              <td>$r[nama_ruangan]</td>
-                              <td>$r[id_tahun_akademik]</td>
-                              <td style='color:red'>$total Record</td>
-                              <td><a class='btn btn-success btn-xs' title='List QUiz dan Ujian' href='index.php?view=soal&act=listsoalsiswa&jdwl=$r[kodejdwl]&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
-                          </tr>";
-              $no++;
-            }
-            ?>
-          </tbody>
-        </table>
+                                                    where a.kode_kelas='$_SESSION[kode_kelas]' 
+                                                      AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'
+                                                       AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
+              }
+              $no = 1;
+              while ($r = mysql_fetch_array($tampil)) {
+                $total = mysql_num_rows(mysql_query("SELECT * FROM rb_quiz_ujian where kodejdwl='$r[kodejdwl]'"));
+                echo "<tr><td>$no</td>
+                                  <td>$r[kode_pelajaran]</td>
+                                  <td>$r[namamatapelajaran]</td>
+                                  <td>$r[nama_kelas]</td>
+                                  <td>$r[nama_guru]</td>
+                                  <td>$r[hari]</td>
+                                  <td>$r[jam_mulai]</td>
+                                  <td>$r[jam_selesai]</td>
+                                  <td>$r[nama_ruangan]</td>
+                                  <td>$r[id_tahun_akademik]</td>
+                                  <td style='color:red'>$total Record</td>
+                                  <td><a class='btn btn-success btn-xs' title='List QUiz dan Ujian' href='index.php?view=soal&act=listsoalsiswa&jdwl=$r[kodejdwl]&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
+                              </tr>";
+                $no++;
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div><!-- /.box-body -->
     </div>
   </div>
+
 
   <?php
 } elseif ($_GET[act] == 'listsoalsiswa') {
