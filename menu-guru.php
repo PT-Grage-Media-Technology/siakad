@@ -24,9 +24,9 @@
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <li class="treeview">
-      <a href="#" class="d-flex justify-content-between align-items-center">
+      <a href="#" class="d-flex justify-content-between align-items-center" onclick="this.classList.toggle('fa-sort-asc')">
         <span>Modul Mengajar</span>
-        <i class="fa fa-caret-down ms-2" onclick="this.classList.toggle('fa-sort-asc')"></i>
+        <i class="fa fa-caret-down ml-10"></i>
       </a>
 
       <ul class="treeview-menu">
