@@ -19,7 +19,7 @@
             <li><a href="index.php?view=bahantugas&act=listbahantugassiswa"><i class="fa fa-file"></i><span>Bahan dan Tugas</span></a></li>
             <li><a href="index.php?view=soal&act=detailsiswa"><i class="fa fa-users"></i><span>Quiz/Ujian Online</span></a></li>
             <li><a href="index.php?view=forum&act=detailsiswa"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li>
-            <li><a href=""><i class="glyphicon glyphicon-star"></i> <span>Rating</span></a></li>
+            <li><a href=""><i class="fa fa-star"></i> <span>Rating</span></a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
