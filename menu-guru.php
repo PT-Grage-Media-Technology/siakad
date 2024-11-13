@@ -26,7 +26,6 @@
 
     <li class="treeview">
       <a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a>
-    </li>
       <ul class="treeview-menu">
         <li>
           <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
