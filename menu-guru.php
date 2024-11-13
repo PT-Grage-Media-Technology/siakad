@@ -19,38 +19,42 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i> Aktivitas Mengajar</a></li>
-    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> Aktivitas Pembelajaran</a></li>
     <li><a href=""><i class="fa fa-user-check"></i><span>Rekap Absensi</span></a></li>
 
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-user-check"></i>
-        <span>Modul Pengajaran</span>
+    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li>
+    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
+
+    <li class="treeview">
+      <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        <span>Nilai UTS</span>
       </a>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-bs-display="static">
+      <ul class="treeview-menu">
         <li>
-          <a class="dropdown-item" href="index.php?view=jadwalguru">
-            <i class="glyphicon glyphicon-list-alt"></i> Nilai UTS
+          <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+            <i class="glyphicon glyphicon glyphicon-book"></i>
+            <span>Nilai Raport</span>
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="index.php?view=aktivitaspembelajaran">
-            <i class="glyphicon glyphicon-book"></i> Nilai Raport
+          <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+            <i class="fa fa-users"></i>
+            <span>Forum Diskusi</span>
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="#">
-            <i class="glyphicon glyphicon-book"></i> Forum Diskusi
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="#">
-            <i class="glyphicon glyphicon-book"></i> Quiz/Ujian Online
+          <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+            <i class="fa fa-th-list"></i>
+            <span>Quiz/Ujian Online</span>
           </a>
         </li>
       </ul>
     </li>
+
+
+
+
+
 
 
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi

@@ -20,8 +20,8 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-      <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
-    
+    <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
+
 
     <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li>
     <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
@@ -35,7 +35,7 @@
     <!-- <li><a href="index.php?view=kompetensiguru"><i class="fa fa-tags"></i> <span>Kompetensi Dasar</span></a></li> -->
     <!-- <li><a href="index.php?view=journalguru"><i class="fa fa-list"></i> <span>Journal KBM</span></a></li> -->
     <!-- <li class="treeview">
-      <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i
+      <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span>
           class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=raportuts&act=detailguru"><i class="fa fa-circle-o"></i> Input Nilai UTS</a></li>
