@@ -23,11 +23,11 @@
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <li>
-      <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-        <i class="glyphicon glyphicon-list-alt"></i>
-        <span>Nilai UTS</span>
+      <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=<?= $_GET['id'] ?>&kd=<?= $d['kode_pelajaran'] ?>&id=<?= $d['kode_kelas'] ?>&tahun=<?= $_GET['tahun'] ?>">
+        <i class="glyphicon glyphicon-list-alt glyphicon-align-justify"></i> <span>Nilai UTS</span>
       </a>
     </li>
+
 
     <li>
       <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
