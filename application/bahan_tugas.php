@@ -599,34 +599,35 @@ elseif ($_GET[act] == 'tambah') {
   cek_session_siswa();
   ?>
   <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-          echo "Bahan dan Tugas";
-        } else {
-          echo "Bahan dan Tugas " . date('Y');
-        } ?></h3>
-        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-          <input type="hidden" name='view' value='bahantugas'>
-          <input type="hidden" name='act' value='listbahantugassiswa'>
-          <select name='tahun' style='padding:4px'>
-            <?php
-            echo "<option value=''>- Pilih Tahun Akademik -</option>";
-            $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
-            while ($k = mysql_fetch_array($tahun)) {
-              if ($_GET[tahun] == $k[id_tahun_akademik]) {
-                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-              } else {
-                echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-              }
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><?php if (isset($_GET['kelas']) and isset($_GET['tahun'])) {
+        echo "Bahan dan Tugas";
+      } else {
+        echo "Bahan dan Tugas " . date('Y');
+      } ?></h3>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+        <input type="hidden" name='view' value='bahantugas'>
+        <input type="hidden" name='act' value='listbahantugassiswa'>
+        <select name='tahun' style='padding:4px'>
+          <?php
+          echo "<option value=''>- Pilih Tahun Akademik -</option>";
+          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
+          while ($k = mysql_fetch_array($tahun)) {
+            if ($_GET['tahun'] == $k['id_tahun_akademik']) {
+              echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
+            } else {
+              echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
             }
-            ?>
-          </select>
-          <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
-        </form>
+          }
+          ?>
+        </select>
+        <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
+      </form>
+    </div><!-- /.box-header -->
 
-      </div><!-- /.box-header -->
-      <div class="box-body">
+    <div class="box-body">
+      <div class="table-responsive">
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -645,7 +646,7 @@ elseif ($_GET[act] == 'tambah') {
           </thead>
           <tbody>
             <?php
-            if (isset($_GET[tahun])) {
+            if (isset($_GET['tahun'])) {
               $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                             JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                                               JOIN rb_guru c ON a.nip=c.nip 
@@ -686,9 +687,10 @@ elseif ($_GET[act] == 'tambah') {
             ?>
           </tbody>
         </table>
-      </div><!-- /.box-body -->
-    </div>
+      </div>
+    </div><!-- /.box-body -->
   </div>
+</div>
 
   <?php
 } elseif ($_GET[act] == 'kirim') {
