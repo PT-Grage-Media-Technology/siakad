@@ -20,7 +20,7 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-        <li><a href="index.php?view=jadwalguru"><span>Agenda Mengajar</span></a></li>
+        <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li>
     
 
     <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a>
