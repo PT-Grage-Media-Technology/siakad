@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
@@ -60,7 +59,6 @@
                                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                                     JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                                                     where a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
-
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                               JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
@@ -96,7 +94,7 @@
   </div>
 
 
-  <?php
+<?php
 } elseif ($_GET['act'] == 'lihat') {
   $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
   FROM `rb_jadwal_pelajaran` a 
@@ -173,8 +171,87 @@
 
   </div>
 </div>
-      echo "<div>
-              if (isset($_POST[tambah])) {
+
+                  <div class='table-responsive'>
+                  <table id='example' class='table table-bordered table-striped'>
+                    <thead>
+                      <tr>
+                        <th style='width:20px'>No</th>
+                        <th>Hari</th>
+                        <th style='width:90px'>Tanggal</th>
+                        <th style='width:70px'>Jam Ke</th>
+                        <th style='width:220px' align=center>Guru</th>
+                        <th style='width:220px'>Materi</th>
+                        <th>Keterangan</th>";
+  if ($_SESSION['level'] != 'kepala') {
+    echo "<th>Action</th>";
+  }
+  echo "</tr>
+                    </thead>
+                    <tbody>";
+  // $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
+  // $no = 1;
+  // $today = date('Y-m-d');
+
+  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                      FROM rb_journal_list jl 
+                      LEFT JOIN rb_guru g ON jl.users = g.nip 
+                      WHERE jl.kodejdwl='$_GET[id]' 
+                      ORDER BY jl.id_journal DESC");
+  $no = 1;
+  $today = date('Y-m-d');
+
+  // if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
+  //   echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
+  // } else {
+  //   while ($r = mysql_fetch_array($tampil)) {
+  //     $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+  //     $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+
+  if (mysql_num_rows($tampil) == 0) {
+    // Cek jika tidak ada data
+    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
+  } else {
+    while ($r = mysql_fetch_array($tampil)) {
+      // Logika untuk mengatur status button absen
+      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+
+      echo "<tr>
+      <td>$no</td>
+      <td>$r[hari]</td>
+      <td>" . tgl_indo($r['tanggal']) . "</td>
+      <td align=center>$r[jam_ke]</td>
+      <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
+      <td>$r[materi]</td>
+      <td>$r[keterangan]</td>";
+
+      if ($_SESSION['level'] != 'kepala') {
+        echo "<td style='width: 200px; !important'><center>
+                  <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
+                 <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+              <span class='glyphicon glyphicon-remove'>Hapus</span>
+          </a>
+                </center></td>";
+      }
+      echo "</tr>";
+      $no++;
+    }
+  }
+
+  if (isset($_GET['hapus'])) {
+    mysql_query("DELETE FROM rb_journal_list where id_journal='$_GET[hapus]'");
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
+  }
+
+  echo "<tbody>
+                  </table>
+                  </div>
+                </div>
+            </div>";
+} elseif ($_GET[act] == 'tambah') {
+  if (isset($_POST[tambah])) {
     // var_dump($_POST);
     // exit;
 
@@ -229,24 +306,24 @@
                       </td>
                     </tr>";
 
-                    if($_SESSION['is_kurikulum']){
-                      echo" <tr>
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
                         <th scope='row'>Pilih Guru</th>   
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                            $guru = mysql_query("SELECT * FROM rb_guru");
-                            while ($g = mysql_fetch_array($guru)) {
-                              echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                            }
-                            echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+    }
+    echo "</select>
                         </td>
                     </tr>";
-                    } else {
-                      echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                    }
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
 
-                    echo" <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
@@ -261,89 +338,7 @@
                   </div>
               </form>
             </div>";
-                  echo "<div class='table-responsive'>
-                  <table id='example' class='table table-bordered table-striped'>
-                    <thead>
-                      <tr>
-                        <th style='width:20px'>No</th>
-                        <th>Hari</th>
-                        <th style='width:90px'>Tanggal</th>
-                        <th style='width:70px'>Jam Ke</th>
-                        <th style='width:220px' align=center>Guru</th>
-                        <th style='width:220px'>Materi</th>
-                        <th>Keterangan</th>";
-  if ($_SESSION['level'] != 'kepala') {
-    echo "<th>Action</th>";
-  }
-  echo "</tr>
-                    </thead>
-                    <tbody>";
-  // $tampil = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[id]' ORDER BY id_journal DESC");
-  // $no = 1;
-  // $today = date('Y-m-d');
-
-  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
-                      FROM rb_journal_list jl 
-                      LEFT JOIN rb_guru g ON jl.users = g.nip 
-                      WHERE jl.kodejdwl='$_GET[id]' 
-                      ORDER BY jl.id_journal DESC");
-$no = 1;
-$today = date('Y-m-d');
-
-  // if (mysql_num_rows($tampil) == 0) { // Cek jika tidak ada data
-  //   echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>"; // Tampilkan pesan jika tidak ada data
-  // } else {
-  //   while ($r = mysql_fetch_array($tampil)) {
-  //     $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-  //     $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
-
-  if (mysql_num_rows($tampil) == 0) {
-    // Cek jika tidak ada data
-    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
-} else {
-    while ($r = mysql_fetch_array($tampil)) {
-        // Logika untuk mengatur status button absen
-        $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-        $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
-
-      echo "<tr>
-      <td>$no</td>
-      <td>$r[hari]</td>
-      <td>" . tgl_indo($r['tanggal']) . "</td>
-      <td align=center>$r[jam_ke]</td>
-      <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[materi]</td>
-      <td>$r[keterangan]</td>";
-
-      if ($_SESSION['level'] != 'kepala') {
-        echo "<td style='width: 200px; !important'><center>
-                  <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
-                 <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
-              <span class='glyphicon glyphicon-remove'>Hapus</span>
-          </a>
-                </center></td>";
-      }
-      echo "</tr>";
-      $no++;
-    }
-  }
-
-  if (isset($_GET['hapus'])) {
-    mysql_query("DELETE FROM rb_journal_list where id_journal='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
-  }
-
-  echo "<tbody>
-                  </table>
-                  </div>
-                </div>
-            </div>";
-
-} 
-// elseif ($_GET[act] == 'tambah') {
-// }
- elseif ($_GET[act] == 'edit') {
+} elseif ($_GET[act] == 'edit') {
   if (isset($_POST[update])) {
     $d = tgl_simpan($_POST[d]);
     mysql_query("UPDATE rb_journal_list SET hari = '$_POST[c]',
@@ -403,24 +398,24 @@ $today = date('Y-m-d');
                     <tr>
                       <td>";
 
-                        if($_SESSION['is_kurikulum']){
-                          echo" <tr>
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
                             <th scope='row'>Pilih Guru</th>   
                             <td>
                             <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                                 <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                                $guru = mysql_query("SELECT * FROM rb_guru");
-                                while ($g = mysql_fetch_array($guru)) {
-                                  echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
-                                }
-                                echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
+    }
+    echo "</select>
                             </td>
                         </tr>";
-                        } else {
-                          echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                        }
-                      
-                    echo "</td>
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
+
+  echo "</td>
                     </tr>
 
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
@@ -453,8 +448,3 @@ $(document).ready(function(){
             </div>";
 }
 ?>
-
-
-
-
-
