@@ -46,7 +46,7 @@
     <li>
       <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
         <i class="fa fa-th-list"></i>
-        <span>Forum Diskusi</span>
+        <span>Quiz/Ujian Online</span>
       </a>
     </li>
 
