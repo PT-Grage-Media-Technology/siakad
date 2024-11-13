@@ -20,21 +20,17 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-        <li><a href="index.php?view=jadwalguru"><span>Agenda Mengajar</span></a></li>
+      <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
     
 
-    <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a>
-    </li>
-    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas
-          Pembelajaran</span></a></li>
-    <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a>
-    </li>
+    <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li>
+    <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
+    <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
     <!-- <li><a href="index.php?view=bahantugas&act=listbahantugasguru"><i class="fa fa-file"></i><span>Bahan dan
           Tugas</span></a></li> -->
-    <!-- <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a> -->
-    </li>
+    <!-- <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li> -->
     <!-- <li><a href="index.php?view=forum&act=detailguru"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
     <!-- <li><a href="index.php?view=kompetensiguru"><i class="fa fa-tags"></i> <span>Kompetensi Dasar</span></a></li> -->
     <!-- <li><a href="index.php?view=journalguru"><i class="fa fa-list"></i> <span>Journal KBM</span></a></li> -->
