@@ -25,8 +25,8 @@
       <a href="index.php?view=jadwalguru" class="dropdown-toggle" data-toggle="collapse" data-target="#aktivitasMengajar">
         <i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span><i class="fa fa-sort-desc" aria-hidden="false"></i>
       </a>
-      </li>
-      <ul class="treeview-menu collapse" id="aktivitasMengajar" style="z-index: 1000; position: relative;">
+    </li>
+    <ul class="treeview-menu collapse" id="aktivitasMengajar" style="z-index: 1001; position: absolute;"> <!-- Ubah position menjadi absolute -->
         <li>
           <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
             <i class="glyphicon glyphicon-list-alt"></i>
@@ -50,7 +50,7 @@
             <span>Quiz/Ujian Online</span>
           </a>
         </li>
-      </ul>
+    </ul>
     
 
     <li style="position: relative; z-index: 1;"><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
