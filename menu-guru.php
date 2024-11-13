@@ -21,44 +21,38 @@
     ?>
     <li><a href=""><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span>Rekap Absensi</span></a></li>
 
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li>
-    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
-
     <li class="treeview">
-    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span><i class="fa fa-sort-desc" aria-hidden="false"></i>
-      </a></li>
-    <ul class="treeview-menu">
-      <li>
-        <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-          <i class="glyphicon glyphicon-list-alt"></i>
-          <span>Nilai UTS</span></a>
-      </li>
-      <li>
-        <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-          <i class="glyphicon glyphicon glyphicon-book"></i>
-          <span>Nilai Raport</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-          <i class="fa fa-users"></i>
-          <span>Forum Diskusi</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-          <i class="fa fa-th-list"></i>
-          <span>Quiz/Ujian Online</span>
-        </a>
-      </li>
-    </ul>
+      <a href="index.php?view=jadwalguru" class="dropdown-toggle" data-toggle="collapse" data-target="#aktivitasMengajar">
+        <i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span><i class="fa fa-sort-desc" aria-hidden="false"></i>
+      </a>
+      <ul class="treeview-menu collapse" id="aktivitasMengajar">
+        <li>
+          <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            <span>Nilai UTS</span></a>
+        </li>
+        <li>
+          <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+            <i class="glyphicon glyphicon glyphicon-book"></i>
+            <span>Nilai Raport</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+            <i class="fa fa-users"></i>
+            <span>Forum Diskusi</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+            <i class="fa fa-th-list"></i>
+            <span>Quiz/Ujian Online</span>
+          </a>
+        </li>
+      </ul>
     </li>
 
-
-
-
-
-
+    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
