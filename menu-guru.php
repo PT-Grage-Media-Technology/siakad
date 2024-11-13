@@ -24,11 +24,15 @@
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <li class="treeview">
-      <a></i><span>Modul Mengajar</span></a>
+      <a href="#" class="d-flex justify-content-between align-items-center">
+        <span>Modul Mengajar</span>
+        <i class="fa fa-caret-down ms-2" onclick="this.classList.toggle('fa-sort-asc')"></i>
+      </a>
+
       <ul class="treeview-menu">
         <li>
           <a href="index.php?view=jadwalguru">
-            <i class="glyphicon glyphicon-list-alt"></i>
+            <i class="fa fa-check"></i>
             <span>Aktivitas Mengajar</span>
           </a>
         </li>
