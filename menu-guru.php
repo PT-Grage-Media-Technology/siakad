@@ -25,30 +25,33 @@
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
     <li class="treeview">
-      <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-        <i class="glyphicon glyphicon-list-alt"></i>
-        <span>Nilai UTS</span>
-      </a>
-      <ul class="treeview-menu">
-        <li>
-          <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
-            <i class="glyphicon glyphicon glyphicon-book"></i>
-            <span>Nilai Raport</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-            <i class="fa fa-users"></i>
-            <span>Forum Diskusi</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
-            <i class="fa fa-th-list"></i>
-            <span>Quiz/Ujian Online</span>
-          </a>
-        </li>
-      </ul>
+    <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span><i class="fa fa-sort-desc" aria-hidden="false"></i>
+      </a></li>
+    <ul class="treeview-menu">
+      <li>
+        <a href="https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+          <i class="glyphicon glyphicon-list-alt"></i>
+          <span>Nilai UTS</span></a>
+      </li>
+      <li>
+        <a href="https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">
+          <i class="glyphicon glyphicon glyphicon-book"></i>
+          <span>Nilai Raport</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+          <i class="fa fa-users"></i>
+          <span>Forum Diskusi</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">
+          <i class="fa fa-th-list"></i>
+          <span>Quiz/Ujian Online</span>
+        </a>
+      </li>
+    </ul>
     </li>
 
 
