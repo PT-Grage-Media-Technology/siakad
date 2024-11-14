@@ -3,7 +3,7 @@
     <div class="box-header">
       <h3 class="box-title">
         <?php
-        $conn = mysqli_connect($server, $username, $password, $database);
+        $conn = mysqli_connect('153.92.15.8', 'u610515881_siakad', 'Siakad@1', 'u610515881_db_siakad');
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
