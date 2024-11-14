@@ -3,14 +3,13 @@
     <div class="box-header">
       <h3 class="box-title">
         <?php
-        include 'koneksi.php';
         // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
-        $latest_year = mysqli_fetch_array(mysqli_query($conn, "SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+        $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
 
         // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
         $nama_tahun = isset($_GET['tahun']) ?
-          mysqli_fetch_array(mysqli_query($conn, "SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
+          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
           $latest_year['nama_tahun'];
 
         echo "Jadwal Mengajar Anda - $nama_tahun";
@@ -22,8 +21,8 @@
         <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
           <option value=''>- Pilih Tahun Akademik -</option>
           <?php
-          $tahun = mysqli_query($conn, "SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-          while ($k = mysqli_fetch_array($tahun)) {
+          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+          while ($k = mysql_fetch_array($tahun)) {
             $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
             echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
           }
@@ -52,7 +51,7 @@
           </thead>
           <tbody>
             <?php
-            $tampil = mysqli_query($conn, "SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
+            $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
                                    FROM rb_jadwal_pelajaran a 
                                    JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                                    JOIN rb_guru c ON a.nip=c.nip 
@@ -61,10 +60,10 @@
                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
                                    ORDER BY a.hari DESC");
               if (!$tampil) {
-                    die("Query Error: " . mysqli_error($conn));
+                    die("Query Error: " . mysql_error());
                       }
             $no = 1;
-            while ($r = mysqli_fetch_array($tampil)) {
+            while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
                       <td>$r[kode_pelajaran]</td>
