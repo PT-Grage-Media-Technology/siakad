@@ -1,3 +1,4 @@
+<?php if ($_GET[act] == '') { ?>
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
@@ -312,7 +313,7 @@
     </div><!-- /.box-body -->
   </div>
 </div>
-
+<?php } ?>
 <script>
 function submitFormWithAlert() {
     // Pesan konfirmasi
