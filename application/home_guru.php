@@ -4,7 +4,7 @@
       <h3 class="box-title">
         <?php
         // Koneksi ke database menggunakan mysql_*
-        $conn = mysql_connect("localhost", "username", "password");
+        $conn = mysql_connect("153.92.15.8", "u610515881_siakad", "Siakad@1");
         mysql_select_db("u610515881_db_siakad", $conn);
 
         // Ambil tahun akademik terbaru
