@@ -21,7 +21,7 @@
     ?>
     <li><a href=""><i class="fa fa-user-check"></i><span>Rekap Absensi</span></a></li>
 
-    <li><a href="https://siakad.demogmt.online/index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
+    <!-- <li><a href="https://siakad.demogmt.online/index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li> -->
 
     <li class="treeview">
       <a href="#" class="d-flex justify-content-between align-items-center" onclick="this.classList.toggle('fa-sort-asc')">
