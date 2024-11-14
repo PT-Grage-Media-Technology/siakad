@@ -313,7 +313,7 @@
     </div><!-- /.box-body -->
   </div>
 </div>
-<?php } ?>
+
 <script>
 function submitFormWithAlert() {
     // Pesan konfirmasi
@@ -327,3 +327,4 @@ function submitFormWithAlert() {
     return false;
 }
 </script>
+<?php } ?>
