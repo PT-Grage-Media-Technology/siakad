@@ -19,11 +19,11 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <li><a href=""><i class="fa fa-calendar-check-o" aria-hidden="true"></i></i><span>Rekap Absensi</span></a></li>
+        <li><a href=""><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span>Rekap Absensi</span></a></li>
 
     <li><a href="https://siakad.demogmt.online/index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
 
-    <!-- <li class="treeview">
+    <li class="treeview">
       <a href="#" class="d-flex justify-content-between align-items-center" onclick="this.classList.toggle('fa-sort-asc')">
         <span>Modul Mengajar</span>
         <i class="fa fa-caret-down ml-10"></i>
@@ -61,7 +61,7 @@
           </a>
         </li>
       </ul>
-    </li> -->
+    </li>
 
 
 

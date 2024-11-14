@@ -1,3 +1,4 @@
+<?php if ($_GET[act] == '') { ?>
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
@@ -195,20 +196,20 @@
 
                    echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
                 }
-                if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
-                   // Mendapatkan NIP pengguna
-                   $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
+                // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
+                //    // Mendapatkan NIP pengguna
+                //    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
                    
-                   $pesan = 'tes aja';
-                   $tanggal = date('Y-m-d H:i:s');
+                //    $pesan = 'tes aja';
+                //    $tanggal = date('Y-m-d H:i:s');
                
-                   $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
-                   if ($insertResult) {
-                     echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
-                   } else {
-                     echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
-                   }
-                }
+                //    $insertResult = mysql_query("INSERT INTO rb_pemberitahuan_guru VALUES (null, '$nip', '$pesan', 0, '$r[kode_kelas]', '$r[kode_pelajaran]', '$r[kodejdwl]', '$r[tanggal]', '$r[jam_ke]', '$tanggal')");
+                //    if ($insertResult) {
+                //      echo "<script>alert('Pemberitahuan berhasil dikirim.');</script>";
+                //    } else {
+                //      echo "<script>alert('Gagal mengirim pemberitahuan: " . mysql_error() . "');</script>";
+                //    }
+                // }
 
               }
 
@@ -291,17 +292,17 @@
             
             }
 
-            // Gunakan kodejdwl_terakhir di sini
-            $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
-            FROM `rb_jadwal_pelajaran` a 
-            JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
-            JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
-            JOIN rb_guru d ON a.nip=d.nip 
-            WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
-            var_dump($d); // Hapus var_dump jika tidak diperlukan
-            if ($d === false) {
-                echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
-            }
+            // // Gunakan kodejdwl_terakhir di sini
+            // $d = mysql_fetch_array(mysql_query("SELECT a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru 
+            // FROM `rb_jadwal_pelajaran` a 
+            // JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
+            // JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran 
+            // JOIN rb_guru d ON a.nip=d.nip 
+            // WHERE a.kodejdwl='$kodejdwl_terakhir'")); // Ganti $r[kodejdwl] dengan $kodejdwl_terakhir
+            // var_dump($d); // Hapus var_dump jika tidak diperlukan
+            // if ($d === false) {
+            //     echo "Error: " . mysql_error(); // Menampilkan pesan kesalahan
+            // }
             ?>
           </tbody>
 
@@ -326,3 +327,4 @@ function submitFormWithAlert() {
     return false;
 }
 </script>
+<?php } ?>
