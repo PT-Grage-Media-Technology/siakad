@@ -5,8 +5,13 @@ $username = "u610515881_siakad";
 $password = "Siakad@1";
 $database = "u610515881_db_siakad";
 
-mysql_connect($server,$username,$password);
-mysql_select_db($database);
+$connection = mysql_connect($server, $username, $password);
+if (!$connection) {
+    die("Connection failed: " . mysql_error());
+}
+
+mysql_select_db($database, $connection);
+
 
 function anti_injection($data){
   $filter = mysql_real_escape_string(stripslashes(strip_tags(htmlspecialchars($data,ENT_QUOTES))));
