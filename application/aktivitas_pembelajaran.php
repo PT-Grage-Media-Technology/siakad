@@ -1,4 +1,4 @@
-<?php if (true) { ?>
+<?php if ($_GET[act] == '') { ?>
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
@@ -83,7 +83,7 @@
         
           </tbody>
         </table> -->
-
+        
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -125,6 +125,8 @@
                 AND MONTH(jl.tanggal) = '$bulan_dipilih'
                 ORDER BY jl.waktu_input DESC;
                 ");
+
+                var_dump($tampil);
 
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
