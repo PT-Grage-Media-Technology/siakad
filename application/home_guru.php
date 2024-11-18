@@ -6,7 +6,7 @@ $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pel
                                    JOIN rb_guru c ON a.nip=c.nip 
                                    JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                   WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
+                                   WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik=20162 
                                    ORDER BY a.hari DESC");
 $no = 1;
 while ($r = mysql_fetch_array($tampil)){
