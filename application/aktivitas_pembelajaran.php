@@ -20,9 +20,9 @@ while ($k = mysql_fetch_array($tahun)) {
 }
 mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 
-// Mendapatkan bulan dan tanggal saat ini jika tidak ada filter yang dipilih
-$bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
-$tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+// // Mendapatkan bulan dan tanggal saat ini jika tidak ada filter yang dipilih
+// $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+// $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 ?>
 
 <!-- Menampilkan form dan h3 -->
