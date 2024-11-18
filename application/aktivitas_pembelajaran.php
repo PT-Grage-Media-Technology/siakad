@@ -1,4 +1,4 @@
-<?php if ($_GET[act] == '') { ?>
+<?php if (true) { ?>
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
@@ -65,7 +65,6 @@
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
-        dfdfdf
         <!-- <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -84,6 +83,7 @@
         
           </tbody>
         </table> -->
+
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
