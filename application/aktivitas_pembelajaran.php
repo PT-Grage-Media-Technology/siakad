@@ -1,4 +1,4 @@
-<?php if ($_GET[act] == '') { ?>
+
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
@@ -343,4 +343,3 @@ function submitFormWithAlert() {
     return false;
 }
 </script>
-<?php } ?>
