@@ -6,5 +6,5 @@
 //   var_dump($r) ;
 // }
 
-echo $_SESSION['id'];
+echo $SESSION['id'];
 ?>
