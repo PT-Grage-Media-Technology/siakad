@@ -171,7 +171,7 @@
                                                 <option value='0' selected>- Pilih Guru -</option>";
   $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
-    echo "<option value='$a[nip]'>$a[nama_guru]</option>";
+    echo "<option value='$a[nip]'>$a[nama_guru] - $a[nip]</option>";
   }
   echo "</select>
                     </td></tr>
