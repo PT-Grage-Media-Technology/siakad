@@ -65,16 +65,6 @@ $selected_date = isset($_GET['date']) ? $_GET['date'] : null;
         ?>
     </select>
 </form>
-<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-    <input type="hidden" name="view" value="jadwalguru">
-    <select name="month" id="month" style='padding:4px' onchange='this.form.submit()'>
-    <option value="">Pilih Bulan</option>
-            <?php foreach ($months as $month_num => $month_name) : ?>
-                <option value="<?= $month_num; ?>" <?= $selected_month == $month_num ? 'selected' : ''; ?>><?= $month_name; ?></option>
-            <?php endforeach; ?>
-    </select>
-</form>
 
 
     </div><!-- /.box-header -->
