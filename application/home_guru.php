@@ -2,18 +2,6 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">
-  <?php
-// Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
-$latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-// Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
-$tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-$nama_tahun = isset($_GET['tahun']) ? 
-    mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] : 
-    $latest_year['nama_tahun'];
-
-echo "<h4>Jadwal Mengajar Anda - $nama_tahun</h4>";
-?>
 
 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
   <!-- Tambahkan hidden input untuk menyimpan parameter view -->
