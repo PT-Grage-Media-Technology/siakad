@@ -2,24 +2,68 @@
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
-      
+
     <?php
+// Fungsi untuk mengambil tahun akademik terbaru
+function getTahunAkademik() {
+    $tahun_query = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+    $tahun_terbaru = mysql_fetch_array($tahun_query); // Ambil tahun terbaru
+    mysql_data_seek($tahun_query, 0); // Kembali ke awal data query untuk loop
+    return $tahun_query;
+}
+
+// Fungsi untuk mendapatkan nama tahun akademik yang dipilih
+function getNamaTahunDipilih($tahun_dipilih, $tahun_query) {
+    $nama_tahun_dipilih = '';
+    while ($k = mysql_fetch_array($tahun_query)) {
+        if ($tahun_dipilih == $k['id_tahun_akademik']) {
+            $nama_tahun_dipilih = $k['nama_tahun'];
+        }
+    }
+    return $nama_tahun_dipilih;
+}
+
+// Fungsi untuk menampilkan dropdown bulan
+function generateBulanDropdown($bulan_dipilih) {
+    $bulan_arr = [
+        '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
+        '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+        '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+    ];
+
+    $html = '';
+    foreach ($bulan_arr as $key => $value) {
+        $selected = ($bulan_dipilih == $key) ? 'selected' : '';
+        $html .= "<option value='{$key}' $selected>{$value}</option>";
+    }
+    return $html;
+}
+
+// Fungsi untuk menampilkan dropdown tanggal
+function generateTanggalDropdown($tanggal_dipilih) {
+    $html = '';
+    for ($i = 1; $i <= 31; $i++) {
+        $day = str_pad($i, 2, '0', STR_PAD_LEFT); // Menambahkan leading zero
+        $selected = ($tanggal_dipilih == $day) ? 'selected' : '';
+        $html .= "<option value='{$day}' $selected>{$day}</option>";
+    }
+    return $html;
+}
+
 // Ambil tahun akademik yang terbaru
-$tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-$tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
-mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+$tahun_query = getTahunAkademik();
+$tahun_terbaru = mysql_fetch_array($tahun_query); // Ambil tahun terbaru
 
 // Jika pengguna belum memilih tahun, gunakan tahun terbaru
 $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
 
 // Ambil nama tahun akademik yang dipilih
-$nama_tahun_dipilih = '';
-while ($k = mysql_fetch_array($tahun)) {
-    if ($tahun_dipilih == $k['id_tahun_akademik']) {
-        $nama_tahun_dipilih = $k['nama_tahun'];
-    }
-}
-mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+$nama_tahun_dipilih = getNamaTahunDipilih($tahun_dipilih, $tahun_query);
+
+// Mendapatkan bulan dan tanggal saat ini jika tidak ada filter yang dipilih
+$bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+$tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+
 ?>
 
 <!-- Menampilkan form dan h3 -->
@@ -30,16 +74,32 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
     <!-- Tambahkan hidden input untuk menyimpan parameter view -->
     <input type="hidden" name="view" value="jadwalguru">
+    
+    <!-- Filter Tahun -->
     <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
         <option value=''>- Pilih Tahun Akademik -</option>
         <?php
-        while ($k = mysql_fetch_array($tahun)) {
+        mysql_data_seek($tahun_query, 0); // Kembali ke awal data query
+        while ($k = mysql_fetch_array($tahun_query)) {
             $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
             echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
         }
         ?>
     </select>
+    
+    <!-- Filter Bulan -->
+    <select name="bulan" style="padding:4px" onchange="this.form.submit()">
+        <option value="">- Pilih Bulan -</option>
+        <?php echo generateBulanDropdown($bulan_dipilih); ?>
+    </select>
+    
+    <!-- Filter Tanggal -->
+    <select name="tanggal" style="padding:4px" onchange="this.form.submit()">
+        <option value="">- Pilih Tanggal -</option>
+        <?php echo generateTanggalDropdown($tanggal_dipilih); ?>
+    </select>
 </form>
+
 
 
     </div><!-- /.box-header -->
