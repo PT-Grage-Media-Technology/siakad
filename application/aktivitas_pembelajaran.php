@@ -4,6 +4,31 @@
     <div class="box-header">
       
     <?php
+    // Mendapatkan array bulan
+$months = [
+  1 => 'Januari',
+  2 => 'Februari',
+  3 => 'Maret',
+  4 => 'April',
+  5 => 'Mei',
+  6 => 'Juni',
+  7 => 'Juli',
+  8 => 'Agustus',
+  9 => 'September',
+  10 => 'Oktober',
+  11 => 'November',
+  12 => 'Desember',
+];
+
+// Mendapatkan array tanggal (1 - 31)
+$dates = range(1, 31);
+
+// Mendapatkan bulan dan tanggal yang dipilih (jika ada)
+$selected_month = isset($_GET['month']) ? $_GET['month'] : null;
+$selected_date = isset($_GET['date']) ? $_GET['date'] : null;
+
+
+
 // Ambil tahun akademik yang terbaru
 $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
 $tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
@@ -23,28 +48,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 ?>
 
 <?php
-// Mendapatkan array bulan
-$months = [
-    1 => 'Januari',
-    2 => 'Februari',
-    3 => 'Maret',
-    4 => 'April',
-    5 => 'Mei',
-    6 => 'Juni',
-    7 => 'Juli',
-    8 => 'Agustus',
-    9 => 'September',
-    10 => 'Oktober',
-    11 => 'November',
-    12 => 'Desember',
-];
 
-// Mendapatkan array tanggal (1 - 31)
-$dates = range(1, 31);
-
-// Mendapatkan bulan dan tanggal yang dipilih (jika ada)
-$selected_month = isset($_GET['month']) ? $_GET['month'] : null;
-$selected_date = isset($_GET['date']) ? $_GET['date'] : null;
 ?>
 
 <!-- Menampilkan form dan h3 -->
