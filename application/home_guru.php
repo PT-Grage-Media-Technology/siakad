@@ -1,10 +1,7 @@
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">
-        
-    Jadwal Mengajar anda pada - <?php $tahun_dipilih ?>
-      </h3>
+      
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
   <!-- Tambahkan hidden input untuk menyimpan parameter view -->
   <input type="hidden" name="view" value="jadwalguru">
@@ -26,6 +23,10 @@
     ?>
   </select>
 </form>
+<h3 class="box-title">
+        
+    Jadwal Mengajar anda pada - <?php $tahun_dipilih ?>
+      </h3>
 
 
     </div>
