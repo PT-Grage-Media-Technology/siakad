@@ -3,8 +3,7 @@ echo"<div class='col-xs-12'>
   <div class='box'>
     <div class='box-header'>
       <h3 class='box-title'>";
-      ?>
-        <?php
+      
         // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
         $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
 
@@ -15,27 +14,27 @@ echo"<div class='col-xs-12'>
           $latest_year['nama_tahun'];
 
         echo "Jadwal Mengajar Anda - $nama_tahun";
-        ?>
-      </h3>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+echo"</h3>";
+      echo"<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
         <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-        <input type="hidden" name="view" value="jadwalguru">
+        <input type='hidden' name='view' value='jadwalguru'>
         <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-          <option value=''>- Pilih Tahun Akademik -</option>
-          <?php
+          <option value=''>- Pilih Tahun Akademik -</option>";
+      
           $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
           while ($k = mysql_fetch_array($tahun)) {
             $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
             echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
           }
-          ?>
-        </select>
+     
+        echo"</select>
       </form>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
+    </div>";
+
+//box header
+    echo"<div class='box-body'>
+      <div class='table-responsive'>
+        <table id='example1' class='table table-bordered table-striped'>
           <thead>
             <tr>
               <th style='width:20px'>No</th>
@@ -51,8 +50,8 @@ echo"<div class='col-xs-12'>
               <th>Aksi</th>
             </tr>
           </thead>
-          <tbody>
-            <?php
+          <tbody>";
+            
             $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
                                    FROM rb_jadwal_pelajaran a 
                                    JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
@@ -81,10 +80,12 @@ echo"<div class='col-xs-12'>
                     </tr>";
               $no++;
             }
-            ?>
-          </tbody>
+           
+          echo"</tbody>
         </table>
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div>
-</div>
+</div>";
+
+?>
