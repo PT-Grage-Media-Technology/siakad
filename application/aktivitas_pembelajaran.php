@@ -62,9 +62,6 @@
         </select>
       </form>
 
-
-
-
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
@@ -86,7 +83,7 @@
         
           </tbody>
         </table> -->
-awewdasdas
+        
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -128,6 +125,8 @@ awewdasdas
                 AND MONTH(jl.tanggal) = '$bulan_dipilih'
                 ORDER BY jl.waktu_input DESC;
                 ");
+
+                var_dump($tampil);
 
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
@@ -196,6 +195,7 @@ awewdasdas
 
                    echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
                 }
+                
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
                 //    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
@@ -305,8 +305,7 @@ awewdasdas
             // }
             ?>
           </tbody>
-
-
+          
         </table>
 
       </div><!-- /.table-responsive -->
