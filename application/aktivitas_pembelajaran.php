@@ -34,6 +34,8 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
     <!-- Tambahkan hidden input untuk menyimpan parameter view -->
     <input type="hidden" name="view" value="jadwalguru">
+    
+    <!-- Dropdown untuk memilih Tahun Akademik -->
     <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
         <option value=''>- Pilih Tahun Akademik -</option>
         <?php
@@ -43,7 +45,36 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
         }
         ?>
     </select>
+    
+    <!-- Dropdown untuk memilih Bulan -->
+    <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Bulan -</option>
+        <option value='1' <?php echo ($bulan_dipilih == 1) ? 'selected' : ''; ?>>Januari</option>
+        <option value='2' <?php echo ($bulan_dipilih == 2) ? 'selected' : ''; ?>>Februari</option>
+        <option value='3' <?php echo ($bulan_dipilih == 3) ? 'selected' : ''; ?>>Maret</option>
+        <option value='4' <?php echo ($bulan_dipilih == 4) ? 'selected' : ''; ?>>April</option>
+        <option value='5' <?php echo ($bulan_dipilih == 5) ? 'selected' : ''; ?>>Mei</option>
+        <option value='6' <?php echo ($bulan_dipilih == 6) ? 'selected' : ''; ?>>Juni</option>
+        <option value='7' <?php echo ($bulan_dipilih == 7) ? 'selected' : ''; ?>>Juli</option>
+        <option value='8' <?php echo ($bulan_dipilih == 8) ? 'selected' : ''; ?>>Agustus</option>
+        <option value='9' <?php echo ($bulan_dipilih == 9) ? 'selected' : ''; ?>>September</option>
+        <option value='10' <?php echo ($bulan_dipilih == 10) ? 'selected' : ''; ?>>Oktober</option>
+        <option value='11' <?php echo ($bulan_dipilih == 11) ? 'selected' : ''; ?>>November</option>
+        <option value='12' <?php echo ($bulan_dipilih == 12) ? 'selected' : ''; ?>>Desember</option>
+    </select>
+    
+    <!-- Dropdown untuk memilih Tanggal -->
+    <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tanggal -</option>
+        <?php
+        for ($i = 1; $i <= 31; $i++) {
+            $selected = ($tanggal_dipilih == $i) ? 'selected' : '';
+            echo "<option value='$i' $selected>$i</option>";
+        }
+        ?>
+    </select>
 </form>
+
 
 
     </div><!-- /.box-header -->
