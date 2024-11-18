@@ -82,7 +82,7 @@
                 echo "<tr><td>$no</td>
                                         <td>$r[namamatapelajaran]</td>
                                         <td>$r[nama_kelas]</td>
-                                        <td>$r[nama_guru]</td>
+                                        <td>$r[nama_guru] - $r[nip]</td>
                                         <td>$r[hari]</td>
                                         <td>$r[jam_mulai]</td>
                                         <td>$r[jam_selesai]</td>
