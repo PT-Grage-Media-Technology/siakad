@@ -62,12 +62,10 @@
         </select>
       </form>
 
-
-
-
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
+        dfdfdf
         <!-- <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -86,7 +84,6 @@
         
           </tbody>
         </table> -->
-awewdasdas
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -196,6 +193,7 @@ awewdasdas
 
                    echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
                 }
+                
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
                 //    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
@@ -305,8 +303,7 @@ awewdasdas
             // }
             ?>
           </tbody>
-
-
+          
         </table>
 
       </div><!-- /.table-responsive -->
