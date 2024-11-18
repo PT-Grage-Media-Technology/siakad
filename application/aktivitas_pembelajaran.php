@@ -143,7 +143,7 @@ $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // D
                 ORDER BY jl.waktu_input DESC;
                 ");
 
-                var_dump($tampil);
+                // var_dump($tampil);
 
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
