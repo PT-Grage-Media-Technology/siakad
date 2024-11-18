@@ -611,74 +611,60 @@
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                   <div class='modal-dialog' role='document'>
-                  
-                  ";
+                    <div class='modal-content'>
+                    session_start();
 
-// Pastikan session sudah dimulai
-session_start();
+                    // Cek session guru
+                    cek_session_guru();
+                      <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
+                      </div>
+                      <div class='modal-body'>";
+                     // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
+                     echo "<div style='background-color: black; padding: 10px;'>
+                            <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
+                            </div>";
 
-// Cek session guru
-cek_session_guru(); // Fungsi ini memeriksa apakah level pengguna adalah 'guru', 'superuser', atau 'kepala'
+                      // Query pemberitahuan seperti sebelumnya
+                      $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
 
-// Modal content dimulai
-echo "<div class='modal-content'>
-        <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-            <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
-        </div>
-        <div class='modal-body'>";
+                      // Tampilkan tabel pemberitahuan
+                      echo "<table id='example1' class='table table-bordered table-striped'>
+                          <tr>
+                              <th>No</th>
+                              <th>Pesan</th>
+                              <th>Waktu Dikirim</th>
+                              <th>Action</th>
+                          </tr>";
 
-// Tambahkan kondisi untuk role yang sesuai
-if ($_SESSION['level'] == 'guru' || $_SESSION['level'] == 'superuser' || $_SESSION['level'] == 'kepala') {
-    // Tampilkan pesan alert untuk guru
-    echo "<div style='background-color: black; padding: 10px;'>
-            <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
-          </div>";
-
-    // Query pemberitahuan khusus untuk guru
-    $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND nip_guru='$_SESSION[id]'");
-
-    // Tampilkan tabel pemberitahuan
-    echo "<table id='example1' class='table table-bordered table-striped'>
-            <tr>
-                <th>No</th>
-                <th>Pesan</th>
-                <th>Waktu Dikirim</th>
-                <th>Action</th>
-            </tr>";
-
-    // Cek apakah ada pemberitahuan
-    $no = 1;
-    if (mysql_num_rows($pemberitahuan) > 0) {
-        while ($p = mysql_fetch_array($pemberitahuan)) {
-            echo "<tr>
-                    <td>$no</td>
-                    <td>$p[pesan]</td>
-                    <td>$p[waktu_dikirim]</td>
-                    <td><a class='btn btn-warning btn-xs' name='absen' 
-                    href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
-                  </tr>";
-            $no++;
-        }
-    } else {
-        echo "<tr>
-                <td colspan='4' style='text-align: center;'>Tidak ada data</td>
-              </tr>";
-    }
-    echo "</table>";
-} else {
-    // Tidak ada pemberitahuan atau bukan role yang sesuai
-    echo "<p style='text-align: center;'>Tidak ada pemberitahuan.</p>";
-}
-
-echo "</div>
-      <div class='modal-footer'>
-          <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
-      </div>
-    </div>";
-?>
-
-
+                      // Cek apakah ada pemberitahuan
+                      $no = 1;
+                      if(mysql_num_rows($pemberitahuan) > 0){
+                        while ($p = mysql_fetch_array($pemberitahuan)) {
+                            echo "<tr>
+                                <td>$no</td>
+                                <td>$p[pesan]</td>
+                                <td>$p[waktu_dikirim]</td>
+                                <td><a class='btn btn-warning btn-xs' name='absen' 
+                                href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
+                                </tr>";
+                                $no++;
+                          }
+                        } else {
+                          echo "<tr>
+                            <td>Tidak ada data</td>
+                          </tr>";
+                      }
+          
+                          
+                          echo"
+                        </table>
+                      </div>
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
