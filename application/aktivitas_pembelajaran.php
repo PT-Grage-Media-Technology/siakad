@@ -19,7 +19,61 @@ while ($k = mysql_fetch_array($tahun)) {
     }
 }
 mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+
+// Mendapatkan bulan dan tanggal saat ini jika tidak ada filter yang dipilih
+$bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+$tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
 ?>
+
+<!-- Menampilkan form dan h3 -->
+<h3 class="box-title">
+    Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+</h3>
+
+<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+    <input type="hidden" name="view" value="jadwalguru">
+    
+    <!-- Filter Tahun -->
+    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tahun Akademik -</option>
+        <?php
+        while ($k = mysql_fetch_array($tahun)) {
+            $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+            echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
+        }
+        ?>
+    </select>
+    
+    <!-- Filter Bulan -->
+    <select name="bulan" style="padding:4px" onchange="this.form.submit()">
+        <option value="">- Pilih Bulan -</option>
+        <?php
+        $bulan_arr = [
+            '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
+            '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+            '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+        ];
+        foreach ($bulan_arr as $key => $value) {
+            $selected = ($bulan_dipilih == $key) ? 'selected' : '';
+            echo "<option value='{$key}' $selected>{$value}</option>";
+        }
+        ?>
+    </select>
+    
+    <!-- Filter Tanggal -->
+    <select name="tanggal" style="padding:4px" onchange="this.form.submit()">
+        <option value="">- Pilih Tanggal -</option>
+        <?php
+        for ($i = 1; $i <= 31; $i++) {
+            $day = str_pad($i, 2, '0', STR_PAD_LEFT); // Menambahkan leading zero
+            $selected = ($tanggal_dipilih == $day) ? 'selected' : '';
+            echo "<option value='{$day}' $selected>{$day}</option>";
+        }
+        ?>
+    </select>
+</form>
+
 
 
 
