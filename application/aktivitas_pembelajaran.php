@@ -3,64 +3,62 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">
+      <?php
+// Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
+$latestYear = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+
+// Set tahun akademik yang dipilih (default ke tahun terbaru jika tidak ada pilihan)
+$tahunDipilih = $_GET['tahun'] ?? $latestYear['id_tahun_akademik'];
+$namaTahunDipilih = mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahunDipilih'"))['nama_tahun'] ?? $latestYear['nama_tahun'];
+
+// Set tanggal dan bulan yang dipilih (default ke hari dan bulan saat ini jika tidak ada pilihan)
+$selectedTanggal = $_GET['tanggal'] ?? date('j');
+$selectedBulan = $_GET['bulan'] ?? date('n');
+
+// Daftar nama bulan
+$bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+?>
+
+<h3 class="box-title">
+    Aktivitas Pembelajaran Guru - <?php echo $namaTahunDipilih; ?>
+</h3>
+
+<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+    <input type="hidden" name="view" value="aktivitaspembelajaran">
+
+    <!-- Filter Tanggal -->
+    <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+        <?php for ($i = 1; $i <= 31; $i++): ?>
+            <option value='<?php echo $i; ?>' <?php echo ($selectedTanggal == $i) ? 'selected' : ''; ?>>
+                <?php echo $i; ?>
+            </option>
+        <?php endfor; ?>
+    </select>
+
+    <!-- Filter Bulan -->
+    <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+        <?php foreach ($bulanNama as $index => $bulan): ?>
+            <?php $bulanIndex = $index + 1; ?>
+            <option value='<?php echo $bulanIndex; ?>' <?php echo ($selectedBulan == $bulanIndex) ? 'selected' : ''; ?>>
+                <?php echo $bulan; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <!-- Filter Tahun Akademik -->
+    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tahun Akademik -</option>
         <?php
-        // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
-        $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-
-        // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
-        $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-        $nama_tahun = isset($_GET['tahun']) ?
-          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
-          $latest_year['nama_tahun'];
-
-        echo "Aktivitas Pembelajaran Guru - $nama_tahun";
+        $tahunList = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+        while ($tahun = mysql_fetch_array($tahunList)):
         ?>
-      </h3>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+            <option value='<?php echo $tahun['id_tahun_akademik']; ?>' <?php echo ($tahunDipilih == $tahun['id_tahun_akademik']) ? 'selected' : ''; ?>>
+                <?php echo $tahun['nama_tahun']; ?>
+            </option>
+        <?php endwhile; ?>
+    </select>
+</form>
 
-        <input type="hidden" name="view" value="aktivitaspembelajaran">
-
-        <!-- Filter Tanggal -->
-        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-
-          <?php
-          $today = date('j'); // Mengambil tanggal hari ini
-          $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
-          
-          for ($i = 1; $i <= 31; $i++) {
-            $selected = ($selectedTanggal == $i) ? 'selected' : '';
-            echo "<option value='$i' $selected>$i</option>";
-          }
-          ?>
-        </select>
-
-
-        <!-- Filter Bulan -->
-        <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
-          <?php
-          $currentMonth = date('n'); // Mengambil bulan saat ini
-          $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
-          $bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-          for ($i = 1; $i <= 12; $i++) {
-            $selected = ($selectedBulan == $i) ? 'selected' : '';
-            echo "<option value='$i' $selected>{$bulanNama[$i - 1]}</option>";
-          }
-          ?>
-        </select>
-
-        <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-          <option value=''>- Pilih Tahun Akademik -</option>
-          <?php
-          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-          while ($k = mysql_fetch_array($tahun)) {
-            $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-            echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
-          }
-          ?>
-        </select>
-      </form>
 
     </div><!-- /.box-header -->
     <div class="box-body">
@@ -105,9 +103,8 @@
             if ($_SESSION['is_kurikulum']) {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
-              $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
-              $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
-
+              $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+              $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
 
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
               (SELECT kode_kehadiran 
