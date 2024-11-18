@@ -1,5 +1,5 @@
 <?php 
-$tes = mysql_query("SELECT * FROM rb_mata_pelajaran ");
+$tes = mysql_query("SELECT * FROM rb_mata_pelajaran where namamatapelajaran='Pengantar Teknologi'");
 $no = 1;
 while ($r = mysql_fetch_array($tes)){
   echo"<p>$no - $r[namamatapelajaran] -- $r[nip]</p?";
