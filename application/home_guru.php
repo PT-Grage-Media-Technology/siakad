@@ -60,8 +60,8 @@
             //                        WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
             //                        ORDER BY a.hari DESC");
             
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
+            // $no = 1;
+            // while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
                       <td>$no</td>
                       <td>$r[kode_pelajaran]</td>
@@ -76,7 +76,7 @@
                       <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
                     </tr>";
               $no++;
-            }
+            // }
             ?>
           </tbody>
         </table>
