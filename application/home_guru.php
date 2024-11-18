@@ -1,8 +1,8 @@
 <?php 
-$tes = mysql_query("SELECT * FROM rb_mata_pelajaran WHERE nip='$_SESSION[id]'");
+$tes = mysql_query("SELECT * FROM rb_mata_pelajaran ");
 $no = 1;
 while ($r = mysql_fetch_array($tes)){
-  echo"<p>$no - $r[namamatapelajaran]</p?";
+  echo"<p>$no - $r[namamatapelajaran] -- $r[nip]</p?";
   // var_dump($r) ;
 }
 
