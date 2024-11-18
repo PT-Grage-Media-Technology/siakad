@@ -20,9 +20,10 @@ while ($k = mysql_fetch_array($tahun)) {
     }
 }
 mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
-?>
 
-<?php
+// Mendapatkan bulan dan tanggal yang dipilih atau default ke bulan dan tanggal hari ini
+$bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');  // Default ke bulan sekarang
+$tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // Default ke tanggal hari ini
 
 ?>
 
@@ -74,6 +75,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
         ?>
     </select>
 </form>
+
 
 
 
