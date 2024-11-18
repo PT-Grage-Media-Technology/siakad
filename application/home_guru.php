@@ -3,13 +3,20 @@
     <div class="box-header">
       <h3 class="box-title">
 
-<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
   <!-- Tambahkan hidden input untuk menyimpan parameter view -->
   <input type="hidden" name="view" value="jadwalguru">
   <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
     <option value=''>- Pilih Tahun Akademik -</option>
     <?php
+    // Ambil tahun akademik yang terbaru
     $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+    $tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
+    mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+    
+    // Jika pengguna belum memilih tahun, gunakan tahun terbaru
+    $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
+    
     while ($k = mysql_fetch_array($tahun)) {
       $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
       echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
@@ -17,6 +24,7 @@
     ?>
   </select>
 </form>
+
 
     </div>
     <!-- /.box-header -->
