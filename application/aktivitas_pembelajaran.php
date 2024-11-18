@@ -3,8 +3,21 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">
-      
+        <?php
+        // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
+        $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
 
+
+        // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
+        $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
+        $nama_tahun = isset($_GET['tahun']) ?
+          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
+          $latest_year['nama_tahun'];
+
+        echo "Aktivitas Pembelajaran Guru - $nama_tahun";
+        ?>
+      </h3>
+      
 
     </div><!-- /.box-header -->
     <div class="box-body">
@@ -49,9 +62,9 @@
             if ($_SESSION['is_kurikulum']) {
               // Mengambil tanggal yang dipilih dari GET
               // Ambil tanggal dan bulan yang dipilih dari GET
-              $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
+              $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('d');
               $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');
-              
+
 
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
               (SELECT kode_kehadiran 
