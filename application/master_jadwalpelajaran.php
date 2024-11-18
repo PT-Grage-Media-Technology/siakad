@@ -169,7 +169,7 @@
                     </td></tr>
                     <tr><th scope='row'>Guru</th>   <td><select class='form-control' name='e'> 
                                                 <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6");
+  $guru = mysql_query("SELECT * FROM rb_guru ");
   while ($a = mysql_fetch_array($guru)) {
     echo "<option value='$a[nip]'>$a[nama_guru] - $a[nip]</option>";
   }
