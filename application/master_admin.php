@@ -133,7 +133,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=guru'><button class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=guru' class='btn btn-default pull-right'>Cancel</a>
                     
                   </div>
               </form>
