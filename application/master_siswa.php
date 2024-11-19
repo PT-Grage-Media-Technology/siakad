@@ -1,4 +1,3 @@
-
 <?php 
 if ($_GET[act]==''){ 
   cek_session_admin();
@@ -69,10 +68,12 @@ if ($_GET[act]==''){
                 <input type="hidden" name='kelas' value='<?php echo $_GET[kelas]; ?>'>
                 <?php 
                   if (isset($_GET[kelas])){
-                    echo "<table id='myTable' class='table table-bordered table-striped'>
+                    echo "<div class='table-responsive'>
+                    <table id='myTable' class='table table-bordered table-striped'>
                             <tr><th></th>";
                   }else{
-                    echo "<table id='example' class='table table-bordered table-striped'>
+                    echo "<div class='table-responsive'>
+                    <table id='example' class='table table-bordered table-striped'>
                             <thead>
                               <tr>";
                   }
