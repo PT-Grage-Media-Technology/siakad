@@ -140,3 +140,9 @@
             </div>";
 }
 ?>
+<style>
+  /* Menyembunyikan scrollbar */
+  .table-responsive {
+      overflow: hidden; /* Menyembunyikan scrollbar */
+  }
+</style>
