@@ -108,9 +108,9 @@
                 <div class='box-header'>
                   <h3 class='box-title'>Tujuan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
-  // if ($_SESSION['level'] != 'kepala') {
-  //   echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
-  // }
+  if ($_SESSION['level'] != 'kepala') {
+    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
+  }
   echo "</div>
                 <div class='box-body'>
   <div class='table-responsive'>
@@ -120,209 +120,57 @@
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
-    </table>";
+    </table>
+    
+    <!-- Container grid dengan margin dan padding yang seragam -->
+    <div class='container' style='max-width: 200px; padding: 10px;'>
+  <style>
+    @media (min-width: 1024px) { .container { margin: 10px; } }
+    @media (max-width: 1024px) { .container { margin: 10px auto; } }
 
-  if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+  </style>
+  <!-- Grid container dengan 2 baris, 2 kolom -->
+  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
+    <!-- Tombol Nilai UTS -->
+    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
+       href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+      <div style='text-align: center;'>
+        <div class='glyphicon glyphicon-list-alt' style='font-size: 20px; margin-bottom: 4px;'></div>
+        <div style='font-size: 10px; line-height: 1.2;'>Nilai UTS</div>
+      </div>
+    </a>
 
-    $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-  }
+    <!-- Tombol Nilai Raport -->
+    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
+       href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+      <div style='text-align: center;'>
+        <div class='glyphicon glyphicon-book' style='font-size: 20px; margin-bottom: 4px;'></div>
+        <div style='font-size: 10px; line-height: 1.2;'>Nilai Raport</div>
+      </div>
+    </a>
 
-  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
-  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
-  echo "<div class='col-md-12'>
-                <div class='box box-info'>
-                  <div class='box-header with-border'>
-                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
-                  </div>
-                <div class='box-body'>
-                <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                  <div class='col-md-12'>
-                    <table class='table table-condensed table-bordered'>
-                    <tbody>
-                    <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                      <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
-  $kelas = mysql_query("SELECT * FROM rb_kelas");
-  while ($a = mysql_fetch_array($kelas)) {
-    if ($e[kode_kelas] == $a[kode_kelas]) {
-      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
-    }
-  }
-  echo "</select>
-                      </td></tr>
-                      <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
-  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-  while ($a = mysql_fetch_array($mapel)) {
-    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
-    }
-  }
-  echo "</select>
-                      </td></tr>
-                     
-                      <tr>
-                        <th scope='row'>Hari</th>
-                        <td>
-                            <select class='form-control' name='c'>
-                                <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
-                                <option value='Selasa'" . ($hari_ini == 'Selasa' ? ' selected' : '') . ">Selasa</option>
-                                <option value='Rabu'" . ($hari_ini == 'Rabu' ? ' selected' : '') . ">Rabu</option>
-                                <option value='Kamis'" . ($hari_ini == 'Kamis' ? ' selected' : '') . ">Kamis</option>
-                                <option value='Jumat'" . ($hari_ini == 'Jumat' ? ' selected' : '') . ">Jumat</option>
-                                <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
-                            </select>
-                        </td>
-                      </tr>";
+    <!-- Tombol Forum Diskusi -->
+    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
+       href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+      <div style='text-align: center;'>
+        <div class='fa fa-users' style='font-size: 20px; margin-bottom: 4px;'></div>
+        <div style='font-size: 10px; line-height: 1.2;'>Forum Diskusi</div>
+      </div>
+    </a>
 
-  if ($_SESSION['is_kurikulum']) {
-    echo " <tr>
-                          <th scope='row'>Pilih Guru</th>   
-                          <td>
-                          <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
-                              <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
-    while ($g = mysql_fetch_array($guru)) {
-      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-    }
-    echo "</select>
-                          </td>
-                      </tr>";
-  } else {
-    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-  }
-
-  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                      <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
-                      <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
-                      </td></tr>
-                    </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class='box-footer'>
-                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                      <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
-                    </div>
-                </form>
-              </div>";
-
-  // <!-- Container grid dengan margin dan padding yang seragam -->
-  echo "
-  <div class='container' style='max-width: 800px; padding: 10px;'>
-    <style>
-      /* Responsivitas container */
-      @media (min-width: 1024px) {
-        .container {
-          margin: 10px;
-        }
-      }
-      @media (max-width: 1024px) {
-        .container {
-          margin: 10px auto;
-        }
-      }
-  
-      /* Grid container */
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 15px;
-        justify-content: center;
-        align-items: center;
-        justify-items: center; /* Menjadikan konten grid terpusat */
-      }
-  
-      /* Grid 4 kolom di layar besar */
-      @media (min-width: 1200px) {
-        .grid-container {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-  
-      /* Tombol hijau */
-      .btn-success {
-        min-width: 100px;
-        max-width: 120px;
-        height: 100px;
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 12px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-  
-      /* Menyesuaikan teks dan ikon untuk layar kecil */
-      @media (max-width: 768px) {
-        .btn-success {
-          font-size: 14px; /* Memperbesar teks */
-          height: 110px; /* Menambah tinggi tombol */
-        }
-        .btn-success div:first-child {
-          font-size: 20px; /* Memperbesar ikon */
-          margin-bottom: 6px;
-        }
-      }
-  
-      /* Mengecilkan teks pada layar besar */
-      @media (min-width: 1200px) {
-        .btn-success {
-          font-size: 8px;
-          height: 90px;
-        }
-        .btn-success div:first-child {
-          font-size: 18px;
-          margin-bottom: 4px;
-        }
-      }
-    </style>
-  
-    <!-- Grid container dengan tombol -->
-    <div class='grid-container'>
-      <!-- Tombol Nilai UTS -->
-      <a class='btn btn-success'
-         href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-        <div>
-          <div class='glyphicon glyphicon-list-alt'></div>
-          <div>Nilai UTS</div>
-        </div>
-      </a>
-  
-      <!-- Tombol Nilai Raport -->
-      <a class='btn btn-success'
-         href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-        <div>
-          <div class='glyphicon glyphicon-book'></div>
-          <div>Nilai Raport</div>
-        </div>
-      </a>
-  
-      <!-- Tombol Forum Diskusi -->
-      <a class='btn btn-success'
-         href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-        <div>
-          <div class='fa fa-users'></div>
-          <div>Forum Diskusi</div>
-        </div>
-      </a>
-  
-      <!-- Tombol Quiz/Ujian -->
-      <a class='btn btn-success'
-         href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-        <div>
-          <div class='fa fa-th-list'></div>
-          <div>Quiz/Ujian Online</div>
-        </div>
-      </a>
-    </div>
+    <!-- Tombol Quiz/Ujian -->
+    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
+       href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+      <div style='text-align: center;'>
+        <div class='fa fa-th-list' style='font-size: 20px; margin-bottom: 4px;'></div>
+        <div style='font-size: 10px; line-height: 1.2;'>Quiz/Ujian Online</div>
+      </div>
+    </a>
   </div>
-  
+</div>
+
+  </div>
+</div>
 
                   <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
