@@ -8,7 +8,7 @@
                   <?php } ?>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <div class="table-responsive d-md-none">
+                  <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr></tr>
@@ -287,3 +287,15 @@
             </div>";
 }
 ?>
+
+<style>
+    .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
