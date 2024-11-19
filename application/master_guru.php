@@ -571,7 +571,7 @@
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
   if ($_SESSION[level] != 'kepala') {
-    echo "<a href='index.php?view=jadwalguru' class='btn btn-primary btn-block'>Izin</a>";
+    echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
     echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   }
   echo "
@@ -720,6 +720,8 @@
   </div>
 
   </div>";
+}elseif ($_GET[act] == 'izin') {
+  echo"p aja";
 }
 ?>
 <script>
