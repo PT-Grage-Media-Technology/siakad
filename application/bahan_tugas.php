@@ -306,26 +306,41 @@ if ($_GET[act] == '') {
 
 elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
-  if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+  if (isset($_POST['tambah'])) {
+    // Tampilkan semua data POST untuk debug
+    var_dump($_POST);
+    exit; // Pindahkan exit setelah var_dump untuk proses lebih lanjut.
+
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
-    $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
+    $filenamee = date("YmdHis") . '-' . $filename;
     $uploadfile = $dir_gambar . $filenamee;
+
+    // Cek apakah file sudah dipilih
     if ($filename != '') {
-      if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-      } else {
-        echo "<script>window.alert('Gagal Tambahkan Data Bahan dan Tugas.');
-                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-      }
+        // Cek error saat upload
+        if ($_FILES['c']['error'] === UPLOAD_ERR_OK) {
+            // Cek jika file berhasil dipindahkan ke direktori tujuan
+            if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
+                // Jika berhasil, masukkan data ke dalam database
+                mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+                echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+            } else {
+                // Gagal memindahkan file
+                echo "<script>window.alert('Gagal upload file ke direktori tujuan.');
+                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+            }
+        } else {
+            // Jika terdapat error upload
+            echo "<script>window.alert('Terjadi kesalahan saat mengunggah file. Kode Error: " . $_FILES['c']['error'] . "');
+                  window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+        }
     } else {
-      mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-      echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+        // Jika file tidak dipilih, simpan data tanpa file
+        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
     }
-  }
+}
 
   echo "<div class='col-md-12'>
           <div class='row'>
@@ -366,23 +381,13 @@ elseif ($_GET[act] == 'tambah') {
                               <th scope='row'>Nama File</th>
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
-                            <tr>
-                              <th scope='row'>File</th>
-                              <td>
-                                <div class='d-flex align-items-center'>
-                                    <div class='d-flex align-items-center'>
-                                        <label class='btn btn-primary mb-0' for='file-upload'>
-                                            <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                        </label>
-                                        <input type='file' class='files d-none' id='file-upload' name='c' onchange='document.getElementById('upload-file-info').textContent = this.value.split('\\').pop();'>
-                                        <span class='badge bg-info text-dark ms-2' id='upload-file-info'></span>
-                                    </div>
-                                    
-                                    <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
-                                    <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                                </div>
-                              </td>
-                            </tr>
+                            <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
+                                                                          <a class='btn btn-primary' href='javascript:;'>
+                                                                            <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                                        </div>
+                    </td></tr>
                             <tr>
                               <th scope='row'>Waktu Mulai</th>
                               <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
