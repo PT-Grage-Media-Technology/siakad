@@ -1,12 +1,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
-<?php if ($_GET[act] == '') { ?>
+<?php
+// Pastikan koneksi database berhasil
+// $conn = mysqli_connect("host", "username", "password", "database");
+// if (!$conn) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
+
+if ($_GET['act'] == '') { ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">
-          <?php if (isset($_GET[tahun])) {
+          <?php if (isset($_GET['tahun'])) {
             echo "Tujuan Belajar Mengajar anda";
           } else {
             echo "Tujuan Belajar Mengajar anda pada " . date('Y');
@@ -19,11 +26,7 @@
             echo "<option value=''>- Pilih Tahun Akademik -</option>";
             $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
             while ($k = mysql_fetch_array($tahun)) {
-              if ($_GET[tahun] == $k[id_tahun_akademik]) {
-                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-              } else {
-                echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-              }
+              echo "<option value='$k[id_tahun_akademik]'" . (($_GET['tahun'] == $k['id_tahun_akademik']) ? " selected" : "") . ">$k[nama_tahun]</option>";
             }
             ?>
           </select>
@@ -31,9 +34,8 @@
         </form>
       </div><!-- /.box-header -->
 
-      <!-- Tabel dibungkus dengan table-responsive untuk scroll-x -->
       <div class="box-body">
-        <div class="table-responsive"> <!-- Tambahkan div ini -->
+        <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -52,20 +54,21 @@
             </thead>
             <tbody>
               <?php
-              if (isset($_GET[tahun])) {
+              // Cek apakah tahun di-set
+              if (isset($_GET['tahun'])) {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                               JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                                                 JOIN rb_guru c ON a.nip=c.nip 
                                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                                     JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                    where a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
+                                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                               JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                                                 JOIN rb_guru c ON a.nip=c.nip 
                                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                                   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                    where a.nip='$_SESSION[id]' AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
+                                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
               }
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
@@ -88,8 +91,8 @@
               ?>
             </tbody>
           </table>
-        </div> <!-- Akhir div table-responsive -->
-      </div><!-- /.box-body -->
+        </div>
+      </div>
     </div>
   </div>
 
