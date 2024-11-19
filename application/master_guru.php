@@ -720,6 +720,8 @@
   </div>
 
   </div>";
+}elseif ($_GET[act] == 'izin') {
+  echo"p aja";
 }
 ?>
 <script>
