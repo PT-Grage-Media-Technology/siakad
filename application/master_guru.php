@@ -733,7 +733,7 @@
 
       echo"<table class='table table-condensed table-bordered'>
       <tbody>
-      <tr><th scope='row'>Nama<th> <input type='text' name='nip' value='<?php echo $_SESSION[id]; ?>' disabled /></tr>
+      <tr><th scope='row'>Nama<th> <input type='text' name='nip' value='$_SESSION[id]' disabled /></tr>
       <tr><th scope='row'>Kode Kehadiran</th>
           <td>
               <select class='form-control' name='kode_kehadiran'>
