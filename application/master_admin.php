@@ -6,6 +6,7 @@
                   <a class='pull-right btn btn-primary btn-sm' href='index.php?view=admin&act=tambah'>Tambahkan Data Admin</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -46,6 +47,7 @@
                   ?>
                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
