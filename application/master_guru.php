@@ -614,7 +614,7 @@
                     <div class='modal-content'>
                       <div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                      <h4 class='modal-title text-end' id='myModalLabel' style='float: right;'>tes</h4>
+                      <h4 class='modal-title text-end' id='myModalLabel' style='float: right; margin-right: 15px;'>tes</h4>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
