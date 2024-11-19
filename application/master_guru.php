@@ -615,6 +615,7 @@
                          
                     $rekap_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru where $_SESSION[id]=nip");
                     $absen = mysql_fetch_assoc($rekap_absen);
+                    var_dump( $absen);
 
                       echo"<div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
