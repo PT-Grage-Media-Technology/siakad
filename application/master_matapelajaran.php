@@ -8,9 +8,10 @@
                   <?php } ?>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-responsive d-md-none">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                      <tr>
+                      <tr></tr>
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
@@ -58,6 +59,7 @@
                   ?>
                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
