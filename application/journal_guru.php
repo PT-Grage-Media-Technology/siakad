@@ -291,7 +291,6 @@
   }
   echo "</select>
                     </td></tr>
-                   
                     <tr>
                       <th scope='row'>Hari</th>
                       <td>
