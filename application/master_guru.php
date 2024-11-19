@@ -629,7 +629,7 @@
 
                       echo"<div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                     <p><strong>NIP:</strong> $nip | <strong>Jumlah Sakit:</strong> {$absen['jumlah_sakit']} | <strong>Jumlah Izin:</strong> {$absen['jumlah_izin']} | <strong>Jumlah Alpa:</strong> {$absen['jumlah_alpa']}</p>
+                     <p><strong>NIP:</strong> $nip | <strong>S :</strong> {$absen['jumlah_sakit']} | <strong>I :</strong> {$absen['jumlah_izin']} | <strong>A :</strong> {$absen['jumlah_alpa']}</p>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
