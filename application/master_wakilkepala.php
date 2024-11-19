@@ -100,3 +100,8 @@
             </div>";
 }
 ?>
+<style>
+    .table-responsive {
+        overflow-x: hidden; /* Menyembunyikan scrollbar horizontal */
+    }
+</style>

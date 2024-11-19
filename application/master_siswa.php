@@ -938,3 +938,9 @@ if ($_GET[act]==''){
 <?php
 }
 ?>
+
+<style>
+    .table-responsive {
+        overflow-x: hidden; /* Menyembunyikan scrollbar horizontal */
+    }
+</style>
