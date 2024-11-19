@@ -728,10 +728,12 @@
     </div>
   <div class='box-body'>
   <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-    <div class='col-md-12'>
-      <table class='table table-condensed table-bordered'>
+    <div class='col-md-12'>";
+
+
+      echo"<table class='table table-condensed table-bordered'>
       <tbody>
-      <tr><th scope='row'>Nama<th> <input type='text' name='a'/></tr>
+      <tr><th scope='row'>Nama<th> <input type='text' name='nip' value='<?php echo $_SESSION[id]; ?>' disabled /></tr>
       <tr><th scope='row'>Kode Kehadiran</th>
           <td>
               <select class='form-control' name='kode_kehadiran'>
@@ -752,7 +754,6 @@
         
       </tbody>
       </table>
-      <i><b style='color:red'>Catatan</b> : Tugas Hanya Bisa dikirimkan 1 (satu) kali saja.</i>
     </div>
     
   </div>
