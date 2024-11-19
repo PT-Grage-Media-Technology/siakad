@@ -614,11 +614,12 @@
                     <div class='modal-content'>";
                          
                     $rekap_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru where $_SESSION[id]=nip");
+                    $absen = mysql_fetch_assoc($rekap_absen);
 
                       echo"<div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                      <h4 class='modal-title text-end' id='myModalLabel' style='float: right; margin-right: 15px;'>tes</h4>
-                        <h4 class='modal-title' id='myModalLabel'>$rekap_absen</h4>
+                      <h4 class='modal-title text-end' id='myModalLabel' style='float: right; margin-right: 15px;'>$absen</h4>
+                        <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
                      // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
