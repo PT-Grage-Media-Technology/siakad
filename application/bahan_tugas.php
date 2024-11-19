@@ -381,23 +381,13 @@ elseif ($_GET[act] == 'tambah') {
                               <th scope='row'>Nama File</th>
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
-                            <tr>
-                              <th scope='row'>File</th>
-                              <td>
-                                <div class='d-flex align-items-center'>
-                                    <div class='d-flex align-items-center'>
-                                        <label class='btn btn-primary mb-0' for='file-upload'>
-                                            <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                        </label>
-                                        <input type='file' class='files d-none' id='file-upload' name='c' onchange='document.getElementById('upload-file-info').textContent = this.value.split('\\').pop();'>
-                                        <span class='badge bg-info text-dark ms-2' id='upload-file-info'></span>
-                                    </div>
-                                    
-                                    <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
-                                    <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                                </div>
-                              </td>
-                            </tr>
+                            <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
+                                                                          <a class='btn btn-primary' href='javascript:;'>
+                                                                            <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                                        </div>
+                    </td></tr>
                             <tr>
                               <th scope='row'>Waktu Mulai</th>
                               <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
