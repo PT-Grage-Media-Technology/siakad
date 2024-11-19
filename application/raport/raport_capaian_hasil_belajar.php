@@ -1,4 +1,3 @@
-
 <?php 
 if ($_GET[act]==''){ 
     if (isset($_POST[simpan])){
@@ -60,23 +59,24 @@ if ($_GET[act]==''){
                 <form action='' method='POST'>
                 <input type="hidden" name='tahun' value='<?php echo $_GET[tahun]; ?>'>
                 <input type="hidden" name='kelas' value='<?php echo $_GET[kelas]; ?>'>
-                <?php 
-                  echo "<table id='example' class='table table-bordered table-striped'>
-                    <thead>
-                      <tr><th rowspan='2'>No</th>
-                        <th rowspan='2'>NISN</th>
-                        <th rowspan='2'>Nama Siswa</th>
-                        <th colspan='2'><center>Sikap Spiritual</center></th>
-                        <th colspan='2'><center>Sikap Sosial</center></th>
-                      </tr>
-                      <tr>
-                          <th><center>Predikat</center></th>
-                          <th><center>Deskripsi</center></th>
-                          <th><center>Predikat</center></th>
-                          <th><center>Deskripsi</center></th>
-                      </tr>
-                    </thead>
-                    <tbody>";
+                <div class="table-responsive"> <!-- Tambahkan div ini untuk responsif -->
+                  <?php 
+                    echo "<table id='example' class='table table-bordered table-striped'>
+                      <thead>
+                        <tr><th rowspan='2'>No</th>
+                          <th rowspan='2'>NISN</th>
+                          <th rowspan='2'>Nama Siswa</th>
+                          <th colspan='2'><center>Sikap Spiritual</center></th>
+                          <th colspan='2'><center>Sikap Sosial</center></th>
+                        </tr>
+                        <tr>
+                            <th><center>Predikat</center></th>
+                            <th><center>Deskripsi</center></th>
+                            <th><center>Predikat</center></th>
+                            <th><center>Deskripsi</center></th>
+                        </tr>
+                      </thead>
+                      <tbody>";
 
                   if ($_GET[kelas] != '' AND $_GET[tahun] != ''){
                     $tampil = mysql_query("SELECT * FROM rb_siswa a LEFT JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
@@ -117,3 +117,15 @@ if ($_GET[act]==''){
               </form>
             </div>
 <?php }  ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>

@@ -1,4 +1,3 @@
-
 <?php 
 if ($_GET[act]==''){ 
     if (isset($_POST[simpan])){
@@ -18,7 +17,7 @@ if ($_GET[act]==''){
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Input Extrakulikuler Siswa</h3>
+                  <h3 class="box-title">Input Ekstrakulikuler Siswa</h3>
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='extrakulikuler'>
                     <select name='tahun' style='padding:4px'>
@@ -51,13 +50,14 @@ if ($_GET[act]==''){
                   </form>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                <?php 
+                <div class="table-responsive">
+                  <?php 
                   echo "<table id='example' class='table table-bordered table-striped'>
                     <thead>
                       <tr><th rowspan='2'>No</th>
                         <th>NISN</th>
                         <th width='170px'>Nama Siswa</th>
-                        <th width='240px'><center>Kegiatan Extrakulikuler</center></th>
+                        <th width='240px'><center>Kegiatan Ekstrakulikuler</center></th>
                         <th><center>Nilai</center></th>
                         <th><center>Deskripsi</center></th>
                         <th><center>Action</center></th>
@@ -127,6 +127,7 @@ if ($_GET[act]==''){
                   ?>
                     </tbody>
                   </table>
+                </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -137,3 +138,15 @@ if ($_GET[act]==''){
               
             </div>
 <?php }  ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
