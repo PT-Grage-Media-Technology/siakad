@@ -766,38 +766,45 @@
 </div>";
 
 if (isset($_POST['simpan'])) {
+  // Debug POST dan FILES data
+  var_dump($_POST, $_FILES);
+  
   // Ambil nilai dari form
-  var_dump($_POST['simpan']);
-  exit;
   $nip = $_SESSION['id'];
   $kode_kehadiran = $_POST['kode_kehadiran'];
   $keterangan = $_POST['b'];
-  $nama_file = $_FILES['c']['name']; // Nama file yang diunggah
-  $tmp_file = $_FILES['c']['tmp_name']; // Sementara lokasi file di server
+  $nama_file = $_FILES['c']['name'];
+  $tmp_file = $_FILES['c']['tmp_name'];
   
   // Tentukan folder tujuan untuk menyimpan file
   $folder_upload = "bukti_tidak_hadir/";
+  if (!is_dir($folder_upload)) {
+      mkdir($folder_upload, 0777, true); // Membuat folder jika belum ada
+  }
   $path_file = $folder_upload . basename($nama_file);
+  
+  // Debug: cek error upload file
+  if ($_FILES['c']['error'] !== UPLOAD_ERR_OK) {
+      echo "Error pada upload file: " . $_FILES['c']['error'];
+      exit;
+  }
   
   // Upload file ke folder tujuan
   if (move_uploaded_file($tmp_file, $path_file)) {
-      // Query untuk memasukkan data ke database
       $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, keterangan, nama_file) 
                 VALUES ('$nip', '$kode_kehadiran', '$keterangan', '$nama_file')";
       
-      // Eksekusi query
       $result = mysql_query($query);
-      
-      // Cek apakah query berhasil
       if ($result) {
           echo "Data absensi berhasil disimpan.";
       } else {
           echo "Terjadi kesalahan saat menyimpan data absensi.";
       }
   } else {
-      echo "Gagal mengunggah file.";
+      echo "Gagal mengunggah file. Periksa izin folder dan batas ukuran file di php.ini.";
   }
 }
+
 
 }
 ?>
