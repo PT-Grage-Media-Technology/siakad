@@ -24,7 +24,12 @@
 
 
     <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li>
-    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li>
+    <?php 
+    if($_SESSION['is_kurikulum']){
+      echo "<li><a href='index.php?view=aktivitaspembelajaran'><i class='glyphicon glyphicon-align-justify'></i> <span>Aktivitas Pembelajaran</span></a></li>";
+    }
+    ?>
+    <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
     <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
