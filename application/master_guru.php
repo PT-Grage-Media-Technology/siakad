@@ -731,7 +731,7 @@
     <div class='col-md-12'>
       <table class='table table-condensed table-bordered'>
       <tbody>
-      <tr><th scope='row'><td>Nama <input type='text' name='a'/></td></tr><th>
+      <tr><th scope='row'>Nama<th> <td><input type='text' name='a'/></td></tr>
       <tr><th scope='row'>Kode Kehadiran</th>
           <td>
               <select class='form-control' name='kode_kehadiran'>
