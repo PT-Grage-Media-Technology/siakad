@@ -731,7 +731,16 @@
     <div class='col-md-12'>
       <table class='table table-condensed table-bordered'>
       <tbody>
-      <tr><th><input type='text' name='a'/></tr><th>
+      <tr><th scope='row'>Nama<th> <td><input type='text' name='a'/></td></tr>
+      <tr><th scope='row'>Kode Kehadiran</th>
+          <td>
+              <select class='form-control' name='kode_kehadiran'>
+                  <option value='sakit'>Sakit</option>
+                  <option value='izin'>Izin</option>
+                  <option value='alpa'>Alpa</option>
+              </select>
+          </td>
+      </tr>
       <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='b'></textarea></td></tr>
       <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
                                                             <a class='btn btn-primary' href='javascript:;'>
