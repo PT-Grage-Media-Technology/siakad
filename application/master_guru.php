@@ -767,6 +767,8 @@
 
 if (isset($_POST['simpan'])) {
   // Ambil nilai dari form
+  var_dump($_POST['simpan']);
+  exit;
   $nip = $_SESSION['id'];
   $kode_kehadiran = $_POST['kode_kehadiran'];
   $keterangan = $_POST['b'];
@@ -774,7 +776,7 @@ if (isset($_POST['simpan'])) {
   $tmp_file = $_FILES['c']['tmp_name']; // Sementara lokasi file di server
   
   // Tentukan folder tujuan untuk menyimpan file
-  $folder_upload = "bukti_tida/";
+  $folder_upload = "bukti_tidak_hadir/";
   $path_file = $folder_upload . basename($nama_file);
   
   // Upload file ke folder tujuan
