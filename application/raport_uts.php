@@ -39,6 +39,7 @@ cek_session_admin();
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-responsive">
                   <table id="example" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -97,6 +98,7 @@ cek_session_admin();
                   ?>
                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -213,3 +215,15 @@ cek_session_siswa();
     include "raport/raport_uts_halaman_siswa.php";
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
