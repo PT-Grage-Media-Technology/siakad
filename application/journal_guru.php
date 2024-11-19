@@ -167,11 +167,99 @@
       </div>
     </a>
   </div>
-</div>
+</div>"
 
-  </div>
-</div>
+.
+if (isset($_POST[tambah])) {
+  // var_dump($_POST);
+  // exit;
 
+  $d = tgl_simpan($_POST[d]);
+  mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+  echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+}
+
+$e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
+$jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
+echo "<div class='col-md-12'>
+            <div class='box box-info'>
+              <div class='box-header with-border'>
+                <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
+              </div>
+            <div class='box-body'>
+            <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+              <div class='col-md-12'>
+                <table class='table table-condensed table-bordered'>
+                <tbody>
+                <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+                  <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
+$kelas = mysql_query("SELECT * FROM rb_kelas");
+while ($a = mysql_fetch_array($kelas)) {
+  if ($e[kode_kelas] == $a[kode_kelas]) {
+    echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+  }
+}
+echo "</select>
+                  </td></tr>
+                  <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
+$mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+while ($a = mysql_fetch_array($mapel)) {
+  if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+    echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+  }
+}
+echo "</select>
+                  </td></tr>
+                 
+                  <tr>
+                    <th scope='row'>Hari</th>
+                    <td>
+                        <select class='form-control' name='c'>
+                            <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
+                            <option value='Selasa'" . ($hari_ini == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                            <option value='Rabu'" . ($hari_ini == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                            <option value='Kamis'" . ($hari_ini == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                            <option value='Jumat'" . ($hari_ini == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                            <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                        </select>
+                    </td>
+                  </tr>";
+
+if ($_SESSION['is_kurikulum']) {
+  echo " <tr>
+                      <th scope='row'>Pilih Guru</th>   
+                      <td>
+                      <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                          <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
+  $guru = mysql_query("SELECT * FROM rb_guru");
+  while ($g = mysql_fetch_array($guru)) {
+    echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+  }
+  echo "</select>
+                      </td>
+                  </tr>";
+} else {
+  echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+}
+
+echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                  <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                  <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                  <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
+                  </td></tr>
+                </tbody>
+                </table>
+              </div>
+            </div>
+            <div class='box-footer'>
+                  <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                  <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                </div>
+            </form>
+          </div>";
+
+  "</div>
+</div>
                   <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
                     <thead>
@@ -249,93 +337,6 @@
                   </table>
                   </div>
                 </div>
-            </div>";
-} elseif ($_GET[act] == 'tambah') {
-  if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
-
-    $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-  }
-
-  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
-  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
-  echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
-                </div>
-              <div class='box-body'>
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='col-md-12'>
-                  <table class='table table-condensed table-bordered'>
-                  <tbody>
-                  <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                    <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
-  $kelas = mysql_query("SELECT * FROM rb_kelas");
-  while ($a = mysql_fetch_array($kelas)) {
-    if ($e[kode_kelas] == $a[kode_kelas]) {
-      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
-    }
-  }
-  echo "</select>
-                    </td></tr>
-                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
-  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-  while ($a = mysql_fetch_array($mapel)) {
-    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
-    }
-  }
-  echo "</select>
-                    </td></tr>
-                    <tr>
-                      <th scope='row'>Hari</th>
-                      <td>
-                          <select class='form-control' name='c'>
-                              <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
-                              <option value='Selasa'" . ($hari_ini == 'Selasa' ? ' selected' : '') . ">Selasa</option>
-                              <option value='Rabu'" . ($hari_ini == 'Rabu' ? ' selected' : '') . ">Rabu</option>
-                              <option value='Kamis'" . ($hari_ini == 'Kamis' ? ' selected' : '') . ">Kamis</option>
-                              <option value='Jumat'" . ($hari_ini == 'Jumat' ? ' selected' : '') . ">Jumat</option>
-                              <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
-                          </select>
-                      </td>
-                    </tr>";
-
-  if ($_SESSION['is_kurikulum']) {
-    echo " <tr>
-                        <th scope='row'>Pilih Guru</th>   
-                        <td>
-                        <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
-                            <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
-    while ($g = mysql_fetch_array($guru)) {
-      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-    }
-    echo "</select>
-                        </td>
-                    </tr>";
-  } else {
-    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-  }
-
-  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                    <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
-                    <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
-                    </td></tr>
-                  </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class='box-footer'>
-                    <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
-                  </div>
-              </form>
             </div>";
 } elseif ($_GET[act] == 'edit') {
   if (isset($_POST[update])) {
