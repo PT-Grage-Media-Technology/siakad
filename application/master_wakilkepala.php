@@ -4,8 +4,8 @@
                 <div class="box-header">
                   <h3 class="box-title">Data Kepala Sekolah </h3>
                 </div><!-- /.box-header -->
-                <div class="box-body"></div>
-                  <div class="table-responsive d-md-none"> <!-- Tambahkan kelas d-md-none untuk menyembunyikan di tampilan laptop -->
+                <div class="box-body">
+                  <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -43,7 +43,7 @@
                   ?>
                     </tbody>
                   </table>
-                  </div> <!-- Tutup div responsif -->
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
