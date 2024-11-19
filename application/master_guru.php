@@ -722,88 +722,37 @@
   </div>";
 }elseif ($_GET[act] == 'izin') {
   echo "<div class='col-md-12'>
-  <div class='row'>
-    <div class='col-12'>
-      <div class='box box-info'>
-        <div class='box-header with-border'>
-          <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
-        </div>
-        <div class='box-body'>
-          <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-            <div class='row'>
-              <div class='col-12'>
-                <table class='table table-condensed table-bordered'>
-                  <tbody>
-                    <tr><th width='120px' scope='row'>Kategori</th> <td><select class='form-control' name='a'> 
-                     <option value='0' selected>- Pilih Kategori Tugas -</option>";
-                    $kategori = mysql_query("SELECT * FROM rb_kategori_elearning");
-                    while ($a = mysql_fetch_array($kategori)) {
-                      if ($s[id_kategori_elearning] == $a[id_kategori_elearning]) {
-                        echo "<option value='$a[id_kategori_elearning]' selected>$a[nama_kategori_elearning]</option>";
-                      } else {
-                        echo "<option value='$a[id_kategori_elearning]'>$a[nama_kategori_elearning]</option>";
-                      }
-                    }
-                    echo "</select>
-            </td></tr>
-                    <tr>
-                      <th width='120px' scope='row'>Status</th>
-                      <td>
-                        <select class='form-control' name='g'>
-                          <option value='0' selected>- Pilih Status Tugas -</option>
-                          <option value='active'>Active</option>
-                          <option value='inactive'>Inactive</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>Nama File</th>
-                      <td><input type='text' class='form-control' name='b'></td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>File</th>
-                      <td>
-                        <div class='d-flex align-items-center'>
-                            <div class='d-flex align-items-center'>
-                                <label class='btn btn-primary mb-0' for='file-upload'>
-                                    <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                </label>
-                                <input type='file' class='files d-none' id='file-upload' name='c' onchange='document.getElementById('upload-file-info').textContent = this.value.split('\\').pop();'>
-                                <span class='badge bg-info text-dark ms-2' id='upload-file-info'></span>
-                            </div>
-                            
-                            <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
-                            <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>Waktu Mulai</th>
-                      <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>Waktu Selesai</th>
-                      <td><input type='datetime-local' class='form-control' name='e' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>Keterangan</th>
-                      <td><input type='text' class='form-control' name='f'></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class='box-footer'>
-              <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-              <a href='index.php?view=bahantugas'>
-                <button type='button' class='btn btn-default pull-right'>Cancel</button>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
+  <div class='box box-info'>
+    <div class='box-header with-border'>
+      <h3 class='box-title'>Izin tidak hadir</h3>
     </div>
+  <div class='box-body'>
+  <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+    <div class='col-md-12'>
+      <table class='table table-condensed table-bordered'>
+      <tbody>
+      <tr><th><input type='text' name='a'/></tr><th>
+      <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='b'></textarea></td></tr>
+      <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
+                                                            <a class='btn btn-primary' href='javascript:;'>
+                                                              <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+<input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                          </div>
+      </td></tr>
+        
+      </tbody>
+      </table>
+      <i><b style='color:red'>Catatan</b> : Tugas Hanya Bisa dikirimkan 1 (satu) kali saja.</i>
+    </div>
+    
   </div>
+  <div class='box-footer'>
+        <button type='submit' name='kirimkan' class='btn btn-info'>Kirimkan Tugas</button>
+        <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+        
+      </div>
+  </form>
 </div>";
 }
 ?>
