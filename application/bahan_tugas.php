@@ -309,7 +309,7 @@ elseif ($_GET[act] == 'tambah') {
   if (isset($_POST['tambah'])) {
     // Tampilkan semua data POST untuk debug
     var_dump($_POST);
-    exit; // Pindahkan exit setelah var_dump untuk proses lebih lanjut.
+  
 
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
