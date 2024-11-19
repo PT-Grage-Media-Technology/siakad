@@ -304,10 +304,19 @@ if ($_GET[act] == '') {
 </div>
 </form>
 </div>";
-} 
+}elseif($_GET[act] == 'lihat'){
+  echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>List Tugas</b></h3>";
+  echo "</div>
+              <div class='box-body'>
 
-
-elseif ($_GET[act] == 'tambah') {
+              <div class='col-md-12'>
+              <p>dsdsd</p>
+              </div>
+              </div>";
+} elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
     // Tampilkan semua data POST untuk debug
