@@ -175,7 +175,6 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Jadwal Paralel</th>  <td><input type='text' class='form-control' name='f'></td></tr>
                     <tr><th scope='row'>Jadwal Serial</th>  <td><input type='text' class='form-control' name='g'></td></tr>
                     <tr><th scope='row'>Jam Mulai</th>  <td><input type='text' class='form-control' name='h' placeholder='hh:ii:ss' value='" . date('H:i:s') . "'></td></tr>
                     <tr><th scope='row'>Jam Selesai</th><td><input type='text' class='form-control' name='i' placeholder='hh:ii:ss' value='" . date('H:i:s') . "'></td></tr>
@@ -290,7 +289,6 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Jadwal Paralel</th>  <td><input type='text' class='form-control' name='f' value='$e[paralel]'></td></tr>
                     <tr><th scope='row'>Jadwal Serial</th>  <td><input type='text' class='form-control' name='g' value='$e[jadwal_serial]'></td></tr>
                     <tr><th scope='row'>Jam Mulai</th>  <td><input type='text' class='form-control' name='h' placeholder='hh:ii:ss' value='$e[jam_mulai]'></td></tr>
                     <tr><th scope='row'>Jam Selesai</th><td><input type='text' class='form-control' name='i' placeholder='hh:ii:ss' value='$e[jam_selesai]'></td></tr>

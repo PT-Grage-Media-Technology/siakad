@@ -306,26 +306,41 @@ if ($_GET[act] == '') {
 
 elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
-  if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+  if (isset($_POST['tambah'])) {
+    // Tampilkan semua data POST untuk debug
+    var_dump($_POST);
+  
+
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
-    $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
+    $filenamee = date("YmdHis") . '-' . $filename;
     $uploadfile = $dir_gambar . $filenamee;
+
+    // Cek apakah file sudah dipilih
     if ($filename != '') {
-      if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-      } else {
-        echo "<script>window.alert('Gagal Tambahkan Data Bahan dan Tugas.');
-                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-      }
+        // Cek error saat upload
+        if ($_FILES['c']['error'] === UPLOAD_ERR_OK) {
+            // Cek jika file berhasil dipindahkan ke direktori tujuan
+            if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
+                // Jika berhasil, masukkan data ke dalam database
+                mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+                echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+            } else {
+                // Gagal memindahkan file
+                echo "<script>window.alert('Gagal upload file ke direktori tujuan.');
+                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+            }
+        } else {
+            // Jika terdapat error upload
+            echo "<script>window.alert('Terjadi kesalahan saat mengunggah file. Kode Error: " . $_FILES['c']['error'] . "');
+                  window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+        }
     } else {
-      mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-      echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+        // Jika file tidak dipilih, simpan data tanpa file
+        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
     }
-  }
+}
 
   echo "<div class='col-md-12'>
           <div class='row'>
@@ -366,23 +381,13 @@ elseif ($_GET[act] == 'tambah') {
                               <th scope='row'>Nama File</th>
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
-                            <tr>
-                              <th scope='row'>File</th>
-                              <td>
-                                <div class='d-flex align-items-center'>
-                                    <div class='d-flex align-items-center'>
-                                        <label class='btn btn-primary mb-0' for='file-upload'>
-                                            <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                        </label>
-                                        <input type='file' class='files d-none' id='file-upload' name='c' onchange='document.getElementById('upload-file-info').textContent = this.value.split('\\').pop();'>
-                                        <span class='badge bg-info text-dark ms-2' id='upload-file-info'></span>
-                                    </div>
-                                    
-                                    <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
-                                    <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                                </div>
-                              </td>
-                            </tr>
+                            <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
+                                                                          <a class='btn btn-primary' href='javascript:;'>
+                                                                            <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                                        </div>
+                    </td></tr>
                             <tr>
                               <th scope='row'>Waktu Mulai</th>
                               <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
@@ -772,7 +777,7 @@ elseif ($_GET[act] == 'tambah') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Daftar Siswa yang Mengirimkan Jawaban Tugas </h3>
+                  <h3 class='box-title'>1 </h3>
                   <a class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]'>Kembali</a>
                 </div>
 
@@ -806,7 +811,6 @@ elseif ($_GET[act] == 'tambah') {
                         <th>Keterangan</th>
                         <th style='width:100px'>Waktu Kirim</th>
                         <th>Nilai</th>
-                        <th>Predikat</th>
                         <th>Action</th>
                       </tr>";
 
@@ -859,33 +863,33 @@ while ($r = mysql_fetch_array($tampil)) {
           echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
       }
 
-       // Query untuk mendapatkan semua data predikat
-    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+    //    // Query untuk mendapatkan semua data predikat
+    // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
 
-    // Ambil nilai sesuai nomor siswa
-    $nilaiSiswa = isset($r['nilai']) ? $r['nilai'] : 0; // Pastikan nilai ada
-    // var_dump($nilaiSiswa); // Memeriksa nilai siswa
+    // // Ambil nilai sesuai nomor siswa
+    // $nilaiSiswa = isset($r['nilai']) ? $r['nilai'] : 0; // Pastikan nilai ada
+    // // var_dump($nilaiSiswa); // Memeriksa nilai siswa
 
-    // Variabel untuk menyimpan kode nilai yang cocok
-    $kode_nilai = '';
+    // // Variabel untuk menyimpan kode nilai yang cocok
+    // $kode_nilai = '';
 
-    // Loop melalui semua hasil data predikat
-    while ($predikatData = mysql_fetch_array($predikatQuery)) {
-      // var_dump($predikatData); // Memeriksa data predikat
+    // // Loop melalui semua hasil data predikat
+    // while ($predikatData = mysql_fetch_array($predikatQuery)) {
+    //   // var_dump($predikatData); // Memeriksa data predikat
 
-      // Cek apakah nilai siswa berada dalam rentang predikat
-      if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-        $kode_nilai = $predikatData['kode_nilai'];
-        break; // Hentikan loop setelah menemukan predikat yang sesuai
-      }
-    }
+    //   // Cek apakah nilai siswa berada dalam rentang predikat
+    //   if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+    //     $kode_nilai = $predikatData['kode_nilai'];
+    //     break; // Hentikan loop setelah menemukan predikat yang sesuai
+    //   }
+    // }
 
-    // Output kode predikat yang cocok, jika ada
-    if ($kode_nilai && $nilaiSiswa) {
-      echo "<td>$kode_nilai</td>";
-    } else {
-      echo "<td>Tidak ada predikat yang sesuai</td>";
-    }
+    // // Output kode predikat yang cocok, jika ada
+    // if ($kode_nilai && $nilaiSiswa) {
+    //   echo "<td>$kode_nilai</td>";
+    // } else {
+    //   echo "<td>Tidak ada predikat yang sesuai</td>";
+    // }
       
         
         echo "</td>
