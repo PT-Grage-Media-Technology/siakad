@@ -774,7 +774,7 @@ if (isset($_POST['simpan'])) {
   $tmp_file = $_FILES['c']['tmp_name']; // Sementara lokasi file di server
   
   // Tentukan folder tujuan untuk menyimpan file
-  $folder_upload = "bukti_tidak_hadir/";
+  $folder_upload = "bukti_tida/";
   $path_file = $folder_upload . basename($nama_file);
   
   // Upload file ke folder tujuan
