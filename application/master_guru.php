@@ -613,13 +613,23 @@
                   <div class='modal-dialog' role='document'>
                     <div class='modal-content'>";
                          
-                    $rekap_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru where $_SESSION[id]=nip");
-                    $absen = mysql_fetch_assoc($rekap_absen);
-                    var_dump( $absen);
+                    // Ambil nilai NIP dari session
+                        $nip = $_SESSION['id'];
+
+                        // Query untuk menghitung jumlah absensi berdasarkan kode_kehadiran
+                        $rekap_absen = mysql_query("SELECT 
+                            SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+                            SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
+                            SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
+                        FROM rb_rekap_absen_guru
+                        WHERE nip = '$nip'");
+
+                        // Ambil hasil query
+                        $absen = mysql_fetch_assoc($rekap_absen);
 
                       echo"<div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                      <h4 class='modal-title text-end' id='myModalLabel' style='float: right; margin-right: 15px;'>$absen</h4>
+                     <p><strong>NIP:</strong> $nip | <strong>Jumlah Sakit:</strong> {$absen['jumlah_sakit']} | <strong>Jumlah Izin:</strong> {$absen['jumlah_izin']} | <strong>Jumlah Alpa:</strong> {$absen['jumlah_alpa']}</p>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
