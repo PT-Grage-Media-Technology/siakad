@@ -305,7 +305,13 @@ if ($_GET[act] == '') {
 </form>
 </div>";
 }elseif($_GET[act] == 'lihat'){
- echo"dsdsd";
+ echo"<div class='box-body'>
+      <div class='table-responsive'>
+      spdsds
+      </div>
+      </div>
+      
+      ";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
