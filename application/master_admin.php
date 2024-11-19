@@ -6,46 +6,48 @@
                   <a class='pull-right btn btn-primary btn-sm' href='index.php?view=admin&act=tambah'>Tambahkan Data Admin</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th style='width:30px'>No</th>
-                        <th>Username</th>
-                        <th>Nama Lengkap</th>
-                        <th>Alamat Email</th>
-                        <th>No Telpon</th>
-                        <th>Jabatan</th>
-                        <th>Level</th>
-                        <th style='width:70px'>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                  <?php 
-                    $tampil = mysql_query("SELECT * FROM rb_users where level='superuser' ORDER BY id_user DESC");
-                    $no = 1;
-                    while($r=mysql_fetch_array($tampil)){
-                    echo "<tr><td>$no</td>
-                              <td>$r[username]</td>
-                              <td>$r[nama_lengkap]</td>
-                              <td>$r[email]</td>
-                              <td>$r[no_telpon]</td>
-                              <td>$r[jabatan]</td>
-                              <td>$r[level]</td>
-                              <td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='?view=admin&act=edit&id=$r[id_user]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=admin&hapus=$r[id_user]'><span class='glyphicon glyphicon-remove'></span></a>
-                              </center></td>";
-                            echo "</tr>";
-                      $no++;
-                      }
-                      if (isset($_GET[hapus])){
-                          mysql_query("DELETE FROM rb_users where id_user='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=admin';</script>";
-                      }
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th style='width:30px'>No</th>
+                          <th>Username</th>
+                          <th>Nama Lengkap</th>
+                          <th>Alamat Email</th>
+                          <th>No Telpon</th>
+                          <th>Jabatan</th>
+                          <th>Level</th>
+                          <th style='width:70px'>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    <?php 
+                      $tampil = mysql_query("SELECT * FROM rb_users where level='superuser' ORDER BY id_user DESC");
+                      $no = 1;
+                      while($r=mysql_fetch_array($tampil)){
+                      echo "<tr><td>$no</td>
+                                <td>$r[username]</td>
+                                <td>$r[nama_lengkap]</td>
+                                <td>$r[email]</td>
+                                <td>$r[no_telpon]</td>
+                                <td>$r[jabatan]</td>
+                                <td>$r[level]</td>
+                                <td><center>
+                                  <a class='btn btn-success btn-xs' title='Edit Data' href='?view=admin&act=edit&id=$r[id_user]'><span class='glyphicon glyphicon-edit'></span></a>
+                                  <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=admin&hapus=$r[id_user]'><span class='glyphicon glyphicon-remove'></span></a>
+                                </center></td>";
+                              echo "</tr>";
+                        $no++;
+                        }
+                        if (isset($_GET[hapus])){
+                            mysql_query("DELETE FROM rb_users where id_user='$_GET[hapus]'");
+                            echo "<script>document.location='index.php?view=admin';</script>";
+                        }
 
-                  ?>
-                    </tbody>
-                  </table>
+                    ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
