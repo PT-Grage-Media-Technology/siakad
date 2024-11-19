@@ -232,6 +232,8 @@
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 15px;
         justify-content: center;
+        align-items: center;
+        justify-items: center; /* Menjadikan konten grid terpusat */
       }
   
       /* Grid 4 kolom di layar besar */
@@ -256,10 +258,22 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
   
+      /* Menyesuaikan teks dan ikon untuk layar kecil */
+      @media (max-width: 768px) {
+        .btn-success {
+          font-size: 14px; /* Memperbesar teks */
+          height: 110px; /* Menambah tinggi tombol */
+        }
+        .btn-success div:first-child {
+          font-size: 20px; /* Memperbesar ikon */
+          margin-bottom: 6px;
+        }
+      }
+  
       /* Mengecilkan teks pada layar besar */
       @media (min-width: 1200px) {
         .btn-success {
-          font-size: 10px;
+          font-size: 8px;
           height: 90px;
         }
         .btn-success div:first-child {
