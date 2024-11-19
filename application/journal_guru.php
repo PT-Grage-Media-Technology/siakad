@@ -108,9 +108,9 @@
                 <div class='box-header'>
                   <h3 class='box-title'>Tujuan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
-  if ($_SESSION['level'] != 'kepala') {
-    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
-  }
+  // if ($_SESSION['level'] != 'kepala') {
+  //   echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
+  // }
   echo "</div>
                 <div class='box-body'>
   <div class='table-responsive'>
@@ -212,85 +212,103 @@
 
   // <!-- Container grid dengan margin dan padding yang seragam -->
   echo "
-<div class='container' style='max-width: 400px; padding: 10px;'>
-  <style>
-    @media (min-width: 1024px) {
-      .container {
-        margin: 10px;
+  <div class='container' style='max-width: 800px; padding: 10px;'>
+    <style>
+      /* Responsivitas container */
+      @media (min-width: 1024px) {
+        .container {
+          margin: 10px;
+        }
       }
-    }
-    @media (max-width: 1024px) {
-      .container {
-        margin: 10px auto;
+      @media (max-width: 1024px) {
+        .container {
+          margin: 10px auto;
+        }
       }
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 15px;
-      justify-content: center;
-    }
-
-    .btn-success {
-      min-width: 100px;
-      max-width: 120px;
-      height: 100px;
-      padding: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 12px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-success div:first-child {
-      font-size: 22px;
-      margin-bottom: 5px;
-    }
-  </style>
-
-  <!-- Grid container dengan tombol -->
-  <div class='grid-container'>
-    <!-- Tombol Nilai UTS -->
-    <a class='btn btn-success'
-       href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div>
-        <div class='glyphicon glyphicon-list-alt'></div>
-        <div>Nilai UTS</div>
-      </div>
-    </a>
-
-    <!-- Tombol Nilai Raport -->
-    <a class='btn btn-success'
-       href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div>
-        <div class='glyphicon glyphicon-book'></div>
-        <div>Nilai Raport</div>
-      </div>
-    </a>
-
-    <!-- Tombol Forum Diskusi -->
-    <a class='btn btn-success'
-       href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div>
-        <div class='fa fa-users'></div>
-        <div>Forum Diskusi</div>
-      </div>
-    </a>
-
-    <!-- Tombol Quiz/Ujian -->
-    <a class='btn btn-success'
-       href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div>
-        <div class='fa fa-th-list'></div>
-        <div>Quiz/Ujian Online</div>
-      </div>
-    </a>
+  
+      /* Grid container */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+        justify-content: center;
+      }
+  
+      /* Grid 4 kolom di layar besar */
+      @media (min-width: 1200px) {
+        .grid-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+  
+      /* Tombol hijau */
+      .btn-success {
+        min-width: 100px;
+        max-width: 120px;
+        height: 100px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+  
+      /* Mengecilkan teks pada layar besar */
+      @media (min-width: 1200px) {
+        .btn-success {
+          font-size: 10px;
+          height: 90px;
+        }
+        .btn-success div:first-child {
+          font-size: 18px;
+          margin-bottom: 4px;
+        }
+      }
+    </style>
+  
+    <!-- Grid container dengan tombol -->
+    <div class='grid-container'>
+      <!-- Tombol Nilai UTS -->
+      <a class='btn btn-success'
+         href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+        <div>
+          <div class='glyphicon glyphicon-list-alt'></div>
+          <div>Nilai UTS</div>
+        </div>
+      </a>
+  
+      <!-- Tombol Nilai Raport -->
+      <a class='btn btn-success'
+         href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
+        <div>
+          <div class='glyphicon glyphicon-book'></div>
+          <div>Nilai Raport</div>
+        </div>
+      </a>
+  
+      <!-- Tombol Forum Diskusi -->
+      <a class='btn btn-success'
+         href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+        <div>
+          <div class='fa fa-users'></div>
+          <div>Forum Diskusi</div>
+        </div>
+      </a>
+  
+      <!-- Tombol Quiz/Ujian -->
+      <a class='btn btn-success'
+         href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
+        <div>
+          <div class='fa fa-th-list'></div>
+          <div>Quiz/Ujian Online</div>
+        </div>
+      </a>
+    </div>
   </div>
-</div>
+  
 
                   <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
