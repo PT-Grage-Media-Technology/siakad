@@ -290,7 +290,7 @@ if ($_GET[act] == '') {
               echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
             } else {
               echo "<td>
-              <a class='btn btn-warning btn-xs' title='Download Bahan dan Tugas' href='index.php?view=bahantugas&act=lihat?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Lihat</a>
+              <a class='btn btn-warning btn-xs' title='Download Bahan dan Tugas' href='index.php?view=bahantugas&act=lihat&file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Lihat</a>
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
               <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
               <td>";
@@ -305,17 +305,7 @@ if ($_GET[act] == '') {
 </form>
 </div>";
 }elseif($_GET[act] == 'lihat'){
-  echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>List Tugas</b></h3>";
-  echo "</div>
-              <div class='box-body'>
-
-              <div class='col-md-12'>
-              <p>dsdsd</p>
-              </div>
-              </div>";
+ echo"dsdsd";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
