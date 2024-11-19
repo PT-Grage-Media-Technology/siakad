@@ -99,21 +99,22 @@ if ($_GET[act]==''){
                 </div><!-- /.box-header -->
                 <form action='' method="POST">
                 <div class="box-body">
-                  <table id="example" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th style='width:20px'>No</th>
-                        <th>Jadwal Pelajaran</th>
-                        <th>Kelas</th>
-                        <th>Guru</th>
-                        <th>Hari</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
-                        <th>Ruangan</th>
-                        <th width='90px'>Kehadiran</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th style='width:20px'>No</th>
+                          <th>Jadwal Pelajaran</th>
+                          <th>Kelas</th>
+                          <th>Guru</th>
+                          <th>Hari</th>
+                          <th>Mulai</th>
+                          <th>Selesai</th>
+                          <th>Ruangan</th>
+                          <th width='90px'>Kehadiran</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                   <?php
                     if (isset($_GET[kelas]) AND isset($_GET[tahun])){
                       $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
@@ -165,8 +166,9 @@ if ($_GET[act]==''){
                       $no++;
                       }
                   ?>
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -212,3 +214,15 @@ if ($_GET[act]==''){
     }
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
