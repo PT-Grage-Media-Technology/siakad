@@ -316,6 +316,7 @@ if ($_GET[act] == '') {
 
     // Mendapatkan file yang dikirimkan melalui URL query string
     $file = $_GET['file'];
+    var_dump($file);
 
     // Menentukan ekstensi file
     $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
