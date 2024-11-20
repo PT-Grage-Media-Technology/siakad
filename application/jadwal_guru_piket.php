@@ -11,13 +11,11 @@
                     <thead>
                       <tr>
                         <th style='width:20px'>No</th>
-                        <th>Jadwal Pelajaran</th>
-                        <th>Kelas</th>
-                        <th>Guru</th>
+                        <th>Nip</th>
                         <th>Hari</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
-                        <th>Ruangan</th>
+                        <th>Guru</th>
+                        <th>Tanggal</th>
+                        
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -33,7 +31,6 @@
                               <td>$r[nip]</td>
                               <td>$r[hari]</td>
                               <td>$r[nama_guru]</td>
-                              <td>$r[hari]</td>
                               <td>$r[tanggal]</td>";
                                 echo "<td style='width:80px !important'><center>
                                         <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Lihat Journal</a>
