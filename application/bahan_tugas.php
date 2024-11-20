@@ -319,9 +319,9 @@ if ($_GET[act] == '') {
               
               $valid_extensions = ['png', 'jpg', 'jpeg', 'gif']; // Tambahkan ekstensi yang valid
               if (in_array($extension, $valid_extensions)) { // Periksa apakah ekstensi valid
-                echo $extension;
+                echo $extension; // Tampilkan ekstensi jika valid
               } else {
-                echo 'bukan png atau ekstensi yang valid';
+                echo 'Ekstensi tidak valid, hanya png, jpg, jpeg, dan gif yang diperbolehkan'; // Pesan kesalahan yang lebih jelas
               }
 
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
