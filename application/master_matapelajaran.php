@@ -15,6 +15,7 @@
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
+                        <th>KKM</th>
                         <th>Jurusan</th>
                         <th>Tingkat</th>
                         <th>Guru Pengampu</th>
