@@ -314,7 +314,7 @@ if ($_GET[act] == '') {
   echo "  </div>
               <div class='box-body'>
 
-              <img src='files/$_GET[file]' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
+              // <img src='files/$_GET[file]' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
 
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
               <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
