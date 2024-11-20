@@ -318,10 +318,10 @@ if ($_GET[act] == '') {
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               echo "Ekstensi file adalah: " . $extension;
 
-              if($extension = 'jpeg'){
+              if($extension = ' jpeg'){
                 echo"dsds";
-              }else {
-                echo"bukan jpeg";
+              }elseif($extension = 'docx') {
+                echo" bukan jpeg";
               }
               
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
