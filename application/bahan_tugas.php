@@ -324,9 +324,9 @@ if ($_GET[act] == '') {
                   </tbody>
               </table>
               </div>
-              </div>
-              
-                    ";
+
+              <p>tes aja ini mah</p>
+              </div>";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
