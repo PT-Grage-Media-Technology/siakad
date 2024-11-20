@@ -34,7 +34,7 @@
                               <td>$r[nama_guru]</td>
                               <td>$r[tanggal]</td>";
                                 echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Edit</a>
+                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-search'></span> Edit</a>
                                         <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Delete</a>
                                       </center></td>";
                             echo "</tr>";
@@ -100,6 +100,47 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                    <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    
+                  </div>
+              </form>
+            </div>";
+}
+elseif($_GET[act]=='edit'){
+    if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
+        $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
+        mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$_POST[tanggal]', updated_at='$tanggalInput' WHERE nip='$_POST[nip]'"); // Mengubah query untuk update
+        echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
+      }
+      
+    echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>Edit Jadwal</h3> <!-- Mengubah 'Tambah Jadwal' menjadi 'Edit Jadwal' -->
+                </div>
+              <div class='box-body'>
+              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                <div class='col-md-12'>
+                  <table class='table table-condensed table-bordered'>
+                  <tbody>
+                  <input type='hidden' name='nip' value='$_GET[nip]'> <!-- Menambahkan input hidden untuk id -->
+                    <tr><th width='140px' scope='row'>Guru</th>   
+                   <td><select class='form-control' name='nip'> 
+                                    <option value='0' selected>- Pilih Guru -</option>";
+                                    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+                                    while ($a = mysql_fetch_array($guru)) {
+                                        echo "<option value='$a[nip]'>$a[nama_guru]</option>";
+                                    }
+                                    echo "</select>
+                    </td></tr>
+                    <!-- ... existing code ... -->
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
+                  </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class='box-footer'>
+                    <button type='submit' name='edit' class='btn btn-info'>Simpan Perubahan</button> <!-- Mengubah 'Tambahkan' menjadi 'Simpan Perubahan' -->
                     <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
