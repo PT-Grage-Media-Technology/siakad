@@ -52,7 +52,6 @@
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])) {
         $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-        echo "Tanggal Input: $tanggalInput"; // Debugging line
         mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$_POST[tanggal]','$tanggalInput')");
         echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
       }
