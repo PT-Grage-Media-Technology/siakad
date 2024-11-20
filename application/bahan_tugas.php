@@ -319,7 +319,7 @@ if ($_GET[act] == '') {
     var_dump($file);
 
     // Menentukan ekstensi file
-    $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+    // $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
 
     // Mengecek apakah file adalah PDF atau gambar
     if (strtolower($fileExtension) === 'pdf') {
