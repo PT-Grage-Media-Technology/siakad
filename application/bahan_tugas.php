@@ -314,7 +314,7 @@ if ($_GET[act] == '') {
   echo "  </div>
               <div class='box-body'>
 
-              <iframe src='files/$file' width='100%' height='500px' style='border:none;'></iframe>
+              <embed src='file/$_GET[file]' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>
 
 
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
