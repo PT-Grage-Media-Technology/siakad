@@ -323,9 +323,7 @@ if ($_GET[act] == '') {
               }elseif($extension == 'pdf') {
                 echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
               }elseif($extension == 'docx'){
-                echo "<object data='files/$file' type='application/vnd.openxmlformats-officedocument.wordprocessingml.document' width='100%' height='1100'>
-                          <p>Jika Anda tidak dapat melihat dokumen ini, Anda dapat mengunduhnya <a href='files/$file'>di sini</a>.</p>
-                      </object>";
+                echo"<embed src='files/$file' type='application/vnd.openxmlformats-officedocument.wordprocessingml.document' width='100%' height='1100'></embed>";
               }else{
                 echo"file ini tidak di dukung";
               }
