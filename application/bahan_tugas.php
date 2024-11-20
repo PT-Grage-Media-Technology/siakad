@@ -324,8 +324,8 @@ if ($_GET[act] == '') {
                   </tbody>
               </table>
               </div>
-
-              <p>tes aja ini mah</p>
+        
+                <img src='files/$_GET[file]' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
               </div>";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
