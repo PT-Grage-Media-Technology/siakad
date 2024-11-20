@@ -320,8 +320,12 @@ if ($_GET[act] == '') {
 
               if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
                 echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
-              }elseif($extension == 'docx'||$extension == 'pdf') {
+              }elseif($extension == 'pdf') {
                 echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
+              }elseif($extension == 'docx'){
+                echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/docx' width='100%' height='1100'></embed>";
+              }else{
+                echo"file ini tidak di dukung";
               }
               
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
