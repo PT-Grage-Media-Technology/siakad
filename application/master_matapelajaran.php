@@ -179,7 +179,7 @@
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
         mysql_query("INSERT INTO rb_mata_pelajaran VALUES('$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]',
-                                                          '$_POST[g]','$_POST[h]','$_POST[i]','$_POST[j]','$_POST[k]','$_POST[n]','$_POST[l]','$_POST[m]','$_POST[n]')");
+                                                          '$_POST[g]','$_POST[h]','$_POST[i]','$_POST[j]','$_POST[k]','$_POST[n]','$_POST[l]','$_POST[m]','$_POST[kk]')");
         echo "<script>document.location='index.php?view=matapelajaran';</script>";
     }
 
