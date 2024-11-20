@@ -3,10 +3,11 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Jadwal Guru Piket</h3>
-                
+                  <a class='btn btn-primary pull-right' href='index.php?view=tambah_jadwal' title='Tambah Jadwal'>Tambah Jadwal</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="table-responsive">
+                    
                   <table id="example" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -33,7 +34,8 @@
                               <td>$r[nama_guru]</td>
                               <td>$r[tanggal]</td>";
                                 echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Lihat Journal</a>
+                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Edit</a>
+                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Delete</a>
                                       </center></td>";
                             echo "</tr>";
                       $no++;
