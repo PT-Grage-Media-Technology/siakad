@@ -15,6 +15,7 @@
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
+                        <th>KKM</th>
                         <th>Jurusan</th>
                         <th>Tingkat</th>
                         <th>Guru Pengampu</th>
@@ -110,6 +111,7 @@
                     <tr><th scope='row'>Kode Pelajaran</th>       <td><input type='text' class='form-control' name='a' value='$s[kode_pelajaran]'> </td></tr>
                     <tr><th scope='row'>Nama Mapel</th>           <td><input type='text' class='form-control' name='f' value='$s[namamatapelajaran]'></td></tr>
                     <tr><th scope='row'>Nama Mapel En</th>        <td><input type='text' class='form-control' name='g' value='$s[namamatapelajaran_en]'></td></tr>
+                    <tr><th scope='row'>KKM</th>           <td><input type='text' class='form-control' name='f' value='$s[kkm]'></td></tr>
                     <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='c'> 
                              <option value='0' selected>- Pilih Jurusan -</option>"; 
                               $jurusan = mysql_query("SELECT * FROM rb_jurusan");
