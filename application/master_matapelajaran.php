@@ -109,6 +109,7 @@
                     </td></tr>
                     <tr><th scope='row'>Kode Pelajaran</th>       <td><input type='text' class='form-control' name='a' value='$s[kode_pelajaran]'> </td></tr>
                     <tr><th scope='row'>Nama Mapel</th>           <td><input type='text' class='form-control' name='f' value='$s[namamatapelajaran]'></td></tr>
+                    <tr><th scope='row'>KKM</th>           <td><input type='text' class='form-control' name='k' value='$s[kkm]'></td></tr>
                     <tr><th scope='row'>Nama Mapel En</th>        <td><input type='text' class='form-control' name='g' value='$s[namamatapelajaran_en]'></td></tr>
                     <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='c'> 
                              <option value='0' selected>- Pilih Jurusan -</option>"; 
