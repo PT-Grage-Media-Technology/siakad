@@ -318,7 +318,7 @@ if ($_GET[act] == '') {
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               echo "Ekstensi file adalah: " . $extension;
 
-              if($extension = ['pdf', 'docx']){
+              if($extension = 'pdf'){
                 echo "Ekstensi file adalah: " . $extension;
               }else{
                 echo "Ekstensi file adalah: " . $extension;
