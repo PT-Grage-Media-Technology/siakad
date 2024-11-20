@@ -62,7 +62,7 @@
                   <tbody>
                   <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                     <tr><th width='140px' scope='row'>Guru</th>   
-                   <td><select class='form-control' name='e'> 
+                   <td><select class='form-control' name='nip'> 
                                     <option value='0' selected>- Pilih Guru -</option>";
                                     $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
                                     while ($a = mysql_fetch_array($guru)) {
@@ -70,22 +70,24 @@
                                     }
                                     echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>   <td><select class='form-control' name='b'>"; 
-                                                $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-                                                while($a = mysql_fetch_array($mapel)){
-                                                  if ($e[kode_pelajaran]==$a[kode_pelajaran]){
-                                                    echo "<option value='$a[kode_pelajaran]' selected>$a[namamatapelajaran]</option>";
-                                                  }
-                                                }
-                                                echo "</select>
-                    </td></tr>
                    
-                    <tr><th scope='row'>Hari</th>  <td><input type='text' class='form-control' value='$hari_ini' name='c'></td></tr>
+                 </select>
+                      </td></tr>
+                     
+                      <tr>
+                        <th scope='row'>Hari</th>
+                        <td>
+                            <select class='form-control' name='hari'>
+                                <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
+                                <option value='Selasa'" . ($hari_ini == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                                <option value='Rabu'" . ($hari_ini == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                                <option value='Kamis'" . ($hari_ini == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                                <option value='Jumat'" . ($hari_ini == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                                <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                            </select>
+                        </td>
+                      </tr>
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                    <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
-                    <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
-                    </td></tr>
                   </tbody>
                   </table>
                 </div>
