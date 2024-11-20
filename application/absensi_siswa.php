@@ -274,17 +274,16 @@
     // Cek apakah tugas ada
     if (mysql_num_rows($tugas) > 0) {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
       } else {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
+        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
       }
+    } else if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
     } else {
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-      } else {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
-      }
+      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
     }
+
 
     // // Query untuk mendapatkan semua data predikat
     // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
