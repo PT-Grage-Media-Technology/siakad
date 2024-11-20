@@ -1,9 +1,9 @@
-
+<?php if ($_GET[act]==''){ ?>
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Jadwal Guru Piket</h3>
-                  <a class='btn btn-primary pull-right' href='index.php?view=tambah_jadwal' title='Tambah Jadwal'>Tambah Jadwal</a>
+                  <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah' title='Tambah Jadwal'>Tambah Jadwal</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="table-responsive">
@@ -48,3 +48,7 @@
 
                 </div>
             </div>
+            <?php 
+}elseif($_GET[act]=='tambah'){
+    echo"tes";
+}
