@@ -317,6 +317,12 @@ if ($_GET[act] == '') {
               var_dump($file);
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               echo "Ekstensi file adalah: " . $extension;
+
+              if($extension = 'jpeg'){
+                echo"dsds";
+              }else {
+                echo"bukan jpeg";
+              }
               
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
