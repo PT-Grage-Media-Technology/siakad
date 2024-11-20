@@ -25,6 +25,9 @@
               <ul class="treeview-menu">
                 <li><a href="index.php?view=raportuts&act=detailsiswa"><i class="fa fa-circle-o"></i> Data Nilai UTS</a></li>
                 <li><a href="index.php?view=raport&act=detailsiswa"><i class="fa fa-circle-o"></i> Data Nilai Raport</a></li>
+                <li><a href="index.php?view=raport&act=detailsiswa"><i class="fa fa-circle-o"></i> Data Nilai Sumatif Harian</a></li>
+                <li><a href="index.php?view=raport&act=detailsiswa"><i class="fa fa-circle-o"></i> Data Nilai Sumatif Tengah Semester</a></li>
+                <li><a href="index.php?view=raport&act=detailsiswa"><i class="fa fa-circle-o"></i> Data Nilai Sumatif Akhir Semester</a></li>
               </ul>
             </li>
             <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
