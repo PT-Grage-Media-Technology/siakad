@@ -317,10 +317,11 @@ if ($_GET[act] == '') {
               var_dump($file);
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               
-              if($extension = 'png'){
+              $valid_extensions = ['png', 'jpg', 'jpeg', 'gif']; // Tambahkan ekstensi yang valid
+              if (in_array($extension, $valid_extensions)) { // Periksa apakah ekstensi valid
                 echo $extension;
-              }else{
-                echo 'bukan png';
+              } else {
+                echo 'bukan png atau ekstensi yang valid';
               }
 
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
