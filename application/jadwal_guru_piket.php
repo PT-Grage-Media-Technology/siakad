@@ -22,7 +22,7 @@
                     <tbody>
                   <?php
                    
-                      $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket");
+                      $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip");
                     
                    
                     $no = 1;
