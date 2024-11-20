@@ -314,9 +314,9 @@ if ($_GET[act] == '') {
   echo "  </div>
               <div class='box-body'>";
               $file = $_GET['file'];
-              var_dump($file);
+              // var_dump($file);
               $extension = pathinfo($file, PATHINFO_EXTENSION);
-              echo "Ekstensi file adalah: " . $extension;
+              // echo "Ekstensi file adalah: " . $extension;
 
               if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
                 echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
@@ -328,8 +328,8 @@ if ($_GET[act] == '') {
                 echo"file ini tidak di dukung";
               }
               
-              echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
-              <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
+              // echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
+              echo"<a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
               <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
               </div>";
 } elseif ($_GET[act] == 'tambah') {
