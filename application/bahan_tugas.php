@@ -317,6 +317,16 @@ if ($_GET[act] == '') {
               var_dump($file);
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               echo "Ekstensi file adalah: " . $extension;
+
+              if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
+                echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
+              }elseif($extension == 'pdf') {
+                echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
+              }elseif($extension == 'docx'){
+                echo "<iframe src='https://docs.google.com/gview?url=https://siakad.demogmt.online/files/$file&embedded=true' width='100%' height='1100'></iframe>";
+              }else{
+                echo"file ini tidak di dukung";
+              }
               
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
@@ -403,37 +413,51 @@ if ($_GET[act] == '') {
                                                                           <a class='btn btn-primary' href='javascript:;'>
                                                                             <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
     <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
-    <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                                                                        </div>
-                    </td></tr>
-                            <tr>
-                              <th scope='row'>Waktu Mulai</th>
-                              <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                            </tr>
-                            <tr>
-                              <th scope='row'>Waktu Selesai</th>
-                              <td><input type='datetime-local' class='form-control' name='e' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                            </tr>
-                            <tr>
-                              <th scope='row'>Keterangan</th>
-                              <td><input type='text' class='form-control' name='f'></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+    <?php
+                  include('library.php');
+
+                  // Mendapatkan waktu saat ini dalam format yang sesuai
+                  $currentDateTime = date('Y-m-d\TH:i');
+
+                  // Tampilkan form dalam satu pernyataan echo
+                  echo "</a> 
+                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                     </div>
-                    <div class='box-footer'>
-                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                      <a href='index.php?view=bahantugas'>
-                        <button type='button' class='btn btn-default pull-right'>Cancel</button>
-                      </a>
-                    </div>
+                  </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Waktu Mulai</th>
+                    <td>
+                      <input type='datetime-local' class='form-control' name='d' value='$currentDateTime'>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Waktu Selesai</th>
+                    <td>
+                      <input type='datetime-local' class='form-control' name='e' value='$currentDateTime'>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Keterangan</th>
+                    <td><input type='text' class='form-control' name='f'></td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  </div>
+                  </div>
+                  <div class='box-footer'>
+                    <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                    <a href='index.php?view=bahantugas'>
+                      <button type='button' class='btn btn-default pull-right'>Cancel</button>
+                    </a>
+                  </div>
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>";
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>";
+
 } elseif ($_GET[act] == 'edit') {
   cek_session_guru();
   if (isset($_POST[update])) {
