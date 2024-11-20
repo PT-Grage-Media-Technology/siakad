@@ -319,9 +319,9 @@ if ($_GET[act] == '') {
               echo "Ekstensi file adalah: " . $extension;
 
               if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
-                echo"dsds";
+                echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
               }elseif($extension == 'docx'||$extension == 'pdf') {
-                echo" bukan jpeg";
+                echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
               }
               
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
