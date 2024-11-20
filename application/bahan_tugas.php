@@ -312,14 +312,31 @@ if ($_GET[act] == '') {
                 <div class='box-header with-border'>
                   <h3 class='box-title'>List Tugas</b></h3>";
   echo "  </div>
-              <div class='box-body'>
+             <div class='box-body'>";
 
-              <embed src='file/$_GET[file]' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>
+    // Mendapatkan file yang dikirimkan melalui URL query string
+    $file = $_GET['file'];
 
+    // Menentukan ekstensi file
+    $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
 
-              <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
-              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
-              </div>";
+    // Mengecek apakah file adalah PDF atau gambar
+    if (strtolower($fileExtension) === 'pdf') {
+        // Jika file PDF, tampilkan menggunakan embed
+        echo "<embed src='files/$file' width='100%' height='500px' type='application/pdf'>";
+        echo "<a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$file'><span class='glyphicon glyphicon-download'></span> Download</a>";
+        echo "<a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>";
+    } elseif (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif'])) {
+        // Jika file adalah gambar (JPEG, PNG, GIF), tampilkan gambar
+        echo "<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
+        echo "<a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$file'><span class='glyphicon glyphicon-download'></span> Download</a>";
+        echo "<a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>";
+    } else {
+        // Jika file bukan gambar atau PDF, tampilkan pesan error
+        echo "<p>File tidak dapat ditampilkan. Pastikan file yang diunggah adalah PDF atau gambar (JPG, PNG, GIF).</p>";
+    }
+echo"</div>";
+
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
