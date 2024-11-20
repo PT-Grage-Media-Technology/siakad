@@ -50,6 +50,12 @@
             </div>
             <?php 
 }elseif($_GET[act]=='tambah'){
+    if (isset($_POST[tambah])) {
+        $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
+        mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$_POST[tanggal]','$tanggalInput')");
+        echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
+      }
+      
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -87,7 +93,7 @@
                             </select>
                         </td>
                       </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
                   </tbody>
                   </table>
                 </div>
