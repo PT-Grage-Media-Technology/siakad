@@ -73,7 +73,6 @@
                 AND a.id_tahun_akademik='$_GET[tahun]' 
                 AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
                 ORDER BY a.hari DESC");
-
               }
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
@@ -106,7 +105,7 @@
       ?>
     </div>
   </div>
-  <?php
+<?php
 } elseif ($_GET[act] == 'tampilabsen') {
   if ($_GET[gettgl]) {
     $filtertgl = $_GET[gettgl];
@@ -135,24 +134,24 @@
 
     switch ($lebartgl) {
       case 1: {
-        $tglc = "0" . $tgl;
-        break;
-      }
+          $tglc = "0" . $tgl;
+          break;
+        }
       case 2: {
-        $tglc = $tgl;
-        break;
-      }
+          $tglc = $tgl;
+          break;
+        }
     }
 
     switch ($lebarbln) {
       case 1: {
-        $blnc = "0" . $bln;
-        break;
-      }
+          $blnc = "0" . $bln;
+          break;
+        }
       case 2: {
-        $blnc = $bln;
-        break;
-      }
+          $blnc = $bln;
+          break;
+        }
     }
 
     $filtertgl = $thn . "-" . $blnc . "-" . $tglc;
@@ -232,7 +231,9 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Nilai</th>
+                                    <th>Nilai Pengetahuan</th>
+                                    <th>Nilai Keterampilan</th>
+                                    <th>Nilai Sikap</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
@@ -273,17 +274,16 @@
     // Cek apakah tugas ada
     if (mysql_num_rows($tugas) > 0) {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
       } else {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
+        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
       }
+    } else if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
     } else {
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-      } else {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
-      }
+      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
     }
+
 
     // // Query untuk mendapatkan semua data predikat
     // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
@@ -347,7 +347,6 @@
     $tglAbsen = $_GET['tgl'];
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
-
     } else {
       echo "<div class='box-footer'>
           <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
@@ -411,7 +410,6 @@
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
   }
-
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
@@ -502,7 +500,7 @@
     </div>
   </div>
 
-  <?php
+<?php
 } elseif ($_GET[act] == 'detailabsensiswa') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
@@ -594,12 +592,14 @@ if (isset($_GET['id_pemberitahuan'])) {
 
 <style>
   .table-responsive {
-    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
-}
+    overflow-x: auto;
+    /* Hanya aktifkan scroll horizontal jika diperlukan */
+  }
 
-@media (min-width: 768px) {
+  @media (min-width: 768px) {
     .table-responsive {
-        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+      overflow-x: visible;
+      /* Nonaktifkan scroll horizontal di desktop */
     }
-}
+  }
 </style>
