@@ -318,9 +318,9 @@ if ($_GET[act] == '') {
               $extension = pathinfo($file, PATHINFO_EXTENSION);
               echo "Ekstensi file adalah: " . $extension;
 
-              if($extension == 'jpeg'){
+              if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
                 echo"dsds";
-              }elseif($extension == 'docx') {
+              }elseif($extension == 'docx'||$extension == 'pdf') {
                 echo" bukan jpeg";
               }
               
