@@ -209,6 +209,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/psb_aktivasi.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'jadwalgurupiket') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/jadwal_guru_piket.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'journalkbm') {
             cek_session_admin();
             echo "<div class='row'>";
