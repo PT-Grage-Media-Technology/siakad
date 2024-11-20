@@ -323,7 +323,7 @@ if ($_GET[act] == '') {
               }elseif($extension == 'pdf') {
                 echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
               }elseif($extension == 'docx'){
-                echo"<iframe src='files/$file' type='application/vnd.openxmlformats-officedocument.wordprocessingml.document' width='100%' height='1100'></iframe>";
+                echo "<iframe src='https://docs.google.com/gview?url=https://siakad.demogmt.online/files/$file&embedded=true' width='100%' height='1100'></iframe>";
               }else{
                 echo"file ini tidak di dukung";
               }
