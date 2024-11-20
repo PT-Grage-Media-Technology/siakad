@@ -320,7 +320,7 @@ if ($_GET[act] == '') {
 
               if($extension = ['pdf', 'docx']){
                 echo "Ekstensi file adalah: " . $extension;
-              }elseif($extension = ['jpg', 'jpeg', 'png', 'gif']){
+              }else{
                 echo "Ekstensi file adalah: " . $extension;
               }
               
