@@ -306,8 +306,7 @@ if ($_GET[act] == '') {
 </div>";
 }elseif($_GET[act] == 'lihat'){
   cek_session_siswa();
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
-  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+ 
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -343,7 +342,8 @@ if ($_GET[act] == '') {
                         <center><th>Action</th></center>";
   echo "</tr>
                     </thead>
-                    <tbody>";
+                    </div>
+                    ";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
