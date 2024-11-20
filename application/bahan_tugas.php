@@ -290,7 +290,7 @@ if ($_GET[act] == '') {
               echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
             } else {
               echo "<td>
-              <a class='btn btn-warning btn-xs' title='Download Bahan dan Tugas' href='index.php?view=bahantugas&act=lihat&file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Lihat</a>
+              <a class='btn btn-warning btn-xs' title='Download Bahan dan Tugas' href='index.php?view=bahantugas&act=lihat&file=$r[file_upload]&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-download'></span> Lihat</a>
               <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
               <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
               <td>";
@@ -312,20 +312,15 @@ if ($_GET[act] == '') {
                 <div class='box-header with-border'>
                   <h3 class='box-title'>List Tugas</b></h3>";
   echo "  </div>
-              <div class='box-body'>
-
-              <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
-              </table>
-              </div>
-
-              <p>tes aja ini mah</p>
+              <div class='box-body'>";
+              $file = $_GET['file'];
+              var_dump($file);
+              $extension = pathinfo($file, PATHINFO_EXTENSION);
+              echo "Ekstensi file adalah: " . $extension;
+              
+              echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
+              <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
+              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
               </div>";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
