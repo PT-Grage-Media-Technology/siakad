@@ -113,37 +113,54 @@ elseif($_GET[act]=='edit'){
         echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
       }
       
-    echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>Edit Jadwal</h3> <!-- Mengubah 'Tambah Jadwal' menjadi 'Edit Jadwal' -->
-                </div>
-              <div class='box-body'>
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='col-md-12'>
-                  <table class='table table-condensed table-bordered'>
-                  <tbody>
-                  <input type='hidden' name='nip' value='$_GET[nip]'> <!-- Menambahkan input hidden untuk id -->
-                    <tr><th width='140px' scope='row'>Guru</th>   
-                   <td><select class='form-control' name='nip'> 
-                                    <option value='0' selected>- Pilih Guru -</option>";
-                                    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
-                                    while ($a = mysql_fetch_array($guru)) {
-                                        echo "<option value='$a[nip]'>$a[nama_guru]</option>";
-                                    }
-                                    echo "</select>
-                    </td></tr>
-                    <!-- ... existing code ... -->
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
-                  </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class='box-footer'>
-                    <button type='submit' name='edit' class='btn btn-info'>Simpan Perubahan</button> <!-- Mengubah 'Tambahkan' menjadi 'Simpan Perubahan' -->
-                    <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
-                    
+      $nip = $_GET['nip']; // Ambil nip dari GET
+      $query = mysql_query("SELECT * FROM rb_jadwal_guru_piket WHERE nip='$nip'"); // Ambil data berdasarkan nip
+      $data = mysql_fetch_array($query); // Ambil hasil query
+  
+      echo "<div class='col-md-12'>
+                <div class='box box-info'>
+                  <div class='box-header with-border'>
+                    <h3 class='box-title'>Edit Jadwal</h3>
                   </div>
-              </form>
-            </div>";
+                <div class='box-body'>
+                <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                  <div class='col-md-12'>
+                    <table class='table table-condensed table-bordered'>
+                    <tbody>
+                    <input type='hidden' name='nip' value='$data[nip]'> <!-- Menampilkan nip yang sedang diedit -->
+                      <tr><th width='140px' scope='row'>Guru</th>   
+                     <td><select class='form-control' name='nip'> 
+                                      <option value='0' selected>- Pilih Guru -</option>";
+                                      $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+                                      while ($a = mysql_fetch_array($guru)) {
+                                          $selected = ($a['nip'] == $data['nip']) ? 'selected' : ''; // Menandai guru yang dipilih
+                                          echo "<option value='$a[nip]' $selected>$a[nama_guru]</option>";
+                                      }
+                                      echo "</select>
+                      </td></tr>
+                       </select>
+                        </td></tr>
+                        <tr>
+                          <th scope='row'>Hari</th>
+                          <td>
+                              <select class='form-control' name='hari'>
+                                  <option value='Senin'" . ($data['hari'] == 'Senin' ? ' selected' : '') . ">Senin</option>
+                                  <option value='Selasa'" . ($data['hari'] == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                                  <option value='Rabu'" . ($data['hari'] == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                                  <option value='Kamis'" . ($data['hari'] == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                                  <option value='Jumat'" . ($data['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                                  <option value='Sabtu'" . ($data['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                              </select> 
+                      <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y', strtotime($data['tanggal']))."' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr> <!-- Menampilkan tanggal yang sudah ada -->
+                    </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class='box-footer'>
+                      <button type='submit' name='edit' class='btn btn-info'>Simpan Perubahan</button>
+                      <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                      
+                    </div>
+                </form>
+              </div>";
 }
