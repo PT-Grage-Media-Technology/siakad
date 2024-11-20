@@ -306,19 +306,18 @@ if ($_GET[act] == '') {
 </div>";
 }elseif($_GET[act] == 'lihat'){
   cek_session_siswa();
- 
-  echo "<div class='col-md-12'>
-              <div class='box box-info'>
-                <div class='box-header with-border'>
-                  <h3 class='box-title'>List Tugas</b></h3>";
-  echo "  </div>
-              <div class='box-body'>
-
-              <img src='files/$_GET[file]' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
-
-              <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
-              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
-              </div>";
+  $filePath = 'files/' . $_GET['file'];
+  $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
+  
+  if (in_array($fileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+      // Jika file adalah gambar
+      echo "<img src='$filePath' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
+  } elseif (in_array($fileType, ['pdf', 'docx'])) {
+      // Jika file adalah PDF atau DOCX
+      echo "<iframe src='$filePath' style='width:100%; height:500px;' frameborder='0'></iframe>";
+  } else {
+      echo "Tipe file tidak didukung.";
+  }
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST['tambah'])) {
