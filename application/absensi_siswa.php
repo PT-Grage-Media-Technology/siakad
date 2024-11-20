@@ -268,7 +268,7 @@
                                 <td>$r[nipd]</td>
                                 <td>$r[nisn]</td>
                                 <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]</td>
+
                                 <td>";
 
     // Cek apakah tugas ada
@@ -278,10 +278,30 @@
       } else {
         echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
       }
-    } else if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
     } else {
-      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+      } else {
+        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
+      }
+    }
+
+    //Field nilai keterampilan
+    if (mysql_num_rows($keterampilan) > 0) {
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+        echo "nilai keterampilan<input type='number' value='{$keterampilan['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+      } else {
+        echo "nilai keterampilan<input type='number' value='{$keterampilan['nilai']}' name='nilai[$no]' style='width:50px;'>";
+      }
+    }
+
+    //Field nilai sikap
+    if (mysql_num_rows($sikap) > 0) {
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+        echo "nilai sikap<input type='number' value='{$sikap['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+      } else {
+        echo "nilai sikap<input type='number' value='{$sikap['nilai']}' name='nilai[$no]' style='width:50px;'>";
+      }
     }
 
 
