@@ -320,7 +320,7 @@ if ($_GET[act] == '') {
               if($extension = 'png'){
                 echo $extension;
               }else{
-                echo $extension;
+                echo 'bukan png';
               }
 
               echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
