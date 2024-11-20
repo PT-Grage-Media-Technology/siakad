@@ -61,14 +61,14 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                   <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                    <tr><th width='140px' scope='row'>Kelas</th>   <td><select class='form-control' name='a'>"; 
-                                                $kelas = mysql_query("SELECT * FROM rb_kelas");
-                                                while($a = mysql_fetch_array($kelas)){
-                                                  if ($e[kode_kelas]==$a[kode_kelas]){
-                                                    echo "<option value='$a[kode_kelas]' selected>$a[nama_kelas]</option>";
-                                                  }
-                                                }
-                                                echo "</select>
+                    <tr><th width='140px' scope='row'>Guru</th>   
+                   <td><select class='form-control' name='e'> 
+                                    <option value='0' selected>- Pilih Guru -</option>";
+                                    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+                                    while ($a = mysql_fetch_array($guru)) {
+                                        echo "<option value='$a[nip]'>$a[nama_guru]</option>";
+                                    }
+                                    echo "</select>
                     </td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>   <td><select class='form-control' name='b'>"; 
                                                 $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
