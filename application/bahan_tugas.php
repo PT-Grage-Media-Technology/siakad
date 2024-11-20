@@ -311,7 +311,7 @@ if ($_GET[act] == '') {
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>List Tugas</b></h3>";
-  echo "</div>
+  echo "  </div>
               <div class='box-body'>
 
               <div class='col-md-12'>
@@ -324,25 +324,8 @@ if ($_GET[act] == '') {
                   </tbody>
               </table>
               </div>
-
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-              <input type='hidden' name='kelas' value='$_GET[id]'>
-              <input type='hidden' name='pelajaran' value='$_GET[kd]'>
-                <div class='col-md-12'>
-                  <div class='table-responsive'>
-                    <table id='example1' class='table table-condensed table-bordered table-striped'>
-                      <thead>
-                      <tr>
-                        <th style='width:40px'>No</th>
-                        <th>Nama Tugas</th>
-                        <th>Kategori</th>
-                        <th>Waktu Mulai</th>
-                        <th>Batas Waktu</th>
-                        <th>Status</th>
-                        <center><th>Action</th></center>";
-  echo "</tr>
-                    </thead>
-                    </div>
+              </div>
+              
                     ";
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
