@@ -203,8 +203,8 @@
                   </div>
                 </div>
                 <div class='box-footer'>
-                      <a href='index.php?view=journalguru&act=tambah&jdwl=<?php echo $_GET[jdwl]; ?>&c=<?php echo $_POST['c']; ?>&d=<?php echo urlencode($_POST['d']); ?>&e=<?php echo $_POST['e']; ?>&f=<?php echo urlencode($_POST['f']); ?>&g=<?php echo urlencode($_POST['g']); ?>&nip_users=<?php echo $_POST['nip_users']; ?>' class='btn btn-info'>Tambahkan</a>
-                      <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                      <a href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     </div>
                 </form>
               </div>";
