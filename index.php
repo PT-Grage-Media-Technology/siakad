@@ -439,6 +439,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/dokumentasi.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'absensiguru') {
+            cek_session_guru();
+            echo "<div class='row'>";
+            include "application/guru_piket.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'dokumentasiguru') {
             cek_session_guru();
             echo "<div class='row'>";
