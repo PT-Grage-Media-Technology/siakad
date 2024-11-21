@@ -155,10 +155,21 @@
               <div style='display: flex; align-items: center;'>
                   <div style='text-align: left; flex: 1;'>
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 60%; height: auto;'>
-                      <h2>Judul Teks</h2>
-                      <p>
-                          Tambahkan deskripsi atau teks di sini. Anda bisa menyesuaikan ukuran, warna, dan tata letak teks sesuai kebutuhan.
-                      </p>
+                      <h2>Profile Guru</h2>
+                      <table class='table table-bordered'>
+            <tr>
+                <th>NIP</th>
+                <th>Nama Guru</th>
+                <th>Kode Kehadiran</th>
+                <th>Tanggal</th>
+            </tr>
+            <tr>
+                <td>{$data['nip']}</td>
+                <td>{$data['nama_guru']}</td>
+                <td>{$data['kode_kehadiran']}</td>
+                <td>" . tgl_indo($data['tanggal']) . "</td>
+            </tr>
+          </table>
                   </div>
               </div>";
               
