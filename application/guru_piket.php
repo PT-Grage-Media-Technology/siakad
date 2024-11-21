@@ -155,7 +155,7 @@
               <div style='display: flex; align-items: center;'>
                   <div style='text-align: left; flex: 1;'>
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 40%; height: auto;'>
-                      <h2>Profile Guru</h2>
+                      <h2>Identitas Guru</h2>
                       <div style='margin-top: 20px;'>
                           <table class='table table-bordered' width='30%'>
             <tr>
@@ -165,7 +165,7 @@
                 <td>Nama Guru: {$data['nama_guru']}</td>
             </tr>
             <tr>
-                <td>Kode Kehadiran: {$data['kode_kehadiran']}</td>
+                <td>Kehadiran: {$data['kode_kehadiran']}</td>
             </tr>
             <tr>
                 <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
