@@ -126,12 +126,12 @@
     // exit;
 
     $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('', '$kodejdwl', '$_POST[c]', '$d', '$_POST[e]', '$_POST[f]', '$_POST[g]', '" . date('Y-m-d H:i:s') . "', '$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$kodejdwl&tahun=$tahun';</script>";
+    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[kodejdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[kodejdwl]';</script>";
   }
 
-  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$kodejdwl'"));
-  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$kodejdwl'")) + 1;
+  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[kodejdwl]'"));
+  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kodejdwl]'")) + 1;
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
@@ -192,6 +192,7 @@
   } else {
     echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
   }
+
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                       <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
@@ -202,8 +203,8 @@
                   </div>
                 </div>
                 <div class='box-footer'>
-                       <button type='submit' name='tambah' class='btn btn-info' formaction='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$e[id_tahun_akademik]'>Tambahkan</button>
-                      <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$e[id_tahun_akademik]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                      <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     </div>
                 </form>
               </div>";
