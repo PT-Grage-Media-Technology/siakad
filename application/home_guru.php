@@ -145,6 +145,9 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
     <!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive">
+      <h3 class="box-title">
+    Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+      </h3> 
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>

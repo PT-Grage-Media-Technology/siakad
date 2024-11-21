@@ -30,7 +30,7 @@
 
         <!-- Menampilkan form dan h3 -->
         <h3 class="box-title">
-          Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+          Jadwal Guru Piket
         </h3>
 
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
