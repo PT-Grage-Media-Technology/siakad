@@ -156,20 +156,22 @@
                   <div style='text-align: left; flex: 1;'>
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 40%; height: auto;'>
                       <h2>Profile Guru</h2>
-                      <table class='table table-bordered'>
+                      <div style='margin-top: 20px;'>
+                          <table class='table table-bordered'>
             <tr>
-                <th>NIP</th>
-                <th>Nama Guru</th>
-                <th>Kode Kehadiran</th>
-                <th>Tanggal</th>
+                <td>NIP: {$data['nip']}</td>
             </tr>
             <tr>
-                <td>{$data['nip']}</td>
-                <td>{$data['nama_guru']}</td>
-                <td>{$data['kode_kehadiran']}</td>
-                <td>" . tgl_indo($data['tanggal']) . "</td>
+                <td>Nama Guru: {$data['nama_guru']}</td>
+            </tr>
+            <tr>
+                <td>Kode Kehadiran: {$data['kode_kehadiran']}</td>
+            </tr>
+            <tr>
+                <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
             </tr>
           </table>
+                      </div>
                   </div>
               </div>";
               
