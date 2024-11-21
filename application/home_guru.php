@@ -159,8 +159,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
             <tbody>
               <?php
 
-              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$hari_ini' 
-              AND MONTH(a.tanggal) = '$hari_ini' AND a.nip = '$_SESSION[id]'");
+              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.tanggal = CURDATE() AND a.nip = '$_SESSION[id]'");
 
 
               $no = 1;
