@@ -130,6 +130,7 @@
 </div>
 <?php
 } elseif ($_GET[act] == 'lihat') {
+    cek_session_guru();
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE nip='$_GET[nip]' AND MONTH(tanggal)='$_GET[bulan]' AND DAY(tanggal)='$_GET[tanggal]'");
     
@@ -142,4 +143,14 @@
     } else {
         echo "Data tidak ditemukan.";
     }
-}
+
+    echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>Lihat</b></h3>";
+  echo "  </div>
+              <div class='box-body'>";
+              echo "tes aja";
+              echo"</div>";
+    }
+              
