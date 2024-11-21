@@ -133,9 +133,10 @@
     cek_session_guru();
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
-    var_dump($m);
+    
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
+        var_dump($data);
         echo "NIP: " . $data['nip'] . "<br>";
         echo "Nama Guru: " . $data['nama_guru'] . "<br>";
         echo "Tanggal: " . tgl_indo($data['tanggal']) . "<br>";
