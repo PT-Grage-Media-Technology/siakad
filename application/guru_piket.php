@@ -132,7 +132,7 @@
 } elseif ($_GET[act] == 'lihat') {
     cek_session_guru();
     // Ambil data sesuai NIP
-    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
+    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
     
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
