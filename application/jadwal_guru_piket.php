@@ -94,7 +94,7 @@
                             </select>
                         </td>
                       </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyy'></td></tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
                   </tbody>
                   </table>
                 </div>
