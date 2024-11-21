@@ -156,36 +156,13 @@
                   <div style='text-align: left; flex: 1;'>
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 60%; height: auto;'>
                   </div>
-                  <div style='flex: 1; margin-left: 10px;'>
-                  <table>
-                     <tbody>
-                      <!-- Data Tabel -->
-                      <tr><th width='120px' scope='row'>Nip</th> <td>$s[nip]</td></tr>
-                      <tr><th scope='row'>Password</th> <td>$s[password]</td></tr>
-                      <tr><th scope='row'>Nama Lengkap</th> <td>$s[nama_guru]</td></tr>
-                      <tr><th scope='row'>Tempat Lahir</th> <td>$s[tempat_lahir]</td></tr>
-                      <tr><th scope='row'>Tanggal Lahir</th> <td>$s[tanggal_lahir]</td></tr>
-                      <tr><th scope='row'>Jenis Kelamin</th> <td>$s[jenis_kelamin]</td></tr>
-                      <tr><th scope='row'>Agama</th> <td>$s[nama_agama]</td></tr>
-                      <tr><th scope='row'>No Hp</th> <td>$s[hp]</td></tr>
-                      <tr><th scope='row'>No Telpon</th> <td>$s[telepon]</td></tr>
-                      <tr><th scope='row'>Alamat Email</th> <td>$s[email]</td></tr>
-                      <tr><th scope='row'>Alamat</th> <td>$s[alamat_jalan]</td></tr>
-                      <tr><th scope='row'>RT/RW</th> <td>$s[rt]/$s[rw]</td></tr>
-                      <tr><th scope='row'>Dusun</th> <td>$s[nama_dusun]</td></tr>
-                      <tr><th scope='row'>Kelurahan</th> <td>$s[desa_kelurahan]</td></tr>
-                      <tr><th scope='row'>Kecamatan</th> <td>$s[kecamatan]</td></tr>
-                      <tr><th scope='row'>Kode Pos</th> <td>$s[kode_pos]</td></tr>
-                      <tr><th scope='row'>NUPTK</th> <td>$s[nuptk]</td></tr>
-                      <tr><th scope='row'>Bidang Studi</th> <td>$s[pengawas_bidang_studi]</td></tr>
-                      <tr><th scope='row'>Jenis PTK</th> <td>$s[jenis_ptk]</td></tr>
-                      <tr><th scope='row'>Tugas Tambahan</th> <td>$s[tugas_tambahan]</td></tr>
-                      <tr><th scope='row'>Status Pegawai</th> <td>$s[status_kepegawaian]</td></tr>
-                      <tr><th scope='row'>Status Keaktifan</th> <td>$s[nama_status_keaktifan]</td></tr>
-                      <tr><th scope='row'>Status Nikah</th> <td>$s[status_pernikahan]</td></tr>
-                    </tbody>
-                  </table>
-            ";
+                  <div style='flex: 1; margin-left: 5px;'>
+                      <h2>Judul Teks</h2>
+                      <p>
+                          Tambahkan deskripsi atau teks di sini. Anda bisa menyesuaikan ukuran, warna, dan tata letak teks sesuai kebutuhan.
+                      </p>
+                  </div>
+              </div>";
               
     echo"</div>";
     }
