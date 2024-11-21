@@ -794,12 +794,12 @@ if (isset($_POST['simpan'])) {
       
       $result = mysql_query($query);
       if ($result) {
-          echo "Data absensi berhasil disimpan.";
+        echo "<script>document.location='index.php';</script>";
       } else {
-          echo "Terjadi kesalahan saat menyimpan data absensi.";
+          echo "<script>alert('Terjadi kesalahan saat menyimpan data absensi.');</script>";
       }
   } else {
-      echo "Gagal mengunggah file. Periksa izin folder dan batas ukuran file di php.ini.";
+      echo "<script>alert('Gagal mengunggah file.');</script>";
   }
 }
 
