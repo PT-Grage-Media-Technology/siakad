@@ -183,3 +183,15 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 
     </div>
 </div>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
