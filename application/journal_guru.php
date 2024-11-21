@@ -203,7 +203,7 @@
                   </div>
                 </div>
                 <div class='box-footer'>
-                      <input type='hidden' name='kodejdwl' value='$_GET[jdwl]'> <!-- Tambahkan input tersembunyi ini -->
+                      <input type='hidden' name='kodejdwl' value='$_GET[kodejdwl]'> <!-- Tambahkan input tersembunyi ini -->
                       <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
                       <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$e[id_tahun_akademik]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     </div>
