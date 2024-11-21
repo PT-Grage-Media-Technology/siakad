@@ -130,5 +130,5 @@
 </div>
 <?php
 } elseif ($_GET[act] == 'lihat') {
-    echo "<!--";
+    echo "dsdsd";
 }
