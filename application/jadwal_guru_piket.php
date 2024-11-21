@@ -179,7 +179,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=jadwalgurupiket'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
@@ -189,9 +189,8 @@
     $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
     mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
-    // echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
-    echo"UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE nip='$_POST[nip]'";
-  }
+    echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
+ }
 
   $nip = $_GET['nip']; // Ambil nip dari GET
   $query = mysql_query("SELECT * FROM rb_jadwal_guru_piket WHERE nip='$nip'"); // Ambil data berdasarkan nip
@@ -239,7 +238,7 @@
                 </div>
                 <div class='box-footer'>
                       <button type='submit' name='edit' class='btn btn-info'>Simpan Perubahan</button>
-                      <a href='index.php?view=journalguru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                      <a href='index.php?view=jadwalgurupiket'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                       
                     </div>
                 </form>
