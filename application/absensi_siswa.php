@@ -254,94 +254,112 @@
                           a.id_jenis_kelamin=b.id_jenis_kelamin 
                           where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
 
+  // while ($r = mysql_fetch_array($tampil)) {
+
+  //   $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
+
+  //   $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+  //                                       where kodejdwl='$_GET[idjr]' AND 
+  //                                       tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
+
+  // echo "<tr bgcolor=$warna>
+  //                             <td>$no</td>
+  //                             <td>$r[nipd]</td>
+  //                             <td>$r[nisn]</td>
+  //                             <td>$r[nama]</td>
+  //                             <td>$r[jenis_kelamin]</td>
+  //                             <td>";
+
+
+
+  // else {
+  //   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+  //     echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+  //   } else {
+  //     echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
+  //   }
+  // }
+
+  // // Query untuk mendapatkan semua data predikat
+  // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+
+  // // Ambil nilai sesuai nomor siswa
+  // $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
+  // // var_dump($nilaiSiswa); // Memeriksa nilai siswa
+
+  // // Variabel untuk menyimpan kode nilai yang cocok
+  // $kode_nilai = '';
+
+  // // Loop melalui semua hasil data predikat
+  // while ($predikatData = mysql_fetch_array($predikatQuery)) {
+  //   // var_dump($predikatData); // Memeriksa data predikat
+
+  //   // Cek apakah nilai siswa berada dalam rentang predikat
+  //   if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+  //     $kode_nilai = $predikatData['kode_nilai'];
+  //     break; // Hentikan loop setelah menemukan predikat yang sesuai
+  //   }
+  // }
+
+  // Output kode predikat yang cocok, jika ada
+  // if ($kode_nilai && $nilaiSiswa) {
+  //   echo "<td>$kode_nilai</td>";
+  // } else {
+  //   echo "<td>Tidak ada predikat yang sesuai</td>";
+  // }
+
   while ($r = mysql_fetch_array($tampil)) {
-
-    $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
-
+    // Ambil nilai dari tabel terkait
+    $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
+    $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
+    $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                        where kodejdwl='$_GET[idjr]' AND 
-                                        tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
+                                          WHERE kodejdwl='$_GET[idjr]' 
+                                          AND tanggal='$_GET[tgl]' 
+                                          AND nisn='$r[nisn]'"));
 
-    echo "<tr bgcolor=$warna>
-                                <td>$no</td>
-                                <td>$r[nipd]</td>
-                                <td>$r[nisn]</td>
-                                <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]</td>
-                                <td>";
+    echo "<tr>
+              <td>$no</td>
+              <td>$r[nipd]</td>
+              <td>$r[nisn]</td>
+              <td>$r[nama]</td>
+              <td>$r[jenis_kelamin]</td>";
 
-    // Cek apakah tugas ada
-    if (mysql_num_rows($tugas) > 0) {
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-      } else {
-        echo "nilai pengetahuan<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
-      }
-    } else if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-    } else {
-      echo "nilai keterampilan<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
-    }
-
-
-    // // Query untuk mendapatkan semua data predikat
-    // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
-
-    // // Ambil nilai sesuai nomor siswa
-    // $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
-    // // var_dump($nilaiSiswa); // Memeriksa nilai siswa
-
-    // // Variabel untuk menyimpan kode nilai yang cocok
-    // $kode_nilai = '';
-
-    // // Loop melalui semua hasil data predikat
-    // while ($predikatData = mysql_fetch_array($predikatQuery)) {
-    //   // var_dump($predikatData); // Memeriksa data predikat
-
-    //   // Cek apakah nilai siswa berada dalam rentang predikat
-    //   if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-    //     $kode_nilai = $predikatData['kode_nilai'];
-    //     break; // Hentikan loop setelah menemukan predikat yang sesuai
-    //   }
-    // }
-
-    // Output kode predikat yang cocok, jika ada
-    // if ($kode_nilai && $nilaiSiswa) {
-    //   echo "<td>$kode_nilai</td>";
-    // } else {
-    //   echo "<td>Tidak ada predikat yang sesuai</td>";
-    // }
-
-    echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-
+    // Nilai Pengetahuan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     }
 
+    // Nilai Keterampilan
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+    } else {
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+    }
 
+    // Nilai Sikap
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+    } else {
+      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;'></td>";
+    }
+
+    // Kehadiran
+    echo "<td><select style='width:100px;' name='kehadiran[$no]' class='form-control' " . (strtotime(date('Y-m-d')) > strtotime($_GET['tgl']) ? "disabled" : "") . ">";
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
-      if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
-        echo "<option value='$k[kode_kehadiran]' selected>* $k[nama_kehadiran]</option>";
-      } else {
-        echo "<option value='$k[kode_kehadiran]'>$k[nama_kehadiran]</option>";
-      }
+      echo "<option value='$k[kode_kehadiran]' " . ($a['kode_kehadiran'] == $k['kode_kehadiran'] ? "selected" : "") . ">$k[nama_kehadiran]</option>";
     }
-    echo "</select></td>";
 
+    echo "</select></td>";
     echo "</tr>";
     $no++;
   }
 
-  echo "</tbody>
-                    </table>
-                </div>
-            </div>
-        </div>";
 
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
