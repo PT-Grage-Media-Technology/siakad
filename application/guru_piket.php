@@ -96,7 +96,7 @@
             <tbody>
               <?php
 
-              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' 
+              $tampil = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih'  $
               AND MONTH(a.tanggal) = '$bulan_dipilih'");
 
 
@@ -105,8 +105,8 @@
                 while ($r = mysql_fetch_array($tampil)) {
                   echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
-                                <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>
+                                <td>$r[kode_kehadiran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
                                   <a href='' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
