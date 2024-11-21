@@ -153,7 +153,6 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                 <th>Hari</th>
                 <th>Guru</th>
                 <th>Tanggal</th>
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>
