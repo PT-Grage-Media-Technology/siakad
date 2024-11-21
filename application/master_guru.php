@@ -765,7 +765,7 @@
 
 if (isset($_POST['simpan'])) {
   // Debug POST dan FILES data
-  var_dump($_POST, $_FILES);
+  // var_dump($_POST, $_FILES);
   
   // Ambil nilai dari form
   $nip = $_SESSION['id'];
