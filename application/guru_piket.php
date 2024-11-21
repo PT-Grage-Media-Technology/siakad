@@ -148,9 +148,9 @@
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Lihat</b></h3>";
-  echo "  </div>
+    echo "  </div>
               <div class='box-body'>";
-              echo "tes aja";
-              echo"</div>";
+              echo "<img src='bukti_tidak_hadir/".$data['foto']."'>";
+    echo"</div>";
     }
               
