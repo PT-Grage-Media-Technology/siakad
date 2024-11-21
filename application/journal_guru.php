@@ -202,9 +202,11 @@
                     </table>
                   </div>
                 </div>
-                <div class='box-footer'>
-                      <button type='submit' name='tambah' value='$_GET[kodejdwl] class='btn btn-info'>Tambahkan</button>
-                      <a href='index.php?view=journalguru&act=lihat&id=$_GET[kodejdwl]&tahun=$_GET[id_tahun_akademik]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <div class='box-footer'>
+                        <button type='submit' name='tambah' value='$_GET[kodejdwl]' class='btn btn-info'>Tambahkan</button>
+                        <a href='index.php?view=journalguru&act=lihat&id=<?php echo $_GET['kodejdwl']; ?>&tahun=<?php echo $_GET['id_tahun_akademik']; ?>'>
+                            <button type='button' class='btn btn-default pull-right'>Cancel</button>
+                        </a>
                     </div>
                 </form>
               </div>";
