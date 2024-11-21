@@ -87,8 +87,8 @@
                         <tr>
                             <th style='width:20px'>No</th>
                             <th>Nip</th>
-                            <th>Hari</th>
                             <th>Guru</th>
+                            <th>Hari</th>
                             <th>Tanggal</th>
                             <th>Action</th>
 
