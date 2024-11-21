@@ -107,11 +107,6 @@
                                 <td>$r[nip]</td>
                                 <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>
-                                <td>" . tgl_indo($r['tanggal']) . "</td>";
-                                echo "<tr><td>$no</td>
-                                <td>$r[nip]</td>
-                                <td>$r[hari]</td>
-                                <td>$r[nama_guru]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
                                   <a href='' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
