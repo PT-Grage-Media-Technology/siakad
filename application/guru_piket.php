@@ -136,16 +136,7 @@
     
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
-        // var_dump($data);
-        echo "NIP: " . $data['nip'] . "<br>";
-        echo "Nama Guru: " . $data['nama_guru'] . "<br>";
-        echo "Tanggal: " . tgl_indo($data['tanggal']) . "<br>";
-        echo "Kode Kehadiran: " . $data['kode_kehadiran'] . "<br>";
-    } else {
-        echo "Data tidak ditemukan.";
-    }
-
-    echo "<div class='col-md-12'>
+        echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Lihat</b></h3>";
@@ -177,5 +168,10 @@
               </div>";
               
     echo"</div>";
+    } else {
+        echo "Data tidak ditemukan.";
+    }
+
+    
     }
               
