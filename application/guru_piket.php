@@ -157,7 +157,7 @@
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 40%; height: auto;'>
                       <h2>Profile Guru</h2>
                       <div style='margin-top: 20px;'>
-                          <table class='table table-bordered'>
+                          <table class='table table-bordered' width=30%>
             <tr>
                 <td>NIP: {$data['nip']}</td>
             </tr>
