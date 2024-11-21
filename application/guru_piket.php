@@ -108,7 +108,17 @@
                                 <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>";
-                                
+                                echo "<tr><td>$no</td>
+                                <td>$r[nip]</td>
+                                <td>$r[hari]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>" . tgl_indo($r['tanggal']) . "</td>
+                                <td>
+                                  <a href='' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
+                                  <a href='' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
+                                  <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                                </td>";
+
                   echo "</tr>";
                   $no++;
                 }
