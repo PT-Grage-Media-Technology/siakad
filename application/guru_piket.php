@@ -150,7 +150,7 @@
                   <h3 class='box-title'>Lihat</b></h3>";
     echo "  </div>
               <div class='box-body'>";
-              echo "<img src='bukti_tidak_hadir/".$data['foto']."'>";
+              echo "<div style='text-align:center;'><img src='bukti_tidak_hadir/".$data['foto']."' style='max-width: 100%; height: auto;'></div>";
     echo"</div>";
     }
               
