@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-      <!-- <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
+      <!-- <a class='btn btn-primary pull-right' href='index.php?view=absensiguru&act=tambah'
       title='Tambah Jadwal'>Tambah Jadwal</a> -->
       
         <?php
@@ -35,7 +35,7 @@
 
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-          <input type="hidden" name="view" value="jadwalgurupiket">
+          <input type="hidden" name="view" value="absensiguru">
 
           <!-- Dropdown untuk memilih Tahun Akademik -->
           <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
