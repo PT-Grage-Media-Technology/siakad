@@ -51,8 +51,9 @@
             <?php 
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])) {
+        $tanggal = tgl_simpan($_POST[tanggal]);
         $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-        mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$_POST[tanggal]','$tanggalInput')");
+        mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggal','$tanggalInput')");
         echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
       }
       
@@ -93,7 +94,7 @@
                             </select>
                         </td>
                       </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('Y-m-d')."' name='tanggal' data-date-format='yyyy-mm-dd'></td></tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='".date('d-m-Y')."' name='tanggal' data-date-format='dd-mm-yyy'></td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -108,8 +109,9 @@
 }
 elseif($_GET[act]=='edit'){
     if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
+        $tanggal = tgl_simpan($_POST[tanggal]);
         $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-        mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$_POST[tanggal]', updated_at='$tanggalInput' WHERE nip='$_POST[nip]'"); // Mengubah query untuk update
+        mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', updated_at='$tanggalInput' WHERE nip='$_POST[nip]'"); // Mengubah query untuk update
         echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
       }
       
