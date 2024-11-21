@@ -154,7 +154,7 @@
               echo "
               <div style='display: flex; align-items: center;'>
                   <div style='text-align: left; flex: 1;'>
-                      <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 40%; height: auto;'>
+                      <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 60%; height: auto;'>
                   </div>
                   <div style='margin-left: 20px; flex: 1;'>
                       <h2>Judul Teks</h2>
