@@ -156,7 +156,7 @@
                   <div style='text-align: left; flex: 1;'>
                       <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 60%; height: auto;'>
                   </div>
-                  <div style='margin-left: 20px; flex: 1;'>
+                  <div style='margin-left: 5px; flex: 1;'>
                       <h2>Judul Teks</h2>
                       <p>
                           Tambahkan deskripsi atau teks di sini. Anda bisa menyesuaikan ukuran, warna, dan tata letak teks sesuai kebutuhan.
