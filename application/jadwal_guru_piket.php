@@ -32,7 +32,7 @@
                               <td>$r[nip]</td>
                               <td>$r[hari]</td>
                               <td>$r[nama_guru]</td>
-                              <td>$r[tanggal]</td>";
+                              <td>" . tgl_indo($r['tanggal']) . "</td>";
                                 echo "<td style='width:80px !important'><center>
                                         <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
                                         <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
