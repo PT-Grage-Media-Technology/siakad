@@ -136,6 +136,7 @@
     
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
+        var_dump($data);
         echo "NIP: " . $data['nip'] . "<br>";
         echo "Nama Guru: " . $data['nama_guru'] . "<br>";
         echo "Tanggal: " . tgl_indo($data['tanggal']) . "<br>";
