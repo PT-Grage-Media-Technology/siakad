@@ -1,3 +1,4 @@
+<?php if ($_GET[act] == '') { ?>
 <div class="col-xs-12">
     <div class="box">
         <div class="box-header">
@@ -108,7 +109,7 @@
                                 <td>$r[kode_kehadiran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
-                                  <a href='' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
+                                  <a href='index.php?view=absensiguru&nip=$r[nip]' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
                                   <a href='' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
@@ -127,3 +128,7 @@
 
     </div>
 </div>
+<?php
+} elseif ($_GET[act] == 'lihat') {
+    echo "<!--";
+}
