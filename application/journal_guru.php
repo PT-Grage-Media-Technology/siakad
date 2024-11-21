@@ -202,7 +202,7 @@
                   </div>
                 </div>
                 <div class='box-footer'>
-                       <button type='submit' name='tambah' class='btn btn-info' formaction='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$r[id_tahun_akademik]'>Tambahkan</button>
+                       <button type='submit' name='tambah' class='btn btn-info' formaction='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$e[id_tahun_akademik]'>Tambahkan</button>
                       <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]&tahun=$e[id_tahun_akademik]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     </div>
                 </form>
