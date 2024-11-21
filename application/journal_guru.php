@@ -126,12 +126,12 @@
     // exit;
 
     $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[kodejdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[kodejdwl]';</script>";
+    mysql_query("INSERT INTO rb_journal_list VALUES('', '$kodejdwl', '$_POST[c]', '$d', '$_POST[e]', '$_POST[f]', '$_POST[g]', '" . date('Y-m-d H:i:s') . "', '$_POST[nip_users]')");
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$kodejdwl&tahun=$tahun';</script>";
   }
 
-  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[kodejdwl]'"));
-  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kodejdwl]'")) + 1;
+  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$kodejdwl'"));
+  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$kodejdwl'")) + 1;
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
