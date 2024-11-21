@@ -188,7 +188,7 @@
   if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
     $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE nip='$_POST[nip]'"); // Mengubah query untuk update
+    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
     // echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
     echo"UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE nip='$_POST[nip]'";
   }
@@ -207,6 +207,7 @@
                   <div class='col-md-12'>
                     <table class='table table-condensed table-bordered'>
                     <tbody>
+                    <input type='hidden' name='id' value='$data[id]'> <!-- Menampilkan nip yang sedang diedit -->
                     <input type='hidden' name='nip' value='$data[nip]'> <!-- Menampilkan nip yang sedang diedit -->
                       <tr><th width='140px' scope='row'>Guru</th>   
                      <td><select class='form-control' name='nip'> 
