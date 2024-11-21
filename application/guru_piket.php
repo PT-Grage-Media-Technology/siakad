@@ -76,7 +76,6 @@
             ?>
           </select>
         </form>
-        <h3 class="box-title">Jadwal Guru Piket</h3>
         
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -90,6 +89,7 @@
                 <th>Hari</th>
                 <th>Guru</th>
                 <th>Tanggal</th>
+                <th>Action</th>
     
               </tr>
             </thead>
