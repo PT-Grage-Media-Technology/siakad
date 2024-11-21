@@ -131,7 +131,7 @@
 <?php
 } elseif ($_GET[act] == 'lihat') {
     // Ambil data sesuai NIP
-    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE nip='$_GET[nip]'");
+    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE nip='$_GET[nip]' AND tanggal='$_GET[bulan]' AND tanggal='$_GET[tanggal]'");
     
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
