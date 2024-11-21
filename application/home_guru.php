@@ -123,7 +123,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 
 <!-- Menampilkan form dan h3 -->
 <h3 class="box-title">
-    Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+    Jadwal Piket anda
 </h3>
 
 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
