@@ -2,6 +2,8 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
+      <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
+      title='Tambah Jadwal'>Tambah Jadwal</a>
         <?php
         // Ambil tahun akademik yang terbaru
         $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
@@ -33,7 +35,7 @@
 
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-          <input type="hidden" name="view" value="aktivitaspembelajaran">
+          <input type="hidden" name="view" value="jadwalgurupiket">
 
           <!-- Dropdown untuk memilih Tahun Akademik -->
           <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
@@ -75,8 +77,7 @@
           </select>
         </form>
         <h3 class="box-title">Jadwal Guru Piket</h3>
-        <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
-          title='Tambah Jadwal'>Tambah Jadwal</a>
+        
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive">
