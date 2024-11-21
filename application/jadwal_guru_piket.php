@@ -35,7 +35,7 @@
                               <td>$r[tanggal]</td>";
                                 echo "<td style='width:80px !important'><center>
                                         <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-search'></span> Edit</a>
-                                        <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalkbm&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Delete</a>
+                                        <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
                                       </center></td>";
                             echo "</tr>";
                       $no++;
@@ -163,4 +163,9 @@ elseif($_GET[act]=='edit'){
                     </div>
                 </form>
               </div>";
+}
+elseif($_GET[act]=='delete'){ // Menambahkan logika untuk menghapus
+    $nip = $_GET['nip']; // Mengambil nip dari GET
+    mysql_query("DELETE FROM rb_jadwal_guru_piket WHERE nip='$nip'"); // Menghapus data berdasarkan nip
+    echo "<script>document.location='index.php?view=jadwalgurupiket';</script>"; // Redirect setelah penghapusan
 }
