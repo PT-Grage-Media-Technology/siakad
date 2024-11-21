@@ -150,12 +150,20 @@
                   <h3 class='box-title'>Lihat</b></h3>";
     echo "  </div>
               <div class='box-body'>";
-              echo "<div style='text-align:left; flex:1;'><img src='bukti_tidak_hadir/".$data['foto']."' style='max-width: 40%; height: auto;'></div>
-              <h2>Judul Teks</h2>
-        <p>
-            Tambahkan deskripsi atau teks di sini. Anda bisa menyesuaikan ukuran, warna, dan tata letak teks sesuai kebutuhan.
-        </p>
-              ";
+           
+              echo "
+              <div style='display: flex; align-items: center;'>
+                  <div style='text-align: left; flex: 1;'>
+                      <img src='bukti_tidak_hadir/" . $data['foto'] . "' style='max-width: 40%; height: auto;'>
+                  </div>
+                  <div style='margin-left: 20px; flex: 1;'>
+                      <h2>Judul Teks</h2>
+                      <p>
+                          Tambahkan deskripsi atau teks di sini. Anda bisa menyesuaikan ukuran, warna, dan tata letak teks sesuai kebutuhan.
+                      </p>
+                  </div>
+              </div>";
+              
     echo"</div>";
     }
               
