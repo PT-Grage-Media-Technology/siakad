@@ -130,5 +130,16 @@
 </div>
 <?php
 } elseif ($_GET[act] == 'lihat') {
-    echo "dsdsd";
+    // Ambil data sesuai NIP
+    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE nip='$_GET[nip]'");
+    
+    // Tampilkan data yang diambil
+    if ($data = mysql_fetch_array($m)) {
+        echo "NIP: " . $data['nip'] . "<br>";
+        echo "Nama Guru: " . $data['nama_guru'] . "<br>";
+        echo "Tanggal: " . tgl_indo($data['tanggal']) . "<br>";
+        echo "Kode Kehadiran: " . $data['kode_kehadiran'] . "<br>";
+    } else {
+        echo "Data tidak ditemukan.";
+    }
 }
