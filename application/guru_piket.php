@@ -108,6 +108,7 @@
                                 <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>";
+                                
                   echo "</tr>";
                   $no++;
                 }
