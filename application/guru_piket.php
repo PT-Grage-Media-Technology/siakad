@@ -177,7 +177,7 @@
 
 }elseif ($_GET[act] == 'setujui') {
     // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list WHERE nip='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list WHERE users='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
 
     if ($tujuan_belajar) {
         $result = mysql_fetch_array($tujuan_belajar);
