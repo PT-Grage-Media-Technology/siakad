@@ -184,6 +184,7 @@
                             <th style='width:20px'>No</th>
                             <th>Nip</th>
                             <th>Guru</th>
+                            <th>Mapel</th>
                             <th>Tanggal</th>
                             <th>Action</th>
 
@@ -192,7 +193,7 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
 
 
                         $no = 1;
@@ -201,6 +202,7 @@
                                 var_dump($r);
                                 echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
+                                <td>$r[namamatapelajaran]</td>
                                 <td>$r[nama_guru]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
