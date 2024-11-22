@@ -193,7 +193,7 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip WHERE a.users='$_GET[nip]' AND DAY(a.tanggal) = DAY(b.tanggal) AND MONTH(a.tanggal) = MONTH(b.tanggal) AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
 
 
                         $no = 1;
@@ -202,7 +202,6 @@
                                 echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
                                 <td>$r[nama_guru]</td>
-                                <td>$r[kode_kehadiran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
                                   <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
