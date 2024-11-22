@@ -210,8 +210,8 @@
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
-                                  <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i>Absensi siswa</a>
                                   <a href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
+                                  <a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
@@ -261,5 +261,17 @@
     } else {
         echo "Query error: " . mysql_error(); // Menampilkan pesan kesalahan jika query gagal
     }
+
+}elseif ($_GET[act] == 'gantikan') {
+    // ambil data tujuan belajar mengajar
+    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET users=$_SESSION[id]");
+
+    if ($tujuan_belajar) {
+        
+            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
+          }else{
+            echo "no data"; // Menampilkan pesan jika tidak ada data
+          } 
 }
+
               
