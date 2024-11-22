@@ -118,7 +118,7 @@ if ($_GET[act]==''){
                               <td>$r[angkatan]</td>
                               <td>$r[nama_jurusan]</td>
                               <td>$r[nama_kelas]</td>";
-                              if($_SESSION[level]=='kepala'){
+                              if($_SESSION[level]!='kepala'){
                                 echo "<td><center>
                                   <a class='btn btn-default btn-xs' title='Lihat Detail' href='?view=siswa&act=detailsiswa&id=$r[nisn]'><span class='glyphicon glyphicon-search'></span></a>
                                   <a class='btn btn-info btn-xs' title='Edit Siswa' href='?view=siswa&act=editsiswa&id=$r[nisn]'><span class='glyphicon glyphicon-edit'></span></a>
