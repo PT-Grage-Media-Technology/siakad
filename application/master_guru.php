@@ -789,13 +789,10 @@ if (isset($_POST['simpan'])) {
   
   // Upload file ke folder tujuan
   if (move_uploaded_file($tmp_file, $path_file)) {
-      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto, keterangan, tanggal, waktu_input) 
-                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', '2024-11-22', '2024-11-21 04:46:56')";
-      var_dump($query);
-      echo $query;
+      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto_bukti, keterangan, tanggal, waktu_input) 
+                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW())";
+      
       $result = mysql_query($query);
-      var_dump($result);
-  
       if ($result) {
         echo "<script>document.location='index.php';</script>";
       } else {
