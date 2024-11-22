@@ -193,7 +193,7 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip WHERE a.users='$_GET[nip]' AND DAY(a.tanggal) = DAY(b.tanggal) AND MONTH(a.tanggal) = MONTH(b.tanggal) AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list ");
 
 
                         $no = 1;
