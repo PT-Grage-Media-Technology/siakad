@@ -249,11 +249,11 @@
             $kode_kehadiran = $result['kode_kehadiran'];
             $jam_ke = $result['jam_ke'];
             $tanggal = $result['tanggal'];
-            $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kode_kehadiran','$jam_ke', '$tanggal', NOW())");
+        //     $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kode_kehadiran','$jam_ke', '$tanggal', NOW())");
 
-          if($insertAbsensiGuru){
-            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
-          }
+        //   if($insertAbsensiGuru){
+        //     echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
+        //   }
 
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
