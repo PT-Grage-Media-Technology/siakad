@@ -164,7 +164,7 @@
             </tr>
           </table>
                 <a href='index.php?view=absensiguru&act=lihat&id=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i> Buka absensi siswa</a>
-                <a href='index.php?view=absensiguru&act=setujui&id=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
+                <a href='index.php?view=absensiguru&act=setujui&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
                 <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                       </div>
                   </div>
@@ -176,6 +176,13 @@
     }
 
 }elseif ($_GET[act] == 'setujui') {
-    
+    // ambil data tujuan belajar mengajar
+    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list WHERE nip='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $result = mysql_fetch_array($tujuan_belajar);
+    if($result){
+        echo $result;
+    }else{
+        echo "no data";
+    }
 }
               
