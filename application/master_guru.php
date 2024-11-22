@@ -765,7 +765,7 @@
 
 if (isset($_POST['simpan'])) {
   // Debug POST dan FILES data
-  var_dump($_POST, $_FILES);
+  // var_dump($_POST, $_FILES);
   
   // Ambil nilai dari form
   $nip = $_SESSION['id'];
@@ -793,6 +793,8 @@ if (isset($_POST['simpan'])) {
                 VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW())";
       
       $result = mysql_query($query);
+      var_dump($result);
+      exit;
       if ($result) {
         echo "<script>document.location='index.php';</script>";
       } else {
