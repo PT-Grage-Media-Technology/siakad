@@ -132,7 +132,7 @@
     cek_session_guru();
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
-    $cek_absen = mysql_query("SELECT * FROM rb_absensi_guru WHERE nip = '$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $cek_absen = mysql_query("SELECT * FROM rb_absensi_guru WHERE nip = '$_GET[nip]' AND kode_kehadiran != 'Hadir' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
     $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
@@ -197,7 +197,7 @@
 
 
                         $no = 1;
-                        if (mysql_num_rows($tampil) > 0 && $sudah_disetujui) { // Memeriksa apakah ada data
+                        if (mysql_num_rows($tampil) > 0 || $sudah_disetujui) { // Memeriksa apakah ada data
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>
