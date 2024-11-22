@@ -211,7 +211,7 @@
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
                                   <a href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
-                                  <a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>
+                                  <a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
@@ -264,14 +264,15 @@
 
 }elseif ($_GET[act] == 'gantikan') {
     // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET users=$_SESSION[id]");
+    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET users=$_SESSION[id] WHERE id_journal=$_GET[id]");
+    
     $nip = $_GET['nip'];
     $bulan=$_GET['bulan'];
     $tanggal=$_GET['tanggal'];
 
     if ($tujuan_belajar) {
-        
-            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal';</script>";
+        echo"document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal'";
+            // echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal';</script>";
           }else{
             echo "no p"; // Menampilkan pesan jika tidak ada data
           } 
