@@ -128,8 +128,7 @@ if ($_GET[act]==''){
                                 </center></td>";
                               }else{
                                   echo "<td><center>
-                                  <a class='btn btn-default btn-xs' title='Lihat Detail' href='?view=siswa&act=detailsiswa&id=$r[nisn]'><span class='glyphicon glyphicon-search'></span></a>
-                                 
+                                  
                                 </center></td>";
                               }
                             echo "</tr>";
