@@ -198,6 +198,7 @@
                         $no = 1;
                         if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
                             while ($r = mysql_fetch_array($tampil)) {
+                                var_dump($r);
                                 echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
                                 <td>$r[nama_guru]</td>
