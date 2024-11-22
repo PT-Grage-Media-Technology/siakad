@@ -163,6 +163,8 @@
                 <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
             </tr>
           </table>
+                <a href='index.php?view=absensiguru&act=lihat&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
+
                       </div>
                   </div>
               </div>";
