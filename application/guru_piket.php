@@ -271,8 +271,8 @@
     $tanggal=$_GET['tanggal'];
 
     if ($tujuan_belajar) {
-        echo"document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal'";
-            // echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal';</script>";
+        // echo"document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal'";
+            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal';</script>";
           }else{
             echo "no p"; // Menampilkan pesan jika tidak ada data
           } 
