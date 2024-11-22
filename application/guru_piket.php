@@ -136,7 +136,7 @@
     $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
-        var_dump($data);
+        // var_dump($data);
         echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
