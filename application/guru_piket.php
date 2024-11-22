@@ -197,7 +197,7 @@
 
 
                         $no = 1;
-                        if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data dan sudah disetujui
+                        if (mysql_num_rows($tampil) > 0 && $sudah_disetujui) { // Memeriksa apakah ada data dan sudah disetujui
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>
