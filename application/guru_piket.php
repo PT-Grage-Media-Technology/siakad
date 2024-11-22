@@ -208,7 +208,7 @@
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
                                   <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i>Absensi siswa</a>
-                                  <a href='index.php?view=absensiguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
+                                  <a href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
