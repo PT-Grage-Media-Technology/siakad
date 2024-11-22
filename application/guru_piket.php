@@ -7,21 +7,21 @@
 
             <?php
             // Ambil tahun akademik yang terbaru
-            $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-            $tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
-            mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+            $tahun = mysqli_query($koneksi, "SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+            $tahun_terbaru = mysqli_fetch_array($tahun); // Ambil tahun terbaru
+            mysqli_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
             
             // Jika pengguna belum memilih tahun, gunakan tahun terbaru
             $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
 
             // Ambil nama tahun akademik yang dipilih
             $nama_tahun_dipilih = '';
-            while ($k = mysql_fetch_array($tahun)) {
+            while ($k = mysqli_fetch_array($tahun)) {
                 if ($tahun_dipilih == $k['id_tahun_akademik']) {
                     $nama_tahun_dipilih = $k['nama_tahun'];
                 }
             }
-            mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+            mysqli_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
             
             // Mendapatkan bulan dan tanggal yang dipilih atau default ke bulan dan tanggal hari ini
             $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');  // Default ke bulan sekarang
@@ -42,7 +42,7 @@
                 <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
                     <option value=''>- Pilih Tahun Akademik -</option>
                     <?php
-                    while ($k = mysql_fetch_array($tahun)) {
+                    while ($k = mysqli_fetch_array($tahun)) {
                         $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
                         echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
                     }
@@ -97,12 +97,12 @@
                     <tbody>
                         <?php
 
-                        $tampil = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
+                        $tampil = mysqli_query($koneksi, "SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
 
 
                         $no = 1;
-                        if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
-                            while ($r = mysql_fetch_array($tampil)) {
+                        if (mysqli_num_rows($tampil) > 0) { // Memeriksa apakah ada data
+                            while ($r = mysqli_fetch_array($tampil)) {
                                 echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
                                 <td>$r[nama_guru]</td>
@@ -132,10 +132,10 @@
 } elseif ($_GET[act] == 'detail') {
     cek_session_guru();
     // Ambil data sesuai NIP
-    $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
+    $m = mysqli_query($koneksi, "SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
     
     // Tampilkan data yang diambil
-    if ($data = mysql_fetch_array($m)) {
+    if ($data = mysqli_fetch_array($m)) {
         echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -177,14 +177,17 @@
 
 }elseif ($_GET[act] == 'setujui') {
     // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list WHERE nip='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $tujuan_belajar = mysqli_query($koneksi, "SELECT * FROM rb_journal_list WHERE nip='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
  
-    $result = mysql_fetch_array($tujuan_belajar);
-    if($result){
-        echo $tujuan_belajar;
-        echo $result;
-    }else{
-        echo "no data";
+    if ($tujuan_belajar) {
+        $result = mysqli_fetch_array($tujuan_belajar);
+        if ($result) {
+            echo $result; // Menampilkan data yang ditemukan
+        } else {
+            echo "no data"; // Menampilkan pesan jika tidak ada data
+        }
+    } else {
+        echo "Query error: " . mysqli_error($koneksi); // Menampilkan pesan kesalahan jika query gagal
     }
 }
               
