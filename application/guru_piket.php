@@ -182,7 +182,9 @@
     if ($tujuan_belajar) {
         $result = mysql_fetch_array($tujuan_belajar);
         if ($result) {
-            echo $result; // Menampilkan data yang ditemukan
+            echo "NIP: " . $result['users'] . "<br>";
+            echo "Nama: " . $result['kodejdwl'] . "<br>";
+            echo "Tanggal: " . tgl_indo($result['tanggal']) . "<br>";
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
         }
