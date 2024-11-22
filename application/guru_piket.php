@@ -174,6 +174,55 @@
               </div>";
               
     echo"</div>";
+
+    echo" <div class='box-body'>
+            <div class='table-responsive'>
+
+                <table id='example' class='table table-bordered table-striped'>
+                    <thead>
+                        <tr>
+                            <th style='width:20px'>No</th>
+                            <th>Nip</th>
+                            <th>Guru</th>
+                            <th>Kehadiran</th>
+                            <th>Tanggal</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    
+
+                        $tampil = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' AND MONTH(a.tanggal) = '$bulan_dipilih'");
+
+
+                        $no = 1;
+                        if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
+                            while ($r = mysql_fetch_array($tampil)) {
+                                echo "<tr><td>$no</td>
+                                <td>$r[nip]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>$r[kode_kehadiran]</td>
+                                <td>" . tgl_indo($r['tanggal']) . "</td>
+                                <td>
+                                  <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
+                                  <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                                </td>";
+
+                                echo "</tr>";
+                                $no++;
+                            }
+                        } else {
+                            echo "<tr><td colspan='6' style='text-align:center;'>Tidak ada data</td></tr>"; // Menampilkan pesan jika tidak ada data
+                        }
+                      
+                   echo"</tbody>
+                </table>
+            </div>
+        </div><!-- /.box-body -->
+
+    </div>
+</div>";
     } else {
         echo "Data tidak ditemukan.";
     }
