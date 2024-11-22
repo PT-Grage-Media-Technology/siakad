@@ -193,7 +193,7 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
 
 
                         $no = 1;
@@ -208,7 +208,7 @@
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
                                   <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i>Absensi siswa</a>
-                                  <a href='index.php?view=absensiguru&act=lihat&id=$r[kodejdwl]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
+                                  <a href='index.php?view=absensiguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
