@@ -182,18 +182,20 @@
     if ($tujuan_belajar) {
         $result = mysql_fetch_array($tujuan_belajar);
         if ($result) {
-            echo "NIP: " . $result['users'] . "<br>";
-            echo "Nama: " . $result['kodejdwl'] . "<br>";
-            echo "Tanggal: " . tgl_indo($result['tanggal']) . "<br>";
+            // echo "NIP: " . $result['users'] . "<br>";
+            // echo "Nama: " . $result['kodejdwl'] . "<br>";
+            // echo "Tanggal: " . tgl_indo($result['tanggal']) . "<br>";
 
             $kodejdwl = $result['kodejdwl'];
             $nip = $result['users'];
             $kode_kehadiran = $result['kode_kehadiran'];
             $jam_ke = $result['jam_ke'];
             $tanggal = $result['tanggal'];
+            $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kode_kehadiran','$jam_ke', '$tanggal', NOW())");
 
-            echo $kode_kehadiran;
-          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kode_kehadiran','$jam_ke', '$tanggal', NOW())");
+          if($insertAbsensiGuru){
+            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
+          }
 
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
