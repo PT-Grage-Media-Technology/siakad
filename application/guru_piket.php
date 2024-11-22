@@ -262,19 +262,6 @@
         echo "Query error: " . mysql_error(); // Menampilkan pesan kesalahan jika query gagal
     }
 
-}elseif ($_GET[act] == 'gantikan') {
-    // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET users=$_SESSION[id]");
-    $nip = $_GET['nip'];
-    $bulan=$_GET['bulan'];
-    $tanggal=$_GET['tanggal'];
-
-    if ($tujuan_belajar) {
-        
-            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$nip&bulan=$bulan&tanggal=$tanggal';</script>";
-          }else{
-            echo "no data"; // Menampilkan pesan jika tidak ada data
-          } 
 }
 
               
