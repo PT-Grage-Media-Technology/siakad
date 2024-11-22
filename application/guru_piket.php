@@ -185,12 +185,15 @@
             echo "NIP: " . $result['users'] . "<br>";
             echo "Nama: " . $result['kodejdwl'] . "<br>";
             echo "Tanggal: " . tgl_indo($result['tanggal']) . "<br>";
+
             $kodejdwl = $result['kodejdwl'];
             $nip = $result['users'];
             $kode_kehadiran = $result['kode_kehadiran'];
+            $jam_ke = $result['jam_ke'];
+            $tanggal = $result['tanggal'];
 
             echo $kode_kehadiran;
-        //   $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kode_kehadiran','$jam_ke', '$tanggal', NOW())");
 
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
