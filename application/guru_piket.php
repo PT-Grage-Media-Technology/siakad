@@ -164,7 +164,7 @@
                 <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
             </tr>
           </table>
-                <a href='index.php?view=absensiguru&act=lihat&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i> Buka absensi siswa</a>";
+            ";
                 if(!$sudah_disetujui){
 
                     echo"<a href='index.php?view=absensiguru&act=setujui&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
