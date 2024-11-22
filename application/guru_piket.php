@@ -169,7 +169,7 @@
 
                     echo"<a href='index.php?view=absensiguru&act=setujui&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>";
                 }
-                echo"<a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                echo"<a href='' class='btn btn-danger ml-4' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                       </div>
                   </div>
               </div>";
