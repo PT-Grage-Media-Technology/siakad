@@ -163,7 +163,7 @@
                 <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
             </tr>
           </table>
-                <a href='index.php?view=absensiguru&act=lihat&id=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i> Buka absensi siswa</a>
+                <a href='index.php?view=absensiguru&act=lihat&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i> Buka absensi siswa</a>
                 <a href='index.php?view=absensiguru&act=setujui&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
                 <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                       </div>
