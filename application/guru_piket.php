@@ -109,7 +109,7 @@
                                 <td>$r[kode_kehadiran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
-                                  <a href='index.php?view=absensiguru&act=lihat&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i></a>
+                                  <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
                                   <a href='' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
@@ -129,7 +129,7 @@
     </div>
 </div>
 <?php
-} elseif ($_GET[act] == 'lihat') {
+} elseif ($_GET[act] == 'detail') {
     cek_session_guru();
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
@@ -139,7 +139,7 @@
         echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Lihat</b></h3>";
+                  <h3 class='box-title'>detail</b></h3>";
     echo "  </div>
               <div class='box-body'>";
            
@@ -163,7 +163,7 @@
                 <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
             </tr>
           </table>
-                <a href='index.php?view=absensiguru&act=lihat&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='Lihat'><i class='fa fa-eye'></i> Buka absensi siswa</a>
+                <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i> Buka absensi siswa</a>
 
                       </div>
                   </div>
