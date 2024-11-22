@@ -188,7 +188,7 @@
   if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
     $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', updated_at='$tanggalInput' WHERE nip='$_POST[nip]'"); // Mengubah query untuk update
+    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', updated_at='$tanggalInput' WHERE nip='$_GET[nip]'"); // Mengubah query untuk update
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
   }
 
