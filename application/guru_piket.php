@@ -184,7 +184,6 @@
                             <th style='width:20px'>No</th>
                             <th>Nip</th>
                             <th>Guru</th>
-                            <th>Kehadiran</th>
                             <th>Tanggal</th>
                             <th>Action</th>
 
@@ -199,10 +198,9 @@
                         $no = 1;
                         if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
                             while ($r = mysql_fetch_array($tampil)) {
-                                echo $r;
                                 echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
-                                <td>$r[nama_guru]$r</td>
+                                <td>$r[nama_guru]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
                                   <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
