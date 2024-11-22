@@ -791,7 +791,8 @@ if (isset($_POST['simpan'])) {
   if (move_uploaded_file($tmp_file, $path_file)) {
       $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto, keterangan, tanggal, waktu_input) 
                 VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW())";
-      
+      var_dump($query);
+      echo $query;
       $result = mysql_query($query);
       var_dump($result);
       exit;
