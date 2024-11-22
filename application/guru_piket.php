@@ -177,7 +177,7 @@
 
 }elseif ($_GET[act] == 'setujui') {
     // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list WHERE users='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_rekap_absen_guru b ON a.users=b.nip WHERE users='$_GET[nip]' AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
 
     if ($tujuan_belajar) {
         $result = mysql_fetch_array($tujuan_belajar);
@@ -185,6 +185,13 @@
             echo "NIP: " . $result['users'] . "<br>";
             echo "Nama: " . $result['kodejdwl'] . "<br>";
             echo "Tanggal: " . tgl_indo($result['tanggal']) . "<br>";
+            $kodejdwl = $result['kodejdwl'];
+            $nip = $result['users'];
+            $kode_kehadiran = $result['kode_kehadiran'];
+
+            echo $kode_kehadiran;
+        //   $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
         }
