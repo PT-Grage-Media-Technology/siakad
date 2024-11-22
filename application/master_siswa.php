@@ -126,10 +126,6 @@ if ($_GET[act]==''){
                                   <a class='btn btn-warning btn-xs' title='Penilaian Teman' href='?view=siswa&act=penilaianteman&id=$r[nisn]'><span class='glyphicon glyphicon-list'></span></a>
                                   <a class='btn btn-danger btn-xs' title='Delete Siswa' href='?view=siswa&hapus=$r[nisn]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>
                                 </center></td>";
-                              }else{
-                                  echo "<td><center>
-                                  
-                                </center></td>";
                               }
                             echo "</tr>";
                       $no++;
