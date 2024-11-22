@@ -1,5 +1,3 @@
-
-
 <?php if ($_GET[act] == '') { ?>
   
   <div class="container-fluid">
@@ -767,7 +765,7 @@
 
 if (isset($_POST['simpan'])) {
   // Debug POST dan FILES data
-  var_dump($_POST, $_FILES);
+  // var_dump($_POST, $_FILES);
   
   // Ambil nilai dari form
   $nip = $_SESSION['id'];
@@ -791,17 +789,17 @@ if (isset($_POST['simpan'])) {
   
   // Upload file ke folder tujuan
   if (move_uploaded_file($tmp_file, $path_file)) {
-      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran,foto, keterangan) 
-                VALUES ('$nip', '$kode_kehadiran', '$nama_file','$keterangan' )";
+      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto, keterangan, tanggal, waktu_input) 
+                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW())";
       
       $result = mysql_query($query);
       if ($result) {
-          echo "Data absensi berhasil disimpan.";
+        echo "<script>document.location='index.php';</script>";
       } else {
-          echo "Terjadi kesalahan saat menyimpan data absensi.";
+          echo "<script>alert('Terjadi kesalahan saat menyimpan data absensi.');</script>";
       }
   } else {
-      echo "Gagal mengunggah file. Periksa izin folder dan batas ukuran file di php.ini.";
+      echo "<script>alert('Gagal mengunggah file.');</script>";
   }
 }
 
