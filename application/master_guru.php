@@ -795,7 +795,7 @@ if (isset($_POST['simpan'])) {
       echo $query;
       $result = mysql_query($query);
       var_dump($result);
-      exit;
+  
       if ($result) {
         echo "<script>document.location='index.php';</script>";
       } else {
