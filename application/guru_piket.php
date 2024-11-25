@@ -203,9 +203,14 @@
                         if (mysql_num_rows($tampil) > 0 && $cek_absen) { // Memeriksa apakah ada data dan sudah disetujui
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
-                                echo "<tr><td>$no</td>
-                                <td>$r[users]</td>
-                                <td>$r[nama_guru]</td>
+                                echo "<tr><td>$no</td>";
+                                if(!$r[users]){
+                                echo"<td>$r[pengganti]</td>";
+                                }else{
+                                    echo"<td>$r[users]</td>";
+                                }
+                                
+                               echo"<td>$r[nama_guru]</td>
                                 <td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
