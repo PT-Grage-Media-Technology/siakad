@@ -196,8 +196,8 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
-
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                        
 
                         $no = 1;
                         if (mysql_num_rows($tampil) > 0 && $cek_absen) { // Memeriksa apakah ada data dan sudah disetujui
@@ -215,7 +215,9 @@
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
-                                  <a href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Agenda mengajar</a>";
+                                  <a href='index.php?view=index.php?view=absensiswa&act=tampilabsen&id=&kd=&idjr=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Buka Absensi</a>";
+                                
+                                  https://siakad.demogmt.online/index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=MK05&idjr=34&tgl=2024-11-25&jam=7
                                   if(!$r['pengganti']){
                                     echo"<a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>";
                                   }
