@@ -204,7 +204,7 @@
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>
-                                <td>$r[nip]</td>
+                                <td>$r[users]</td>
                                 <td>$r[nama_guru]</td>
                                 <td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
