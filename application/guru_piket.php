@@ -215,7 +215,7 @@
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
-                                  <a href='index.php?view=index.php?view=absensiswa&act=tampilabsen&id=&kd=&idjr=$r[kodejdwl]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Buka Absensi</a>";
+                                  <a href='index.php?view=index.php?view=absensiswa&act=tampilabsen&id=$r[kode_pelajaran]&kd=$r[kode_pelajaran]&idjr=$r[kodejdwl]&tgl=$r[tanggal]&jam=$r[jam]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Buka Absensi</a>";
                                 
                                   https://siakad.demogmt.online/index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=MK05&idjr=34&tgl=2024-11-25&jam=7
                                   if(!$r['pengganti']){
