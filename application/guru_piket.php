@@ -211,9 +211,13 @@
                                     echo "<td>{$r['users']}</td>";
                                 }
                                 
-                                echo"<td>$r[nama_guru]</td>
-                                <td>{ $guru_pengganti}</td>    
-                                <td>$r[namamatapelajaran]</td>
+                                echo"<td>$r[nama_guru]</td>";
+                                if ($row = mysql_fetch_array($guru_pengganti)) {
+                                    echo"<td>{ $guru_pengganti}</td>";
+                                }
+                     
+
+                                echo"<td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
