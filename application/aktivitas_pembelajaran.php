@@ -152,9 +152,13 @@ $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // D
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr>
-                        <td>$no</td>
-                        <td>$r[users]</td>
-                        <td>$r[nama_guru]</td>
+                        <td>$no</td>";
+                        if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
+                          echo "<td>{$r['pengganti']}</td>";
+                        } else {
+                          echo "<td>{$r['users']}</td>";
+                        }
+                        echo"<td>$r[nama_guru]</td>
                         <td>$r[hari]</td>
                         <td>" . tgl_indo($r['tanggal']) . "</td>
                         <td>$r[jam_ke]</td>
