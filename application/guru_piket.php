@@ -209,14 +209,9 @@
                                 } else {
                                     echo "<td>{$r['users']}</td>";
                                 }
-                                if(!empty($r['pengganti'])){
-
-                                    echo"<td>$r[pengganti]</td>";
-                                }else{
-                                    echo"<td>$r[nama_guru]</td>";
-                                }
-                                    
-                                echo"<td>$r[namamatapelajaran]</td>
+                                
+                               echo"<td>$r[nama_guru]</td>
+                                <td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
                                 <td>
