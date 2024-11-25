@@ -253,7 +253,7 @@
             $updateStatus = mysql_query("UPDATE rb_rekap_absen_guru SET status='$status' WHERE id_absensi='$_GET[id_absen]'");
 
           if($updateStatus){
-            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
+            echo "<script>document.location='index.php?view=absensiguru&act=detail&id_absen=$_GET[id_absen]&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
           }
 
         } else {
