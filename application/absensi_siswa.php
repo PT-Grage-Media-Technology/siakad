@@ -367,7 +367,7 @@
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
     } else {
       echo "<div class='box-footer'>
-          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
+          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
         </div>";
     }
   }
