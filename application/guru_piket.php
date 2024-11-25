@@ -217,7 +217,6 @@
                                 <td>
                                   <a href='index.php?view=index.php?view=absensiswa&act=tampilabsen&id=$r[kode_pelajaran]&kd=$r[kode_pelajaran]&idjr=$r[kodejdwl]&tgl=$r[tanggal]&jam=$r[jam]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Buka Absensi</a>";
                                 
-                                  https://siakad.demogmt.online/index.php?view=absensiswa&act=tampilabsen&id=X.MIPA.1&kd=MK05&idjr=34&tgl=2024-11-25&jam=7
                                   if(!$r['pengganti']){
                                     echo"<a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>";
                                   }
