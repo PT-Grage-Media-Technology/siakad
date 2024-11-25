@@ -213,7 +213,7 @@
                                 
                                 echo"<td>$r[nama_guru]</td>";
                                 if ($row = mysql_fetch_array($guru_pengganti)) {
-                                    echo"<td>$row</td>";
+                                    echo"<td>$row[pengganti]</td>";
                                 }
                      
 
