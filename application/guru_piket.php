@@ -197,8 +197,8 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip AND a.pengganti=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
-                        
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                        $guru_pengganti = mysql_query("SELECT pengganti FROM rb_journal_list a JOIN rb_guru b ON a.pengganti=b.nip ");
 
                         $no = 1;
                         if (mysql_num_rows($tampil) > 0 && $cek_absen) { // Memeriksa apakah ada data dan sudah disetujui
@@ -212,7 +212,7 @@
                                 }
                                 
                                 echo"<td>$r[nama_guru]</td>
-                                <td>$r[pengganti]</td>    
+                                <td>{ $guru_pengganti}</td>    
                                 <td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
