@@ -211,7 +211,7 @@
                                 }
                                 if(!empty($r['pengganti'])){
 
-                                    echo"<th>Guru Pengganti</th><td>$r[pengganti]</td>";
+                                    echo"<td>$r[pengganti]</td>";
                                 }else{
                                     echo"<td>$r[nama_guru]</td>";
                                 }
