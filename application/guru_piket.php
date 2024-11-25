@@ -250,11 +250,11 @@
             $jam_ke = $result['jam_ke'];
             $tanggal = $result['tanggal'];
             $status = 1;
-            $updateStatus = mysql_query("UPDATE rb_absensi_guru VALUES('$status', NOW())");
+            $updateStatus = mysql_query("UPDATE rb_rekap_absen_guru SET status='$status'");
 
-        //   if($insertAbsensiGuru){
-        //     echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
-        //   }
+          if($updateStatus){
+            echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
+          }
 
         } else {
             echo "no data"; // Menampilkan pesan jika tidak ada data
