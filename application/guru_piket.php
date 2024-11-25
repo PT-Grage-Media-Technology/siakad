@@ -204,10 +204,10 @@
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>";
-                                if($r[pengganti]){
-                                echo"<td>$r[pengganti]</td>";
-                                }else{
-                                echo"<td>$r[users]</td>";
+                                if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
+                                    echo "<td>{$r['pengganti']}</td>";
+                                } else {
+                                    echo "<td>{$r['users']}</td>";
                                 }
                                 
                                echo"<td>$r[nama_guru]</td>
