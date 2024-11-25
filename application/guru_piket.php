@@ -187,6 +187,7 @@
                             <th style='width:20px'>No</th>
                             <th>Nip</th>
                             <th>Guru</th>
+                            <th>Guru Pengganti</th>
                             <th>Mapel</th>
                             <th>Tanggal</th>
                             <th>Action</th>
@@ -196,7 +197,7 @@
                     <tbody>";
                     
 
-                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                        $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip AND a.pengganti=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
                         
 
                         $no = 1;
@@ -210,7 +211,8 @@
                                     echo "<td>{$r['users']}</td>";
                                 }
                                 
-                               echo"<td>$r[nama_guru]</td>
+                                echo"<td>$r[nama_guru]</td>
+                                <td>$r[pengganti]</td>    
                                 <td>$r[namamatapelajaran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>$r[kode_kehadiran] </td>
