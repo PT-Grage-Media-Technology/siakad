@@ -109,7 +109,7 @@
                                 <td>$r[kode_kehadiran]</td>
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
-                                  <a href='index.php?view=absensiguru&act=detail&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
+                                  <a href='index.php?view=absensiguru&act=detail&id_absen=$r[id_absensi]&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
                                   <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
@@ -236,7 +236,7 @@
 }elseif ($_GET[act] == 'setujui') {
     // ambil data tujuan belajar mengajar
     $tujuan_belajar = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_rekap_absen_guru b ON a.users=b.nip WHERE a.users='$_GET[nip]' AND DAY(a.tanggal) = DAY(b.tanggal) AND MONTH(a.tanggal) = MONTH(b.tanggal) AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
-
+    
     if ($tujuan_belajar) {
         $result = mysql_fetch_array($tujuan_belajar);
         if ($result) {
@@ -250,7 +250,7 @@
             $jam_ke = $result['jam_ke'];
             $tanggal = $result['tanggal'];
             $status = 1;
-            $updateStatus = mysql_query("UPDATE rb_rekap_absen_guru SET status='$status' WHERE nip='$nip' AND DAY(tanggal)='$_GET[tanggal]' AND MONTH(tanggal)='$_GET[bulan]'");
+            $updateStatus = mysql_query("UPDATE rb_rekap_absen_guru SET status='$status' WHERE id_absensi='$_GET[id_absen]'");
 
           if($updateStatus){
             echo "<script>document.location='index.php?view=absensiguru&act=detail&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]';</script>";
