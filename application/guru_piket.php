@@ -265,7 +265,7 @@
 
 }elseif ($_GET[act] == 'gantikan') {
     // ambil data tujuan belajar mengajar
-    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET users=$_SESSION[id] WHERE id_journal=$_GET[id]");
+    $tujuan_belajar = mysql_query("UPDATE rb_journal_list SET pengganti=$_SESSION[id] WHERE id_journal=$_GET[id]");
     
     $nip = $_GET['nip'];
     $bulan=$_GET['bulan'];
