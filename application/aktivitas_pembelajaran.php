@@ -129,7 +129,7 @@ $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // D
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
               (SELECT kode_kehadiran 
                FROM rb_absensi_guru ag 
-               WHERE ag.nip = jl.users 
+               WHERE ag.nip = '" . (!empty('jl.pengganti') ? 'jl.pengganti' : 'jl.users') . "' 
                AND ag.tanggal = jl.tanggal 
                AND ag.jam_ke = jl.jam_ke  
                LIMIT 1) AS kode_kehadiran
@@ -137,7 +137,7 @@ $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // D
                 JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
                 JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
                 JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-                JOIN rb_guru d ON jl.users = d.nip
+                JOIN rb_guru d ON '" . (!empty('jl.pengganti') ? 'jl.pengganti' : 'jl.users') . "' = d.nip
                 WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
                 AND MONTH(jl.tanggal) = '$bulan_dipilih'
                 ORDER BY jl.waktu_input DESC;
@@ -166,7 +166,7 @@ $tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // D
                         <td>$r[namamatapelajaran]</td>";
 
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
-                                                      WHERE nip_guru='$r[users]' 
+                                                      WHERE nip_guru='" . (!empty($r['pengganti']) ? $r['pengganti'] : $r['users']) . "' 
                                                       AND is_read=0 
                                                       AND kode_kelas='$r[kode_kelas]' 
                                                       AND kode_mapel='$r[kode_pelajaran]' 
