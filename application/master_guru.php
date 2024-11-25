@@ -621,7 +621,7 @@
                             SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
                             SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
                         FROM rb_rekap_absen_guru
-                        WHERE nip = '$nip'");
+                        WHERE nip = '$nip' AND status = 1");
 
                         // Ambil hasil query
                         $absen = mysql_fetch_assoc($rekap_absen);
@@ -789,8 +789,8 @@ if (isset($_POST['simpan'])) {
   
   // Upload file ke folder tujuan
   if (move_uploaded_file($tmp_file, $path_file)) {
-      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto_bukti, keterangan, tanggal, waktu_input) 
-                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW())";
+      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto_bukti, keterangan, tanggal, waktu_input,status) 
+                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW(), 0)";
       
       $result = mysql_query($query);
       if ($result) {
