@@ -204,10 +204,10 @@
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>";
-                                if(!$r[users]){
+                                if($r[pengganti]){
                                 echo"<td>$r[pengganti]</td>";
                                 }else{
-                                    echo"<td>$r[users]</td>";
+                                echo"<td>$r[users]</td>";
                                 }
                                 
                                echo"<td>$r[nama_guru]</td>
