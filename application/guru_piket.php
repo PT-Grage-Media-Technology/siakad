@@ -132,7 +132,7 @@
     cek_session_guru();
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip WHERE a.nip=$_GET[nip] AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
-    $cek_absen = mysql_query("SELECT * FROM rb_absen_rekap_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+    $cek_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
     // $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
     // Tampilkan data yang diambil
     if ($data = mysql_fetch_array($m)) {
