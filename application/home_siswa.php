@@ -134,7 +134,7 @@
                   </thead>
                   <tbody>";
   // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list");
+  $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b  ON a.users=b.nip WHERE kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
     echo $r;
