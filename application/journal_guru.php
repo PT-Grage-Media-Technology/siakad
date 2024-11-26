@@ -580,7 +580,7 @@
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
-                    <tr><th scope='row'>Materi</th>  <td> "; ?>
+                    <tr><th scope='row'>Materi</th>  <td>"; ?>
                       <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
                     <?php
                     "</td></tr>
