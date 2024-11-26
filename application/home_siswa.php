@@ -170,10 +170,9 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 <table class='table table-condensed table-hover'>
                     <tbody>
                       <input type='hidden' name='id' value='$d[kodekelas]'>
-                      <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                      <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                      <tr><th scope='row'>Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
-                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[materi]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
                     </tbody>
                 </table>
                 </div>";
