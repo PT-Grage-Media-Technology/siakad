@@ -349,8 +349,8 @@
 
     } else {
       echo "<div class='box-footer'>
-          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
-        </div>";
+              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
+            </div>";
     }
   }
 
