@@ -30,7 +30,6 @@
         </h3>
        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
     <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-    <input type="hidden" name="view" value="">
     <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
         <option value=''>- Pilih Tahun Akademik -</option>
         <?php
