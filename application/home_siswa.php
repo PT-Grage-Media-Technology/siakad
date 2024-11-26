@@ -6,22 +6,12 @@
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
         <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;' onchange="this.form.submit();">
             <?php 
-                echo "<option value=''>- Pilih Tahun Akademik -</option>";
-                $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1");
+                $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
                 $latestYear = mysql_fetch_array($tahun);
-                
-                if (!isset($_GET['tahun'])) { 
-                    echo "<option value='$latestYear[id_tahun_akademik]' selected>$latestYear[nama_tahun]</option>";
-                    $_GET['tahun'] = $latestYear['id_tahun_akademik'];
-                }
-                
-                $tahunList = mysql_query("SELECT * FROM rb_tahun_akademik");
-                while ($k = mysql_fetch_array($tahunList)){
-                  if ($_GET['tahun'] == $k['id_tahun_akademik']){
-                    echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-                  }else{
-                    echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-                  }
+                echo "<option value=''>- Pilih Tahun Akademik -</option>";
+                while ($year = mysql_fetch_array($tahun)) {
+                    $selected = ($year['id_tahun_akademik'] == $latestYear['id_tahun_akademik']) ? "selected" : "";
+                    echo "<option value='$year[id_tahun_akademik]' $selected>$year[nama_tahun]</option>";
                 }
             ?>
         </select>
