@@ -219,8 +219,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       </tr>
                     </thead>
                     <tbody>
-                    echo <tr><td>$no</td>
-                              <td>$r[pertanyaan]</td>
+                    echo <tr><td>1</td>
+                              <td>Apa Kesan dan Pesan</td>
                           </tr>
 
                           <tr><td></td>
