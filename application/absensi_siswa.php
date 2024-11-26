@@ -395,7 +395,7 @@
       $total = mysql_num_rows($cek);
       
       if ($total >= 1) {
-        var_dump($nilai_pengetahuan);
+        var_dump('masuk');
         exit;
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
