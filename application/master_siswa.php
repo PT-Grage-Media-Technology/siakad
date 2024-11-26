@@ -662,7 +662,7 @@ if ($_GET[act] == '') {
             </div>";
 } elseif ($_GET[act] == 'detailsiswa') {
   cek_session_siswa();
-  if ($_SESSION[level] == 'siswa') {
+  if ($_SESSION[level] == 'kepala') {
     $nisn = $_SESSION[id];
   } else {
     $nisn = $_GET[id];
