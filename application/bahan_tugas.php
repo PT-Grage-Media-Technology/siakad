@@ -43,54 +43,56 @@ if ($_GET[act] == '') {
 
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table id="example" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th style='width:20px'>No</th>
-              <th>Jadwal Pelajaran</th>
-              <th>Kelas</th>
-              <th>Guru</th>
-              <th>Hari</th>
-              <th>Mulai</th>
-              <th>Selesai</th>
-              <th>Ruangan</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
-                                            JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                              JOIN rb_guru c ON a.nip=c.nip 
-                                                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                                  JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                  where a.kode_kelas='$_GET[kelas]' 
-                                                    AND a.id_tahun_akademik='$_GET[tahun]' 
-                                                      AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' ORDER BY a.hari DESC");
-            }
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              $total = mysql_num_rows(mysql_query("SELECT * FROM rb_elearning where kodejdwl='$r[kodejdwl]'"));
-              echo "<tr><td>$no</td>
-                              <td>$r[namamatapelajaran]</td>
-                              <td>$r[nama_kelas]</td>
-                              <td>$r[nama_guru]</td>
-                              <td>$r[hari]</td>
-                              <td>$r[jam_mulai]</td>
-                              <td>$r[jam_selesai]</td>
-                              <td>$r[nama_ruangan]</td>
-                              <td style='color:red'>$total Record</td>";
-              echo "<td style='width:70px !important'><center>
-                                      <a class='btn btn-success btn-xs' title='List Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]'><span class='glyphicon glyphicon-th'></span> List Bahan dan Tugas</a>
-                                    </center></td>";
-              echo "</tr>";
-              $no++;
-            }
-            ?>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table id="example" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style='width:20px'>No</th>
+                <th>Jadwal Pelajaran</th>
+                <th>Kelas</th>
+                <th>Guru</th>
+                <th>Hari</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Ruangan</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (isset($_GET[kelas]) and isset($_GET[tahun])) {
+                $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
+                                              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                                                JOIN rb_guru c ON a.nip=c.nip 
+                                                  JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                                                    where a.kode_kelas='$_GET[kelas]' 
+                                                      AND a.id_tahun_akademik='$_GET[tahun]' 
+                                                        AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' ORDER BY a.hari DESC");
+              }
+              $no = 1;
+              while ($r = mysql_fetch_array($tampil)) {
+                $total = mysql_num_rows(mysql_query("SELECT * FROM rb_elearning where kodejdwl='$r[kodejdwl]'"));
+                echo "<tr><td>$no</td>
+                                <td>$r[namamatapelajaran]</td>
+                                <td>$r[nama_kelas]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>$r[hari]</td>
+                                <td>$r[jam_mulai]</td>
+                                <td>$r[jam_selesai]</td>
+                                <td>$r[nama_ruangan]</td>
+                                <td style='color:red'>$total Record</td>";
+                echo "<td style='width:70px !important'><center>
+                                        <a class='btn btn-success btn-xs' title='List Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]'><span class='glyphicon glyphicon-th'></span> List Bahan dan Tugas</a>
+                                      </center></td>";
+                echo "</tr>";
+                $no++;
+              }
+              ?>
+            </tbody>
+          </table>
+        </div><!-- /.table-responsive -->
       </div><!-- /.box-body -->
       <?php
       if ($_GET[kelas] == '' and $_GET[tahun] == '') {
@@ -287,8 +289,11 @@ if ($_GET[act] == '') {
             if ($r['id_kategori_elearning'] == '1') {
               echo "<td><a style='width:185px' class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download File</a>";
             } else {
-              echo "<td><a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
-              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a><td>";
+              echo "<td>
+              <a class='btn btn-warning btn-xs' title='Download Bahan dan Tugas' href='index.php?view=bahantugas&act=lihat&file=$r[file_upload]&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-download'></span> Lihat</a>
+              <a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$r[file_upload]'><span class='glyphicon glyphicon-download'></span> Download</a>
+              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$r[id_elearning]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
+              <td>";
             }
     echo "</tr>";
     $no++;
@@ -299,38 +304,78 @@ if ($_GET[act] == '') {
 </div>
 </form>
 </div>";
-} 
+}elseif($_GET[act] == 'lihat'){
+  cek_session_siswa();
+ 
+  echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>List Tugas</b></h3>";
+  echo "  </div>
+              <div class='box-body'>";
+              $file = $_GET['file'];
+              // var_dump($file);
+              $extension = pathinfo($file, PATHINFO_EXTENSION);
+              // echo "Ekstensi file adalah: " . $extension;
 
-
-elseif ($_GET[act] == 'tambah') {
+              if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'png'){
+                echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>";
+              }elseif($extension == 'pdf') {
+                echo"<embed src='files/$file' quality='high' name='fb' allowScriptAccess='always' allowFullScreen='true' pluginpage='http://www.adobe.com/go/getreader' type='application/pdf' width='100%' height='1100'></embed>";
+              }elseif($extension == 'docx'){
+                echo "<iframe src='https://docs.google.com/gview?url=https://siakad.demogmt.online/files/$file&embedded=true' width='100%' height='1100'></iframe>";
+              }else{
+                echo"file ini tidak di dukung";
+              }
+              
+              // echo"<img src='files/$file' alt='Deskripsi Gambar' style='max-width:100%; height:auto;'>
+              echo"<a class='btn btn-info btn-xs' title='Download Bahan dan Tugas' href='download.php?file=$_GET[file]'><span class='glyphicon glyphicon-download'></span> Download</a>
+              <a class='btn btn-success btn-xs' title='Kirim Bahan dan Tugas' href='index.php?view=bahantugas&act=kirim&jdwl=$_GET[jdwl]&id=$_GET[id]&kd=$_GET[kd]&ide=$_GET[ide]'><span class='glyphicon glyphicon-upload'></span> Kirim Tugas</a>
+              </div>";
+} elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
-  if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+  if (isset($_POST['tambah'])) {
+    // Tampilkan semua data POST untuk debug
+    var_dump($_POST);
+  
+
     $dir_gambar = 'files/';
     $filename = basename($_FILES['c']['name']);
-    $filenamee = date("YmdHis") . '-' . basename($_FILES['c']['name']);
+    $filenamee = date("YmdHis") . '-' . $filename;
     $uploadfile = $dir_gambar . $filenamee;
+
+    // Cek apakah file sudah dipilih
     if ($filename != '') {
-      if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
-        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-      } else {
-        echo "<script>window.alert('Gagal Tambahkan Data Bahan dan Tugas.');
-                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "'</script>";
-      }
+        // Cek error saat upload
+        if ($_FILES['c']['error'] === UPLOAD_ERR_OK) {
+            // Cek jika file berhasil dipindahkan ke direktori tujuan
+            if (move_uploaded_file($_FILES['c']['tmp_name'], $uploadfile)) {
+                // Jika berhasil, masukkan data ke dalam database
+                mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$filenamee','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+                echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+            } else {
+                // Gagal memindahkan file
+                echo "<script>window.alert('Gagal upload file ke direktori tujuan.');
+                      window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+            }
+        } else {
+            // Jika terdapat error upload
+            echo "<script>window.alert('Terjadi kesalahan saat mengunggah file. Kode Error: " . $_FILES['c']['error'] . "');
+                  window.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "'</script>";
+        }
     } else {
-      mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
-      echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+        // Jika file tidak dipilih, simpan data tanpa file
+        mysql_query("INSERT INTO rb_elearning VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','','$_POST[d]','$_POST[e]','$_POST[f]', '$_POST[g]')");
+        echo "<script>document.location='index.php?view=bahantugas&act=listbahantugas&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
     }
-  }
+}
 
   echo "<div class='col-md-12'>
           <div class='row'>
             <div class='col-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
+                  <h3 class='box-title'>Tambah Bahan dan Tugas 123</h3>
                 </div>
                 <div class='box-body'>
                   <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -364,51 +409,55 @@ elseif ($_GET[act] == 'tambah') {
                               <th scope='row'>Nama File</th>
                               <td><input type='text' class='form-control' name='b'></td>
                             </tr>
-                            <tr>
-                              <th scope='row'>File</th>
-                              <td>
-                                <div class='d-flex align-items-center'>
-                                    <div class='d-flex align-items-center'>
-                                        <label class='btn btn-primary mb-0' for='file-upload'>
-                                            <i class='fa fa-search'></i> Cari File Bahan atau Tugas...
-                                        </label>
-                                        <input type='file' class='files d-none' id='file-upload' name='c' onchange='document.getElementById('upload-file-info').textContent = this.value.split('\\').pop();'>
-                                        <span class='badge bg-info text-dark ms-2' id='upload-file-info'></span>
-                                    </div>
-                                    
-                                    <input type='file' class='files' name='c' style='display:none;' onchange='$('#upload-file-info').html($(this).val());'>
-                                    <span class='label label-info' id='upload-file-info' style='margin-left:10px;'></span>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope='row'>Waktu Mulai</th>
-                              <td><input type='datetime-local' class='form-control' name='d' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                            </tr>
-                            <tr>
-                              <th scope='row'>Waktu Selesai</th>
-                              <td><input type='datetime-local' class='form-control' name='e' value='<?php echo date('Y-m-d\TH:i'); ?></td>
-                            </tr>
-                            <tr>
-                              <th scope='row'>Keterangan</th>
-                              <td><input type='text' class='form-control' name='f'></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                            <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
+                                                                          <a class='btn btn-primary' href='javascript:;'>
+                                                                            <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+    <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+    <?php
+                  include('library.php');
+
+                  // Mendapatkan waktu saat ini dalam format yang sesuai
+                  $currentDateTime = date('Y-m-d\TH:i');
+
+                  // Tampilkan form dalam satu pernyataan echo
+                  echo "</a> 
+                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                     </div>
-                    <div class='box-footer'>
-                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                      <a href='index.php?view=bahantugas'>
-                        <button type='button' class='btn btn-default pull-right'>Cancel</button>
-                      </a>
-                    </div>
+                  </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Waktu Mulai</th>
+                    <td>
+                      <input type='datetime-local' class='form-control' name='d' value='$currentDateTime'>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Waktu Selesai</th>
+                    <td>
+                      <input type='datetime-local' class='form-control' name='e' value='$currentDateTime'>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope='row'>Keterangan</th>
+                    <td><input type='text' class='form-control' name='f'></td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  </div>
+                  </div>
+                  <div class='box-footer'>
+                    <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                    <a href='index.php?view=bahantugas'>
+                      <button type='button' class='btn btn-default pull-right'>Cancel</button>
+                    </a>
+                  </div>
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>";
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>";
+
 } elseif ($_GET[act] == 'edit') {
   cek_session_guru();
   if (isset($_POST[update])) {
@@ -770,7 +819,7 @@ elseif ($_GET[act] == 'tambah') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Daftar Siswa yang Mengirimkan Jawaban Tugas </h3>
+                  <h3 class='box-title'>1 </h3>
                   <a class='btn btn-danger btn-sm pull-right' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]'>Kembali</a>
                 </div>
 
@@ -804,7 +853,6 @@ elseif ($_GET[act] == 'tambah') {
                         <th>Keterangan</th>
                         <th style='width:100px'>Waktu Kirim</th>
                         <th>Nilai</th>
-                        <th>Predikat</th>
                         <th>Action</th>
                       </tr>";
 
@@ -857,33 +905,33 @@ while ($r = mysql_fetch_array($tampil)) {
           echo "<script>document.location='index.php?view=bahantugas&act=kirimjawaban&jdwl={$_GET['jdwl']}&id={$_GET['id']}&kd={$_GET['kd']}&ide={$_GET['ide']}';</script>";
       }
 
-       // Query untuk mendapatkan semua data predikat
-    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+    //    // Query untuk mendapatkan semua data predikat
+    // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
 
-    // Ambil nilai sesuai nomor siswa
-    $nilaiSiswa = isset($r['nilai']) ? $r['nilai'] : 0; // Pastikan nilai ada
-    // var_dump($nilaiSiswa); // Memeriksa nilai siswa
+    // // Ambil nilai sesuai nomor siswa
+    // $nilaiSiswa = isset($r['nilai']) ? $r['nilai'] : 0; // Pastikan nilai ada
+    // // var_dump($nilaiSiswa); // Memeriksa nilai siswa
 
-    // Variabel untuk menyimpan kode nilai yang cocok
-    $kode_nilai = '';
+    // // Variabel untuk menyimpan kode nilai yang cocok
+    // $kode_nilai = '';
 
-    // Loop melalui semua hasil data predikat
-    while ($predikatData = mysql_fetch_array($predikatQuery)) {
-      // var_dump($predikatData); // Memeriksa data predikat
+    // // Loop melalui semua hasil data predikat
+    // while ($predikatData = mysql_fetch_array($predikatQuery)) {
+    //   // var_dump($predikatData); // Memeriksa data predikat
 
-      // Cek apakah nilai siswa berada dalam rentang predikat
-      if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-        $kode_nilai = $predikatData['kode_nilai'];
-        break; // Hentikan loop setelah menemukan predikat yang sesuai
-      }
-    }
+    //   // Cek apakah nilai siswa berada dalam rentang predikat
+    //   if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+    //     $kode_nilai = $predikatData['kode_nilai'];
+    //     break; // Hentikan loop setelah menemukan predikat yang sesuai
+    //   }
+    // }
 
-    // Output kode predikat yang cocok, jika ada
-    if ($kode_nilai && $nilaiSiswa) {
-      echo "<td>$kode_nilai</td>";
-    } else {
-      echo "<td>Tidak ada predikat yang sesuai</td>";
-    }
+    // // Output kode predikat yang cocok, jika ada
+    // if ($kode_nilai && $nilaiSiswa) {
+    //   echo "<td>$kode_nilai</td>";
+    // } else {
+    //   echo "<td>Tidak ada predikat yang sesuai</td>";
+    // }
       
         
         echo "</td>
@@ -931,3 +979,15 @@ function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
 }
 </script>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>

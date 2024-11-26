@@ -42,60 +42,61 @@
 
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table id="example" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th style='width:20px'>No</th>
-              <th>Jadwal Pelajaran</th>
-              <th>Kelas</th>
-              <th>Guru</th>
-              <th>Hari</th>
-              <th>Mulai</th>
-              <th>Selesai</th>
-              <th>Ruangan</th>
-              <th>Semester</th>
-              <?php if ($_SESSION[level] != 'kepala') { ?>
-                <th>Action</th>
-              <?php } ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-              $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan 
-              FROM rb_jadwal_pelajaran a 
-              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-              JOIN rb_guru c ON a.nip=c.nip 
-              JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-              JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-              WHERE a.kode_kelas='$_GET[kelas]' 
-              AND a.id_tahun_akademik='$_GET[tahun]' 
-              AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
-              ORDER BY a.hari DESC");
-
-            }
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              echo "<tr><td>$no</td>
-                              <td>$r[namamatapelajaran]</td>
-                              <td>$r[nama_kelas]</td>
-                              <td>$r[nama_guru]</td>
-                              <td>$r[hari]</td>
-                              <td>$r[jam_mulai]</td>
-                              <td>$r[jam_selesai]</td>
-                              <td>$r[nama_ruangan]</td>
-                              <td>$r[id_tahun_akademik]</td>";
-              if ($_SESSION[level] != 'kepala') {
-                echo "<td style='width:70px !important'><center>
-                                <a class='btn btn-success btn-xs' title='Tampil List Absensi' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&jdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a>
-                              </center></td>";
+        <div class="table-responsive">
+          <table id="example" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style='width:20px'>No</th>
+                <th>Jadwal Pelajaran</th>
+                <th>Kelas</th>
+                <th>Guru</th>
+                <th>Hari</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Ruangan</th>
+                <th>Semester</th>
+                <?php if ($_SESSION[level] != 'kepala') { ?>
+                  <th>Action</th>
+                <?php } ?>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (isset($_GET[kelas]) and isset($_GET[tahun])) {
+                $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan 
+                FROM rb_jadwal_pelajaran a 
+                JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                JOIN rb_guru c ON a.nip=c.nip 
+                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                WHERE a.kode_kelas='$_GET[kelas]' 
+                AND a.id_tahun_akademik='$_GET[tahun]' 
+                AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' 
+                ORDER BY a.hari DESC");
               }
-              echo "</tr>";
-              $no++;
-            }
-            ?>
-          </tbody>
-        </table>
+              $no = 1;
+              while ($r = mysql_fetch_array($tampil)) {
+                echo "<tr><td>$no</td>
+                                <td>$r[namamatapelajaran]</td>
+                                <td>$r[nama_kelas]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>$r[hari]</td>
+                                <td>$r[jam_mulai]</td>
+                                <td>$r[jam_selesai]</td>
+                                <td>$r[nama_ruangan]</td>
+                                <td>$r[id_tahun_akademik]</td>";
+                if ($_SESSION[level] != 'kepala') {
+                  echo "<td style='width:70px !important'><center>
+                                  <a class='btn btn-success btn-xs' title='Tampil List Absensi' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&jdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a>
+                                </center></td>";
+                }
+                echo "</tr>";
+                $no++;
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div><!-- /.box-body -->
       <?php
       if ($_GET[kelas] == '' and $_GET[tahun] == '') {
@@ -104,7 +105,7 @@
       ?>
     </div>
   </div>
-  <?php
+<?php
 } elseif ($_GET[act] == 'tampilabsen') {
   if ($_GET[gettgl]) {
     $filtertgl = $_GET[gettgl];
@@ -133,24 +134,24 @@
 
     switch ($lebartgl) {
       case 1: {
-        $tglc = "0" . $tgl;
-        break;
-      }
+          $tglc = "0" . $tgl;
+          break;
+        }
       case 2: {
-        $tglc = $tgl;
-        break;
-      }
+          $tglc = $tgl;
+          break;
+        }
     }
 
     switch ($lebarbln) {
       case 1: {
-        $blnc = "0" . $bln;
-        break;
-      }
+          $blnc = "0" . $bln;
+          break;
+        }
       case 2: {
-        $blnc = $bln;
-        break;
-      }
+          $blnc = $bln;
+          break;
+        }
     }
 
     $filtertgl = $thn . "-" . $blnc . "-" . $tglc;
@@ -205,12 +206,6 @@
                         </tbody>
                     </table>
                 </div>
-                <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$_GET[idjr]&id=$_GET[id]&kd=$_GET[kd]'>
-                    <div class='d-flex flex-column align-items-center'>
-                      <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
-                      <div class='' style='font-size:14px;'>Tugas</div>
-                    </div>
-                 </a>
             </div>
             <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <input type='hidden' name='tgla' value='$tglc'>
@@ -230,13 +225,13 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Nilai</th>
-                                    <th>Predikat</th>
+                                    <th>Nilai Pengetahuan</th>
+                                    <th>Nilai Keterampilan</th>
+                                    <th>Nilai Sikap</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
                             <tbody>";
-
 
   $no = 1;
   $tugas = mysql_query("SELECT * FROM rb_elearning WHERE 
@@ -252,109 +247,131 @@
                           a.id_jenis_kelamin=b.id_jenis_kelamin 
                           where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
 
+  // while ($r = mysql_fetch_array($tampil)) {
+
+  //   $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
+
+  //   $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+  //                                       where kodejdwl='$_GET[idjr]' AND 
+  //                                       tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
+
+  // echo "<tr bgcolor=$warna>
+  //                             <td>$no</td>
+  //                             <td>$r[nipd]</td>
+  //                             <td>$r[nisn]</td>
+  //                             <td>$r[nama]</td>
+  //                             <td>$r[jenis_kelamin]</td>
+  //                             <td>";
+
+
+
+  // else {
+  //   if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+  //     echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
+  //   } else {
+  //     echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
+  //   }
+  // }
+
+  // // Query untuk mendapatkan semua data predikat
+  // $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
+
+  // // Ambil nilai sesuai nomor siswa
+  // $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
+  // // var_dump($nilaiSiswa); // Memeriksa nilai siswa
+
+  // // Variabel untuk menyimpan kode nilai yang cocok
+  // $kode_nilai = '';
+
+  // // Loop melalui semua hasil data predikat
+  // while ($predikatData = mysql_fetch_array($predikatQuery)) {
+  //   // var_dump($predikatData); // Memeriksa data predikat
+
+  //   // Cek apakah nilai siswa berada dalam rentang predikat
+  //   if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
+  //     $kode_nilai = $predikatData['kode_nilai'];
+  //     break; // Hentikan loop setelah menemukan predikat yang sesuai
+  //   }
+  // }
+
+  // Output kode predikat yang cocok, jika ada
+  // if ($kode_nilai && $nilaiSiswa) {
+  //   echo "<td>$kode_nilai</td>";
+  // } else {
+  //   echo "<td>Tidak ada predikat yang sesuai</td>";
+  // }
+
   while ($r = mysql_fetch_array($tampil)) {
-
-    $nilai = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]'"));
-
+    // Ambil nilai dari tabel terkait
+    $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
+    $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
+    $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                        where kodejdwl='$_GET[idjr]' AND 
-                                        tanggal='$_GET[tgl]' AND nisn='$r[nisn]'"));
+                                          WHERE kodejdwl='$_GET[idjr]' 
+                                          AND tanggal='$_GET[tgl]' 
+                                          AND nisn='$r[nisn]'"));
 
-    echo "<tr bgcolor=$warna>
-                                <td>$no</td>
-                                <td>$r[nipd]</td>
-                                <td>$r[nisn]</td>
-                                <td>$r[nama]</td>
-                                <td>$r[jenis_kelamin]</td>
-                                <td>";
+    echo "<tr>
+              <td>$no</td>
+              <td>$r[nipd]</td>
+              <td>$r[nisn]</td>
+              <td>$r[nama]</td>
+              <td>$r[jenis_kelamin]</td>";
 
-    // Cek apakah tugas ada
-    if (mysql_num_rows($tugas) > 0) {
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-      } else {
-        echo "nilai tugas<input type='number' value='{$nilai['nilai']}' name='nilai[$no]' style='width:50px;'>";
-      }
-    } else {
-      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;' disabled>";
-      } else {
-        echo "nilai sikap<input type='number' value='{$a['nilai']}' name='nilai[$no]' style='width:50px;'>";
-      }
-    }
-
-    // Query untuk mendapatkan semua data predikat
-    $predikatQuery = mysql_query("SELECT * FROM rb_kriteria_nilai");
-
-    // Ambil nilai sesuai nomor siswa
-    $nilaiSiswa = isset($a['nilai']) ? $a['nilai'] : 0; // Pastikan nilai ada
-    // var_dump($nilaiSiswa); // Memeriksa nilai siswa
-
-    // Variabel untuk menyimpan kode nilai yang cocok
-    $kode_nilai = '';
-
-    // Loop melalui semua hasil data predikat
-    while ($predikatData = mysql_fetch_array($predikatQuery)) {
-      // var_dump($predikatData); // Memeriksa data predikat
-
-      // Cek apakah nilai siswa berada dalam rentang predikat
-      if ($nilaiSiswa >= $predikatData['nilai_bawah'] && $nilaiSiswa <= $predikatData['nilai_atas']) {
-        $kode_nilai = $predikatData['kode_nilai'];
-        break; // Hentikan loop setelah menemukan predikat yang sesuai
-      }
-    }
-
-    // Output kode predikat yang cocok, jika ada
-    if ($kode_nilai && $nilaiSiswa) {
-      echo "<td>$kode_nilai</td>";
-    } else {
-      echo "<td>Tidak ada predikat yang sesuai</td>";
-    }
-
-    echo "</td><input type='hidden' value='$r[nisn]' name='nisn[$no]'>";
-
+    // Nilai Pengetahuan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><select disabled style='width:100px;' name='a[$no]' class='form-control'>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><select style='width:100px;' name='a[$no]' class='form-control'>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     }
 
+    // Nilai Keterampilan
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+    } else {
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+    }
 
+    // Nilai Sikap
+    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+    } else {
+      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;'></td>";
+    }
+
+    // Kehadiran
+    echo "<td><select style='width:100px;' name='kehadiran[$no]' class='form-control' " . (strtotime(date('Y-m-d')) > strtotime($_GET['tgl']) ? "disabled" : "") . ">";
 
     $kehadiran = mysql_query("SELECT * FROM rb_kehadiran");
     while ($k = mysql_fetch_array($kehadiran)) {
-      if ($a[kode_kehadiran] == $k[kode_kehadiran]) {
-        echo "<option value='$k[kode_kehadiran]' selected>* $k[nama_kehadiran]</option>";
-      } else {
-        echo "<option value='$k[kode_kehadiran]'>$k[nama_kehadiran]</option>";
-      }
+      echo "<option value='$k[kode_kehadiran]' " . ($a['kode_kehadiran'] == $k['kode_kehadiran'] ? "selected" : "") . ">$k[nama_kehadiran]</option>";
     }
-    echo "</select></td>";
 
+    echo "</select></td>";
     echo "</tr>";
     $no++;
   }
 
-  echo "</tbody>
-                    </table>
-                </div>
-            </div>
-        </div>";
 
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
-
     } else {
       echo "<div class='box-footer'>
-              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
-            </div>";
+          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
+        </div>
+        ";
     }
   }
 
-  echo "</form>
+  echo "
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </form>
   </div>";
 
   if (isset($_POST['simpann'])) {
@@ -410,7 +427,6 @@
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
   }
-
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
@@ -501,7 +517,7 @@
     </div>
   </div>
 
-  <?php
+<?php
 } elseif ($_GET[act] == 'detailabsensiswa') {
   echo "<div class='col-xs-12'>  
               <div class='box'>
@@ -590,3 +606,17 @@ if (isset($_GET['id_pemberitahuan'])) {
   echo "";
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto;
+    /* Hanya aktifkan scroll horizontal jika diperlukan */
+  }
+
+  @media (min-width: 768px) {
+    .table-responsive {
+      overflow-x: visible;
+      /* Nonaktifkan scroll horizontal di desktop */
+    }
+  }
+</style>

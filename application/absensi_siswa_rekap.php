@@ -36,58 +36,60 @@
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th style='width:20px'>No</th>
-                        <th>Jadwal Pelajaran</th>
-                        <th>Kelas</th>
-                        <th>Guru</th>
-                        <th>Hari</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
-                        <th>Ruangan</th>
-                        <th>Semester</th>
-                        <?php if($_SESSION[level]!='kepala'){ ?>
-                        <th>Action</th>
-                        <?php } ?>
-                      </tr>
-                    </thead>
-                    <tbody>
-                  <?php
-                    if (isset($_GET[kelas]) AND isset($_GET[tahun])){
-                      $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
-                                            JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                              JOIN rb_guru c ON a.nip=c.nip 
-                                                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                                  JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                                  where a.kode_kelas='$_GET[kelas]' 
-                                                    AND a.id_tahun_akademik='$_GET[tahun]' 
-                                                      AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' ORDER BY a.hari DESC");
-                    
-                    }
-                    $no = 1;
-                    while($r=mysql_fetch_array($tampil)){
-                    echo "<tr><td>$no</td>
-                              <td>$r[namamatapelajaran]</td>
-                              <td>$r[nama_kelas]</td>
-                              <td>$r[nama_guru]</td>
-                              <td>$r[hari]</td>
-                              <td>$r[jam_mulai]</td>
-                              <td>$r[jam_selesai]</td>
-                              <td>$r[nama_ruangan]</td>
-                              <td>$r[id_tahun_akademik]</td>";
-                              if($_SESSION[level]!='kepala'){
-                        echo "<td style='width:70px !important'><center>
-                                <a class='btn btn-success btn-xs' title='Tampil List Absensi' href='index.php?view=rekapabsensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&jdwl=$r[kodejdwl]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a>
-                              </center></td>";
-                              }
-                            echo "</tr>";
-                      $no++;
+                  <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th style='width:20px'>No</th>
+                          <th>Jadwal Pelajaran</th>
+                          <th>Kelas</th>
+                          <th>Guru</th>
+                          <th>Hari</th>
+                          <th>Mulai</th>
+                          <th>Selesai</th>
+                          <th>Ruangan</th>
+                          <th>Semester</th>
+                          <?php if($_SESSION[level]!='kepala'){ ?>
+                          <th>Action</th>
+                          <?php } ?>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    <?php
+                      if (isset($_GET[kelas]) AND isset($_GET[tahun])){
+                        $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, b.kode_kurikulum, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
+                                              JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                                                JOIN rb_guru c ON a.nip=c.nip 
+                                                  JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                                                    where a.kode_kelas='$_GET[kelas]' 
+                                                      AND a.id_tahun_akademik='$_GET[tahun]' 
+                                                        AND b.kode_kurikulum='$kurikulum[kode_kurikulum]' ORDER BY a.hari DESC");
+                      
                       }
-                  ?>
-                    </tbody>
-                  </table>
+                      $no = 1;
+                      while($r=mysql_fetch_array($tampil)){
+                      echo "<tr><td>$no</td>
+                                <td>$r[namamatapelajaran]</td>
+                                <td>$r[nama_kelas]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>$r[hari]</td>
+                                <td>$r[jam_mulai]</td>
+                                <td>$r[jam_selesai]</td>
+                                <td>$r[nama_ruangan]</td>
+                                <td>$r[id_tahun_akademik]</td>";
+                                if($_SESSION[level]!='kepala'){
+                          echo "<td style='width:70px !important'><center>
+                                  <a class='btn btn-success btn-xs' title='Tampil List Absensi' href='index.php?view=rekapabsensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&jdwl=$r[kodejdwl]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a>
+                                </center></td>";
+                                }
+                              echo "</tr>";
+                        $no++;
+                        }
+                    ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -169,3 +171,15 @@
 
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>

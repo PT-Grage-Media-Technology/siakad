@@ -8,9 +8,20 @@ $s = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_GET[id]
 <html>
 <head>
 <title>Cover Raport Siswa</title>
+<script>
+        function handlePrint() {
+            // Membuka dialog cetak
+            window.print();
+            
+            // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+            setTimeout(() => {
+                window.close();
+            }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+        }
+    </script>
 <link rel="stylesheet" href="../bootstrap/css/printer.css">
 </head>
-<body onload="window.print()">
+<body onload="handlePrint()">
     <h1 align=center>RAPORT SISWA <br>SEKOLAH MENENGAH ATAS <br> (SMA)</h1>
     <center>
         <img width='170px' src='logo.png'><br><br><br><br><br><br><br><br>

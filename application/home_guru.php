@@ -1,34 +1,46 @@
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">
+      
+    <?php
+// Ambil tahun akademik yang terbaru
+$tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+$tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
+mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+
+// Jika pengguna belum memilih tahun, gunakan tahun terbaru
+$tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
+
+// Ambil nama tahun akademik yang dipilih
+$nama_tahun_dipilih = '';
+while ($k = mysql_fetch_array($tahun)) {
+    if ($tahun_dipilih == $k['id_tahun_akademik']) {
+        $nama_tahun_dipilih = $k['nama_tahun'];
+    }
+}
+mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+?>
+
+<!-- Menampilkan form dan h3 -->
+<h3 class="box-title">
+    Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+</h3>
+
+<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+    <input type="hidden" name="view" value="jadwalguru">
+    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tahun Akademik -</option>
         <?php
-        // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
-        $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-        // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
-        $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-        $nama_tahun = isset($_GET['tahun']) ?
-          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
-          $latest_year['nama_tahun'];
-
-        echo "Jadwal Mengajar Anda - $nama_tahun";
-        ?>
-      </h3>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-        <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-        <input type="hidden" name="view" value="jadwalguru">
-        <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-          <option value=''>- Pilih Tahun Akademik -</option>
-          <?php
-          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-          while ($k = mysql_fetch_array($tahun)) {
+        while ($k = mysql_fetch_array($tahun)) {
             $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-            echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
-          }
-          ?>
-        </select>
-      </form>
+            echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
+        }
+        ?>
+    </select>
+</form>
+
+
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -86,3 +98,100 @@
     </div><!-- /.box-body -->
   </div>
 </div>
+<div class="col-xs-12">
+  <div class="box">
+    <div class="box-header">
+      
+    <?php
+// Ambil tahun akademik yang terbaru
+$tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+$tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
+mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+
+// Jika pengguna belum memilih tahun, gunakan tahun terbaru
+$tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
+
+// Ambil nama tahun akademik yang dipilih
+$nama_tahun_dipilih = '';
+while ($k = mysql_fetch_array($tahun)) {
+    if ($tahun_dipilih == $k['id_tahun_akademik']) {
+        $nama_tahun_dipilih = $k['nama_tahun'];
+    }
+}
+mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+?>
+
+<!-- Menampilkan form dan h3 -->
+<h3 class="box-title">
+    Jadwal Piket anda
+</h3>
+
+<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+    <input type="hidden" name="view" value="jadwalguru">
+    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tahun Akademik -</option>
+        <?php
+        while ($k = mysql_fetch_array($tahun)) {
+            $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+            echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
+        }
+        ?>
+    </select>
+</form>
+
+
+</div><!-- /.box-header -->
+      <div class="box-body">
+        <div class="table-responsive">
+
+          <table id="example" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style='width:20px'>No</th>
+                <th>Nip</th>
+                <th>Hari</th>
+                <th>Guru</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+
+              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.tanggal = CURDATE() AND a.nip = '$_SESSION[id]'");
+
+
+              $no = 1;
+              if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
+                while ($r = mysql_fetch_array($tampil)) {
+                  echo "<tr><td>$no</td>
+                                <td>$r[nip]</td>
+                                <td>$r[hari]</td>
+                                <td>$r[nama_guru]</td>
+                                <td>" . tgl_indo($r['tanggal']) . "</td>";
+                  echo "</tr>";
+                  $no++;
+                }
+              } else {
+                echo "<tr><td colspan='6' style='text-align:center;'>Tidak ada data</td></tr>"; // Menampilkan pesan jika tidak ada data
+              }
+              ?>
+            <tbody>
+          </table>
+        </div>
+      </div><!-- /.box-body -->
+
+    </div>
+</div>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>

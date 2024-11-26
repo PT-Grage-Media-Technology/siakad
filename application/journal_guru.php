@@ -109,7 +109,7 @@
                   <h3 class='box-title'>Tujuan Belajar Mengajar</h3>
                       <a style='margin-left:5px;display:none;' class='pull-right btn btn-success btn-sm' href='index.php?view=kompetensidasar&act=lihat&id=$_GET[id]'>Lihat Kompetensi Dasar</a>";
   if ($_SESSION['level'] != 'kepala') {
-    echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
+    // echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=journalguru&act=tambah&jdwl=$_GET[id]'>Tambahkan Tujuan Pembelajaran</a>";
   }
   echo "</div>
                 <div class='box-body'>
@@ -120,58 +120,160 @@
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
-    </table>
+    </table>";
+  if (isset($_POST[tambah])) {
+    // var_dump($_POST['c']);
+    // exit;
+
+    $d = tgl_simpan($_POST[d]);
+
+    // Periksa dan proses file yang diunggah
+    $target_dir = "files/"; // Direktori tujuan
+    $file_name = basename($_FILES['file']['name']);
+    $target_file = $target_dir . $file_name;
+
+    // Pastikan direktori ada
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Validasi dan pindahkan file
+    if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+        // Simpan data ke database
+        $query = "INSERT INTO rb_journal_list VALUES(
+          '',
+          '$_GET[id]',
+          '$_POST[c]', 
+          '$d',
+          '$_POST[e]', 
+          '$_POST[f]', 
+          '$_POST[g]', 
+          '$target_file', 
+          '" . date('Y-m-d H:i:s') . "', 
+          '$_POST[nip_users]',
+          NULL
+      )";
+      
+      if (mysql_query($query)) {
+          echo "Data berhasil disimpan ke database.<br>";
+      } else {
+          echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+      }
+    }
     
-    <!-- Container grid dengan margin dan padding yang seragam -->
-    <div class='container' style='max-width: 200px; padding: 10px;'>
+    // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+  }
+
+  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
+  $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
+  echo "<div class='col-md-12'>
+                <div class='box box-info'>
+                  <div class='box-header with-border'>
+                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
+                  </div>
+                <div class='box-body'>
+                <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                  <div class='col-md-12'>
+                    <table class='table table-condensed table-bordered'>
+                    <tbody>
+                    <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+                      <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
+                      $kelas = mysql_query("SELECT * FROM rb_kelas");
+                      while ($a = mysql_fetch_array($kelas)) {
+                        if ($e[kode_kelas] == $a[kode_kelas]) {
+                          echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+                        }
+                      }
+                      echo "</select>
+                                          </td></tr>
+                                          <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
+                      $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+                      while ($a = mysql_fetch_array($mapel)) {
+                        if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+                          echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+                        }
+                      }
+                      echo "</select>
+                      </td></tr>
+                     
+                      <tr>
+                        <th scope='row'>Hari</th>
+                        <td>
+                            <select class='form-control' name='c'>
+                                <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
+                                <option value='Selasa'" . ($hari_ini == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                                <option value='Rabu'" . ($hari_ini == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                                <option value='Kamis'" . ($hari_ini == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                                <option value='Jumat'" . ($hari_ini == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                                <option value='Sabtu'" . ($hari_ini == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                            </select>
+                        </td>
+                      </tr>";
+
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
+                          <th scope='row'>Pilih Guru</th>   
+                          <td>
+                          <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                              <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
+    $guru = mysql_query("SELECT * FROM rb_guru");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+    }
+    echo "</select>
+                          </td>
+                      </tr>";
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
+
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                      <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                          <tr>
+                                  <th scope='row'>Nama File</th>
+                                  <td><input type='text' class='form-control' name='b'></td>
+                                </tr>
+                                <tr><th width=120px scope='row'> File</th>             
+                                <td><div style='position:relative;''>
+                                    <a class='btn btn-primary' href='javascript:;'>
+                                      <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+                                  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                                  <?php
+                                  include('library.php');
+
+                                  // Mendapatkan waktu saat ini dalam format yang sesuai
+                                  $currentDateTime = date('Y-m-d\TH:i');
+
+                                  // Tampilkan form dalam satu pernyataan echo
+                                  echo "</a> 
+                                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                    </div>
+                                  </td>
+                                  </tr>
+                                  <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                                  <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
+                                  </td></tr>
+                                </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <div class='box-footer'>
+                                  <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                                  <a href='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                                </div>
+                            </form>
+                          </div>";
+
+  // <!-- Container grid dengan margin dan padding yang seragam -->
+  echo "<div class='container' style='max-width: 200px; padding: 10px;'>
   <style>
     @media (min-width: 1024px) { .container { margin: 10px; } }
     @media (max-width: 1024px) { .container { margin: 10px auto; } }
-
   </style>
-  <!-- Grid container dengan 2 baris, 2 kolom -->
-  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
-    <!-- Tombol Nilai UTS -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='glyphicon glyphicon-list-alt' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Nilai UTS</div>
-      </div>
-    </a>
-
-    <!-- Tombol Nilai Raport -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='glyphicon glyphicon-book' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Nilai Raport</div>
-      </div>
-    </a>
-
-    <!-- Tombol Forum Diskusi -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='fa fa-users' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Forum Diskusi</div>
-      </div>
-    </a>
-
-    <!-- Tombol Quiz/Ujian -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='fa fa-th-list' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Quiz/Ujian Online</div>
-      </div>
-    </a>
+</div>
   </div>
 </div>
-
-  </div>
-</div>
-
                   <div class='table-responsive'>
                   <table id='example' class='table table-bordered table-striped'>
                     <thead>
@@ -258,7 +360,7 @@
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-  }
+  } 
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
   $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
@@ -312,18 +414,18 @@
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
-    while ($g = mysql_fetch_array($guru)) {
-      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-    }
-    echo "</select>
-                        </td>
-                    </tr>";
-  } else {
-    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-  }
+                $guru = mysql_query("SELECT * FROM rb_guru");
+                while ($g = mysql_fetch_array($guru)) {
+                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+                }
+                echo "</select>
+                                    </td>
+                                </tr>";
+                } else {
+                  echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+                }
 
-  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
@@ -339,16 +441,74 @@
               </form>
             </div>";
 } elseif ($_GET[act] == 'edit') {
-  if (isset($_POST[update])) {
-    $d = tgl_simpan($_POST[d]);
-    mysql_query("UPDATE rb_journal_list SET hari = '$_POST[c]',
-                                                tanggal = '$d',
-                                                jam_ke = '$_POST[e]',
-                                                materi = '$_POST[f]',
-                                                keterangan = '$_POST[g]',
-                                                users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+  // if (isset($_POST[update])) {
+  //   $d = tgl_simpan($_POST[d]);
+  //   mysql_query("UPDATE rb_journal_list SET hari = '$_POST[c]',
+  //                                               tanggal = '$d',
+  //                                               jam_ke = '$_POST[e]',
+  //                                               materi = '$_POST[f]',
+  //                                               keterangan = '$_POST[g]',
+  //                                               users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
+  //   echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+  // }
+    if (isset($_POST['update'])) {
+      // Konversi tanggal
+      $d = tgl_simpan($_POST['d']);
+      
+      // Tentukan direktori tujuan untuk menyimpan file
+      $target_dir = "files/";
+      
+      // Ambil data file lama dari database
+      $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
+      $data_file = mysql_fetch_assoc($query_file);
+      $old_file = $data_file['file'];
+      
+      // Cek apakah file baru diunggah
+      if ($_FILES['file']['size'] > 0) {
+          $new_file_name = basename($_FILES['file']['name']);
+          $target_file = $target_dir . $new_file_name;
+
+          // Pastikan direktori ada
+          if (!file_exists($target_dir)) {
+              mkdir($target_dir, 0777, true);
+          }
+
+          // Hapus file lama jika ada
+          if (!empty($old_file) && file_exists($old_file)) {
+              unlink($old_file);
+          }
+
+          // Pindahkan file baru ke direktori tujuan
+          if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+              echo "File berhasil diunggah ke: $target_file<br>";
+          } else {
+              echo "Gagal mengunggah file baru.<br>";
+          }
+      } else {
+          // Jika tidak ada file baru, gunakan file lama
+          $target_file = $old_file;
+      }
+
+      // Query update
+      $query = "UPDATE rb_journal_list SET 
+                  hari = '$_POST[c]',
+                  tanggal = '$d',
+                  jam_ke = '$_POST[e]',
+                  materi = '$_POST[f]',
+                  keterangan = '$_POST[g]',
+                  users = '$_POST[nip_users]',
+                  file = '$target_file'
+                WHERE id_journal = '$_POST[id]'";
+
+      // Eksekusi query
+      if (mysql_query($query)) {
+          echo "<script>alert('Data berhasil diperbarui!');</script>";
+          echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+      } else {
+          echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
+      }
   }
+
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -417,10 +577,27 @@
 
   echo "</td>
                     </tr>
-
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
+                    <tr><th width=120px scope='row'> File</th>             
+                    <td><img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'></td>
+                    <td><div style='position:relative;''>
+                        <a class='btn btn-primary' href='javascript:;'>
+                          <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                      <?php
+                      include('library.php');
+
+                      // Mendapatkan waktu saat ini dalam format yang sesuai
+                      $currentDateTime = date('Y-m-d\TH:i');
+
+                      // Tampilkan form dalam satu pernyataan echo
+                      echo "</a> 
+                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                        </div>
+                      </td>
+                      </tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
                     </td></tr>
                   </tbody>
@@ -433,6 +610,34 @@
                     
                   </div>
               </form>
+
+              <script>
+    // Fungsi untuk memeriksa apakah teks adalah URL
+    function isURL(str) {
+        const pattern = new RegExp(
+            '^(https?:\\/\\/)?' + // skema opsional
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*))\\.)+' + // domain
+            '[a-z]{2,}' + // ekstensi (misal .com)
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port dan path opsional
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string opsional
+            '(\\#[-a-z\\d_]*)?$', 'i' // fragment locator opsional
+        );
+        return pattern.test(str);
+    }
+
+    // Ambil elemen textarea
+    const keteranganField = document.getElementById('keterangan');
+
+    // Tambahkan event listener untuk mendeteksi perubahan teks
+    keteranganField.addEventListener('input', function () {
+        if (isURL(keteranganField.value.trim())) {
+            keteranganField.style.color = 'blue'; // Ubah warna teks menjadi biru
+        } else {
+            keteranganField.style.color = 'black'; // Kembali ke warna hitam
+        }
+    });
+</script>
+
               <!-- Inisialisasi Bootstrap-select -->
 <script>
 $(document).ready(function(){
@@ -447,4 +652,3 @@ $(document).ready(function(){
 </script>
             </div>";
 }
-?>

@@ -90,5 +90,12 @@ echo "          </select>
 echo "        </table>
             </div>
           </div>
-        </div>";
+        </div>
+        
+    //      <script>
+        
+    //     window.onload = function () {
+    //         window.print();
+    //     };
+    // </script>";
 ?>

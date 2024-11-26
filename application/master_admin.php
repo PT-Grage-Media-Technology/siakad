@@ -6,6 +6,7 @@
                   <a class='pull-right btn btn-primary btn-sm' href='index.php?view=admin&act=tambah'>Tambahkan Data Admin</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -46,6 +47,7 @@
                   ?>
                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
@@ -131,10 +133,22 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=guru'><button class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=admin' class='btn btn-default pull-right'>Cancel</a>
                     
                   </div>
               </form>
             </div>";
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>

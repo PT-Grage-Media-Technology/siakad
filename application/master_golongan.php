@@ -75,7 +75,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='update' class='btn btn-info'>Update</button>
-                    <a href='index.php?view=golongan'><button class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=golongan' class='btn btn-default pull-right'>Cancel</a>
                     
                   </div>
               </form>
@@ -104,8 +104,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=golongan'><button class='btn btn-default pull-right'>Cancel</button></a>
-                    
+                    <a href='index.php?view=golongan' class='btn btn-default pull-right'>Cancel</a>
                   </div>
               </form>
             </div>";

@@ -1,5 +1,3 @@
-
-
 <?php if ($_GET[act] == '') { ?>
   
   <div class="container-fluid">
@@ -232,7 +230,7 @@
                 <div style='clear:both'></div>
                         <div class='box-footer'>
                           <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                          <a href='index.php?view=siswa'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                          <a href='index.php?view=guru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                         </div> 
               </div>
             </form>
@@ -519,7 +517,7 @@
                 <div style='clear:both'></div>
                         <div class='box-footer'>
                           <button type='submit' name='update1' class='btn btn-info'>Update</button>
-                          <a href='index.php?view=siswa'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                          <a href='index.php?view=guru'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                         </div> 
               </div>
             </form>
@@ -571,6 +569,7 @@
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
   if ($_SESSION[level] != 'kepala') {
+    echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
     echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   }
   echo "
@@ -611,9 +610,25 @@
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                   <div class='modal-dialog' role='document'>
-                    <div class='modal-content'>
-                      <div class='modal-header'>
-                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                    <div class='modal-content'>";
+                         
+                    // Ambil nilai NIP dari session
+                        $nip = $_SESSION['id'];
+
+                        // Query untuk menghitung jumlah absensi berdasarkan kode_kehadiran
+                        $rekap_absen = mysql_query("SELECT 
+                            SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+                            SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
+                            SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
+                        FROM rb_rekap_absen_guru
+                        WHERE nip = '$nip' AND status = 1");
+
+                        // Ambil hasil query
+                        $absen = mysql_fetch_assoc($rekap_absen);
+
+                      echo"<div class='modal-header'>
+                      <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                     <p><strong>NIP:</strong> $nip |   <strong>S :</strong> {$absen['jumlah_sakit']} |    <strong>I :</strong> {$absen['jumlah_izin']} |   <strong>A :</strong> {$absen['jumlah_alpa']}</p>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
@@ -703,6 +718,92 @@
   </div>
 
   </div>";
+}elseif ($_GET[act] == 'izin') {
+  echo "<div class='col-md-12'>
+  <div class='box box-info'>
+    <div class='box-header with-border'>
+      <h3 class='box-title'>Izin tidak hadir</h3>
+    </div>
+  <div class='box-body'>
+  <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+    <div class='col-md-12'>";
+
+
+      echo"<table class='table table-condensed table-bordered'>
+      <tbody>
+      <tr><th scope='row'>Nama<th> <input type='text' name='nip' value='$_SESSION[id]' disabled /></tr>
+      <tr><th scope='row'>Kode Kehadiran</th>
+          <td>
+              <select class='form-control' name='kode_kehadiran'>
+                  <option value='sakit'>Sakit</option>
+                  <option value='izin'>Izin</option>
+                  <option value='alpa'>Alpa</option>
+              </select>
+          </td>
+      </tr>
+      <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='b'></textarea></td></tr>
+      <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
+                                                            <a class='btn btn-primary' href='javascript:;'>
+                                                              <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+<input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+<?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                                          </div>
+      </td></tr>
+        
+      </tbody>
+      </table>
+    </div>
+    
+  </div>
+  <div class='box-footer'>
+        <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
+        <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+        
+      </div>
+  </form>
+</div>";
+
+if (isset($_POST['simpan'])) {
+  // Debug POST dan FILES data
+  // var_dump($_POST, $_FILES);
+  
+  // Ambil nilai dari form
+  $nip = $_SESSION['id'];
+  $kode_kehadiran = $_POST['kode_kehadiran'];
+  $keterangan = $_POST['b'];
+  $nama_file = $_FILES['c']['name'];
+  $tmp_file = $_FILES['c']['tmp_name'];
+  
+  // Tentukan folder tujuan untuk menyimpan file
+  $folder_upload = "bukti_tidak_hadir/";
+  if (!is_dir($folder_upload)) {
+      mkdir($folder_upload, 0777, true); // Membuat folder jika belum ada
+  }
+  $path_file = $folder_upload . basename($nama_file);
+  
+  // Debug: cek error upload file
+  if ($_FILES['c']['error'] !== UPLOAD_ERR_OK) {
+      echo "Error pada upload file: " . $_FILES['c']['error'];
+      exit;
+  }
+  
+  // Upload file ke folder tujuan
+  if (move_uploaded_file($tmp_file, $path_file)) {
+      $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto_bukti, keterangan, tanggal, waktu_input,status) 
+                VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW(), 0)";
+      
+      $result = mysql_query($query);
+      if ($result) {
+        echo "<script>document.location='index.php';</script>";
+      } else {
+          echo "<script>alert('Terjadi kesalahan saat menyimpan data absensi.');</script>";
+      }
+  } else {
+      echo "<script>alert('Gagal mengunggah file.');</script>";
+  }
+}
+
+
 }
 ?>
 <script>

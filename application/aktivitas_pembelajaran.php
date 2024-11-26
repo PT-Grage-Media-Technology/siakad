@@ -1,66 +1,80 @@
-<?php if ($_GET[act] == '') { ?>
+
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">
+      
+    <?php
+// Ambil tahun akademik yang terbaru
+$tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+$tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
+mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
+
+// Jika pengguna belum memilih tahun, gunakan tahun terbaru
+$tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
+
+// Ambil nama tahun akademik yang dipilih
+$nama_tahun_dipilih = '';
+while ($k = mysql_fetch_array($tahun)) {
+    if ($tahun_dipilih == $k['id_tahun_akademik']) {
+        $nama_tahun_dipilih = $k['nama_tahun'];
+    }
+}
+mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+
+// Mendapatkan bulan dan tanggal yang dipilih atau default ke bulan dan tanggal hari ini
+$bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('n');  // Default ke bulan sekarang
+$tanggal_dipilih = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('j');  // Default ke tanggal hari ini
+
+?>
+
+<!-- Menampilkan form dan h3 -->
+<h3 class="box-title">
+    Jadwal Mengajar anda pada - <?php echo $nama_tahun_dipilih; ?>
+</h3>
+
+<form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+    <input type="hidden" name="view" value="aktivitaspembelajaran">
+    
+    <!-- Dropdown untuk memilih Tahun Akademik -->
+    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tahun Akademik -</option>
         <?php
-        // Ambil tahun akademik terbaru (id_tahun_akademik paling besar)
-        $latest_year = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-
-        // Jika tidak ada tahun akademik dipilih, set default ke tahun terbaru
-        $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $latest_year['id_tahun_akademik'];
-        $nama_tahun = isset($_GET['tahun']) ?
-          mysql_fetch_array(mysql_query("SELECT nama_tahun FROM rb_tahun_akademik WHERE id_tahun_akademik = '$tahun_dipilih'"))['nama_tahun'] :
-          $latest_year['nama_tahun'];
-
-        echo "Aktivitas Pembelajaran Guru - $nama_tahun";
-        ?>
-      </h3>
-      <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-
-        <input type="hidden" name="view" value="aktivitaspembelajaran">
-
-        <!-- Filter Tanggal -->
-        <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-
-          <?php
-          $today = date('j'); // Mengambil tanggal hari ini
-          $selectedTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : $today; // Default ke tanggal hari ini jika kosong
-          
-          for ($i = 1; $i <= 31; $i++) {
-            $selected = ($selectedTanggal == $i) ? 'selected' : '';
-            echo "<option value='$i' $selected>$i</option>";
-          }
-          ?>
-        </select>
-
-
-        <!-- Filter Bulan -->
-        <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
-          <?php
-          $currentMonth = date('n'); // Mengambil bulan saat ini
-          $selectedBulan = isset($_GET['bulan']) ? $_GET['bulan'] : $currentMonth; // Default ke bulan saat ini jika kosong
-          $bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-          for ($i = 1; $i <= 12; $i++) {
-            $selected = ($selectedBulan == $i) ? 'selected' : '';
-            echo "<option value='$i' $selected>{$bulanNama[$i - 1]}</option>";
-          }
-          ?>
-        </select>
-
-        <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-          <option value=''>- Pilih Tahun Akademik -</option>
-          <?php
-          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-          while ($k = mysql_fetch_array($tahun)) {
+        while ($k = mysql_fetch_array($tahun)) {
             $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-            echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
-          }
-          ?>
-        </select>
-      </form>
+            echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
+        }
+        ?>
+    </select>
+    
+    <!-- Dropdown untuk memilih Bulan -->
+    <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Bulan -</option>
+        <option value='1' <?php echo ($bulan_dipilih == 1) ? 'selected' : ''; ?>>Januari</option>
+        <option value='2' <?php echo ($bulan_dipilih == 2) ? 'selected' : ''; ?>>Februari</option>
+        <option value='3' <?php echo ($bulan_dipilih == 3) ? 'selected' : ''; ?>>Maret</option>
+        <option value='4' <?php echo ($bulan_dipilih == 4) ? 'selected' : ''; ?>>April</option>
+        <option value='5' <?php echo ($bulan_dipilih == 5) ? 'selected' : ''; ?>>Mei</option>
+        <option value='6' <?php echo ($bulan_dipilih == 6) ? 'selected' : ''; ?>>Juni</option>
+        <option value='7' <?php echo ($bulan_dipilih == 7) ? 'selected' : ''; ?>>Juli</option>
+        <option value='8' <?php echo ($bulan_dipilih == 8) ? 'selected' : ''; ?>>Agustus</option>
+        <option value='9' <?php echo ($bulan_dipilih == 9) ? 'selected' : ''; ?>>September</option>
+        <option value='10' <?php echo ($bulan_dipilih == 10) ? 'selected' : ''; ?>>Oktober</option>
+        <option value='11' <?php echo ($bulan_dipilih == 11) ? 'selected' : ''; ?>>November</option>
+        <option value='12' <?php echo ($bulan_dipilih == 12) ? 'selected' : ''; ?>>Desember</option>
+    </select>
+    
+    <!-- Dropdown untuk memilih Tanggal -->
+    <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
+        <option value=''>- Pilih Tanggal -</option>
+        <?php
+        for ($i = 1; $i <= 31; $i++) {
+            $selected = ($tanggal_dipilih == $i) ? 'selected' : '';
+            echo "<option value='$i' $selected>$i</option>";
+        }
+        ?>
+    </select>
+</form>
 
 
 
@@ -86,7 +100,7 @@
         
           </tbody>
         </table> -->
-awewdasdas
+        
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -115,7 +129,7 @@ awewdasdas
               $tampil = mysql_query("SELECT jl.*, a.kode_kelas, b.nama_kelas, c.namamatapelajaran, c.kode_pelajaran, d.nama_guru,
               (SELECT kode_kehadiran 
                FROM rb_absensi_guru ag 
-               WHERE ag.nip = jl.users 
+               WHERE ag.nip = IFNULL(jl.pengganti, jl.users) 
                AND ag.tanggal = jl.tanggal 
                AND ag.jam_ke = jl.jam_ke  
                LIMIT 1) AS kode_kehadiran
@@ -123,11 +137,13 @@ awewdasdas
                 JOIN rb_jadwal_pelajaran a ON jl.kodejdwl = a.kodejdwl
                 JOIN rb_kelas b ON a.kode_kelas = b.kode_kelas 
                 JOIN rb_mata_pelajaran c ON a.kode_pelajaran = c.kode_pelajaran 
-                JOIN rb_guru d ON jl.users = d.nip
+                JOIN rb_guru d ON IFNULL(jl.pengganti, jl.users) = d.nip
                 WHERE DAY(jl.tanggal) = '$tanggal_dipilih' 
                 AND MONTH(jl.tanggal) = '$bulan_dipilih'
                 ORDER BY jl.waktu_input DESC;
                 ");
+
+                // var_dump($tampil);
 
 
               // $kehadiran = mysqli_query("SELECT * FROM rb_absensi_guru")
@@ -136,9 +152,13 @@ awewdasdas
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr>
-                        <td>$no</td>
-                        <td>$r[users]</td>
-                        <td>$r[nama_guru]</td>
+                        <td>$no</td>";
+                        if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
+                          echo "<td>{$r['pengganti']}</td>";
+                        } else {
+                          echo "<td>{$r['users']}</td>";
+                        }
+                        echo"<td>$r[nama_guru]</td>
                         <td>$r[hari]</td>
                         <td>" . tgl_indo($r['tanggal']) . "</td>
                         <td>$r[jam_ke]</td>
@@ -146,7 +166,7 @@ awewdasdas
                         <td>$r[namamatapelajaran]</td>";
 
                         $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru 
-                                                      WHERE nip_guru='$r[users]' 
+                                                      WHERE nip_guru='" . (!empty($r['pengganti']) ? $r['pengganti'] : $r['users']) . "' 
                                                       AND is_read=0 
                                                       AND kode_kelas='$r[kode_kelas]' 
                                                       AND kode_mapel='$r[kode_pelajaran]' 
@@ -196,6 +216,7 @@ awewdasdas
 
                    echo "<script>document.location='index.php?view=aktivitaspembelajaran';</script>";
                 }
+                
                 // if (isset($_POST['peringatkan']) && $_POST['users'] == $r['users']) {
                 //    // Mendapatkan NIP pengguna
                 //    $nip = mysql_real_escape_string($_POST['users']); // Menyantisisasi input
@@ -305,8 +326,7 @@ awewdasdas
             // }
             ?>
           </tbody>
-
-
+          
         </table>
 
       </div><!-- /.table-responsive -->
@@ -327,4 +347,3 @@ function submitFormWithAlert() {
     return false;
 }
 </script>
-<?php } ?>

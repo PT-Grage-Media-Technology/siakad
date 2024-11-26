@@ -2,7 +2,7 @@
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Journal Kegiatan Belajar Mengajar</h3>
+                  <h3 class="box-title">Jurnal Kegiatan Belajar Mengajar</h3>
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='journalkbm'>
                     <select name='tahun' style='padding:4px'>
@@ -36,6 +36,7 @@
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-responsive">
                   <table id="example" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -81,6 +82,7 @@
                   ?>
                     <tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -277,3 +279,15 @@
             </div>";
 }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+} 
+</style>
