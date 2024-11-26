@@ -315,7 +315,10 @@
     echo "<tr>
               <td>$no</td>
               <td>$r[nipd]</td>
-              <td>$r[nisn]</td>
+              <td>
+              $r[nisn]
+              <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
+              </td>
               <td>$r[nama]</td>
               <td>$r[jenis_kelamin]</td>";
 
@@ -376,8 +379,8 @@
   </div>";
 
   if (isset($_POST['simpann'])) {
-    // $jml_data = count($_POST['nisn']);
-    $jml_data = count($_POST['nilai_sikap']);
+    $jml_data = count($_POST['nisn']);
+    // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
     $nilai_sikap = $_POST['nilai_sikap'];
