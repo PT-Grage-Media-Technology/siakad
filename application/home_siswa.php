@@ -8,13 +8,16 @@
             <?php 
                 // Ambil tahun akademik terbaru
                 $tahunQuery = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-                $latestYear = mysql_fetch_array($tahunQuery);
-                
+                $years = []; // Menyimpan semua tahun akademik
+                while ($year = mysql_fetch_array($tahunQuery)) {
+                    $years[] = $year; // Simpan setiap tahun ke dalam array
+                }
+
                 // Cek apakah tahun dipilih
-                $selectedYear = isset($_GET['tahun']) ? $_GET['tahun'] : $latestYear['id_tahun_akademik']; // Ambil tahun yang dipilih atau tahun terbaru
+                $selectedYear = isset($_GET['tahun']) ? $_GET['tahun'] : $years[0]['id_tahun_akademik']; // Ambil tahun yang dipilih atau tahun terbaru
 
                 echo "<option value=''>- Pilih Tahun Akademik -</option>";
-                while ($year = mysql_fetch_array($tahunQuery)) {
+                foreach ($years as $year) {
                     $selected = ($year['id_tahun_akademik'] == $selectedYear) ? "selected" : ""; // Set opsi yang dipilih
                     echo "<option value='$year[id_tahun_akademik]' $selected>$year[nama_tahun]</option>";
                 }
