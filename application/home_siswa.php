@@ -211,11 +211,17 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               <div class='box-header'>
                 <h3 class='box-title'>Refleksi</h3>
               </div>
+              <table id='example3' class='table table-bordered table-striped'>
+                    <thead>
+                      <tr>
+                        <th style='width:20px'>No</th>
+                        <th>Pertanyaan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+              </table>
               </div>
               </div>
-              
-              
-              
               ";
 }
 ?>
