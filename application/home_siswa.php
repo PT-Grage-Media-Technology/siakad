@@ -159,46 +159,120 @@
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas where a.kodejdwl='$_GET[kodejdwl]'"));
-  echo "<div class='col-12'>  
-            <div class='box'>
-              <div class='box-header'>
-                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
-              </div>
-              <div class='box-body'>
-                <div class='col-12'>
-                <table class='table table-condensed table-hover'>
-                    <tbody>
-                      <input type='hidden' name='id' value='$d[kodekelas]'>
-                      <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                      <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
-                    </tbody>
-                </table>
-                </div>
+  $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip WHERE a.nip=$_GET[nip] AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
+  $cek_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
+  // $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
+  // Tampilkan data yang diambil
+  if ($data = mysql_fetch_array($m)) {
+      // var_dump($data);
+      echo "<div class='col-md-12'>
+            <div class='box box-info'>
+              <div class='box-header with-border'>
+                <h3 class='box-title'>detail</b></h3>";
+  echo "  </div>
+            <div class='box-body'>";
+         
+            echo "
+            <div style='display: flex; align-items: center;'>
+                <div style='text-align: left; flex: 1;'>
+                    <img src='bukti_tidak_hadir/" . $data['foto_bukti'] . "' style='max-width: 40%; height: auto;'>
+                    <h2>Identitas Guru</h2>
+                    <div style='margin-top: 20px;'>
+                        <table class='table table-bordered' width='30%'>
+          <tr>
+              <td>NIP: {$data['nip']}</td>
+          </tr>
+          <tr>
+              <td>Nama Guru: {$data['nama_guru']}</td>
+          </tr>
+          <tr>
+              <td>Kehadiran: {$data['kode_kehadiran']}</td>
+          </tr>
+          <tr>
+              <td>Tanggal: " . tgl_indo($data['tanggal']) . "</td>
+          </tr>
+        </table>
+          ";
+              if(!$cek_absen){
 
-             
+                  echo"<a href='index.php?view=absensiguru&act=setujui&id_absen=$_GET[id_absen]&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
+                  <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                  ";
+              }
+              echo"
+                    </div>
+                </div>
+            </div>";
+            
+  echo"</div>";
+
+  echo" <div class='box-body'>
+          <div class='table-responsive'>
+
+              <table id='example' class='table table-bordered table-striped'>
+                  <thead>
+                      <tr>
+                          <th style='width:20px'>No</th>
+                          <th>Nip</th>
+                          <th>Guru</th>
+                          <th>Guru Pengganti</th>
+                          <th>Mapel</th>
+                          <th>Tanggal</th>
+                          <th>Action</th>
+
+                      </tr>
+                  </thead>
                   <tbody>";
-  // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
-  $no = 1;
-  while ($r = mysql_fetch_array($tampil)) {
-    // var_dump($r);
-    echo "<tr><td>$no</td>
-                            <td>$r[hari]</td>
-                            <td>$r[tanggal]</td>
-                            <td>$r[jam_ke]</td>
-                            <td>$r[nama_guru]</td>
-                            <td>$r[materi]</td>
-                            <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
-                        </tr>";
-    $no++;
+                  
+
+                      $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.users=b.nip JOIN rb_jadwal_pelajaran c ON c.kodejdwl = a.kodejdwl JOIN rb_mata_pelajaran d ON c.kode_pelajaran=d.kode_pelajaran JOIN rb_tahun_akademik e ON e.id_tahun_akademik = c.id_tahun_akademik JOIN rb_jadwal_pelajaran f ON a.kodejdwl=f.kodejdwl WHERE a.users=$_GET[nip] AND MONTH(a.tanggal)=$_GET[bulan] AND DAY(a.tanggal)=$_GET[tanggal]");
+                      $guru_pengganti = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b ON a.pengganti=b.nip ");
+
+                      $no = 1;
+                      if (mysql_num_rows($tampil) > 0 && $cek_absen) { // Memeriksa apakah ada data dan sudah disetujui
+                          while ($r = mysql_fetch_array($tampil)) {
+                              // var_dump($r);
+                              echo "<tr><td>$no</td>";
+                              if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
+                                  echo "<td>{$r['pengganti']}</td>";
+                              } else {
+                                  echo "<td>{$r['users']}</td>";
+                              }
+                              
+                              echo"<td>$r[nama_guru]</td>";
+                              if ($row = mysql_fetch_array($guru_pengganti)) {
+                                  echo"<td>$row[nama_guru]</td>";
+                              }
+                   
+
+                              echo"<td>$r[namamatapelajaran]</td>
+                              <td>" . tgl_indo($r['tanggal']) . "</td>
+                              <td>$r[kode_kehadiran] </td>
+                              <td>
+                                <a href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&idjr=$r[kodejdwl]&tgl=$r[tanggal]&jam=$r[jam_ke]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Buka Absensi</a>";
+                              
+                                if(!$r['pengganti']){
+                                  echo"<a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>";
+                                }
+                                echo"<a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                              </td>";
+
+                              echo "</tr>";
+                              $no++;
+                          }
+                      } else {
+                          echo "<tr><td colspan='6' style='text-align:center;'>Tidak ada data</td></tr>"; // Menampilkan pesan jika tidak ada data
+                      }
+                    
+                 echo"</tbody>
+              </table>
+          </div>
+      </div><!-- /.box-body -->
+
+  </div>
+</div>";
+  } else {
+      echo "Data tidak ditemukan.";
   }
-  echo "<tbody>
-                </table>
-              </div>
-              </div>
-          </div>";
 }
 ?>
