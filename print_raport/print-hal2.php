@@ -9,12 +9,23 @@ $s = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a LEFT JOIN rb_jenis_
 <html>
 <head>
 <title>Hal 2 - Raport Siswa</title>
+<script>
+        function handlePrint() {
+            // Membuka dialog cetak
+            window.print();
+            
+            // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+            setTimeout(() => {
+                window.close();
+            }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+        }
+    </script>
 <link rel="stylesheet" href="../bootstrap/css/printer.css">
 <style type="text/css">
   td { padding:2px; }
 </style>
 </head>
-<body onload="window.print()">
+<body onload="handlePrint()">
     <h1 align=center>IDENTITAS PESERTA DIDIK</h1><br>
 
     <table style='font-size:15px' width='100%'>
