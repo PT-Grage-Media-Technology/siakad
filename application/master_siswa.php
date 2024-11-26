@@ -452,7 +452,7 @@ if ($_GET[act] == '') {
 
     echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[id] . "';</script>";
   }
-  if ($_SESSION[level] == 'kepala') {
+  if ($_SESSION[level] == 'siswa') {
     $nisn = $_SESSION[id];
     $close = 'readonly=on';
   } else {
@@ -472,7 +472,7 @@ if ($_GET[act] == '') {
                 </div>
                 <div class='box-body'>";
 
-  if ($_SESSION[level] == 'kepala') {
+  if ($_SESSION[level] == 'siswa') {
     echo "<div class='alert alert-warning alert-dismissible fade in' role='alert'> 
                           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                           <span aria-hidden='true'>×</span></button> <strong>Perhatian!</strong> - Semua Data-data yang ada dibawah ini akan digunakan untuk keperluan pihak sekolah, jadi tolong di isi dengan data sebenarnya dan jika kedapatan data yang diisikan tidak seuai dengan yang sebenarnya, maka pihak sekolah akan memberikan sanksi tegas !!!
@@ -507,7 +507,7 @@ if ($_GET[act] == '') {
                                                                           <option value='0' selected>- Pilih Kelas -</option>";
   $kelas = mysql_query("SELECT * FROM rb_kelas");
   while ($a = mysql_fetch_array($kelas)) {
-    if ($_SESSION[level] == 'kepala') {
+    if ($_SESSION[level] == 'siswa') {
       if ($a[kode_kelas] == $s[kode_kelas]) {
         echo "<option value='$a[kode_kelas]' selected>$a[nama_kelas]</option>";
       }
@@ -525,7 +525,7 @@ if ($_GET[act] == '') {
                                                                           <option value='0' selected>- Pilih Jurusan -</option>";
   $jurusan = mysql_query("SELECT * FROM rb_jurusan");
   while ($a = mysql_fetch_array($jurusan)) {
-    if ($_SESSION[level] == 'kepala') {
+    if ($_SESSION[level] == 'siswa') {
       if ($a[kode_jurusan] == $s[kode_jurusan]) {
         echo "<option value='$a[kode_jurusan]' selected>$a[nama_jurusan]</option>";
       }
@@ -662,7 +662,7 @@ if ($_GET[act] == '') {
             </div>";
 } elseif ($_GET[act] == 'detailsiswa') {
   cek_session_siswa();
-  if ($_SESSION[level] == 'kepala') {
+  if ($_SESSION[level] == 'siswa') {
     $nisn = $_SESSION[id];
   } else {
     $nisn = $_GET[id];
