@@ -148,7 +148,7 @@
                             <td>$r[nama_guru]</td>
                             <td>$r[materi]</td>
                             <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                         </tr>";
     $no++;
   }
@@ -159,7 +159,9 @@
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas where a.kodejdwl='$_GET[kodejdwl]'"));
+  $hari_ini = date('d');
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]' AND DAY(d.tanggal)=DAY('$_GET[tanggal]') AND jam_ke='$_GET[jam_ke]'"));
+  // var_dump($d);
   echo "<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
@@ -170,31 +172,32 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 <table class='table table-condensed table-hover'>
                     <tbody>
                       <input type='hidden' name='id' value='$d[kodekelas]'>
-                      <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                      <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                      <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
+                      <tr><th scope='row'>Keterangan</th>    
+                             <td>";
+      
+                         // Validasi jika keterangan adalah link
+                         if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
+                             echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+                         } else {
+                             echo $d['keterangan'];
+                         }
+                       echo"</td>
+                       </tr>
+                       <tr><td width='120px' ><img src='$d[file]' alt='Gambar' style='width:100px; height:200px;'></td></tr>
+                        
+
+                        
                     </tbody>
                 </table>
-                </div>
+                </div>";
 
-             
-                  <tbody>";
-  // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
-  $no = 1;
-  while ($r = mysql_fetch_array($tampil)) {
-    // var_dump($r);
-    echo "<tr><td>$no</td>
-                            <td>$r[hari]</td>
-                            <td>$r[tanggal]</td>
-                            <td>$r[jam_ke]</td>
-                            <td>$r[nama_guru]</td>
-                            <td>$r[materi]</td>
-                            <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
-                        </tr>";
-    $no++;
-  }
+
+                
+
+              
   echo "<tbody>
                 </table>
               </div>
