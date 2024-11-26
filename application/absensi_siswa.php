@@ -394,6 +394,8 @@
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       
+      var_dump('masuk');
+      exit;
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
@@ -408,8 +410,6 @@
         }
       } else {
         // Insert data jika belum ada di tabel
-        var_dump('masuk');
-        exit;
         $insertAbsensiSiswa = mysqli_query($koneksi, "
         INSERT INTO rb_absensi_siswa 
         VALUES (
