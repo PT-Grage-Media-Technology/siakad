@@ -152,6 +152,7 @@
             '" . date('Y-m-d H:i:s') . "', 
             '$_POST[nip_users]'
         )");
+    }
     
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
