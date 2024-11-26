@@ -229,8 +229,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                               <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
                           </tr>
                     </tbody>
+                    <input type='submit' name='submit' value='Simpan Semua Jawaban' class='pull-left btn btn-primary btn-sm'>
               </table>
-              <input type='submit' name='submit' value='Simpan Semua Jawaban' class='pull-left btn btn-primary btn-sm'>
               </div>
               </div>
               ";
