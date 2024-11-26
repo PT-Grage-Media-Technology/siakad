@@ -74,7 +74,7 @@
                                         JOIN rb_guru c ON a.nip=c.nip 
                                           JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                           JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
+                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik a.id_tahun_akademik='$tahun_dipilih' ORDER BY a.hari DESC");
               }
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
