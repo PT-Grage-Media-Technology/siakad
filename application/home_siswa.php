@@ -223,13 +223,13 @@ elseif ($_GET[act] == 'detailpembelajaran') {
          }
        }
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
-                window.location='index.php?view=penilaianrefleksisiswa'</script>";
+                history.back();</script>";
     }
            echo" <div class='col-xs-12'>  
               <div class='box'>
               <form action='' method='POST'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Refleksis </h3>
+                  <h3 class='box-title'>Pertanyaan Refleksi </h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
                   <table id='example3' class='table table-bordered table-striped'>
