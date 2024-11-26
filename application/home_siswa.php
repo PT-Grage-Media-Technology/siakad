@@ -219,7 +219,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       </tr>
                     </thead>
                     <tbody>
-                    <p></p>
+                    <p>Kesan dan Pesan</p>
                     </tbody>
               </table>
               </div>
