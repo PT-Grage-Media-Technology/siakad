@@ -402,8 +402,7 @@
       // var_dump($nisn);
       // exit;
       
-      var_dump($total);
-      exit;
+      
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
@@ -419,24 +418,26 @@
         }
       } else {
         // Insert data jika belum ada di tabel
+        
+        
         $insertAbsensiSiswa = mysqli_query($koneksi, "
         INSERT INTO rb_absensi_siswa 
-        VALUES (
-          '', 
-          '$kodejdwl', 
-          '" . $nisn[$i] . "', 
-          '" . $a[$i] . "', 
-          '" . $nilai_sikap[$i] . "', 
-          '" . $nilai_pengetahuan[$i] . "', 
-          '" . $nilai_keterampilan[$i] . "', 
-          '" . $total_nilai[$i] . "', 
-          '$tgl', 
-          NOW()
-      )
-  ");
+              VALUES (
+                '', 
+                '$kodejdwl', 
+                '" . $nisn[$i] . "', 
+                '" . $a[$i] . "', 
+                '" . $nilai_sikap[$i] . "', 
+                '" . $nilai_pengetahuan[$i] . "', 
+                '" . $nilai_keterampilan[$i] . "', 
+                '" . $total_nilai[$i] . "', 
+                '$tgl', 
+                NOW()
+            )
+        ");
 
-          // var_dump($insertAbsensiSiswa);
-          // exit;
+        var_dump($insertAbsensiSiswa);
+          exit;
                   
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
