@@ -515,7 +515,7 @@
                   hari = '$_POST[c]',
                   tanggal = '$d',
                   jam_ke = '$_POST[e]',
-                  jam_ke = '$_POST[ee]',
+                  sampai_jam = '$_POST[ee]',
                   materi = '$_POST[f]',
                   keterangan = '$_POST[g]',
                   users = '$_POST[nip_users]',
