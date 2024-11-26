@@ -174,7 +174,17 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
                       <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
-                      <tr><th scope='row'>Keterangan</th>           <td>$d[keterangan]</td></tr>
+                      <tr><th scope='row'>Keterangan</th>    
+                             <td>";
+      
+                         // Validasi jika keterangan adalah link
+                         if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
+                             echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+                         } else {
+                             echo $d['keterangan'];
+                         }
+                       echo"</td>
+                        </tr>
                     </tbody>
                 </table>
                 </div>";
