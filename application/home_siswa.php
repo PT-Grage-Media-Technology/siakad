@@ -195,7 +195,6 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 </table>
                 </div>";
 
-                echo"<h2>tes aja</h2>";
 
                 
 
