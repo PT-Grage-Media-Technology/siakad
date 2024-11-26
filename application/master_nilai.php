@@ -2,14 +2,14 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Data Nilai </h3>
-      <!-- <?php if ($_SESSION['level'] != 'kepala') { ?>
-        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=ruangan&act=tambah'>Tambahkan Data</a>
-      <?php } ?> -->
+      <?php if ($_SESSION['level'] != 'kepala') { ?>
+        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai'>Tambahkan Data</a>
+      <?php } ?>
     </div><!-- /.box-header -->
     <div class="box-body">
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-        <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php
+        // Jika tombol update ditekan, lakukan update data
         if (isset($_POST['update'])) {
           foreach ($_POST['id'] as $key => $id) {
             $kode_nilai = $_POST['kode_nilai'][$key];
@@ -22,33 +22,32 @@
                                 nilai_bawah = '$nilai_bawah', 
                                 nilai_atas = '$nilai_atas' 
                              WHERE id = '$id'";
-            mysql_query($update_query); 
+            // Menggunakan MySQLi atau PDO untuk koneksi yang lebih aman
+            mysqli_query($conn, $update_query); // Pastikan untuk mengganti $conn dengan koneksi database Anda
+          }
         }
-      }
         ?>
 
         <?php
-        $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
+        // Menampilkan data dari tabel rb_kriteria_nilai
+        $tampil = mysqli_query($conn, "SELECT * FROM rb_kriteria_nilai");
 
-        //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
-        //   echo $kriteriaNilai['kode_nilai'][0];
         // Form untuk mengupdate semua data
         echo "<form method='POST' action=''>";
 
         // Loop untuk menampilkan semua data dalam satu form
-        while ($kriteriaNilai = mysql_fetch_array($tampil)) {
+        while ($kriteriaNilai = mysqli_fetch_array($tampil)) {
           echo "<p>
-        <input type='hidden' name='id[]' value='{$kriteriaNilai['id']}'>
-        <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
-        = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
-        - <input type='text' name='nilai_atas[]' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
-        <br>";
+                <input type='hidden' name='id[]' value='{$kriteriaNilai['id']}'>
+                <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
+                = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
+                - <input type='text' name='nilai_atas[]' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
+                <br>";
         }
 
         // Tombol Update untuk mengupdate semua data
-          echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
+        echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
         echo "</form>";
-
         ?>
 
       </div><!-- /.table-responsive -->

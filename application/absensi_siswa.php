@@ -359,18 +359,19 @@
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
     } else {
-      echo "<div class='box-footer'>
-          <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
-        </div>
+      echo "
+       </tbody>
+    </table>
+    </div>
+    </div>
+      <div class='box-footer'>
+              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
+            </div>
         ";
     }
   }
 
   echo "
-    </tbody>
-    </table>
-    </div>
-    </div>
     </form>
   </div>";
 
