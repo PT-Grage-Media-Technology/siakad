@@ -126,7 +126,34 @@
     // exit;
 
     $d = tgl_simpan($_POST[d]);
-    mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+
+    // Periksa dan proses file yang diunggah
+    $target_dir = "files/"; // Direktori tujuan
+    $file_name = basename($_FILES['file']['name']);
+    $target_file = $target_dir . $file_name;
+
+    // Pastikan direktori ada
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Validasi dan pindahkan file
+    if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+        // Simpan data ke database
+        mysql_query("INSERT INTO rb_journal_list VALUES(
+            '',
+            '$_GET[id]',
+            '$_POST[c]', 
+            '$d',
+            '$_POST[e]', 
+            '$_POST[f]', 
+            '$_POST[g]', 
+            '$target_file', 
+            '" . date('Y-m-d H:i:s') . "', 
+            '$_POST[nip_users]'
+        )");
+    
+    // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
   }
 
@@ -144,22 +171,22 @@
                     <tbody>
                     <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                       <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
-  $kelas = mysql_query("SELECT * FROM rb_kelas");
-  while ($a = mysql_fetch_array($kelas)) {
-    if ($e[kode_kelas] == $a[kode_kelas]) {
-      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
-    }
-  }
-  echo "</select>
-                      </td></tr>
-                      <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
-  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-  while ($a = mysql_fetch_array($mapel)) {
-    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
-    }
-  }
-  echo "</select>
+                      $kelas = mysql_query("SELECT * FROM rb_kelas");
+                      while ($a = mysql_fetch_array($kelas)) {
+                        if ($e[kode_kelas] == $a[kode_kelas]) {
+                          echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+                        }
+                      }
+                      echo "</select>
+                                          </td></tr>
+                                          <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
+                      $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+                      while ($a = mysql_fetch_array($mapel)) {
+                        if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+                          echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+                        }
+                      }
+                      echo "</select>
                       </td></tr>
                      
                       <tr>
@@ -199,10 +226,11 @@
                                   <th scope='row'>Nama File</th>
                                   <td><input type='text' class='form-control' name='b'></td>
                                 </tr>
-                                <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
-                                                                              <a class='btn btn-primary' href='javascript:;'>
-                                                                                <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
-        <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+                                <tr><th width=120px scope='row'> File</th>             
+                                <td><div style='position:relative;''>
+                                    <a class='btn btn-primary' href='javascript:;'>
+                                      <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+        <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
         <?php
                       include('library.php');
 
