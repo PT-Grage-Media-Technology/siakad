@@ -122,8 +122,8 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    // var_dump($_FILES['file']);
-    // exit;
+    var_dump($_POST['c']);
+    exit;
 
     $d = tgl_simpan($_POST[d]);
 
