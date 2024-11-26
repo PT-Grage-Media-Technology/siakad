@@ -159,7 +159,7 @@
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas where a.kodejdwl='$_GET[kodejdwl]'"));
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]'"));
   echo "<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
@@ -173,6 +173,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                       <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
+                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[materi]</td></tr>
                     </tbody>
                 </table>
                 </div>";
