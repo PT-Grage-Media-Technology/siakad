@@ -122,8 +122,8 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump($_POST);
-    exit;
+    // var_dump($_POST);
+    // exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
@@ -135,7 +135,7 @@
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
-                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar 123</h3>
+                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
                   </div>
                 <div class='box-body'>
                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -533,7 +533,7 @@
                     
                   </div>
               </form>
-              
+
               <script>
     // Fungsi untuk memeriksa apakah teks adalah URL
     function isURL(str) {
