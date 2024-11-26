@@ -266,12 +266,13 @@ if (isset($_SESSION['id'])) {
             include "application/master_ruangan.php";
             echo "</div>";
           } elseif ($_GET[view] == 'nilai') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] == 'admin') {
               cek_session_admin();
-              $_SESSION['is_kurikulum'];
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
+              // || $_SESSION['is_kurikulum'] == 'true') 
+              // $_SESSION['is_kurikulum'];
             }
           } elseif ($_GET[view] == 'golongan') {
             cek_session_admin();
