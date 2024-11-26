@@ -376,7 +376,8 @@
   </div>";
 
   if (isset($_POST['simpann'])) {
-    $jml_data = count($_POST['nisn']);
+    // $jml_data = count($_POST['nisn']);
+    $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
     $nilai_sikap = $_POST['nilai_sikap'];
