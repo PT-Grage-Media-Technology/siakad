@@ -122,8 +122,8 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump($_POST['c']);
-    exit;
+    // var_dump($_POST['c']);
+    // exit;
 
     $d = tgl_simpan($_POST[d]);
 
@@ -150,7 +150,8 @@
           '$_POST[g]', 
           '$target_file', 
           '" . date('Y-m-d H:i:s') . "', 
-          '$_POST[nip_users]'
+          '$_POST[nip_users]',
+          ''
       )";
       
       if (mysql_query($query)) {
