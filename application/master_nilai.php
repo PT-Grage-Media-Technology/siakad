@@ -2,8 +2,8 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Data Nilai </h3>
-      <?php if ($_SESSION['level'] != 'admin') { ?>
-        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=master_nilai&act=tambah'>Tambahkan Data</a>
+      <?php if ($_SESSION[level] != 'kepala') { ?>
+        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai&act=tambah'>Tambahkan Data</a>
       <?php } ?>
     </div><!-- /.box-header -->
     <div class="box-body">
