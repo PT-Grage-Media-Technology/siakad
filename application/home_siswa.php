@@ -229,7 +229,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               <div class='box'>
               <form action='' method='POST'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Pertanyan Penilaian refleksi </h3>
+                  <h3 class='box-title'>Data Refleksis </h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
                   <table id='example3' class='table table-bordered table-striped'>
