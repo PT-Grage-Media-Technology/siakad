@@ -303,9 +303,9 @@
 
   while ($r = mysql_fetch_array($tampil)) {
     // Ambil nilai dari tabel terkait
-    $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
-    $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
-    $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
+    $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai_pengetahuan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
+    $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
+    $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                           WHERE kodejdwl='$_GET[idjr]' 
@@ -321,23 +321,23 @@
 
     // Nilai Pengetahuan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai_pengetahuan']}' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai']}' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='{$nilai_pengetahuan['nilai_pengetahuan']}' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Keterampilan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai_keterampilan']}' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='{$nilai_keterampilan['nilai']}' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='{$nilai_keterampilan['nilai_keterampilan']}' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Sikap
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='{$nilai_sikap['nilai_sikap']}' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='{$nilai_sikap['nilai']}' name='nilai_sikap[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='{$nilai_sikap['nilai_sikap']}' name='nilai_sikap[$no]' style='width:50px;'></td>";
     }
 
     // Kehadiran
