@@ -355,11 +355,7 @@
     }
 
     echo "</select></td>";
-    echo "</tr>
-    </tbody>
-    </table>
-    </div>
-    </div>";
+    echo "</tr>";
     $no++;
   }
 
