@@ -123,7 +123,7 @@
     </table>";
   if (isset($_POST[tambah])) {
     var_dump($_POST);
-    // exit;
+    exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
@@ -216,7 +216,7 @@
                       </td>
                       </tr>
                       <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
+                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
                       </td></tr>
                     </tbody>
                     </table>
@@ -533,6 +533,34 @@
                     
                   </div>
               </form>
+              
+              <script>
+    // Fungsi untuk memeriksa apakah teks adalah URL
+    function isURL(str) {
+        const pattern = new RegExp(
+            '^(https?:\\/\\/)?' + // skema opsional
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*))\\.)+' + // domain
+            '[a-z]{2,}' + // ekstensi (misal .com)
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port dan path opsional
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string opsional
+            '(\\#[-a-z\\d_]*)?$', 'i' // fragment locator opsional
+        );
+        return pattern.test(str);
+    }
+
+    // Ambil elemen textarea
+    const keteranganField = document.getElementById('keterangan');
+
+    // Tambahkan event listener untuk mendeteksi perubahan teks
+    keteranganField.addEventListener('input', function () {
+        if (isURL(keteranganField.value.trim())) {
+            keteranganField.style.color = 'blue'; // Ubah warna teks menjadi biru
+        } else {
+            keteranganField.style.color = 'black'; // Kembali ke warna hitam
+        }
+    });
+</script>
+
               <!-- Inisialisasi Bootstrap-select -->
 <script>
 $(document).ready(function(){
