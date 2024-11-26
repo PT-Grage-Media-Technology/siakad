@@ -6,10 +6,12 @@
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
         <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;' onchange="this.form.submit();">
             <?php 
-                echo "<option value=''>- Pilih Tahun Akademik -</option>";
                 $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-                while ($latestYear = mysql_fetch_array($tahun)) {
-                    echo "<option value='$latestYear[id_tahun_akademik]'>$latestYear[nama_tahun]</option>";
+                $latestYear = mysql_fetch_array($tahun);
+                echo "<option value=''>- Pilih Tahun Akademik -</option>";
+                while ($year = mysql_fetch_array($tahun)) {
+                    $selected = ($year['id_tahun_akademik'] == $latestYear['id_tahun_akademik']) ? "selected" : "";
+                    echo "<option value='$year[id_tahun_akademik]' $selected>$year[nama_tahun]</option>";
                 }
             ?>
         </select>
