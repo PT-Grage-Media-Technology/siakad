@@ -342,6 +342,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/master_penilaiandiri.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'pertanyaanrefleksi') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/master_pertanyaanrefleksi.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'penilaianteman') {
             cek_session_admin();
             echo "<div class='row'>";
