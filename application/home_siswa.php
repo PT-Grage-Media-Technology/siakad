@@ -186,8 +186,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                              echo $d['keterangan'];
                          }
                        echo"</td>
-                       <td><img src='$d[file]' alt='Gambar' style='width:100px; height:auto;'></td>
-                        </tr>
+                       </tr>
+                       <tr><td><img src='$d[file]' alt='Gambar' style='width:100px; height:auto;'></td></tr>
                         
 
                         
