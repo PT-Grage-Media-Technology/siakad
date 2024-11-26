@@ -426,8 +426,8 @@
                       )
                   ");
 
-          var_dump($insertAbsensiSiswa);
-          exit;
+          // var_dump($insertAbsensiSiswa);
+          // exit;
                   
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
