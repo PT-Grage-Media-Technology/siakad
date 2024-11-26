@@ -378,7 +378,9 @@
     $jml_data = count($_POST['nisn']);
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
-    $nilai = $_POST['nilai'];
+    $nilai_sikap = $_POST['nilai_sikap'];
+    $nilai_keterampilan = $_POST['nilai_keterampilan'];
+    $nilai_pengetahuan = $_POST['nilai_pengetahuan'];
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
@@ -394,7 +396,10 @@
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
-                                               SET kode_kehadiran='" . $a[$i] . "', nilai='" . $nilai[$i] . "' 
+                                               SET kode_kehadiran='" . $a[$i] . "', 
+                                               nilai_sikap='" . $nilai[$i] . "',
+                                               nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
+                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
@@ -402,8 +407,21 @@
         }
       } else {
         // Insert data jika belum ada di tabel
-        $insertAbsensiSiswa = mysql_query("INSERT INTO rb_absensi_siswa 
-                                               VALUES('', '$kodejdwl', '" . $nisn[$i] . "', '" . $a[$i] . "', '" . $nilai[$i] . "', '$tgl', NOW())");
+        $insertAbsensiSiswa = mysqli_query($koneksi, "
+                      INSERT INTO rb_absensi_siswa 
+                      VALUES (
+                          '', 
+                          '$kodejdwl', 
+                          '" . $nisn[$i] . "', 
+                          '" . $a[$i] . "', 
+                          '" . $nilai_sikap[$i] . "', 
+                          '" . $nilai_pengetahuan[$i] . "', 
+                          '" . $nilai_keterampilan[$i] . "', 
+                          '$tgl', 
+                          NOW()
+                      )
+                  ");
+                  
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
