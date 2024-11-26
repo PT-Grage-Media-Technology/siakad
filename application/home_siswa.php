@@ -125,11 +125,14 @@
                 <table class='table table-bordered table-striped'>
                   <thead>
                     <tr>
-                      <th style='width:20px'>No</th>
-                      <th>Kelas</th>
-                      <th>Mata Pelajaran</th>
-                      <th>Ranah</th>
-                      <th>Indikator</th>
+                       <th style='width:20px'>No</th>
+                        <th>Hari</th>
+                        <th style='width:90px'>Tanggal</th>
+                        <th style='width:70px'>Jam Ke</th>
+                        <th style='width:220px' align=center>Guru</th>
+                        <th style='width:220px'>Materi</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>";
@@ -137,12 +140,15 @@
   $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
-    var_dump($r);
+    // var_dump($r);
     echo "<tr><td>$no</td>
-                            <td>$r[nama_kelas]</td>
-                            <td>$r[namamatapelajaran]</td>
-                            <td>$r[ranah]</td>
-                            <td>$r[kompetensi_dasar]</td>
+                            <td>$r[hari]</td>
+                            <td>$r[tanggal]</td>
+                            <td>$r[jam_ke]</td>
+                            <td>$r[nama_guru]</td>
+                            <td>$r[materi]</td>
+                            <td>$r[keterangan]</td>
+                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                         </tr>";
     $no++;
   }
