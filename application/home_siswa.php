@@ -30,7 +30,7 @@
         </h3>
        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
     <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-    <input type="hidden" name="view" value="jadwalguru">
+    <input type="hidden" name="view" value="">
     <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
         <option value=''>- Pilih Tahun Akademik -</option>
         <?php
@@ -57,7 +57,7 @@
                 <th>Selesai</th>
                 <th>Ruang</th>
                 <th>Semester</th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -79,7 +79,7 @@
               }
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
-                var_dump($r);
+                // var_dump($r);
                 echo "<tr><td>$no</td>
                         <td>$r[kode_pelajaran]</td>
                         <td>$r[namamatapelajaran]</td>
@@ -90,7 +90,7 @@
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>
-                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=kompetensidasar&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Kompetensi</a></td>
+                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=kompetensidasar&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                     </tr>";
                 $no++;
               }
