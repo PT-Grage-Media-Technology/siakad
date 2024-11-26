@@ -132,6 +132,7 @@
                         <th style='width:220px' align=center>Guru</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>";
@@ -147,6 +148,7 @@
                             <td>$r[nama_guru]</td>
                             <td>$r[materi]</td>
                             <td>$r[keterangan]</td>
+                            <td></td>
                         </tr>";
     $no++;
   }
