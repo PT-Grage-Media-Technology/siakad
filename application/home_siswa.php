@@ -159,7 +159,8 @@
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
-  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]'"));
+  $hari_ini = date('d');
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]' AND DAY(d.tanggal)=$hari_ini"));
   echo "<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
