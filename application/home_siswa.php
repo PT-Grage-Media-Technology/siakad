@@ -4,7 +4,7 @@
     <div class="box-header">
       <h3 class="box-title"><?php if (isset($_GET[tahun])){ echo "Jadwal Pelajaran"; }else{ echo "Jadwal Pelajaran Pada Tahun ".date('Y'); } ?></h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-        <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;'>
+        <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;' onchange="this.form.submit()">
             <?php 
                 echo "<option value=''>- Pilih Tahun Akademik -</option>";
                 $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1");
@@ -16,7 +16,7 @@
                 }
             ?>
         </select>
-        <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
+        <!-- <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'> -->
       </form>
     </div><!-- /.box-header -->
     <div class="box-body">
