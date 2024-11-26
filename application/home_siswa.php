@@ -137,7 +137,7 @@
   $tampil = mysql_query("SELECT * FROM rb_journal_list a JOIN rb_guru b  ON a.users=b.nip WHERE a.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
-    echo $r;
+    var_dump($r);
     echo "<tr><td>$no</td>
                             <td>$r[nama_kelas]</td>
                             <td>$r[namamatapelajaran]</td>
