@@ -184,7 +184,10 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                              echo $d['keterangan'];
                          }
                        echo"</td>
+                       <td><img src='files/<?php echo $d[file]; ?>' alt='Gambar' style='width:100px; height:auto;'></td>
                         </tr>
+
+                        
                     </tbody>
                 </table>
                 </div>";
