@@ -146,6 +146,7 @@
           '$_POST[c]', 
           '$d',
           '$_POST[e]', 
+          '$_POST[ee]', 
           '$_POST[f]', 
           '$_POST[g]', 
           '$target_file', 
@@ -326,6 +327,7 @@
       <td>$r[hari]</td>
       <td>" . tgl_indo($r['tanggal']) . "</td>
       <td align=center>$r[jam_ke]</td>
+      <td align=center>$r[sampai_jam]</td>
       <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
       <td>$r[materi]</td>
       <td>$r[keterangan]</td>";
@@ -513,6 +515,7 @@
                   hari = '$_POST[c]',
                   tanggal = '$d',
                   jam_ke = '$_POST[e]',
+                  jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
                   keterangan = '$_POST[g]',
                   users = '$_POST[nip_users]',
@@ -598,7 +601,7 @@
                     </tr>
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
-                    <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
+                    <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam]' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td><img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'></td>
