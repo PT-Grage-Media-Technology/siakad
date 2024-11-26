@@ -186,13 +186,15 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                          }
                        echo"</td>
                        </tr>
-                       <tr><td><img src='$d[file]' alt='Gambar' style='width:100px; height:auto;'></td></tr>
                         
 
                         
                     </tbody>
                 </table>
                 </div>";
+
+                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px; text-align:center;'>";
+
 
 
                 
@@ -203,5 +205,17 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div>
               </div>
           </div>";
+
+          echo"<div class='col-12'>  
+            <div class='box'>
+              <div class='box-header'>
+                <h3 class='box-title'>Refleksi</h3>
+              </div>
+              </div>
+              </div>
+              
+              
+              
+              ";
 }
 ?>
