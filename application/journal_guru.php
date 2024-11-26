@@ -122,7 +122,7 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
+    var_dump($_POST);
     // exit;
 
     $d = tgl_simpan($_POST[d]);
