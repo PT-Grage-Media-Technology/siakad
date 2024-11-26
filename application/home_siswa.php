@@ -122,6 +122,8 @@
                 </table>
                 </div>
 
+              <div class='box-body'>
+               <div class='table-responsive'>
                 <table class='table table-bordered table-striped'>
                   <thead>
                     <tr>
@@ -154,8 +156,10 @@
   }
   echo "<tbody>
                 </table>
+                </div>
               </div>
-              </div>
+             </div>
+            </div>
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
