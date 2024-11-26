@@ -394,13 +394,13 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    // var_dump($nisn);
-    // exit;
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       
       $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
+      // var_dump($nisn);
+      // exit;
 
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
@@ -411,9 +411,11 @@
                                                nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
                                                total='" . $total_nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-                                               if ($updateAbsensiSiswa && !$guruInserted) {
-                                                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
-                                                 $guruInserted = true;
+          var_dump($updateAbsensiSiswa);
+          exit;
+        if ($updateAbsensiSiswa && !$guruInserted) {
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+          $guruInserted = true;
         }
       } else {
         // Insert data jika belum ada di tabel
