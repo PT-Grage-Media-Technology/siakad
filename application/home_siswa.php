@@ -219,7 +219,15 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       </tr>
                     </thead>
                     <tbody>
-                    <p>Kesan dan Pesan</p>
+                    echo <tr><td>$no</td>
+                              <td>$r[pertanyaan]</td>
+                          </tr>
+
+                          <tr><td></td>
+                                  <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
+                                  <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
+                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                          </tr>
                     </tbody>
               </table>
               </div>
