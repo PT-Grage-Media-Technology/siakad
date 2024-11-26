@@ -122,8 +122,8 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump($_POST);
-    exit;
+    // var_dump($_POST);
+    // exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
