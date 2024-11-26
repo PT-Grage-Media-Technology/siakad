@@ -156,10 +156,8 @@
       
       if (mysql_query($query)) {
           echo "Data berhasil disimpan ke database.<br>";
-          exit;
       } else {
           echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
-          exit;
       }
     }
     
@@ -240,32 +238,32 @@
                                 <td><div style='position:relative;''>
                                     <a class='btn btn-primary' href='javascript:;'>
                                       <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
-        <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
-        <?php
-                      include('library.php');
+                                  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                                  <?php
+                                  include('library.php');
 
-                      // Mendapatkan waktu saat ini dalam format yang sesuai
-                      $currentDateTime = date('Y-m-d\TH:i');
+                                  // Mendapatkan waktu saat ini dalam format yang sesuai
+                                  $currentDateTime = date('Y-m-d\TH:i');
 
-                      // Tampilkan form dalam satu pernyataan echo
-                      echo "</a> 
-                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                        </div>
-                      </td>
-                      </tr>
-                      <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
-                      </td></tr>
-                    </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class='box-footer'>
-                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                      <a href='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
-                    </div>
-                </form>
-              </div>";
+                                  // Tampilkan form dalam satu pernyataan echo
+                                  echo "</a> 
+                                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                    </div>
+                                  </td>
+                                  </tr>
+                                  <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                                  <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
+                                  </td></tr>
+                                </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <div class='box-footer'>
+                                  <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                                  <a href='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                                </div>
+                            </form>
+                          </div>";
 
   // <!-- Container grid dengan margin dan padding yang seragam -->
   echo "<div class='container' style='max-width: 200px; padding: 10px;'>
@@ -416,18 +414,18 @@
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
-    while ($g = mysql_fetch_array($guru)) {
-      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-    }
-    echo "</select>
-                        </td>
-                    </tr>";
-  } else {
-    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-  }
+                $guru = mysql_query("SELECT * FROM rb_guru");
+                while ($g = mysql_fetch_array($guru)) {
+                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+                }
+                echo "</select>
+                                    </td>
+                                </tr>";
+                } else {
+                  echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+                }
 
-  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
@@ -443,16 +441,74 @@
               </form>
             </div>";
 } elseif ($_GET[act] == 'edit') {
-  if (isset($_POST[update])) {
-    $d = tgl_simpan($_POST[d]);
-    mysql_query("UPDATE rb_journal_list SET hari = '$_POST[c]',
-                                                tanggal = '$d',
-                                                jam_ke = '$_POST[e]',
-                                                materi = '$_POST[f]',
-                                                keterangan = '$_POST[g]',
-                                                users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+  // if (isset($_POST[update])) {
+  //   $d = tgl_simpan($_POST[d]);
+  //   mysql_query("UPDATE rb_journal_list SET hari = '$_POST[c]',
+  //                                               tanggal = '$d',
+  //                                               jam_ke = '$_POST[e]',
+  //                                               materi = '$_POST[f]',
+  //                                               keterangan = '$_POST[g]',
+  //                                               users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
+  //   echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+  // }
+    if (isset($_POST['update'])) {
+      // Konversi tanggal
+      $d = tgl_simpan($_POST['d']);
+      
+      // Tentukan direktori tujuan untuk menyimpan file
+      $target_dir = "files/";
+      
+      // Ambil data file lama dari database
+      $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
+      $data_file = mysql_fetch_assoc($query_file);
+      $old_file = $data_file['file'];
+      
+      // Cek apakah file baru diunggah
+      if ($_FILES['file']['size'] > 0) {
+          $new_file_name = basename($_FILES['file']['name']);
+          $target_file = $target_dir . $new_file_name;
+
+          // Pastikan direktori ada
+          if (!file_exists($target_dir)) {
+              mkdir($target_dir, 0777, true);
+          }
+
+          // Hapus file lama jika ada
+          if (!empty($old_file) && file_exists($old_file)) {
+              unlink($old_file);
+          }
+
+          // Pindahkan file baru ke direktori tujuan
+          if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+              echo "File berhasil diunggah ke: $target_file<br>";
+          } else {
+              echo "Gagal mengunggah file baru.<br>";
+          }
+      } else {
+          // Jika tidak ada file baru, gunakan file lama
+          $target_file = $old_file;
+      }
+
+      // Query update
+      $query = "UPDATE rb_journal_list SET 
+                  hari = '$_POST[c]',
+                  tanggal = '$d',
+                  jam_ke = '$_POST[e]',
+                  materi = '$_POST[f]',
+                  keterangan = '$_POST[g]',
+                  users = '$_POST[nip_users]',
+                  file = '$target_file'
+                WHERE id_journal = '$_POST[id]'";
+
+      // Eksekusi query
+      if (mysql_query($query)) {
+          echo "<script>alert('Data berhasil diperbarui!');</script>";
+          echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+      } else {
+          echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
+      }
   }
+
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -524,6 +580,23 @@
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
+                    <tr><th width=120px scope='row'> File</th>             
+                    <td><div style='position:relative;''>
+                        <a class='btn btn-primary' href='javascript:;'>
+                          <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                      <?php
+                      include('library.php');
+
+                      // Mendapatkan waktu saat ini dalam format yang sesuai
+                      $currentDateTime = date('Y-m-d\TH:i');
+
+                      // Tampilkan form dalam satu pernyataan echo
+                      echo "</a> 
+                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                        </div>
+                      </td>
+                      </tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
                     </td></tr>
                   </tbody>
