@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                   <?php 
-                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='diri' ORDER BY id_pertanyaan_penilaian DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
                     echo "<tr><td>$no</td>
@@ -49,14 +49,14 @@
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
         mysql_query("UPDATE rb_pertanyaan_penilaian SET pertanyaan = '$_POST[a]' where id_pertanyaan_penilaian='$_POST[id]'");
-      echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+      echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
     }
     $edit = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[id]'");
     $s = mysql_fetch_array($edit);
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Edit Data Pertanyaan Penilaian Diri</h3>
+                  <h3 class='box-title'>Edit Data Pertanyaan Refleksi</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -71,21 +71,21 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='update' class='btn btn-info'>Update</button>
-                    <a href='index.php?view=penilaiandiri'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=pertanyaanrefleksi'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
             </div>";
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
-        mysql_query("INSERT INTO rb_pertanyaan_penilaian VALUES('','$_POST[a]','diri','".date('Y-m-d H:i:s')."')");
-        echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+        mysql_query("INSERT INTO rb_pertanyaan_penilaian VALUES('','$_POST[a]','refleksi','".date('Y-m-d H:i:s')."')");
+        echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
     }
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Data Pertanyaan Penilaian Diri</h3>
+                  <h3 class='box-title'>Tambah Data Pertanyaan Pertanyaan Refleksi</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -99,7 +99,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=penilaiandiri'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=pertanyaanrefleksi'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
