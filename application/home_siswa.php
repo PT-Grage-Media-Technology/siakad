@@ -148,10 +148,41 @@
                             <td>$r[nama_guru]</td>
                             <td>$r[materi]</td>
                             <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                         </tr>";
     $no++;
   }
+  echo "<tbody>
+                </table>
+              </div>
+              </div>
+          </div>";
+}
+elseif ($_GET[act] == 'detailpembelajaran') {
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]'"));
+  echo "<div class='col-12'>  
+            <div class='box'>
+              <div class='box-header'>
+                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
+              </div>
+              <div class='box-body'>
+                <div class='col-12'>
+                <table class='table table-condensed table-hover'>
+                    <tbody>
+                      <input type='hidden' name='id' value='$d[kodekelas]'>
+                      <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[keterangan]</td></tr>
+                    </tbody>
+                </table>
+                </div>";
+
+                echo"<h2>tes aja</h2>";
+
+                
+
+              
   echo "<tbody>
                 </table>
               </div>
