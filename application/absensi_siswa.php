@@ -367,7 +367,11 @@
     } else {
       echo "<div class='box-footer'>
           <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
-        </div>";
+        </div>
+           </tbody>
+    </table>
+    </div>
+    </div>";
     }
   }
 
