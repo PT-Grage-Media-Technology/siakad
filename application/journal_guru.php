@@ -140,18 +140,24 @@
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
         // Simpan data ke database
-        mysql_query("INSERT INTO rb_journal_list VALUES(
-            '',
-            '$_GET[id]',
-            '$_POST[c]', 
-            '$d',
-            '$_POST[e]', 
-            '$_POST[f]', 
-            '$_POST[g]', 
-            '$target_file', 
-            '" . date('Y-m-d H:i:s') . "', 
-            '$_POST[nip_users]'
-        )");
+        $query = "INSERT INTO rb_journal_list VALUES(
+          '',
+          '$_GET[id]',
+          '$_POST[c]', 
+          '$d',
+          '$_POST[e]', 
+          '$_POST[f]', 
+          '$_POST[g]', 
+          '$target_file', 
+          '" . date('Y-m-d H:i:s') . "', 
+          '$_POST[nip_users]'
+      )";
+      
+      if (mysql_query($query)) {
+          echo "Data berhasil disimpan ke database.<br>";
+      } else {
+          echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+      }
     }
     
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
