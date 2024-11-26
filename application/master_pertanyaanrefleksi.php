@@ -27,8 +27,8 @@
                               <td>$r[pertanyaan]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
+                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=pertanyaanrefleksi&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
+                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=pertanyaanrefleksi&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
                               </center></td>";
                               }
                             echo "</tr>";
