@@ -235,41 +235,6 @@
     @media (min-width: 1024px) { .container { margin: 10px; } }
     @media (max-width: 1024px) { .container { margin: 10px auto; } }
   </style>
-  <!-- Grid container dengan 2 baris, 2 kolom -->
-  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; justify-content: center;'>
-    <!-- Tombol Nilai UTS -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='glyphicon glyphicon-list-alt' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Nilai UTS</div>
-      </div>
-    </a>
-    <!-- Tombol Nilai Raport -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='glyphicon glyphicon-book' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Nilai Raport</div>
-      </div>
-    </a>
-    <!-- Tombol Forum Diskusi -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='fa fa-users' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Forum Diskusi</div>
-      </div>
-    </a>
-    <!-- Tombol Quiz/Ujian -->
-    <a class='btn btn-success' style='width: 80px; height: 80px; padding: 5px; display: flex; align-items: center; justify-content: center;'
-       href='https://siakad.demogmt.online/index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>
-      <div style='text-align: center;'>
-        <div class='fa fa-th-list' style='font-size: 20px; margin-bottom: 4px;'></div>
-        <div style='font-size: 10px; line-height: 1.2;'>Quiz/Ujian Online</div>
-      </div>
-    </a>
-  </div>
 </div>
   </div>
 </div>
