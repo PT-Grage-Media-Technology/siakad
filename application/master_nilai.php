@@ -3,7 +3,7 @@
     <div class="box-header">
       <h3 class="box-title">Data Nilai </h3>
       <?php if ($_SESSION['level'] != 'kepala') { ?>
-        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai'>Tambahkan Data</a>
+        <!-- <a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai'>Tambahkan Data</a> -->
       <?php } ?>
     </div><!-- /.box-header -->
     <div class="box-body">
