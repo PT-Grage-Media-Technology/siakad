@@ -7,6 +7,17 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
 ?>
 <head>
 <title>Raport Siswa</title>
+    <script>
+        function handlePrint() {
+            // Membuka dialog cetak
+            window.print();
+            
+            // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+            setTimeout(() => {
+                window.history.back();
+            }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+        }
+    </script>
 <link rel="stylesheet" href="bootstrap/css/printer.css">
 </head>
 <body onload="window.print()">

@@ -92,10 +92,10 @@ echo "        </table>
           </div>
         </div>
         
-         <script>
+    //      <script>
         
-        window.onload = function () {
-            window.print();
-        };
-    </script>";
+    //     window.onload = function () {
+    //         window.print();
+    //     };
+    // </script>";
 ?>
