@@ -135,7 +135,7 @@
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
-                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
+                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar 123</h3>
                   </div>
                 <div class='box-body'>
                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -195,6 +195,26 @@
 
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                       <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                          <tr>
+                                  <th scope='row'>Nama File</th>
+                                  <td><input type='text' class='form-control' name='b'></td>
+                                </tr>
+                                <tr><th width=120px scope='row'> File</th>             <td><div style='position:relative;''>
+                                                                              <a class='btn btn-primary' href='javascript:;'>
+                                                                                <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+        <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+        <?php
+                      include('library.php');
+
+                      // Mendapatkan waktu saat ini dalam format yang sesuai
+                      $currentDateTime = date('Y-m-d\TH:i');
+
+                      // Tampilkan form dalam satu pernyataan echo
+                      echo "</a> 
+                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                        </div>
+                      </td>
+                      </tr>
                       <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                       <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
                       </td></tr>
@@ -333,8 +353,8 @@
             </div>";
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+    var_dump($_POST);
+    exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
