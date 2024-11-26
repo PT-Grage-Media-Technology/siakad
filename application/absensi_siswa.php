@@ -395,8 +395,6 @@
       $total = mysql_num_rows($cek);
       
       if ($total >= 1) {
-        var_dump('masuk');
-        exit;
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
                                                SET kode_kehadiran='" . $a[$i] . "', 
@@ -404,21 +402,23 @@
                                                nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                                                nilai_keterampilan='" . $nilai_keterampilan[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-        if ($updateAbsensiSiswa && !$guruInserted) {
-          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
-          $guruInserted = true;
+                                               if ($updateAbsensiSiswa && !$guruInserted) {
+                                                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+                                                 $guruInserted = true;
         }
       } else {
         // Insert data jika belum ada di tabel
+        var_dump('masuk');
+        exit;
         $insertAbsensiSiswa = mysqli_query($koneksi, "
-                      INSERT INTO rb_absensi_siswa 
-                      VALUES (
-                          '', 
-                          '$kodejdwl', 
-                          '" . $nisn[$i] . "', 
-                          '" . $a[$i] . "', 
-                          '" . $nilai_sikap[$i] . "', 
-                          '" . $nilai_pengetahuan[$i] . "', 
+        INSERT INTO rb_absensi_siswa 
+        VALUES (
+          '', 
+          '$kodejdwl', 
+          '" . $nisn[$i] . "', 
+          '" . $a[$i] . "', 
+          '" . $nilai_sikap[$i] . "', 
+          '" . $nilai_pengetahuan[$i] . "', 
                           '" . $nilai_keterampilan[$i] . "', 
                           '$tgl', 
                           NOW()
