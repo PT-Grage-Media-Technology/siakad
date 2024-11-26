@@ -343,9 +343,25 @@
   }
 
   if (isset($_GET['hapus'])) {
-    mysql_query("DELETE FROM rb_journal_list where id_journal='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
+      // Ambil nama file berdasarkan ID
+      $query = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+      $data = mysql_fetch_assoc($query);
+
+      // Tentukan lokasi file
+      $file_path = 'files/' . $data['file'];
+
+      // Hapus file jika ada
+      if (!empty($data['file']) && file_exists($file_path)) {
+          unlink($file_path); // Menghapus file berdasarkan nama
+      }
+
+      // Hapus data dari database
+      mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+
+      // Redirect ke halaman sebelumnya
+      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
+
 
   echo "<tbody>
                   </table>
