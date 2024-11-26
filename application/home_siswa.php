@@ -67,7 +67,7 @@
                                         JOIN rb_guru c ON a.nip=c.nip 
                                           JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                             JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
+                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik='$tahun_dipilih' ORDER BY a.hari DESC");
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                       JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
