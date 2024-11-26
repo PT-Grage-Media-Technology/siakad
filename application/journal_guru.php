@@ -582,6 +582,7 @@
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td><div style='position:relative;''>
+                        <img src='<?php echo htmlspecialchars($e[file]); ?>' alt='$e[file]' style='max-width: 100%; height: auto;'>
                         <a class='btn btn-primary' href='javascript:;'>
                           <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
                       <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
