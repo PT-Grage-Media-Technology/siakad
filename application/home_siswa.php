@@ -4,17 +4,23 @@
     <div class="box-header">
       <h3 class="box-title"><?php if (isset($_GET[tahun])){ echo "Jadwal Pelajaran"; }else{ echo "Jadwal Pelajaran Pada Tahun ".date('Y'); } ?></h3>
       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-        <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;' onchange="this.form.submit();">
+        <select name='tahun' style='padding:4px; width: 100%; max-width: 250px;'>
             <?php 
-                $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-                $latestYear = mysql_fetch_array($tahun);
+                // Ambil tahun akademik terbaru
+                $tahunQuery = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+                $latestYear = mysql_fetch_array($tahunQuery);
+                
+                // Cek apakah tahun dipilih
+                $selectedYear = isset($_GET['tahun']) ? $_GET['tahun'] : $latestYear['id_tahun_akademik']; // Ambil tahun yang dipilih atau tahun terbaru
+
                 echo "<option value=''>- Pilih Tahun Akademik -</option>";
-                while ($year = mysql_fetch_array($tahun)) {
-                    $selected = ($year['id_tahun_akademik'] == $latestYear['id_tahun_akademik']) ? "selected" : "";
+                while ($year = mysql_fetch_array($tahunQuery)) {
+                    $selected = ($year['id_tahun_akademik'] == $selectedYear) ? "selected" : ""; // Set opsi yang dipilih
                     echo "<option value='$year[id_tahun_akademik]' $selected>$year[nama_tahun]</option>";
                 }
             ?>
         </select>
+        <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
       </form>
     </div><!-- /.box-header -->
     <div class="box-body">
