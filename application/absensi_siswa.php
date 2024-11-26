@@ -394,19 +394,22 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    var_dump($nisn);
-    exit;
+    // var_dump($nisn);
+    // exit;
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       
+      $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
+
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
                                                SET kode_kehadiran='" . $a[$i] . "', 
-                                               nilai_sikap='" . $nilai[$i] . "',
+                                               nilai_sikap='" . $nilai_sikap[$i] . "',
                                                nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
-                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "' 
+                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
+                                               total='" . $total_nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
                                                if ($updateAbsensiSiswa && !$guruInserted) {
                                                  $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
@@ -423,11 +426,12 @@
           '" . $a[$i] . "', 
           '" . $nilai_sikap[$i] . "', 
           '" . $nilai_pengetahuan[$i] . "', 
-                          '" . $nilai_keterampilan[$i] . "', 
-                          '$tgl', 
-                          NOW()
-                      )
-                  ");
+          '" . $nilai_keterampilan[$i] . "', 
+          '" . $total_nilai[$i] . "', 
+          '$tgl', 
+          NOW()
+      )
+  ");
 
           // var_dump($insertAbsensiSiswa);
           // exit;
