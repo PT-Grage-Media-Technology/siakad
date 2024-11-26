@@ -401,7 +401,9 @@
       $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
       // var_dump($nisn);
       // exit;
-
+      
+      var_dump($total);
+      exit;
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
@@ -411,8 +413,6 @@
                                                nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
                                                total='" . $total_nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-          var_dump($updateAbsensiSiswa);
-          exit;
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
