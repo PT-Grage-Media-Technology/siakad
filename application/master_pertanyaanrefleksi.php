@@ -79,8 +79,7 @@
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
         mysql_query("INSERT INTO rb_pertanyaan_penilaian VALUES('','$_POST[a]','refleksi','".date('Y-m-d H:i:s')."')");
-        // echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
-        echo "INSERT INTO rb_pertanyaan_penilaian VALUES('','$_POST[a]','refleksi','".date('Y-m-d H:i:s')."')";
+        echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
     }
 
     echo "<div class='col-md-12'>
