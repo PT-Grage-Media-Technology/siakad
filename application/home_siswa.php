@@ -7,7 +7,7 @@
         $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
         $tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
         mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
-      
+
         // Jika pengguna belum memilih tahun, gunakan tahun terbaru
         $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
 
@@ -28,18 +28,18 @@
             echo "Jadwal Pelajaran hari ini " . date('Y');
           } ?>
         </h3>
-       <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-    <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-    <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-        <option value=''>- Pilih Tahun Akademik -</option>
-        <?php
-        while ($k = mysql_fetch_array($tahun)) {
-            $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-            echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
-        }
-        ?>
-    </select>
-</form>
+        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+          <!-- Tambahkan hidden input untuk menyimpan parameter view -->
+          <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+            <option value=''>- Pilih Tahun Akademik -</option>
+            <?php
+            while ($k = mysql_fetch_array($tahun)) {
+              $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+              echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
+            }
+            ?>
+          </select>
+        </form>
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive">
@@ -161,8 +161,7 @@
              </div>
             </div>
           </div>";
-}
-elseif ($_GET[act] == 'detailpembelajaran') {
+} elseif ($_GET[act] == 'detailpembelajaran') {
   $hari_ini = date('d');
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]' AND DAY(d.tanggal)=DAY('$_GET[tanggal]') AND jam_ke='$_GET[jam_ke]'"));
   // var_dump($d);
@@ -181,14 +180,14 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
                       <tr><th scope='row'>Keterangan</th>    
                              <td>";
-      
-                         // Validasi jika keterangan adalah link
-                         if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
-                             echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
-                         } else {
-                             echo $d['keterangan'];
-                         }
-                       echo"</td>
+
+  // Validasi jika keterangan adalah link
+  if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
+    echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+  } else {
+    echo $d['keterangan'];
+  }
+  echo "</td>
                        </tr>
                         
 
@@ -197,20 +196,14 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 </table>
                 </div>";
 
-                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px; text-align:center;'>";
-
-
-
-                
-
-              
+  echo "<img src='$d[file]' alt='Gambar' class='img-responsive center-block' style='max-width:100%; height:auto;'>";
   echo "<tbody>
                 </table>
               </div>
               </div>
           </div>";
 
-          echo"<div class='col-12'>  
+  echo "<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
                 <h3 class='box-title'>Refleksi</h3>
@@ -228,9 +221,9 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                           </tr>
 
                           <tr><td></td>
-                                  <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
-                                  <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
-                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                                  <input type='hidden' value='$t[kode_kelas]' name='kelas" . $no . "'>
+                                  <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id" . $no . "'>
+                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab" . $no . "' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
                           </tr>
                           </tbody>
                           </table>
