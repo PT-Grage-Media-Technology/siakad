@@ -155,8 +155,10 @@
       
       if (mysql_query($query)) {
           echo "Data berhasil disimpan ke database.<br>";
+          exit;
       } else {
           echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+          exit;
       }
     }
     
