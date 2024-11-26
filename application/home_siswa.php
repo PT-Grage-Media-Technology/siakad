@@ -57,7 +57,7 @@
                 <th>Selesai</th>
                 <th>Ruang</th>
                 <th>Semester</th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
