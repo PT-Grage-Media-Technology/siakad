@@ -80,9 +80,9 @@
     if (isset($_POST[tambah])){
         mysql_query("INSERT INTO rb_pertanyaan_penilaian VALUES('','$_POST[a]','refleksi','".date('Y-m-d H:i:s')."')");
         echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
+        var_dump($_POST[tambah]);
+        exit;
     }
-    var_dump($_POST[tambah]);
-    exit;
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
