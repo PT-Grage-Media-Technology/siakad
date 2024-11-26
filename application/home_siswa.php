@@ -219,6 +219,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       </tr>
                     </thead>
                     <tbody>
+                    <p></p>
+                    </tbody>
               </table>
               </div>
               </div>
