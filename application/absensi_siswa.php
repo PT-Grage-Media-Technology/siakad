@@ -394,13 +394,13 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
+    var_dump($a);
+    exit;
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       
       $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
-      // var_dump($nisn);
-      // exit;
       
       
       if ($total >= 1) {
