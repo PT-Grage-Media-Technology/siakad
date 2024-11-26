@@ -193,7 +193,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 </table>
                 </div>";
 
-                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px;'>";
+                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px; text-align:center;'>";
 
 
 
