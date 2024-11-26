@@ -368,14 +368,16 @@
       echo "<div class='box-footer'>
           <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
         </div>
-           </tbody>
-    </table>
-    </div>
-    </div>";
+        ";
     }
   }
 
-  echo "</form>
+  echo "
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </form>
   </div>";
 
   if (isset($_POST['simpann'])) {
