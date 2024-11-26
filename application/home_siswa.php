@@ -206,7 +206,6 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div>
           </div>";
 
-if ($_GET[act]==''){ 
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
        $n = $jml[jmlp];
@@ -267,5 +266,4 @@ if ($_GET[act]==''){
               </div><!-- /.box -->
             </div>";
                     }
-}
 ?>
