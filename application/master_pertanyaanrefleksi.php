@@ -37,7 +37,7 @@
 
                       if (isset($_GET[hapus])){
                           mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+                          echo "<script>document.location='index.php?view=pertanyaanrefleksi';</script>";
                       }
                   ?>
                     </tbody>
