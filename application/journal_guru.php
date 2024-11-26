@@ -146,6 +146,7 @@
           '$_POST[c]', 
           '$d',
           '$_POST[e]', 
+          '$_POST[ee]', 
           '$_POST[f]', 
           '$_POST[g]', 
           '$target_file', 
@@ -229,7 +230,8 @@
   }
 
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                      <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                      <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                      <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam' name='ee'></td></tr>
                           <tr>
                                   <th scope='row'>Nama File</th>
                                   <td><input type='text' class='form-control' name='b'></td>
@@ -281,7 +283,8 @@
                         <th style='width:20px'>No</th>
                         <th>Hari</th>
                         <th style='width:90px'>Tanggal</th>
-                        <th style='width:70px'>Jam Ke</th>
+                        <th style='width:70px'>Dari Jam Ke</th>
+                        <th style='width:70px'>Sampai Jam Ke</th>
                         <th style='width:220px' align=center>Guru</th>
                         <th style='width:220px'>Materi</th>
                         <th>Keterangan</th>";
@@ -442,7 +445,8 @@
                 }
 
                 echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                    <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                    <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
+                    <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
                     </td></tr>
@@ -510,6 +514,7 @@
                   hari = '$_POST[c]',
                   tanggal = '$d',
                   jam_ke = '$_POST[e]',
+                  jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
                   keterangan = '$_POST[g]',
                   users = '$_POST[nip_users]',
@@ -594,7 +599,8 @@
   echo "</td>
                     </tr>
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
-                    <tr><th scope='row'>Jam Ke</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
+                    <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
+                    <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td><img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'></td>
