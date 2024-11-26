@@ -239,7 +239,6 @@
                             </thead>
                             <tbody>";
 
-
   $no = 1;
   $tugas = mysql_query("SELECT * FROM rb_elearning WHERE 
                         kodejdwl='$_GET[idjr]' AND 
@@ -356,7 +355,11 @@
     }
 
     echo "</select></td>";
-    echo "</tr>";
+    echo "</tr>
+    </tbody>
+    </table>
+    </div>
+    </div>";
     $no++;
   }
 

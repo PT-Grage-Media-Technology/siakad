@@ -27,7 +27,7 @@
     <li class="treeview">
       <a href="#"><i class="fa fa-user"></i> <span>Modul Mengajar</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <li><a href="index.php?view=jadwalguru"></i> Aktifitas Mengajar</a></li>
+        <li><a href="index.php?view=jadwalguru"></i> Aktivitas Mengajar</a></li>
         <?php echo "<li><a href='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai UTS</a></li>" ?>
         <!-- <li><a href="index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">Nilai UTS</a></li> -->
         <li><a
