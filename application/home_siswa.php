@@ -175,6 +175,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
                       <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[file]</td></tr>
                       <tr><th scope='row'>Keterangan</th>    
                              <td>";
       
