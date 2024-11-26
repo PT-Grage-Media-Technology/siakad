@@ -135,7 +135,7 @@
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
-                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar 123</h3>
+                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
                   </div>
                 <div class='box-body'>
                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -216,7 +216,7 @@
                       </td>
                       </tr>
                       <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
+                      <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
                       </td></tr>
                     </tbody>
                     </table>
@@ -498,6 +498,34 @@
                     
                   </div>
               </form>
+
+              <script>
+    // Fungsi untuk memeriksa apakah teks adalah URL
+    function isURL(str) {
+        const pattern = new RegExp(
+            '^(https?:\\/\\/)?' + // skema opsional
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*))\\.)+' + // domain
+            '[a-z]{2,}' + // ekstensi (misal .com)
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port dan path opsional
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string opsional
+            '(\\#[-a-z\\d_]*)?$', 'i' // fragment locator opsional
+        );
+        return pattern.test(str);
+    }
+
+    // Ambil elemen textarea
+    const keteranganField = document.getElementById('keterangan');
+
+    // Tambahkan event listener untuk mendeteksi perubahan teks
+    keteranganField.addEventListener('input', function () {
+        if (isURL(keteranganField.value.trim())) {
+            keteranganField.style.color = 'blue'; // Ubah warna teks menjadi biru
+        } else {
+            keteranganField.style.color = 'black'; // Kembali ke warna hitam
+        }
+    });
+</script>
+
               <!-- Inisialisasi Bootstrap-select -->
 <script>
 $(document).ready(function(){

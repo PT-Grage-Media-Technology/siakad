@@ -25,12 +25,11 @@
           <?php if (isset($_GET[tahun])) {
             echo "Jadwal Pelajaran";
           } else {
-            echo "Jadwal Pelajaran Pada Tahun " . date('Y');
+            echo "Jadwal Pelajaran hari ini " . date('Y');
           } ?>
         </h3>
        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
     <!-- Tambahkan hidden input untuk menyimpan parameter view -->
-    <input type="hidden" name="view" value="jadwalguru">
     <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
         <option value=''>- Pilih Tahun Akademik -</option>
         <?php
@@ -57,7 +56,7 @@
                 <th>Selesai</th>
                 <th>Ruang</th>
                 <th>Semester</th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -68,17 +67,18 @@
                                         JOIN rb_guru c ON a.nip=c.nip 
                                           JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                             JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
+                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik='$tahun_dipilih' ORDER BY a.hari DESC");
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                                       JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                                         JOIN rb_guru c ON a.nip=c.nip 
                                           JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                                           JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
+                                            where a.kode_kelas='$_SESSION[kode_kelas]' AND a.id_tahun_akademik='$tahun_dipilih' ORDER BY a.hari DESC");
               }
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
+                // var_dump($r);
                 echo "<tr><td>$no</td>
                         <td>$r[kode_pelajaran]</td>
                         <td>$r[namamatapelajaran]</td>
@@ -89,7 +89,7 @@
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>
-                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=kompetensidasar&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Kompetensi</a></td>
+                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                     </tr>";
                 $no++;
               }
@@ -103,12 +103,12 @@
 
 
 <?php
-} elseif ($_GET[act] == 'kompetensidasar') {
+} elseif ($_GET[act] == 'detailtujuan') {
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas where a.kodejdwl='$_GET[kodejdwl]'"));
   echo "<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
-                <h3 class='box-title'>Kompetensi Dasar</h3>
+                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
               </div>
               <div class='box-body'>
                 <div class='col-12'>
@@ -125,22 +125,30 @@
                 <table class='table table-bordered table-striped'>
                   <thead>
                     <tr>
-                      <th style='width:20px'>No</th>
-                      <th>Kelas</th>
-                      <th>Mata Pelajaran</th>
-                      <th>Ranah</th>
-                      <th>Indikator</th>
+                       <th style='width:20px'>No</th>
+                        <th>Hari</th>
+                        <th style='width:90px'>Tanggal</th>
+                        <th style='width:70px'>Jam Ke</th>
+                        <th style='width:220px' align=center>Guru</th>
+                        <th style='width:220px'>Materi</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>";
-  $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
+  // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
+  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
+    // var_dump($r);
     echo "<tr><td>$no</td>
-                            <td>$r[nama_kelas]</td>
-                            <td>$r[namamatapelajaran]</td>
-                            <td>$r[ranah]</td>
-                            <td>$r[kompetensi_dasar]</td>
+                            <td>$r[hari]</td>
+                            <td>$r[tanggal]</td>
+                            <td>$r[jam_ke]</td>
+                            <td>$r[nama_guru]</td>
+                            <td>$r[materi]</td>
+                            <td>$r[keterangan]</td>
+                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                         </tr>";
     $no++;
   }
