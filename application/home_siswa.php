@@ -25,7 +25,7 @@
           <?php if (isset($_GET[tahun])) {
             echo "Jadwal Pelajaran";
           } else {
-            echo "Jadwal Pelajaran Pada Tahun " . date('Y');
+            echo "Jadwal Pelajaran hari ini " . date('Y');
           } ?>
         </h3>
        <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
