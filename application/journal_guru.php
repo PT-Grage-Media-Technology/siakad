@@ -135,7 +135,7 @@
   echo "<div class='col-md-12'>
                 <div class='box box-info'>
                   <div class='box-header with-border'>
-                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar 123</h3>
+                    <h3 class='box-title'>Tambah Tujuan Belajar Mengajar</h3>
                   </div>
                 <div class='box-body'>
                 <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
