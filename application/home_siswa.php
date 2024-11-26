@@ -230,6 +230,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                           </tr>
                     </tbody>
               </table>
+              <input type='submit' name='submit' value='Simpan Semua Jawaban' class='pull-left btn btn-primary btn-sm'>
               </div>
               </div>
               ";
