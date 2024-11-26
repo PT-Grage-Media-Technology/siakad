@@ -420,7 +420,7 @@
         // Insert data jika belum ada di tabel
         
         
-        $insertAbsensiSiswa = mysqli_query($koneksi, "
+        $insertAbsensiSiswa = mysql_query("
         INSERT INTO rb_absensi_siswa 
               VALUES (
                 '', 
