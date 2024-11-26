@@ -8,12 +8,23 @@ $s = mysql_fetch_array(mysql_query("SELECT * FROM rb_identitas_sekolah ORDER BY 
 <html>
 <head>
 <title>Hal 1 - Raport Siswa</title>
+<script>
+        function handlePrint() {
+            // Membuka dialog cetak
+            window.print();
+            
+            // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+            setTimeout(() => {
+                window.close();
+            }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+        }
+    </script>
 <link rel="stylesheet" href="../bootstrap/css/printer.css">
 <style type="text/css">
   td { padding:9px; }
 </style>
 </head>
-<body onload="window.print()">
+<body onload="handlePrint()">
     <h1 align=center>RAPORT <br>SEKOLAH MENENGAH ATAS <br> (SMA)</h1><br>
 
     <table style='font-size:23px' width='100%'>

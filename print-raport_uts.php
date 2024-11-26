@@ -14,13 +14,13 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
             
             // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
             setTimeout(() => {
-                window.history.back();
+                window.close();
             }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
         }
     </script>
 <link rel="stylesheet" href="bootstrap/css/printer.css">
 </head>
-<body onload="window.print()">
+<body onload="handlePrint()">
 <?php
 $t = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik where id_tahun_akademik='$_GET[tahun]'"));
 $s = mysql_fetch_array(mysql_query("SELECT a.*, b.*, c.nama_guru as walikelas, c.nip FROM rb_siswa a 
