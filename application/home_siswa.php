@@ -175,26 +175,13 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                       <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
                     </tbody>
                 </table>
-                </div>
+                </div>";
 
-             
-                  <tbody>";
-  // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
-  $no = 1;
-  while ($r = mysql_fetch_array($tampil)) {
-    // var_dump($r);
-    echo "<tr><td>$no</td>
-                            <td>$r[hari]</td>
-                            <td>$r[tanggal]</td>
-                            <td>$r[jam_ke]</td>
-                            <td>$r[nama_guru]</td>
-                            <td>$r[materi]</td>
-                            <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailtujuan&kodejdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
-                        </tr>";
-    $no++;
-  }
+                echo"<h2>tes aja</h2>";
+
+                
+
+              
   echo "<tbody>
                 </table>
               </div>
