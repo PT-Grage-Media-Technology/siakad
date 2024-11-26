@@ -375,7 +375,7 @@ if ($_GET[act] == '') {
             <div class='col-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Bahan dan Tugas</h3>
+                  <h3 class='box-title'>Tambah Bahan dan Tugas 123</h3>
                 </div>
                 <div class='box-body'>
                   <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
