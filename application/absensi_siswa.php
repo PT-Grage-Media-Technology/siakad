@@ -376,7 +376,8 @@
   </div>";
 
   if (isset($_POST['simpann'])) {
-    $jml_data = count($_POST['nisn']);
+    // $jml_data = count($_POST['nisn']);
+    $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['a'];
     $nilai_sikap = $_POST['nilai_sikap'];
@@ -390,8 +391,8 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    var_dump($jml_data);
-    exit;
+    // var_dump($jml_data);
+    // exit;
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
