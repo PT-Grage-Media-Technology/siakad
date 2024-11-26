@@ -211,11 +211,27 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               <div class='box-header'>
                 <h3 class='box-title'>Refleksi</h3>
               </div>
+              <table id='example3' class='table table-bordered table-striped'>
+                    <thead>
+                      <tr>
+                        <th style='width:20px'>No</th>
+                        <th>Pertanyaan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>1</td>
+                              <td>Apa Kesan dan Pesan</td>
+                          </tr>
+
+                          <tr><td></td>
+                                  <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
+                                  <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
+                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                          </tr>
+                    </tbody>
+              </table>
               </div>
               </div>
-              
-              
-              
               ";
 }
 ?>
