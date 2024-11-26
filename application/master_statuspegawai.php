@@ -3,7 +3,7 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Data Status Kepegawaian </h3>
-        <?php if ($_SESSION[level] != 'kepala') { ?>
+        <?php if ($_SESSION['level'] != 'kepala') { ?>
           <a class='pull-right btn btn-primary btn-sm' href='index.php?view=statuspegawai&act=tambah'>Tambahkan Data</a>
         <?php } ?>
       </div><!-- /.box-header -->
