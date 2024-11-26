@@ -195,7 +195,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 </table>
                 </div>";
 
-                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px; text-align:center;'>";
+                echo "<img src='$d[file]' alt='Gambar' class='img-responsive center-block' style='max-width:100%; height:auto;'>";
 
 
 
