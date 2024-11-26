@@ -209,7 +209,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
           echo"<div class='col-12'>  
             <div class='box'>
               <div class='box-header'>
-                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
+                <h3 class='box-title'>Refleksi</h3>
               </div>
               </div>
               </div>
