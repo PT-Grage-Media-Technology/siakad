@@ -122,9 +122,7 @@
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    // var_dump($_POST['c']);
-    // exit;
-    echo"$_GET[tahun]";
+    var_dump($_POST['tambah']);
     exit;
     
 
