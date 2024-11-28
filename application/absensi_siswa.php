@@ -322,7 +322,7 @@
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                           WHERE kodejdwl='$_GET[idjr]' 
-                                          AND tanggal='$_GET[tgl]' 
+                                          AND waktu_input='$_GET[tgl]' 
                                           AND nisn='$r[nisn]'"));
 
     echo "<tr>
