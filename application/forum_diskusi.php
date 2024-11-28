@@ -353,7 +353,8 @@ if ($_GET[act] == '') {
   if (isset($_POST[komentar])) {
     $waktu = date("Y-m-d H:i:s");
     mysql_query("INSERT INTO rb_forum_komentar VALUES('','$_GET[idtopic]','$_SESSION[id]','$_POST[a]','$waktu')");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."';</script>";
   }
 } elseif ($_GET[act] == 'detailguru') {
   cek_session_guru();
