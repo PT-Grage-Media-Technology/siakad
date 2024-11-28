@@ -297,6 +297,55 @@ if ($_GET[act] == '') {
                 </form>
               </div>
           </div>";
+          
+          echo"<div class='col-xs-12'>  
+              <div class='box'>
+                <div class='box-header'>
+                  <h3 class='box-title'>Data Pertanyan Penilaian Diri </h3>";
+                  if($_SESSION[level]!='kepala'){
+
+                  echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
+                 } 
+                echo"</div><!-- /.box-header -->
+                <div class='box-body'>
+                  <table id='example1' class='table table-bordered table-striped'>
+                    <thead>
+                      <tr>
+                        <th style='width:40px'>No</th>
+                        <th>Pertanyaan</th>";
+                        if($_SESSION[level]!='kepala'){ 
+                        echo"<th style='width:70px'>Action</th>";
+                         }
+                      echo"</tr>
+                    </thead>
+                    <tbody>";
+                 
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $no = 1;
+                    while($r=mysql_fetch_array($tampil)){
+                      echo $r;
+                    echo "<tr><td>$no</td>
+                              <td>$r[pertanyaan]</td>";
+                              if($_SESSION[level]!='kepala'){
+                        echo "<td><center>
+                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
+                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
+                              </center></td>";
+                              }
+                            echo "</tr>";
+                      $no++;
+                      }
+
+                      if (isset($_GET[hapus])){
+                          mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
+                          echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+                      }
+                
+                  echo"</tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>";
 
   if (isset($_POST[komentar])) {
     $waktu = date("Y-m-d H:i:s");
