@@ -351,9 +351,9 @@
   }
 
   if (isset($_GET['hapus'])) {
-      var_dump(isset($_GET['hapus']));
       $j = $r['materi'];
       echo $j;
+      var_dump(isset($_GET['hapus']));
       exit;
       // Ambil nama file berdasarkan ID
       $query = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
