@@ -39,7 +39,7 @@
                           }
                       ?>
                     </select>
-                    <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
+                    <!-- <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'> -->
                   </form>
 
                 </div><!-- /.box-header -->
