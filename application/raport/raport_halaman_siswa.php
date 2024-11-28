@@ -15,7 +15,10 @@ session_start(); // Memulai session
 if (empty($_GET['tahun'])) {
   $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
   $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
-}
+} else {
+  $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '".$_GET['tahun']."'"));
+  $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+} 
 // var_dump($_GET['tahun'])
 
 echo "<div class='col-xs-12 col-md-12'>  
