@@ -277,10 +277,11 @@ if (isset($_SESSION['id'])) {
               include "application/master_nilai.php";
               echo "</div>";
             } else {
+              $_SESSION['is_kurikulum'];
               // Jika bukan admin atau kurikulum, arahkan ke halaman lain atau tampilkan pesan
-              echo "Anda tidak memiliki akses ke halaman ini.";
-              header("Location: index.php"); // Redirect ke halaman utama
-              exit;
+              echo "<div class='row'>";
+              include "application/master_nilai.php";
+              echo "</div>";
             }
 
 
