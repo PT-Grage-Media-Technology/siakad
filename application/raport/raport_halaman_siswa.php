@@ -8,7 +8,8 @@ if (isset($_GET['tahun'])) {
 
 // Set default tahun dari session jika ada
 $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
-$tahun_terakhir = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"))['id_tahun_akademik'];
+$data_terakhir = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+$id_terakhir = $data_terakhir['id_tahun_akademik'];
 
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
@@ -24,7 +25,8 @@ echo "<div class='col-xs-12 col-md-12'>
             if ($tahun_terpilih == $k['id_tahun_akademik']) {
                 echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
             } else {
-                $selected = ($tahun_terakhir == $k['id_tahun_akademik']) ? "selected" : "";
+                // Else langsung memilih data terakhir
+                $selected = ($id_terakhir == $k['id_tahun_akademik']) ? "selected" : "";
                 echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
             }
         }
