@@ -281,7 +281,11 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                     
                       if (isset($_GET[deletekomentar])) {
                         mysql_query("DELETE FROM rb_forum_komentar where id_forum_komentar='$_GET[deletekomentar]' AND id_forum_topic='$_GET[idtopic]'");
-                        echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+                        $kodejdwl = $_GET['kodejdwl'];
+                        $tanggal = $_GET['tanggal'];
+                        $jam_ke = $_GET['jam_ke'];
+                        $idtopic = $_GET['idtopic'];
+                        echo "<script>document.location='index.php?view=home&act=detailpembelajaran&kodejdwl=$kodejdwl&tanggal=$tanggal&jam_ke=$jam_ke&idtopic=$idtopic';</script>";
                       }
                     
                       echo "<div class='col-md-12'>
