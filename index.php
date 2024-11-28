@@ -268,7 +268,7 @@ if (isset($_SESSION['id'])) {
           } elseif ($_GET[view] == 'nilai') {
 
             // Periksa apakah user memiliki level 'admin' atau 'kurikulum'
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] === true) {
+            if ($_SESSION['level'] == 'admin') {
               // Fungsi untuk validasi session admin
               cek_session_admin();
 
@@ -276,12 +276,14 @@ if (isset($_SESSION['id'])) {
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
-            } else {
+            } elseif($_SESSION['is_kurikulum'] === true) {
               $_SESSION['is_kurikulum'];
               // Jika bukan admin atau kurikulum, arahkan ke halaman lain atau tampilkan pesan
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
+            }else{
+              echo"<script> window.location.href = 'index.php'; // Redirect ke halaman login</script>";
             }
 
 
