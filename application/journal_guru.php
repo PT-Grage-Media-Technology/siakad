@@ -203,7 +203,7 @@
                       </td></tr>
                      
                       <tr>
-                        <th scope='row'>Hari $_GET[tahun] $tahun</th>
+                        <th scope='row'>Hari</th>
                         <td>
                             <select class='form-control' name='c'>
                                 <option value='Senin'" . ($hari_ini == 'Senin' ? ' selected' : '') . ">Senin</option>
