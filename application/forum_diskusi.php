@@ -168,7 +168,8 @@ if ($_GET[act] == '') {
 
   if (isset($_GET['hapus'])) {
     mysql_query("DELETE FROM rb_quiz_ujian WHERE id_quiz_ujian='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   echo "</tbody>
