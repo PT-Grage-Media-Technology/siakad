@@ -351,12 +351,14 @@
   }
 
   if (isset($_GET['hapus'])) {
+      var_dump(isset($_GET['hapus']));
+      $j = $r['materi'];
+      echo $j;
+      exit;
       // Ambil nama file berdasarkan ID
       $query = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
       $data = mysql_fetch_assoc($query);
       
-      $hapusForum = mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic=$r[materi]");
-      // $actHapus = mysql_fetch_assoc($hapusForum);
       // Tentukan lokasi file
       $file_path = 'files/' . $data['file'];
 
@@ -367,6 +369,7 @@
 
       // Hapus data dari database
       mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+      mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic=$r[materi]");
 
       // Redirect ke halaman sebelumnya
       echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
