@@ -320,9 +320,10 @@ if ($_GET[act] == '') {
                     </thead>
                     <tbody>";
                  
-                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='diri' ORDER BY id_pertanyaan_penilaian DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
+                      echo $r;
                     echo "<tr><td>$no</td>
                               <td>$r[pertanyaan]</td>";
                               if($_SESSION[level]!='kepala'){
