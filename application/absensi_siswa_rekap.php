@@ -8,28 +8,36 @@
                     <select name='tahun' style='padding:4px'>
                         <?php 
                             echo "<option value=''>- Pilih Tahun Akademik -</option>";
-                            $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
-                            while ($k = mysql_fetch_array($tahun)){
-                              if ($_GET[tahun]==$k[id_tahun_akademik]){
-                                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-                              }else{
-                                echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-                              }
+                            // $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
+                            // while ($k = mysql_fetch_array($tahun)){
+                            //   if ($_GET[tahun]==$k[id_tahun_akademik]){
+                            //     echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
+                            //   }else{
+                            //     echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
+                            //   }
+                            // }
+
+                            $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+                            if ($_GET['tahun'] == '') {
+                                echo "<option value='".$tahun_akademik_terbaru['id_tahun_akademik']."' selected>".$tahun_akademik_terbaru['nama_tahun']."</option>";
+                            } else {
+                               echo "<option value='$tahun_akademik_terbaru[id_tahun_akademik]'>$tahun_akademik_terbaru[nama_tahun]</option>";
                             }
                         ?>
+                        
                     </select>
-                    <select name='kelas' style='padding:4px'>
-                        <?php 
-                            echo "<option value=''>- Pilih Kelas -</option>";
-                            $kelas = mysql_query("SELECT * FROM rb_kelas");
-                            while ($k = mysql_fetch_array($kelas)){
-                              if ($_GET[kelas]==$k[kode_kelas]){
-                                echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
+                    <select name='kelas' style='padding:4px' onchange="this.form.submit()">
+                      <?php 
+                          echo "<option value=''>- Pilih Kelas -</option>";
+                          $kelas = mysql_query("SELECT * FROM rb_kelas");
+                          while ($k = mysql_fetch_array($kelas)){
+                              if ($_GET['kelas']==$k['kode_kelas']){
+                                  echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
                               }else{
-                                echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
+                                  echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
                               }
-                            }
-                        ?>
+                          }
+                      ?>
                     </select>
                     <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
                   </form>
