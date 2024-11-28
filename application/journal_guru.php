@@ -354,8 +354,8 @@
       // Ambil nama file berdasarkan ID
       $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
       $data = mysql_fetch_assoc($query);
-      var_dump($data);
-      exit;
+      // var_dump($data);
+      // exit;
       
       // Tentukan lokasi file
       $file_path = 'files/' . $data['file'];
