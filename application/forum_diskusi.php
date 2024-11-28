@@ -312,7 +312,7 @@ if ($_GET[act] == '') {
                     <thead>
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>Pertanyaan</th>";
+                        <th>Jawaban</th>";
                         if($_SESSION[level]!='kepala'){ 
                         echo"<th style='width:70px'>Action</th>";
                          }
