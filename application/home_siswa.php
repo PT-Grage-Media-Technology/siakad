@@ -268,8 +268,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div><!-- /.box -->
             </div>";
 
-  } elseif ($_GET[act] == 'detailtopic') {
-                      cek_session_siswa();
+ 
                       $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
                                   JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
                                     JOIN rb_guru c ON b.nip=c.nip where a.id_forum_topic='$_GET[idtopic]'"));
