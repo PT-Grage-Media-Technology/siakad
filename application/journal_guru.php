@@ -354,7 +354,9 @@
       // Ambil nama file berdasarkan ID
       $query = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
       $data = mysql_fetch_assoc($query);
-
+      
+      $hapusForum = mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic=$r[materi]");
+      // $actHapus = mysql_fetch_assoc($hapusForum);
       // Tentukan lokasi file
       $file_path = 'files/' . $data['file'];
 
