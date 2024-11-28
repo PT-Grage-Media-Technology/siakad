@@ -268,7 +268,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div><!-- /.box -->
             </div>";
 
- 
+            echo"<div class='col-xs-12'>  
+            <div class='box'>";
                       $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
                                   JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
                                     JOIN rb_guru c ON b.nip=c.nip where a.id_forum_topic='$_GET[idtopic]'"));
@@ -352,7 +353,11 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                     </div>
                                     </form>
                                   </div>
-                              </div>";
+                              </div>
+                              </div>
+                              </div>
+                              
+                              ";
                     
                       if (isset($_POST[komentar])) {
                         $waktu = date("Y-m-d H:i:s");
