@@ -7,7 +7,7 @@
       <div class="box-header">
         <h3 class="box-title">
           <?php if (isset($_GET[tahun])) {
-            echo "Tujuan Belajar Mengajar anda";
+            echo "Tujuan Belajar Mengajar anda ";
           } else {
             echo "Tujuan Belajar Mengajar anda pada " . date('Y');
           } ?>
@@ -116,14 +116,15 @@
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas] $_GET[tahun]</td></tr>
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    // var_dump($_POST['c']);
+    // var_dump($_POST['tambah']);
     // exit;
+    
 
     $d = tgl_simpan($_POST[d]);
 
@@ -154,6 +155,8 @@
           '$_POST[nip_users]',
           NULL
       )";
+      mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
+
       
       if (mysql_query($query)) {
           echo "Data berhasil disimpan ke database.<br>";
@@ -163,7 +166,8 @@
     }
     
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+    $tahun = $_GET['tahun'];
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$tahun';</script>";
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
@@ -179,7 +183,7 @@
                     <table class='table table-condensed table-bordered'>
                     <tbody>
                     <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                      <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
+                      <tr hidden><th width='140px' scope='row' hidden>Kelas </th>   <td hidden><select class='form-control' name='a' hidden>";
                       $kelas = mysql_query("SELECT * FROM rb_kelas");
                       while ($a = mysql_fetch_array($kelas)) {
                         if ($e[kode_kelas] == $a[kode_kelas]) {
@@ -348,9 +352,11 @@
 
   if (isset($_GET['hapus'])) {
       // Ambil nama file berdasarkan ID
-      $query = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+      $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
       $data = mysql_fetch_assoc($query);
-
+      // var_dump($data);
+      // exit;
+      
       // Tentukan lokasi file
       $file_path = 'files/' . $data['file'];
 
@@ -361,7 +367,8 @@
 
       // Hapus data dari database
       mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
-
+      mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
+      // echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
       // Redirect ke halaman sebelumnya
       echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
@@ -379,6 +386,7 @@
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+    mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   } 
 
