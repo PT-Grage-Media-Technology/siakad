@@ -166,7 +166,8 @@
     }
     
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
-    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+    $tahun = $_GET['tahun'];
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$tahun';</script>";
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
@@ -182,7 +183,7 @@
                     <table class='table table-condensed table-bordered'>
                     <tbody>
                     <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
-                      <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td hidden><select class='form-control' name='a' hidden>";
+                      <tr hidden><th width='140px' scope='row' hidden>Kelas $_GET[tahun] $tahun</th>   <td hidden><select class='form-control' name='a' hidden>";
                       $kelas = mysql_query("SELECT * FROM rb_kelas");
                       while ($a = mysql_fetch_array($kelas)) {
                         if ($e[kode_kelas] == $a[kode_kelas]) {
