@@ -2,14 +2,14 @@
 session_start(); // Memulai session
 
 
-// Cek jika ada parameter 'tahun' di URL
-if (isset($_GET['tahun'])) {
-  // Set session untuk tahun yang dipilih
-  $_SESSION['tahun_terpilih'] = $_GET['tahun'];
-}
+// // Cek jika ada parameter 'tahun' di URL
+// if (isset($_GET['tahun'])) {
+//   // Set session untuk tahun yang dipilih
+//   $_SESSION['tahun_terpilih'] = $_GET['tahun'];
+// }
 
-// Set default tahun dari session jika ada, jika tidak gunakan ID terakhir
-$tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
+// // Set default tahun dari session jika ada, jika tidak gunakan ID terakhir
+// $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
 
 // Jika tahun_terpilih kosong, berarti pertama kali load halaman, maka ambil data terakhir
 if (empty($tahun_terpilih)) {
