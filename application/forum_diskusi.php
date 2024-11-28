@@ -220,12 +220,14 @@ if ($_GET[act] == '') {
 
   if (isset($_GET[deletetopic])) {
     mysql_query("DELETE FROM rb_forum_topic where id_forum_topic='$_GET[idtopic]'");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   if (isset($_GET[deletekomentar])) {
     mysql_query("DELETE FROM rb_forum_komentar where id_forum_komentar='$_GET[deletekomentar]' AND id_forum_topic='$_GET[idtopic]'");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   echo "<div class='col-md-12'>
@@ -340,10 +342,10 @@ if ($_GET[act] == '') {
                       $no++;
                       }
 
-                      if (isset($_GET[hapus])){
-                          mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=penilaiandiri';</script>";
-                      }
+                      // if (isset($_GET[hapus])){
+                      //     mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
+                      //     echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+                      // }
                 
                   echo"</tbody>
                   </table>
