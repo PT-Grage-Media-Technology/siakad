@@ -324,7 +324,7 @@ if ($_GET[act] == '') {
                     $jwb = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where id_pertanyaan_penilaian='$_GET[id_jawaban]' AND kodejdwl='$_GET[jdwl]'");
                     $no = 1;
                     while($r=mysql_fetch_array($jwb)){
-                      var_dump($r);
+                      // var_dump($r);
                       // var_dump($jwb);
                     echo "<tr><td>$no</td>
                               <td>$r[jawaban]</td>";
