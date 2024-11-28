@@ -126,6 +126,7 @@
     // exit;
     echo"$_GET[tahun]";
     exit;
+    
 
     $d = tgl_simpan($_POST[d]);
 
@@ -159,7 +160,6 @@
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
 
       
-      exit
       if (mysql_query($query)) {
           echo "Data berhasil disimpan ke database.<br>";
       } else {
