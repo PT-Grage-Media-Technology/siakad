@@ -268,7 +268,7 @@ if (isset($_SESSION['id'])) {
           } elseif ($_GET[view] == 'nilai') {
             if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
               // cek_session_admin();
-              $_SESSION['is_kurikulum'];
+              // $_SESSION['is_kurikulum'];
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
