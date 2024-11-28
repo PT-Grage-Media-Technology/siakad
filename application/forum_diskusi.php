@@ -301,10 +301,10 @@ if ($_GET[act] == '') {
           echo"<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Pertanyan Penilaian Diri </h3>";
+                  <h3 class='box-title'>Data Jawaban Refleksi </h3>";
                   if($_SESSION[level]!='kepala'){
 
-                  echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
+                  // echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
                  } 
                 echo"</div><!-- /.box-header -->
                 <div class='box-body'>
@@ -312,25 +312,27 @@ if ($_GET[act] == '') {
                     <thead>
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>Pertanyaan</th>";
+                        <th>Jawaban</th>";
                         if($_SESSION[level]!='kepala'){ 
-                        echo"<th style='width:70px'>Action</th>";
+                        // echo"<th style='width:70px'>Action</th>";
                          }
                       echo"</tr>
                     </thead>
                     <tbody>";
                  
-                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $jwb = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where id_pertanyaan_penilaian='$_GET[id_jawaban]' AND kodejdwl='$_GET[jdwl]'");
                     $no = 1;
-                    while($r=mysql_fetch_array($tampil)){
-                      $jwb = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where kodejdwl='$r[kodejdwl]'"));
-                      echo $jwb;
+                    while($r=mysql_fetch_array($jwb)){
+                      // var_dump($r);
+                      // var_dump($jwb);
                     echo "<tr><td>$no</td>
-                              <td>$r[pertanyaan]</td>";
+                              <td>$r[jawaban]</td>";
                               if($_SESSION[level]!='kepala'){
+                                // <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
+                                // <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
+                                
                               </center></td>";
                               }
                             echo "</tr>";
