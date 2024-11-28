@@ -320,7 +320,7 @@ if ($_GET[act] == '') {
                     </thead>
                     <tbody>";
                  
-                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
                       $jwb = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where kodejdwl='$r[kodejdwl]'"));
