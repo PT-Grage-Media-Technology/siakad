@@ -379,6 +379,7 @@
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
+    mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   } 
 
