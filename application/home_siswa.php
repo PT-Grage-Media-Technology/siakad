@@ -294,7 +294,6 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                     <div class='box-header'>
                                       <i class='fa fa-comments-o'></i>
                                       <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                                      <a href='index.php?view=home&act=detailpembelajaran&kodejdwl=$_GET[kodejdwl]&tanggal=$_GET[tanggal]&jam_ke=$_GET[jam_ke]&idtopic=$_GET[idtopic]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
                                     </div>
                                     <div class='box-body chat' id='chat-box'>
                                       <div class='item'>";
