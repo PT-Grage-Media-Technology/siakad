@@ -370,7 +370,7 @@
       mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
       echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
       // Redirect ke halaman sebelumnya
-      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
+      // echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
 
 
