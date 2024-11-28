@@ -324,23 +324,23 @@
 
     // Nilai Pengetahuan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$r[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$r[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Keterampilan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$r[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$r[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Sikap
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$r[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+      echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$r[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+      echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
     }
 
     // Kehadiran
@@ -382,7 +382,7 @@
     $jml_data = count($_POST['nisn']);
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
-    $a = $_POST['a'];
+    $a = $_POST['kehadiran'];
     $nilai_sikap = $_POST['nilai_sikap'];
     $nilai_keterampilan = $_POST['nilai_keterampilan'];
     $nilai_pengetahuan = $_POST['nilai_pengetahuan'];
@@ -394,43 +394,47 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    var_dump($nisn);
-    exit;
+    // var_dump($a);
+    // exit;
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
+      
+      $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
+      
       
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
                                                SET kode_kehadiran='" . $a[$i] . "', 
-                                               nilai_sikap='" . $nilai[$i] . "',
+                                               nilai_sikap='" . $nilai_sikap[$i] . "',
                                                nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
-                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "' 
+                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
+                                               total='" . $total_nilai[$i] . "' 
                                                WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
-                                               if ($updateAbsensiSiswa && !$guruInserted) {
-                                                 $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
-                                                 $guruInserted = true;
+        if ($updateAbsensiSiswa && !$guruInserted) {
+          $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
+          $guruInserted = true;
         }
       } else {
         // Insert data jika belum ada di tabel
-        $insertAbsensiSiswa = mysqli_query($koneksi, "
+        
+        
+        $insertAbsensiSiswa = mysql_query("
         INSERT INTO rb_absensi_siswa 
-        VALUES (
-          '', 
-          '$kodejdwl', 
-          '" . $nisn[$i] . "', 
-          '" . $a[$i] . "', 
-          '" . $nilai_sikap[$i] . "', 
-          '" . $nilai_pengetahuan[$i] . "', 
-                          '" . $nilai_keterampilan[$i] . "', 
-                          '$tgl', 
-                          NOW()
-                      )
-                  ");
-
-          // var_dump($insertAbsensiSiswa);
-          // exit;
+              VALUES (
+                '', 
+                '$kodejdwl', 
+                '" . $nisn[$i] . "', 
+                '" . $a[$i] . "', 
+                '" . $nilai_sikap[$i] . "', 
+                '" . $nilai_pengetahuan[$i] . "', 
+                '" . $nilai_keterampilan[$i] . "', 
+                '" . $total_nilai[$i] . "', 
+                '$tgl', 
+                NOW()
+            )
+        ");
                   
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");

@@ -122,6 +122,8 @@
                 </table>
                 </div>
 
+              <div class='box-body'>
+              <div class='table-responsive'>
                 <table class='table table-bordered table-striped'>
                   <thead>
                     <tr>
@@ -193,7 +195,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                 </table>
                 </div>";
 
-                echo"<img src='$d[file]' alt='Gambar' style='width:500px; height:500px; text-align:center;'>";
+                echo "<img src='$d[file]' alt='Gambar' class='img-responsive' style='max-width:100%; height:auto;'>";
 
 
 
@@ -214,7 +216,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
            $jawab = $_POST['jawab'.$i];
            $pertanyaan = $_POST['id'.$i];
            $kelas = $_POST['kelas'.$i];
-            $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn=00'$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
+            $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
             if ($cek[tot] >= 1){
               mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
             }else{
@@ -265,98 +267,19 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </form>
               </div><!-- /.box -->
             </div>";
-
-          } elseif ($_GET[act] == 'detailtopic') {
-              // cek_session_siswa();
-              $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
-                          JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
-                            JOIN rb_guru c ON b.nip=c.nip where a.id_forum_topic='$_GET[idtopic]'"));
-            
-              if (isset($_GET[deletetopic])) {
-                mysql_query("DELETE FROM rb_forum_topic where id_forum_topic='$_GET[idtopic]'");
-                echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-              }
-            
-              if (isset($_GET[deletekomentar])) {
-                mysql_query("DELETE FROM rb_forum_komentar where id_forum_komentar='$_GET[deletekomentar]' AND id_forum_topic='$_GET[idtopic]'");
-                echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-              }
-            
-              echo "<div class='col-md-12'>
-                          <div class='box box-success'>
-                            <div class='box-header'>
-                              <i class='fa fa-comments-o'></i>
-                              <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                              <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
-                            </div>
-                            <div class='box-body chat' id='chat-box'>
-                              <div class='item'>";
-              if (trim($topic[foto]) == '') {
-                echo "<img src='foto_siswa/no-image.jpg' alt='user image' class='online'>";
-              } else {
-                echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
-              }
-              echo "<p class='message'>
-                                  <a href='index.php?view=guru&act=detailguru&id=$topic[nip]' class='name'>
-                                    <small class='text-muted pull-right'><i class='fa fa-clock-o'></i> $topic[waktu] WIB</small>
-                                    $topic[nama_guru] (Guru)
-                                  </a>
-                                  $topic[isi_topic]</p>
-                              </div>
-                          </div>
-                      </div>
-            
-                      <div class='col-md-12'>
-                          <div class='box box-info'>
-                            <div class='box-body chat' id='chat-box'>";
-              $komentar = mysql_query("SELECT * FROM rb_forum_komentar a 
-                                          LEFT JOIN rb_siswa b ON a.nisn_nip=b.nisn
-                                            where a.id_forum_topic='$_GET[idtopic]' 
-                                              ORDER BY a.id_forum_komentar ASC");
-              while ($k = mysql_fetch_array($komentar)) {
-                if ($k[nama] == '') {
-                  echo "<div class='item'>";
-                  if (trim($topic[foto]) == '') {
-                    echo "<img src='foto_siswa/no-image.jpg' alt='user image' class='online'>";
-                  } else {
-                    echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
-                  }
-                  echo "<p class='message'><small class='text-muted'>
-                                            <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
-                                            <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
-                                    </div>";
-                } else {
-                  echo "<div class='item'>";
-                  if (trim($k[foto]) == '') {
-                    echo "<img src='foto_siswa/no-image.jpg' alt='user image' class='offline'>";
-                  } else {
-                    echo "<img src='foto_siswa/$k[foto]' alt='user image' class='offline'>";
-                  }
-                  echo "<p class='message'><small class='text-muted'>
-                                            <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletekomentar=$k[id_forum_komentar]'><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB</small> 
-                                            <a href='#' class='name'>$k[nama] (Siswa)</a>$k[isi_komentar]</p>
-                                    </div>";
-                }
-              }
-            
-              echo "</div>
-                            <form action='' method='POST'>
-                            <div class='box-footer'>
-                              <div class='input-group'>
-                                <input class='form-control' name='a' placeholder='Tuliskan Komentar...'>
-                                <div class='input-group-btn'>
-                                  <button type='submit' name='komentar' class='btn btn-success'><i class='fa fa-send'></i></button>
-                                </div>
-                              </div>
-                            </div>
-                            </form>
-                          </div>
-                      </div>";
-            
-              if (isset($_POST[komentar])) {
-                $waktu = date("Y-m-d H:i:s");
-                mysql_query("INSERT INTO rb_forum_komentar VALUES('','$_GET[idtopic]','$_SESSION[id]','$_POST[a]','$waktu')");
-                echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
-              }
-          }
+                    }
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto;
+    /* Hanya aktifkan scroll horizontal jika diperlukan */
+  }
+
+  @media (min-width: 768px) {
+    .table-responsive {
+      overflow-x: visible;
+      /* Nonaktifkan scroll horizontal di desktop */
+    }
+  }
+</style>
