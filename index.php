@@ -57,7 +57,7 @@ if (isset($_SESSION['id'])) {
 
   // Ambil data kurikulum aktif
   $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum WHERE status_kurikulum='Ya'"));
-?>
+  ?>
 
 
   <!DOCTYPE html>
@@ -136,7 +136,7 @@ if (isset($_SESSION['id'])) {
           // Jika guru juga merangkap kurikulum, tampilkan menu kurikulum
           if (isset($_SESSION['is_kurikulum']) && $_SESSION['is_kurikulum'] == true) {
             include "menu-kurikulum.php"; // Menu untuk Waka Kurikulum
-
+      
           } elseif (isset($_SESSION['is_kesiswaan']) && $_SESSION['is_kesiswaan'] == true) {
             include "menu-kesiswaan.php";
           } else {
@@ -266,13 +266,24 @@ if (isset($_SESSION['id'])) {
             include "application/master_ruangan.php";
             echo "</div>";
           } elseif ($_GET[view] == 'nilai') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == true) {
+
+            // Periksa apakah user memiliki level 'admin' atau 'kurikulum'
+            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] === true) {
+              // Fungsi untuk validasi session admin
               cek_session_admin();
-              $_SESSION['is_kurikulum'];
+
+              // Render halaman untuk admin atau kurikulum
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
+            } else {
+              // Jika bukan admin atau kurikulum, arahkan ke halaman lain atau tampilkan pesan
+              echo "Anda tidak memiliki akses ke halaman ini.";
+              header("Location: index.php"); // Redirect ke halaman utama
+              exit;
             }
+
+
           } elseif ($_GET[view] == 'golongan') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -289,7 +300,7 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == true) {
+            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
@@ -530,7 +541,7 @@ if (isset($_SESSION['id'])) {
     <script src="dist/js/app.min.js"></script>
 
     <script>
-      $(function() {
+      $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,
@@ -686,7 +697,7 @@ if (isset($_SESSION['id'])) {
 
   </html>
 
-<?php
+  <?php
 } else {
   include "login.php";
 }
