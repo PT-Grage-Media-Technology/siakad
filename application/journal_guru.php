@@ -156,7 +156,7 @@
       )";
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
 
-      
+      echo"$_GET[id]";
       if (mysql_query($query)) {
           echo "Data berhasil disimpan ke database.<br>";
       } else {
