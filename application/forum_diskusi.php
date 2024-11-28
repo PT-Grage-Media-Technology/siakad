@@ -304,7 +304,7 @@ if ($_GET[act] == '') {
                   <h3 class='box-title'>Data Jawaban Refleksi </h3>";
                   if($_SESSION[level]!='kepala'){
 
-                  echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
+                  // echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
                  } 
                 echo"</div><!-- /.box-header -->
                 <div class='box-body'>
@@ -329,9 +329,10 @@ if ($_GET[act] == '') {
                     echo "<tr><td>$no</td>
                               <td>$r[jawaban]</td>";
                               if($_SESSION[level]!='kepala'){
+                                // <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
+                                // <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
+                                
                               </center></td>";
                               }
                             echo "</tr>";
