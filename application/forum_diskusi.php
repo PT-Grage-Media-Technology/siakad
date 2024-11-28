@@ -235,7 +235,7 @@ if ($_GET[act] == '') {
                 <div class='box-header'>
                   <i class='fa fa-comments-o'></i>
                   <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
+                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id_jawaban]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
                 </div>
                 <div class='box-body chat' id='chat-box'>
                   <div class='item'>";
