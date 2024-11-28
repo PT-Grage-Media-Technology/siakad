@@ -8,6 +8,7 @@ if (isset($_GET['tahun'])) {
 
 // Set default tahun dari session jika ada
 $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
+$tahun_terakhir = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
 
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
@@ -23,7 +24,7 @@ while ($k = mysql_fetch_array($tahun)) {
     if ($tahun_terpilih == $k['id_tahun_akademik']) {
         echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
     } else {
-        echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
+        echo "<option value='$tahun_terakhir[id_tahun_akademik] selected'>$tahun_terakhir[nama_tahun]</option>";
     }
 }
 
