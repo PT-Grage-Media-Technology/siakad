@@ -28,6 +28,7 @@
         ?>
 
         <?php
+
         $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
 
         //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
