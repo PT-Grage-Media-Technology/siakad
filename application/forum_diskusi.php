@@ -235,7 +235,7 @@ if ($_GET[act] == '') {
                 <div class='box-header'>
                   <i class='fa fa-comments-o'></i>
                   <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id_jawaban]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
+                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id_jawaban=$_GET[id_jawaban]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
                 </div>
                 <div class='box-body chat' id='chat-box'>
                   <div class='item'>";
@@ -270,7 +270,7 @@ if ($_GET[act] == '') {
         echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
       }
       echo "<p class='message'><small class='text-muted'>
-                                <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
+                                <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id_jawaban=$_GET[id_jawaban]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
                                 <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
                         </div>";
     } else {
