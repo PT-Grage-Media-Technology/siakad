@@ -87,7 +87,7 @@ if ($_GET[act] == '') {
                                 <td>$r[nama_ruangan]</td>
                                 <td style='color:red'>$total Record</td>";
                 echo "<td style='width:70px !important'><center>
-                                  <a class='btn btn-success btn-xs' title='Masuk Forum Diskusi' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]'><span class='glyphicon glyphicon-th-list'></span> Masuk Forum Diskusi</a>
+                                  <a class='btn btn-success btn-xs' title='Masuk Forum Diskusi' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-th-list'></span> Masuk Forum Diskusi</a>
                                 </center></td>";
                 echo "</tr>";
                 $no++;
