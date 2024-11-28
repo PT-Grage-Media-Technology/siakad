@@ -12,7 +12,7 @@ session_start(); // Memulai session
 // $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
 
 // Jika tahun_terpilih kosong, berarti pertama kali load halaman, maka ambil data terakhir
-if (empty($tahun_terpilih)) {
+if (empty($_GET['tahun'])) {
   $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
   $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
 }
