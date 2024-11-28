@@ -320,10 +320,16 @@
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
 
+    // $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+    //                                       WHERE kodejdwl='$_GET[idjr]' 
+    //                                       AND waktu_input='$_GET[tgl]' 
+    //                                       AND nisn='$r[nisn]'"));
+
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                          WHERE kodejdwl='$_GET[idjr]' 
-                                          AND waktu_input='$_GET[tgl]' 
-                                          AND nisn='$r[nisn]'"));
+                                    WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                                    AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
+                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
+
 
     echo "<tr>
               <td>$no</td>
