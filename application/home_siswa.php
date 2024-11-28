@@ -276,6 +276,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                     
                       if (isset($_GET[deletetopic])) {
                         mysql_query("DELETE FROM rb_forum_topic where id_forum_topic='$_GET[idtopic]'");
+
                         echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
                       }
                     
@@ -293,7 +294,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                     <div class='box-header'>
                                       <i class='fa fa-comments-o'></i>
                                       <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                                      <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
+                                      <a href='index.php?view=home&act=detailpembelajaran&kodejdwl=$_GET[kodejdwl]&tanggal=$_GET[tanggal]&jam_ke=$_GET[jam_ke]&idtopic=$_GET[idtopic]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
                                     </div>
                                     <div class='box-body chat' id='chat-box'>
                                       <div class='item'>";
@@ -328,7 +329,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                             echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
                           }
                           echo "<p class='message'><small class='text-muted'>
-                                                    <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
+                                                    <a href='index.php?view=home&act=detailpembelajaran&kodejdwl=$_GET[kodejdwl]&tanggal=$_GET[tanggal]&jam_ke=$_GET[jam_ke]&idtopic=$_GET[idtopic]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
                                                     <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
                                             </div>";
                         } else {
