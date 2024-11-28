@@ -1,17 +1,22 @@
 <?php
 session_start(); // Memulai session
 
-// Simpan tahun yang dipilih ke dalam session
+
+// Cek jika ada parameter 'tahun' di URL
 if (isset($_GET['tahun'])) {
-    $_SESSION['tahun_terpilih'] = $_GET['tahun'];
+  // Set session untuk tahun yang dipilih
+  $_SESSION['tahun_terpilih'] = $_GET['tahun'];
 }
 
-// Set default tahun dari session jika ada
+// Set default tahun dari session jika ada, jika tidak gunakan ID terakhir
 $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
-// $data_terakhir = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-$id_terakhir = $data_terakhir['id_tahun_akademik'];
-$data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-var_dump($data_terakhir);
+
+// Jika tahun_terpilih kosong, berarti pertama kali load halaman, maka ambil data terakhir
+if (empty($tahun_terpilih)) {
+  $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+  $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+}
+
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
   <div class='box-header'>
