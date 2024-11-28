@@ -161,8 +161,9 @@
   // $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kd]'"));
   $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
-  $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi "));
-
+  $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'"));
+  echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'";
+  var_dump($jawaban_refleksi);
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
   $bulane = $ex[1];
@@ -211,7 +212,7 @@
                             </tr>
                         </tbody>
                     </table>
-                     <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&'>
+                     <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&id_jawaban=$jawaban_refleksi[id_pertanyaan_penilaian]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Refleksi</div>
