@@ -266,7 +266,7 @@ if (isset($_SESSION['id'])) {
             include "application/master_ruangan.php";
             echo "</div>";
           } elseif ($_GET[view] == 'nilai') {
-            if ($_SESSION['level'] == 'admin' && $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == true) {
               cek_session_admin();
               $_SESSION['is_kurikulum'];
               echo "<div class='row'>";
@@ -289,7 +289,7 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == true) {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
