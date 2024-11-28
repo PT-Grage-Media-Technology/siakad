@@ -8,9 +8,10 @@ if (isset($_GET['tahun'])) {
 
 // Set default tahun dari session jika ada
 $tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
-$data_terakhir = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+// $data_terakhir = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
 $id_terakhir = $data_terakhir['id_tahun_akademik'];
-
+$data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+var_dump($data_terakhir);
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
   <div class='box-header'>
