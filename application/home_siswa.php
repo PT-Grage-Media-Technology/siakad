@@ -220,7 +220,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
             if ($cek[tot] >= 1){
               mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
             }else{
-              mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
+              mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
           }
          }
        }
