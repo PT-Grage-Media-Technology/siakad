@@ -139,7 +139,7 @@
                   </thead>
                   <tbody>";
   // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
+  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip JOIN rb_forum_topic ft ON z.materi=ft.judul_topic WHERE z.kodejdwl, ft.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
     // var_dump($r);
