@@ -301,7 +301,7 @@ if ($_GET[act] == '') {
           echo"<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Pertanyan Penilaian Diri </h3>";
+                  <h3 class='box-title'>Data Jawaban Refleksi </h3>";
                   if($_SESSION[level]!='kepala'){
 
                   echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
