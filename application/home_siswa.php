@@ -139,7 +139,7 @@
                   </thead>
                   <tbody>";
   // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
-  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip WHERE z.kodejdwl='$_GET[kodejdwl]'");
+  $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip JOIN rb_forum_topic ft ON z.materi=ft.judul_topic WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   while ($r = mysql_fetch_array($tampil)) {
     // var_dump($r);
@@ -150,7 +150,7 @@
                             <td>$r[nama_guru]</td>
                             <td>$r[materi]</td>
                             <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                         </tr>";
     $no++;
   }
@@ -268,7 +268,8 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div><!-- /.box -->
             </div>";
 
- 
+            echo"<div class='col-xs-12'>  
+            <div class='box'>";
                       $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
                                   JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
                                     JOIN rb_guru c ON b.nip=c.nip where a.id_forum_topic='$_GET[idtopic]'"));
@@ -352,7 +353,11 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                     </div>
                                     </form>
                                   </div>
-                              </div>";
+                              </div>
+                              </div>
+                              </div>
+                              
+                              ";
                     
                       if (isset($_POST[komentar])) {
                         $waktu = date("Y-m-d H:i:s");
