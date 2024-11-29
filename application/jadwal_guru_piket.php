@@ -125,7 +125,7 @@
   <?php
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
+    // $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
     mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggalInput')");
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
   }
@@ -144,7 +144,7 @@
                     <tr><th width='140px' scope='row'>Guru</th>   
                    <td><select class='form-control' name='nip'> 
                                     <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     echo "<option value='$a[nip]'>$a[nama_guru]</option>";
   }
@@ -167,7 +167,6 @@
                             </select>
                         </td>
                       </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -181,9 +180,9 @@
             </div>";
 } elseif ($_GET[act] == 'edit') {
   if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
-    $tanggal = tgl_simpan($_POST[tanggal]);
+    // $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
+    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
  }
 
@@ -206,7 +205,7 @@
                       <tr><th width='140px' scope='row'>Guru</th>   
                      <td><select class='form-control' name='nip'> 
                                       <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     $selected = ($a['nip'] == $data['nip']) ? 'selected' : ''; // Menandai guru yang dipilih
     echo "<option value='$a[nip]' $selected>$a[nama_guru]</option>";
@@ -226,7 +225,7 @@
                                   <option value='Jumat'" . ($data['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
                                   <option value='Sabtu'" . ($data['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                               </select> 
-                      <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y', strtotime($data['tanggal'])) . "' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr> <!-- Menampilkan tanggal yang sudah ada -->
+                       
                     </tbody>
                     </table>
                   </div>

@@ -222,7 +222,7 @@
                           <td>
                           <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                               <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($g = mysql_fetch_array($guru)) {
       echo "<option value='$g[nip]'>$g[nama_guru]</option>";
     }
@@ -442,7 +442,7 @@
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                $guru = mysql_query("SELECT * FROM rb_guru");
+                $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
                 while ($g = mysql_fetch_array($guru)) {
                   echo "<option value='$g[nip]'>$g[nama_guru]</option>";
                 }
@@ -594,7 +594,7 @@
                             <td>
                             <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                                 <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($g = mysql_fetch_array($guru)) {
       echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
     }
