@@ -47,23 +47,27 @@
     }
     ?>
 
-    <li class="treeview">
-      <a href="#"><i class="fa fa-user"></i> <span>Modul Mengajar</span><i class="fa fa-angle-left pull-right"></i></a>
-      <ul class="treeview-menu">
-        <li><a href="index.php?view=jadwalguru"></i> Aktivitas Mengajar</a></li>
-        <?php echo "<li><a href='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai UTS</a></li>" ?>
-        <!-- <li><a href="index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">Nilai UTS</a></li> -->
-        <li><a
-            href="index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">Nilai
-            Raport 11</a></li>
-        <li><a
-            href="index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">Forum
-            Diskusi</a></li>
-        <li><a
-            href="index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">Quiz/Ujian
-            Online</a></li>
-      </ul>
-    </li>
+<li class="treeview">
+  <a href="#"><i class="fa fa-user"></i> <span>Modul Mengajar</span><i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">
+    <li><a href="index.php?view=jadwalguru">Aktivitas Mengajar</a></li>
+
+    <?php 
+    // Tampilkan menu hanya jika user sudah mengakses Agenda Mengajar
+    if (isset($_SESSION['akses_agenda']) && $_SESSION['akses_agenda'] === true) {
+      echo "
+        <li><a href='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai UTS</a></li>
+        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai Raport</a></li>
+        <li><a href='index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>Forum Diskusi</a></li>
+        <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>Quiz/Ujian Online</a></li>
+      ";
+    } else {
+      echo "<li><a href='#'>Akses Modul Terkunci</a></li>";
+    }
+    ?>
+  </ul>
+</li>
+
 
     <?php
 
