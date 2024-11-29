@@ -270,7 +270,7 @@ if (isset($_SESSION['id'])) {
             // Periksa apakah user memiliki level 'admin' atau 'kurikulum'
             if ($_SESSION['level'] == 'admin') {
               // Fungsi untuk validasi session admin
-              cek_session_admin();
+              // cek_session_admin();
 
               // Render halaman untuk admin atau kurikulum
               echo "<div class='row'>";
@@ -379,7 +379,7 @@ if (isset($_SESSION['id'])) {
             include "application/absensi_siswa.php";
             echo "</div>";
           } elseif ($_GET[view] == 'rekapabsensiswa') {
-            $_SESSION['is_kurikulum'];
+            $_SESSION['is_kesiswaan'];
             // cek_session_guru();
             echo "<div class='row'>";
             include "application/absensi_siswa_rekap.php";

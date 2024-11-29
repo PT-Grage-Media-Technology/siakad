@@ -23,7 +23,7 @@
       <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
     
 
-    <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Kesiswaan tes</span></a></li>
+    <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-clipboard"></i> <span>Rekap Absensi Siswa</span></a></li>
     <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
     <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
