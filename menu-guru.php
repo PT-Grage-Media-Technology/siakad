@@ -65,7 +65,16 @@
         <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>Quiz/Ujian Online</a></li>
       ";
     } else {
-      echo "<li><a href='#'>Akses Modul Terkunci</a></li>";
+      echo "
+      
+      <li>
+          <a href='#' onclick='alert('Silakan akses Agenda Mengajar terlebih dahulu!');'>
+            <i class='fa fa-lock'></i> <span>Modul Terkunci</span>
+          </a>
+      </li>
+
+      ";
+
     }
     ?>
   </ul>
