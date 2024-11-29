@@ -6,8 +6,11 @@
 
 <!-- /.Left col -->
 
-<!-- <section class="col-lg-5 connectedSortable">
+<section class="col-lg-5 connectedSortable">
     <?php //include "home_quick_email.php"; ?>
-</section> -->
+
+    <img src="foto/upacara.jpg" class="" style="width: 100%; height: auto;" alt="Foto SMK">
+
+</section>
 
 <!-- right col -->
