@@ -5,19 +5,12 @@ if ($_GET[act] == '') {
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Rekap Data Absensi Siswa $_GET[tahun]</b></h3>
+                  <h3 class='box-title'>Rekap Data Absensi Guru $_GET[tahun]</b></h3>
                 </div>
               <div class='box-body'>
 
               <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kode_kelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
-              </table>
+              
               </div>
 
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
