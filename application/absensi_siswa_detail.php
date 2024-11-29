@@ -42,13 +42,14 @@ if ($_GET[act] == '') {
     $no = 1;
     $tampil = mysql_query("SELECT * FROM rb_guru ORDER BY nip");
     while ($r = mysql_fetch_array($tampil)) {
-      var_dump($r);
-        $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-        $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
+      // var_dump($r);
+        // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
+        $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
         $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
         $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
         $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
         $persen = $hadir / ($total) * 100;
+        var_dump($hadir);
         echo "<tr bgcolor=$warna>
                             <td>$no</td>
                             <td>$r[nisn]</td>
