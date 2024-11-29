@@ -43,7 +43,11 @@
     </li>
 
     <?php
-    $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = $hari_ini AND a.nip = '$_SESSION[id]'");
+    $query = mysql_query("SELECT DAYNAME(CURDATE()) AS hari");
+    $result = mysql_fetch_assoc($query);
+    $d = $result['hari'];
+    echo $d;
+    $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = CURDATE() AND a.nip = '$_SESSION[id]'");
 
     if (mysql_num_rows($tampil) > 0) {
       echo "<li class='treeview'>
