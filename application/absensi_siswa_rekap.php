@@ -9,42 +9,47 @@
                               } ?></h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='rekapabsensiswa'>
-          <select name='tahun' style='padding:4px'>
-            <?php
-            echo "<option value=''>- Pilih Tahun Akademik -</option>";
-            // $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
-            // while ($k = mysql_fetch_array($tahun)){
-            //   if ($_GET[tahun]==$k[id_tahun_akademik]){
-            //     echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-            //   }else{
-            //     echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-            //   }
-            // }
 
-            $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-            if ($_GET['tahun'] == '') {
-              echo "<option value='" . $tahun_akademik_terbaru['id_tahun_akademik'] . "' selected>" . $tahun_akademik_terbaru['nama_tahun'] . "</option>";
-            } else {
-              echo "<option value='$tahun_akademik_terbaru[id_tahun_akademik]'>$tahun_akademik_terbaru[nama_tahun]</option>";
-            }
-            ?>
-
+          <!-- Dropdown Tahun Akademik -->
+          <select name='tahun' style='padding:4px' onchange="this.form.submit()">
+              <?php 
+                  echo "<option value=''>- Pilih Tahun Akademik -</option>";
+                  
+                  // Query untuk mendapatkan semua tahun akademik
+                  $query_tahun_akademik = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+                  $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+                  
+                  while ($row = mysql_fetch_array($query_tahun_akademik)) {
+                      // Pilih tahun sesuai dengan $_GET['tahun'], atau default ke tahun terbaru
+                      if ($_GET['tahun'] == $row['id_tahun_akademik']) {
+                          echo "<option value='".$row['id_tahun_akademik']."' selected>".$row['nama_tahun']."</option>";
+                      } elseif (!isset($_GET['tahun']) && $row['id_tahun_akademik'] == $tahun_akademik_terbaru['id_tahun_akademik']) {
+                          echo "<option value='".$row['id_tahun_akademik']."' selected>".$row['nama_tahun']."</option>";
+                      } else {
+                          echo "<option value='".$row['id_tahun_akademik']."'>".$row['nama_tahun']."</option>";
+                      }
+                  }
+              ?>
           </select>
-          <select name='kelas' style='padding:4px' onchange="this.form.submit()">
-            <?php
+
+    <!-- Dropdown Kelas -->
+    <select name='kelas' style='padding:4px' onchange="this.form.submit()">
+        <?php 
             echo "<option value=''>- Pilih Kelas -</option>";
+            
+            // Query untuk mendapatkan semua kelas
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($_GET['kelas'] == $k['kode_kelas']) {
-                echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
-              } else {
-                echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
-              }
+                // Pilih kelas sesuai dengan $_GET['kelas']
+                if ($_GET['kelas'] == $k['kode_kelas']) {
+                    echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
+                } else {
+                    echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
+                }
             }
-            ?>
-          </select>
-          <!-- <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'> -->
-        </form>
+        ?>
+    </select>
+</form>
 
       </div><!-- /.box-header -->
       <div class="box-body">
