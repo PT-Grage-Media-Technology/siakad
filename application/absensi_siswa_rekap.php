@@ -146,6 +146,9 @@
                         <th>Sakit</th>
                         <th>Izin</th>
                         <th>Alpa</th>
+                        <th>Sikap</th>
+                        <th>Keterampilan</th>
+                        <th>Pengetahuan</th>
                         <th><center>% Kehadiran</center></th>
                       </tr>
                     </thead>
@@ -170,6 +173,9 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
+                            <td align=center>$r[nilai_sikap]</td>
+                            <td align=center>$r[nilai_keterampilan]</td>
+                            <td align=center>$r[nilai_pengetahuan]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
