@@ -612,8 +612,9 @@
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
-                    <td><img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'></td>
-                    <td><div style='position:relative;''>
+                    <td>
+                      <img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'>
+                      <div style='position:relative;''>
                         <a class='btn btn-primary' href='javascript:;'>
                           <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim123..."; ?>
                       <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
@@ -626,7 +627,8 @@
                       // Tampilkan form dalam satu pernyataan echo
                       echo "</a> 
                       <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                        </div>
+                    </td>
+                    <td>
                       </td>
                       </tr>
                     <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
