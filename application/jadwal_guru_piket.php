@@ -144,7 +144,7 @@
                     <tr><th width='140px' scope='row'>Guru</th>   
                    <td><select class='form-control' name='nip'> 
                                     <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     echo "<option value='$a[nip]'>$a[nama_guru]</option>";
   }
@@ -205,7 +205,7 @@
                       <tr><th width='140px' scope='row'>Guru</th>   
                      <td><select class='form-control' name='nip'> 
                                       <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     $selected = ($a['nip'] == $data['nip']) ? 'selected' : ''; // Menandai guru yang dipilih
     echo "<option value='$a[nip]' $selected>$a[nama_guru]</option>";
