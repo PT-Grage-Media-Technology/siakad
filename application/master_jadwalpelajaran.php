@@ -46,7 +46,7 @@
             }
             ?>
           </select>
-          <select name='kelas' style='padding:4px'>
+          <select name='kelas' style='padding:4px' onchange="this.form.submit()">
             <?php
             echo "<option value=''>- Pilih Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
@@ -60,7 +60,7 @@
             }
             ?>
           </select>
-          <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'>
+          <!-- <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'> -->
         </form>
       </div><!-- /.box-header -->
       <div class="box-body">
