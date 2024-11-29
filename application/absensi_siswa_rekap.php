@@ -207,10 +207,10 @@
         <td align=center>$sakit</td>
         <td align=center>$izin</td>
         <td align=center>$alpa</td>
-        <td align=center>{$akademik_total['nilai_sikap']}</td>
-        <td align=center>{$akademik_total['nilai_keterampilan']}</td>
-        <td align=center>{$akademik_total['nilai_pengetahuan']}</td>
-        <td align=center>{$akademik_total['total']}</td>
+        <td align=center>$akademik_total[nilai_sikap]</td>
+        <td align=center>$akademik_total[nilai_keterampilan]</td>
+        <td align=center>$akademik_total[nilai_pengetahuan]</td>
+        <td align=center>$akademik_total[total]</td>
         <td align=right>" . number_format($persen, 2) . " %</td>";
     echo "</tr>";
 
