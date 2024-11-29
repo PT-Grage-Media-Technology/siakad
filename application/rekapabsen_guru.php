@@ -169,7 +169,6 @@
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
                     $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
                     $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
-                    $total_kehadiran = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -184,7 +183,7 @@
                             <td align=center>$akademik[nilai_sikap]</td>
                             <td align=center>$akademik[nilai_keterampilan]</td>
                             <td align=center>$akademik[nilai_pengetahuan]</td>
-                            <td align=center>$total_kehadiran</td>
+                            <td align=center>$akademik[total]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
