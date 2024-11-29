@@ -43,7 +43,7 @@ if ($_GET[act] == '') {
 
         // <td align=right>" . number_format($persen, 2) . " %</td>";
 
-        var_dump($hadir);
+        // var_dump($hadir);
         echo "<tr bgcolor=$warna>
                             <td>$no</td>
                             <td>$r[nip]</td>
