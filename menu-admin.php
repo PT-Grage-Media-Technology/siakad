@@ -28,7 +28,7 @@
                 <li><a href="index.php?view=jurusan"><i class="fa fa-circle-o"></i> Data Jurusan</a></li>
                 <li><a href="index.php?view=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
                 <li><a href="index.php?view=statuspegawai"><i class="fa fa-circle-o"></i> Data Status Kepegawaian</a></li>
-                <li><a href="index.php?view=nilai"><i class="fa fa-circle-o"></i> Data Nilai</a></li>
+                <!-- <li><a href="index.php?view=nilai"><i class="fa fa-circle-o"></i> Data Nilai</a></li> -->
               </ul>
             </li>
             <li class="treeview">
