@@ -58,7 +58,7 @@
       </ul>
     </li>
 
-    <li class="treeview" hidden>
+    <!-- <li class="treeview">
       <a href="#"><i class="fa fa-send"></i> <span>SMS Gateway</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=sms"><i class="fa fa-circle-o"></i> Send SMS</a></li>
@@ -67,7 +67,7 @@
         <li><a href="index.php?view=smstoweb"><i class="fa fa-circle-o"></i> Inbox SMS2WEB</a></li>
         <li><a href="index.php?view=outboxautoreply"><i class="fa fa-circle-o"></i> Outbox Autoreply</a></li>
       </ul>
-    </li>
+    </li> -->
 
     <li class="treeview">
       <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i class="fa fa-angle-left pull-right"></i></a>
