@@ -26,10 +26,8 @@ if ($_GET[act] == '') {
                       <thead>
                       <tr>
                         <th>No</th>
-                        <th>NISN</th>
-                        <th>Nama Siswa</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Pertemuan</th>
+                        <th>Nip</th>
+                        <th>Nama Guru</th>
                         <th>Hadir</th>
                         <th>Sakit</th>
                         <th>Izin</th>
@@ -40,7 +38,7 @@ if ($_GET[act] == '') {
                     <tbody>";
 
     $no = 1;
-    $tampil = mysql_query("SELECT * FROM rb_guru ORDER BY nip");
+    $tampil = mysql_query("SELECT * FROM rb_guru ORDER BY nip ASC");
     while ($r = mysql_fetch_array($tampil)) {
       // var_dump($r);
         // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
