@@ -432,10 +432,13 @@ if (isset($_SESSION['id'])) {
             include "application/raport_cetak.php";
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetakuts') {
-            cek_session_admin();
-            echo "<div class='row'>";
-            include "application/raport_cetak_uts.php";
-            echo "</div>";
+            // cek_session_admin();
+            if(cek_session_admin() || cek_session_guru()){
+              echo "<div class='row'>";
+              include "application/raport_cetak_uts.php";
+              echo "</div>";
+            }
+           
           } elseif ($_GET[view] == 'capaianhasilbelajar') {
             cek_session_admin();
             echo "<div class='row'>";
