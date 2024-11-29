@@ -52,9 +52,8 @@ if ($_GET[act] == '') {
         var_dump($hadir);
         echo "<tr bgcolor=$warna>
                             <td>$no</td>
-                            <td>$r[nisn]</td>
-                            <td>$r[nama]</td>
-                            <td>$r[jenis_kelamin]</td>
+                            <td>$r[nip]</td>
+                            <td>$r[nama_guru]</td>
                             <td align=center>$total</td>
                             <td align=center>$hadir</td>
                             <td align=center>$sakit</td>
