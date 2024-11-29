@@ -30,7 +30,7 @@
     $tampil = mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'");
     $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
 
-var_dump($tahub);
+var_dump($tahun);
 
     if (mysql_num_rows($tampil) > 0) {
       echo "<li class='treeview'>
