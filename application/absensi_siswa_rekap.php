@@ -145,6 +145,9 @@
                         <th>Sakit</th>
                         <th>Izin</th>
                         <th>Alpa</th>
+                        <th>Sikap</th>
+                        <th>Keterampilan</th>
+                        <th>Pengetahuan</th>
                         <th><center>% Kehadiran</center></th>
                       </tr>
                     </thead>
