@@ -162,7 +162,7 @@
   $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
-  echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
+  // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
@@ -413,8 +413,7 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    // var_dump($a);
-    // exit;
+    
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
