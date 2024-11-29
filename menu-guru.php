@@ -43,7 +43,7 @@
     </li>
 
     <?php
-    $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.tanggal = CURDATE() AND a.nip = '$_SESSION[id]'");
+    $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = DAYNAME(CURDATE()) AND a.nip = '$_SESSION[id]'");
 
     if (mysql_num_rows($tampil) > 0) {
       echo "<li class='treeview'>
