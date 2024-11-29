@@ -33,7 +33,7 @@
       echo "<li class='treeview'>
         <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
         <ul class='treeview-menu'>
-          <li><a href='index.php?view=absensiguru'></i> Absensi Guru</a></li>
+          <li><a href='index.php?view=raportuts'></i> Absensi Guru</a></li>
         </ul>
       </li>";
     } else {
