@@ -6,7 +6,7 @@ include "config/library.php";
 include "config/fungsi_indotgl.php";
 include "config/fungsi_seo.php";
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) { 
   if ($_SESSION['level'] == 'superuser') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
     $nama = $iden['nama_lengkap'];
