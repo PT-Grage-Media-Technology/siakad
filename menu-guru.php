@@ -55,7 +55,7 @@
         <!-- <li><a href="index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">Nilai UTS</a></li> -->
         <li><a
             href="index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]">Nilai
-            Raport</a></li>
+            Raport 11</a></li>
         <li><a
             href="index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]">Forum
             Diskusi</a></li>
