@@ -59,7 +59,6 @@
 
           
         </form> -->
-        <h3 class="box-title">Jadwal Guru Piket</h3>
         
       </div><!-- /.box-header -->
       <div class="box-body">
