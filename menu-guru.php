@@ -38,9 +38,9 @@
         <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
         <ul class='treeview-menu'>
           <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai UTS</a></li>
-        <li><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport UTS</a></li>
+        <li><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport UTS</a></li>
 
-        <li><a href='index.php?view=capaianhasilbelajar&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Capaian Belajar</a></li>
+        <li><a href='index.php?view=capaianhasilbelajar&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Capaian Belajar</a></li>
         <li><a href='index.php?view=extrakulikuler&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Ekstrakulikuler</a></li>
         <li><a href='index.php?view=prestasi&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Prestasi</a></li>
         <li><a href='index.php?view=raport&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai Raport</a></li>
