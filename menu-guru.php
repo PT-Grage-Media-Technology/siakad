@@ -27,7 +27,7 @@
     <?php
 
     // echo $hari_ini;
-    $tampil = mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'");
+    $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'"));
 
 // var_dump($tahun);
 
