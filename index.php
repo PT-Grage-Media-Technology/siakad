@@ -270,7 +270,7 @@ if (isset($_SESSION['id'])) {
             // Periksa apakah user memiliki level 'admin' atau 'kurikulum'
             if ($_SESSION['level'] == 'admin') {
               // Fungsi untuk validasi session admin
-              cek_session_admin();
+              // cek_session_admin();
 
               // Render halaman untuk admin atau kurikulum
               echo "<div class='row'>";
