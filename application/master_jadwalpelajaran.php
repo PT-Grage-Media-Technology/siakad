@@ -7,7 +7,16 @@
             echo "Jadwal Pelajaran";
           } else {
             echo "Jadwal Pelajaran Pada Tahun " . date('Y');
-          } ?>
+          } 
+          
+          if (empty($_GET['tahun'])) {
+            $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+            $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+          } else {
+            $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '".$_GET['tahun']."'"));
+            $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+          } 
+          ?>
         </h3>
         <?php if ($_SESSION['level'] != 'kepala') { ?>
           <a class='pull-right btn btn-primary btn-sm' href='index.php?view=jadwalpelajaran&act=tambah'>Tambahkan Jadwal
@@ -20,10 +29,11 @@
             echo "<option value=''>- Pilih Tahun Akademik -</option>";
             $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
             while ($k = mysql_fetch_array($tahun)) {
-              if ($_GET['tahun'] == $k['id_tahun_akademik']) {
+              if ($tahun_terpilih == $k['id_tahun_akademik']) {
                 echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
               } else {
-                echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
+                $selected = ($id_terakhir == $k['id_tahun_akademik']) ? "selected" : "";
+                echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
               }
             }
             ?>
