@@ -1,7 +1,7 @@
 <section class="col-lg-7 connectedSortable">
     <?php //include "home_grafik.php"; ?>
 
-    <img src="/files/public_html/images/diponegoro.jpg" class="" style="width: 100%; height: auto;" alt="Foto SMK">
+    <img src="images/diponegoro.jpg" class="" style="width: 100%; height: auto;" alt="Foto SMK">
 </section>
 
 <!-- /.Left col -->
