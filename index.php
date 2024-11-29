@@ -382,12 +382,13 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/absensi_siswa_detail.php";
             echo "</div>";
-          } elseif ($_GET[view] == 'rekapabsensiswa') {
-            $_SESSION['is_kesiswaan'];
-            // cek_session_guru();
-            echo "<div class='row'>";
-            include "application/absensi_siswa_rekap.php";
-            echo "</div>";
+          } elseif ($_GET[view] == 'rekapguru') {
+            if($_SESSION['is_kesiswaan'] == true){
+              // cek_session_guru();
+              echo "<div class='row'>";
+              include "application/rekapabsen_guru.php";
+              echo "</div>";
+            }
           } elseif ($_GET[view] == 'absenguru') {
             cek_session_admin();
             echo "<div class='row'>";
