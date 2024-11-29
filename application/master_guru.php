@@ -606,66 +606,84 @@
 
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>";
-
-
   if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
     echo "
-    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
-                    <p><strong>NIP:</strong> $nip |   <strong>S :</strong> {$absen['jumlah_sakit']} |    <strong>I :</strong> {$absen['jumlah_izin']} |   <strong>A :</strong> {$absen['jumlah_alpa']}</p>
-                    <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
-                </div>
-                <div class='modal-body'>
-                    <div style='background-color: black; padding: 10px;'>
-                        <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
-                    </div>";
+                <!-- Modal -->
+                <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+                  <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>";
 
-    // Query pemberitahuan
+    // Ambil nilai NIP dari session
+    $nip = $_SESSION['id'];
+
+    // Query untuk menghitung jumlah absensi berdasarkan kode_kehadiran
+    $rekap_absen = mysql_query("SELECT 
+                            SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+                            SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
+                            SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
+                        FROM rb_rekap_absen_guru
+                        WHERE nip = '$nip' AND status = 1");
+
+    // Ambil hasil query
+    $absen = mysql_fetch_assoc($rekap_absen);
+
+    echo "<div class='modal-header'>
+                      <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                     <p><strong>NIP:</strong> $nip |   <strong>S :</strong> {$absen['jumlah_sakit']} |    <strong>I :</strong> {$absen['jumlah_izin']} |   <strong>A :</strong> {$absen['jumlah_alpa']}</p>
+                        <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
+                      </div>
+                      <div class='modal-body'>";
+    // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
+    echo "<div style='background-color: black; padding: 10px;'>
+                            <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
+                            </div>";
+
+    // Query pemberitahuan seperti sebelumnya
     $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
 
     // Tampilkan tabel pemberitahuan
     echo "<table id='example1' class='table table-bordered table-striped'>
-        <tr>
-            <th>No</th>
-            <th>Pesan</th>
-            <th>Waktu Dikirim</th>
-            <th>Action</th>
-        </tr>";
+                          <tr>
+                              <th>No</th>
+                              <th>Pesan</th>
+                              <th>Waktu Dikirim</th>
+                              <th>Action</th>
+                          </tr>";
 
     // Cek apakah ada pemberitahuan
     $no = 1;
     if (mysql_num_rows($pemberitahuan) > 0) {
       while ($p = mysql_fetch_array($pemberitahuan)) {
         echo "<tr>
-                <td>$no</td>
-                <td>$p[pesan]</td>
-                <td>$p[waktu_dikirim]</td>
-                <td><a class='btn btn-warning btn-xs' name='absen' 
-                href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
-            </tr>";
+                                <td>$no</td>
+                                <td>$p[pesan]</td>
+                                <td>$p[waktu_dikirim]</td>
+                                <td><a class='btn btn-warning btn-xs' name='absen' 
+                                href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
+                                </tr>";
         $no++;
       }
     } else {
       echo "<tr>
-            <td colspan='4'>Tidak ada data</td>
-        </tr>";
+                            <td>Tidak ada data</td>
+                          </tr>";
     }
 
-    echo "</table>
-                </div>
-                <div class='modal-footer'>
-                    <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>";
+
+    echo "
+                        </table>
+                      </div>
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>";
   }
-  echo "              
+  echo "
+                
+
+
                   <table class='table table-condensed table-bordered'>
                     <tbody>
                       <tr><th width='150px' scope='row'>NIK</th> <td>$s[nik]</td></tr>
