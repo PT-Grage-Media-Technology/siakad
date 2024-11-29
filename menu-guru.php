@@ -24,6 +24,23 @@
 
     <!-- <li><a href="https://siakad.demogmt.online/index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li> -->
 
+    <?php
+
+    // echo $hari_ini;
+    $tampil = mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'");
+
+    if (mysql_num_rows($tampil) > 0) {
+      echo $tampil;
+      echo "<li class='treeview'>
+        <a href='#'><i class='fa fa-user'></i> <span>Menu Guru Piket</span><i class='fa fa-angle-left pull-right'></i></a>
+        <ul class='treeview-menu'>
+          <li><a href='index.php?view=absensiguru'></i> Absensi Guru</a></li>
+        </ul>
+      </li>";
+    } else {
+    }
+    ?>
+
     <li class="treeview">
       <a href="#"><i class="fa fa-user"></i> <span>Modul Mengajar</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
