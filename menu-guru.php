@@ -44,7 +44,8 @@
 
     <?php
     $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = DAYNAME(CURDATE()) AND a.nip = '$_SESSION[id]'");
-
+    var_dump($tampil);
+    echo "SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = DAYNAME(CURDATE()) AND a.nip = '$_SESSION[id]'";
     if (mysql_num_rows($tampil) > 0) {
       echo "<li class='treeview'>
       <a href='#'><i class='fa fa-user'></i> <span>Menu Guru Piket</span><i class='fa fa-angle-left pull-right'></i></a>
