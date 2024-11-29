@@ -427,27 +427,27 @@ if (isset($_SESSION['id'])) {
             include "application/raport_uts.php";
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetak') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport_cetak.php";
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetakuts') {
-            cek_session_admin();
-            echo "<div class='row'>";
-            include "application/raport_cetak_uts.php";
-            echo "</div>";
+            // cek_session_admin();
+              echo "<div class='row'>";
+              include "application/raport_cetak_uts.php";
+              echo "</div>";
           } elseif ($_GET[view] == 'capaianhasilbelajar') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_capaian_hasil_belajar.php";
             echo "</div>";
           } elseif ($_GET[view] == 'extrakulikuler') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_extrakulikuler.php";
             echo "</div>";
           } elseif ($_GET[view] == 'prestasi') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_prestasi.php";
             echo "</div>";
