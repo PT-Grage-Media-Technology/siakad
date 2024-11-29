@@ -168,7 +168,17 @@
                     $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
                     $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' GROUP BY tanggal");
-                    $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
+                    $akademik = []; // Inisialisasi array untuk menyimpan data
+                    $total_nilai_sikap = 0; // Inisialisasi total nilai sikap
+                    $total_nilai_keterampilan = 0; // Inisialisasi total nilai keterampilan
+                    $total_nilai_pengetahuan = 0; // Inisialisasi total nilai pengetahuan
+
+                    while ($row = mysql_fetch_array($akademik_query)) {
+                      $akademik[] = $row; // Menambahkan setiap baris ke dalam array
+                      $total_nilai_sikap += $row['nilai_sikap']; // Menjumlahkan nilai sikap
+                      $total_nilai_keterampilan += $row['nilai_keterampilan']; // Menjumlahkan nilai keterampilan
+                      $total_nilai_pengetahuan += $row['nilai_pengetahuan']; // Menjumlahkan nilai pengetahuan
+                    }
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -180,9 +190,9 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>$akademik[nilai_sikap]</td>
-                            <td align=center>$akademik[nilai_keterampilan]</td>
-                            <td align=center>$akademik[nilai_pengetahuan]</td>
+                            <td align=center>$total_nilai_sikap</td> <!-- Total nilai sikap -->
+                            <td align=center>$total_nilai_keterampilan</td> <!-- Total nilai keterampilan -->
+                            <td align=center>$total_nilai_pengetahuan</td> <!-- Total nilai pengetahuan -->
                             <td align=center>$akademik[total]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
