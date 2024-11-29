@@ -66,7 +66,7 @@
         <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
     } else {
-      echo "<li><a href='#'>Akses Modul Terkunci Silahkan Klik Agenda Mengajar</a></li>";
+      echo "<li><a href='#'>Akses Modul Terkunci</a></li>";
     }
     ?>
   </ul>
