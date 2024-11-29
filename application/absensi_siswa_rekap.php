@@ -162,6 +162,7 @@
                     $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
                     $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
+                    $akademik = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -173,9 +174,9 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>$r[nilai_sikap]</td>
-                            <td align=center>$r[nilai_keterampilan]</td>
-                            <td align=center>$r[nilai_pengetahuan]</td>
+                            <td align=center>$akademik[nilai_sikap]</td>
+                            <td align=center>$akademik[nilai_keterampilan]</td>
+                            <td align=center>$akademik[nilai_pengetahuan]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
