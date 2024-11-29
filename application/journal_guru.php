@@ -552,91 +552,103 @@ $_SESSION['akses_agenda'] = true;
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='container'>
-                  <div class='row'>
-                    <div class='col-12'>
-                      <table class='table table-condensed table-bordered'>
-                        <tbody>
-                          <?php
-                          echo '<input type='hidden' name='jdwl' value='' . $_GET[jdwl] . ''>';
-                          echo '<input type='hidden' name='id' value='' . $_GET[id] . ''>';
+                <div class='col-md-12'>
+                  <table class='table table-condensed table-bordered'>
+                  <tbody>
+                  <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
+                  <input type='hidden' name='id' value='$_GET[id]'>
+                    <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td><select class='form-control' name='a' hidden>";
+  $kelas = mysql_query("SELECT * FROM rb_kelas");
+  while ($a = mysql_fetch_array($kelas)) {
+    if ($e['kode_kelas'] == $a['kode_kelas']) {
+      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+    }
+  }
+  echo "</select>
+                    </td></tr>
+                    <tr hidden><th scope='row' hidden>Mata Pelajaran</th>   <td hidden><select class='form-control' name='b' hidden>";
+  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+  while ($a = mysql_fetch_array($mapel)) {
+    if ($e['kode_pelajaran'] == $a['kode_pelajaran']) {
+      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+    }
+  }
+  echo "</select>
+                    </td></tr>
+                   
+                    <tr>
+                      <th scope='row'>Hari</th>
+                      <td>
+                          <select class='form-control' name='c'>
+                              <option value='Senin'" . ($e['hari'] == 'Senin' ? ' selected' : '') . ">Senin</option>
+                              <option value='Selasa'" . ($e['hari'] == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                              <option value='Rabu'" . ($e['hari'] == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                              <option value='Kamis'" . ($e['hari'] == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                              <option value='Jumat'" . ($e['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                              <option value='Sabtu'" . ($e['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                          </select>
+                      </td>
+                    </tr>
+                   
+                    <tr>
+                      <td>";
 
-                          echo '<tr>
-                                  <th scope='row'>Hari</th>
-                                  <td>
-                                    <select class='form-control' name='c'>
-                                      <option value='Senin'' . ($e[hari] == 'Senin' ? ' selected' : '') . '>Senin</option>
-                                      <option value='Selasa'' . ($e[hari] == 'Selasa' ? ' selected' : '') . '>Selasa</option>
-                                      <option value='Rabu'' . ($e[hari] == 'Rabu' ? ' selected' : '') . '>Rabu</option>
-                                      <option value='Kamis'' . ($e[hari] == 'Kamis' ? ' selected' : '') . '>Kamis</option>
-                                      <option value='Jumat'' . ($e[hari] == 'Jumat' ? ' selected' : '') . '>Jumat</option>
-                                      <option value='Sabtu'' . ($e[hari] == 'Sabtu' ? ' selected' : '') . '>Sabtu</option>
-                                    </select>
-                                  </td>
-                                </tr>';
+  if ($_SESSION['is_kurikulum']) {
+    echo " <tr>
+                            <th scope='row'>Pilih Guru</th>   
+                            <td>
+                            <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
+                                <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'" . ($e['users'] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
+    }
+    echo "</select>
+                            </td>
+                        </tr>";
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
 
-                          if ($_SESSION[is_kurikulum]) {
-                            echo '<tr>
-                                    <th scope='row'>Pilih Guru</th>
-                                    <td>
-                                      <small class='text-danger d-block text-center'>Pilih Nama Guru</small>
-                                      <select class='form-control selectpicker' name='nip_users' data-live-search='true'>';
-                            $guru = mysql_query('SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC');
-                            while ($g = mysql_fetch_array($guru)) {
-                              echo '<option value='' . $g[nip] . ''' . ($e[users] == $g[nip] ? ' selected' : '') . '>' . $g[nama_guru] . '</option>';
-                            }
-                            echo '  </select>
-                                    </td>
-                                  </tr>';
-                          } else {
-                            echo '<input type='hidden' class='form-control' value='' . $_SESSION[id] . '' name='nip_users'>';
-                          }
+  echo "</td>
+                    </tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                    <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
+                    <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
+                    <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
+                    <tr><th width=120px scope='row'> File</th>             
+                    <td>
+                      <img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'>
+                      </br>
+                      <div style='position:relative;''>
+                        <a class='btn btn-primary' href='javascript:;'>
+                          <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim123..."; ?>
+                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                      <?php
+                      include('library.php');
 
-                          echo '<tr>
-                                  <th scope='row'>Tanggal</th>
-                                  <td><input type='text' class='form-control datepicker' value='' . tgl_view($e[tanggal]) . '' name='d' data-date-format='dd-mm-yyyy'></td>
-                                </tr>
-                                <tr>
-                                  <th scope='row'>Dari Jam Ke-</th>
-                                  <td><input type='number' class='form-control' value='' . $e[jam_ke] . '' name='e'></td>
-                                </tr>
-                                <tr>
-                                  <th scope='row'>Sampai Jam Ke-</th>
-                                  <td><input type='number' class='form-control' value='' . $e[sampai_jam_ke] . '' name='ee'></td>
-                                </tr>
-                                <tr>
-                                  <th scope='row'>Materi</th>
-                                  <td><textarea class='form-control' name='f' style='height: 80px;'>' . $e[materi] . '</textarea></td>
-                                </tr>
-                                <tr>
-                                  <th scope='row'>File</th>
-                                  <td>
-                                    <img src='' . $e[file] . '' alt='File' style='max-width: 100%; height: auto;'><br>
-                                    <label for='file-upload' class='btn btn-primary mt-2'>Upload File Materi</label>
-                                    <input id='file-upload' type='file' class='d-none' name='file'>
-                                    <span id='upload-file-info' class='label label-info'></span>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope='row'>Keterangan</th>
-                                  <td><textarea class='form-control' name='g' style='height: 160px;'>' . $e[keterangan] . '</textarea></td>
-                                </tr>';
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class='row'>
-                    <div class='col-12'>
-                      <div class='box-footer d-flex justify-content-between'>
-                        <button type='submit' name='update' class='btn btn-info'>Update</button>
-                        <a href='index.php?view=journalguru&act=lihat&id=<?= $e[kodejdwl] ?>' class='btn btn-default'>Cancel</a>
-                      </div>
-                    </div>
-                  </div>
+                      // Mendapatkan waktu saat ini dalam format yang sesuai
+                      $currentDateTime = date('Y-m-d\TH:i');
+
+                      // Tampilkan form dalam satu pernyataan echo
+                      echo "</a> 
+                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                    </td>
+                    <td>
+                      </td>
+                      </tr>
+                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
+                    </td></tr>
+                  </tbody>
+                  </table>
                 </div>
+              </div>
+              <div class='box-footer'>
+                    <button type='submit' name='update' class='btn btn-info'>Update</button>
+                    <a href='index.php?view=journalguru&act=lihat&id=$e[kodejdwl]'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    
+                  </div>
               </form>
-
 
               <script>
     // Fungsi untuk memeriksa apakah teks adalah URL
