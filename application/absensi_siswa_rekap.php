@@ -12,44 +12,44 @@
 
           <!-- Dropdown Tahun Akademik -->
           <select name='tahun' style='padding:4px' onchange="this.form.submit()">
-            <?php
-            echo "<option value=''>- Pilih Tahun Akademik -</option>";
-
-            // Query untuk mendapatkan semua tahun akademik
-            $query_tahun_akademik = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
-            $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-            while ($row = mysql_fetch_array($query_tahun_akademik)) {
-              // Pilih tahun sesuai dengan $_GET['tahun'], atau default ke tahun terbaru
-              if ($_GET['tahun'] == $row['id_tahun_akademik']) {
-                echo "<option value='" . $row['id_tahun_akademik'] . "' selected>" . $row['nama_tahun'] . "</option>";
-              } elseif (!isset($_GET['tahun']) && $row['id_tahun_akademik'] == $tahun_akademik_terbaru['id_tahun_akademik']) {
-                echo "<option value='" . $row['id_tahun_akademik'] . "' selected>" . $row['nama_tahun'] . "</option>";
-              } else {
-                echo "<option value='" . $row['id_tahun_akademik'] . "'>" . $row['nama_tahun'] . "</option>";
-              }
-            }
-            ?>
+              <?php 
+                  echo "<option value=''>- Pilih Tahun Akademik -</option>";
+                  
+                  // Query untuk mendapatkan semua tahun akademik
+                  $query_tahun_akademik = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+                  $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+                  
+                  while ($row = mysql_fetch_array($query_tahun_akademik)) {
+                      // Pilih tahun sesuai dengan $_GET['tahun'], atau default ke tahun terbaru
+                      if ($_GET['tahun'] == $row['id_tahun_akademik']) {
+                          echo "<option value='".$row['id_tahun_akademik']."' selected>".$row['nama_tahun']."</option>";
+                      } elseif (!isset($_GET['tahun']) && $row['id_tahun_akademik'] == $tahun_akademik_terbaru['id_tahun_akademik']) {
+                          echo "<option value='".$row['id_tahun_akademik']."' selected>".$row['nama_tahun']."</option>";
+                      } else {
+                          echo "<option value='".$row['id_tahun_akademik']."'>".$row['nama_tahun']."</option>";
+                      }
+                  }
+              ?>
           </select>
 
-          <!-- Dropdown Kelas -->
-          <select name='kelas' style='padding:4px' onchange="this.form.submit()">
-            <?php
+    <!-- Dropdown Kelas -->
+    <select name='kelas' style='padding:4px' onchange="this.form.submit()">
+        <?php 
             echo "<option value=''>- Pilih Kelas -</option>";
-
+            
             // Query untuk mendapatkan semua kelas
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              // Pilih kelas sesuai dengan $_GET['kelas']
-              if ($_GET['kelas'] == $k['kode_kelas']) {
-                echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
-              } else {
-                echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
-              }
+                // Pilih kelas sesuai dengan $_GET['kelas']
+                if ($_GET['kelas'] == $k['kode_kelas']) {
+                    echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
+                } else {
+                    echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
+                }
             }
-            ?>
-          </select>
-        </form>
+        ?>
+    </select>
+</form>
 
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -158,64 +158,36 @@
                       </tr>
                     </thead>
                     <tbody>";
-
-  $no = 1;
-  $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-  while ($r = mysql_fetch_array($tampil)) {
-    $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-    $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
-    $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
-    $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
-    $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
-    $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
-
-    $akademik_total = [
-      'nilai_sikap' => 0,
-      'nilai_keterampilan' => 0,
-      'nilai_pengetahuan' => 0,
-      'total' => 0
-    ];
-    $akademik_count = 0;
-
-    // Iterasi hasil query untuk menjumlahkan nilai
-    while ($akademik = mysql_fetch_array($akademik_query)) {
-      $akademik_total['nilai_sikap'] += $akademik['nilai_sikap'];
-      $akademik_total['nilai_keterampilan'] += $akademik['nilai_keterampilan'];
-      $akademik_total['nilai_pengetahuan'] += $akademik['nilai_pengetahuan'];
-      $akademik_total['total'] += $akademik['total'];
-      $akademik_count++;
-    }
-
-    // Hitung rata-rata nilai (opsional, jika diperlukan)
-    $akademik_avg = $akademik_count > 0 ? [
-      'nilai_sikap' => $akademik_total['nilai_sikap'] / $akademik_count,
-      'nilai_keterampilan' => $akademik_total['nilai_keterampilan'] / $akademik_count,
-      'nilai_pengetahuan' => $akademik_total['nilai_pengetahuan'] / $akademik_count,
-      'total' => $akademik_total['total'] / $akademik_count,
-    ] : $akademik_total;
-
-    // Perhitungan persentase
-    $persen = $hadir / $total * 100;
-
-    echo "<tr bgcolor=$warna>
-        <td>$no</td>
-        <td>$r[nisn]</td>
-        <td>$r[nama]</td>
-        <td>$r[jenis_kelamin]</td>
-        <td align=center>$total</td>
-        <td align=center>$hadir</td>
-        <td align=center>$sakit</td>
-        <td align=center>$izin</td>
-        <td align=center>$alpa</td>
-        <td align=center>$akademik_total[nilai_sikap]</td>
-        <td align=center>$akademik_total[nilai_keterampilan]</td>
-        <td align=center>$akademik_total[nilai_pengetahuan]</td>
-        <td align=center>$akademik_total[total]</td>
-        <td align=right>" . number_format($persen, 2) . " %</td>";
-    echo "</tr>";
-
-    $no++;
-  }
+                    
+                    $no = 1;
+                    $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+                    while($r=mysql_fetch_array($tampil)){
+                    $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
+                    $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
+                    $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
+                    $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
+                    $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
+                    $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
+                    $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
+                    $persen = $hadir/($total)*100;
+                    echo "<tr bgcolor=$warna>
+                            <td>$no</td>
+                            <td>$r[nisn]</td>
+                            <td>$r[nama]</td>
+                            <td>$r[jenis_kelamin]</td>
+                            <td align=center>$total</td>
+                            <td align=center>$hadir</td>
+                            <td align=center>$sakit</td>
+                            <td align=center>$izin</td>
+                            <td align=center>$alpa</td>
+                            <td align=center>$akademik[nilai_sikap]</td>
+                            <td align=center>$akademik[nilai_keterampilan]</td>
+                            <td align=center>$akademik[nilai_pengetahuan]</td>
+                            <td align=center>$akademik[total]</td>
+                            <td align=right>".number_format($persen, 2)." %</td>";
+                    echo "</tr>";
+                      $no++;
+                      }
 
   echo "</tbody>
                   </table>
