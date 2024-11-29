@@ -1,6 +1,8 @@
 <?php 
 if ($_GET[act]==''){
-cek_session_admin(); 
+// cek_session_admin();
+cek_session_guru();
+
 ?>
             <div class="col-xs-12">  
               <div class="box">
