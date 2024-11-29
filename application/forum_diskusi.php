@@ -87,7 +87,7 @@ if ($_GET[act] == '') {
                                 <td>$r[nama_ruangan]</td>
                                 <td style='color:red'>$total Record</td>";
                 echo "<td style='width:70px !important'><center>
-                                  <a class='btn btn-success btn-xs' title='Masuk Forum Diskusi' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]'><span class='glyphicon glyphicon-th-list'></span> Masuk Forum Diskusi</a>
+                                  <a class='btn btn-success btn-xs' title='Masuk Forum Diskusi' href='index.php?view=forum&act=list&jdwl=$r[kodejdwl]'><span class='glyphicon glyphicon-th-list'></span> Masuk Forum Diskusi</a>
                                 </center></td>";
                 echo "</tr>";
                 $no++;
@@ -168,7 +168,8 @@ if ($_GET[act] == '') {
 
   if (isset($_GET['hapus'])) {
     mysql_query("DELETE FROM rb_quiz_ujian WHERE id_quiz_ujian='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET['jdwl'] . "&id=" . $_GET['id'] . "&kd=" . $_GET['kd'] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   echo "</tbody>
@@ -219,12 +220,14 @@ if ($_GET[act] == '') {
 
   if (isset($_GET[deletetopic])) {
     mysql_query("DELETE FROM rb_forum_topic where id_forum_topic='$_GET[idtopic]'");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   if (isset($_GET[deletekomentar])) {
     mysql_query("DELETE FROM rb_forum_komentar where id_forum_komentar='$_GET[deletekomentar]' AND id_forum_topic='$_GET[idtopic]'");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 
   echo "<div class='col-md-12'>
@@ -232,7 +235,7 @@ if ($_GET[act] == '') {
                 <div class='box-header'>
                   <i class='fa fa-comments-o'></i>
                   <h3 class='box-title'>Topic Forum - $topic[judul_topic] </h3> 
-                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
+                  <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id_jawaban=$_GET[id_jawaban]&deletetopic' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a>
                 </div>
                 <div class='box-body chat' id='chat-box'>
                   <div class='item'>";
@@ -267,7 +270,7 @@ if ($_GET[act] == '') {
         echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
       }
       echo "<p class='message'><small class='text-muted'>
-                                <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id=$_GET[id]&kd=$_GET[kd]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
+                                <a href='index.php?view=forum&act=detailtopic&jdwl=$_GET[jdwl]&idtopic=$_GET[idtopic]&id_jawaban=$_GET[id_jawaban]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
                                 <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
                         </div>";
     } else {
@@ -301,10 +304,10 @@ if ($_GET[act] == '') {
           echo"<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Pertanyan Penilaian Diri </h3>";
+                  <h3 class='box-title'>Data Jawaban Refleksi </h3>";
                   if($_SESSION[level]!='kepala'){
 
-                  echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
+                  // echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=penilaiandiri&act=tambah'>Tambahkan Data</a>";
                  } 
                 echo"</div><!-- /.box-header -->
                 <div class='box-body'>
@@ -312,34 +315,37 @@ if ($_GET[act] == '') {
                     <thead>
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>Pertanyaan</th>";
+                        <th>Jawaban</th>";
                         if($_SESSION[level]!='kepala'){ 
-                        echo"<th style='width:70px'>Action</th>";
+                        // echo"<th style='width:70px'>Action</th>";
                          }
                       echo"</tr>
                     </thead>
                     <tbody>";
                  
-                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
+                    $jwb = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where id_pertanyaan_penilaian='$_GET[id_jawaban]' AND kodejdwl='$_GET[jdwl]'");
                     $no = 1;
-                    while($r=mysql_fetch_array($tampil)){
-                      echo $r;
+                    while($r=mysql_fetch_array($jwb)){
+                      // var_dump($r);
+                      // var_dump($jwb);
                     echo "<tr><td>$no</td>
-                              <td>$r[pertanyaan]</td>";
+                              <td>$r[jawaban]</td>";
                               if($_SESSION[level]!='kepala'){
+                                // <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
+                                // <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=penilaiandiri&act=edit&id=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=penilaiandiri&hapus=$r[id_pertanyaan_penilaian]'><span class='glyphicon glyphicon-remove'></span></a>
+                                
                               </center></td>";
                               }
                             echo "</tr>";
                       $no++;
                       }
 
-                      if (isset($_GET[hapus])){
-                          mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=penilaiandiri';</script>";
-                      }
+                      // if (isset($_GET[hapus])){
+                      //     mysql_query("DELETE FROM rb_pertanyaan_penilaian where id_pertanyaan_penilaian='$_GET[hapus]'");
+                      //     echo "<script>document.location='index.php?view=penilaiandiri';</script>";
+                      // }
                 
                   echo"</tbody>
                   </table>
@@ -350,7 +356,8 @@ if ($_GET[act] == '') {
   if (isset($_POST[komentar])) {
     $waktu = date("Y-m-d H:i:s");
     mysql_query("INSERT INTO rb_forum_komentar VALUES('','$_GET[idtopic]','$_SESSION[id]','$_POST[a]','$waktu')");
-    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic] . "&id=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    $id_jawaban = $_GET['id_jawaban'];
+    echo "<script>document.location='index.php?view=forum&act=detailtopic&jdwl=" . $_GET[jdwl] . "&idtopic=" . $_GET[idtopic]."&id_jawaban=".$id_jawaban."';</script>";
   }
 } elseif ($_GET[act] == 'detailguru') {
   cek_session_guru();

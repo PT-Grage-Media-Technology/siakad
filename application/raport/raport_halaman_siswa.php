@@ -1,13 +1,14 @@
 <?php
 session_start(); // Memulai session
 
-// Simpan tahun yang dipilih ke dalam session
-if (isset($_GET['tahun'])) {
-    $_SESSION['tahun_terpilih'] = $_GET['tahun'];
-}
-
-// Set default tahun dari session jika ada
-$tahun_terpilih = isset($_SESSION['tahun_terpilih']) ? $_SESSION['tahun_terpilih'] : '';
+// Jika tahun_terpilih kosong, berarti pertama kali load halaman, maka ambil data terakhir
+if (empty($_GET['tahun'])) {
+  $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+  $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+} else {
+  $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '".$_GET['tahun']."'"));
+  $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+} 
 
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
@@ -18,14 +19,16 @@ echo "<div class='col-xs-12 col-md-12'>
       <input type='hidden' name='act' value='detailsiswa'>
       <select name='tahun' class='form-control mb-2 mr-sm-2' onchange='document.getElementById(\"year-form\").submit();'>
         <option value=''>- Pilih Tahun Akademik -</option>";
-$tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
-while ($k = mysql_fetch_array($tahun)) {
-    if ($tahun_terpilih == $k['id_tahun_akademik']) {
-        echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-    } else {
-        echo "<option value='$k[id_tahun_akademik]'>$k[nama_tahun]</option>";
-    }
-}
+        $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
+        while ($k = mysql_fetch_array($tahun)) {
+            if ($tahun_terpilih == $k['id_tahun_akademik']) {
+                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
+            } else {
+                // Else langsung memilih data terakhir
+                $selected = ($id_terakhir == $k['id_tahun_akademik']) ? "selected" : "";
+                echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
+            }
+        }
 
 echo "</select>
     </form>

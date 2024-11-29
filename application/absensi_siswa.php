@@ -160,8 +160,10 @@
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   // $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[kd]'"));
   $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
-  $idtopic = mysql_fetch_array(mysql_query("SELECT id_forum_topic FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
-
+  $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
+  $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
+  // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
+  // var_dump($jawaban_refleksi);
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
   $bulane = $ex[1];
@@ -210,7 +212,7 @@
                             </tr>
                         </tbody>
                     </table>
-                     <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]'>
+                     <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&id_jawaban=$jawaban_refleksi[id_pertanyaan_penilaian]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Refleksi</div>
@@ -318,10 +320,16 @@
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
 
+    // $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+    //                                       WHERE kodejdwl='$_GET[idjr]' 
+    //                                       AND waktu_input='$_GET[tgl]' 
+    //                                       AND nisn='$r[nisn]'"));
+
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                          WHERE kodejdwl='$_GET[idjr]' 
-                                          AND tanggal='$_GET[tgl]' 
-                                          AND nisn='$r[nisn]'"));
+                                    WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                                    AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
+                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
+
 
     echo "<tr>
               <td>$no</td>
@@ -405,8 +413,7 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
     
-    // var_dump($a);
-    // exit;
+    
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
@@ -416,13 +423,18 @@
       
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
-        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
-                                               SET kode_kehadiran='" . $a[$i] . "', 
-                                               nilai_sikap='" . $nilai_sikap[$i] . "',
-                                               nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
-                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
-                                               total='" . $total_nilai[$i] . "' 
-                                               WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
+        $updateAbsensiSiswa = mysql_query(
+                  "UPDATE rb_absensi_siswa 
+                  SET kode_kehadiran='" . $a[$i] . "', 
+                      nilai_sikap='" . $nilai_sikap[$i] . "',
+                      nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
+                      nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
+                      total='" . $total_nilai[$i] . "' 
+                  WHERE nisn='" . $nisn[$i] . "' 
+                    AND kodejdwl='$kodejdwl'
+                    AND tanggal='$tgl'"
+              );
+              
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
