@@ -427,7 +427,7 @@ if (isset($_SESSION['id'])) {
             include "application/raport_uts.php";
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetak') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport_cetak.php";
             echo "</div>";

@@ -1,6 +1,6 @@
 <?php
 if ($_GET[act] == '') {
-  cek_session_admin();
+  // cek_session_admin();
   ?>
   <div class="col-xs-12">
     <div class="box">
