@@ -167,18 +167,8 @@
                     $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
                     $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
-                    $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' GROUP BY tanggal");
-                    $akademik = []; // Inisialisasi array untuk menyimpan data
-                    while ($row = mysql_fetch_array($akademik_query)) {
-                      $akademik[] = $row; // Menambahkan setiap baris ke dalam array
-                    }
-                    
-                    // Pastikan array $akademik tidak kosong sebelum mengakses nilainya
-                    $nilai_sikap = isset($akademik[0]) ? $akademik[0]['nilai_sikap'] : 0; // Ambil nilai sikap
-                    $nilai_keterampilan = isset($akademik[0]) ? $akademik[0]['nilai_keterampilan'] : 0; // Ambil nilai keterampilan
-                    $nilai_pengetahuan = isset($akademik[0]) ? $akademik[0]['nilai_pengetahuan'] : 0; // Ambil nilai pengetahuan
-                    $total_nilai = isset($akademik[0]) ? $akademik[0]['total'] : 0; // Ambil total nilai
-                    
+                    $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
+                    $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -190,10 +180,10 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>$nilai_sikap</td>
-                            <td align=center>$nilai_keterampilan</td>
-                            <td align=center>$nilai_pengetahuan</td>
-                            <td align=center>$total_nilai</td>
+                            <td align=center>$akademik[nilai_sikap]</td>
+                            <td align=center>$akademik[nilai_keterampilan]</td>
+                            <td align=center>$akademik[nilai_pengetahuan]</td>
+                            <td align=center>$akademik[total]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
