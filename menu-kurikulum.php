@@ -42,7 +42,7 @@
         <li><a href="index.php?view=raport&act=detailguru"><i class="fa fa-circle-o"></i> Input Nilai Raport</a></li>
       </ul>
     </li> -->
-    <li><a href="index.php?view=rekapguru"><i class="fa fa-address-book-o"></i> <span>Rekap Absen Guru</span></a></li>
+    <li><a href="index.php?view=absensisiswadetail"><i class="fa fa-address-book-o"></i> <span>Detail siswa</span></a></li>
     <li><a href="index.php?view=dokumentasiguru"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
