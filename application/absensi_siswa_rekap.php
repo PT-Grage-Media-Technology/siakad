@@ -18,9 +18,6 @@
                   // Query untuk mendapatkan semua tahun akademik
                   $query_tahun_akademik = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
                   $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-                  $query_kelas_akademik = mysql_query("SELECT kode_kelas, nama_kelas FROM rb_kelas ORDER BY kode_kelas DESC");
-                  $kelas_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT kode_kelas FROM rb_kelas ORDER BY kode_kelas DESC LIMIT 1"));
                   
                   while ($row = mysql_fetch_array($query_tahun_akademik)) {
                       // Pilih tahun sesuai dengan $_GET['tahun'], atau default ke tahun terbaru
@@ -44,13 +41,10 @@
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
                 // Pilih kelas sesuai dengan $_GET['kelas']
-
                 if ($_GET['kelas'] == $k['kode_kelas']) {
-                  echo "<option value='".$k['kode_kelas']."' selected>".$k['nama_kelas']."</option>";
-                } elseif (!isset($_GET['kelas']) && $k['kode_kelas'] == $kelas_akademik_terbaru['kode_kelas']) {
-                    echo "<option value='".$k['kode_kelas']."' selected>".$k['nama_kelas']."</option>";
+                    echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
                 } else {
-                    echo "<option value='".$k['kode_kelas']."'>".$k['nama_kelas']."</option>";
+                    echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
                 }
             }
         ?>

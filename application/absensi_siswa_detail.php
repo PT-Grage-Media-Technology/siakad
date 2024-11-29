@@ -38,7 +38,7 @@ if ($_GET[act] == '') {
                     <tbody>";
 
     $no = 1;
-    $tampil = mysql_query("SELECT * FROM rb_guru ORDER BY nip ASC");
+    $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($r = mysql_fetch_array($tampil)) {
       // var_dump($r);
         // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
@@ -52,7 +52,6 @@ if ($_GET[act] == '') {
                             <td>$no</td>
                             <td>$r[nip]</td>
                             <td>$r[nama_guru]</td>
-                            <td align=center>$total</td>
                             <td align=center>$hadir</td>
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
