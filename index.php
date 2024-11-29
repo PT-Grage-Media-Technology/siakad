@@ -57,7 +57,7 @@ if (isset($_SESSION['id'])) {
 
   // Ambil data kurikulum aktif
   $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum WHERE status_kurikulum='Ya'"));
-  ?>
+?>
 
 
   <!DOCTYPE html>
@@ -136,7 +136,7 @@ if (isset($_SESSION['id'])) {
           // Jika guru juga merangkap kurikulum, tampilkan menu kurikulum
           if (isset($_SESSION['is_kurikulum']) && $_SESSION['is_kurikulum'] == true) {
             include "menu-kurikulum.php"; // Menu untuk Waka Kurikulum
-      
+
           } elseif (isset($_SESSION['is_kesiswaan']) && $_SESSION['is_kesiswaan'] == true) {
             include "menu-kesiswaan.php";
           } else {
@@ -276,17 +276,15 @@ if (isset($_SESSION['id'])) {
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
-            } elseif($_SESSION['is_kurikulum'] === true) {
+            } elseif ($_SESSION['is_kurikulum'] === true) {
               $_SESSION['is_kurikulum'];
               // Jika bukan admin atau kurikulum, arahkan ke halaman lain atau tampilkan pesan
               echo "<div class='row'>";
               include "application/master_nilai.php";
               echo "</div>";
-            }else{
-              echo"<script> window.location.href = 'index.php'; // Redirect ke halaman login</script>";
+            } else {
+              echo "<script> window.location.href = 'index.php'; // Redirect ke halaman login</script>";
             }
-
-
           } elseif ($_GET[view] == 'golongan') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -378,12 +376,19 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/absensi_siswa.php";
             echo "</div>";
-          } elseif ($_GET[view] == 'rekapabsensiswa') {
-            $_SESSION['is_kesiswaan'];
+          } elseif ($_GET[view] == 'absensisiswadetail') {
+            $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
-            include "application/absensi_siswa_rekap.php";
+            include "application/absensi_siswa_detail.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'rekapabsensiswa') {
+            if($_SESSION['is_kesiswaan'] == true){
+              // cek_session_guru();
+              echo "<div class='row'>";
+              include "application/absensi_siswa_rekap.php";
+              echo "</div>";
+            }
           } elseif ($_GET[view] == 'absenguru') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -545,7 +550,7 @@ if (isset($_SESSION['id'])) {
     <script src="dist/js/app.min.js"></script>
 
     <script>
-      $(function () {
+      $(function() {
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,
@@ -701,7 +706,7 @@ if (isset($_SESSION['id'])) {
 
   </html>
 
-  <?php
+<?php
 } else {
   include "login.php";
 }
