@@ -28,15 +28,15 @@
 
     // echo $hari_ini;
     $tampil = mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'");
-    $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
 
-var_dump($tahun);
+// var_dump($tahun);
 
     if (mysql_num_rows($tampil) > 0) {
+    $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
       echo "<li class='treeview'>
         <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
         <ul class='treeview-menu'>
-          <li><a href='index.php?view=raportuts'><i class='fa fa-circle-o'></i> Data Nilai UTS</a></li>
+          <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai UTS</a></li>
         <li><a href='index.php?view=raportcetakuts'><i class='fa fa-circle-o'></i> Cetak Raport UTS</a></li>
 
         <li><a href='index.php?view=capaianhasilbelajar'><i class='fa fa-circle-o'></i> Data Capaian Belajar</a></li>
