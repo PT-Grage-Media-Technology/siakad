@@ -135,6 +135,7 @@
     $cek_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
     // $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
     // Tampilkan data yang diambil
+    var_dump($cek_absen);
     if ($data = mysql_fetch_array($m)) {
         // var_dump($data);
         echo "<div class='col-md-12'>
@@ -165,12 +166,12 @@
             </tr>
           </table>
             ";
-                // if(!$cek_absen){
+                if(!$cek_absen){
 
                     echo"<a href='index.php?view=absensiguru&act=setujui&id_absen=$_GET[id_absen]&nip=$_GET[nip]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='Setujui'><i class='fa fa-check'></i></a>
                     <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                     ";
-                // }
+                }
                 echo"
                       </div>
                   </div>
