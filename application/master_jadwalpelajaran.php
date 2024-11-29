@@ -16,6 +16,14 @@
             $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '".$_GET['tahun']."'"));
             $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
           } 
+
+          if (empty($_GET['kelas'])) {
+            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ORDER BY kode_kelas DESC LIMIT 1"));
+            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
+          } else {
+            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas = '".$_GET['kelas']."'"));
+            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
+          } 
           ?>
         </h3>
         <?php if ($_SESSION['level'] != 'kepala') { ?>
@@ -43,10 +51,11 @@
             echo "<option value=''>- Pilih Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($_GET['kelas'] == $k['kode_kelas']) {
+              if ($kelas_terpilih == $k['kode_kelas']) {
                 echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
               } else {
-                echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
+                $selected = ($id_terakhir == $k['kode_kelas']) ? "selected" : "";
+                echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]</option>";
               }
             }
             ?>
