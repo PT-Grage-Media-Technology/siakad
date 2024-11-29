@@ -608,7 +608,7 @@
                 <div class='table-responsive'>";
 
 
-  if ($_SESSION['level'] != 'kepala') {
+  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
     echo "
     <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
