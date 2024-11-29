@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<?php
+// Ketika halaman Agenda Mengajar diakses, aktifkan flag di session
+session_start();
+$_SESSION['akses_agenda'] = true;
+?>
 
 <?php if ($_GET[act] == '') { ?>
   <div class="col-xs-12">
