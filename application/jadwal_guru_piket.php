@@ -38,18 +38,10 @@
           <input type="hidden" name="view" value="jadwalgurupiket">
 
           <!-- Dropdown untuk memilih Tahun Akademik -->
-          <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-            <option value=''>- Pilih Tahun Akademik -</option>
-            <?php
-            while ($k = mysql_fetch_array($tahun)) {
-              $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-              echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
-            }
-            ?>
-          </select>
+          
 
           <!-- Dropdown untuk memilih Bulan -->
-          <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+          <!-- <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
             <option value=''>- Pilih Bulan -</option>
             <option value='1' <?php echo ($bulan_dipilih == 1) ? 'selected' : ''; ?>>Januari</option>
             <option value='2' <?php echo ($bulan_dipilih == 2) ? 'selected' : ''; ?>>Februari</option>
@@ -65,18 +57,8 @@
             <option value='12' <?php echo ($bulan_dipilih == 12) ? 'selected' : ''; ?>>Desember</option>
           </select>
 
-          <!-- Dropdown untuk memilih Tanggal -->
-          <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-            <option value=''>- Pilih Tanggal -</option>
-            <?php
-            for ($i = 1; $i <= 31; $i++) {
-              $selected = ($tanggal_dipilih == $i) ? 'selected' : '';
-              echo "<option value='$i' $selected>$i</option>";
-            }
-            ?>
-          </select>
-        </form>
-        <h3 class="box-title">Jadwal Guru Piket</h3>
+          
+        </form> -->
         
       </div><!-- /.box-header -->
       <div class="box-body">
