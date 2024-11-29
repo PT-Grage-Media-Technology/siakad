@@ -18,9 +18,6 @@
                   // Query untuk mendapatkan semua tahun akademik
                   $query_tahun_akademik = mysql_query("SELECT id_tahun_akademik, nama_tahun FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
                   $tahun_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT id_tahun_akademik FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-
-                  $query_kelas_akademik = mysql_query("SELECT kode_kelas, nama_kelas FROM rb_kelas ORDER BY kode_kelas DESC");
-                  $kelas_akademik_terbaru = mysql_fetch_array(mysql_query("SELECT kode_kelas FROM rb_kelas ORDER BY kode_kelas DESC LIMIT 1"));
                   
                   while ($row = mysql_fetch_array($query_tahun_akademik)) {
                       // Pilih tahun sesuai dengan $_GET['tahun'], atau default ke tahun terbaru
@@ -44,13 +41,10 @@
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
                 // Pilih kelas sesuai dengan $_GET['kelas']
-
                 if ($_GET['kelas'] == $k['kode_kelas']) {
-                  echo "<option value='".$k['kode_kelas']."' selected>".$k['nama_kelas']."</option>";
-                } elseif (!isset($_GET['kelas']) && $k['kode_kelas'] == $kelas_akademik_terbaru['kode_kelas']) {
-                    echo "<option value='".$k['kode_kelas']."' selected>".$k['nama_kelas']."</option>";
+                    echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
                 } else {
-                    echo "<option value='".$k['kode_kelas']."'>".$k['nama_kelas']."</option>";
+                    echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
                 }
             }
         ?>
@@ -174,23 +168,7 @@
                     $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
                     $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
-                    $akademik = []; // Inisialisasi array untuk menyimpan data akademik
-                    while ($data = mysql_fetch_array($akademik_query)) {
-                        $akademik[] = $data; // Menambahkan setiap data ke dalam array
-                    }
-
-                    // Menghitung total nilai sikap, keterampilan, pengetahuan, dan total
-                    $total_nilai_sikap = 0;
-                    $total_nilai_keterampilan = 0;
-                    $total_nilai_pengetahuan = 0;
-                    $total_nilai = 0; // Inisialisasi total nilai
-                    foreach ($akademik as $item) {
-                        $total_nilai_sikap += $item['nilai_sikap'];
-                        $total_nilai_keterampilan += $item['nilai_keterampilan'];
-                        $total_nilai_pengetahuan += $item['nilai_pengetahuan'];
-                        $total_nilai += $item['total']; // Menjumlahkan total dari setiap data
-                    }
-
+                    $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -202,10 +180,10 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>$total_nilai_sikap</td> <!-- Total nilai sikap -->
-                            <td align=center>$total_nilai_keterampilan</td> <!-- Total nilai keterampilan -->
-                            <td align=center>$total_nilai_pengetahuan</td> <!-- Total nilai pengetahuan -->
-                            <td align=center>$total_nilai</td> <!-- Total nilai dari semua data -->
+                            <td align=center>$akademik[nilai_sikap]</td>
+                            <td align=center>$akademik[nilai_keterampilan]</td>
+                            <td align=center>$akademik[nilai_pengetahuan]</td>
+                            <td align=center>$akademik[total]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
