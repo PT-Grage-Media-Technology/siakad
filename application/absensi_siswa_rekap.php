@@ -168,7 +168,10 @@
                     $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
                     $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
                     $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
-                    $akademik = mysql_fetch_array($akademik_query); // Ambil data sebagai array
+                    $akademik = []; // Inisialisasi array untuk menyimpan data akademik
+                    while ($row = mysql_fetch_array($akademik_query)) {
+                        $akademik[] = $row; // Menambahkan setiap baris ke dalam array
+                    }
                     $persen = $hadir/($total)*100;
                     echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -180,10 +183,10 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>$akademik[nilai_sikap]</td>
-                            <td align=center>$akademik[nilai_keterampilan]</td>
-                            <td align=center>$akademik[nilai_pengetahuan]</td>
-                            <td align=center>$akademik[total]</td>
+                            <td align=center>".($akademik[0]['nilai_sikap'] ?? 0)."</td> <!-- Ambil nilai dari array -->
+                            <td align=center>".($akademik[0]['nilai_keterampilan'] ?? 0)."</td> <!-- Ambil nilai dari array -->
+                            <td align=center>".($akademik[0]['nilai_pengetahuan'] ?? 0)."</td> <!-- Ambil nilai dari array -->
+                            <td align=center>".($akademik[0]['total'] ?? 0)."</td> <!-- Ambil nilai dari array -->
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
