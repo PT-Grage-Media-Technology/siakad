@@ -380,7 +380,7 @@ if (isset($_SESSION['id'])) {
             $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
-            include "application/rekapabsen_guru.php";
+            include "application/absensi_siswa_detail.php";
             echo "</div>";
           } elseif ($_GET[view] == 'rekapabsensiswa') {
             // if($_SESSION['is_kesiswaan'] == true){
