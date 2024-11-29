@@ -614,6 +614,7 @@
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
                       <img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'>
+                      </br>
                       <div style='position:relative;''>
                         <a class='btn btn-primary' href='javascript:;'>
                           <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim123..."; ?>
