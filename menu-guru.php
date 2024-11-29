@@ -28,9 +28,10 @@
 
     // echo $hari_ini;
     $tampil = mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'");
-    $sa = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE tahun_akademik = (SELECT MAX(tahun_akademik) FROM rb_tahun_akademik)"));
+    $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
 
-var_dump($sa);
+var_dump($tahub);
+
     if (mysql_num_rows($tampil) > 0) {
       echo "<li class='treeview'>
         <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
