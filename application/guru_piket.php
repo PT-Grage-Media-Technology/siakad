@@ -135,7 +135,7 @@
     $cek_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
     $sudah_disetujui = mysql_num_rows($cek_absen) > 0;
     // Tampilkan data yang diambil
-    var_dump($cek_absen);
+    // var_dump($cek_absen);
     if ($data = mysql_fetch_array($m)) {
         // var_dump($data);
         echo "<div class='col-md-12'>
