@@ -44,7 +44,7 @@
 
     <?php
 
-    echo $hari_ini;
+    // echo $hari_ini;
     $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip WHERE a.hari = '$hari_ini' AND a.nip = '$_SESSION[id]'");
 
     if (mysql_num_rows($tampil) > 0) {
