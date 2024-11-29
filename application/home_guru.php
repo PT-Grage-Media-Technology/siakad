@@ -71,9 +71,9 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                                    JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                                    WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
                                    ORDER BY a.hari DESC");
-              if (!$tampil) {
-                    die("Query Error: " . mysql_error());
-                      }
+              // if (!$tampil) {
+              //       die("Query Error: " . mysql_error());
+              //         }
             $no = 1;
             while ($r = mysql_fetch_array($tampil)) {
               echo "<tr>
