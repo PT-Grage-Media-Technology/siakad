@@ -125,7 +125,7 @@
   <?php
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
+    // $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
     mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggalInput')");
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
   }
@@ -180,9 +180,9 @@
             </div>";
 } elseif ($_GET[act] == 'edit') {
   if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
-    $tanggal = tgl_simpan($_POST[tanggal]);
+    // $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
+    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
  }
 
