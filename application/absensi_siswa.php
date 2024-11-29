@@ -423,13 +423,18 @@
       
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
-        $updateAbsensiSiswa = mysql_query("UPDATE rb_absensi_siswa 
-                                               SET kode_kehadiran='" . $a[$i] . "', 
-                                               nilai_sikap='" . $nilai_sikap[$i] . "',
-                                               nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
-                                               nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
-                                               total='" . $total_nilai[$i] . "' 
-                                               WHERE nisn='" . $nisn[$i] . "' AND kodejdwl='$kodejdwl'");
+        $updateAbsensiSiswa = mysql_query(
+                  "UPDATE rb_absensi_siswa 
+                  SET kode_kehadiran='" . $a[$i] . "', 
+                      nilai_sikap='" . $nilai_sikap[$i] . "',
+                      nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
+                      nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
+                      total='" . $total_nilai[$i] . "' 
+                  WHERE nisn='" . $nisn[$i] . "' 
+                    AND kodejdwl='$kodejdwl'
+                    AND tanggal='$tgl'"
+              );
+              
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
