@@ -226,7 +226,7 @@
                                   <option value='Jumat'" . ($data['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
                                   <option value='Sabtu'" . ($data['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                               </select> 
-                      
+                       
                     </tbody>
                     </table>
                   </div>
