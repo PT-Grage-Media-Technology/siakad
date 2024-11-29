@@ -174,9 +174,9 @@
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
                             <td align=center>$alpa</td>
-                            <td align=center>{$akademik['nilai_sikap']}</td>
-                            <td align=center>{$akademik['nilai_keterampilan']}</td>
-                            <td align=center>{$akademik['nilai_pengetahuan']}</td>
+                            <td align=center>$akademik[nilai_sikap]</td>
+                            <td align=center>$akademik[nilai_keterampilan]</td>
+                            <td align=center>$akademik[nilai_pengetahuan]</td>
                             <td align=right>".number_format($persen, 2)." %</td>";
                     echo "</tr>";
                       $no++;
