@@ -89,16 +89,13 @@
                 <th>Nip</th>
                 <th>Hari</th>
                 <th>Guru</th>
-                <th>Tanggal</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php
 
-              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip   WHERE DAY(a.tanggal) = '$tanggal_dipilih' 
-              AND MONTH(a.tanggal) = '$bulan_dipilih'");
-
+              $tampil = mysql_query("SELECT * FROM rb_jadwal_guru_piket a JOIN rb_guru b ON a.nip=b.nip");
 
               $no = 1;
               if (mysql_num_rows($tampil) > 0) { // Memeriksa apakah ada data
@@ -106,12 +103,11 @@
                   echo "<tr><td>$no</td>
                                 <td>$r[nip]</td>
                                 <td>$r[hari]</td>
-                                <td>$r[nama_guru]</td>
-                                <td>" . tgl_indo($r['tanggal']) . "</td>";
-                  echo "<td style='width:80px !important'><center>
-                                          <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
-                                          <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
-                                        </center></td>";
+                                <td>$r[nama_guru]</td>";
+                          echo "<td style='width:80px !important'><center>
+                                                  <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
+                                                  <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
+                                                </center></td>";
                   echo "</tr>";
                   $no++;
                 }
@@ -129,9 +125,8 @@
   <?php
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggal','$tanggalInput')");
+    mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggalInput')");
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
   }
 
