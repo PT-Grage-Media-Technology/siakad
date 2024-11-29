@@ -39,7 +39,9 @@ if ($_GET[act] == '') {
         $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
         $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
         $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
-        $persen = $hadir / ($total) * 100;
+        // $persen = $hadir / ($total) * 100;
+        // <td align=right>" . number_format($persen, 2) . " %</td>";
+
         var_dump($hadir);
         echo "<tr bgcolor=$warna>
                             <td>$no</td>
@@ -48,8 +50,7 @@ if ($_GET[act] == '') {
                             <td align=center>$hadir</td>
                             <td align=center>$sakit</td>
                             <td align=center>$izin</td>
-                            <td align=center>$alpa</td>
-                            <td align=right>" . number_format($persen, 2) . " %</td>";
+                            <td align=center>$alpa</td>";
         echo "</tr>";
         $no++;
     }
