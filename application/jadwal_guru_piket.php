@@ -226,7 +226,7 @@
                                   <option value='Jumat'" . ($data['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
                                   <option value='Sabtu'" . ($data['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                               </select> 
-                      <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y', strtotime($data['tanggal'])) . "' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr> <!-- Menampilkan tanggal yang sudah ada -->
+                       
                     </tbody>
                     </table>
                   </div>
