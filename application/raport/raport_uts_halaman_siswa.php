@@ -40,9 +40,7 @@ echo "          </select>
                   </tr>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
                     <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
                   </tr>";
 
   // Check if the academic year is selected
@@ -78,9 +76,7 @@ echo "          </select>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
                                 <td align='center'>77</td>
                                 <td align='center'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
-                                <td align='center'>{$grade1['grade']}</td>
                                 <td align='center'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
-                                <td align='center'>{$grade2['grade']}</td>
                             </tr>";
         $no++;
       }
