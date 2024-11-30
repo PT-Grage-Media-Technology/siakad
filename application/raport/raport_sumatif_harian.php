@@ -60,6 +60,7 @@ if (mysql_num_rows($kdjdwl_query) > 0) {
             SELECT DISTINCT tanggal FROM rb_absensi_siswa
             WHERE kodejdwl = '{$kdjdwl['kodejdwl']}'
         ");
+        var_dump($kdjdwl);
         $total_pertemuan = mysql_num_rows($total_query);
 
         // Tampilkan header tabel dinamis
