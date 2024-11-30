@@ -43,26 +43,45 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
-            $kdjdwl = mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
-                                    JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
-                                      where a.kode_kelas='$_SESSION[kode_kelas]' 
-                                        AND a.id_tahun_akademik='$tahun_terpilih' 
-                                          AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
-                                           AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
-            $no = 1;
-            while($mp = mysql_fetch_array($kdjdwl)){
-            $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
-            var_dump($total);
-            echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal";
-            echo "<tr>";
-            $pertemuan = 1; // Variabel untuk nomor pertemuan
-            while ($pertemuan <= $total) {
-                echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
-                $pertemuan++;
-            }
-            echo "</tr>";
-            $no++;
-        }
+            // Query untuk mendapatkan semua kodejdwl berdasarkan mata pelajaran
+$queryJadwal = mysql_query("
+SELECT a.kodejdwl, b.nama_mapel 
+FROM rb_jadwal_pelajaran a 
+JOIN rb_mata_pelajaran b ON a.kode_pelajaran = b.kode_pelajaran 
+WHERE a.kode_kelas = '$_SESSION[kode_kelas]' 
+  AND a.id_tahun_akademik = '$tahun_terpilih' 
+  AND b.id_kelompok_mata_pelajaran = '$k[id_kelompok_mata_pelajaran]' 
+  AND b.kode_kurikulum = '$kurikulum[kode_kurikulum]'
+");
+
+// Iterasi untuk setiap kodejdwl
+while ($row = mysql_fetch_array($queryJadwal)) {
+$kodejdwl = $row['kodejdwl'];
+$namaMapel = $row['nama_mapel'];
+
+// Hitung jumlah pertemuan untuk kodejdwl ini
+$totalPertemuan = mysql_num_rows(mysql_query("
+    SELECT * 
+    FROM rb_absensi_siswa 
+    WHERE kodejdwl = '$kodejdwl' 
+    GROUP BY tanggal
+"));
+
+// Header untuk setiap mata pelajaran
+echo "<tr style='background-color:lightgray;'>
+        <th colspan='" . ($totalPertemuan ?: 1) . "'>$namaMapel</th>
+      </tr>";
+
+// Baris pertemuan
+echo "<tr>";
+$pertemuan = 1;
+while ($pertemuan <= $totalPertemuan) {
+    echo "<th style='border:1px solid #ffffff; background-color:lightblue'>$pertemuan</th>";
+    $pertemuan++;
+}
+echo "</tr>";
+}
+
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
 }
