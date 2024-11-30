@@ -67,7 +67,10 @@
         <li><a href='index.php?view=forum&act=list&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Forum Diskusi</a></li>
         <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
-    }
+    } 
+    // else {
+    //   echo "<li><a href='#'></a></li>";
+    // }
     ?>
   </ul>
 </li>
