@@ -329,7 +329,7 @@ $_SESSION['akses_agenda'] = true;
     while ($r = mysql_fetch_array($tampil)) {
       // Logika untuk mengatur status button absen
       $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]&id_journal_list=$r[id_journal_list]";
 
       echo "<tr>
       <td>$no</td>
