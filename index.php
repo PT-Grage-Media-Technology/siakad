@@ -301,16 +301,18 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] === 'superuser' || $_SESSION['is_kurikulum'] == 'true') {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
+            }else{
+
             }
-          } elseif ($_GET[view] == 'jadwalpelajaran') {
-            cek_session_guru();
-            echo "<div class='row'>";
-            include "application/master_jadwalpelajaran.php";
-            echo "</div>";
+          // } elseif ($_GET[view] == 'jadwalpelajaran') {
+          //   cek_session_guru();
+          //   echo "<div class='row'>";
+          //   include "application/master_jadwalpelajaran.php";
+          //   echo "</div>";
           } elseif ($_GET[view] == 'jurusan') {
             cek_session_admin();
             echo "<div class='row'>";
