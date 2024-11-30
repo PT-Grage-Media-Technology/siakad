@@ -1,4 +1,5 @@
 <?php
+session_start(); // Memulai session
 
 // Jika tahun_terpilih kosong, berarti pertama kali load halaman, maka ambil data terakhir
 if (empty($_GET['tahun'])) {
