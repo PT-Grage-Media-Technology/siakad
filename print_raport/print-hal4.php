@@ -62,7 +62,7 @@ while ($k = mysql_fetch_array($kelompok)){
                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
     $no = 1;
     while ($m = mysql_fetch_array($mapel)) {                                
-      var_dump($m);
+      var_dump($m['kkm']);
       $rapn = mysql_fetch_array(mysql_query("SELECT SUM((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/COUNT(nisn) AS raport FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         
