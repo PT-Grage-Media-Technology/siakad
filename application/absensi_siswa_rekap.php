@@ -132,7 +132,7 @@
 } elseif ($_GET[act] == 'tampilabsen') {
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
-  echo "<div class='col-md-12'>
+  echo "<div class='col-md-12 table-responsive'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Rekap Data Absensi Siswa Pada $_GET[tahun]</b></h3>
@@ -140,7 +140,7 @@
               <div class='box-body'>
 
               <div class='col-md-12'>
-              <table class='table table-condensed table-hover table-responsive'>
+              <table class='table table-condensed table-hover'>
                   <tbody>
                     <input type='hidden' name='id' value='$s[kode_kelas]'>
                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
