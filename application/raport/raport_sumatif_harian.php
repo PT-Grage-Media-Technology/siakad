@@ -133,11 +133,8 @@ if ($jumlah_pertemuan == 0) {
     echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
     echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
     echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
-}elseif($jumlah_pertemuan <= 3){
-    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
-    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
 }
-else {
+ else {
     // Inisialisasi variabel untuk menampilkan pertemuan
     $pertemuan_counter = 1;
 
