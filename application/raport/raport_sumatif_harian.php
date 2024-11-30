@@ -100,17 +100,17 @@ while ($k = mysql_fetch_array($kelompok)) {
             $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='0'"));
         }
 
-        $nilai = mysql_fetch_array(mysql_query("  SELECT * 
-        FROM rb_absensi_siswa 
-        WHERE kodejdwl = '$m[kodejdwl]' 
-        AND nisn = '$_SESSION[id]'
-        ORDER BY tanggal ASC"));
-        echo "SELECT * 
-        FROM rb_absensi_siswa 
-        WHERE kodejdwl = '$m[kodejdwl]' 
-        AND nisn = '$_SESSION[id]'
-        ORDER BY tanggal ASC";
-        var_dump($nilai['nilai_keterampilan']);
+        // $nilai = mysql_fetch_array(mysql_query("  SELECT * 
+        // FROM rb_absensi_siswa 
+        // WHERE kodejdwl = '$m[kodejdwl]' 
+        // AND nisn = '$_SESSION[id]'
+        // ORDER BY tanggal ASC"));
+        // echo "SELECT * 
+        // FROM rb_absensi_siswa 
+        // WHERE kodejdwl = '$m[kodejdwl]' 
+        // AND nisn = '$_SESSION[id]'
+        // ORDER BY tanggal ASC";
+        // var_dump($nilai['nilai_keterampilan']);
 
 
         echo "<tr>
@@ -129,28 +129,32 @@ $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 // Loop untuk mengambil nilai keterampilan berdasarkan tanggal
 $pertemuan_counter = 1;
 while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
-  // Ambil nilai keterampilan untuk pertemuan berdasarkan tanggal
-  $query_nilai_keterampilan = mysql_query("
-      SELECT nilai_keterampilan 
+  // Ambil nilai keterampilan, sikap, dan pengetahuan untuk pertemuan berdasarkan tanggal
+  $query_nilai = mysql_query("
+      SELECT nilai_keterampilan, nilai_sikap, nilai_pengetahuan 
       FROM rb_absensi_siswa 
       WHERE kodejdwl = '$m[kodejdwl]' 
       AND nisn = '$_SESSION[id]' 
       AND tanggal = '$pertemuan[tanggal]'
   ");
-  $nilai = mysql_fetch_array($query_nilai_keterampilan);
+  $nilai = mysql_fetch_array($query_nilai);
   
-  // Tampilkan nilai keterampilan untuk setiap pertemuan
-  echo "<td align='center' colspan='1'>$nilai[nilai_keterampilan]</td>";
+  // Hitung rata-rata dari tiga nilai
+  $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
+
+  // Tampilkan rata-rata nilai di dalam <td>
+  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
 
   $pertemuan_counter++;
 }
 
-// Menambahkan data lainnya seperti raport
+// // Menambahkan data lainnya seperti raport
 // echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
 // echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 // echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 
 echo "</tr>";
+
         $no++;
     }
 }
