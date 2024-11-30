@@ -129,8 +129,6 @@ $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 $nilai_keterampilan = $nilai['nilai_keterampilan'];
 $total_nilai = $nilai_keterampilan * $jumlah_pertemuan; // Mengasumsikan nilai diulang setiap pertemuan
 
-echo "<tr>";
-
 // Loop untuk mencetak <td> dinamis sesuai jumlah pertemuan
 for ($i = 1; $i <= $jumlah_pertemuan; $i++) {
     echo "<td align='center' colspan='1'>$nilai_keterampilan</td>";
