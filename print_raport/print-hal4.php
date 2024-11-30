@@ -35,55 +35,58 @@ echo "<table width=100%>
         <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td></td></tr>
       </table><br>";
 
-echo "<table id='tablemodul1' width=100% border=1>
-          <tr>
-            <th width='160px' colspan='2' rowspan='2'>Mata Pelajaran</th>
-            <th rowspan='2'>KKM</th>
-            <th colspan='2' style='text-align:center'>Pengetahuan</th>
-            <th colspan='2' style='text-align:center'>Keterampilan</th>
-          </tr>
-          <tr>
-            <th>Nilai</th>
-            <th>Nilai</th>
-          </tr>";
+      echo "<table id='tablemodul1' width='100%' border='1'>
+                <thead>
+                <tr>
+                  <th width='40px' rowspan='2' style='text-align:center;'>No</th>
+                  <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
+                  <th rowspan='2' style='text-align:center;'>KKM</th>
+                  <th colspan='2' style='text-align:center;'>Pengetahuan</th>
+                  <th colspan='2' style='text-align:center;'>Keterampilan</th>
+                </tr>
+                <tr>
+                  <th style='text-align:center;'>Nilai</th>
+                  <th style='text-align:center;'>Predikat</th>
+                  <th style='text-align:center;'>Nilai</th>
+                  <th style='text-align:center;'>Predikat</th>
+                </tr>
+                </thead>
+                <tbody>";
+                
       $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
       while ($k = mysql_fetch_array($kelompok)){
-      echo "<tr>
-            <td colspan='7'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
-          </tr>";
-        $mapel = mysql_query("SELECT * FROM  rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
-                                  where a.kode_kelas='$_GET[kelas]' AND a.id_tahun_akademik='$_GET[tahun]' AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
-        $no = 1;
-        while ($m = mysql_fetch_array($mapel)){                                
-        $rapn = mysql_fetch_array(mysql_query("SELECT sum((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/count(nisn) as raport FROM rb_nilai_pengetahuan where kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
-        $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-            if ($cekpredikat >= 1){
-                $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
-            }else{
-                $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b) AND kode_kelas='0'"));
-            }
-
-        $rapnk = mysql_fetch_array(mysql_query("SELECT sum(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/count(nisn) as raport FROM rb_nilai_keterampilan where kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
-        $cekpredikat2 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-            if ($cekpredikat2 >= 1){
-                $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapnk[raport])." >=nilai_a) AND (".number_format($rapnk[raport])." <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
-            }else{
-                $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapnk[raport])." >=nilai_a) AND (".number_format($rapnk[raport])." <= nilai_b) AND kode_kelas='0'"));
-            }
-
-        echo "<tr>
-                <td align=center>$no</td>
-                <td>$m[namamatapelajaran]</td>
-                <td align=center>77</td>
-                <td align=center>".number_format($rapn[raport])."</td>
-                <td align=center>".number_format($rapnk[raport])."</td>
-            </tr>";
-        $no++;
-        }
+          echo "<tr>
+                  <td colspan='8'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
+                </tr>";
+          $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
+                                JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
+                                WHERE a.kode_kelas='$_GET[kelas]' 
+                                AND a.id_tahun_akademik='$_GET[tahun]' 
+                                AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
+          $no = 1;
+          while ($m = mysql_fetch_array($mapel)) {                                
+              $rapn = mysql_fetch_array(mysql_query("SELECT SUM((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/COUNT(nisn) AS raport FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
+              $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
+              
+              // Penentuan predikat
+              $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM rb_predikat WHERE (" . number_format($rapn['raport']) . " >= nilai_a) AND (" . number_format($rapn['raport']) . " <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
+              $grade = mysql_fetch_array(mysql_query("SELECT * FROM rb_predikat WHERE (" . number_format($rapnk['raport']) . " >= nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
+              
+              echo "<tr>
+                      <td align='center'>$no</td>
+                      <td colspan='2'>$m[namamatapelajaran]</td>
+                      <td align='center'>77</td>
+                      <td align='center'>" . number_format($rapn['raport']) . "</td>
+                      <td align='center'>$grade3[grade]</td>
+                      <td align='center'>" . number_format($rapnk['raport']) . "</td>
+                      <td align='center'>$grade[grade]</td>
+                    </tr>";
+              $no++;
+          }
       }
-
-        echo "</table><br/>";
-?>
+      echo "</tbody></table><br/>";
+      ?>
+      
 
 <table border=0 width=100%>
   <tr>
