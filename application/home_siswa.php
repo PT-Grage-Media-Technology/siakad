@@ -366,9 +366,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                   </div>
                               </div>
                               </div>
-                              </div>
-                              
-                              ";
+                              </div>";
                     
                       if (isset($_POST[komentar])) {
                         $waktu = date("Y-m-d H:i:s");
