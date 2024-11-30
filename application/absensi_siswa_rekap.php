@@ -126,7 +126,7 @@
               <div class='box-body'>
 
               <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
+              <table class='table table-condensed table-hover table-responsive'>
                   <tbody>
                     <input type='hidden' name='id' value='$s[kode_kelas]'>
                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
