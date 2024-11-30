@@ -620,7 +620,7 @@ $_SESSION['akses_agenda'] = true;
                     <td>
                       <div class='d-flex flex-column align-items-start'>
                         <!-- Gambar -->
-                        <img src='<?= htmlspecialchars($e[file]); ?>' alt='<?= htmlspecialchars($e[file]); ?>' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
+                        <img src='<?= $e[file]; ?>' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
                         
                         <!-- File Upload -->
                         <div style='position: relative;' class='w-100'>
