@@ -100,6 +100,9 @@ while ($k = mysql_fetch_array($kelompok)) {
             $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='0'"));
         }
 
+        $nilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl=$m[kodejdwl] AND nisn=$_SESSION[id]"));
+        var_dump($nilai);
+
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
