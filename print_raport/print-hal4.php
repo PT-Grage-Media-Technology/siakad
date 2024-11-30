@@ -48,6 +48,11 @@ echo "<table id='tablemodul1' width='100%' border='1'>
           <tbody>";
           
 $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
+
+$mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+
+var_dump($mapel)
+
 while ($k = mysql_fetch_array($kelompok)){
     echo "<tr>
             <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
