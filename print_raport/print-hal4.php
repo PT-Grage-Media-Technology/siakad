@@ -49,19 +49,18 @@ echo "<table id='tablemodul1' width='100%' border='1'>
           
 $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
 
-$mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
 
-var_dump($mapel);
 
 while ($k = mysql_fetch_array($kelompok)){
-    echo "<tr>
-            <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
-          </tr>";
-    $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
+  echo "<tr>
+  <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
+  </tr>";
+  $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
                           JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
                           WHERE a.kode_kelas='$_GET[kelas]' 
                           AND a.id_tahun_akademik='$_GET[tahun]' 
                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
+  var_dump($mapel);
     $no = 1;
     while ($m = mysql_fetch_array($mapel)) {                                
         $rapn = mysql_fetch_array(mysql_query("SELECT SUM((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/COUNT(nisn) AS raport FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
