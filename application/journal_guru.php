@@ -618,9 +618,13 @@ $_SESSION['akses_agenda'] = true;
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
-                      <div class='d-flex flex-column align-items-start'>
-                        <!-- Gambar -->
-                        <img src='$_SERVER[HTTPS]/$e[file];' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
+                      <div class='d-flex flex-column align-items-start'>";
+                        
+                          $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+                          $base_url = $protocol . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
+                        
+                        echo"<!-- Gambar -->
+                        <img src='$base_url/$e[file];' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
                         
                         <!-- File Upload -->
                         <div style='position: relative;' class='w-100'>
