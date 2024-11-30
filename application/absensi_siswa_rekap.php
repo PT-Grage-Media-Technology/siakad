@@ -54,7 +54,7 @@
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive">
-          <table id="example" class="table table-bordered table-striped">
+          <table id="example" class="table table-bordered table-striped table-responsive">
             <thead>
               <tr>
                 <th style='width:20px'>No</th>
@@ -138,7 +138,7 @@
 
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
-                  <table class='table table-condensed table-bordered table-striped'>
+                  <table class='table table-condensed table-bordered table-striped table-responsive'>
                       <thead>
                       <tr>
                         <th>No</th>
