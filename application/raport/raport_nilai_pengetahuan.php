@@ -41,7 +41,7 @@
                                   <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>KD</center></th>
                                   <th style='border:1px solid #e3e3e3' colspan='5'><center>Penilaian</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Rata2</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Grade12345rtyh</center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Grade</center></th>
                                   <th style='border:1px solid #e3e3e3' rowspan='2'><center>Deskripsi</center></th>
                                   <th style='border:1px solid #e3e3e3; width:65px' rowspan='2'><center>Action</center></th>
                                 </tr>
