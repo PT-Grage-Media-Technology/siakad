@@ -418,6 +418,10 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/penilaianteman_siswa.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'sumatifharian') {
+            echo "<div class='row'>";
+            include "application/raport_sumatif_harian.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'raport') {
             echo "<div class='row'>";
             include "application/raport.php";
