@@ -117,6 +117,7 @@ while ($k = mysql_fetch_array($kelompok)) {
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
                   <td align=center>$m[kkm]</td>
+                  <td align=center  colspan='1'>$nilai[keterampilan]</td>
                   <td align=center  colspan='1'>" . number_format($rapn['raport']) . "</td>
                   <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
                   <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
