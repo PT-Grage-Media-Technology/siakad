@@ -121,7 +121,7 @@ $_SESSION['akses_agenda'] = true;
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas] $_GET[tahun]</td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
