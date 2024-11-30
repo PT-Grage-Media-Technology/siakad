@@ -123,7 +123,7 @@ $query_pertemuan = mysql_query("
   SELECT DISTINCT tanggal 
   FROM rb_absensi_siswa 
   WHERE kodejdwl = '$m[kodejdwl]'
-  ORDER BY tanggal DESC
+  ORDER BY tanggal ASC
 ");
 $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 
