@@ -141,29 +141,29 @@
   // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
   $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip JOIN rb_forum_topic ft ON z.materi=ft.judul_topic WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
-  if (mysql_num_rows($tampil) == 0) {
-    // Cek jika tidak ada data
-    echo "<tr><td colspan='8' style='text-align:center;'>Tidak ada data</td></tr>";
-  } else {
-  while ($r = mysql_fetch_array($tampil)) {
-    // var_dump($r);
-    echo "<tr><td>$no</td>
-                            <td>$r[hari]</td>
-                            <td>$r[tanggal]</td>
-                            <td>$r[jam_ke]</td>
-                            <td>$r[nama_guru]</td>
-                            <td>$r[materi]</td>
-                            <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
-                        </tr>";
-    $no++;
+  if(mysql_num_rows($tampil) == 0){
+    echo "tidak";
+  }else{
+
+    while ($r = mysql_fetch_array($tampil)) {
+      // var_dump($r);
+      echo "<tr><td>$no</td>
+                              <td>$r[hari]</td>
+                              <td>$r[tanggal]</td>
+                              <td>$r[jam_ke]</td>
+                              <td>$r[nama_guru]</td>
+                              <td>$r[materi]</td>
+                              <td>$r[keterangan]</td>
+                              <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                          </tr>";
+      $no++;
+    }
   }
   echo "<tbody>
                 </table>
               </div>
               </div>
           </div>";
-}
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
   $hari_ini = date('d');
