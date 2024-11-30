@@ -108,11 +108,9 @@
                             <td>$r[jam_selesai]</td>
                             <td>$r[nama_ruangan]</td>
                             <td>$r[id_tahun_akademik]</td>";
-              if ($_SESSION['level'] != 'kepala') {
                 echo "<td style='width:70px !important'><center>
                               <a class='btn btn-success btn-xs' title='Tampil List Absensi' href='index.php?view=rekapabsensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]&jdwl=$r[kodejdwl]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a>
                             </center></td>";
-              }
               echo "</tr>";
               $no++;
             }
