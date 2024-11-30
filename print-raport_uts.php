@@ -80,33 +80,6 @@ echo "<table id='tablemodul1' width=100% border=1>
       }
 
 		echo "</table><br/>";
-        $cekpredikat2 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-        if ($cekpredikat2 >= 1){
-          $grade = mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'");
-          $gradea = mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'");
-          $total = mysql_num_rows($grade);
-        }else{
-          $grade = mysql_query("SELECT * FROM rb_predikat where kode_kelas='0'");
-          $gradea = mysql_query("SELECT * FROM rb_predikat where kode_kelas='0'");
-          $total = mysql_num_rows($grade);
-        }
-          echo "<center><table width='90%' border=1 id='tablemodul1'>
-              <tr>
-                  <th rowspan='2'>KKM</th>
-                  <th colspan='$total'>Predikat</th>
-              </tr>
-              <tr>";
-                  while ($g = mysql_fetch_array($grade)){
-                      echo "<th>$g[grade] = $g[keterangan]</th>";
-                  }
-              echo "</tr>
-              <tr>
-                  <th>77</th>";
-                  while ($p = mysql_fetch_array($gradea)){
-                      echo "<th>$p[nilai_a] - $p[nilai_b]</th>";
-                  }
-              echo "</tr>
-          </table></center><br>";
 ?>
 <table border=0 width=100%>
   <tr>
