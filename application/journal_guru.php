@@ -324,7 +324,7 @@ $_SESSION['akses_agenda'] = true;
 
   if (mysql_num_rows($tampil) == 0) {
     // Cek jika tidak ada data
-    echo "<tr><td colspan='8' style='text-align:center;'>Tidak ada data</td></tr>";
+    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
   } else {
     while ($r = mysql_fetch_array($tampil)) {
       // Logika untuk mengatur status button absen
