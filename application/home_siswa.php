@@ -383,7 +383,6 @@ elseif ($_GET[act] == 'detailpembelajaran') {
 <style>
   .table-responsive {
     overflow-x: auto;
-    overflow-x: auto;
     /* Hanya aktifkan scroll horizontal jika diperlukan */
   }
 
