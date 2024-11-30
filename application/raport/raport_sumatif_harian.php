@@ -141,6 +141,7 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
       AND tanggal = '$pertemuan[tanggal]'
   ");
   $nilai = mysql_fetch_array($query_nilai);
+  var_dump($nilai);
   
   // Hitung rata-rata dari tiga nilai
   $rata_rata = $nilai ? ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3 : '0';
