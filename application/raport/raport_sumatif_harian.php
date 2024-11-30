@@ -50,18 +50,18 @@ echo "</select>
                                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
                                             AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
             while($mp = mysql_fetch_array($kdjdwl)){
-                $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$mp[kodejdwl]' GROUP BY tanggal"));
-                var_dump($total);
-                echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$mp[kodejdwl]' GROUP BY tanggal";
-                echo "<tr>";
-                $pertemuan = 1; // Variabel untuk nomor pertemuan
-                while ($pertemuan <= $total) {
-                    echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
-                    $pertemuan++;
-                }
-                echo "</tr>";
+                echo $mp;
             }
-           
+            $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
+            var_dump($total);
+            echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal";
+            echo "<tr>";
+            $pertemuan = 1; // Variabel untuk nomor pertemuan
+            while ($pertemuan <= $total) {
+                echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
+                $pertemuan++;
+            }
+            echo "</tr>";
 
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
