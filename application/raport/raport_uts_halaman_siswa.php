@@ -86,12 +86,13 @@ echo "          </select>
 echo "        </table>
             </div>
           </div>
-        </div>
+        </div>";
         
-    //      <script>
+   
+?>
+ <!-- //      <script>
         
     //     window.onload = function () {
     //         window.print();
     //     };
-    // </script>";
-?>
+    // </script>"; -->
