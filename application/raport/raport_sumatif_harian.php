@@ -69,7 +69,7 @@ $totalPertemuan = mysql_num_rows(mysql_query("
 
 // Header untuk setiap mata pelajaran
 echo "<tr style='background-color:lightgray;'>
-        <th colspan='" . ($totalPertemuan ?'': 1) . "'>$namaMapel</th>
+        <th colspan='" . ($totalPertemuan ? 4 : 1) . "'>$namaMapel</th>
       </tr>";
 
 // Baris pertemuan
