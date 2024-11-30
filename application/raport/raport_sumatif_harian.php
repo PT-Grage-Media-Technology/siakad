@@ -143,7 +143,7 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
   $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
 
   // Tampilkan rata-rata nilai di dalam <td>
-  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 1) . "</td>";
 
   $pertemuan_counter++;
 }
