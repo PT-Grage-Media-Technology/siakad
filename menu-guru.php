@@ -60,8 +60,8 @@
     // Pengecekan akses berdasarkan URL parameter
     if (isset($_GET['act']) && $_GET['act'] === 'lihat' && isset($_GET['id']) && isset($_GET['tahun'])) {
       echo "
-      <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai UTS</a></li>
-        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
+      <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&kd={$tampil[kode_pelajaran]}&id={$tampil[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai UTS</a></li>
+        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&kd={$tampil[kode_pelajaran]}&id={$tampil[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
         <li><a href='index.php?view=forum&act=list&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Forum Diskusi</a></li>
         <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
