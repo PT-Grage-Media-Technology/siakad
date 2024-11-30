@@ -26,10 +26,8 @@
           } 
           ?>
         </h3>
-        <?php if ($_SESSION['level'] != 'kepala') { ?>
           <a class='pull-right btn btn-primary btn-sm' href='index.php?view=jadwalpelajaran&act=tambah'>Tambahkan Jadwal
             Pelajaran</a>
-        <?php } ?>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='jadwalpelajaran'>
           <select name='tahun' style='padding:4px'>
