@@ -50,7 +50,7 @@ echo "</select>
                                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
                                             AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'"));
             $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
-
+            var_dump($total);
             echo "<tr>";
             $pertemuan = 1; // Variabel untuk nomor pertemuan
             while ($pertemuan <= $total) {
