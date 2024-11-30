@@ -44,12 +44,24 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
 
-echo " <tr>
-            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>1</center></th>
-            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>2</center></th>
-            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>3</center></th>
-             </tr>
-            ";
+    
+        // Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
+        $query_pertemuan = mysql_query("
+          SELECT DISTINCT tanggal 
+          FROM rb_absensi_siswa 
+          WHERE kodejdwl = '$m[kodejdwl]'
+          ORDER BY tanggal ASC
+        ");
+        
+        $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
+        
+        echo "<tr>";
+        // Loop untuk membuat header dengan angka dinamis
+        for ($i = 1; $i <= $jumlah_pertemuan; $i++) {
+            echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$i</center></th>";
+        }
+        echo "</tr>";
+
 // $kdjdwl = mysql_fetch_array(mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
 //                         JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
 //                           where a.kode_kelas='$_SESSION[kode_kelas]' 
