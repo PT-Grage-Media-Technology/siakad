@@ -380,8 +380,9 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                     }
 ?>
 
-<!-- <style>
+<style>
   .table-responsive {
+    overflow-x: auto;
     overflow-x: auto;
     /* Hanya aktifkan scroll horizontal jika diperlukan */
   }
@@ -392,4 +393,4 @@ elseif ($_GET[act] == 'detailpembelajaran') {
       /* Nonaktifkan scroll horizontal di desktop */
     }
   }
-</style> -->
+</style>
