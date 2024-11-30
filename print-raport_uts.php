@@ -35,7 +35,6 @@ echo "<table width=100%>
         <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td></td></tr>
       </table><br>";
 
-      <?php
       echo "<table id='tablemodul1' width='100%' border='1'>
                 <tr>
                   <th width='40px' style='text-align:center;' rowspan='2'>No</th>
@@ -70,7 +69,6 @@ echo "<table width=100%>
           }
       }
       echo "</table><br/>";
-      ?>
       
 ?>
 <table border=0 width=100%>
