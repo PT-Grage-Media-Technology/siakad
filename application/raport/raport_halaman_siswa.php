@@ -45,10 +45,8 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
         </tr>
         <tr>
-          <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
         </tr>";
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
@@ -88,10 +86,10 @@ while ($k = mysql_fetch_array($kelompok)) {
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
                   <td align=center>$m[kkm]</td>
-                  <td align=center>" . number_format($rapn['raport']) . "</td>
-                  <td align=center>$grade3[grade]</td>
-                  <td align=center>" . number_format($rapnk['raport']) . "</td>
-                  <td align=center>$grade[grade]</td>
+                  <td align=center  colspan='2'>" . number_format($rapn['raport']) . "</td>
+                 
+                  <td align=center  colspan='2'>" . number_format($rapnk['raport']) . "</td>
+                 
               </tr>";
         $no++;
     }
