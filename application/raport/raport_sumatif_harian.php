@@ -110,14 +110,14 @@ while ($k = mysql_fetch_array($kelompok)) {
         WHERE kodejdwl = '$m[kodejdwl]' 
         AND nisn = '$_SESSION[id]'
         ORDER BY tanggal ASC";
-        var_dump($nilai);
+        var_dump($nilai['nilai_keterampilan']);
 
 
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
                   <td align=center>$m[kkm]</td>
-                  <td align=center  colspan='1'>$nilai</td>
+                  <td align=center  colspan='1'>$nilai[nilai_keterampilan]</td>
                   <td align=center  colspan='1'>" . number_format($rapn['raport']) . "</td>
                   <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
                   <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
