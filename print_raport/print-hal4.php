@@ -66,15 +66,15 @@ while ($k = mysql_fetch_array($kelompok)){
         $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         
         echo "<tr>
-                  <td align='center'><?= $no ?></td>
-                  <td colspan='2'><?= $m[namamatapelajaran] ?></td>
-                  <td align='center'><?= $m[kkm] ?></td>
-                  <td align='center' style='color: <?php $rapn[raport] < $m[kkm] ? 'red' : 'black' ?>;'>
-                      <?= number_format($rapn[raport]) ?>
-                  </td>
-                  <td align='center' style='color: <?= $rapnk[raport] < $m[kkm] ? 'red' : 'black' ?>;'>
-                      <?= number_format($rapnk[raport]) ?>
-                  </td>
+                <td align='center'>$no</td>
+                <td colspan='2'>$m[namamatapelajaran]</td>
+                <td align='center'>$m[kkm]</td>
+                <td align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
+                    " . number_format($rapn['raport']) . "
+                </td>
+                <td align='center' style='color: " . ($rapnk['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
+                    " . number_format($rapnk['raport']) . "
+                </td>
               </tr>";
         $no++;
     }
