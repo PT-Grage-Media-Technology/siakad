@@ -140,19 +140,20 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
       AND nisn = '$_SESSION[id]' 
       AND tanggal = '$pertemuan[tanggal]'
   ");
-  $nilai = mysql_fetch_array($query_nilai);
-  var_dump($pertemuan);
   
-  if(!$pertemuan){
-    echo "<td align='center' colspan='1'>0</td>";
-  }else{
-
-      // Hitung rata-rata dari tiga nilai
-      $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
-    
-      // Tampilkan rata-rata nilai di dalam <td>
-      echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+  // Jika nilai tidak ditemukan, set nilai sebagai array kosong
+  $nilai = mysql_fetch_array($query_nilai);
+  
+  // Jika nilai tidak ada, rata-rata di-set 0
+  if (!$nilai || $nilai['nilai_keterampilan'] === 0 || $nilai['nilai_sikap'] === 0 || $nilai['nilai_pengetahuan'] === 0) {
+    $rata_rata = 0;
+  } else {
+    // Hitung rata-rata dari tiga nilai jika semuanya ada
+    $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
   }
+
+  // Tampilkan rata-rata nilai di dalam <td>
+  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
 
   $pertemuan_counter++;
 }
@@ -163,6 +164,7 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
 // echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 
 echo "</tr>";
+
 
 
         $no++;
