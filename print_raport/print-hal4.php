@@ -77,9 +77,9 @@ echo "<table id='tablemodul1' width=100% border=1>
                 <td align=center>$no</td>
                 <td>$m[namamatapelajaran]</td>
                 <td align=center>77</td>
-                <td align=center>".number_format($rapn[raport])."</td>
+                <td align=center>".number_format($rapn[raport])."12</td>
                 <td align=center>$grade3[grade]</td>
-                <td align=center>".number_format($rapnk[raport])."</td>
+                <td align=center>".number_format($rapnk[raport])."12</td>
                 <td align=center>$grade[grade]</td>
             </tr>";
         $no++;
