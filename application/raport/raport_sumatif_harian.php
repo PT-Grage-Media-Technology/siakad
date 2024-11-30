@@ -50,7 +50,7 @@ echo "</select>
                                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
                                             AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
             while($mp = mysql_fetch_array($kdjdwl)){
-                echo $mp;
+               var_dump($mp);
             }
             $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
             var_dump($total);
