@@ -131,6 +131,8 @@ $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 // Jika tidak ada pertemuan, tampilkan nilai 0
 if ($jumlah_pertemuan == 0) {
     echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
+    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
+    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
 } else {
     // Inisialisasi variabel untuk menampilkan pertemuan
     $pertemuan_counter = 1;
