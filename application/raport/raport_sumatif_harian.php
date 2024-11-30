@@ -13,7 +13,7 @@ if (empty($_GET['tahun'])) {
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
   <div class='box-header'>
-    <h3 class='box-title'>Laporan Nilai Akhir : <b>$nama</b></h3>
+    <h3 class='box-title'>Laporan Sumatif Harian : <b>$nama</b></h3>
     <form id='year-form' style='margin-right:5px; margin-top:0px' class='form-inline float-right' action='' method='GET'>
       <input type='hidden' name='view' value='raport'>
       <input type='hidden' name='act' value='detailsiswa'>
@@ -43,57 +43,29 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
-          // Query jadwal pelajaran untuk mendapatkan kodejdwl
-$kdjdwl_query = mysql_query("
-    SELECT * FROM rb_jadwal_pelajaran a
-    JOIN rb_mata_pelajaran b ON a.kode_pelajaran = b.kode_pelajaran
-    WHERE a.kode_kelas = '{$_SESSION['kode_kelas']}'
-    AND a.id_tahun_akademik = '$tahun_terpilih'
-    AND b.id_kelompok_mata_pelajaran = '$k[id_kelompok_mata_pelajaran]'
-    AND b.kode_kurikulum = '$kurikulum[kode_kurikulum]'
-");
 
-if (mysql_num_rows($kdjdwl_query) > 0) {
-    while ($kdjdwl = mysql_fetch_assoc($kdjdwl_query)) {
-        // Hitung total pertemuan berdasarkan absensi siswa
-        $total_query = mysql_query("
-            SELECT DISTINCT tanggal FROM rb_absensi_siswa
-            WHERE kodejdwl = '{$kdjdwl['kodejdwl']}'
-        ");
-        var_dump($kdjdwl);
-        $total_pertemuan = mysql_num_rows($total_query);
+echo " <tr>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>1</center></th>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>2</center></th>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>3</center></th>
+             </tr>
+            ";
+// $kdjdwl = mysql_fetch_array(mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
+//                         JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
+//                           where a.kode_kelas='$_SESSION[kode_kelas]' 
+//                             AND a.id_tahun_akademik='$tahun_terpilih' 
+//                               AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
+//                                 AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'"));
+// $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
+// var_dump($total)
+// echo "<tr>";
+// $pertemuan = 1; // Variabel untuk nomor pertemuan
+// while ($pertemuan <= $total) {
+//     echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
+//     $pertemuan++;
+// }
+// echo "</tr>";
 
-        // Tampilkan header tabel dinamis
-        echo "<table class='table table-bordered'>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>No</th>";
-        echo "<th>Mata Pelajaran</th>";
-        echo "<th>KKM</th>";
-
-        // Tambahkan header pertemuan dinamis
-        for ($i = 1; $i <= $total_pertemuan; $i++) {
-            echo "<th>Pertemuan $i</th>";
-        }
-
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        // Tambahkan data tabel sesuai mata pelajaran
-        echo "<tr>";
-        echo "<td>1</td>";
-        echo "<td>{$kdjdwl['namamatapelajaran']}</td>";
-        echo "<td>{$kdjdwl['kkm']}</td>";
-
-        for ($i = 1; $i <= $total_pertemuan; $i++) {
-            echo "<td>-</td>"; // Isi nilai sesuai data absensi jika ada
-        }
-
-        echo "</tr>";
-    }
-}
-        
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
 }
@@ -128,13 +100,27 @@ while ($k = mysql_fetch_array($kelompok)) {
             $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='0'"));
         }
 
+        $nilai = mysql_fetch_array(mysql_query("  SELECT * 
+        FROM rb_absensi_siswa 
+        WHERE kodejdwl = '$m[kodejdwl]' 
+        AND nisn = '$_SESSION[id]'
+        ORDER BY tanggal ASC"));
+        echo "SELECT * 
+        FROM rb_absensi_siswa 
+        WHERE kodejdwl = '$m[kodejdwl]' 
+        AND nisn = '$_SESSION[id]'
+        ORDER BY tanggal ASC";
+        var_dump($nilai['nilai_keterampilan']);
+
+
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
                   <td align=center>$m[kkm]</td>
-                  <td align=center  colspan='2'>" . number_format($rapn['raport']) . "</td>
-                 
-                  <td align=center  colspan='2'>" . number_format($rapnk['raport']) . "</td>
+                  <td align=center  colspan='1'>$nilai[nilai_keterampilan]</td>
+                  <td align=center  colspan='1'>" . number_format($rapn['raport']) . "</td>
+                  <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
+                  <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
                  
               </tr>";
         $no++;
