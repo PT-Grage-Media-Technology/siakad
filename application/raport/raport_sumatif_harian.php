@@ -44,7 +44,7 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
 
-  
+  echo $_SESSION[id];
 // Ambil data mata pelajaran berdasarkan kondisi tertentu
 $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
                                         JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
@@ -56,7 +56,6 @@ $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a
 // Cek apakah query untuk mapel berhasil dan data ditemukan
 if ($mapel) {
     var_dump($mapel);
-    var_dump($_SESSION['kode_kelas']);
     // Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
     $query_pertemuan = mysql_query("
         SELECT DISTINCT tanggal 
