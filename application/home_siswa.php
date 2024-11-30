@@ -166,7 +166,53 @@
           </div>";
 }
 elseif ($_GET[act] == 'detailpembelajaran') {
-  
+  $hari_ini = date('d');
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]' AND DAY(d.tanggal)=DAY('$_GET[tanggal]') AND jam_ke='$_GET[jam_ke]'"));
+  // var_dump($d);
+  echo "<div class='col-12'>  
+            <div class='box'>
+              <div class='box-header'>
+                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
+              </div>
+              <div class='box-body'>
+                <div class='col-12'>
+                <table class='table table-condensed table-hover'>
+                    <tbody>
+                      <input type='hidden' name='id' value='$d[kodekelas]'>
+                      <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
+                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
+                      <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
+                      <tr><th scope='row'>Keterangan</th>    
+                             <td>";
+      
+                         // Validasi jika keterangan adalah link
+                         if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
+                             echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+                         } else {
+                             echo $d['keterangan'];
+                         }
+                       echo"</td>
+                       </tr>
+                        
+
+                        
+                    </tbody>
+                </table>
+                </div>";
+
+                echo "<img src='$d[file]' alt='Gambar' class='img-responsive' style='max-width:100%; height:auto;'>";
+
+
+
+                
+
+              
+  echo "<tbody>
+                </table>
+              </div>
+              </div>
+          </div>";
+
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
        $n = $jml[jmlp];
