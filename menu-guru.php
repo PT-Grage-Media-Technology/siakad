@@ -32,7 +32,7 @@
 // var_dump($tahun);
 
     if (mysql_num_rows($tampil) > 0) {
-    $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'"));
+    $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip JOIN rb_jadwal_pelajaran jp ON jp.kodejdwl = $_GET[id] WHERE ke.nip='$_SESSION[id]'"));
     $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
       echo "<li class='treeview'>
         <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
@@ -61,7 +61,7 @@
     if (isset($_GET['act']) && $_GET['act'] === 'lihat' && isset($_GET['id']) && isset($_GET['tahun'])) {
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai UTS</a></li>
-        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
+        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&kd={$tampil[kode_pelajaran]}&id={$tampil[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
         <li><a href='index.php?view=forum&act=list&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Forum Diskusi</a></li>
         <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
