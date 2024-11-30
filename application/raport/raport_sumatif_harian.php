@@ -78,6 +78,16 @@ while ($k = mysql_fetch_array($kelompok)) {
 
     $no = 1;
     while ($m = mysql_fetch_array($mapel)) {
+        $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$m[kodejdwl]' GROUP BY tanggal"));
+            var_dump($total);
+            echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$m[kodejdwl]' GROUP BY tanggal";
+            echo "<tr>";
+            $pertemuan = 1; // Variabel untuk nomor pertemuan
+            while ($pertemuan <= $total) {
+                echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
+                $pertemuan++;
+            }
+            echo "</tr>";
         $rapn = mysql_fetch_array(mysql_query("SELECT sum((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/count(nisn) as raport FROM rb_nilai_pengetahuan where kodejdwl='$m[kodejdwl]' AND nisn='$iden[nisn]'"));
         $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_SESSION[kelas]'"));
         if ($cekpredikat >= 1) {
