@@ -44,8 +44,10 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>
         <tr>
-          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='1'><center>1</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='1'><center>2</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='1'><center>3</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='1'><center>4</center></th>
         </tr>";
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
