@@ -51,7 +51,7 @@ $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
 
 $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
 
-var_dump($mapel)
+var_dump($mapel);
 
 while ($k = mysql_fetch_array($kelompok)){
     echo "<tr>
