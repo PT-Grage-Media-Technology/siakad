@@ -37,6 +37,8 @@
               Siswa</span></a></li>
                 <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
                 <li><a href="index.php?view=absenguru"><i class="fa fa-circle-o"></i> Absensi Guru</a></li>
+              <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi
+        Siswa1234</span></a></li>
               </ul>
             </li>
             <li><a href="index.php?view=bahantugas"><i class="fa fa-file"></i><span>Bahan dan Tugas</span></a></li>
