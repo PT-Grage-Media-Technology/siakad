@@ -43,22 +43,25 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
-            $kdjdwl = mysql_fetch_array(mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
+            $kdjdwl = mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
                                     JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
                                       where a.kode_kelas='$_SESSION[kode_kelas]' 
                                         AND a.id_tahun_akademik='$tahun_terpilih' 
                                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
-                                            AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'"));
-            $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
-            var_dump($total);
-            echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal";
-            echo "<tr>";
-            $pertemuan = 1; // Variabel untuk nomor pertemuan
-            while ($pertemuan <= $total) {
-                echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
-                $pertemuan++;
+                                            AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
+            while($mp = mysql_fetch_array($kdjdwl)){
+                $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$mp[kodejdwl]' GROUP BY tanggal"));
+                var_dump($total);
+                echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$mp[kodejdwl]' GROUP BY tanggal";
+                echo "<tr>";
+                $pertemuan = 1; // Variabel untuk nomor pertemuan
+                while ($pertemuan <= $total) {
+                    echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
+                    $pertemuan++;
+                }
+                echo "</tr>";
             }
-            echo "</tr>";
+           
 
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
@@ -78,16 +81,6 @@ while ($k = mysql_fetch_array($kelompok)) {
 
     $no = 1;
     while ($m = mysql_fetch_array($mapel)) {
-        $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$m[kodejdwl]' GROUP BY tanggal"));
-            var_dump($total);
-            echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$m[kodejdwl]' GROUP BY tanggal";
-            echo "<tr>";
-            $pertemuan = 1; // Variabel untuk nomor pertemuan
-            while ($pertemuan <= $total) {
-                echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$pertemuan</center></th>";
-                $pertemuan++;
-            }
-            echo "</tr>";
         $rapn = mysql_fetch_array(mysql_query("SELECT sum((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/count(nisn) as raport FROM rb_nilai_pengetahuan where kodejdwl='$m[kodejdwl]' AND nisn='$iden[nisn]'"));
         $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_SESSION[kelas]'"));
         if ($cekpredikat >= 1) {
