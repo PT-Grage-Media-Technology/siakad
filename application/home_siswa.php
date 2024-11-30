@@ -381,12 +381,6 @@ elseif ($_GET[act] == 'detailpembelajaran') {
 ?>
 
 <style>
-  .box {
-    height: auto;
-    min-height: 100%; /* Pastikan container tetap menyesuaikan */
-    padding-bottom: 10px; /* Tambahkan jarak bawah */
-}
-
   .table-responsive {
     overflow-x: auto;
     /* Hanya aktifkan scroll horizontal jika diperlukan */
