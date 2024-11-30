@@ -56,30 +56,24 @@
   <ul class="treeview-menu">
     <li><a href="index.php?view=jadwalguru">Aktivitas Mengajar</a></li>
 
+    <!-- <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai UTS</a></li> -->
     <?php 
-    // Tampilkan menu hanya jika user sudah mengakses Agenda Mengajar
-    if (isset($_SESSION['akses_agenda']) && $_SESSION['akses_agenda'] === true) {
+    // Pengecekan akses berdasarkan URL parameter
+    if (isset($_GET['act']) && $_GET['act'] === 'lihat' && isset($_GET['id']) && isset($_GET['tahun'])) {
       echo "
-        <li><a href='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai UTS</a></li>
-        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[id]&kd=$d[kode_pelajaran]&id=$d[kode_kelas]&tahun=$_GET[tahun]'>Nilai Raport</a></li>
-        <li><a href='index.php?view=forum&act=list&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>Forum Diskusi</a></li>
-        <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl=$_GET[id]&kd=$d[kodejdwl]&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&tahun=$_GET[tahun]'>Quiz/Ujian Online</a></li>
+        <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai UTS</a></li>
+        <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
+        <li><a href='index.php?view=forum&act=list&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Forum Diskusi</a></li>
+        <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
     } else {
-      echo "
-      
-      <li>
-          <a href='#' onclick='alert('Silakan akses Agenda Mengajar terlebih dahulu!');'>
-            <i class='fa fa-lock'></i> <span>Modul Terkunci</span>
-          </a>
-      </li>
-
-      ";
-
+      echo "<li><a href='#'>Akses Modul Terkunci</a></li>";
     }
     ?>
   </ul>
 </li>
+
+
 
 
     <?php
