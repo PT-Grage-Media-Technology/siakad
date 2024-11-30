@@ -116,13 +116,33 @@ while ($k = mysql_fetch_array($kelompok)) {
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
-                  <td align=center>$m[kkm]</td>
-                  <td align=center  colspan='1'>$nilai[nilai_keterampilan]</td>
-                  <td align=center  colspan='1'>" . number_format($rapn['raport']) . "</td>
-                  <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
-                  <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
+                  <td align=center>$m[kkm]</td>";
+                // Jumlah pertemuan diambil dari query absensi (jumlah tanggal unik)
+$query_pertemuan = mysql_query("
+    SELECT DISTINCT tanggal 
+    FROM rb_absensi_siswa 
+    WHERE kodejdwl = '$m[kodejdwl]'
+");
+$jumlah_pertemuan = mysql_num_rows($query_pertemuan);
+
+// Inisialisasi data nilai
+$nilai_keterampilan = $nilai['nilai_keterampilan'];
+$total_nilai = $nilai_keterampilan * $jumlah_pertemuan; // Mengasumsikan nilai diulang setiap pertemuan
+
+echo "<tr>";
+
+// Loop untuk mencetak <td> dinamis sesuai jumlah pertemuan
+for ($i = 1; $i <= $jumlah_pertemuan; $i++) {
+    echo "<td align='center' colspan='1'>$nilai_keterampilan</td>";
+}
+
+// Menambahkan data lainnya seperti raport
+echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
+echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
+echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
+
                  
-              </tr>";
+              echo"</tr>";
         $no++;
     }
 }
