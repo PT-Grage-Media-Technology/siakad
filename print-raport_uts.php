@@ -36,39 +36,43 @@ echo "<table width=100%>
       </table><br>";
 
       echo "<table id='tablemodul1' width='100%' border='1'>
-                <tr>
-                  <th width='40px' style='text-align:center;' rowspan='2'>No</th>
-                  <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
-                  <th rowspan='2' style='text-align:center;'>KKM</th>
-                  <th style='text-align:center;'>Nilai Pengetahuan</th>
-                  <th style='text-align:center;'>Nilai Keterampilan</th>
-                </tr>";
-                
-      $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
-      while ($k = mysql_fetch_array($kelompok)) {
-          echo "<tr>
-                  <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
-                </tr>";
-          $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
-                                JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
-                                WHERE a.kode_kelas='$_GET[kelas]' 
-                                AND a.id_tahun_akademik='$_GET[tahun]' 
-                                AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
-          $no = 1;
-          while ($m = mysql_fetch_array($mapel)) {
-              $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
-              
-              echo "<tr>
-                      <td align='center'>$no</td>
-                      <td colspan='2'>$m[namamatapelajaran]</td>
-                      <td align='center'>77</td>
-                      <td align='center'>" . number_format($n['angka_pengetahuan']) . "</td>
-                      <td align='center'>" . number_format($n['angka_keterampilan']) . "</td>
-                    </tr>";
-              $no++;
-          }
-      }
-      echo "</table><br/>";
+        <tr>
+            <th width='40px' style='text-align:center;' rowspan='2'>No</th>
+            <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
+            <th rowspan='2' style='text-align:center;'>KKM</th>
+            <th colspan='2' style='text-align:center;'>Nilai</th>
+        </tr>
+        <tr>
+            <th style='text-align:center;'>Pengetahuan</th>
+            <th style='text-align:center;'>Keterampilan</th>
+        </tr>";
+        
+$kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
+while ($k = mysql_fetch_array($kelompok)) {
+    echo "<tr>
+            <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
+          </tr>";
+    $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
+                          JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
+                          WHERE a.kode_kelas='$_GET[kelas]' 
+                          AND a.id_tahun_akademik='$_GET[tahun]' 
+                          AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
+    $no = 1;
+    while ($m = mysql_fetch_array($mapel)) {
+        $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
+        
+        echo "<tr>
+                <td align='center'>$no</td>
+                <td colspan='2'>$m[namamatapelajaran]</td>
+                <td align='center'>77</td>
+                <td align='center'>" . number_format($n['angka_pengetahuan']) . "</td>
+                <td align='center'>" . number_format($n['angka_keterampilan']) . "</td>
+              </tr>";
+        $no++;
+    }
+}
+echo "</table><br/>";
+
       
 ?>
 <table border=0 width=100%>
