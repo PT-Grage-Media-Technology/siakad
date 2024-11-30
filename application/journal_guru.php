@@ -624,7 +624,7 @@ $_SESSION['akses_agenda'] = true;
                           $base_url = $protocol . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
                         
                         echo"<!-- Gambar -->
-                        <img src='$base_url$e[file];' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
+                        <img src='$e[file]' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
                         
                         <!-- File Upload -->
                         <div style='position: relative;' class='w-100'>
