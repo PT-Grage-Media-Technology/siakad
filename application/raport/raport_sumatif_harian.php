@@ -146,9 +146,9 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
 }
 
 // Menambahkan data lainnya seperti raport
-echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
-echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
-echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
+// echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
+// echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
+// echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 
 echo "</tr>";
         $no++;
