@@ -26,8 +26,7 @@
     <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li>
     <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li>
     <li style="display:none;"><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
-    <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi
-          Siswa1234</span></a></li>
+    <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi Siswa</span></a></li>
     <!-- <li><a href="index.php?view=bahantugas&act=listbahantugasguru"><i class="fa fa-file"></i><span>Bahan dan
           Tugas</span></a></li> -->
     <!-- <li><a href="index.php?view=soal&act=detailguru"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li> -->
