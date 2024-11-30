@@ -45,6 +45,7 @@ echo "</select>
         </tr>";
 
   echo $_SESSION[id];
+  echo $_SESSION[kode_kelas];
 // Ambil data mata pelajaran berdasarkan kondisi tertentu
 $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
                                         JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
