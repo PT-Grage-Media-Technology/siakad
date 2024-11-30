@@ -13,7 +13,7 @@ if (empty($_GET['tahun'])) {
 echo "<div class='col-xs-12 col-md-12'>  
 <div class='box'>
   <div class='box-header'>
-    <h3 class='box-title'>Laporan Nilai Akhir : <b>$nama</b></h3>
+    <h3 class='box-title'>Laporan Sumatif Harian : <b>$nama</b></h3>
     <form id='year-form' style='margin-right:5px; margin-top:0px' class='form-inline float-right' action='' method='GET'>
       <input type='hidden' name='view' value='raport'>
       <input type='hidden' name='act' value='detailsiswa'>
