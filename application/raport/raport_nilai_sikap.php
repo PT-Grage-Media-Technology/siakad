@@ -184,7 +184,6 @@ if (isset($_GET['delete_keterampilan'])){
                                   <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>KD</center></th>
                                   <th style='border:1px solid #e3e3e3' colspan='5'><center>Penilaian</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Rata2</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Grade21e3wfdfv</center></th>
                                   <th style='border:1px solid #e3e3e3' rowspan='2'><center>Deskripsi</center></th>
                                   <th style='border:1px solid #e3e3e3; width:65px' rowspan='2'><center>Action</center></th>
                                 </tr>
@@ -267,7 +266,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center>$n[nilai4]</td>
                                         <td align=center>$n[nilai5]</td>
                                         <td align=center>".number_format($ratarata)."</td>
-                                        <td align=center>$grade1[grade]</td>
                                         <td>$n[deskripsi]</td>
                                         <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
