@@ -219,7 +219,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='text' name='e' value='$e[nilai4]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='f' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
@@ -238,7 +237,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='text' name='d' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='e' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='f' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
@@ -350,7 +348,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='text' name='f1' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='g1' value='$e[nilai6]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='h' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-keterampilan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
@@ -370,7 +367,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='text' name='e1' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='f1' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' name='g1' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='h' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-keterampilan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
