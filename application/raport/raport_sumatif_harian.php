@@ -44,44 +44,12 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
 
-  echo $_SESSION[id];
-  echo $_SESSION[kode_kelas];
-// Ambil data mata pelajaran berdasarkan kondisi tertentu
-$mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
-                                        JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
-                                        WHERE a.kode_kelas='$_SESSION[kode_kelas]' 
-                                        AND a.id_tahun_akademik='$tahun_terpilih' 
-                                        AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]' 
-                                        AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'"));
-
-// Cek apakah query untuk mapel berhasil dan data ditemukan
-if ($mapel) {
-    echo $_SESSION[id];
-    echo $_SESSION[kode_kelas];
-    // Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
-    $query_pertemuan = mysql_query("
-        SELECT DISTINCT tanggal 
-        FROM rb_absensi_siswa 
-        WHERE kodejdwl = '$mapel[kodejdwl]' 
-        ORDER BY tanggal ASC
-    ");
-    
-    // Hitung jumlah pertemuan (tanggal unik)
-    $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
-    
-    // Menampilkan header dengan jumlah pertemuan
-    echo "<tr>";
-    // Loop untuk membuat header dengan angka dinamis
-    for ($i = 1; $i <= $jumlah_pertemuan; $i++) {
-        echo "<th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>$i</center></th>";
-    }
-    echo "</tr>";
-} else {
-    // Jika tidak ada data mata pelajaran, tampilkan pesan atau set nilai default
-    echo "<tr><td colspan='100%' style='text-align:center; color:red;'>Data mata pelajaran tidak ditemukan</td></tr>";
-}
-
-
+echo " <tr>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>1</center></th>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>2</center></th>
+            <th style='border:1px solid #ffffff; background-color:lightblue' colspan='1'><center>3</center></th>
+             </tr>
+            ";
 // $kdjdwl = mysql_fetch_array(mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
 //                         JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
 //                           where a.kode_kelas='$_SESSION[kode_kelas]' 
