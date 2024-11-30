@@ -138,17 +138,21 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
       AND tanggal = '$pertemuan[tanggal]'
   ");
   
-  // Jika tidak ada nilai, set nilai default 0
+  // Cek apakah nilai ada atau tidak
   if (mysql_num_rows($query_nilai) > 0) {
       $nilai = mysql_fetch_array($query_nilai);
+      
+      // Jika ada salah satu nilai yang tidak ditemukan, set rata-rata menjadi 0
+      if ($nilai['nilai_keterampilan'] == 0 || $nilai['nilai_sikap'] == 0 || $nilai['nilai_pengetahuan'] == 0) {
+          $rata_rata = 0;
+      } else {
+          // Jika semua nilai ada, hitung rata-rata
+          $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
+      }
   } else {
-      $nilai['nilai_keterampilan'] = 0;
-      $nilai['nilai_sikap'] = 0;
-      $nilai['nilai_pengetahuan'] = 0;
+      // Jika tidak ada nilai, set rata-rata menjadi 0
+      $rata_rata = 0;
   }
-
-  // Hitung rata-rata dari tiga nilai
-  $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
 
   // Tampilkan rata-rata nilai di dalam <td>
   echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
