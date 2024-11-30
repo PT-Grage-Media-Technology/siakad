@@ -107,9 +107,6 @@
                                         <td>$r[jam_selesai]</td>
                                         <td>$r[nama_ruangan]</td>";
                 if ($_SESSION['level'] != 'kepala') {
-                  echo "<td><a class='btn btn-xs btn-warning' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'>Buka Absensi Siswa</a></td>";
-                }
-                if ($_SESSION['level'] != 'kepala') {
                   echo "<td style='width:70px !important'><center>
                                         <a class='btn btn-success btn-xs' title='Edit Jadwal' href='index.php?view=jadwalpelajaran&act=edit&id=$r[kodejdwl]'><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalpelajaran&hapus=$r[kodejdwl]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><span class='glyphicon glyphicon-remove'></span></a>
