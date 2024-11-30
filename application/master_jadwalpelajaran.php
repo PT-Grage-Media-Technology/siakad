@@ -76,9 +76,7 @@
                 <th>Mulai</th>
                 <th>Selesai</th>
                 <th>Ruangan</th>
-                <?php if ($_SESSION['level'] != 'kepala') { ?>
-                  <th>Daftar Hadir</th>
-                <?php }
+                <?php 
                 if ($_SESSION['level'] != 'kepala') { ?>
                   <th>Action</th>
                 <?php } ?>
