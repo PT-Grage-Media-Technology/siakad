@@ -43,9 +43,9 @@
               </ul>
             </li>
             <li><a href="index.php?view=bahantugas"><i class="fa fa-file"></i><span>Bahan dan Tugas</span></a></li>
-            <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li>
+            <!-- <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li> -->
             <li><a href="index.php?view=journalkbm"><i class="fa fa-tags"></i><span>Journal KBM</span></a></li>
-            <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li>
+            <!-- <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
             <li><a href="index.php?view=raportcetak"><i class="fa fa-calendar"></i> <span>Laporan Nilai</span></a></li>
             <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
           </ul>

@@ -64,8 +64,6 @@
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai UTS</a></li>
         <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
-        <li><a href='index.php?view=forum&act=list&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Forum Diskusi</a></li>
-        <li><a href='index.php?view=soal&act=listsoalsiswa&jdwl={$_GET['id']}&tahun={$_GET['tahun']}'>Quiz/Ujian Online</a></li>
       ";
     } 
     // else {
