@@ -216,12 +216,14 @@ elseif ($_GET[act] == 'detailpembelajaran') {
            $jawab = $_POST['jawab'.$i];
            $pertanyaan = $_POST['id'.$i];
            $kelas = $_POST['kelas'.$i];
-            $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
-            if ($cek[tot] >= 1){
-              mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
-            }else{
-              mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
-          }
+
+           mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
+
+          //   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
+          //   if ($cek[tot] >= 1){
+          //     mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
+          //   }else{
+          // }
          }
        }
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
