@@ -143,11 +143,16 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
   $nilai = mysql_fetch_array($query_nilai);
   var_dump($pertemuan);
   
-  // Hitung rata-rata dari tiga nilai
-  $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
+  if(!$pertemuan){
+    echo "<td align='center' colspan='1'>0</td>";
+  }else{
 
-  // Tampilkan rata-rata nilai di dalam <td>
-  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+      // Hitung rata-rata dari tiga nilai
+      $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
+    
+      // Tampilkan rata-rata nilai di dalam <td>
+      echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+  }
 
   $pertemuan_counter++;
 }
