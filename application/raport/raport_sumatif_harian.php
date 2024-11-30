@@ -55,6 +55,7 @@ $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a
 
 // Cek apakah query untuk mapel berhasil dan data ditemukan
 if ($mapel) {
+    var_dump($mapel);
     // Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
     $query_pertemuan = mysql_query("
         SELECT DISTINCT tanggal 
