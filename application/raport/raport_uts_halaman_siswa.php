@@ -39,8 +39,8 @@ echo "          </select>
                     <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
                   </tr>
                   <tr>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
