@@ -118,16 +118,19 @@ while ($k = mysql_fetch_array($kelompok)) {
         <td>$m[namamatapelajaran]</td>
         <td align=center>$m[kkm]</td>";
 
-// Jumlah pertemuan diambil dari query absensi (jumlah tanggal unik)
+// Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
 $query_pertemuan = mysql_query("
   SELECT DISTINCT tanggal 
   FROM rb_absensi_siswa 
   WHERE kodejdwl = '$m[kodejdwl]'
+  ORDER BY tanggal DESC
 ");
 $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 
-// Loop untuk mengambil nilai keterampilan berdasarkan tanggal
+// Inisialisasi variabel untuk menampilkan pertemuan
 $pertemuan_counter = 1;
+
+// Loop untuk mencetak <td> dinamis sesuai jumlah pertemuan
 while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
   // Ambil nilai keterampilan, sikap, dan pengetahuan untuk pertemuan berdasarkan tanggal
   $query_nilai = mysql_query("
@@ -143,17 +146,18 @@ while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
   $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
 
   // Tampilkan rata-rata nilai di dalam <td>
-  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 1) . "</td>";
+  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
 
   $pertemuan_counter++;
 }
 
-// // Menambahkan data lainnya seperti raport
+// Menambahkan data lainnya seperti raport
 // echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
 // echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 // echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
 
 echo "</tr>";
+
 
         $no++;
     }
