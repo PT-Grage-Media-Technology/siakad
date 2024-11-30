@@ -142,7 +142,7 @@
   $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip JOIN rb_forum_topic ft ON z.materi=ft.judul_topic WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
   if(mysql_num_rows($tampil) == 0){
-    echo "tidak";
+    echo "<tr><td colspan='8' style='text-align:center;'>Tidak ada data</td></tr>";
   }else{
 
     while ($r = mysql_fetch_array($tampil)) {
