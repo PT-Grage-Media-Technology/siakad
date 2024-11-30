@@ -48,10 +48,9 @@ echo "</select>
                                       where a.kode_kelas='$_SESSION[kode_kelas]' 
                                         AND a.id_tahun_akademik='$tahun_terpilih' 
                                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
-                                            AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
+                                           AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'");
+            $no = 1;
             while($mp = mysql_fetch_array($kdjdwl)){
-               var_dump($mp);
-            }
             $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
             var_dump($total);
             echo "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal";
@@ -62,7 +61,8 @@ echo "</select>
                 $pertemuan++;
             }
             echo "</tr>";
-
+            $no++;
+        }
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
 }
