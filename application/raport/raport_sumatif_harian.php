@@ -107,6 +107,7 @@ while ($k = mysql_fetch_array($kelompok)) {
                   <td align=center  colspan='1'>" . number_format($rapn['raport']) . "</td>
                  
                   <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
+                  <td align=center  colspan='1'>" . number_format($rapnk['raport']) . "</td>
                  
               </tr>";
         $no++;
