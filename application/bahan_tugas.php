@@ -448,7 +448,7 @@ if ($_GET[act] == '') {
                   <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
                     <a href='index.php?view=bahantugas'>
-                      <button type='button' class='btn btn-default pull-right'>Cancel2</button>
+                      <button type='button' class='btn btn-default pull-right'>Cancel</button>
                     </a>
                   </div>
                   </form>
@@ -546,7 +546,7 @@ if ($_GET[act] == '') {
               </div>
               <div class='box-footer'>
                     <button type='submit' name='update' class='btn btn-info'>Update</button>
-                    <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel3</button></a>
+                    <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
@@ -805,7 +805,6 @@ if ($_GET[act] == '') {
               </div>
               <div class='box-footer'>
                     <button type='submit' name='kirimkan' class='btn btn-info'>Kirimkan Tugas</button>
-                    <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel1</button></a>
                     
                   </div>
               </form>
