@@ -44,9 +44,7 @@ echo "<table id='tablemodul1' width=100% border=1>
           </tr>
           <tr>
             <th>Nilai</th>
-            <th>Predikat</th>
             <th>Nilai</th>
-            <th>Predikat</th>
           </tr>";
       $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
       while ($k = mysql_fetch_array($kelompok)){
@@ -77,10 +75,8 @@ echo "<table id='tablemodul1' width=100% border=1>
                 <td align=center>$no</td>
                 <td>$m[namamatapelajaran]</td>
                 <td align=center>77</td>
-                <td align=center>".number_format($rapn[raport])."12</td>
-                <td align=center>$grade3[grade]</td>
-                <td align=center>".number_format($rapnk[raport])."12</td>
-                <td align=center>$grade[grade]</td>
+                <td align=center>".number_format($rapn[raport])."</td>
+                <td align=center>".number_format($rapnk[raport])."</td>
             </tr>";
         $no++;
         }
