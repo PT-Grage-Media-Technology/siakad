@@ -43,7 +43,13 @@ echo "</select>
           <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
-            $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$m[kodejdwl]' GROUP BY tanggal"));
+            $kdjdwl = mysql_fetch_array(mysql_query("SELECT * FROM  rb_jadwal_pelajaran a 
+                                    JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
+                                      where a.kode_kelas='$_SESSION[kode_kelas]' 
+                                        AND a.id_tahun_akademik='$tahun_terpilih' 
+                                          AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'
+                                            AND b.kode_kurikulum='$kurikulum[kode_kurikulum]'"));
+            $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$kdjdwl[kodejdwl]' GROUP BY tanggal"));
 
             echo "<tr>";
             $pertemuan = 1; // Variabel untuk nomor pertemuan
