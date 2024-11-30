@@ -125,45 +125,49 @@ $query_pertemuan = mysql_query("
   WHERE kodejdwl = '$m[kodejdwl]'
   ORDER BY tanggal ASC
 ");
+
 $jumlah_pertemuan = mysql_num_rows($query_pertemuan);
 
-// Inisialisasi variabel untuk menampilkan pertemuan
-$pertemuan_counter = 1;
+// Jika tidak ada pertemuan, tampilkan nilai 0
+if ($jumlah_pertemuan == 0) {
+    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
+    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
+    echo "<td align='center' colspan='1'>0</td>"; // Menampilkan nilai 0 jika tidak ada pertemuan
+} else {
+    // Inisialisasi variabel untuk menampilkan pertemuan
+    $pertemuan_counter = 1;
 
-// Loop untuk mencetak <td> dinamis sesuai jumlah pertemuan
-while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
-  // Ambil nilai keterampilan, sikap, dan pengetahuan untuk pertemuan berdasarkan tanggal
-  $query_nilai = mysql_query("
-      SELECT nilai_keterampilan, nilai_sikap, nilai_pengetahuan 
-      FROM rb_absensi_siswa 
-      WHERE kodejdwl = '$m[kodejdwl]' 
-      AND nisn = '$_SESSION[id]' 
-      AND tanggal = '$pertemuan[tanggal]'
-  ");
-  
-  // Jika nilai tidak ditemukan, set nilai sebagai array kosong
-  $nilai = mysql_fetch_array($query_nilai);
-  
-  // Jika nilai tidak ada, rata-rata di-set 0
-  if (!$nilai || $nilai['nilai_keterampilan'] === 0 || $nilai['nilai_sikap'] === 0 || $nilai['nilai_pengetahuan'] === 0) {
-    $rata_rata = 0;
-  } else {
-    // Hitung rata-rata dari tiga nilai jika semuanya ada
-    $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
-  }
+    // Loop untuk mencetak <td> dinamis sesuai jumlah pertemuan
+    while ($pertemuan = mysql_fetch_array($query_pertemuan)) {
+        // Ambil nilai keterampilan, sikap, dan pengetahuan untuk pertemuan berdasarkan tanggal
+        $query_nilai = mysql_query("
+            SELECT nilai_keterampilan, nilai_sikap, nilai_pengetahuan 
+            FROM rb_absensi_siswa 
+            WHERE kodejdwl = '$m[kodejdwl]' 
+            AND nisn = '$_SESSION[id]' 
+            AND tanggal = '$pertemuan[tanggal]'
+        ");
+        
+        // Ambil hasil nilai
+        $nilai = mysql_fetch_array($query_nilai);
 
-  // Tampilkan rata-rata nilai di dalam <td>
-  echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+        // Jika nilai tidak ada, tampilkan nilai 0
+        if (!$nilai) {
+            $rata_rata = 0;
+        } else {
+            // Hitung rata-rata dari tiga nilai jika nilai ada
+            $rata_rata = ($nilai['nilai_keterampilan'] + $nilai['nilai_sikap'] + $nilai['nilai_pengetahuan']) / 3;
+        }
 
-  $pertemuan_counter++;
+        // Tampilkan rata-rata nilai di dalam <td>
+        echo "<td align='center' colspan='1'>" . number_format($rata_rata, 2) . "</td>";
+
+        $pertemuan_counter++;
+    }
 }
 
-// Menambahkan data lainnya seperti raport
-// echo "<td align='center' colspan='1'>" . number_format($rapn['raport']) . "</td>";
-// echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
-// echo "<td align='center' colspan='1'>" . number_format($rapnk['raport']) . "</td>";
-
 echo "</tr>";
+
 
 
 
