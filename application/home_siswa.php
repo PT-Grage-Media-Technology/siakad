@@ -302,7 +302,7 @@ echo "
                         echo "<script>document.location='index.php?view=home&act=detailpembelajaran&kodejdwl=$kodejdwl&tanggal=$tanggal&jam_ke=$jam_ke&idtopic=$idtopic';</script>";
                       }
                     
-                      echo "<div class='col-md-12'>
+                      echo "<div class='col-12'>
                                   <div class='box box-success'>
                                     <div class='box-header'>
                                       <i class='fa fa-comments-o'></i>
@@ -325,7 +325,7 @@ echo "
                                   </div>
                               </div>
                     
-                              <div class='col-md-12'>
+                              <div class='col-12'>
                                   <div class='box box-info'>
                                     <div class='box-body chat' id='chat-box'>";
                       $komentar = mysql_query("SELECT * FROM rb_forum_komentar a 
