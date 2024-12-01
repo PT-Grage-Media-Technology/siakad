@@ -761,7 +761,7 @@
   </div>
   <div class='box-footer'>
         <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-        <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+        <a href='index.php?view=bahantugas' id='cancelButton'><button class='btn btn-default pull-right'>Cancel</button></a>
         
       </div>
   </form>
@@ -821,3 +821,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('cancelButton').onclick = function() {
+        history.back();
+    };
+</script>
