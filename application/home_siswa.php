@@ -240,7 +240,7 @@ echo "
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
                 history.back();</script>";
     }
-           echo" <div class='col-xs-12'>  
+           echo" <div class='col-12'>  
               <div class='box'>
               <form action='' method='POST'>
                 <div class='box-header'>
@@ -281,7 +281,7 @@ echo "
               </div><!-- /.box -->
             </div>";
 
-            echo"<div class='col-xs-12'>  
+            echo"<div class='col-12'>  
             <div class='box'>";
                       $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
                                   JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
