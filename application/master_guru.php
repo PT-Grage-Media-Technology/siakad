@@ -761,7 +761,7 @@
   </div>
   <div class='box-footer'>
         <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-        <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+        <a href='index.php'><button class='btn btn-default pull-right'>Cancel</button></a>
         
       </div>
   </form>
