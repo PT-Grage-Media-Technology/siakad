@@ -748,7 +748,7 @@
       <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='b'></textarea></td></tr>
       <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
                                                             <a class='btn btn-primary' href='javascript:;'>
-                                                              <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
+                                                              <span class='glyphicon glyphicon-search'></span> Kirim Surat dokter atau yang lain"; ?>
   <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
 <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                           </div>
