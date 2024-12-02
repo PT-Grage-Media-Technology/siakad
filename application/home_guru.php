@@ -134,32 +134,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
     </div>
 </div>
 
-<?php
-include 'koneksi.php';
 
-// Tangkap data dari form
-$kodejdwl = $_POST['kodejdwl'];
-$kktp = $_POST['kktp'];
-
-// Tangkap parameter tahun dari URL, jika tersedia
-$tahun = isset($_POST['tahun']) ? $_POST['tahun'] : '';
-
-// Perbarui data KKTP di database
-$query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
-
-// Feedback dan pengalihan
-if ($query) {
-    echo "<script>
-        alert('KKTP berhasil diperbarui!');
-        window.location='index.php?view=jadwalguru&tahun=$tahun';
-    </script>";
-} else {
-    echo "<script>
-        alert('Gagal memperbarui KKTP!');
-        window.location='index.php?view=jadwalguru&tahun=$tahun';
-    </script>";
-}
-?>
 
 <script>
 // Script untuk menangani pengisian nilai lama di modal
