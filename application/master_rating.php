@@ -4,7 +4,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Data Predikat / Grade Nilai </h3>
                   <?php if($_SESSION[level]!='kepala'){ ?>
-                  <a class='pull-right btn btn-primary btn-sm' href='index.php?view=predikat&act=tambah'>Tambahkan Data</a>
+                  <a class='pull-right btn btn-primary btn-sm' href='index.php?view=datarating&act=tambah'>Tambahkan Data</a>
                   <?php } ?>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -27,20 +27,20 @@
                     while($r=mysql_fetch_array($tampil)){
                     echo "<tr>
                             <td>$no</td>
-                            <td>$r[bintang]</td>
-                            <td>$r[kesan]</td>";
+                            <center><td>$r[bintang]</td>
+                            <center><td>$r[kesan]</td></center>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=predikat&act=edit&id=$r[id_predikat]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=predikat&hapus=$r[id_predikat]'><span class='glyphicon glyphicon-remove'></span></a>
+                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=datarating&act=edit&id=$r[id]'><span class='glyphicon glyphicon-edit'></span></a>
+                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=datarating&hapus=$r[id]'><span class='glyphicon glyphicon-remove'></span></a>
                               </center></td>";
                               }
                             echo "</tr>";
                       $no++;
                       }
                       if (isset($_GET[hapus])){
-                          mysql_query("DELETE FROM rb_predikat where id_predikat='$_GET[hapus]'");
-                          echo "<script>document.location='index.php?view=predikat';</script>";
+                          mysql_query("DELETE FROM rb_rating where id='$_GET[hapus]'");
+                          echo "<script>document.location='index.php?view=datarating';</script>";
                       }
 
                   ?>
@@ -53,14 +53,10 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        mysql_query("UPDATE rb_predikat SET kode_kelas = '$_POST[aa]', 
-                                         nilai_a = '$_POST[a]',
-                                         nilai_b = '$_POST[b]',
-                                         grade = '$_POST[c]',
-                                         keterangan = '$_POST[d]' where id_predikat='$_POST[id]'");
-      echo "<script>document.location='index.php?view=predikat';</script>";
+        mysql_query("UPDATE rb_rating SET bintang = '$_POST[a]', kesan = '$_POST[b]' where id='$_POST[id]'");
+      echo "<script>document.location='index.php?view=datarating';</script>";
     }
-    $edit = mysql_query("SELECT * FROM rb_predikat where id_predikat='$_GET[id]'");
+    $edit = mysql_query("SELECT * FROM rb_rating where id='$_GET[id]'");
     $s = mysql_fetch_array($edit);
     echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -72,22 +68,9 @@
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <input type='hidden' name='id' value='$s[id_predikat]'>
-                    <tr><th scope='row'>Kelas</th> <td><select class='form-control' name='aa'>"; 
-                                                          echo "<option value='0' selected>Lainnya</option>";
-                                                          $kelas = mysql_query("SELECT * FROM rb_kelas");
-                                                          while ($k = mysql_fetch_array($kelas)){
-                                                            if ($s[kode_kelas]==$k[kode_kelas]){
-                                                              echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
-                                                            }else{
-                                                              echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
-                                                            }
-                                                          }
-                                                      echo "</select></td></tr>
-                    <tr><th width='120px' scope='row'>Dari</th> <td><input type='text' class='form-control' name='a' value='$s[nilai_a]'> </td></tr>
-                    <tr><th scope='row'>Sampai</th> <td><input type='text' class='form-control' name='b' value='$s[nilai_b]'> </td></tr>
-                    <tr><th scope='row'>Grade</th> <td><input type='text' class='form-control' name='c' value='$s[grade]'> </td></tr>
-                    <tr><th scope='row'>Keterangan</th> <td><input type='text' class='form-control' name='d' value='$s[keterangan]'> </td></tr>
+                    <input type='hidden' name='id' value='$s[id]'>
+                    <tr><th width='120px' scope='row'>Bintang</th> <td><input type='text' class='form-control' name='a' value='$s[bintang]'> </td></tr>
+                    <tr><th scope='row'>Kesan</th> <td><input type='text' class='form-control' name='b' value='$s[kesan]'> </td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -101,8 +84,8 @@
             </div>";
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
-        mysql_query("INSERT INTO rb_predikat VALUES('','$_POST[aa]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]')");
-        echo "<script>document.location='index.php?view=predikat';</script>";
+        mysql_query("INSERT INTO rb_rating VALUES('','$_POST[a]','$_POST[b]')");
+        echo "<script>document.location='index.php?view=datarating';</script>";
     }
 
     echo "<div class='col-md-12'>
@@ -114,25 +97,16 @@
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
-                  <tbody>
-                    <tr><th scope='row'>Kelas</th> <td><select class='form-control' name='aa'>"; 
-                                                          echo "<option value='0' selected>Lainnya</option>";
-                                                          $kelas = mysql_query("SELECT * FROM rb_kelas");
-                                                          while ($k = mysql_fetch_array($kelas)){
-                                                              echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
-                                                          }
-                                                      echo "</select></td></tr>
-                    <tr><th width='120px' scope='row'>Dari</th> <td><input type='text' class='form-control' name='a'> </td></tr>
-                    <tr><th scope='row'>Sampai</th> <td><input type='text' class='form-control' name='b'> </td></tr>
-                    <tr><th scope='row'>Grade</th> <td><input type='text' class='form-control' name='c'> </td></tr>
-                    <tr><th scope='row'>Keterangan</th> <td><input type='text' class='form-control' name='d'> </td></tr>
+                   <tbody>
+                    <tr><th width='120px' scope='row'>Bintang</th> <td><input type='text' class='form-control' name='a'> </td></tr>
+                    <tr><th scope='row'>Kesan</th> <td><input type='text' class='form-control' name='b'> </td></tr>
                   </tbody>
                   </table>
                 </div>
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=predikat'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=datarating'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
