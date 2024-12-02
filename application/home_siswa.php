@@ -269,11 +269,11 @@ echo "
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
                               <td>
-                                <select class='form-control' name='jawab".$no."'>
+                                <select class='form-control' name='jawab<?php echo $no; ?>'>
                                   <option value=''>- Pilih Jawaban -</option>
-                                  <option value='Jawaban 1'>Penjelasan Nya Baik Dan Mudah Di Pahami</option>
-                                  <option value='Jawaban 2'>Penjelasan Nya Kurang Baik Dan Kurang Dapat Di Pahami</option>
-                                  <option value='Jawaban 3'>Tidak Dapat Memahami Apa Yang Dijelaskan</option>
+                                  <option value='Jawaban 1' <?php echo (isset($jwb['jawaban']) && $jwb['jawaban'] == 'Jawaban 1') ? 'selected' : ''; ?>>Penjelasan Nya Baik Dan Mudah Di Pahami</option>
+                                  <option value='Jawaban 2' <?php echo (isset($jwb['jawaban']) && $jwb['jawaban'] == 'Jawaban 2') ? 'selected' : ''; ?>>Penjelasan Nya Kurang Baik Dan Kurang Dapat Di Pahami</option>
+                                  <option value='Jawaban 3' <?php echo (isset($jwb['jawaban']) && $jwb['jawaban'] == 'Jawaban 3') ? 'selected' : ''; ?>>Tidak Dapat Memahami Apa Yang Dijelaskan</option>
                                 </select>
                               </td>
                           </tr>";
