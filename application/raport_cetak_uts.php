@@ -5,7 +5,7 @@
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Cetak Raport UTS Siswa</h3>
+                  <h3 class="box-title">Cetak Raport STS Siswa</h3>
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='raportcetakuts'>
                     <select name='tahun' style='padding:4px'>
@@ -62,7 +62,7 @@
                               <td>$r[nama]</td>
                               <td>$r[jenis_kelamin]</td>
                               <td width='90px'><center>
-                                <a target='_BLANK' class='btn btn-primary btn-xs' href='print-raport_uts.php?id=$r[nisn]&kelas=$r[kode_kelas]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-print'></span> Print Raport UTS</a>
+                                <a target='_BLANK' class='btn btn-primary btn-xs' href='print-raport_uts.php?id=$r[nisn]&kelas=$r[kode_kelas]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-print'></span> Print Raport STS</a>
                               </center></td>";
                             echo "</tr>";
                       $no++;

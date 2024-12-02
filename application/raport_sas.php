@@ -139,7 +139,7 @@ cek_session_guru();
     echo "<div class='col-md-12'>
       <div class='box box-info'>
         <div class='box-header with-border'>
-          <h3 class='box-title'>Input Nilai STS Siswa</b></h3>
+          <h3 class='box-title'>Input Nilai SAS Siswa</b></h3>
           <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='POST'>
             <input type='hidden' name='id' value='$_GET[id]'>
             <input type='hidden' name='jdwl' value='$_GET[jdwl]'>

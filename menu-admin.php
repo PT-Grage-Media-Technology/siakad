@@ -96,8 +96,8 @@
     <li class="treeview">
       <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <li><a href="index.php?view=raportuts"><i class="fa fa-circle-o"></i> Data Nilai UTS</a></li>
-        <li><a href="index.php?view=raportcetakuts"><i class="fa fa-circle-o"></i> Cetak Raport UTS</a></li>
+        <li><a href="index.php?view=raportuts"><i class="fa fa-circle-o"></i> Data Nilai STS</a></li>
+        <li><a href="index.php?view=raportcetakuts"><i class="fa fa-circle-o"></i> Cetak Raport STS</a></li>
 
         <li><a href="index.php?view=capaianhasilbelajar"><i class="fa fa-circle-o"></i> Data Capaian Belajar</a></li>
         <li><a href="index.php?view=extrakulikuler"><i class="fa fa-circle-o"></i> Data Ekstrakulikuler</a></li>
