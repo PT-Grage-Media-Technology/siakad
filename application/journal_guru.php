@@ -631,7 +631,6 @@ $_SESSION['akses_agenda'] = true;
 
                       </td>
                       </tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
                     </td></tr>
                   </tbody>
                   </table>
