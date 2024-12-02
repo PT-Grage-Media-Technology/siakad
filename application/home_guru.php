@@ -114,10 +114,15 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="kodejdwl" id="modalKodeJdwl">
-                    <div class="form-group">
+                    <input type="hidden" name="tahun" value="<?php echo $tahun_dipilih; ?>">
+                    <input type="hidden" name="kodejdwl" id="kodejdwl">
+                    <!-- <div class="form-group">
                         <label for="modalKktp">KKTP</label>
                         <input type="number" class="form-control" name="kktp" id="modalKktp" required>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="kktp">KKTP:</label>
+                        <input type="text" class="form-control" id="kktp" name="kktp" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -128,6 +133,33 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
         </form>
     </div>
 </div>
+
+<?php
+include 'koneksi.php';
+
+// Tangkap data dari form
+$kodejdwl = $_POST['kodejdwl'];
+$kktp = $_POST['kktp'];
+
+// Tangkap parameter tahun dari URL, jika tersedia
+$tahun = isset($_POST['tahun']) ? $_POST['tahun'] : '';
+
+// Perbarui data KKTP di database
+$query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
+
+// Feedback dan pengalihan
+if ($query) {
+    echo "<script>
+        alert('KKTP berhasil diperbarui!');
+        window.location='index.php?view=jadwalguru&tahun=$tahun';
+    </script>";
+} else {
+    echo "<script>
+        alert('Gagal memperbarui KKTP!');
+        window.location='index.php?view=jadwalguru&tahun=$tahun';
+    </script>";
+}
+?>
 
 <script>
 // Script untuk menangani pengisian nilai lama di modal
