@@ -101,19 +101,10 @@ if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
     <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
             <div class='modal-content'>";
-    $nip = $_SESSION['id'];
-    $rekap_absen = mysql_query("SELECT 
-        SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
-        SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
-        SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
-        FROM rb_rekap_absen_guru
-        WHERE nip = '$nip' AND status = 1");
-    $absen = mysql_fetch_assoc($rekap_absen);
 
     echo "<div class='modal-header'>
             <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-            <p><strong>NIP:</strong> $nip | <strong>S :</strong> " . $absen['jumlah_sakit'] . " | <strong>I :</strong> " . $absen['jumlah_izin'] . " | <strong>A :</strong> " . $absen['jumlah_alpa'] . "</p>
-            <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
+            <h4 class='modal-title' id='myModalLabel'>Edit KKTP</h4>
         </div>
         <div class='modal-body'>
             <div style='background-color: black; padding: 10px;'>
