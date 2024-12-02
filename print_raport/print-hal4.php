@@ -71,10 +71,11 @@ while ($k = mysql_fetch_array($kelompok)){
                 <td align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
                     " . number_format($rapn['raport']) . "
                 </td>
-                <td align='center'> Ini Capaian Kompetensi
-                </td>
-                <td align='center'> Ini Capaian Kompetensi
-                </td>
+                
+                 <tr>
+                    <td align='center'>Ini Capaian Kompetensi</td>
+                    <td align='center'>Ini Capaian Kompetensi</td>
+                  </tr>
               </tr>";
         $no++;
     }
