@@ -63,36 +63,99 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
             </tr>
           </thead>
           <tbody>
-            <?php
-            $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
-                                   FROM rb_jadwal_pelajaran a 
-                                   JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                                   JOIN rb_guru c ON a.nip=c.nip 
-                                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                                   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-                                   WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
-                                   ORDER BY a.hari DESC");
-              
-            $no = 1;
-            while ($r = mysql_fetch_array($tampil)) {
-              echo "<tr>
-                      <td>$no</td>
-                      <td>$r[kode_pelajaran]</td>
-                      <td>$r[namamatapelajaran]</td>
-                      <td>$r[nama_kelas]</td>
-                      <td>$r[nama_guru]</td>
-                      <td>$r[hari]</td>
-                      <td>$r[jam_mulai]</td>
-                      <td>$r[jam_selesai]</td>
-                      <td>$r[nama_ruangan]</td>
-                      <td>$r[id_tahun_akademik]</td>
-                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
-                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Edit KKTP</a></td>
-                    </tr>";
-              $no++;
-            }
-            ?>
-          </tbody>
+    <?php
+    $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
+                           FROM rb_jadwal_pelajaran a 
+                           JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                           JOIN rb_guru c ON a.nip=c.nip 
+                           JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                           JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                           WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
+                           ORDER BY a.hari DESC");
+      
+    $no = 1;
+    while ($r = mysql_fetch_array($tampil)) {
+        echo "<tr>
+                <td>$no</td>
+                <td>$r[kode_pelajaran]</td>
+                <td>$r[namamatapelajaran]</td>
+                <td>$r[nama_kelas]</td>
+                <td>$r[nama_guru]</td>
+                <td>$r[hari]</td>
+                <td>$r[jam_mulai]</td>
+                <td>$r[jam_selesai]</td>
+                <td>$r[nama_ruangan]</td>
+                <td>$r[id_tahun_akademik]</td>
+                <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
+                <td><button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#myModal'>Edit KKTP</button></td>
+              </tr>";
+        $no++;
+    }
+    ?>
+</tbody>
+
+<!-- Tambahkan Modal di sini -->
+<?php
+if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
+    echo "
+    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+        <div class='modal-dialog' role='document'>
+            <div class='modal-content'>";
+    $nip = $_SESSION['id'];
+    $rekap_absen = mysql_query("SELECT 
+        SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+        SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
+        SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
+        FROM rb_rekap_absen_guru
+        WHERE nip = '$nip' AND status = 1");
+    $absen = mysql_fetch_assoc($rekap_absen);
+
+    echo "<div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+            <p><strong>NIP:</strong> $nip | <strong>S :</strong> " . $absen['jumlah_sakit'] . " | <strong>I :</strong> " . $absen['jumlah_izin'] . " | <strong>A :</strong> " . $absen['jumlah_alpa'] . "</p>
+            <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
+        </div>
+        <div class='modal-body'>
+            <div style='background-color: black; padding: 10px;'>
+                <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
+            </div>";
+
+    $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND nip_guru='" . $_SESSION['id'] . "'");
+    echo "<table id='example1' class='table table-bordered table-striped'>
+            <tr>
+                <th>No</th>
+                <th>Pesan</th>
+                <th>Waktu Dikirim</th>
+                <th>Action</th>
+            </tr>";
+    $no = 1;
+    if (mysql_num_rows($pemberitahuan) > 0) {
+        while ($p = mysql_fetch_array($pemberitahuan)) {
+            echo "<tr>
+                <td>" . $no . "</td>
+                <td>" . $p['pesan'] . "</td>
+                <td>" . $p['waktu_dikirim'] . "</td>
+                <td><a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=" . $p['kode_kelas'] . "&kd=" . $p['kode_mapel'] . "&idjr=" . $p['id_tujuan_pembelajaran'] . "&tgl=" . $p['tanggal_absen'] . "&jam=" . $p['jam_ke'] . "&id_pemberitahuan=" . $p['id_pemberitahuan_guru'] . "'>Absen</a></td>
+            </tr>";
+            $no++;
+        }
+    } else {
+        echo "<tr>
+            <td colspan='4' style='text-align: center;'>Tidak ada data</td>
+        </tr>";
+    }
+    echo "
+        </table>
+        </div>
+        <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
+        </div>
+        </div>
+    </div>
+    </div>";
+}
+?>
+
         </table>
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
