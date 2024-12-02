@@ -72,10 +72,10 @@ while ($k = mysql_fetch_array($kelompok)){
                     " . number_format($rapn['raport']) . "
                 </td>
                 
-                 
+                 <tr>
                     <td rowspan='1' align='center'>Ini Capaian Kompetensi</td>
                     <td rowspan='1' align='center'>Ini Capaian Kompetensi</td>
-                  
+                  </tr>
               </tr>";
         $no++;
     }
