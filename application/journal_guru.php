@@ -335,7 +335,7 @@ $_SESSION['akses_agenda'] = true;
       <td align=center>$r[jam_ke]</td>
       <td align=center>$r[sampai_jam_ke]</td>
       <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[keterangan]</td>
+      <td>$r[tujuan_pembelajaran]</td>
       <td>$r[materi]</td>";
 
       if ($_SESSION['level'] != 'kepala') {
@@ -612,6 +612,7 @@ $_SESSION['akses_agenda'] = true;
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
+                    <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[tujuan_pembelajaran]</textarea></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
