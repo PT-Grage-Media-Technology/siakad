@@ -44,113 +44,120 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
+    <div class="table-responsive">
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
             <tr>
-              <th style='width:20px'>No</th>
-              <th>Kode Pelajaran</th>
-              <th>Jadwal Pelajaran</th>
-              <th>Kelas</th>
-              <th>Guru</th>
-              <th>Hari</th>
-              <th>Mulai</th>
-              <th>Selesai</th>
-              <th>Ruangan</th>
-              <th>Semester</th>
-              <th>KKTP</th>
-              <th>Aksi</th>
-              <th>Aksi</th>
+                <th style='width:20px'>No</th>
+                <th>Kode Pelajaran</th>
+                <th>Jadwal Pelajaran</th>
+                <th>Kelas</th>
+                <th>Guru</th>
+                <th>Hari</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Ruangan</th>
+                <th>Semester</th>
+                <th>KKTP</th>
+                <th>Aksi</th>
             </tr>
-          </thead>
-          <tbody>
-    <?php
-   $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
-   FROM rb_jadwal_pelajaran a 
-   JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-   JOIN rb_guru c ON a.nip=c.nip 
-   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
-   WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
-   ORDER BY a.hari DESC");
-      
-    $no = 1;
-    while ($r = mysql_fetch_array($tampil)) {
-        echo "<tr>
-                <td>$no</td>
-                <td>$r[kode_pelajaran]</td>
-                <td>$r[namamatapelajaran]</td>
-                <td>$r[nama_kelas]</td>
-                <td>$r[nama_guru]</td>
-                <td>$r[hari]</td>
-                <td>$r[jam_mulai]</td>
-                <td>$r[jam_selesai]</td>
-                <td>$r[nama_ruangan]</td>
-                <td>$r[id_tahun_akademik]</td>
-                <td>$r[kktp]</td>
-                <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
-                <td><button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#myModal'>Edit KKTP</button></td>
-              </tr>";
-        $no++;
-    }
-    ?>
-</tbody>
+        </thead>
+        <tbody>
+            <?php
+            $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan 
+                FROM rb_jadwal_pelajaran a 
+                JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
+                JOIN rb_guru c ON a.nip=c.nip 
+                JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
+                JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                WHERE a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$tahun_dipilih' 
+                ORDER BY a.hari DESC");
+            
+            $no = 1;
+            while ($r = mysql_fetch_array($tampil)) {
+                echo "<tr>
+                        <td>$no</td>
+                        <td>$r[kode_pelajaran]</td>
+                        <td>$r[namamatapelajaran]</td>
+                        <td>$r[nama_kelas]</td>
+                        <td>$r[nama_guru]</td>
+                        <td>$r[hari]</td>
+                        <td>$r[jam_mulai]</td>
+                        <td>$r[jam_selesai]</td>
+                        <td>$r[nama_ruangan]</td>
+                        <td>$r[id_tahun_akademik]</td>
+                        <td>$r[kktp]</td>
+                        <td><button type='button' class='btn btn-warning btn-xs edit-kktp-btn' 
+                                    data-id='$r[kodejdwl]' 
+                                    data-kktp='$r[kktp]' 
+                                    data-toggle='modal' 
+                                    data-target='#editKktpModal'>Edit KKTP</button></td>
+                    </tr>";
+                $no++;
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 
-<!-- Tambahkan Modal di sini -->
-<?php
-if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
-    echo "
-    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>";
-
-    echo "<div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-            <h4 class='modal-title' id='myModalLabel'>Edit KKTP</h4>
-        </div>
-        <div class='modal-body'>
-            <div style='background-color: black; padding: 10px;'>
-                <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
-            </div>";
-
-    $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND nip_guru='" . $_SESSION['id'] . "'");
-    echo "<table id='example1' class='table table-bordered table-striped'>
-            <tr>
-                <th>No</th>
-                <th>Pesan</th>
-                <th>Waktu Dikirim</th>
-                <th>Action</th>
-            </tr>";
-    $no = 1;
-    if (mysql_num_rows($pemberitahuan) > 0) {
-        while ($p = mysql_fetch_array($pemberitahuan)) {
-            echo "<tr>
-                <td>" . $no . "</td>
-                <td>" . $p['pesan'] . "</td>
-                <td>" . $p['waktu_dikirim'] . "</td>
-                <td><a class='btn btn-warning btn-xs' href='index.php?view=absensiswa&act=tampilabsen&id=" . $p['kode_kelas'] . "&kd=" . $p['kode_mapel'] . "&idjr=" . $p['id_tujuan_pembelajaran'] . "&tgl=" . $p['tanggal_absen'] . "&jam=" . $p['jam_ke'] . "&id_pemberitahuan=" . $p['id_pemberitahuan_guru'] . "'>Absen</a></td>
-            </tr>";
-            $no++;
-        }
-    } else {
-        echo "<tr>
-            <td colspan='4' style='text-align: center;'>Tidak ada data</td>
-        </tr>";
-    }
-    echo "
-        </table>
-        </div>
-        <div class='modal-footer'>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
-        </div>
-        </div>
+<!-- Modal untuk Edit KKTP -->
+<div class="modal fade" id="editKktpModal" tabindex="-1" role="dialog" aria-labelledby="editKktpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="proses_edit_kktp.php">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editKktpModalLabel">Edit KKTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="kodejdwl" id="modalKodeJdwl">
+                    <div class="form-group">
+                        <label for="modalKktp">KKTP</label>
+                        <input type="number" class="form-control" name="kktp" id="modalKktp" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </div>
+        </form>
     </div>
-    </div>";
+</div>
+
+<script>
+// Script untuk menangani pengisian nilai lama di modal
+document.addEventListener('DOMContentLoaded', function () {
+    const editButtons = document.querySelectorAll('.edit-kktp-btn');
+    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
+    const modalKktp = document.getElementById('modalKktp');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const kodejdwl = this.getAttribute('data-id');
+            const kktp = this.getAttribute('data-kktp');
+
+            modalKodeJdwl.value = kodejdwl;
+            modalKktp.value = kktp;
+        });
+    });
+});
+</script>
+<?php
+include 'koneksi.php';
+$kodejdwl = $_POST['kodejdwl'];
+$kktp = $_POST['kktp'];
+
+$query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
+if ($query) {
+    echo "<script>alert('KKTP berhasil diperbarui!'); window.location='index.php?view=jadwalguru';</script>";
+} else {
+    echo "<script>alert('Gagal memperbarui KKTP!'); window.location='index.php?view=jadwalguru';</script>";
 }
 ?>
 
-        </table>
-      </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div>
 </div>
