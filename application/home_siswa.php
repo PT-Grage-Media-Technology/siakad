@@ -271,9 +271,9 @@ echo "
                               <td>
                                 <select class='form-control' name='jawab".$no."'>
                                   <option value=''>- Pilih Jawaban -</option>
-                                  <option value='Jawaban 1'>Jawaban 1</option>
-                                  <option value='Jawaban 2'>Jawaban 2</option>
-                                  <option value='Jawaban 3'>Jawaban 3</option>
+                                  <option value='Jawaban 1'>Penjelasan Nya Baik Dan Mudah Di Pahami</option>
+                                  <option value='Jawaban 2'>Penjelasan Nya Kurang Baik Dan Kurang Dapat Di Pahami</option>
+                                  <option value='Jawaban 3'>Tidak Dapat Memahami Apa Yang Dijelaskan</option>
                                 </select>
                               </td>
                           </tr>";
