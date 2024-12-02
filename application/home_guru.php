@@ -145,18 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<?php
-include 'koneksi.php';
-$kodejdwl = $_POST['kodejdwl'];
-$kktp = $_POST['kktp'];
-
-$query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
-if ($query) {
-    echo "<script>alert('KKTP berhasil diperbarui!'); window.location='index.php?view=jadwalguru';</script>";
-} else {
-    echo "<script>alert('Gagal memperbarui KKTP!'); window.location='index.php?view=jadwalguru';</script>";
-}
-?>
 
     </div><!-- /.box-body -->
   </div>
