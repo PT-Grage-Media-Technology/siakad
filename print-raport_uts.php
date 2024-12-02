@@ -39,7 +39,7 @@ echo "<table width=100%>
         <tr>
             <th width='40px' style='text-align:center;' rowspan='2'>No</th>
             <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
-            <th rowspan='2' style='text-align:center;'>KKM</th>
+            <th rowspan='2' style='text-align:center;'>KKTP</th>
             <th colspan='2' style='text-align:center;'>Nilai</th>
         </tr>
         <tr>

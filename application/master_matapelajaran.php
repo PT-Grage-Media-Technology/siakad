@@ -15,7 +15,7 @@
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
-                        <th>KKM</th>
+                        <th>KKTP</th>
                         <th>Jurusan</th>
                         <th>Tingkat</th>
                         <th>Guru Pengampu</th>
@@ -38,7 +38,6 @@
                     echo "<tr><td>$no</td>
                               <td>$r[kode_pelajaran]</td>
                               <td>$r[namamatapelajaran]</td>
-                              <td>$r[kkm]</td>
                               <td>$r[nama_jurusan]</td>
                               <td>$r[tingkat]</td>
                               <td>$r[nama_guru]</td>
@@ -81,8 +80,7 @@
                                          jumlah_jam = '$_POST[k]',
                                          sesi = '$_POST[n]',
                                          urutan = '$_POST[l]',
-                                         aktif = '$_POST[m]',
-                                         kkm = '$_POST[kk]' where kode_pelajaran='$_POST[id]'");
+                                         aktif = '$_POST[m]' where kode_pelajaran='$_POST[id]'");
       echo "<script>document.location='index.php?view=matapelajaran';</script>";
     }
     $edit = mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[id]'");
@@ -113,7 +111,6 @@
                     <tr><th scope='row'>Kode Pelajaran</th>       <td><input type='text' class='form-control' name='a' value='$s[kode_pelajaran]'> </td></tr>
                     <tr><th scope='row'>Nama Mapel</th>           <td><input type='text' class='form-control' name='f' value='$s[namamatapelajaran]'></td></tr>
                     <tr><th scope='row'>Nama Mapel En</th>        <td><input type='text' class='form-control' name='g' value='$s[namamatapelajaran_en]'></td></tr>
-                    <tr><th scope='row'>KKM</th>        <td><input type='text' class='form-control' name='kk' value='$s[kkm]'></td></tr>
                     <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='c'> 
                              <option value='0' selected>- Pilih Jurusan -</option>"; 
                               $jurusan = mysql_query("SELECT * FROM rb_jurusan");
@@ -204,7 +201,6 @@
                     <tr><th scope='row'>Kode Pelajaran</th>       <td><input type='text' class='form-control' name='a' value='$s[kode_pelajaran]'> </td></tr>
                     <tr><th scope='row'>Nama Mapel</th>           <td><input type='text' class='form-control' name='f' value='$s[namamatapelajaran]'></td></tr>
                     <tr><th scope='row'>Nama Mapel En</th>        <td><input type='text' class='form-control' name='g' value='$s[namamatapelajaran_en]'></td></tr>
-                    <tr><th scope='row'>KKM</th>        <td><input type='text' class='form-control' name='kk' value='$s[kkm]'></td></tr>
                     <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='c'> 
                              <option value='0' selected>- Pilih Jurusan -</option>"; 
                               $jurusan = mysql_query("SELECT * FROM rb_jurusan");
