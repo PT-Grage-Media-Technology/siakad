@@ -268,7 +268,14 @@ echo "
                           <tr><td></td>
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
-                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                              <td>
+                                <select class='form-control' name='jawab".$no."'>
+                                  <option value=''>- Pilih Jawaban -</option>
+                                  <option value='Jawaban 1'>Jawaban 1</option>
+                                  <option value='Jawaban 2'>Jawaban 2</option>
+                                  <option value='Jawaban 3'>Jawaban 3</option>
+                                </select>
+                              </td>
                           </tr>";
                       $no++;
                       }
