@@ -53,11 +53,9 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        mysql_query("UPDATE rb_rating SET bintang = '$_POST[a]', kesan = '$_POST[b]', where id='$_POST[id]'");
+        mysql_query("UPDATE rb_rating SET bintang = '$_POST[a]', kesan = '$_POST[b]' where id='$_POST[id]'");
       echo "<script>document.location='index.php?view=datarating';</script>";
     }
-    var_dump($_POST['update']);
-    exit;
     $edit = mysql_query("SELECT * FROM rb_rating where id='$_GET[id]'");
     $s = mysql_fetch_array($edit);
     echo "<div class='col-md-12'>
