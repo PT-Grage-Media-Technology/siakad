@@ -139,7 +139,7 @@ cek_session_guru();
     echo "<div class='col-md-12'>
       <div class='box box-info'>
         <div class='box-header with-border'>
-          <h3 class='box-title'>Input Nilai UTS Siswa</b></h3>
+          <h3 class='box-title'>Input Nilai STS Siswa</b></h3>
           <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='POST'>
             <input type='hidden' name='id' value='$_GET[id]'>
             <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
@@ -167,10 +167,7 @@ cek_session_guru();
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Nilai Akhir</center></th>
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Deskripsi</center></th>
                 </tr>
-                <tr>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
-                </tr>
+            
                 <tbody>";
                 $no = 1;
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
@@ -190,7 +187,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='2'><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td align=center colspan='3'><textarea type='text' name='' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>
                         </tr>";
                   $no++;
                   }
