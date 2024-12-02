@@ -432,6 +432,10 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/raport_uts.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'raportsas') {
+            echo "<div class='row'>";
+            include "application/raport_sas.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'raportcetak') {
             // cek_session_admin();
             echo "<div class='row'>";
