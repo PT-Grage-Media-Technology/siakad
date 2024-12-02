@@ -241,7 +241,7 @@ $_SESSION['akses_agenda'] = true;
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
-                          <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
+                          <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='tujuan_pembelajaran'></textarea></td></tr>
                                   <th scope='row'>Materi</th>
                                   <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                                   <tr><th width=120px scope='row'> File</th>             
@@ -527,7 +527,7 @@ $_SESSION['akses_agenda'] = true;
                   jam_ke = '$_POST[e]',
                   sampai_jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
-                  keterangan = '$_POST[g]',
+                  tujuan_pembelajaran = '$_POST[g]',
                   users = '$_POST[nip_users]',
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";

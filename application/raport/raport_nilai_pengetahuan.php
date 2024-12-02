@@ -47,7 +47,7 @@
                                 </tr>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>UH</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center>UTS</center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px'><center>STS</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>TU</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>SM</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center></center></th>

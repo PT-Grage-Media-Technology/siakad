@@ -4,9 +4,9 @@
       <h3 class="box-title">
         <?php
         if (isset($_GET[tahun])) {
-          echo "Input Nilai Raport UTS";
+          echo "Input Nilai Raport STS";
         } else {
-          echo "Input Nilai Raport UTS Anda " . date('Y');
+          echo "Input Nilai Raport STS Anda " . date('Y');
         }
         ?>
       </h3>
