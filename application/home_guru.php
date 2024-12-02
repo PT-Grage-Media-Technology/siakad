@@ -59,6 +59,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
               <th>Ruangan</th>
               <th>Semester</th>
               <th>Aksi</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +87,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                       <td>$r[nama_ruangan]</td>
                       <td>$r[id_tahun_akademik]</td>
                       <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
+                      <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Edit KKTP</a></td>
                     </tr>";
               $no++;
             }
