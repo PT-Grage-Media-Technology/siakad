@@ -167,10 +167,7 @@ cek_session_guru();
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Nilai Akhir</center></th>
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Deskripsi</center></th>
                 </tr>
-                <tr>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
-                </tr>
+            
                 <tbody>";
                 $no = 1;
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
@@ -189,8 +186,8 @@ cek_session_guru();
                           <td>$r[nisn]</td>
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                          <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='2'><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td></td>
+                          <td></td>
                         </tr>";
                   $no++;
                   }
