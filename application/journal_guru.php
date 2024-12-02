@@ -477,6 +477,23 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
+} elseif (isset($_POST['search_query'])) {
+    include 'config.php'; // Pastikan koneksi database sudah ada
+
+    $query = $_POST['search_query'];
+    $stmt = $pdo->prepare("SELECT id_journal_list, tujuan FROM rb_journal_list WHERE tujuan LIKE ? LIMIT 10");
+    $stmt->execute(["%$query%"]);
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($results) {
+        foreach ($results as $row) {
+            echo "<div class='select-tujuan' data-id='{$row['id_journal_list']}' style='padding: 8px; cursor: pointer;'>{$row['tujuan']}</div>";
+        }
+    } else {
+        echo "<div style='padding: 8px;'>Tidak ada data ditemukan</div>";
+    }
+    exit; // Menghentikan eksekusi setelah mengembalikan data AJAX
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
   //   $d = tgl_simpan($_POST[d]);
@@ -727,24 +744,4 @@ $(document).ready(function () {
 </script>
 
             </div>";
-}
-
-// Bagian PHP untuk menangani pencarian
-if (isset($_POST['search_query'])) {
-    include 'config.php'; // Pastikan koneksi database sudah ada
-
-    $query = $_POST['search_query'];
-    $stmt = $pdo->prepare("SELECT id_journal_list, tujuan FROM rb_journal_list WHERE tujuan LIKE ? LIMIT 10");
-    $stmt->execute(["%$query%"]);
-
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($results) {
-        foreach ($results as $row) {
-            echo "<div class='select-tujuan' data-id='{$row['id_journal_list']}' style='padding: 8px; cursor: pointer;'>{$row['tujuan']}</div>";
-        }
-    } else {
-        echo "<div style='padding: 8px;'>Tidak ada data ditemukan</div>";
-    }
-    exit; // Menghentikan eksekusi setelah mengembalikan data AJAX
 }
