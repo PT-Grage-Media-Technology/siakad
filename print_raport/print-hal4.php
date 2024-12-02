@@ -73,6 +73,8 @@ while ($k = mysql_fetch_array($kelompok)){
                 </td>
                 <td align='center'> Ini Capaian Kompetensi
                 </td>
+                <td align='center'> Ini Capaian Kompetensi
+                </td>
               </tr>";
         $no++;
     }
