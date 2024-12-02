@@ -164,8 +164,8 @@ cek_session_guru();
                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
                   <th style='border:1px solid #e3e3e3' width='90px' rowspan='2'>NISN</th>
                   <th style='border:1px solid #e3e3e3' width='190px' rowspan='2'>Nama Lengkap</th>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Pengetahuan</center></th>
-                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Keterampilan</center></th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Nilai Akhir</center></th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Deskripsi</center></th>
                 </tr>
                 <tr>
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
