@@ -58,6 +58,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
               <th>Selesai</th>
               <th>Ruangan</th>
               <th>Semester</th>
+              <th>KTTP</th>
               <th>Aksi</th>
               <th>Aksi</th>
             </tr>
@@ -86,6 +87,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                 <td>$r[jam_selesai]</td>
                 <td>$r[nama_ruangan]</td>
                 <td>$r[id_tahun_akademik]</td>
+                <td></td>
                 <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
                 <td><button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#myModal'>Edit KKTP</button></td>
               </tr>";
