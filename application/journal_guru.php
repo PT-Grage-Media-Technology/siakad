@@ -455,7 +455,7 @@ $_SESSION['akses_agenda'] = true;
     echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
   }
 
-  echo "<tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
@@ -689,62 +689,5 @@ $(document).ready(function(){
     });
 });
 </script>
-
-<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-<script>
-$(document).ready(function () {
-    $('#search_tujuan').on('keyup', function () {
-        let query = $(this).val();
-        if (query.length > 2) { // Mulai mencari jika panjang input > 2 karakter
-            $.ajax({
-                url: '', // Panggil URL yang sama
-                method: 'POST',
-                data: { search_query: query },
-                success: function (data) {
-                    $('#result_tujuan').html(data).fadeIn();
-                }
-            });
-        } else {
-            $('#result_tujuan').fadeOut();
-        }
-    });
-
-    $(document).on('click', '.select-tujuan', function () {
-        let id = $(this).data('id');
-        let tujuan = $(this).text();
-
-        $('#id_parent_journal').val(id);
-        $('#search_tujuan').val(tujuan);
-        $('#result_tujuan').fadeOut();
-    });
-
-    $(document).on('click', function (e) {
-        if (!$(e.target).closest('#search_tujuan, #result_tujuan').length) {
-            $('#result_tujuan').fadeOut();
-        }
-    });
-});
-</script>
-
             </div>";
-}
-
-// Bagian PHP untuk menangani pencarian
-if (isset($_POST['search_query'])) {
-    include 'config.php'; // Pastikan koneksi database sudah ada
-
-    $query = $_POST['search_query'];
-    $stmt = $pdo->prepare("SELECT id_journal_list, tujuan FROM rb_journal_list WHERE tujuan LIKE ? LIMIT 10");
-    $stmt->execute(["%$query%"]);
-
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($results) {
-        foreach ($results as $row) {
-            echo "<div class='select-tujuan' data-id='{$row['id_journal_list']}' style='padding: 8px; cursor: pointer;'>{$row['tujuan']}</div>";
-        }
-    } else {
-        echo "<div style='padding: 8px;'>Tidak ada data ditemukan</div>";
-    }
-    exit; // Menghentikan eksekusi setelah mengembalikan data AJAX
 }
