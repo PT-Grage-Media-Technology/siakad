@@ -40,7 +40,7 @@
         <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-th-large'></i> <span>Rekap Absensi
           Siswa</span></a></li>
           <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
-        <li><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport STS</a></li>
+        <li hidden><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport STS</a></li>
         <li><a href='index.php?view=capaianhasilbelajar&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Capaian Belajar</a></li>
         <li><a href='index.php?view=extrakulikuler&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Ekstrakulikuler</a></li>
         <li><a href='index.php?view=prestasi&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Prestasi</a></li>
