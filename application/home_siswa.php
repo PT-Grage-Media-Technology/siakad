@@ -268,7 +268,14 @@ echo "
                           <tr><td></td>
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
-                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                              <td>
+                                <select class='form-control' name='jawab".$no."'>
+                                  <option value=''>- Pilih Jawaban -</option>
+                                  <option value'$jwb[jawaban]'>Penjelasan Nya Baik Dan Mudah Di Pahami</option>
+                                  <option value='$jwb[jawaban]'>Penjelasan Nya Kurang Baik Dan Kurang Dapat Di Pahami</option>
+                                  <option value='$jwb[jawaban]'>Tidak Dapat Memahami Apa Yang Dijelaskan</option>
+                                </select>
+                              </td>
                           </tr>";
                       $no++;
                       }
