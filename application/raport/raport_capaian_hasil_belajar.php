@@ -93,7 +93,7 @@ if ($_GET[act]==''){
                               <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                               <td hidden><center><input type='text' name='a".$no."' value='$n[spiritual_predikat]' style='width:70px; text-align:center; padding:0px; color:blue'></center></td>
                               <td><textarea name='b".$no."' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'>$n[spiritual_deskripsi]</textarea></td>
-                              <td hidden><center><input type='text' name='c".$no."' value='$n[sosial_predikat]' style='width:70px; text-align:center; padding:0px; color:blue'></center></td>
+                              <td hidden><center><input type='text' name='c".$no."' value='$n[sosial_predikat]' style='width:100%; text-align:center; padding:0px; color:blue'></center></td>
                               <td><textarea name='d".$no."' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'>$n[sosial_deskripsi]</textarea></td>
                             </tr>";
                       $no++;
