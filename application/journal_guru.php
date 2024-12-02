@@ -129,7 +129,7 @@ $_SESSION['akses_agenda'] = true;
   if (isset($_POST[tambah])) {
     // var_dump($_POST['tambah']);
     // exit;
-    
+
 
     $d = tgl_simpan($_POST[d]);
 
@@ -140,13 +140,13 @@ $_SESSION['akses_agenda'] = true;
 
     // Pastikan direktori ada
     if (!file_exists($target_dir)) {
-        mkdir($target_dir, 0777, true);
+      mkdir($target_dir, 0777, true);
     }
 
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-        // Simpan data ke database
-        $query = "INSERT INTO rb_journal_list VALUES(
+      // Simpan data ke database
+      $query = "INSERT INTO rb_journal_list VALUES(
           '',
           '$_GET[id]',
           '$_POST[c]', 
@@ -162,14 +162,14 @@ $_SESSION['akses_agenda'] = true;
       )";
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
 
-      
+
       if (mysql_query($query)) {
-          echo "Data berhasil disimpan ke database.<br>";
+        echo "Data berhasil disimpan ke database.<br>";
       } else {
-          echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+        echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
       }
     }
-    
+
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     $tahun = $_GET['tahun'];
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$tahun';</script>";
@@ -189,22 +189,22 @@ $_SESSION['akses_agenda'] = true;
                     <tbody>
                     <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                       <tr hidden><th width='140px' scope='row' hidden>Kelas </th>   <td hidden><select class='form-control' name='a' hidden>";
-                      $kelas = mysql_query("SELECT * FROM rb_kelas");
-                      while ($a = mysql_fetch_array($kelas)) {
-                        if ($e[kode_kelas] == $a[kode_kelas]) {
-                          echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
-                        }
-                      }
-                      echo "</select>
+  $kelas = mysql_query("SELECT * FROM rb_kelas");
+  while ($a = mysql_fetch_array($kelas)) {
+    if ($e[kode_kelas] == $a[kode_kelas]) {
+      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+    }
+  }
+  echo "</select>
                                           </td></tr>
                                           <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
-                      $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-                      while ($a = mysql_fetch_array($mapel)) {
-                        if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-                          echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
-                        }
-                      }
-                      echo "</select>
+  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+  while ($a = mysql_fetch_array($mapel)) {
+    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+    }
+  }
+  echo "</select>
                       </td></tr>
                      
                       <tr>
@@ -248,15 +248,15 @@ $_SESSION['akses_agenda'] = true;
                                   <td><div style='position:relative;''>
                                       <a class='btn btn-primary' href='javascript:;'>
                                         <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
-                                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
-                                      <?php
-                                      include('library.php');
+  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+<?php
+  include('library.php');
 
-                                      // Mendapatkan waktu saat ini dalam format yang sesuai
-                                      $currentDateTime = date('Y-m-d\TH:i');
+  // Mendapatkan waktu saat ini dalam format yang sesuai
+  $currentDateTime = date('Y-m-d\TH:i');
 
-                                      // Tampilkan form dalam satu pernyataan echo
-                                      echo "</a> 
+  // Tampilkan form dalam satu pernyataan echo
+  echo "</a> 
                                       <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                         </div>
                                       </td>
@@ -283,7 +283,7 @@ $_SESSION['akses_agenda'] = true;
   </div>
 </div>
                   <div class='table-responsive'>
-                  <table id='example' class='table table-bordered table-striped'>
+                  <table id='example' class='table table-bordered table-striped text-center'>
                     <thead>
                       <tr>
                         <th style='width:20px'>No</th>
@@ -291,9 +291,8 @@ $_SESSION['akses_agenda'] = true;
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Dari Jam Ke</th>
                         <th style='width:70px'>Sampai Jam Ke</th>
-                        <th style='width:220px' align=center>Guru</th>
-                        <th style='width:220px'>Materi</th>
-                        <th>Keterangan</th>";
+                        <th style='width:200px' align=center>Guru</th>
+                        <th style='width:220px'>Materi</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
   }
@@ -335,8 +334,7 @@ $_SESSION['akses_agenda'] = true;
       <td align=center>$r[jam_ke]</td>
       <td align=center>$r[sampai_jam_ke]</td>
       <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[materi]</td>
-      <td>$r[keterangan]</td>";
+      <td>$r[materi]</td>";
 
       if ($_SESSION['level'] != 'kepala') {
         echo "<td style='width: 200px; !important'><center>
@@ -353,26 +351,26 @@ $_SESSION['akses_agenda'] = true;
   }
 
   if (isset($_GET['hapus'])) {
-      // Ambil nama file berdasarkan ID
-      $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
-      $data = mysql_fetch_assoc($query);
-      // var_dump($data);
-      // exit;
-      
-      // Tentukan lokasi file
-      $file_path = 'files/' . $data['file'];
+    // Ambil nama file berdasarkan ID
+    $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+    $data = mysql_fetch_assoc($query);
+    // var_dump($data);
+    // exit;
 
-      // Hapus file jika ada
-      if (!empty($data['file']) && file_exists($file_path)) {
-          unlink($file_path); // Menghapus file berdasarkan nama
-      }
+    // Tentukan lokasi file
+    $file_path = 'files/' . $data['file'];
 
-      // Hapus data dari database
-      mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
-      mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
-      // echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
-      // Redirect ke halaman sebelumnya
-      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
+    // Hapus file jika ada
+    if (!empty($data['file']) && file_exists($file_path)) {
+      unlink($file_path); // Menghapus file berdasarkan nama
+    }
+
+    // Hapus data dari database
+    mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+    mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
+    // echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
+    // Redirect ke halaman sebelumnya
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
 
 
@@ -390,7 +388,7 @@ $_SESSION['akses_agenda'] = true;
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-  } 
+  }
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
   $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
@@ -444,18 +442,18 @@ $_SESSION['akses_agenda'] = true;
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
-                while ($g = mysql_fetch_array($guru)) {
-                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                }
-                echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+    }
+    echo "</select>
                                     </td>
                                 </tr>";
-                } else {
-                  echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                }
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
 
-                echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
@@ -482,46 +480,46 @@ $_SESSION['akses_agenda'] = true;
   //                                               users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
   //   echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   // }
-    if (isset($_POST['update'])) {
-      // Konversi tanggal
-      $d = tgl_simpan($_POST['d']);
-      
-      // Tentukan direktori tujuan untuk menyimpan file
-      $target_dir = "files/";
-      
-      // Ambil data file lama dari database
-      $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
-      $data_file = mysql_fetch_assoc($query_file);
-      $old_file = $data_file['file'];
-      
-      // Cek apakah file baru diunggah
-      if ($_FILES['file']['size'] > 0) {
-          $new_file_name = basename($_FILES['file']['name']);
-          $target_file = $target_dir . $new_file_name;
+  if (isset($_POST['update'])) {
+    // Konversi tanggal
+    $d = tgl_simpan($_POST['d']);
 
-          // Pastikan direktori ada
-          if (!file_exists($target_dir)) {
-              mkdir($target_dir, 0777, true);
-          }
+    // Tentukan direktori tujuan untuk menyimpan file
+    $target_dir = "files/";
 
-          // Hapus file lama jika ada
-          if (!empty($old_file) && file_exists($old_file)) {
-              unlink($old_file);
-          }
+    // Ambil data file lama dari database
+    $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
+    $data_file = mysql_fetch_assoc($query_file);
+    $old_file = $data_file['file'];
 
-          // Pindahkan file baru ke direktori tujuan
-          if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-              echo "File berhasil diunggah ke: $target_file<br>";
-          } else {
-              echo "Gagal mengunggah file baru.<br>";
-          }
-      } else {
-          // Jika tidak ada file baru, gunakan file lama
-          $target_file = $old_file;
+    // Cek apakah file baru diunggah
+    if ($_FILES['file']['size'] > 0) {
+      $new_file_name = basename($_FILES['file']['name']);
+      $target_file = $target_dir . $new_file_name;
+
+      // Pastikan direktori ada
+      if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
       }
 
-      // Query update
-      $query = "UPDATE rb_journal_list SET 
+      // Hapus file lama jika ada
+      if (!empty($old_file) && file_exists($old_file)) {
+        unlink($old_file);
+      }
+
+      // Pindahkan file baru ke direktori tujuan
+      if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+        echo "File berhasil diunggah ke: $target_file<br>";
+      } else {
+        echo "Gagal mengunggah file baru.<br>";
+      }
+    } else {
+      // Jika tidak ada file baru, gunakan file lama
+      $target_file = $old_file;
+    }
+
+    // Query update
+    $query = "UPDATE rb_journal_list SET 
                   hari = '$_POST[c]',
                   tanggal = '$d',
                   jam_ke = '$_POST[e]',
@@ -532,13 +530,13 @@ $_SESSION['akses_agenda'] = true;
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";
 
-      // Eksekusi query
-      if (mysql_query($query)) {
-          echo "<script>alert('Data berhasil diperbarui!');</script>";
-          echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-      } else {
-          echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
-      }
+    // Eksekusi query
+    if (mysql_query($query)) {
+      echo "<script>alert('Data berhasil diperbarui!');</script>";
+      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+    } else {
+      echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
+    }
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
