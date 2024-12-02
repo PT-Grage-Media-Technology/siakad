@@ -13,11 +13,8 @@
                     <thead>
                       <tr>
                         <th style='width:40px'>No</th>
-                        <th>Status</th>
-                        <th>Dari</th>
-                        <th>Sampai</th>
-                        <th>Grade</th>
-                        <th>Keterangan</th>
+                        <th>Bintang</th>
+                        <th>Kesan</th>
                         <?php if($_SESSION[level]!='kepala'){ ?>
                         <th style='width:70px'>Action</th>
                         <?php } ?>
@@ -25,20 +22,13 @@
                     </thead>
                     <tbody>
                   <?php 
-                    $tampil = mysql_query("SELECT a.id_predikat, a.nilai_a, a.nilai_b, a.grade, a.keterangan, a.kode_kelas as akelas,  b.nama_kelas FROM rb_predikat a LEFT JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas ORDER BY a.id_predikat DESC");
+                    $tampil = mysql_query("SELECT * FROM rb_rating");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
-                      if ($r[akelas]=='0'){
-                          $kelas = 'Lainnya';
-                      }else{
-                          $kelas = $r[akelas];
-                      }
-                    echo "<tr><td>$no</td>
-                              <td>$kelas</td>
-                              <td>$r[nilai_a]</td>
-                              <td>$r[nilai_b]</td>
-                              <td>$r[grade]</td>
-                              <td>$r[keterangan]</td>";
+                    echo "<tr>
+                            <td>$no</td>
+                            <td>$r[bintang]</td>
+                            <td>$r[kesan]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=predikat&act=edit&id=$r[id_predikat]'><span class='glyphicon glyphicon-edit'></span></a>
