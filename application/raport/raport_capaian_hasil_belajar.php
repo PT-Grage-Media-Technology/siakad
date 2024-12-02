@@ -66,8 +66,8 @@ if ($_GET[act]==''){
                         <tr><th rowspan='2'>No</th>
                           <th rowspan='2'>NISN</th>
                           <th rowspan='2'>Nama Siswa</th>
-                          <th colspan='2'><center>Sikap Spiritual</center></th>
-                          <th colspan='2'><center>Sikap Sosial</center></th>
+                          <th colspan='1'><center>Sikap Spiritual</center></th>
+                          <th colspan='1'><center>Sikap Sosial</center></th>
                         </tr>
                         <tr>
                             <th hidden><center>Predikat</center></th>
