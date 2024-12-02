@@ -168,10 +168,8 @@ cek_session_guru();
                   <th style='border:1px solid #e3e3e3' colspan='2'><center>Deskripsi</center></th>
                 </tr>
                 <tr>
-                  <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
-                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
-                  <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
-                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
+                  <th style='border:1px solid #e3e3e3' colspan='2'><center>Angka</center></th>
                 </tr>
                 <tbody>";
                 $no = 1;
@@ -191,10 +189,8 @@ cek_session_guru();
                           <td>$r[nisn]</td>
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                          <td align=center><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
-                          <td align=center><input type='text' value='$grade1[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
-                          <td align=center><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
-                          <td align=center><input type='text' value='$grade2[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
+                          <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td align=center colspan='2'><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
                         </tr>";
                   $no++;
                   }
@@ -229,3 +225,15 @@ cek_session_siswa();
     }
 }
 </style>
+
+<!-- <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Angka</center></th>
+                  <th style='border:1px solid #e3e3e3'><center>Predikat</center></th> -->
+
+
+                  <!-- <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
+                          <td align=center><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
+                          <td align=center><input type='text' value='$grade1[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td>
+                          <td align=center><input type='number' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-'></td>
+                          <td align=center><input type='text' value='$grade2[grade]' style='width:90px; text-align:center; padding:0px' placeholder='-' disabled></td> -->

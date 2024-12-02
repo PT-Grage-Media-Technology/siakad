@@ -121,7 +121,7 @@ $_SESSION['akses_agenda'] = true;
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas] $_GET[tahun]</td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
@@ -242,39 +242,36 @@ $_SESSION['akses_agenda'] = true;
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                           <tr>
-                                  <th scope='row'>Nama File</th>
-                                  <td><input type='text' class='form-control' name='b'></td>
-                                </tr>
-                                <tr><th width=120px scope='row'> File</th>             
-                                <td><div style='position:relative;''>
-                                    <a class='btn btn-primary' href='javascript:;'>
-                                      <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
-                                  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
-                                  <?php
-                                  include('library.php');
+                                  <th scope='row'>Materi</th>
+                                  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                                  <tr><th width=120px scope='row'> File</th>             
+                                  <td><div style='position:relative;''>
+                                      <a class='btn btn-primary' href='javascript:;'>
+                                        <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+                                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+                                      <?php
+                                      include('library.php');
 
-                                  // Mendapatkan waktu saat ini dalam format yang sesuai
-                                  $currentDateTime = date('Y-m-d\TH:i');
+                                      // Mendapatkan waktu saat ini dalam format yang sesuai
+                                      $currentDateTime = date('Y-m-d\TH:i');
 
-                                  // Tampilkan form dalam satu pernyataan echo
-                                  echo "</a> 
-                                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                                    </div>
-                                  </td>
-                                  </tr>
-                                  <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                                  <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
-                                  </td></tr>
-                                </tbody>
-                                </table>
-                              </div>
-                            </div>
-                            <div class='box-footer'>
-                                  <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                                  
+                                      // Tampilkan form dalam satu pernyataan echo
+                                      echo "</a> 
+                                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                        </div>
+                                      </td>
+                                      </tr>
+                                      </td></tr>
+                                    </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                            </form>
-                          </div>";
+                                <div class='box-footer'>
+                                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                                      
+                                    </div>
+                                </form>
+                              </div>";
 
   // <!-- Container grid dengan margin dan padding yang seragam -->
   echo "<div class='container' style='max-width: 200px; padding: 10px;'>
@@ -324,12 +321,12 @@ $_SESSION['akses_agenda'] = true;
 
   if (mysql_num_rows($tampil) == 0) {
     // Cek jika tidak ada data
-    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
+    echo "<tr><td colspan='9' style='text-align:center;'>Tidak ada data</td></tr>";
   } else {
     while ($r = mysql_fetch_array($tampil)) {
       // Logika untuk mengatur status button absen
       $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]&id_journal=$r[id_journal]";
 
       echo "<tr>
       <td>$no</td>
@@ -619,9 +616,8 @@ $_SESSION['akses_agenda'] = true;
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
                       <div class='d-flex flex-column align-items-start'>
-                        <!-- Gambar -->
-                        <img src='<?= htmlspecialchars($e[file]); ?>' alt='<?= htmlspecialchars($e[file]); ?>' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
-                        
+                      <!-- Gambar -->
+                        <img src='$e[file]' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
                         <!-- File Upload -->
                         <div style='position: relative;' class='w-100'>
                           <a class='btn btn-primary w-100 mb-2' href='javascript:;'>
@@ -635,7 +631,6 @@ $_SESSION['akses_agenda'] = true;
 
                       </td>
                       </tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
                     </td></tr>
                   </tbody>
                   </table>

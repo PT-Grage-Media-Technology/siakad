@@ -1,6 +1,7 @@
 <?php if ($_GET[act] == '') { ?>
-  <div class="col-xs-12">
+  <div class="col-12">
     <div class="box">
+
       <div class="box-header">
         <?php
         // Ambil tahun akademik yang terbaru
@@ -39,8 +40,9 @@
         }
         ?>
     </select>
-</form>
-      </div><!-- /.box-header -->
+    </form>
+    </div><!-- /.box-header -->
+
       <div class="box-body">
         <div class="table-responsive">
           <table id="example1" class="table table-bordered table-striped">
@@ -98,6 +100,7 @@
           </table>
         </div>
       </div><!-- /.box-body -->
+
     </div>
   </div>
 
@@ -141,18 +144,23 @@
   // $tampil = mysql_query("SELECT * FROM rb_kompetensi_dasar z JOIN rb_jadwal_pelajaran a ON z.kodejdwl=a.kodejdwl JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas JOIN rb_mata_pelajaran c ON a.kode_pelajaran=c.kode_pelajaran where a.kodejdwl='$_GET[kodejdwl]' ORDER BY z.id_kompetensi_dasar DESC");
   $tampil = mysql_query("SELECT * FROM rb_journal_list z JOIN rb_guru t ON z.users=t.nip JOIN rb_forum_topic ft ON z.materi=ft.judul_topic WHERE z.kodejdwl='$_GET[kodejdwl]'");
   $no = 1;
-  while ($r = mysql_fetch_array($tampil)) {
-    // var_dump($r);
-    echo "<tr><td>$no</td>
-                            <td>$r[hari]</td>
-                            <td>$r[tanggal]</td>
-                            <td>$r[jam_ke]</td>
-                            <td>$r[nama_guru]</td>
-                            <td>$r[materi]</td>
-                            <td>$r[keterangan]</td>
-                            <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
-                        </tr>";
-    $no++;
+  if(mysql_num_rows($tampil) == 0){
+    echo "<tr><td colspan='8' style='text-align:center;'>Tidak ada data</td></tr>";
+  }else{
+
+    while ($r = mysql_fetch_array($tampil)) {
+      // var_dump($r);
+      echo "<tr><td>$no</td>
+                              <td>$r[hari]</td>
+                              <td>$r[tanggal]</td>
+                              <td>$r[jam_ke]</td>
+                              <td>$r[nama_guru]</td>
+                              <td>$r[materi]</td>
+                              <td>$r[keterangan]</td>
+                              <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                          </tr>";
+      $no++;
+    }
   }
   echo "<tbody>
                 </table>
@@ -164,49 +172,52 @@ elseif ($_GET[act] == 'detailpembelajaran') {
   $hari_ini = date('d');
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran JOIN rb_kelas c ON a.kode_kelas=c.kode_kelas JOIN rb_journal_list d ON a.kodejdwl=d.kodejdwl  where a.kodejdwl='$_GET[kodejdwl]' AND DAY(d.tanggal)=DAY('$_GET[tanggal]') AND jam_ke='$_GET[jam_ke]'"));
   // var_dump($d);
-  echo "<div class='col-12'>  
-            <div class='box'>
-              <div class='box-header'>
-                <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
-              </div>
-              <div class='box-body'>
-                <div class='col-12'>
+  echo "
+<div class='col-12'>  
+    <div class='box'>
+        <div class='box-header'>
+            <h3 class='box-title'>Detail Tujuan Pembelajaran</h3>
+        </div>
+        <div class='box-body'>
+            <div class='col-12'>
                 <table class='table table-condensed table-hover'>
                     <tbody>
-                      <input type='hidden' name='id' value='$d[kodekelas]'>
-                      <tr><th width='120px' scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                      <tr><th scope='row'>Mata Pelajaran</th>           <td>$d[namamatapelajaran]</td></tr>
-                      <tr><th scope='row'>Materi</th>           <td>$d[materi]</td></tr>
-                      <tr><th scope='row'>Keterangan</th>    
-                             <td>";
-      
-                         // Validasi jika keterangan adalah link
-                         if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
-                             echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
-                         } else {
-                             echo $d['keterangan'];
-                         }
-                       echo"</td>
-                       </tr>
-                        
+                        <input type='hidden' name='id' value='{$d['kodekelas']}'>
+                        <tr>
+                            <th width='120px' scope='row'>Nama Kelas</th>
+                            <td>{$d['nama_kelas']}</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Mata Pelajaran</th>
+                            <td>{$d['namamatapelajaran']}</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Materi</th>
+                            <td>{$d['materi']}</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Keterangan</th>
+                            <td>";
+                            
+if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
+    echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+} else {
+    echo $d['keterangan'];
+}
 
-                        
+echo "
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                </div>";
+            </div>
+            <div class='col-12'>
+                <img src='{$d['file']}' alt='Gambar' class='img-responsive' style='max-width:100%; height:auto;'>
+            </div>
+        </div>
+    </div>
+</div>";
 
-                echo "<img src='$d[file]' alt='Gambar' class='img-responsive' style='max-width:100%; height:auto;'>";
-
-
-
-                
-
-              
-  echo "<tbody>
-                </table>
-              </div>
-              </div>
-          </div>";
 
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
@@ -216,18 +227,20 @@ elseif ($_GET[act] == 'detailpembelajaran') {
            $jawab = $_POST['jawab'.$i];
            $pertanyaan = $_POST['id'.$i];
            $kelas = $_POST['kelas'.$i];
-            $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
-            if ($cek[tot] >= 1){
-              mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
-            }else{
-              mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
-          }
+
+           mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
+
+          //   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
+          //   if ($cek[tot] >= 1){
+          //     mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
+          //   }else{
+          // }
          }
        }
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
                 history.back();</script>";
     }
-           echo" <div class='col-xs-12'>  
+           echo" <div class='col-12'>  
               <div class='box'>
               <form action='' method='POST'>
                 <div class='box-header'>
@@ -268,7 +281,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
               </div><!-- /.box -->
             </div>";
 
-            echo"<div class='col-xs-12'>  
+            echo"<div class='col-12'>  
             <div class='box'>";
                       $topic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic a 
                                   JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl
@@ -289,7 +302,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                         echo "<script>document.location='index.php?view=home&act=detailpembelajaran&kodejdwl=$kodejdwl&tanggal=$tanggal&jam_ke=$jam_ke&idtopic=$idtopic';</script>";
                       }
                     
-                      echo "<div class='col-md-12'>
+                      echo "<div class='col-12'>
                                   <div class='box box-success'>
                                     <div class='box-header'>
                                       <i class='fa fa-comments-o'></i>
@@ -312,7 +325,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                   </div>
                               </div>
                     
-                              <div class='col-md-12'>
+                              <div class='col-12'>
                                   <div class='box box-info'>
                                     <div class='box-body chat' id='chat-box'>";
                       $komentar = mysql_query("SELECT * FROM rb_forum_komentar a 
@@ -359,9 +372,7 @@ elseif ($_GET[act] == 'detailpembelajaran') {
                                   </div>
                               </div>
                               </div>
-                              </div>
-                              
-                              ";
+                              </div>";
                     
                       if (isset($_POST[komentar])) {
                         $waktu = date("Y-m-d H:i:s");

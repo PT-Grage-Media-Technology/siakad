@@ -33,16 +33,19 @@
             <li class="treeview">
               <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-              <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi
-              Siswa</span></a></li>
-                <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
-                <li><a href="index.php?view=absenguru"><i class="fa fa-circle-o"></i> Absensi Guru</a></li>
+              <!-- <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi
+              Siswa</span></a></li> -->
+                <!-- <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
+                <li><a href="index.php?view=absenguru"><i class="fa fa-circle-o"></i> Absensi Guru</a></li> -->
+              <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi Siswa</span></a></li>
+              <li><a href="index.php?view=rekapguru"><i class="fa fa-address-book-o"></i> <span>Rekap Absensi Guru</span></a></li>
+
               </ul>
             </li>
             <li><a href="index.php?view=bahantugas"><i class="fa fa-file"></i><span>Bahan dan Tugas</span></a></li>
-            <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li>
+            <!-- <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz / Ujian Online</span></a></li> -->
             <li><a href="index.php?view=journalkbm"><i class="fa fa-tags"></i><span>Journal KBM</span></a></li>
-            <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li>
+            <!-- <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
             <li><a href="index.php?view=raportcetak"><i class="fa fa-calendar"></i> <span>Laporan Nilai</span></a></li>
             <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
           </ul>
