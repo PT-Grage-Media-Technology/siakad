@@ -58,7 +58,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
               <th>Selesai</th>
               <th>Ruangan</th>
               <th>Semester</th>
-              <th>KTTP</th>
+              <th>KKTP</th>
               <th>Aksi</th>
               <th>Aksi</th>
             </tr>
