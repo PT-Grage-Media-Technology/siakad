@@ -283,7 +283,7 @@ $_SESSION['akses_agenda'] = true;
   </div>
 </div>
                   <div class='table-responsive'>
-                  <table id='example' class='table table-bordered table-striped'>
+                  <table id='example' class='table table-bordered table-striped text-center'>
                     <thead>
                       <tr>
                         <th style='width:20px'>No</th>
@@ -291,7 +291,7 @@ $_SESSION['akses_agenda'] = true;
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Dari Jam Ke</th>
                         <th style='width:70px'>Sampai Jam Ke</th>
-                        <th style='width:220px' align=center>Guru</th>
+                        <th style='width:200px' align=center>Guru</th>
                         <th style='width:220px'>Materi</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
