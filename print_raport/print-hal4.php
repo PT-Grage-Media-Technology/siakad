@@ -35,86 +35,53 @@ echo "<table width=100%>
         <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td></td></tr>
       </table><br>";
 
-echo "<table id='tablemodul1' width=100% border=1>
+echo "<table id='tablemodul1' width='100%' border='1'>
+          <thead>
           <tr>
-            <th width='160px' colspan='2' rowspan='2'>Mata Pelajaran</th>
-            <th rowspan='2'>KKM</th>
-            <th colspan='2' style='text-align:center'>Pengetahuan</th>
-            <th colspan='2' style='text-align:center'>Keterampilan</th>
+            <th width='40px' rowspan='2' style='text-align:center;'>No</th>
+            <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
+
+            <th colspan='1' rowspan='2' style='text-align:center;'>Pengetahuan</th>
+            <th colspan='2' rowspan='2' style='text-align:center;'>Capaian Kompetensi</th>
           </tr>
-          <tr>
-            <th>Nilai</th>
-            <th>Predikat</th>
-            <th>Nilai</th>
-            <th>Predikat</th>
-          </tr>";
-      $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
-      while ($k = mysql_fetch_array($kelompok)){
-      echo "<tr>
-            <td colspan='7'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
-          </tr>";
-        $mapel = mysql_query("SELECT * FROM  rb_jadwal_pelajaran a JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
-                                  where a.kode_kelas='$_GET[kelas]' AND a.id_tahun_akademik='$_GET[tahun]' AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
-        $no = 1;
-        while ($m = mysql_fetch_array($mapel)){                                
-        $rapn = mysql_fetch_array(mysql_query("SELECT sum((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/count(nisn) as raport FROM rb_nilai_pengetahuan where kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
-        $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-            if ($cekpredikat >= 1){
-                $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
-            }else{
-                $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b) AND kode_kelas='0'"));
-            }
+          </thead>
+          <tbody>";
+          
+$kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");  
 
-        $rapnk = mysql_fetch_array(mysql_query("SELECT sum(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/count(nisn) as raport FROM rb_nilai_keterampilan where kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
-        $cekpredikat2 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-            if ($cekpredikat2 >= 1){
-                $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapnk[raport])." >=nilai_a) AND (".number_format($rapnk[raport])." <= nilai_b) AND kode_kelas='$_GET[kelas]'"));
-            }else{
-                $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapnk[raport])." >=nilai_a) AND (".number_format($rapnk[raport])." <= nilai_b) AND kode_kelas='0'"));
-            }
 
+
+while ($k = mysql_fetch_array($kelompok)){
+  echo "<tr>
+  <td colspan='6'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
+  </tr>";
+  $mapel = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
+                          JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran 
+                          WHERE a.kode_kelas='$_GET[kelas]' 
+                          AND a.id_tahun_akademik='$_GET[tahun]' 
+                          AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
+    $no = 1;
+    while ($m = mysql_fetch_array($mapel)) {        
+      $rapn = mysql_fetch_array(mysql_query("SELECT SUM((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/COUNT(nisn) AS raport FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
+        $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
+        
         echo "<tr>
-                <td align=center>$no</td>
-                <td>$m[namamatapelajaran]</td>
-                <td align=center>77</td>
-                <td align=center>".number_format($rapn[raport])."</td>
-                <td align=center>$grade3[grade]</td>
-                <td align=center>".number_format($rapnk[raport])."</td>
-                <td align=center>$grade[grade]</td>
-            </tr>";
+                <td rowspan='2' align='center'>$no</td>
+                <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>
+                <td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
+                    " . number_format($rapn['raport']) . "
+                </td>
+                
+                    <td align='center'>Ini Capaian Kompetensi</td>
+                    <td align='center'>Ini Capaian Kompetensi</td>
+              </tr>";
         $no++;
-        }
-      }
-
-        echo "</table><br/>";
-        $cekpredikat1 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'"));
-        if ($cekpredikat1 >= 1){
-          $grade = mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'");
-          $gradea = mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[kelas]'");
-          $total = mysql_num_rows($grade);
-        }else{
-          $grade = mysql_query("SELECT * FROM rb_predikat where kode_kelas='0'");
-          $gradea = mysql_query("SELECT * FROM rb_predikat where kode_kelas='0'");
-          $total = mysql_num_rows($grade);
-        }
-          echo "<center><table width='90%' border=1 id='tablemodul1'>
-              <tr>
-                  <th rowspan='2'>KKM</th>
-                  <th colspan='$total'>Predikat</th>
-              </tr>
-              <tr>";
-                  while ($g = mysql_fetch_array($grade)){
-                      echo "<th>$g[grade] = $g[keterangan]</th>";
-                  }
-              echo "</tr>
-              <tr>
-                  <th>77</th>";
-                  while ($p = mysql_fetch_array($gradea)){
-                      echo "<th>$p[nilai_a] - $p[nilai_b]</th>";
-                  }
-              echo "</tr>
-          </table></center><br>";
+    }
+}
+echo "</tbody></table><br/>";
 ?>
+
+      
 
 <table border=0 width=100%>
   <tr>

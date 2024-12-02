@@ -10,7 +10,7 @@ $selectedTahunId = !empty($_GET['tahun']) ? $_GET['tahun'] : $latestTahunId;
 echo "<div class='col-xs-12'>  
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Laporan Nilai UTS : <b>$nama</b></h3>
+              <h3 class='box-title'>Laporan Nilai STS : <b>$nama</b></h3>
               <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                 <input type='hidden' name='view' value='raportuts'>
                 <input type='hidden' name='act' value='detailsiswa'>
@@ -39,10 +39,8 @@ echo "          </select>
                     <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
                   </tr>
                   <tr>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue'><center>Predikat</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
@@ -76,11 +74,9 @@ echo "          </select>
         echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td align='center'>77</td>
-                                <td align='center'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
-                                <td align='center'>{$grade1['grade']}</td>
-                                <td align='center'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
-                                <td align='center'>{$grade2['grade']}</td>
+                                <td align='center'>{$mapelRow['kkm']}</td>
+                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
+                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
                             </tr>";
         $no++;
       }
@@ -90,12 +86,13 @@ echo "          </select>
 echo "        </table>
             </div>
           </div>
-        </div>
+        </div>";
         
-    //      <script>
+   
+?>
+ <!-- //      <script>
         
     //     window.onload = function () {
     //         window.print();
     //     };
-    // </script>";
-?>
+    // </script>"; -->
