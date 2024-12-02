@@ -114,15 +114,10 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="tahun" value="<?php echo $tahun_dipilih; ?>">
-                    <input type="hidden" name="kodejdwl" id="kodejdwl">
-                    <!-- <div class="form-group">
+                    <input type="hidden" name="kodejdwl" id="modalKodeJdwl">
+                    <div class="form-group">
                         <label for="modalKktp">KKTP</label>
                         <input type="number" class="form-control" name="kktp" id="modalKktp" required>
-                    </div> -->
-                    <div class="form-group">
-                        <label for="kktp">KKTP:</label>
-                        <input type="text" class="form-control" id="kktp" name="kktp" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -133,8 +128,6 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
         </form>
     </div>
 </div>
-
-
 
 <script>
 // Script untuk menangani pengisian nilai lama di modal
