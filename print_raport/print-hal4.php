@@ -42,7 +42,7 @@ echo "<table id='tablemodul1' width='100%' border='1'>
             <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
 
             <th colspan='1' rowspan='2' style='text-align:center;'>Pengetahuan</th>
-            <th colspan='2' rowspan='2' style='text-align:center;'>Capaian Kompetensi</th>
+            <th colspan='1' rowspan='2' style='text-align:center;'>Capaian Kompetensi</th>
           </tr>
           </thead>
           <tbody>";
@@ -73,7 +73,10 @@ while ($k = mysql_fetch_array($kelompok)){
                 </td>
                 
                     <td align='center'>Ini Capaian Kompetensi</td>
+
+                    <tr>
                     <td align='center'>Ini Capaian Kompetensi</td>
+                    </tr>
               </tr>";
         $no++;
     }
