@@ -18,7 +18,7 @@
           } 
 
           if (empty($_GET['kelas'])) {
-            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ORDER BY kode_kelas DESC LIMIT 1"));
+            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ORDER BY kode_kelas ASC LIMIT 1"));
             $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
           } else {
             $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas = '".$_GET['kelas']."'"));
@@ -26,10 +26,8 @@
           } 
           ?>
         </h3>
-        <?php if ($_SESSION['level'] != 'kepala') { ?>
           <a class='pull-right btn btn-primary btn-sm' href='index.php?view=jadwalpelajaran&act=tambah'>Tambahkan Jadwal
             Pelajaran</a>
-        <?php } ?>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='jadwalpelajaran'>
           <select name='tahun' style='padding:4px'>
@@ -76,9 +74,7 @@
                 <th>Mulai</th>
                 <th>Selesai</th>
                 <th>Ruangan</th>
-                <?php if ($_SESSION['level'] != 'kepala') { ?>
-                  <th>Daftar Hadir</th>
-                <?php }
+                <?php 
                 if ($_SESSION['level'] != 'kepala') { ?>
                   <th>Action</th>
                 <?php } ?>
@@ -106,9 +102,6 @@
                                         <td>$r[jam_mulai]</td>
                                         <td>$r[jam_selesai]</td>
                                         <td>$r[nama_ruangan]</td>";
-                if ($_SESSION['level'] != 'kepala') {
-                  echo "<td><a class='btn btn-xs btn-warning' href='index.php?view=absensiswa&act=tampilabsen&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'>Buka Absensi Siswa</a></td>";
-                }
                 if ($_SESSION['level'] != 'kepala') {
                   echo "<td style='width:70px !important'><center>
                                         <a class='btn btn-success btn-xs' title='Edit Jadwal' href='index.php?view=jadwalpelajaran&act=edit&id=$r[kodejdwl]'><span class='glyphicon glyphicon-edit'></span></a>
@@ -188,13 +181,12 @@
                     </td></tr>
                     <tr><th scope='row'>Guru</th>   <td><select class='form-control' name='e'> 
                                                 <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     echo "<option value='$a[nip]'>$a[nama_guru]</option>";
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Jadwal Serial</th>  <td><input type='text' class='form-control' name='g'></td></tr>
                     <tr><th scope='row'>Jam Mulai</th>  <td><input type='text' class='form-control' name='h' placeholder='hh:ii:ss' value='" . date('H:i:s') . "'></td></tr>
                     <tr><th scope='row'>Jam Selesai</th><td><input type='text' class='form-control' name='i' placeholder='hh:ii:ss' value='" . date('H:i:s') . "'></td></tr>
                     <tr><th scope='row'>Hari</th>  <td><select class='form-control' name='j'>
@@ -298,7 +290,7 @@
                     </td></tr>
                     <tr><th scope='row'>Guru</th>   <td><select class='form-control' name='e'> 
                                                 <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     if ($e[nip] == $a[nip]) {
       echo "<option value='$a[nip]' selected>$a[nama_guru]</option>";
@@ -308,7 +300,6 @@
   }
   echo "</select>
                     </td></tr>
-                    <tr><th scope='row'>Jadwal Serial</th>  <td><input type='text' class='form-control' name='g' value='$e[jadwal_serial]'></td></tr>
                     <tr><th scope='row'>Jam Mulai</th>  <td><input type='text' class='form-control' name='h' placeholder='hh:ii:ss' value='$e[jam_mulai]'></td></tr>
                     <tr><th scope='row'>Jam Selesai</th><td><input type='text' class='form-control' name='i' placeholder='hh:ii:ss' value='$e[jam_selesai]'></td></tr>
                     <tr><th scope='row'>Hari</th>  <td><select class='form-control' name='j'>

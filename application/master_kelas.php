@@ -108,7 +108,7 @@
                           <td>
                             <select class='form-control' name='b'> 
                               <option value='0' selected>- Pilih Wali Kelas -</option>"; 
-                              $wali = mysql_query("SELECT * FROM rb_guru");
+                              $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
                               while($a = mysql_fetch_array($wali)){
                                   echo "<option value='$a[nip]' ".($a['nip'] == $s['nip'] ? 'selected' : '').">$a[nama_guru]</option>";
                               }
@@ -195,7 +195,7 @@
                           <tr><th width='120px' scope='row'>Kode Kelas</th> <td><input type='text' class='form-control' name='a' value='$s[kode_kelas]'> </td></tr>
                           <tr><th scope='row'>Wali Kelas</th>               <td><select class='form-control' name='b'> 
                                                                                 <option value='0' selected>- Pilih Wali Kelas -</option>"; 
-                                                                                  $wali = mysql_query("SELECT * FROM rb_guru");
+                                                                                  $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
                                                                                   while($a = mysql_fetch_array($wali)){
                                                                                     if ($a['nip'] == $s['nip']){
                                                                                       echo "<option value='$a[nip]' selected>$a[nama_guru]</option>";
@@ -266,7 +266,7 @@
                           <tr><th width='120px' scope='row'>Kode Kelas</th> <td><input type='text' class='form-control' name='a'> </td></tr>
                           <tr><th scope='row'>Wali Kelas</th>               <td><select class='form-control' name='b'> 
                                                                                 <option value='0' selected>- Pilih Wali Kelas -</option>"; 
-                                                                                  $wali = mysql_query("SELECT * FROM rb_guru");
+                                                                                  $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
                                                                                   while($a = mysql_fetch_array($wali)){
                                                                                       echo "<option value='$a[nip]'>$a[nama_guru]</option>";
                                                                                   }

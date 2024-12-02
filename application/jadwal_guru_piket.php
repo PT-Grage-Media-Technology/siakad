@@ -38,18 +38,10 @@
           <input type="hidden" name="view" value="jadwalgurupiket">
 
           <!-- Dropdown untuk memilih Tahun Akademik -->
-          <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
-            <option value=''>- Pilih Tahun Akademik -</option>
-            <?php
-            while ($k = mysql_fetch_array($tahun)) {
-              $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
-              echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
-            }
-            ?>
-          </select>
+          
 
           <!-- Dropdown untuk memilih Bulan -->
-          <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
+          <!-- <select name='bulan' style='padding:4px' onchange='this.form.submit()'>
             <option value=''>- Pilih Bulan -</option>
             <option value='1' <?php echo ($bulan_dipilih == 1) ? 'selected' : ''; ?>>Januari</option>
             <option value='2' <?php echo ($bulan_dipilih == 2) ? 'selected' : ''; ?>>Februari</option>
@@ -65,18 +57,8 @@
             <option value='12' <?php echo ($bulan_dipilih == 12) ? 'selected' : ''; ?>>Desember</option>
           </select>
 
-          <!-- Dropdown untuk memilih Tanggal -->
-          <select name='tanggal' style='padding:4px' onchange='this.form.submit()'>
-            <option value=''>- Pilih Tanggal -</option>
-            <?php
-            for ($i = 1; $i <= 31; $i++) {
-              $selected = ($tanggal_dipilih == $i) ? 'selected' : '';
-              echo "<option value='$i' $selected>$i</option>";
-            }
-            ?>
-          </select>
-        </form>
-        <h3 class="box-title">Jadwal Guru Piket</h3>
+          
+        </form> -->
         
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -125,7 +107,7 @@
   <?php
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
+    // $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
     mysql_query("INSERT INTO rb_jadwal_guru_piket VALUES('','$_POST[nip]','$_POST[hari]','$tanggalInput')");
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
   }
@@ -144,7 +126,7 @@
                     <tr><th width='140px' scope='row'>Guru</th>   
                    <td><select class='form-control' name='nip'> 
                                     <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     echo "<option value='$a[nip]'>$a[nama_guru]</option>";
   }
@@ -167,7 +149,6 @@
                             </select>
                         </td>
                       </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='tanggal' data-date-format='dd-mm-yyyy'></td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -181,9 +162,9 @@
             </div>";
 } elseif ($_GET[act] == 'edit') {
   if (isset($_POST[edit])) { // Mengubah 'tambah' menjadi 'edit'
-    $tanggal = tgl_simpan($_POST[tanggal]);
+    // $tanggal = tgl_simpan($_POST[tanggal]);
     $tanggalInput = date('Y-m-d H:i:s'); // Format sesuai dengan format yang diinginkan di database
-    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', tanggal='$tanggal', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
+    mysql_query("UPDATE rb_jadwal_guru_piket SET nip='$_POST[nip]', hari='$_POST[hari]', waktu_input='$tanggalInput' WHERE id='$_POST[id]'"); // Mengubah query untuk update
     echo "<script>document.location='index.php?view=jadwalgurupiket';</script>";
  }
 
@@ -206,7 +187,7 @@
                       <tr><th width='140px' scope='row'>Guru</th>   
                      <td><select class='form-control' name='nip'> 
                                       <option value='0' selected>- Pilih Guru -</option>";
-  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk != 6 ORDER BY nama_guru ASC");
+  $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
   while ($a = mysql_fetch_array($guru)) {
     $selected = ($a['nip'] == $data['nip']) ? 'selected' : ''; // Menandai guru yang dipilih
     echo "<option value='$a[nip]' $selected>$a[nama_guru]</option>";

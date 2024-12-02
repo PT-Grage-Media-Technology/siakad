@@ -1,5 +1,5 @@
 <?php if ($_GET[act] == '') { ?>
-  
+
   <div class="container-fluid">
 
     <div class="row">
@@ -77,7 +77,7 @@
   </div><!-- /.container-fluid -->
 
 
-  <?php
+<?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $rtrw = explode('/', $_POST[al]);
@@ -605,43 +605,44 @@
               </div>
 
               <div class='col-md-5 col-sm-12'>
-                <div class='table-responsive'>
-
+                <div class='table-responsive'>";
+  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
+    echo "
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                   <div class='modal-dialog' role='document'>
                     <div class='modal-content'>";
-                         
-                    // Ambil nilai NIP dari session
-                        $nip = $_SESSION['id'];
 
-                        // Query untuk menghitung jumlah absensi berdasarkan kode_kehadiran
-                        $rekap_absen = mysql_query("SELECT 
+    // Ambil nilai NIP dari session
+    $nip = $_SESSION['id'];
+
+    // Query untuk menghitung jumlah absensi berdasarkan kode_kehadiran
+    $rekap_absen = mysql_query("SELECT 
                             SUM(CASE WHEN kode_kehadiran = 'sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
                             SUM(CASE WHEN kode_kehadiran = 'izin' THEN 1 ELSE 0 END) AS jumlah_izin,
                             SUM(CASE WHEN kode_kehadiran = 'alpa' THEN 1 ELSE 0 END) AS jumlah_alpa
                         FROM rb_rekap_absen_guru
                         WHERE nip = '$nip' AND status = 1");
 
-                        // Ambil hasil query
-                        $absen = mysql_fetch_assoc($rekap_absen);
+    // Ambil hasil query
+    $absen = mysql_fetch_assoc($rekap_absen);
 
-                      echo"<div class='modal-header'>
+    echo "<div class='modal-header'>
                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
                      <p><strong>NIP:</strong> $nip |   <strong>S :</strong> {$absen['jumlah_sakit']} |    <strong>I :</strong> {$absen['jumlah_izin']} |   <strong>A :</strong> {$absen['jumlah_alpa']}</p>
                         <h4 class='modal-title' id='myModalLabel'>Pemberitahuan</h4>
                       </div>
                       <div class='modal-body'>";
-                     // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
-                     echo "<div style='background-color: black; padding: 10px;'>
+    // Tampilkan pesan alert untuk semua guru (diletakkan di luar kondisi)
+    echo "<div style='background-color: black; padding: 10px;'>
                             <h1 style='color: red; margin: 0;'>Absen Guru dihitung ketika guru mengabsen siswanya</h1>
                             </div>";
 
-                      // Query pemberitahuan seperti sebelumnya
-                      $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
+    // Query pemberitahuan seperti sebelumnya
+    $pemberitahuan = mysql_query("SELECT * FROM rb_pemberitahuan_guru WHERE is_read=0 AND $_SESSION[id]=nip_guru");
 
-                      // Tampilkan tabel pemberitahuan
-                      echo "<table id='example1' class='table table-bordered table-striped'>
+    // Tampilkan tabel pemberitahuan
+    echo "<table id='example1' class='table table-bordered table-striped'>
                           <tr>
                               <th>No</th>
                               <th>Pesan</th>
@@ -649,27 +650,27 @@
                               <th>Action</th>
                           </tr>";
 
-                      // Cek apakah ada pemberitahuan
-                      $no = 1;
-                      if(mysql_num_rows($pemberitahuan) > 0){
-                        while ($p = mysql_fetch_array($pemberitahuan)) {
-                            echo "<tr>
+    // Cek apakah ada pemberitahuan
+    $no = 1;
+    if (mysql_num_rows($pemberitahuan) > 0) {
+      while ($p = mysql_fetch_array($pemberitahuan)) {
+        echo "<tr>
                                 <td>$no</td>
                                 <td>$p[pesan]</td>
                                 <td>$p[waktu_dikirim]</td>
                                 <td><a class='btn btn-warning btn-xs' name='absen' 
                                 href='index.php?view=absensiswa&act=tampilabsen&id=$p[kode_kelas]&kd=$p[kode_mapel]&idjr=$p[id_tujuan_pembelajaran]&tgl=$p[tanggal_absen]&jam=$p[jam_ke]&id_pemberitahuan=$p[id_pemberitahuan_guru]'>Absen</a></td>
                                 </tr>";
-                                $no++;
-                          }
-                        } else {
-                          echo "<tr>
+        $no++;
+      }
+    } else {
+      echo "<tr>
                             <td>Tidak ada data</td>
                           </tr>";
-                      }
-          
-                          
-                          echo"
+    }
+
+
+    echo "
                         </table>
                       </div>
                       <div class='modal-footer'>
@@ -677,7 +678,10 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>";
+  }
+  echo "
+                
 
 
                   <table class='table table-condensed table-bordered'>
@@ -718,7 +722,7 @@
   </div>
 
   </div>";
-}elseif ($_GET[act] == 'izin') {
+} elseif ($_GET[act] == 'izin') {
   echo "<div class='col-md-12'>
   <div class='box box-info'>
     <div class='box-header with-border'>
@@ -729,7 +733,7 @@
     <div class='col-md-12'>";
 
 
-      echo"<table class='table table-condensed table-bordered'>
+  echo "<table class='table table-condensed table-bordered'>
       <tbody>
       <tr><th scope='row'>Nama<th> <input type='text' name='nip' value='$_SESSION[id]' disabled /></tr>
       <tr><th scope='row'>Kode Kehadiran</th>
@@ -744,8 +748,8 @@
       <tr><th scope='row'>Keterangan</th>       <td><textarea rows='5' class='form-control' name='b'></textarea></td></tr>
       <tr><th width=120px scope='row'>Nama File</th>             <td><div style='position:relative;''>
                                                             <a class='btn btn-primary' href='javascript:;'>
-                                                              <span class='glyphicon glyphicon-search'></span> Cari File Tugas yang akan dikirim..."; ?>
-<input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
+                                                              <span class='glyphicon glyphicon-search'></span> Kirim Surat dokter atau yang lain"; ?>
+  <input type='file' class='files' name='c' onchange='$("#upload-file-info").html($(this).val());'>
 <?php echo "</a> <span style='width:155px' class='label label-info' id='upload-file-info'></span>
                                                           </div>
       </td></tr>
@@ -757,61 +761,59 @@
   </div>
   <div class='box-footer'>
         <button type='submit' name='simpan' class='btn btn-info'>Simpan</button>
-        <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+        <a href='index.php?view=bahantugas' id='cancelButton'><button class='btn btn-default pull-right'>Cancel</button></a>
         
       </div>
   </form>
 </div>";
 
-if (isset($_POST['simpan'])) {
-  // Debug POST dan FILES data
-  // var_dump($_POST, $_FILES);
-  
-  // Ambil nilai dari form
-  $nip = $_SESSION['id'];
-  $kode_kehadiran = $_POST['kode_kehadiran'];
-  $keterangan = $_POST['b'];
-  $nama_file = $_FILES['c']['name'];
-  $tmp_file = $_FILES['c']['tmp_name'];
-  
-  // Tentukan folder tujuan untuk menyimpan file
-  $folder_upload = "bukti_tidak_hadir/";
-  if (!is_dir($folder_upload)) {
+  if (isset($_POST['simpan'])) {
+    // Debug POST dan FILES data
+    // var_dump($_POST, $_FILES);
+
+    // Ambil nilai dari form
+    $nip = $_SESSION['id'];
+    $kode_kehadiran = $_POST['kode_kehadiran'];
+    $keterangan = $_POST['b'];
+    $nama_file = $_FILES['c']['name'];
+    $tmp_file = $_FILES['c']['tmp_name'];
+
+    // Tentukan folder tujuan untuk menyimpan file
+    $folder_upload = "bukti_tidak_hadir/";
+    if (!is_dir($folder_upload)) {
       mkdir($folder_upload, 0777, true); // Membuat folder jika belum ada
-  }
-  $path_file = $folder_upload . basename($nama_file);
-  
-  // Debug: cek error upload file
-  if ($_FILES['c']['error'] !== UPLOAD_ERR_OK) {
+    }
+    $path_file = $folder_upload . basename($nama_file);
+
+    // Debug: cek error upload file
+    if ($_FILES['c']['error'] !== UPLOAD_ERR_OK) {
       echo "Error pada upload file: " . $_FILES['c']['error'];
       exit;
-  }
-  
-  // Upload file ke folder tujuan
-  if (move_uploaded_file($tmp_file, $path_file)) {
+    }
+
+    // Upload file ke folder tujuan
+    if (move_uploaded_file($tmp_file, $path_file)) {
       $query = "INSERT INTO rb_rekap_absen_guru (nip, kode_kehadiran, foto_bukti, keterangan, tanggal, waktu_input,status) 
                 VALUES ('$nip', '$kode_kehadiran', '$nama_file', '$keterangan', CURDATE(), NOW(), 0)";
-      
+
       $result = mysql_query($query);
       if ($result) {
         echo "<script>document.location='index.php';</script>";
       } else {
-          echo "<script>alert('Terjadi kesalahan saat menyimpan data absensi.');</script>";
+        echo "<script>alert('Terjadi kesalahan saat menyimpan data absensi.');</script>";
       }
-  } else {
+    } else {
       echo "<script>alert('Gagal mengunggah file.');</script>";
+    }
   }
-}
-
-
 }
 ?>
 <script>
-    $(document).ready(function() {
-        // Mengecek apakah ada pemberitahuan untuk ditampilkan
-            $('#myModal').modal('show');
-      
-    });
+  $(document).ready(function() {
+    // Mengecek apakah ada pemberitahuan untuk ditampilkan
+    $('#myModal').modal('show');
+
+  });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -819,3 +821,8 @@ if (isset($_POST['simpan'])) {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('cancelButton').onclick = function() {
+        history.back();
+    };
+</script>

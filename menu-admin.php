@@ -91,8 +91,8 @@
     </li> -->
     <li><a href="index.php?view=jadwalgurupiket"><i class="fa fa-tags"></i><span>Jadwal Guru Piket</span></a></li>
     <li><a href="index.php?view=journalkbm"><i class="fa fa-tags"></i><span>Journal KBM</span></a></li>
-    <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li>
-    <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz/Ujian Online</span></a></li>
+    <!-- <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
+    <!-- <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz/Ujian Online</span></a></li> -->
     <li class="treeview">
       <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">

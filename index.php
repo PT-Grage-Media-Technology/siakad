@@ -6,7 +6,7 @@ include "config/library.php";
 include "config/fungsi_indotgl.php";
 include "config/fungsi_seo.php";
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) { 
   if ($_SESSION['level'] == 'superuser') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
     $nama = $iden['nama_lengkap'];
@@ -301,16 +301,18 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            if ($_SESSION['level'] == 'admin' || $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] === 'superuser' || $_SESSION['is_kurikulum'] == 'true') {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
+            }else{
+
             }
-          } elseif ($_GET[view] == 'jadwalpelajaran') {
-            cek_session_guru();
-            echo "<div class='row'>";
-            include "application/master_jadwalpelajaran.php";
-            echo "</div>";
+          // } elseif ($_GET[view] == 'jadwalpelajaran') {
+          //   cek_session_guru();
+          //   echo "<div class='row'>";
+          //   include "application/master_jadwalpelajaran.php";
+          //   echo "</div>";
           } elseif ($_GET[view] == 'jurusan') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -418,6 +420,10 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/penilaianteman_siswa.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'sumatifharian') {
+            echo "<div class='row'>";
+            include "application/raport/raport_sumatif_harian.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'raport') {
             echo "<div class='row'>";
             include "application/raport.php";
@@ -426,28 +432,32 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/raport_uts.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'raportsas') {
+            echo "<div class='row'>";
+            include "application/raport_sas.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'raportcetak') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport_cetak.php";
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetakuts') {
-            cek_session_admin();
-            echo "<div class='row'>";
-            include "application/raport_cetak_uts.php";
-            echo "</div>";
+            // cek_session_admin();
+              echo "<div class='row'>";
+              include "application/raport_cetak_uts.php";
+              echo "</div>";
           } elseif ($_GET[view] == 'capaianhasilbelajar') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_capaian_hasil_belajar.php";
             echo "</div>";
           } elseif ($_GET[view] == 'extrakulikuler') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_extrakulikuler.php";
             echo "</div>";
           } elseif ($_GET[view] == 'prestasi') {
-            cek_session_admin();
+            // cek_session_admin();
             echo "<div class='row'>";
             include "application/raport/raport_prestasi.php";
             echo "</div>";

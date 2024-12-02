@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<?php
+// Ketika halaman Agenda Mengajar diakses, aktifkan flag di session
+session_start();
+$_SESSION['akses_agenda'] = true;
+?>
 
 <?php if ($_GET[act] == '') { ?>
   <div class="col-xs-12">
@@ -116,7 +121,7 @@
   <div class='table-responsive'>
     <table class='table table-condensed table-hover'>
       <tbody>
-        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas] $_GET[tahun]</td></tr>
+        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
         <tr><th scope='row'>Nama Guru</th> <td>$d[nama_guru]</td></tr>
         <tr><th scope='row'>Mata Pelajaran</th> <td>$d[namamatapelajaran]</td></tr>
       </tbody>
@@ -124,7 +129,7 @@
   if (isset($_POST[tambah])) {
     // var_dump($_POST['tambah']);
     // exit;
-    
+
 
     $d = tgl_simpan($_POST[d]);
 
@@ -135,13 +140,13 @@
 
     // Pastikan direktori ada
     if (!file_exists($target_dir)) {
-        mkdir($target_dir, 0777, true);
+      mkdir($target_dir, 0777, true);
     }
 
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-        // Simpan data ke database
-        $query = "INSERT INTO rb_journal_list VALUES(
+      // Simpan data ke database
+      $query = "INSERT INTO rb_journal_list VALUES(
           '',
           '$_GET[id]',
           '$_POST[c]', 
@@ -157,14 +162,14 @@
       )";
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
 
-      
+
       if (mysql_query($query)) {
-          echo "Data berhasil disimpan ke database.<br>";
+        echo "Data berhasil disimpan ke database.<br>";
       } else {
-          echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+        echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
       }
     }
-    
+
     // mysql_query("INSERT INTO rb_journal_list VALUES('','$_GET[id]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     $tahun = $_GET['tahun'];
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[id]&tahun=$tahun';</script>";
@@ -184,22 +189,22 @@
                     <tbody>
                     <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                       <tr hidden><th width='140px' scope='row' hidden>Kelas </th>   <td hidden><select class='form-control' name='a' hidden>";
-                      $kelas = mysql_query("SELECT * FROM rb_kelas");
-                      while ($a = mysql_fetch_array($kelas)) {
-                        if ($e[kode_kelas] == $a[kode_kelas]) {
-                          echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
-                        }
-                      }
-                      echo "</select>
+  $kelas = mysql_query("SELECT * FROM rb_kelas");
+  while ($a = mysql_fetch_array($kelas)) {
+    if ($e[kode_kelas] == $a[kode_kelas]) {
+      echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
+    }
+  }
+  echo "</select>
                                           </td></tr>
                                           <tr hidden><th scope='row' hidden>Mata Pelajaran</th>  <td hidden><select class='form-control' name='b' hidden>";
-                      $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
-                      while ($a = mysql_fetch_array($mapel)) {
-                        if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
-                          echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
-                        }
-                      }
-                      echo "</select>
+  $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
+  while ($a = mysql_fetch_array($mapel)) {
+    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+      echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
+    }
+  }
+  echo "</select>
                       </td></tr>
                      
                       <tr>
@@ -222,7 +227,7 @@
                           <td>
                           <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                               <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($g = mysql_fetch_array($guru)) {
       echo "<option value='$g[nip]'>$g[nama_guru]</option>";
     }
@@ -236,40 +241,37 @@
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
-                          <tr>
-                                  <th scope='row'>Nama File</th>
-                                  <td><input type='text' class='form-control' name='b'></td>
-                                </tr>
-                                <tr><th width=120px scope='row'> File</th>             
-                                <td><div style='position:relative;''>
-                                    <a class='btn btn-primary' href='javascript:;'>
-                                      <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
-                                  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
-                                  <?php
-                                  include('library.php');
+                          <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='tujuan_pembelajaran'></textarea></td></tr>
+                                  <th scope='row'>Materi</th>
+                                  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                                  <tr><th width=120px scope='row'> File</th>             
+                                  <td><div style='position:relative;''>
+                                      <a class='btn btn-primary' href='javascript:;'>
+                                        <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+  <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
+<?php
+  include('library.php');
 
-                                  // Mendapatkan waktu saat ini dalam format yang sesuai
-                                  $currentDateTime = date('Y-m-d\TH:i');
+  // Mendapatkan waktu saat ini dalam format yang sesuai
+  $currentDateTime = date('Y-m-d\TH:i');
 
-                                  // Tampilkan form dalam satu pernyataan echo
-                                  echo "</a> 
-                                  <span style='width:155px' class='label label-info' id='upload-file-info'></span>
-                                    </div>
-                                  </td>
-                                  </tr>
-                                  <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                                  <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='keterangan'></textarea></td></tr>
-                                  </td></tr>
-                                </tbody>
-                                </table>
-                              </div>
-                            </div>
-                            <div class='box-footer'>
-                                  <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                                  
+  // Tampilkan form dalam satu pernyataan echo
+  echo "</a> 
+                                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                                        </div>
+                                      </td>
+                                      </tr>
+                                      </td></tr>
+                                    </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                            </form>
-                          </div>";
+                                <div class='box-footer'>
+                                      <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
+                                      
+                                    </div>
+                                </form>
+                              </div>";
 
   // <!-- Container grid dengan margin dan padding yang seragam -->
   echo "<div class='container' style='max-width: 200px; padding: 10px;'>
@@ -281,17 +283,17 @@
   </div>
 </div>
                   <div class='table-responsive'>
-                  <table id='example' class='table table-bordered table-striped'>
+                  <table id='example' class='table table-bordered table-striped text-center'>
                     <thead>
                       <tr>
                         <th style='width:20px'>No</th>
                         <th>Hari</th>
                         <th style='width:90px'>Tanggal</th>
-                        <th style='width:70px'>Dari Jam Ke</th>
+                        <th style='width:90px'>Dari Jam Ke</th>
                         <th style='width:70px'>Sampai Jam Ke</th>
-                        <th style='width:220px' align=center>Guru</th>
-                        <th style='width:220px'>Materi</th>
-                        <th>Keterangan</th>";
+                        <th style='width:200px' align=center>Guru</th>
+                        <th style='width:220px'>Tujuan Pembelajaran</th>
+                        <th style='width:220px'>Materi</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
   }
@@ -319,12 +321,12 @@
 
   if (mysql_num_rows($tampil) == 0) {
     // Cek jika tidak ada data
-    echo "<tr><td colspan='7' style='text-align:center;'>Tidak ada data</td></tr>";
+    echo "<tr><td colspan='9' style='text-align:center;'>Tidak ada data</td></tr>";
   } else {
     while ($r = mysql_fetch_array($tampil)) {
       // Logika untuk mengatur status button absen
       $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]";
+      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]&id_journal=$r[id_journal]";
 
       echo "<tr>
       <td>$no</td>
@@ -333,8 +335,8 @@
       <td align=center>$r[jam_ke]</td>
       <td align=center>$r[sampai_jam_ke]</td>
       <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[materi]</td>
-      <td>$r[keterangan]</td>";
+      <td>$r[tujuan_pembelajaran]</td>
+      <td>$r[materi]</td>";
 
       if ($_SESSION['level'] != 'kepala') {
         echo "<td style='width: 200px; !important'><center>
@@ -351,26 +353,26 @@
   }
 
   if (isset($_GET['hapus'])) {
-      // Ambil nama file berdasarkan ID
-      $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
-      $data = mysql_fetch_assoc($query);
-      // var_dump($data);
-      // exit;
-      
-      // Tentukan lokasi file
-      $file_path = 'files/' . $data['file'];
+    // Ambil nama file berdasarkan ID
+    $query = mysql_query("SELECT file,materi FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+    $data = mysql_fetch_assoc($query);
+    // var_dump($data);
+    // exit;
 
-      // Hapus file jika ada
-      if (!empty($data['file']) && file_exists($file_path)) {
-          unlink($file_path); // Menghapus file berdasarkan nama
-      }
+    // Tentukan lokasi file
+    $file_path = 'files/' . $data['file'];
 
-      // Hapus data dari database
-      mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
-      mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
-      // echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
-      // Redirect ke halaman sebelumnya
-      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
+    // Hapus file jika ada
+    if (!empty($data['file']) && file_exists($file_path)) {
+      unlink($file_path); // Menghapus file berdasarkan nama
+    }
+
+    // Hapus data dari database
+    mysql_query("DELETE FROM rb_journal_list WHERE id_journal='$_GET[hapus]'");
+    mysql_query("DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]'");
+    // echo"DELETE FROM rb_forum_topic WHERE judul_topic='$data[materi]";
+    // Redirect ke halaman sebelumnya
+    echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_GET[jdwl]';</script>";
   }
 
 
@@ -388,7 +390,7 @@
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
     mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
     echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-  } 
+  }
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran where kodejdwl='$_GET[jdwl]'"));
   $jam = mysql_num_rows(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]'")) + 1;
@@ -442,22 +444,22 @@
                         <td>
                         <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                             <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-                $guru = mysql_query("SELECT * FROM rb_guru");
-                while ($g = mysql_fetch_array($guru)) {
-                  echo "<option value='$g[nip]'>$g[nama_guru]</option>";
-                }
-                echo "</select>
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+    while ($g = mysql_fetch_array($guru)) {
+      echo "<option value='$g[nip]'>$g[nama_guru]</option>";
+    }
+    echo "</select>
                                     </td>
                                 </tr>";
-                } else {
-                  echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
-                }
+  } else {
+    echo "<input type='hidden' class='form-control' value='$_SESSION[id]' name='nip_users'>";
+  }
 
-                echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+  echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
+                    <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g'></textarea></td></tr>
                     </td></tr>
                   </tbody>
                   </table>
@@ -480,63 +482,63 @@
   //                                               users = '$_POST[nip_users]' where id_journal='$_POST[id]'");
   //   echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
   // }
-    if (isset($_POST['update'])) {
-      // Konversi tanggal
-      $d = tgl_simpan($_POST['d']);
-      
-      // Tentukan direktori tujuan untuk menyimpan file
-      $target_dir = "files/";
-      
-      // Ambil data file lama dari database
-      $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
-      $data_file = mysql_fetch_assoc($query_file);
-      $old_file = $data_file['file'];
-      
-      // Cek apakah file baru diunggah
-      if ($_FILES['file']['size'] > 0) {
-          $new_file_name = basename($_FILES['file']['name']);
-          $target_file = $target_dir . $new_file_name;
+  if (isset($_POST['update'])) {
+    // Konversi tanggal
+    $d = tgl_simpan($_POST['d']);
 
-          // Pastikan direktori ada
-          if (!file_exists($target_dir)) {
-              mkdir($target_dir, 0777, true);
-          }
+    // Tentukan direktori tujuan untuk menyimpan file
+    $target_dir = "files/";
 
-          // Hapus file lama jika ada
-          if (!empty($old_file) && file_exists($old_file)) {
-              unlink($old_file);
-          }
+    // Ambil data file lama dari database
+    $query_file = mysql_query("SELECT file FROM rb_journal_list WHERE id_journal = '$_POST[id]'");
+    $data_file = mysql_fetch_assoc($query_file);
+    $old_file = $data_file['file'];
 
-          // Pindahkan file baru ke direktori tujuan
-          if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-              echo "File berhasil diunggah ke: $target_file<br>";
-          } else {
-              echo "Gagal mengunggah file baru.<br>";
-          }
-      } else {
-          // Jika tidak ada file baru, gunakan file lama
-          $target_file = $old_file;
+    // Cek apakah file baru diunggah
+    if ($_FILES['file']['size'] > 0) {
+      $new_file_name = basename($_FILES['file']['name']);
+      $target_file = $target_dir . $new_file_name;
+
+      // Pastikan direktori ada
+      if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
       }
 
-      // Query update
-      $query = "UPDATE rb_journal_list SET 
+      // Hapus file lama jika ada
+      if (!empty($old_file) && file_exists($old_file)) {
+        unlink($old_file);
+      }
+
+      // Pindahkan file baru ke direktori tujuan
+      if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+        echo "File berhasil diunggah ke: $target_file<br>";
+      } else {
+        echo "Gagal mengunggah file baru.<br>";
+      }
+    } else {
+      // Jika tidak ada file baru, gunakan file lama
+      $target_file = $old_file;
+    }
+
+    // Query update
+    $query = "UPDATE rb_journal_list SET 
                   hari = '$_POST[c]',
                   tanggal = '$d',
                   jam_ke = '$_POST[e]',
                   sampai_jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
-                  keterangan = '$_POST[g]',
+                  tujuan_pembelajaran = '$_POST[g]',
                   users = '$_POST[nip_users]',
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";
 
-      // Eksekusi query
-      if (mysql_query($query)) {
-          echo "<script>alert('Data berhasil diperbarui!');</script>";
-          echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
-      } else {
-          echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
-      }
+    // Eksekusi query
+    if (mysql_query($query)) {
+      echo "<script>alert('Data berhasil diperbarui!');</script>";
+      echo "<script>document.location='index.php?view=journalguru&act=lihat&id=$_POST[jdwl]';</script>";
+    } else {
+      echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
+    }
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
@@ -555,7 +557,7 @@
                     <tr hidden><th width='140px' scope='row' hidden>Kelas</th>   <td><select class='form-control' name='a' hidden>";
   $kelas = mysql_query("SELECT * FROM rb_kelas");
   while ($a = mysql_fetch_array($kelas)) {
-    if ($e[kode_kelas] == $a[kode_kelas]) {
+    if ($e['kode_kelas'] == $a['kode_kelas']) {
       echo "<option value='$a[kode_kelas]' selected hidden>$a[nama_kelas]</option>";
     }
   }
@@ -564,7 +566,7 @@
                     <tr hidden><th scope='row' hidden>Mata Pelajaran</th>   <td hidden><select class='form-control' name='b' hidden>";
   $mapel = mysql_query("SELECT * FROM rb_mata_pelajaran");
   while ($a = mysql_fetch_array($mapel)) {
-    if ($e[kode_pelajaran] == $a[kode_pelajaran]) {
+    if ($e['kode_pelajaran'] == $a['kode_pelajaran']) {
       echo "<option value='$a[kode_pelajaran]' selected hidden>$a[namamatapelajaran]</option>";
     }
   }
@@ -575,12 +577,12 @@
                       <th scope='row'>Hari</th>
                       <td>
                           <select class='form-control' name='c'>
-                              <option value='Senin'" . ($e[hari] == 'Senin' ? ' selected' : '') . ">Senin</option>
-                              <option value='Selasa'" . ($e[hari] == 'Selasa' ? ' selected' : '') . ">Selasa</option>
-                              <option value='Rabu'" . ($e[hari] == 'Rabu' ? ' selected' : '') . ">Rabu</option>
-                              <option value='Kamis'" . ($e[hari] == 'Kamis' ? ' selected' : '') . ">Kamis</option>
-                              <option value='Jumat'" . ($e[hari] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
-                              <option value='Sabtu'" . ($e[hari] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
+                              <option value='Senin'" . ($e['hari'] == 'Senin' ? ' selected' : '') . ">Senin</option>
+                              <option value='Selasa'" . ($e['hari'] == 'Selasa' ? ' selected' : '') . ">Selasa</option>
+                              <option value='Rabu'" . ($e['hari'] == 'Rabu' ? ' selected' : '') . ">Rabu</option>
+                              <option value='Kamis'" . ($e['hari'] == 'Kamis' ? ' selected' : '') . ">Kamis</option>
+                              <option value='Jumat'" . ($e['hari'] == 'Jumat' ? ' selected' : '') . ">Jumat</option>
+                              <option value='Sabtu'" . ($e['hari'] == 'Sabtu' ? ' selected' : '') . ">Sabtu</option>
                           </select>
                       </td>
                     </tr>
@@ -594,9 +596,9 @@
                             <td>
                             <small style='display: block; text-align: center; color: red;'>Pilih Nama Guru</small>
                                 <select style='color: #ffff' class='selectpicker form-control' name='nip_users' data-live-search='true' data-show-subtext='true'>";
-    $guru = mysql_query("SELECT * FROM rb_guru");
+    $guru = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($g = mysql_fetch_array($guru)) {
-      echo "<option value='$g[nip]'" . ($e[users] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
+      echo "<option value='$g[nip]'" . ($e['users'] == $g['nip'] ? ' selected' : '') . ">$g[nama_guru]</option>";
     }
     echo "</select>
                             </td>
@@ -607,29 +609,29 @@
 
   echo "</td>
                     </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e[tanggal]) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
+                    <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[tujuan_pembelajaran]</textarea></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
-                    <td><img src='$e[file]' alt='$e[file]' style='max-width: 100%; height: auto;'></td>
-                    <td><div style='position:relative;''>
-                        <a class='btn btn-primary' href='javascript:;'>
-                          <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
-                      <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
-                      <?php
-                      include('library.php');
-
-                      // Mendapatkan waktu saat ini dalam format yang sesuai
-                      $currentDateTime = date('Y-m-d\TH:i');
-
-                      // Tampilkan form dalam satu pernyataan echo
-                      echo "</a> 
-                      <span style='width:155px' class='label label-info' id='upload-file-info'></span>
+                    <td>
+                      <div class='d-flex flex-column align-items-start'>
+                      <!-- Gambar -->
+                        <img src='$e[file]' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
+                        <!-- File Upload -->
+                        <div style='position: relative;' class='w-100'>
+                          <a class='btn btn-primary w-100 mb-2' href='javascript:;'>
+                            <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas
+                            <input type='file' class='files d-none' name='file' onchange='$('#upload-file-info').html($(this).val());'>
+                          </a>
+                          <span class='label label-info' id='upload-file-info'></span>
                         </div>
+                      </div>
+                    </td>
+
                       </td>
                       </tr>
-                    <tr><th scope='row'>Keterangan</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[keterangan]</textarea></td></tr>
                     </td></tr>
                   </tbody>
                   </table>
