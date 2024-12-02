@@ -40,9 +40,9 @@ echo "<table id='tablemodul1' width='100%' border='1'>
           <tr>
             <th width='40px' rowspan='2' style='text-align:center;'>No</th>
             <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
-            <th rowspan='2' style='text-align:center;'>KKM</th>
-            <th colspan='1' style='text-align:center;'>Pengetahuan</th>
-            <th colspan='1' style='text-align:center;'>Keterampilan</th>
+
+            <th colspan='1' rowspan='2' style='text-align:center;'>Pengetahuan</th>
+            <th colspan='1' rowspan='2' style='text-align:center;'>Capaian Kompetensi</th>
           </tr>
           </thead>
           <tbody>";
@@ -66,15 +66,14 @@ while ($k = mysql_fetch_array($kelompok)){
         $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         
         echo "<tr>
-                <td align='center'>$no</td>
-                <td colspan='2'>$m[namamatapelajaran]</td>
-                <td align='center'>$m[kkm]</td>
-                <td align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
+                <td rowspan='2' align='center'>$no</td>
+                <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>
+                <td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
                     " . number_format($rapn['raport']) . "
                 </td>
-                <td align='center' style='color: " . ($rapnk['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
-                    " . number_format($rapnk['raport']) . "
-                </td>
+                
+                    <td rowspan='1' align='center'>Ini Capaian Kompetensi</td>
+                    <td rowspan='1' align='center'>Ini Capaian Kompetensi</td>
               </tr>";
         $no++;
     }
