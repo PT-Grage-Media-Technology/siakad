@@ -187,7 +187,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='2'><input type='text' name='b".$no."' value='$n[angka_keterampilan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td align=center colspan='2'><input type='text' name='' value='' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
                         </tr>";
                   $no++;
                   }
