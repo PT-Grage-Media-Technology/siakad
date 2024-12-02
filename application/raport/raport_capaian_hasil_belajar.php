@@ -66,13 +66,13 @@ if ($_GET[act]==''){
                         <tr><th rowspan='2'>No</th>
                           <th rowspan='2'>NISN</th>
                           <th rowspan='2'>Nama Siswa</th>
-                          <th colspan='2'><center>Sikap Spiritual</center></th>
-                          <th colspan='2'><center>Sikap Sosial</center></th>
+                          <th colspan='1'><center>Sikap Spiritual</center></th>
+                          <th colspan='1'><center>Sikap Sosial</center></th>
                         </tr>
                         <tr>
-                            <th><center>Predikat</center></th>
+                            <th hidden><center>Predikat</center></th>
                             <th><center>Deskripsi</center></th>
-                            <th><center>Predikat</center></th>
+                            <th hidden><center>Predikat</center></th>
                             <th><center>Deskripsi</center></th>
                         </tr>
                       </thead>
@@ -91,9 +91,9 @@ if ($_GET[act]==''){
                               <td>$r[nisn]</td>
                               <td>$r[nama]</td>
                               <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                              <td><center><input type='text' name='a".$no."' value='$n[spiritual_predikat]' style='width:70px; text-align:center; padding:0px; color:blue'></center></td>
+                              <td hidden><center><input type='text' name='a".$no."' value='$n[spiritual_predikat]' style='width:70px; text-align:center; padding:0px; color:blue'></center></td>
                               <td><textarea name='b".$no."' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'>$n[spiritual_deskripsi]</textarea></td>
-                              <td><center><input type='text' name='c".$no."' value='$n[sosial_predikat]' style='width:70px; text-align:center; padding:0px; color:blue'></center></td>
+                              <td hidden><center><input type='text' name='c".$no."' value='$n[sosial_predikat]' style='width:100%; text-align:center; padding:0px; color:blue'></center></td>
                               <td><textarea name='d".$no."' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'>$n[sosial_deskripsi]</textarea></td>
                             </tr>";
                       $no++;
