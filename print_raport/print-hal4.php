@@ -41,7 +41,7 @@ echo "<table id='tablemodul1' width='100%' border='1'>
             <th width='40px' rowspan='2' style='text-align:center;'>No</th>
             <th colspan='2' rowspan='2' style='text-align:center;'>Mata Pelajaran</th>
 
-            <th colspan='1' rowspan='2' style='text-align:center;'>Pengetahuan</th>
+            <th colspan='1' rowspan='2' style='text-align:center;'>Nilai Akhir</th>
             <th colspan='1' rowspan='2' style='text-align:center;'>Capaian Kompetensi</th>
           </tr>
           </thead>
