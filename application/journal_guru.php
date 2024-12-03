@@ -177,6 +177,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
           '$target_file', 
           '" . date('Y-m-d H:i:s') . "', 
           '$_POST[nip_users]',
+          NULL,
           '$_POST[id_parent_journal]'
       )";
 
