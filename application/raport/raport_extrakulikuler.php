@@ -4,7 +4,7 @@ if ($_GET[act]==''){
             if ($_POST[status]=='Update'){
               mysql_query("UPDATE rb_nilai_extrakulikuler SET kegiatan='$_POST[a]', nilai='$_POST[b]', deskripsi='$_POST[c]' where id_nilai_extrakulikuler='$_POST[id]'");
             }else{
-              mysql_query("INSERT INTO rb_nilai_extrakulikuler VALUES('','$_GET[tahun]','$_POST[nisn]','$_GET[kelas]','$_POST[a]','$_POST[b]','$_POST[c]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
+              mysql_query("INSERT INTO rb_nilai_extrakulikuler VALUES('','$_GET[tahun]','$_POST[nisn]','$_GET[kelas]','$_POST[a]','$_POST[c]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
             }
         echo "<script>document.location='index.php?view=extrakulikuler&tahun=$_GET[tahun]&kelas=$_GET[kelas]#$_POST[nisn]';</script>";
     }
@@ -100,7 +100,6 @@ if ($_GET[act]==''){
                               <input type='hidden' name='nisn' value='$r[nisn]'>
                               <input type='hidden' name='nisn' value='$r[nisn]'>
                               <td><input type='text' name='a' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Kegiatan...'></td>
-                              <td><center><input type='text' class='form-control'  name='b' style='width:50px; text-align:center; padding:0px; color:blue'></center></td>
                               <td><input type='text' name='c' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'></td>
                               <td align=center><input type='submit' name='simpan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                             </tr>
@@ -114,7 +113,6 @@ if ($_GET[act]==''){
                                         <td></td>
                                         <td></td>
                                         <td>$n[kegiatan]</td>
-                                        <td align=center>$n[nilai]</td>
                                         <td>$n[deskripsi]</td>
                                         <td align=center><a href='index.php?view=extrakulikuler&tahun=".$_GET[tahun]."&kelas=".$_GET[kelas]."&edit=".$n[id_nilai_extrakulikuler]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=extrakulikuler&tahun=".$_GET[tahun]."&kelas=".$_GET[kelas]."&delete=".$n[id_nilai_extrakulikuler]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
