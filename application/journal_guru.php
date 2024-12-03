@@ -470,8 +470,10 @@ $_SESSION['akses_agenda'] = true;
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>
                         <td>
+                            <!-- Input untuk mencari tujuan pembelajaran -->
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                            <!-- Dropdown hasil pencarian -->
                             <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
                         </td>
                     </tr>
@@ -485,19 +487,22 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
-  if (isset($_POST['search'])) {
-    $search = mysql_real_escape_string($_POST['search']);
-    $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
-    $result = mysql_query($query);
-
-    if (mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
-            echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
-        }
-    } else {
-        echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
-    }
-}            
+            
+            if (isset($_POST['search'])) {
+              $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
+              $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";  // Query untuk pencarian
+              $result = mysql_query($query);
+          
+              if (mysql_num_rows($result) > 0) {
+                  // Tampilkan setiap hasil pencarian
+                  while ($row = mysql_fetch_assoc($result)) {
+                      echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+                  }
+              } else {
+                  echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+              }
+          }
+ 
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
   //   $d = tgl_simpan($_POST[d]);
@@ -719,33 +724,34 @@ $(document).ready(function(){
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
-    // Ketik di input untuk mencari data
+    // Ketika mengetik di input pencarian
     $('#search_tujuan').on('input', function () {
-        const query = $(this).val();
+        var query = $(this).val();  // Ambil input pengguna
         if (query.length > 0) {
+            // Kirim request AJAX untuk pencarian
             $.ajax({
-                url: '', // Ganti dengan file PHP yang akan memproses pencarian
+                url: 'search.php',  // File PHP yang menangani pencarian
                 method: 'POST',
-                data: { search: query },
+                data: { search: query },  // Kirim input pencarian
                 success: function (data) {
-                    $('#result_tujuan').html(data).fadeIn();
+                    $('#result_tujuan').html(data).fadeIn();  // Tampilkan hasil di dropdown
                 }
             });
         } else {
-            $('#result_tujuan').fadeOut();
+            $('#result_tujuan').fadeOut();  // Sembunyikan dropdown jika input kosong
         }
     });
 
-    // Klik pada salah satu hasil pencarian
+    // Ketika salah satu hasil pencarian dipilih
     $(document).on('click', '.result-item', function () {
-        const id = $(this).data('id');
-        const name = $(this).text();
-        $('#search_tujuan').val(name);
-        $('#id_parent_journal').val(id);
-        $('#result_tujuan').fadeOut();
+        var id = $(this).data('id');  // Ambil id_journal dari hasil pencarian
+        var name = $(this).text();    // Ambil nama tujuan pembelajaran
+        $('#search_tujuan').val(name);  // Masukkan nama tujuan ke input
+        $('#id_parent_journal').val(id);  // Masukkan id_journal ke input hidden
+        $('#result_tujuan').fadeOut();  // Sembunyikan dropdown
     });
 
-    // Tutup dropdown jika klik di luar elemen
+    // Tutup dropdown jika klik di luar elemen pencarian
     $(document).on('click', function (e) {
         if (!$(e.target).closest('#search_tujuan, #result_tujuan').length) {
             $('#result_tujuan').fadeOut();
