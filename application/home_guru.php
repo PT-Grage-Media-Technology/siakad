@@ -342,26 +342,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editkktp'])) {
     e.preventDefault(); // Mencegah pengiriman form standar
 
     const formData = new FormData(this); // Ambil data form
-    console.log(formData);
 
-    fetch('', { // Arahkan ke halaman yang sama
+    // Periksa data form sebelum dikirim
+    console.log("Form data yang akan dikirim:", formData);
+
+    fetch('', { // Arahkan ke halaman yang sama untuk diproses di PHP
         method: 'POST',
-        body: formData
+        body: formData // Mengirimkan form data ke server
     })
-        .then(response => response.json()) // Respons dalam format JSON
-        .then(data => {
-            if (data.success) {
-                alert('KKTP berhasil diperbarui!');
-                $('#editKktpModal').modal('hide'); // Tutup modal
-                location.reload(); // Reload halaman untuk memperbarui data
-            } else {
-                alert('Gagal memperbarui KKTP: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat memperbarui KKTP.');
-        });
+    .then(response => {
+        // Memastikan respons memiliki status 200
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Mengubah respons menjadi format JSON
+    })
+    .then(data => {
+        // Memeriksa apakah server memberikan respons sukses
+        if (data.success) {
+            alert('KKTP berhasil diperbarui!');
+            $('#editKktpModal').modal('hide'); // Tutup modal
+            location.reload(); // Reload halaman untuk memperbarui data
+        } else {
+            alert('Gagal memperbarui KKTP: ' + data.message); // Menampilkan pesan kesalahan
+        }
+    })
+    .catch(error => {
+        // Menangani error jika fetch gagal
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memperbarui KKTP.');
+    });
 });
 
 </script>
