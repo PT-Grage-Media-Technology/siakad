@@ -123,11 +123,11 @@ cek_session_guru();
           $b  = $_POST['b'.$ia];
           $nisn = $_POST['nisn'.$ia];
           if ($a != '' OR $b != ''){
-            $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_uts where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'"));
+            $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_sas where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'"));
             if ($cek >= '1'){
-              mysql_query("UPDATE rb_nilai_uts SET angka_pengetahuan='$a', angka_keterampilan='$b' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
+              mysql_query("UPDATE rb_nilai_sas SET angka_pengetahuan='$a', angka_keterampilan='$b' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
             }else{
-              mysql_query("INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','','$b','','".date('Y-m-d H:i:s')."')");
+              mysql_query("INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','','$b','','".date('Y-m-d H:i:s')."')");
             }
           }
         }
@@ -207,7 +207,7 @@ cek_session_guru();
 
 }elseif($_GET[act]=='detailsiswa'){
 cek_session_siswa();
-    include "raport/raport_uts_halaman_siswa.php";
+    include "raport/raport_sas_halaman_siswa.php";
 }
 ?>
 
