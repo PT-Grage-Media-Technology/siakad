@@ -246,8 +246,15 @@ echo "
          }
        }
 
+       // Tampilkan alert jika ada
        if ($alert_message) {
-           echo $alert_message; // Tampilkan alert jika ada
+           echo "
+           <script>
+               $(document).ready(function() {
+                   $('#alertContainer').html(`$alert_message`).fadeIn();
+               });
+           </script>
+           ";
        } else {
            echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');</script>";
        }
