@@ -699,7 +699,7 @@ while ($r = mysql_fetch_array($tampil)) {
                               placeholder='Cari tujuan pembelajaran...' 
                               value='" . htmlspecialchars($e['tujuan_pembelajaran']) . "' 
                               " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'readonly' : '') . ">
-
+ 
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
                               class='btn btn-danger btn-sm ml-2' 
