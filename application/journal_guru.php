@@ -5,10 +5,8 @@
 session_start();
 $_SESSION['akses_agenda'] = true;
 
-
 if (isset($_POST['search'])) {
   $search = mysql_real_escape_string($_POST['search']);
-  // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
   $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
 
   if (mysql_num_rows($result) > 0) {
@@ -17,7 +15,7 @@ if (isset($_POST['search'])) {
           echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
       }
   } else {
-      echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
+      echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
   }
   exit;
 }
@@ -503,7 +501,8 @@ if (isset($_POST['search'])) {
                   </div>
               </form>
             </div>";
- 
+
+            
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
   //   $d = tgl_simpan($_POST[d]);
@@ -724,36 +723,35 @@ $(document).ready(function(){
 
 <script>
     $(document).ready(function () {
-    $('#search_tujuan').on('input', function () {
-        var query = $(this).val();
+        $('#search_tujuan').on('input', function () {
+            var query = $(this).val();
 
-        if (query.length > 0) {
-            // Kirim request AJAX
-            $.ajax({
-                url: '', // File PHP yang sama
-                method: 'POST',
-                data: { search: query },
-                success: function (data) {
-                  console.log(data);
-                  console.log(query);
-                    $('#result_tujuan').append(data).show(); // Tampilkan hasil di <select>
-                },
-            });
-        } else {
-            $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
-        }
+            if (query.length > 0) {
+                // Kirim request AJAX
+                $.ajax({
+                    url: '', // Target the correct PHP file
+                    method: 'POST',
+                    data: { search: query },
+                    success: function (data) {
+                      console.log(data.search);
+                        $('#result_tujuan').append(data).show(); // Clear previous options
+                    },
+                });
+            } else {
+                $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
+            }
+        });
+
+        // Tangkap perubahan pada dropdown
+        $('#result_tujuan').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var id = selectedOption.val(); // Ambil value (ID)
+            var name = selectedOption.text(); // Ambil teks (Nama)
+
+            // Masukkan nilai ke input
+            $('#search_tujuan').val(name);
+            $('#id_parent_journal').val(id);
+            $('#result_tujuan').hide(); // Sembunyikan dropdown
+        });
     });
-
-    // Tangkap perubahan pada dropdown
-    $('#result_tujuan').on('change', function () {
-        var selectedOption = $(this).find(':selected');
-        var id = selectedOption.val(); // Ambil value (ID)
-        var name = selectedOption.text(); // Ambil teks (Nama)
-
-        // Masukkan nilai ke input
-        $('#search_tujuan').val(name);
-        $('#id_parent_journal').val(id);
-        $('#result_tujuan').hide(); // Sembunyikan dropdown
-    });
-});
-    </script>
+</script>
