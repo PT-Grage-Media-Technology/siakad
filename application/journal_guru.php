@@ -734,7 +734,7 @@ $(document).ready(function(){
                     data: { search: query },
                     success: function (data) {
                       console.log(data);
-                        $('#result_tujuan').html(data).show(); // Clear previous options
+                        $('#result_tujuan').append(data).show(); // Clear previous options
                     },
                 });
             } else {
