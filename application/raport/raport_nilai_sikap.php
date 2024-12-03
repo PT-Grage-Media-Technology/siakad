@@ -233,7 +233,7 @@ if (isset($_GET['delete_keterampilan'])){
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='b' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='b' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
