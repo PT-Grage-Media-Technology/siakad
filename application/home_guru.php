@@ -175,10 +175,62 @@
 
         
 <?php
-if(isset($_POST['editkktp'])){
-    var_dump($_POST['editkktp']);
+if (isset($_POST['editkktp'])) {
+    // Ambil data dari form
+    $kodejdwl = $_POST['kodejdwl'];
+    $kktp = $_POST['kktp'];
+
+    // Pastikan kktp adalah angka yang valid
+    if (!is_numeric($kktp)) {
+        echo 'Gagal: KKTP harus berupa angka.';
+        exit;
+    }
+
+    // Lakukan query update
+    $query = "UPDATE your_table SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+
+    // Jalankan query
+    $result = mysql_query($query);
+
+    // Cek apakah query berhasil
+    if ($result) {
+        echo 'success'; // Mengirimkan status sukses sebagai respons
+    } else {
+        // Jika gagal, tampilkan error MySQL
+        echo 'Gagal: ' . mysql_error(); // Kirimkan pesan error jika query gagal
+    }
 }
 ?>
+
+<script>
+// Menambahkan event listener untuk form submit
+document.getElementById('editKktpForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Mencegah pengiriman form standar
+
+    const formData = new FormData(this); // Ambil data form
+
+    // Kirim data form menggunakan AJAX (fetch API)
+    fetch('editKktp.php', { // Ubah dengan nama file PHP yang sesuai
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // Mengharapkan respons dalam bentuk teks biasa
+    .then(data => {
+        // Menangani hasil respons dari server
+        if (data.includes("success")) {
+            alert('KKTP berhasil diperbarui!');
+            $('#editKktpModal').modal('hide'); // Tutup modal jika menggunakan Bootstrap
+            location.reload(); // Reload halaman untuk memperbarui data
+        } else {
+            alert('Gagal memperbarui KKTP: ' + data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memperbarui KKTP.');
+    });
+});
+</script>
 
 
 
