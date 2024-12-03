@@ -7,20 +7,19 @@ $_SESSION['akses_agenda'] = true;
 
 
 if (isset($_POST['search'])) {
-  $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
-  $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
-  $result = mysql_query($query);
+  $search = mysql_real_escape_string($_POST['search']);
+  // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
+  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
 
   if (mysql_num_rows($result) > 0) {
-      // Tampilkan setiap hasil pencarian
+      echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
       while ($row = mysql_fetch_assoc($result)) {
-          echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+          echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
       }
   } else {
-      echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+      echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
   }
-
-  exit;  // Hentikan eksekusi di sini jika ini request AJAX
+  exit;
 }
 
 ?>
@@ -504,22 +503,6 @@ if (isset($_POST['search'])) {
                   </div>
               </form>
             </div>";
-
-            if (isset($_POST['search'])) {
-              $search = mysql_real_escape_string($_POST['search']);
-              // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
-              $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-          
-              if (mysql_num_rows($result) > 0) {
-                  echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
-                  while ($row = mysql_fetch_assoc($result)) {
-                      echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
-                  }
-              } else {
-                  echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
-              }
-              exit;
-          }
  
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
