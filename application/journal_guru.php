@@ -11,28 +11,25 @@ $_SESSION['akses_agenda'] = true;
 //                       WHERE jl.kodejdwl='$_GET[id]' 
 //                       ORDER BY jl.id_journal DESC");
 
-if (isset($_GET['search_term'])) {
-  $search_term = $_GET['search_term'];
-  
-  // Koneksi ke database dan query pencarian
-  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
-                         FROM rb_journal_list jl 
-                         LEFT JOIN rb_guru g ON jl.users = g.nip 
-                         WHERE jl.kodejdwl='$_GET[id]' 
-                         AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
-                         ORDER BY jl.id_journal DESC");
+// Koneksi ke database dan query pencarian jika ada
+$search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
+$id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
 
-  $options = [];
-  while ($row = mysql_fetch_array($tampil)) {
-      $options[] = [
-          'id' => $row['id_journal'],
-          'tujuan' => $row['tujuan_pembelajaran']
-      ];
-  }
+// Query untuk mencari tujuan pembelajaran berdasarkan search term
+$tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                       FROM rb_journal_list jl 
+                       LEFT JOIN rb_guru g ON jl.users = g.nip 
+                       WHERE jl.kodejdwl='$id_jdwl' 
+                       AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
+                       ORDER BY jl.id_journal DESC");
 
-  // Return options as JSON for frontend usage
-  echo json_encode($options);
-  exit; // Agar tidak mengeksekusi kode HTML
+// Ambil data untuk dropdown
+$options = [];
+while ($row = mysql_fetch_array($tampil)) {
+    $options[] = [
+        'id' => $row['id_journal'],
+        'tujuan' => $row['tujuan_pembelajaran']
+    ];
 }
 
 ?>
@@ -503,7 +500,14 @@ if (isset($_GET['search_term'])) {
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <select id='result_tujuan' class='form-control' style='position: absolute; background: #fff; border: 1px solid #ccc; display: none;'></select>
+                            <select id='result_tujuan' class='form-control' style='display: none;'>
+                                <?php
+                                // Menggunakan foreach untuk membuat option berdasarkan data dari query
+                                foreach ($options as $option) {
+                                    echo '<option value='{$option['id']}'>{$option['tujuan']}</option>';
+                                }
+                                ?>
+                            </select>
                         </td>
                     </tr>
                   </tbody>
@@ -740,22 +744,8 @@ $(document).ready(function(){
         let search_term = this.value;
 
         if (search_term.length > 2) {
-            // Ambil data dari PHP dengan menggunakan Fetch
-            fetch(`index.php?search_term=${search_term}&id=your_kodejdwl_value`)
-                .then(response => response.json())
-                .then(data => {
-                    let resultSelect = document.getElementById('result_tujuan');
-                    resultSelect.innerHTML = ''; // Clear previous results
-                    resultSelect.style.display = 'block'; // Show dropdown
-
-                    // Menambahkan option ke dropdown
-                    data.forEach(option => {
-                        let optionElement = document.createElement('option');
-                        optionElement.value = option.id;
-                        optionElement.textContent = option.tujuan;
-                        resultSelect.appendChild(optionElement);
-                    });
-                });
+            // Mengirim permintaan untuk mencari tujuan pembelajaran
+            window.location.href = `index.php?search_term=${search_term}&id=your_kodejdwl_value`;
         } else {
             document.getElementById('result_tujuan').style.display = 'none';
         }
@@ -765,7 +755,7 @@ $(document).ready(function(){
     document.getElementById('result_tujuan').addEventListener('change', function() {
         let selectedOption = this.options[this.selectedIndex];
         document.getElementById('id_parent_journal').value = selectedOption.value;
-        document.getElementById('result_tujuan').style.display = 'none'; // Hide dropdown
+        document.getElementById('result_tujuan').style.display = 'none'; // Sembunyikan dropdown
     });
 </script>
 
