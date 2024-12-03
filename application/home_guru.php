@@ -127,44 +127,12 @@
                         if($r[kktp]){
                         echo "<input name='nilai' value='$r[kktp]' type='number' style='padding:4px' disabled/>";
         } else {
-            echo "<form method='POST' class='form-horizontal' action='' id='kktp'>
+            echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
                     <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
-                    <input name='nilai' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                    <input name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
                   </form>";
         }
-                        
-                        echo"<td> <input type='number' class='form-control' name='kktp' required value='$r[kktp]'></td>
-                        <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
-                    </tr>
-                    
-                            <div class='modal fade' id='editKktpModal' tabindex='-1' role='dialog' aria-labelledby='editKktpModalLabel' aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-                <!-- Modal Form -->
-<form method='POST' id='editKktpForm'>
-    <div class='modal-content'>
-        <div class='modal-header'>
-            <h5 class='modal-title'>Edit KKTP</h5>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-            </button>
-        </div>
-        <div class='modal-body'>
-            <input type='hidden' name='kodejdwl' id='modalKodeJdwl' value='$r[kodejdwl]'> <!-- Ganti dengan nilai dinamis -->
-            <div class='form-group'>
-                <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required value='$r[kktp]'> <!-- Ganti dengan nilai dinamis -->
-            </div>
-        </div>
-        <div class='modal-footer'>
-            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button type='submit' class='btn btn-primary' name='editkktp'>Simpan Perubahan</button>
-        </div>
-    </div>
-</form>
 
-
-                        </div>
-                    </div";
 
                             $no++;
 
@@ -338,7 +306,7 @@ if (isset($_POST['kktp'])) {
         if (selectedValue) {
             const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
             if (confirmSubmit) {
-                document.getElementById('kktp').submit();
+                document.getElementById('kktpForm').submit();
             }
         }
     }
