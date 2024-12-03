@@ -222,7 +222,7 @@ echo "
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
        $n = $jml[jmlp];
-       for ($i=0; $i>=$n; $i++){
+       for ($i=0; $i<=$n; $i++){
          if (isset($_POST['jawab'.$i])){
            $jawab = $_POST['jawab'.$i];
            $pertanyaan = $_POST['id'.$i];
