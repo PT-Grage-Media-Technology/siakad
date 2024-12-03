@@ -125,11 +125,7 @@
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>
                         <td>$r[kktp]</td>
-                        <td><button type='button' class='btn btn-warning btn-xs edit-kktp-btn' 
-                                    data-id='$r[kodejdwl]' 
-                                    data-kktp='$r[kktp]' 
-                                    data-toggle='modal' 
-                                    data-target='#editKktpModal'>Edit KKTP</button></td>
+                        <td> <input type='number' class='form-control' name='kktp' required value='$r[kktp]'></td>
                         <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
                     </tr>
                     
