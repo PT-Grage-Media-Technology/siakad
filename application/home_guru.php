@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     editButtons.forEach(button => {
         button.addEventListener('click', function () {
+            console.log("ds");
             const kodejdwl = this.getAttribute('data-id');
             const kktp = this.getAttribute('data-kktp');
 
