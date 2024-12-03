@@ -260,7 +260,7 @@ echo "
                     $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
-                    $jwb = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$r[id_pertanyaan_penilaian]' AND status='refleksi' AND kode_kelas='$t[kode_kelas]'"));
+                    $jwb = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$r[id_pertanyaan_penilaian]' AND status='refleksi' AND kode_kelas='$t[kode_kelas]' AND id_journal='$_GET[id_journal]'"));
                     echo "<tr><td>$no</td>
                               <td>$r[pertanyaan]</td>
                           </tr>
