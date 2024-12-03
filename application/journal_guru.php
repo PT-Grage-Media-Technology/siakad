@@ -6,32 +6,6 @@ session_start();
 $_SESSION['akses_agenda'] = true;
 
 
-if (isset($_POST['search'])) {
-  // Amankan input dari pengguna
-  $search = mysql_real_escape_string($_POST['search']);
-
-  // Query untuk mencari data
-  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-
-  $options = []; // Array untuk menampung tag <option> dalam format HTML
-
-  if (mysql_num_rows($result) > 0) {
-      // Tambahkan placeholder
-      $options[] = "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>";
-
-      // Tambahkan hasil pencarian ke dalam array options dengan tag <option>
-      while ($row = mysql_fetch_assoc($result)) {
-          $options[] = "<option value='{$row['id_journal']}'>{$row['file']}</option>";
-      }
-
-      // Kirimkan tag <option> dalam format JSON
-      echo json_encode($options);
-  } else {
-      // Kirimkan hasil jika tidak ada yang ditemukan
-      $options[] = "<option value='' disabled>Tidak ada hasil ditemukan</option>";
-      echo json_encode($options);
-  }
-}
 
 ?>
 
@@ -515,6 +489,32 @@ if (isset($_POST['search'])) {
               </form>
             </div>";
 
+            if (isset($_POST['search'])) {
+              // Amankan input dari pengguna
+              $search = mysql_real_escape_string($_POST['search']);
+            
+              // Query untuk mencari data
+              $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
+            
+              $options = []; // Array untuk menampung tag <option> dalam format HTML
+            
+              if (mysql_num_rows($result) > 0) {
+                  // Tambahkan placeholder
+                  $options[] = "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>";
+            
+                  // Tambahkan hasil pencarian ke dalam array options dengan tag <option>
+                  while ($row = mysql_fetch_assoc($result)) {
+                      $options[] = "<option value='{$row['id_journal']}'>{$row['file']}</option>";
+                  }
+            
+                  // Kirimkan tag <option> dalam format JSON
+                  echo json_encode($options);
+              } else {
+                  // Kirimkan hasil jika tidak ada yang ditemukan
+                  $options[] = "<option value='' disabled>Tidak ada hasil ditemukan</option>";
+                  echo json_encode($options);
+              }
+            }
             
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
