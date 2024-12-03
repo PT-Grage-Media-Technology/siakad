@@ -7,21 +7,18 @@ $_SESSION['akses_agenda'] = true;
 
 
 if (isset($_POST['search'])) {
-    $search = mysql_real_escape_string($_POST['search']);
-    $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
+  $search = mysql_real_escape_string($_POST['search']);
+  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
 
-    if (mysql_num_rows($result) > 0) {
-        // echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
-        $coba = "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
-        while ($row = mysql_fetch_assoc($result)) {
-          $coba = "<option value='{$row['id_journal']}'>{$row['file']}</option>";
-        }
-
-        return $coba;
-    } else {
-        echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
-    }
-    exit;
+  if (mysql_num_rows($result) > 0) {
+      echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
+      while ($row = mysql_fetch_assoc($result)) {
+          echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
+      }
+  } else {
+      echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
+  }
+  exit;
 }
 
 ?>
