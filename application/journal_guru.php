@@ -736,6 +736,7 @@ $(document).ready(function(){
 ?>
 
 <script>
+    // Ketika mengetik pada input pencarian
     document.getElementById('search_tujuan').addEventListener('input', function() {
         var searchValue = this.value.toLowerCase();
         var selectElement = document.getElementById('result_tujuan');
@@ -772,6 +773,9 @@ $(document).ready(function(){
         document.getElementById('search_tujuan').value = selectedOption.text;  // Set tujuan_pembelajaran ke input text
         document.getElementById('id_parent_journal').value = selectedOption.value;  // Set id_journal ke input hidden
         document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown setelah memilih
+        
+        // Set input menjadi readonly dan tombol hapus muncul
+        document.getElementById('search_tujuan').setAttribute('readonly', true);
         document.getElementById('clear_search').style.display = 'inline-block';  // Tampilkan tombol hapus
     });
 
@@ -781,10 +785,10 @@ $(document).ready(function(){
         document.getElementById('id_parent_journal').value = '';  // Kosongkan input hidden
         document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown
         this.style.display = 'none';  // Sembunyikan tombol hapus
+        document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
     });
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
