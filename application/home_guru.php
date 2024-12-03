@@ -25,34 +25,34 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 // include 'koneksi.php';
 
 // Periksa apakah data dikirim melalui POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Tangkap data dari form
-    $kodejdwl = $_POST['kodejdwl'];
-    $kktp = $_POST['kktp'];
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     // Tangkap data dari form
+//     $kodejdwl = $_POST['kodejdwl'];
+//     $kktp = $_POST['kktp'];
 
-    // Tangkap parameter tahun dari URL
-    $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+//     // Tangkap parameter tahun dari URL
+//     $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : '';
 
-    // Perbarui data KKTP di database
-    $query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
+//     // Perbarui data KKTP di database
+//     $query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
 
-    // Feedback dan pengalihan
-    if ($query) {
-        echo "<script>
-            alert('KKTP berhasil diperbarui!');
-            window.location='index.php?view=jadwalguru&tahun=$tahun';
-        </script>";
-    } else {
-        echo "<script>
-            alert('Gagal memperbarui KKTP!');
-            window.location='index.php?view=jadwalguru&tahun=$tahun';
-        </script>";
-    }
-} else {
-    // Jika halaman diakses tanpa submit, redirect atau tampilkan pesan
-    header('Location: index.php?view=jadwalguru&tahun=' . (isset($_GET['tahun']) ? $_GET['tahun'] : ''));
-    exit();
-}
+//     // Feedback dan pengalihan
+//     if ($query) {
+//         echo "<script>
+//             alert('KKTP berhasil diperbarui!');
+//             window.location='index.php?view=jadwalguru&tahun=$tahun';
+//         </script>";
+//     } else {
+//         echo "<script>
+//             alert('Gagal memperbarui KKTP!');
+//             window.location='index.php?view=jadwalguru&tahun=$tahun';
+//         </script>";
+//     }
+// } else {
+//     // Jika halaman diakses tanpa submit, redirect atau tampilkan pesan
+//     header('Location: index.php?view=jadwalguru&tahun=' . (isset($_GET['tahun']) ? $_GET['tahun'] : ''));
+//     exit();
+// }
 ?> 
 
 
