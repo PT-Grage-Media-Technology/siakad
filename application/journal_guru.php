@@ -23,14 +23,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                        AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
                        ORDER BY jl.id_journal DESC");
 
-// Ambil data untuk dropdown
-$options = [];
-while ($row = mysql_fetch_array($tampil)) {
-    $options[] = [
-        'id' => $row['id_journal'],
-        'tujuan' => $row['tujuan_pembelajaran']
-    ];
-}
+
 
 ?>
 
@@ -498,7 +491,16 @@ while ($row = mysql_fetch_array($tampil)) {
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>
                         <td>
-                            
+                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                            <select id='result_tujuan' class='form-control' style='display: none;'>
+                                <?php
+                                // Menggunakan foreach untuk membuat option berdasarkan data dari query
+                                foreach ($options as $option) {
+                                    echo '<option value='{$option['id']}'>{$option['tujuan']}</option>';
+                                }
+                                ?>
+                            </select>
                         </td>
                     </tr>
                   </tbody>
