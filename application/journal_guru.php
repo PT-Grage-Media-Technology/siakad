@@ -518,7 +518,7 @@ if (isset($_POST['search'])) {
                       echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
                   }
               } else {
-                  echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+                  echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan $search</div>";
               }
           }
  
