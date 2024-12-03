@@ -123,9 +123,17 @@
                         <td>$r[jam_mulai]</td>
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
-                        <td>$r[id_tahun_akademik]</td>
-                        <td>$r[kktp]</td>
-                        <td> <input type='number' class='form-control' name='kktp' required value='$r[kktp]'></td>
+                        <td>$r[id_tahun_akademik]</td>";
+                        if($r[kktp]){
+                        echo "<input name='nilai' value='$r[kktp]' type='number' style='padding:4px' disabled/>";
+        } else {
+            echo "<form method='POST' class='form-horizontal' action='' id='kktp'>
+                    <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                    <input name='nilai' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                  </form>";
+        }
+                        
+                        echo"<td> <input type='number' class='form-control' name='kktp' required value='$r[kktp]'></td>
                         <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
                     </tr>
                     
@@ -209,31 +217,12 @@
             </script> -->
 <?php
 // Cek apakah form disubmit
-if (isset($_POST['editkktp'])) {
-    // Ambil data dari form
-    $kodejdwl = $_POST['kodejdwl']; // Misal: '123'
-    $kktp = $_POST['kktp']; // Misal: '456'
-
-    echo $kodejdwl;
-    echo $kktp;
-    // Pastikan kktp adalah angka yang valid
-    if (!is_numeric($kktp)) {
-        echo 'Gagal: KKTP harus berupa angka.';
-        exit;
-    }
-
-    // Lakukan query update ke database
-    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
-
-    // Jalankan query
-    $result = mysql_query($query);
-
-    // Cek apakah query berhasil
-    if ($result) {
-        echo 'success'; // Jika sukses, kembalikan 'success'
-    } else {
-        echo 'Gagal memperbarui KKTP'; // Jika gagal
-    }
+if (isset($_POST['kktp'])) {
+    // Memeriksa data yang dikirimkan melalui form
+    // var_dump($_POST['nilai']);
+    // exit; // Menampilkan isi $_POST untuk melihat data yang dikirim
+    // Menghapus exit agar proses dapat melanjutkan ke query
+    $coba = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='{$_POST['kktp']}' WHERE kodejdwl='{$_POST['kodejdwl']}'");
 }
 ?>
 
@@ -342,36 +331,15 @@ if (isset($_POST['editkktp'])) {
         }
     }
 </style>
-
 <script>
-// Menggunakan AJAX untuk submit form
-document.getElementById('editKktpForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Mencegah pengiriman form standar
 
-    const formData = new FormData(this); // Mengambil data dari form
-
-    // Mengirimkan data menggunakan fetch
-    fetch('', { // Mengirim data ke halaman yang sama
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text()) // Menunggu respons dalam bentuk teks
-    .then(data => {
-        console.log(data); // Menampilkan data untuk debugging
-
-        // Memeriksa respons dari server
-        if (data.includes('success')) {
-            alert('KKTP berhasil diperbarui!');
-            $('#editKktpModal').modal('hide'); // Menutup modal jika menggunakan Bootstrap
-            location.reload(); // Reload halaman untuk memperbarui data
-        } else {
-            alert('Gagal memperbarui KKTP: ' + data); // Menampilkan pesan kesalahan
+    function submitFormWithAlert(selectElement) {
+        const selectedValue = selectElement.value;
+        if (selectedValue) {
+            const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
+            if (confirmSubmit) {
+                document.getElementById('kktp').submit();
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat memperbarui KKTP.');
-    });
-});
-
-</script>
+    }
+    </script>
