@@ -231,8 +231,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='number' name='b' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='e' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='f' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
