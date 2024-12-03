@@ -406,8 +406,8 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td>{$sub['materi']}</td>";
 
             if ($_SESSION['level'] != 'kepala') {
-              $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-              $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
+              $buttonDisabled = ($sub['tanggal'] > $today) ? 'disabled' : '';
+              $absenLink = ($sub['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
                 echo "<td style='width: 200px; !important'><center>
                         <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                         <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$sub['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
