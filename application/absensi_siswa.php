@@ -204,6 +204,10 @@
                             </tr>
                             <tr>
                                 <th scope='row'>Tujuan Pembelajaran</th>
+                                <td>$j[tujuan_pembelajaran]</td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>Materi</th>
                                 <td>$j[materi]</td>
                             </tr>
                         </tbody>
