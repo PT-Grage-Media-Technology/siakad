@@ -216,6 +216,7 @@ document.getElementById('editKktpForm').addEventListener('submit', function(e) {
     })
     .then(response => response.text()) // Mengharapkan respons dalam bentuk teks biasa
     .then(data => {
+        console.log(data);
         // Menangani hasil respons dari server
         if (data.includes("success")) {
             alert('KKTP berhasil diperbarui!');
