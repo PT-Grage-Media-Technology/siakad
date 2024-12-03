@@ -733,7 +733,7 @@ $(document).ready(function(){
                     method: 'POST',
                     data: { search: query },
                     success: function (data) {
-                      console.log(data);
+                      console.log(data.search);
                         $('#result_tujuan').append(data).show(); // Clear previous options
                     },
                 });
