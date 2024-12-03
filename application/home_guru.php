@@ -148,12 +148,12 @@
             <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
             <div class='form-group'>
                 <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required>
+                <input type='number' class='form-control' name='kktp' id='modalKktp' required value=$r[kktp]>
             </div>
         </div>
         <div class='modal-footer'>
             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button type='submit' name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
+            <button name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
         </div>
     </div>
 </form>
