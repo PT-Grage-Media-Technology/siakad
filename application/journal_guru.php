@@ -508,11 +508,11 @@ $_SESSION['akses_agenda'] = true;
                   }
             
                   // Kirimkan tag <option> dalam format JSON
-                  echo json_encode($options);
+                  return json_encode($options);
               } else {
                   // Kirimkan hasil jika tidak ada yang ditemukan
                   $options[] = "<option value='' disabled>Tidak ada hasil ditemukan</option>";
-                  echo json_encode($options);
+                  return json_encode($options);
               }
             }
             
