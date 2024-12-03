@@ -35,14 +35,14 @@
                                                       ORDER BY a.urutan ASC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
-                      var_dump($r);
+                      
                     echo "<tr><td>$no</td>
                               <td>$r[kode_pelajaran]</td>
                               <td>$r[namamatapelajaran]</td>
                               <td>$r[nama_jurusan]</td>
                               <td>$r[tingkat]</td>
                               <td>$r[nama_guru]</td>
-                              <td>$r[kktp]</td>
+                              <td>$r[kkm]</td>
                               <td>$r[urutan]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
