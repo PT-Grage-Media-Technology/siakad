@@ -14,6 +14,7 @@ if (isset($_POST['search'])) {
       while ($row = $result->fetch_assoc()) {
           echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
       }
+      exit;
   } else {
       echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
   }
