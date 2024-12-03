@@ -24,7 +24,14 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                        ORDER BY jl.id_journal DESC");
 
 
-
+// Ambil data untuk dropdown
+$options = [];
+while ($row = mysql_fetch_array($tampil)) {
+    $options[] = [
+        'id' => $row['id_journal'],
+        'tujuan' => $row['tujuan_pembelajaran']
+    ];
+}
 ?>
 
 <?php if ($_GET[act] == '') { ?>
