@@ -165,39 +165,23 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
       // Simpan data ke database
-      if($_POST['id_parent_journal'] == ''){
-        $query = "INSERT INTO rb_journal_list VALUES(
-            '',
-            '$_GET[id]',
-            '$_POST[c]', 
-            '$d',
-            '$_POST[e]', 
-            '$_POST[ee]', 
-            '$_POST[f]', 
-            '$_POST[tujuan_pembelajaran]', 
-            '$target_file', 
-            '" . date('Y-m-d H:i:s') . "', 
-            '$_POST[nip_users]',
-            NULL,
-            NULL
-        )";
-      } else {
-        $query = "INSERT INTO rb_journal_list VALUES(
-            '',
-            '$_GET[id]',
-            '$_POST[c]', 
-            '$d',
-            '$_POST[e]', 
-            '$_POST[ee]', 
-            '$_POST[f]', 
-            '$_POST[tujuan_pembelajaran]', 
-            '$target_file', 
-            '" . date('Y-m-d H:i:s') . "', 
-            '$_POST[nip_users]',
-            NULL,
-            '$_POST[id_parent_journal]'
-        )";
-      }
+      $id_parent_journal = empty($_POST['id_parent_journal']) ? "NULL" : "'$_POST[id_parent_journal]'";
+
+      $query = "INSERT INTO rb_journal_list VALUES(
+          '',
+          '$_GET[id]',
+          '$_POST[c]', 
+          '$d',
+          '$_POST[e]', 
+          '$_POST[ee]', 
+          '$_POST[f]', 
+          '$_POST[tujuan_pembelajaran]', 
+          '$target_file', 
+          '" . date('Y-m-d H:i:s') . "', 
+          '$_POST[nip_users]',
+          NULL,
+          $id_parent_journal
+      )";
 
       
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
@@ -291,7 +275,9 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                               <select id='result_tujuan' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   while ($row = mysql_fetch_array($tampilInput)) {
+                                    if($row['id_parent_journal'] == null){
                                       echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                    }
                                   }
                                   echo "
                               </select>
