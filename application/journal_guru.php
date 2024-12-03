@@ -146,8 +146,8 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump(isset($_POST['id_parent_journal']));
-    exit;
+    // var_dump($_POST['id_parent_journal'] == '');
+    // exit;
 
 
     $d = tgl_simpan($_POST[d]);
@@ -165,6 +165,8 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
       // Simpan data ke database
+      $id_parent_journal = empty($_POST['id_parent_journal']) ? "NULL" : "'$_POST[id_parent_journal]'";
+
       $query = "INSERT INTO rb_journal_list VALUES(
           '',
           '$_GET[id]',
@@ -178,7 +180,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
           '" . date('Y-m-d H:i:s') . "', 
           '$_POST[nip_users]',
           NULL,
-          '$_POST[id_parent_journal]'
+          $id_parent_journal
       )";
 
       
