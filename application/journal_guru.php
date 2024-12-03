@@ -16,14 +16,12 @@ $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
 $id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
 
 // Query untuk mencari tujuan pembelajaran berdasarkan search term
-$tampil = mysql_query("SELECT jl.*, g.nama_guru 
+$tampilInput = mysql_query("SELECT jl.*, g.nama_guru 
                        FROM rb_journal_list jl 
                        LEFT JOIN rb_guru g ON jl.users = g.nip 
                        WHERE jl.kodejdwl='$id_jdwl' 
                        AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
                        ORDER BY jl.id_journal DESC");
-
-
 
 ?>
 
@@ -148,8 +146,8 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    // var_dump($_POST['tambah']);
-    // exit;
+    var_dump(isset($_POST['id_parent_journal']));
+    exit;
 
 
     $d = tgl_simpan($_POST[d]);
@@ -175,15 +173,19 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
           '$_POST[e]', 
           '$_POST[ee]', 
           '$_POST[f]', 
-          '$_POST[g]', 
+          '$_POST[tujuan_pembelajaran]', 
           '$target_file', 
           '" . date('Y-m-d H:i:s') . "', 
           '$_POST[nip_users]',
-          NULL
+          NULL,
+          '$_POST[id_parent_journal]'
       )";
+
+      
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
-
-
+      
+      // var_dump($query);
+      
       if (mysql_query($query)) {
         echo "Data berhasil disimpan ke database.<br>";
       } else {
@@ -264,11 +266,18 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                       <tr>
                         <th scope='row'>Tujuan Pembelajaran222</th>  
-                        <td>
-                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
-                        </td>
+                         <td>
+                              <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                              <input type='text' id='search_tujuan' name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                              <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
+                              <select id='result_tujuan' class='form-control' style='display: none;'>
+                                  <option value=''>Pilih Tujuan Pembelajaran..</option>";
+                                  while ($row = mysql_fetch_array($tampilInput)) {
+                                      echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                  }
+                                  echo "
+                              </select>
+                          </td>
                       </tr>
                           
                           <th scope='row'>Materi</th>
@@ -333,11 +342,11 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
   // $no = 1;
   // $today = date('Y-m-d');
 
-  // $tampil = mysql_query("SELECT jl.*, g.nama_guru 
-  //                     FROM rb_journal_list jl 
-  //                     LEFT JOIN rb_guru g ON jl.users = g.nip 
-  //                     WHERE jl.kodejdwl='$_GET[id]' 
-  //                     ORDER BY jl.id_journal DESC");
+  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                      FROM rb_journal_list jl 
+                      LEFT JOIN rb_guru g ON jl.users = g.nip 
+                      WHERE jl.kodejdwl='$_GET[id]' 
+                      ORDER BY jl.id_journal DESC");
   $no = 1;
   $today = date('Y-m-d');
 
@@ -412,8 +421,8 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
             </div>";
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+    var_dump($_POST);
+    exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
@@ -490,16 +499,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran111</th>
-                        <td>
-                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <select id='result_tujuan' class='form-control' >";
-                                foreach ($options as $option) {
-                                    echo "<option value='$option[id]'>$option[tujuan]</option>";
-                                }
-                                echo"
-                            </select>
-                        </td>
+                        
                     </tr>
                   </tbody>
                   </table>
@@ -731,27 +731,64 @@ $(document).ready(function(){
 ?>
 
 <script>
-  document.getElementById('search_tujuan').addEventListener('input', function() {
-    var searchValue = this.value.toLowerCase();
-    var selectElement = document.getElementById('result_tujuan');
-    var options = selectElement.getElementsByTagName('option');
-    
-    // Menampilkan select jika input tidak kosong
-    if (searchValue !== '') {
-        selectElement.style.display = 'block';
-    } else {
-        selectElement.style.display = 'none';
-    }
-    
-    // Menyembunyikan opsi yang tidak sesuai dengan pencarian
-    for (var i = 0; i < options.length; i++) {
-        var optionText = options[i].textContent || options[i].innerText;
-        if (optionText.toLowerCase().indexOf(searchValue) > -1) {
-            options[i].style.display = 'block';
+    // Ketika mengetik pada input pencarian
+    document.getElementById('search_tujuan').addEventListener('input', function() {
+        var searchValue = this.value.toLowerCase();
+        var selectElement = document.getElementById('result_tujuan');
+        var options = selectElement.getElementsByTagName('option');
+        
+        // Menampilkan select jika input tidak kosong
+        if (searchValue !== '') {
+            selectElement.style.display = 'block';
         } else {
-            options[i].style.display = 'none';
+            selectElement.style.display = 'none';
         }
-    }
-});
+        
+        // Menyembunyikan opsi yang tidak sesuai dengan pencarian
+        var anyMatch = false;
+        for (var i = 0; i < options.length; i++) {
+            var optionText = options[i].textContent || options[i].innerText;
+            if (optionText.toLowerCase().indexOf(searchValue) > -1) {
+                options[i].style.display = 'block';
+                anyMatch = true;
+            } else {
+                options[i].style.display = 'none';
+            }
+        }
 
+        // Jika tidak ada opsi yang cocok, sembunyikan dropdown
+        if (!anyMatch) {
+            selectElement.style.display = 'none';
+        }
+    });
+
+    // Ketika memilih opsi, set value input dan id_parent_journal
+    document.getElementById('result_tujuan').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        document.getElementById('search_tujuan').value = selectedOption.text;  // Set tujuan_pembelajaran ke input text
+        document.getElementById('id_parent_journal').value = selectedOption.value;  // Set id_journal ke input hidden
+        document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown setelah memilih
+        
+        // Set input menjadi readonly dan tombol hapus muncul
+        document.getElementById('search_tujuan').setAttribute('readonly', true);
+        document.getElementById('clear_search').style.display = 'inline-block';  // Tampilkan tombol hapus
+    });
+
+    // Ketika tombol hapus diklik, kosongkan input dan sembunyikan tombol hapus
+    document.getElementById('clear_search').addEventListener('click', function() {
+        document.getElementById('search_tujuan').value = '';  // Kosongkan input text
+        document.getElementById('id_parent_journal').value = '';  // Kosongkan input hidden
+        document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown
+
+        // Reset dropdown ke opsi awal
+        var selectElement = document.getElementById('result_tujuan');
+        selectElement.selectedIndex = 0;  // Pilih opsi kosong kembali (opsi pertama)
+
+        this.style.display = 'none';  // Sembunyikan tombol hapus
+        document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
+    });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

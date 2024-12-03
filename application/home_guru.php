@@ -80,7 +80,7 @@
 
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <class="box-body">
             <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -96,7 +96,6 @@
                             <th>Ruangan</th>
                             <th>Semester</th>
                             <th>KKTP</th>
-                            <th>Aksi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -123,42 +122,22 @@
                         <td>$r[jam_mulai]</td>
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
-                        <td>$r[id_tahun_akademik]</td>
-                        <td>$r[kktp]</td>
-                        <td><button type='button' class='btn btn-warning btn-xs edit-kktp-btn' 
-                                    data-id='$r[kodejdwl]' 
-                                    data-kktp='$r[kktp]' 
-                                    data-toggle='modal' 
-                                    data-target='#editKktpModal'>Edit KKTP</button></td>
-                        <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
-                    </tr>
+                        <td>$r[id_tahun_akademik]</td>";
+                        if($r[kktp]){
+                            echo "<td><form method='POST' class='form-horizontal' action='' id='kktpForm'>
+                            <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                            <input style='width:60px'  name='kktp' type='number' value='$r[kktp]' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                          </form></td>";
+                        }else{
+                            echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
+                            <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                            <input style='width:60px' name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                          </form>";
+                        }
+                     
+                        echo"<td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
+                        </tr>";
                     
-                            <div class='modal fade' id='editKktpModal' tabindex='-1' role='dialog' aria-labelledby='editKktpModalLabel' aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-                   <form id='kktpForm' method='POST' action=''>
-    <div class='modal-content'>
-        <div class='modal-header'>
-            <h5 class='modal-title'>Edit KKTP</h5>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-            </button>
-        </div>
-        <div class='modal-body'>
-            <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
-            <div class='form-group'>
-                <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required>
-            </div>
-        </div>
-        <div class='modal-footer'>
-            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button type='submit' class='btn btn-primary'>Simpan Perubahan</button>
-        </div>
-    </div>
-</form>
-
-                        </div>
-                    </div>";
 
                             $no++;
 
@@ -170,6 +149,8 @@
                     </tbody>
                 </table>
             </div>
+
+            
 
 
 
@@ -207,58 +188,22 @@
                 // });
 
             </script> -->
-<script>
-            document.addEventListener('DOMContentLoaded', function () {
-    const editButtons = document.querySelectorAll('.edit-kktp-btn');
-    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-    const modalKktp = document.getElementById('modalKktp');
-    const form = document.getElementById('kktpForm');
+<?php
+// Cek apakah form disubmit
+if (isset($_POST['kktp'])) {
+    $coba = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='{$_POST['kktp']}' WHERE kodejdwl='{$_POST['kodejdwl']}'");
 
-    // Isi data lama ke modal
-    editButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const kodejdwl = this.getAttribute('data-id');
-            const kktp = this.getAttribute('data-kktp');
+    // Redirect setelah query dijalankan
+    echo "<script>history.back();</script>";
+}
+?>
 
-            modalKodeJdwl.value = kodejdwl;
-            modalKktp.value = kktp;
-        });
-    });
 
-    // Submit form menggunakan AJAX
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Mencegah pengiriman form standar
-
-        const formData = new FormData(this); // Ambil data form
-        const actionUrl = this.getAttribute('action');
-
-        fetch(actionUrl, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => response.json()) // Mengharapkan respons dalam format JSON
-            .then(data => {
-                if (data.success) {
-                    // Berhasil
-                    alert('Perubahan berhasil disimpan!');
-                    // Lakukan sesuatu, misalnya tutup modal atau perbarui tabel
-                    $('#myModal').modal('hide'); // Jika menggunakan Bootstrap modal
-                } else {
-                    // Gagal
-                    alert('Terjadi kesalahan: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat menyimpan data.');
-            });
-    });
-});
-</script>
 
         </div><!-- /.box-body -->
     </div>
 </div>
+
 <div class="col-xs-12">
     <div class="box">
         <div class="box-header">
@@ -358,3 +303,15 @@
         }
     }
 </style>
+<script>
+
+    function submitFormWithAlert(selectElement) {
+        const selectedValue = selectElement.value;
+        if (selectedValue) {
+            const confirmSubmit = confirm(`Apakah Anda yakin ingin memberikan nilai ${selectedValue}?`);
+            if (confirmSubmit) {
+                document.getElementById('kktpForm').submit();
+            }
+        }
+    }
+    </script>
