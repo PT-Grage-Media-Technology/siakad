@@ -177,19 +177,21 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
           '$target_file', 
           '" . date('Y-m-d H:i:s') . "', 
           '$_POST[nip_users]',
+          NULL,
           '$_POST[id_parent_journal]'
       )";
 
-      var_dump($query);
-      exit;
       
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
-
-
+      
+      // var_dump($query);
+      
       if (mysql_query($query)) {
         echo "Data berhasil disimpan ke database.<br>";
+        exit;
       } else {
         echo "Gagal menyimpan ke database: " . mysql_error() . "<br>";
+        exit;
       }
     }
 
