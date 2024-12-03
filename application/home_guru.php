@@ -40,12 +40,12 @@ if (isset($_POST['kktpInput'])) {
     if ($query) {
         echo "<script>
             alert('KKTP berhasil diperbarui!');
-            window.location='index.php?view=jadwalguru$tahun';
+            window.location='index.php?view=jadwalguru&tahun=$tahun';
         </script>";
     } else {
         echo "<script>
             alert('Gagal memperbarui KKTP!');
-            window.location='index.php?view=jadwalguru$tahun';
+            window.location='index.php?view=jadwalguru&tahun=$tahun';
         </script>";
     }
 } else {
