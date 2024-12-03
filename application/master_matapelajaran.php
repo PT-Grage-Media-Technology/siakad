@@ -41,6 +41,7 @@
                               <td>$r[nama_jurusan]</td>
                               <td>$r[tingkat]</td>
                               <td>$r[nama_guru]</td>
+                              <td>$r[kktp]</td>
                               <td>$r[urutan]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
