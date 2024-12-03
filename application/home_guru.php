@@ -213,7 +213,8 @@
             </script> -->
 <?php
 if(isset($_POST['editkktp'])){
-    var_dump($_POST['editkktp']);
+    // var_dump($_POST['editkktp']);
+    echo"dsds";
 }
 ?>
 
