@@ -695,10 +695,10 @@ while ($r = mysql_fetch_array($tampil)) {
 
                             <!-- Input pencarian -->
                             <input type='text' id='search_tujuan' name='tujuan_pembelajaran' 
-                                class='form-control' 
-                                placeholder='Cari tujuan pembelajaran...' 
-                                value='htmlspecialchars($e[tujuan_pembelajaran])' 
-                                <?= $e[id_parent_journal] ? 'readonly' : ''; ?>>
+                              class='form-control' 
+                              placeholder='Cari tujuan pembelajaran...' 
+                              value='" . htmlspecialchars($e['tujuan_pembelajaran']) . "' 
+                              " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'readonly' : '') . ">
 
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
