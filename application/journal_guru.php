@@ -263,7 +263,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                       <tr>
-                        <th scope='row'>Tujuan Pembelajaran</th>  
+                        <th scope='row'>Tujuan Pembelajaran222</th>  
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
@@ -489,7 +489,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
-                        <th scope='row'>Tujuan Pembelajaran</th>
+                        <th scope='row'>Tujuan Pembelajaran111</th>
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
