@@ -211,21 +211,21 @@
                 // });
 
             </script> -->
-            <?php
+<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editkktp'])) {
     // Ambil data dari POST
     $kodejdwl = isset($_POST['kodejdwl']) ? $_POST['kodejdwl'] : '';
     $kktp = isset($_POST['kktp']) ? $_POST['kktp'] : '';
 
     // Proses query menggunakan mysql_query
-    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+    $query = "UPDATE your_table_name SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
     $result = mysql_query($query);
 
     // Cek apakah query berhasil
     if ($result) {
-        echo json_encode(['success' => true]);
+        echo"dsdwsds";
     } else {
-        echo json_encode(['success' => false, 'message' => mysql_error()]);
+       echo"hehe";
     }
     exit; // Hentikan eksekusi PHP agar tidak melanjutkan pemuatan halaman
 }
