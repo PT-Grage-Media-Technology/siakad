@@ -4,6 +4,25 @@
 // Ketika halaman Agenda Mengajar diakses, aktifkan flag di session
 session_start();
 $_SESSION['akses_agenda'] = true;
+
+
+if (isset($_POST['search'])) {
+  $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
+  $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
+  $result = mysql_query($query);
+
+  if (mysql_num_rows($result) > 0) {
+      // Tampilkan setiap hasil pencarian
+      while ($row = mysql_fetch_assoc($result)) {
+          echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+      }
+  } else {
+      echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+  }
+
+  exit;  // Hentikan eksekusi di sini jika ini request AJAX
+}
+
 ?>
 
 <?php if ($_GET[act] == '') { ?>
@@ -721,41 +740,40 @@ $(document).ready(function(){
 }
 ?>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function () {
-    // Ketika mengetik di input pencarian
-    $('#search_tujuan').on('input', function () {
-        var query = $(this).val();  // Ambil input pengguna
-        if (query.length > 0) {
-            // Kirim request AJAX untuk pencarian
-            $.ajax({
-                url: '',  // File PHP yang menangani pencarian
-                method: 'POST',
-                data: { search: query },  // Kirim input pencarian
-                success: function (data) {
-                    $('#result_tujuan').html(data).fadeIn();  // Tampilkan hasil di dropdown
-                }
-            });
-        } else {
-            $('#result_tujuan').fadeOut();  // Sembunyikan dropdown jika input kosong
-        }
-    });
+    $(document).ready(function () {
+        // Ketika mengetik di input pencarian
+        $('#search_tujuan').on('input', function () {
+            var query = $(this).val();  // Ambil input pengguna
+            if (query.length > 0) {
+                // Kirim request AJAX untuk pencarian
+                $.ajax({
+                    url: '',  // Arahkan ke file yang sama
+                    method: 'POST',
+                    data: { search: query },  // Kirim input pencarian
+                    success: function (data) {
+                        $('#result_tujuan').html(data).fadeIn();  // Tampilkan hasil di dropdown
+                    }
+                });
+            } else {
+                $('#result_tujuan').fadeOut();  // Sembunyikan dropdown jika input kosong
+            }
+        });
 
-    // Ketika salah satu hasil pencarian dipilih
-    $(document).on('click', '.result-item', function () {
-        var id = $(this).data('id');  // Ambil id_journal dari hasil pencarian
-        var name = $(this).text();    // Ambil nama tujuan pembelajaran
-        $('#search_tujuan').val(name);  // Masukkan nama tujuan ke input
-        $('#id_parent_journal').val(id);  // Masukkan id_journal ke input hidden
-        $('#result_tujuan').fadeOut();  // Sembunyikan dropdown
-    });
+        // Ketika salah satu hasil pencarian dipilih
+        $(document).on('click', '.result-item', function () {
+            var id = $(this).data('id');  // Ambil id_journal dari hasil pencarian
+            var name = $(this).text();    // Ambil nama tujuan pembelajaran
+            $('#search_tujuan').val(name);  // Masukkan nama tujuan ke input
+            $('#id_parent_journal').val(id);  // Masukkan id_journal ke input hidden
+            $('#result_tujuan').fadeOut();  // Sembunyikan dropdown
+        });
 
-    // Tutup dropdown jika klik di luar elemen pencarian
-    $(document).on('click', function (e) {
-        if (!$(e.target).closest('#search_tujuan, #result_tujuan').length) {
-            $('#result_tujuan').fadeOut();
-        }
+        // Tutup dropdown jika klik di luar elemen pencarian
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('#search_tujuan, #result_tujuan').length) {
+                $('#result_tujuan').fadeOut();
+            }
+        });
     });
-});
-</script>
+    </script>
