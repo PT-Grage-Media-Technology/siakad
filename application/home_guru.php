@@ -211,12 +211,26 @@
                 // });
 
             </script> -->
-<?php
-if(isset($_POST['editkktp'])){
-    // var_dump($_POST['editkktp']);
-    echo"dsds";
+            <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editkktp'])) {
+    // Ambil data dari POST
+    $kodejdwl = isset($_POST['kodejdwl']) ? $_POST['kodejdwl'] : '';
+    $kktp = isset($_POST['kktp']) ? $_POST['kktp'] : '';
+
+    // Proses query menggunakan mysql_query
+    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+    $result = mysql_query($query);
+
+    // Cek apakah query berhasil
+    if ($result) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => mysql_error()]);
+    }
+    exit; // Hentikan eksekusi PHP agar tidak melanjutkan pemuatan halaman
 }
 ?>
+
 
 
 
@@ -325,7 +339,29 @@ if(isset($_POST['editkktp'])){
 </style>
 <script>
  document.getElementById('editKktpForm').addEventListener('submit', function (e) {
-   console.log('sajs');
+    e.preventDefault(); // Mencegah pengiriman form standar
+
+    const formData = new FormData(this); // Ambil data form
+    console.log(formData);
+
+    fetch('', { // Arahkan ke halaman yang sama
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json()) // Respons dalam format JSON
+        .then(data => {
+            if (data.success) {
+                alert('KKTP berhasil diperbarui!');
+                $('#editKktpModal').modal('hide'); // Tutup modal
+                location.reload(); // Reload halaman untuk memperbarui data
+            } else {
+                alert('Gagal memperbarui KKTP: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat memperbarui KKTP.');
+        });
 });
 
 </script>
