@@ -397,7 +397,8 @@ while ($r = mysql_fetch_array($tampil)) {
         while ($sub = mysql_fetch_array($tampilSub)) {
             echo "<tr style='background-color: #f9f9f9;'>
                 <td></td>
-                <td colspan='2'>Sub: {$sub['tujuan_pembelajaran']}</td>
+                <td >{$sub['hari']}</td>
+                <td >" . tgl_indo($sub['tanggal']) . "</td>
                 <td align='center'>{$sub['jam_ke']}</td>
                 <td align='center'>{$sub['sampai_jam_ke']}</td>
                 <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
