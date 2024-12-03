@@ -97,7 +97,6 @@
                             <th>Semester</th>
                             <th>KKTP</th>
                             <th>Aksi</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,14 +124,20 @@
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>";
                         if($r[kktp]){
-                        echo "<input name='nilai' value='$r[kktp]' type='number' style='padding:4px' disabled/>";
-        } else {
-            echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
-                    <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
-                    <input name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
-                  </form>";
-        }
-
+                            echo "<td><form method='POST' class='form-horizontal' action='' id='kktpForm'>
+                            <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                            <input style='width:50px'  name='kktp' type='number' value='$r[kktp]' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                          </form></td>";
+                        }else{
+                            echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
+                            <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
+                            <input style='width:50px' name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                          </form>";
+                        }
+                     
+                        echo"<td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
+                    </tr>";
+                    
 
                             $no++;
 
@@ -186,11 +191,10 @@
 <?php
 // Cek apakah form disubmit
 if (isset($_POST['kktp'])) {
-    // Memeriksa data yang dikirimkan melalui form
-    // var_dump($_POST['nilai']);
-    // exit; // Menampilkan isi $_POST untuk melihat data yang dikirim
-    // Menghapus exit agar proses dapat melanjutkan ke query
     $coba = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='{$_POST['kktp']}' WHERE kodejdwl='{$_POST['kodejdwl']}'");
+
+    // Redirect setelah query dijalankan
+    echo "<script>history.back();</script>";
 }
 ?>
 
