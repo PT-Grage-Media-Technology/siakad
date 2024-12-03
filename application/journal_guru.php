@@ -507,8 +507,8 @@ if (isset($_POST['search'])) {
 
             if (isset($_POST['search'])) {
               $search = mysql_real_escape_string($_POST['search']);
-              $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
-              $result = mysql_query($query);
+              // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
+              $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
           
               if (mysql_num_rows($result) > 0) {
                   echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
