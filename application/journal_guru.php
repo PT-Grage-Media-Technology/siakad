@@ -173,7 +173,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
           '$_POST[e]', 
           '$_POST[ee]', 
           '$_POST[f]', 
-          '$_POST[g]', 
+          '$_POST[tujuan_pembelajaran]', 
           '$target_file', 
           '" . date('Y-m-d H:i:s') . "', 
           '$_POST[nip_users]',
