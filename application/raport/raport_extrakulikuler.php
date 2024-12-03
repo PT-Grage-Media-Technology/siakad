@@ -100,7 +100,6 @@ if ($_GET[act]==''){
                               <input type='hidden' name='nisn' value='$r[nisn]'>
                               <input type='hidden' name='nisn' value='$r[nisn]'>
                               <td><input type='text' name='a' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Kegiatan...'></td>
-                              <td><center><input type='text' class='form-control'  name='b' style='width:50px; text-align:center; padding:0px; color:blue'></center></td>
                               <td><input type='text' name='c' class='form-control' style='width:100%; color:blue' placeholder='Tuliskan Deskripsi...'></td>
                               <td align=center><input type='submit' name='simpan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                             </tr>
