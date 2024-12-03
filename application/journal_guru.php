@@ -5,37 +5,8 @@
 session_start();
 $_SESSION['akses_agenda'] = true;
 
-if (isset($_POST['search'])) {
-  // Mengamankan input dari pengguna
-  $search = mysql_real_escape_string($_POST['search']);
-  
-  // Menjalankan query
-  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-  
-  // Membuat array untuk menampung data
-  $options = [];
-  
-  if (mysql_num_rows($result) > 0) {
-      // Menambahkan placeholder
-      $options[] = ['id' => '', 'file' => 'Pilih tujuan pembelajaran...', 'disabled' => true];
-      
-      // Menambahkan hasil query ke dalam array options
-      while ($row = mysql_fetch_assoc($result)) {
-          $options[] = [
-              'id' => $row['id_journal'],
-              'file' => $row['file']
-          ];
-      }
-      
-      // Mengirimkan data sebagai JSON
-      echo json_encode($options);
-  } else {
-      // Jika tidak ada hasil, kirimkan pesan bahwa tidak ada hasil ditemukan
-      echo json_encode([['id' => '', 'file' => 'Tidak ada hasil ditemukan', 'disabled' => true]]);
-  }
-  
-  exit;
-}
+
+
 
 ?>
 
@@ -737,6 +708,7 @@ $(document).ready(function(){
             </div>";
 }
 ?>
+
 <script>
     $(document).ready(function () {
         $('#search_tujuan').on('input', function () {
@@ -755,24 +727,8 @@ $(document).ready(function(){
                         // Kosongkan dropdown sebelumnya
                         $('#result_tujuan').empty();
 
-                        // Jika ada hasil, tambahkan ke dropdown
-                        if (options.length > 0) {
-                            options.forEach(function(option) {
-                                var optionElement = $('<option></option>')
-                                    .val(option.id)
-                                    .text(option.file)
-                                    .prop('disabled', option.disabled || false); // Menambahkan disabled jika ada
-
-                                $('#result_tujuan').append(optionElement);
-                            });
-
-                            // Menampilkan dropdown hasil pencarian
-                            $('#result_tujuan').show();
-                        } else {
-                            // Menampilkan pesan jika tidak ada hasil ditemukan
-                            var noResult = $('<option></option>').text("Tidak ada hasil ditemukan").prop('disabled', true);
-                            $('#result_tujuan').append(noResult).show();
-                        }
+                        // Menyisipkan HTML yang diterima langsung ke dropdown
+                        $('#result_tujuan').html(options.join('')).show();
                     },
                     error: function() {
                         // Menangani jika ada error saat AJAX request
