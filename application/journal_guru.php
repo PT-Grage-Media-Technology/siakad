@@ -7,20 +7,19 @@ $_SESSION['akses_agenda'] = true;
 
 
 if (isset($_POST['search'])) {
-  $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
-  $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
-  $result = mysql_query($query);
+  $search = mysql_real_escape_string($_POST['search']);
+  // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
+  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
 
   if (mysql_num_rows($result) > 0) {
-      // Tampilkan setiap hasil pencarian
+      echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
       while ($row = mysql_fetch_assoc($result)) {
-          echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+          echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
       }
   } else {
-      echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+      echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
   }
-
-  exit;  // Hentikan eksekusi di sini jika ini request AJAX
+  exit;
 }
 
 ?>
@@ -489,11 +488,9 @@ if (isset($_POST['search'])) {
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>
                         <td>
-                            <!-- Input untuk mencari tujuan pembelajaran -->
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <!-- Dropdown hasil pencarian -->
-                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
+                            <select id='result_tujuan' class='form-control' style='position: absolute; background: #fff; border: 1px solid #ccc; display: none;'></select>
                         </td>
                     </tr>
                   </tbody>
@@ -506,21 +503,6 @@ if (isset($_POST['search'])) {
                   </div>
               </form>
             </div>";
-
-            if (isset($_POST['search'])) {
-              $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
-              // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";  // Query untuk pencarian
-              $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-          
-              if (mysql_num_rows($result) > 0) {
-                  // Tampilkan setiap hasil pencarian
-                  while ($row = mysql_fetch_assoc($result)) {
-                      echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
-                  }
-              } else {
-                  echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
-              }
-          }
  
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
@@ -742,38 +724,34 @@ $(document).ready(function(){
 
 <script>
     $(document).ready(function () {
-        // Ketika mengetik di input pencarian
-        $('#search_tujuan').on('input', function () {
-            var query = $(this).val();  // Ambil input pengguna
-            if (query.length > 0) {
-                // Kirim request AJAX untuk pencarian
-                $.ajax({
-                    url: '',  // Arahkan ke file yang sama
-                    method: 'POST',
-                    data: { search: query },  // Kirim input pencarian
-                    success: function (data) {
-                        $('#result_tujuan').html(data).fadeIn();  // Tampilkan hasil di dropdown
-                    }
-                });
-            } else {
-                $('#result_tujuan').fadeOut();  // Sembunyikan dropdown jika input kosong
-            }
-        });
+    $('#search_tujuan').on('input', function () {
+        var query = $(this).val();
 
-        // Ketika salah satu hasil pencarian dipilih
-        $(document).on('click', '.result-item', function () {
-            var id = $(this).data('id');  // Ambil id_journal dari hasil pencarian
-            var name = $(this).text();    // Ambil nama tujuan pembelajaran
-            $('#search_tujuan').val(name);  // Masukkan nama tujuan ke input
-            $('#id_parent_journal').val(id);  // Masukkan id_journal ke input hidden
-            $('#result_tujuan').fadeOut();  // Sembunyikan dropdown
-        });
-
-        // Tutup dropdown jika klik di luar elemen pencarian
-        $(document).on('click', function (e) {
-            if (!$(e.target).closest('#search_tujuan, #result_tujuan').length) {
-                $('#result_tujuan').fadeOut();
-            }
-        });
+        if (query.length > 0) {
+            // Kirim request AJAX
+            $.ajax({
+                url: '', // File PHP yang sama
+                method: 'POST',
+                data: { search: query },
+                success: function (data) {
+                    $('#result_tujuan').html(data).show(); // Tampilkan hasil di <select>
+                },
+            });
+        } else {
+            $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
+        }
     });
+
+    // Tangkap perubahan pada dropdown
+    $('#result_tujuan').on('change', function () {
+        var selectedOption = $(this).find(':selected');
+        var id = selectedOption.val(); // Ambil value (ID)
+        var name = selectedOption.text(); // Ambil teks (Nama)
+
+        // Masukkan nilai ke input
+        $('#search_tujuan').val(name);
+        $('#id_parent_journal').val(id);
+        $('#result_tujuan').hide(); // Sembunyikan dropdown
+    });
+});
     </script>
