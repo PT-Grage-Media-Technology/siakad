@@ -15,7 +15,6 @@
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
-                        <th>KKTP</th>
                         <th>Jurusan</th>
                         <th>Tingkat</th>
                         <th>Guru Pengampu</th>
@@ -35,6 +34,7 @@
                                                       ORDER BY a.urutan ASC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
+                      
                     echo "<tr><td>$no</td>
                               <td>$r[kode_pelajaran]</td>
                               <td>$r[namamatapelajaran]</td>
