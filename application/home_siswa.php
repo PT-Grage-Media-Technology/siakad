@@ -269,7 +269,7 @@ echo "
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
                                   <td>
-                                <select class='form-control' name='jawab".$no."' style='background: none;'>
+                                <select class='form-control' name='jawab".$no."' style='background: none; width: 300px;'> <!-- Ganti width sesuai kebutuhan -->
                                   <option value='' disabled>- Pilih Rating -</option>";
                                   
                                   // Ambil nilai bintang dari rb_rating
