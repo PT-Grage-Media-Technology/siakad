@@ -222,6 +222,8 @@ echo "
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
        $n = $jml['jmlp'];
+       $alert_message = ''; // Variabel untuk menyimpan pesan alert
+       
        for ($i=0; $i<=$n; $i++){
          if (isset($_POST['jawab'.$i])){
            $jawab = $_POST['jawab'.$i];
@@ -231,22 +233,24 @@ echo "
            // Cek apakah sudah ada jawaban untuk nisn ini
            $cek_jawaban = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_pertanyaan_penilaian_jawab WHERE nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
            if ($cek_jawaban['total'] > 0) {
-               echo "
-               <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                   <strong>Peringatan!</strong> Anda sudah memberikan jawaban untuk pertanyaan ini.
-                   <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                       <span aria-hidden='true'>&times;</span>
-                   </button>
-               </div>
-               ";
-               continue; // Lewati input jika sudah ada
+               $alert_message = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                                   <strong>Peringatan!</strong> Anda sudah memberikan jawaban untuk pertanyaan ini.
+                                   <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                       <span aria-hidden='true'>&times;</span>
+                                   </button>
+                                 </div>";
+               break; // Keluar dari loop jika sudah ada jawaban
            }
 
            mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."','$_GET[id_journal]')");
          }
        }
-       echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
-                history.back();</script>";
+
+       if ($alert_message) {
+           echo $alert_message; // Tampilkan alert jika ada
+       } else {
+           echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');</script>";
+       }
     }
            echo" <div class='col-12'>  
               <div class='box'>
