@@ -24,7 +24,7 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
  <?php
 // include 'koneksi.php';
 
-// Periksa apakah data dikirim melalui POST
+//Periksa apakah data dikirim melalui POST
 // if (isset($_POST['kktpInput'])) {
 //     // Tangkap data dari form
 //     $kodejdwl = $_POST['kodejdwl'];
@@ -54,6 +54,8 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 //     exit();
 // }
 ?> 
+
+      
 
 
 <!-- Menampilkan form dan h3 -->
