@@ -2,7 +2,7 @@
 if ($_GET[act]==''){ 
     if (isset($_POST[simpan])){
             if ($_POST[status]=='Update'){
-              mysql_query("UPDATE rb_nilai_extrakulikuler SET kegiatan='$_POST[a]', nilai='$_POST[b]', deskripsi='$_POST[c]' where id_nilai_extrakulikuler='$_POST[id]'");
+              mysql_query("UPDATE rb_nilai_extrakulikuler SET kegiatan='$_POST[a]', deskripsi='$_POST[c]' where id_nilai_extrakulikuler='$_POST[id]'");
             }else{
               mysql_query("INSERT INTO rb_nilai_extrakulikuler VALUES('','$_GET[tahun]','$_POST[nisn]','$_GET[kelas]','$_POST[a]','$_POST[c]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
             }
