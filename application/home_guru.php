@@ -194,7 +194,7 @@ if (isset($_POST['kktp'])) {
     $coba = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='{$_POST['kktp']}' WHERE kodejdwl='{$_POST['kodejdwl']}'");
 
     // Redirect setelah query dijalankan
-    echo "<script>window.location.href='index.php?view=jadwalguru</script>";
+    echo "<script>window.location.href='index.php?view=jadwalguru&tahun=" . (isset($_GET['tahun']) ? $_GET['tahun'] : '') . "';</script>";
 }
 ?>
 
