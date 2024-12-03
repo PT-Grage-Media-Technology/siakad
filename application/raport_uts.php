@@ -120,18 +120,20 @@ cek_session_guru();
         $jumls = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$jumls; $ia++){
           $a  = $_POST['a'.$ia];
-          $b  = $_POST['b'.$ia];
+          $b  = $_POST['deskripsi'.$ia];
           $nisn = $_POST['nisn'.$ia];
           if ($a != '' OR $b != ''){
             $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_uts where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'"));
             if ($cek >= '1'){
               mysql_query("UPDATE rb_nilai_uts SET angka_pengetahuan='$a', angka_keterampilan='$b' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
             }else{
-              mysql_query("INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','','$b','','".date('Y-m-d H:i:s')."')");
+              mysql_query("INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','$b','','','".date('Y-m-d H:i:s')."')");
             }
           }
+          echo $a;
         }
-        echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        echo"INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','$b','','','".date('Y-m-d H:i:s')."')";
+        // echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
@@ -187,7 +189,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='3'><textarea type='text' name='' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>
+                          <td align=center colspan='3'><textarea type='text' name='deskripsi".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
                   }
