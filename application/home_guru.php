@@ -224,7 +224,7 @@ if (isset($_POST['editkktp'])) {
 
     // Pastikan kktp adalah angka yang valid
     if (!is_numeric($kktp)) {
-        echo json_encode(['success' => false, 'message' => 'KKTP harus berupa angka.']);
+        echo"gagal";
         exit;
     }
 
