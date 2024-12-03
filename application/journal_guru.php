@@ -23,8 +23,6 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                        AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
                        ORDER BY jl.id_journal DESC");
 
-
-
 ?>
 
 <?php if ($_GET[act] == '') { ?>
@@ -263,11 +261,17 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                       <tr>
-                        <th scope='row'>Tujuan Pembelajaran</th>  
+                        <th scope='row'>Tujuan Pembelajaran222</th>  
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
+                            <select id='result_tujuan' class='form-control' style='display: none;'>";
+                                    echo "<option value=''>Pilih Tujuan Pembelajaran..</option>";
+                                while ($row = mysql_fetch_array($tampil)) {
+                                    echo "<option value='$row[id_journal]'>$row[tujuan_pembelajaran]</option>";
+                                }
+                                echo"
+                            </select>
                         </td>
                       </tr>
                           
@@ -489,12 +493,11 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
-                        <th scope='row'>Tujuan Pembelajaran</th>
+                        <th scope='row'>Tujuan Pembelajaran111</th>
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <select id='result_tujuan' class='form-control' style='display: none;'>";
-                                // Menggunakan foreach untuk membuat option berdasarkan data dari query
+                            <select id='result_tujuan' class='form-control' >";
                                 foreach ($options as $option) {
                                     echo "<option value='$option[id]'>$option[tujuan]</option>";
                                 }
@@ -731,26 +734,28 @@ $(document).ready(function(){
 }
 ?>
 
-<!-- <script>
-    document.getElementById('search_tujuan').addEventListener('input', function() {
-        let search_term = this.value;
-
-        if (search_term.length > 2) {
-            // Mengirim permintaan untuk mencari tujuan pembelajaran
-            window.location.href = `index.php?search_term=${search_term}&id=your_kodejdwl_value`;
+<script>
+  document.getElementById('search_tujuan').addEventListener('input', function() {
+    var searchValue = this.value.toLowerCase();
+    var selectElement = document.getElementById('result_tujuan');
+    var options = selectElement.getElementsByTagName('option');
+    
+    // Menampilkan select jika input tidak kosong
+    if (searchValue !== '') {
+        selectElement.style.display = 'block';
+    } else {
+        selectElement.style.display = 'none';
+    }
+    
+    // Menyembunyikan opsi yang tidak sesuai dengan pencarian
+    for (var i = 0; i < options.length; i++) {
+        var optionText = options[i].textContent || options[i].innerText;
+        if (optionText.toLowerCase().indexOf(searchValue) > -1) {
+            options[i].style.display = 'block';
         } else {
-            document.getElementById('result_tujuan').style.display = 'none';
+            options[i].style.display = 'none';
         }
-    });
+    }
+});
 
-    // Ketika memilih opsi, set id_parent_journal
-    document.getElementById('result_tujuan').addEventListener('change', function() {
-        let selectedOption = this.options[this.selectedIndex];
-        document.getElementById('id_parent_journal').value = selectedOption.value;
-        document.getElementById('result_tujuan').style.display = 'none'; // Sembunyikan dropdown
-    });
-</script> -->
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</script>
