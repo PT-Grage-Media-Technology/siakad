@@ -106,14 +106,15 @@ echo "<b>D. Ketidak hadiran</b>
     <td align="left"><br /><br /><br />
       ................................... <br /><br /></td>
 
-    <td align="center" valign="top"><br /><br /><br />
-      <b>DRS. AMRI JUNA, M.Pd<br>
-      NIP : 196209051987031007</b>
-    </td>
-
     <td align="left" valign="top"><br /><br /><br />
       <b><?php echo $s[walikelas]; ?><br />
       NIP : <?php echo $s[nip]; ?></b>
+    </td>
+  </tr>
+  <tr>
+  <td align="center" valign="top"><br /><br /><br />
+      <b>DRS. AMRI JUNA, M.Pd<br>
+      NIP : 196209051987031007</b>
     </td>
   </tr>
 </table> 
