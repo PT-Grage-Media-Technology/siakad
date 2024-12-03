@@ -129,41 +129,47 @@ mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
                                     data-toggle='modal' 
                                     data-target='#editKktpModal'>Edit KKTP</button></td>
                         <td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
-                    </tr>";
+                    </tr>
+                    
+                    
+                   
                 $no++;
+
+            
+        <div class='modal fade' id='editKktpModal' tabindex='-1' role='dialog' aria-labelledby='editKktpModalLabel' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+            <form method='POST' action='proses_edit_kktp.php?tahun=<?php echo $tahun_dipilih; ?>'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title'>Edit KKTP</h5>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                <div class='modal-body'>
+                    <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
+                    <div class='form-group'>
+                        <label for='modalKktp'>KKTP</label>
+                        <input type='number' class='form-control' name='kktp' id='modalKktp' required>
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
+                    <button type='submit' class='btn btn-primary'>Simpan Perubahan</button>
+                </div>
+            </div>
+            </form>
+                </div>
+            </div>
+
+ ";
             }
             ?>
         </tbody>
     </table>
 </div>
 
-<!-- Modal untuk Edit KKTP -->
-<div class="modal fade" id="editKktpModal" tabindex="-1" role="dialog" aria-labelledby="editKktpModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <form method="POST" action="proses_edit_kktp.php?tahun=<?php echo $tahun_dipilih; ?>">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Edit KKTP</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <input type="hidden" name="kodejdwl" id="modalKodeJdwl">
-            <div class="form-group">
-                <label for="modalKktp">KKTP</label>
-                <input type="number" class="form-control" name="kktp" id="modalKktp" required>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-        </div>
-    </div>
-</form>
 
-    </div>
-</div>
 
 <script>
 // Script untuk menangani pengisian nilai lama di modal
