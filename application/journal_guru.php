@@ -264,7 +264,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                         <th scope='row'>Tujuan Pembelajaran222</th>  
                          <td>
                               <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                              <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                              <input type='text' id='search_tujuan' name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
                               <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
                               <select id='result_tujuan' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
@@ -417,8 +417,8 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
             </div>";
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    // var_dump($_POST);
-    // exit;
+    var_dump($_POST);
+    exit;
 
     $d = tgl_simpan($_POST[d]);
     mysql_query("INSERT INTO rb_journal_list VALUES('','$_POST[jdwl]','$_POST[c]','$d','$_POST[e]','$_POST[f]','$_POST[g]','" . date('Y-m-d H:i:s') . "','$_POST[nip_users]')");
@@ -495,16 +495,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran111</th>
-                        <td>
-                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <select id='result_tujuan' class='form-control' >";
-                                foreach ($options as $option) {
-                                    echo "<option value='$option[id]'>$option[tujuan]</option>";
-                                }
-                                echo"
-                            </select>
-                        </td>
+                        
                     </tr>
                   </tbody>
                   </table>
@@ -784,6 +775,11 @@ $(document).ready(function(){
         document.getElementById('search_tujuan').value = '';  // Kosongkan input text
         document.getElementById('id_parent_journal').value = '';  // Kosongkan input hidden
         document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown
+
+        // Reset dropdown ke opsi awal
+        var selectElement = document.getElementById('result_tujuan');
+        selectElement.selectedIndex = 0;  // Pilih opsi kosong kembali (opsi pertama)
+
         this.style.display = 'none';  // Sembunyikan tombol hapus
         document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
     });
