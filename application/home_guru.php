@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editkktp'])) {
     $kktp = isset($_POST['kktp']) ? $_POST['kktp'] : '';
 
     // Proses query menggunakan mysql_query
-    $query = "UPDATE your_table_name SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
     $result = mysql_query($query);
 
     // Cek apakah query berhasil
