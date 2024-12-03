@@ -135,7 +135,8 @@
                     
                             <div class='modal fade' id='editKktpModal' tabindex='-1' role='dialog' aria-labelledby='editKktpModalLabel' aria-hidden='true'>
                     <div class='modal-dialog' role='document'>
-                   <form id='kktpForm' method='POST' action=''>
+                <!-- Modal Form -->
+<form method='POST' id='editKktpForm'>
     <div class='modal-content'>
         <div class='modal-header'>
             <h5 class='modal-title'>Edit KKTP</h5>
@@ -157,8 +158,9 @@
     </div>
 </form>
 
+
                         </div>
-                    </div>";
+                    </div";
 
                             $no++;
 
@@ -170,6 +172,29 @@
                     </tbody>
                 </table>
             </div>
+
+        
+<?php
+if (isset($_POST['submit']) && isset($_POST['kktp'])) {
+    echo"cek aja";
+    exit;
+    // Ambil data dari POST
+    $kodejdwl = htmlspecialchars($_POST['kodejdwl']);
+    $kktp = htmlspecialchars($_POST['kktp']);
+
+    // Query untuk update data
+    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+    $result = mysql_query($query); // Menggunakan mysql_query
+
+    if ($result) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Gagal mengupdate data: ' . mysql_error()]);
+    }
+    exit; // Hentikan eksekusi PHP agar tidak memuat bagian lain dari halaman
+}
+?>
+
 
 
 
@@ -208,52 +233,31 @@
 
             </script> -->
 <script>
-            document.addEventListener('DOMContentLoaded', function () {
-    const editButtons = document.querySelectorAll('.edit-kktp-btn');
-    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-    const modalKktp = document.getElementById('modalKktp');
-    const form = document.getElementById('kktpForm');
+ document.getElementById('editKktpForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Mencegah pengiriman form standar
 
-    // Isi data lama ke modal
-    editButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const kodejdwl = this.getAttribute('data-id');
-            const kktp = this.getAttribute('data-kktp');
+    const formData = new FormData(this); // Ambil data form
 
-            modalKodeJdwl.value = kodejdwl;
-            modalKktp.value = kktp;
-        });
-    });
-
-    // Submit form menggunakan AJAX
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Mencegah pengiriman form standar
-
-        const formData = new FormData(this); // Ambil data form
-        const actionUrl = this.getAttribute('action');
-
-        fetch(actionUrl, {
-            method: 'POST',
-            body: formData,
+    fetch('', { // Arahkan ke halaman yang sama
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json()) // Respons dalam format JSON
+        .then(data => {
+            if (data.success) {
+                alert('KKTP berhasil diperbarui!');
+                $('#editKktpModal').modal('hide'); // Tutup modal
+                location.reload(); // Reload halaman untuk memperbarui data
+            } else {
+                alert('Gagal memperbarui KKTP: ' + data.message);
+            }
         })
-            .then(response => response.json()) // Mengharapkan respons dalam format JSON
-            .then(data => {
-                if (data.success) {
-                    // Berhasil
-                    alert('Perubahan berhasil disimpan!');
-                    // Lakukan sesuatu, misalnya tutup modal atau perbarui tabel
-                    $('#myModal').modal('hide'); // Jika menggunakan Bootstrap modal
-                } else {
-                    // Gagal
-                    alert('Terjadi kesalahan: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat menyimpan data.');
-            });
-    });
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat memperbarui KKTP.');
+        });
 });
+
 </script>
 
         </div><!-- /.box-body -->
