@@ -90,7 +90,7 @@ cek_session_guru();
                               if (isset($_GET[tahun]) AND isset($_GET[kelas])){
                                 if($_SESSION[level]!='kepala'){
                                   echo "<td style='width:70px !important'><center>
-                                          <a class='btn btn-success btn-xs' title='Lihat Siswa' href='index.php?view=raportuts&act=listsiswa&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-th-list'></span> Input Nilai</a>
+                                          <a class='btn btn-success btn-xs' title='Lihat Siswa' href='index.php?view=raportsas&act=listsiswa&jdwl=$r[kodejdwl]&kd=$r[kode_pelajaran]&id=$r[kode_kelas]&tahun=$_GET[tahun]'><span class='glyphicon glyphicon-th-list'></span> Input Nilai</a>
                                         </center></td>";
                                 }
                               }
@@ -131,7 +131,7 @@ cek_session_guru();
             }
           }
         }
-        echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        echo "<script>document.location='index.php?view=raportsas&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
