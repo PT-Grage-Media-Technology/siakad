@@ -269,7 +269,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
                             <select id='result_tujuan' class='form-control' >";
                                 foreach ($options as $option) {
-                                    echo "<option value='$option[id]'>$option[tujuan]</option>";
+                                    echo "<option value='$option[id]'>$option[tujuan_pembelajaran]</option>";
                                 }
                                 echo"
                             </select>
