@@ -493,13 +493,12 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <select id='result_tujuan' class='form-control' style='display: none;'>
-                                <?php
+                            <select id='result_tujuan' class='form-control' style='display: none;'>";
                                 // Menggunakan foreach untuk membuat option berdasarkan data dari query
                                 foreach ($options as $option) {
-                                    echo '<option value='{$option['id']}'>{$option['tujuan']}</option>';
+                                    echo "<option value='$option[id]'>$option[tujuan]</option>";
                                 }
-                                ?>
+                                echo"
                             </select>
                         </td>
                     </tr>
@@ -732,7 +731,7 @@ $(document).ready(function(){
 }
 ?>
 
-<script>
+<!-- <script>
     document.getElementById('search_tujuan').addEventListener('input', function() {
         let search_term = this.value;
 
@@ -750,7 +749,7 @@ $(document).ready(function(){
         document.getElementById('id_parent_journal').value = selectedOption.value;
         document.getElementById('result_tujuan').style.display = 'none'; // Sembunyikan dropdown
     });
-</script>
+</script> -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
