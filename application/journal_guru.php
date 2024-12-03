@@ -7,19 +7,21 @@ $_SESSION['akses_agenda'] = true;
 
 
 if (isset($_POST['search'])) {
-  $search = mysql_real_escape_string($_POST['search']);
-  // $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";
-  $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
+    $search = mysql_real_escape_string($_POST['search']);
+    $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
 
-  if (mysql_num_rows($result) > 0) {
-      echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
-      while ($row = mysql_fetch_assoc($result)) {
-          echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
-      }
-  } else {
-      echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
-  }
-  exit;
+    if (mysql_num_rows($result) > 0) {
+        // echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
+        $coba = "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
+        while ($row = mysql_fetch_assoc($result)) {
+          $coba = "<option value='{$row['id_journal']}'>{$row['file']}</option>";
+        }
+
+        return $coba;
+    } else {
+        echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
+    }
+    exit;
 }
 
 ?>
@@ -724,36 +726,34 @@ $(document).ready(function(){
 
 <script>
     $(document).ready(function () {
-    $('#search_tujuan').on('input', function () {
-        var query = $(this).val();
+        $('#search_tujuan').on('input', function () {
+            var query = $(this).val();
 
-        if (query.length > 0) {
-            // Kirim request AJAX
-            $.ajax({
-                url: '', // File PHP yang sama
-                method: 'POST',
-                data: { search: query },
-                success: function (data) {
-                  console.log(data);
-                  console.log(query);
-                    $('#result_tujuan').append(data).show(); // Tampilkan hasil di <select>
-                },
-            });
-        } else {
-            $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
-        }
+            if (query.length > 0) {
+                // Kirim request AJAX
+                $.ajax({
+                    url: 'search_tujuan.php', // Target the correct PHP file
+                    method: 'POST',
+                    data: { search: query },
+                    success: function (data) {
+                        $('#result_tujuan').html(data).show(); // Clear previous options
+                    },
+                });
+            } else {
+                $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
+            }
+        });
+
+        // Tangkap perubahan pada dropdown
+        $('#result_tujuan').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var id = selectedOption.val(); // Ambil value (ID)
+            var name = selectedOption.text(); // Ambil teks (Nama)
+
+            // Masukkan nilai ke input
+            $('#search_tujuan').val(name);
+            $('#id_parent_journal').val(id);
+            $('#result_tujuan').hide(); // Sembunyikan dropdown
+        });
     });
-
-    // Tangkap perubahan pada dropdown
-    $('#result_tujuan').on('change', function () {
-        var selectedOption = $(this).find(':selected');
-        var id = selectedOption.val(); // Ambil value (ID)
-        var name = selectedOption.text(); // Ambil teks (Nama)
-
-        // Masukkan nilai ke input
-        $('#search_tujuan').val(name);
-        $('#id_parent_journal').val(id);
-        $('#result_tujuan').hide(); // Sembunyikan dropdown
-    });
-});
-    </script>
+</script>
