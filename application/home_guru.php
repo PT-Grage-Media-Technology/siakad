@@ -126,12 +126,12 @@
                         if($r[kktp]){
                             echo "<td><form method='POST' class='form-horizontal' action='' id='kktpForm'>
                             <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
-                            <input name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                            <input style='width:50px'  name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
                           </form></td>";
                         }else{
                             echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
                             <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
-                            <input name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
+                            <input style='width:50px' name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
                           </form>";
                         }
                      
