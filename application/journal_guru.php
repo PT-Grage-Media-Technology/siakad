@@ -8,10 +8,10 @@ $_SESSION['akses_agenda'] = true;
 if (isset($_POST['search'])) {
   $search = mysql_real_escape_string($_POST['search']);
   $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-
-  if (mysql_num_rows($result) > 0) {
+  
+  if ($result->num_rows > 0) {
       echo "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>"; // Placeholder
-      while ($row = mysql_fetch_assoc($result)) {
+      while ($row = $result->fetch_assoc()) {
           echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
       }
   } else {
@@ -733,8 +733,8 @@ $(document).ready(function(){
                     method: 'POST',
                     data: { search: query },
                     success: function (data) {
-                      console.log(data.search);
-                        $('#result_tujuan').append(data).show(); // Clear previous options
+                      console.log(data);
+                        $('#result_tujuan').html(data).show(); // Clear previous options
                     },
                 });
             } else {
