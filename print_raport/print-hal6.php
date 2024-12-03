@@ -80,7 +80,7 @@ echo "<b>D. Prestasi</b>
 
 echo "<b>E. Ketidak hadiran</b>
       <table id='tablemodul1' width=85% border=1>
-        <tr><td width='70%'>Sakit</td>  <td width='30px'> 0 </td> <td align=center>Hari</td> </tr>
+        <tr><td width='70%'>Sakit</td>  <td width='30px' align=center> 0 </td> <td align=center>Hari</td> </tr>
         <tr><td>Izin</td>               <td> 0 </td>              <td align=center>Hari</td> </tr>
         <tr><td>Tanpa Keterangan</td>   <td> 0 </td>              <td align=center>Hari</td> </tr>
       </table>";
