@@ -327,6 +327,7 @@ if(isset($_POST['editkktp'])){
     e.preventDefault(); // Mencegah pengiriman form standar
 
     const formData = new FormData(this); // Ambil data form
+    console.log(formData);
 
     fetch('', { // Arahkan ke halaman yang sama
         method: 'POST',
