@@ -241,13 +241,21 @@ $_SESSION['akses_agenda'] = true;
   echo " <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . date('d-m-Y') . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                       <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$jam' name='e'></td></tr>
                       <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$sampai_jam_ke' name='ee'></td></tr>
-                          <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g' id='tujuan_pembelajaran'></textarea></td></tr>
-                                  <th scope='row'>Materi</th>
-                                  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
-                                  <tr><th width=120px scope='row'> File</th>             
-                                  <td><div style='position:relative;''>
-                                      <a class='btn btn-primary' href='javascript:;'>
-                                        <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
+                      <tr>
+                      <th scope='row'>Tujuan Pembelajaran</th>  
+                        <td>
+                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
+                        </td>
+                      </tr>
+                          
+                          <th scope='row'>Materi</th>
+                          <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
+                          <tr><th width=120px scope='row'> File</th>             
+                          <td><div style='position:relative;''>
+                              <a class='btn btn-primary' href='javascript:;'>
+                                <span class='glyphicon glyphicon-search'></span> Cari File Materi atau Tugas yang akan dikirim..."; ?>
   <input type='file' class='files' name='file' onchange='$("#upload-file-info").html($(this).val());'>
 <?php
   include('library.php');
@@ -461,7 +469,11 @@ $_SESSION['akses_agenda'] = true;
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>
-                        
+                        <td>
+                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
+                        </td>
                     </tr>
                   </tbody>
                   </table>
