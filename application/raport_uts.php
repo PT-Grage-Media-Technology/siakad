@@ -120,7 +120,7 @@ cek_session_guru();
         $jumls = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$jumls; $ia++){
           $a  = $_POST['a'.$ia];
-          $b  = $_POST['b'.$ia];
+          $b  = $_POST['deskripsi'.$ia];
           $nisn = $_POST['nisn'.$ia];
           if ($a != '' OR $b != ''){
             $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_uts where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'"));
@@ -189,7 +189,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='3'><textarea type='text' name='deskripsi' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
+                          <td align=center colspan='3'><textarea type='text' name='deskripsi".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
                   }
