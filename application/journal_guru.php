@@ -734,7 +734,7 @@ $(document).ready(function(){
                 method: 'POST',
                 data: { search: query },
                 success: function (data) {
-                    $('#result_tujuan').html(data).show(); // Tampilkan hasil di <select>
+                    $('#result_tujuan').append(data).show(); // Tampilkan hasil di <select>
                 },
             });
         } else {
