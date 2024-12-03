@@ -21,7 +21,7 @@ while ($k = mysql_fetch_array($tahun)) {
 mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 ?>
 
-<?php
+<!-- <?php
 include 'koneksi.php';
 
 // Periksa apakah data dikirim melalui POST
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: index.php?view=jadwalguru&tahun=' . (isset($_GET['tahun']) ? $_GET['tahun'] : ''));
     exit();
 }
-?>
+?> -->
 
 
 <!-- Menampilkan form dan h3 -->
