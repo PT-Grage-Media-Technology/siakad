@@ -724,7 +724,7 @@ $(document).ready(function () {
         const query = $(this).val();
         if (query.length > 0) {
             $.ajax({
-                url: 'search.php', // Ganti dengan file PHP yang akan memproses pencarian
+                url: '', // Ganti dengan file PHP yang akan memproses pencarian
                 method: 'POST',
                 data: { search: query },
                 success: function (data) {
