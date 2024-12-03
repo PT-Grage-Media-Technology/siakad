@@ -97,7 +97,6 @@
                             <th>Semester</th>
                             <th>KKTP</th>
                             <th>Aksi</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,8 +122,7 @@
                         <td>$r[jam_mulai]</td>
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
-                        <td>$r[id_tahun_akademik]</td>
-                        ";
+                        <td>$r[id_tahun_akademik]</td>";
                         if($r[kktp]){
                             echo"<td>$r[kktp]</td>";
                         }else{
