@@ -221,20 +221,20 @@ echo "
 
     if (isset($_POST['submit'])){
        $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
-       $n = $jml['jmlp'];
+       $n = $jml[jmlp];
        for ($i=0; $i<=$n; $i++){
          if (isset($_POST['jawab'.$i])){
            $jawab = $_POST['jawab'.$i];
            $pertanyaan = $_POST['id'.$i];
            $kelas = $_POST['kelas'.$i];
 
-           // Debugging: Cek nilai variabel
-           echo "Jawab: $jawab, Pertanyaan: $pertanyaan, Kelas: $kelas<br>";
+           mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
 
-           $result = mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
-           if (!$result) {
-               echo "Error: " . mysql_error(); // Menampilkan error jika query gagal
-           }
+          //   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
+          //   if ($cek[tot] >= 1){
+          //     mysql_query("UPDATE rb_pertanyaan_penilaian_jawab SET jawaban='$jawab' where id_pertanyaan_penilaian='$pertanyaan' AND nisn='$_SESSION[id]' AND kode_kelas='$kelas'");
+          //   }else{
+          // }
          }
        }
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
