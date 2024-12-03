@@ -198,7 +198,7 @@ if (isset($_GET['delete_keterampilan'])){
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
-                                $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$_GET[nisn]'"));
+                                $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 var_dump($nilaiSTS);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
