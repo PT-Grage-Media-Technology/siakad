@@ -130,6 +130,7 @@ cek_session_guru();
               mysql_query("INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','$b','','','".date('Y-m-d H:i:s')."')");
             }
           }
+          echo $b;
         }
         echo"INSERT INTO rb_nilai_uts VALUES('','$_POST[jdwl]','$nisn','$a','$b','','','".date('Y-m-d H:i:s')."')";
         // echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
@@ -188,7 +189,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='3'><textarea type='text' name='b' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
+                          <td align=center colspan='3'><textarea type='text' name='deskripsi' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
                   }
