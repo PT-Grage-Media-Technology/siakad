@@ -255,8 +255,6 @@ if (isset($_GET['delete_keterampilan'])){
                                               <td align=center>$n[nilai1]</td>
                                               <td align=center>$n[nilai2]</td>
                                               <td align=center>$n[nilai3]</td>
-                                              <td align=center>$n[nilai4]</td>
-                                              <td align=center>$n[nilai5]</td>
                                               <td align=center>".number_format($ratarata)."</td>
                                               <td>$n[deskripsi]</td>
                                               <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
