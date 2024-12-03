@@ -181,23 +181,25 @@ if (isset($_GET['delete_keterampilan'])){
                                 <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
                                   <th style='border:1px solid #e3e3e3' width='170px' rowspan='2'>Nama Lengkap</th>
-                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>KD</center></th>
-                                  <th style='border:1px solid #e3e3e3' colspan='5'><center>Penilaian</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Rata2</center></th>
+                                  <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian</center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Nilai Rapor</center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Nilai Tertinggi</center></th>
+                                  <th style='border:1px solid #e3e3e3' rowspan='2'><center>Deskripsi</center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px' rowspan='2'><center>Nilai Terendah</center></th>
                                   <th style='border:1px solid #e3e3e3' rowspan='2'><center>Deskripsi</center></th>
                                   <th style='border:1px solid #e3e3e3; width:65px' rowspan='2'><center>Action</center></th>
                                 </tr>
                                 <tr>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>UH</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>STS</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center>TU</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center>SM</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center></center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px'><center>SAS</center></th>
                                 </tr>
                               <tbody>";
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
+                                $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$_GET[nisn]'"));
+                                var_dump($nilaiSTS);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
@@ -212,12 +214,12 @@ if (isset($_GET['delete_keterampilan'])){
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='a' value='$e[kd]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='b' value='$e[nilai1]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='b' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$e[nilai2]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$e[nilai3]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='e' value='$e[nilai4]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='f' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
@@ -231,12 +233,12 @@ if (isset($_GET['delete_keterampilan'])){
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='a' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='b' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='e' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='f' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
@@ -261,8 +263,6 @@ if (isset($_GET['delete_keterampilan'])){
                                               <td align=center>$n[nilai1]</td>
                                               <td align=center>$n[nilai2]</td>
                                               <td align=center>$n[nilai3]</td>
-                                              <td align=center>$n[nilai4]</td>
-                                              <td align=center>$n[nilai5]</td>
                                               <td align=center>".number_format($ratarata)."</td>
                                               <td>$n[deskripsi]</td>
                                               <td align=center><a href='index.php?view=raport&act=listsiswasikap&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
