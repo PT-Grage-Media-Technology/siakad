@@ -157,7 +157,7 @@
                               <td>$r[nama_guru]</td>
                               <td>$r[materi]</td>
                               <td>$r[keterangan]</td>
-                              <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
+                              <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]&id_journal=$r[id_journal]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                           </tr>";
       $no++;
     }
@@ -228,7 +228,7 @@ echo "
            $pertanyaan = $_POST['id'.$i];
            $kelas = $_POST['kelas'.$i];
 
-           mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')");
+           mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."','$_GET[id_journal]')");
           echo "INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','".date('Y-m-d H:i:s')."')";
           //   $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_pertanyaan_penilaian_jawab where nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
           //   if ($cek[tot] >= 1){
