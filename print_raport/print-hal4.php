@@ -85,8 +85,8 @@ echo "</tbody></table><br/>";
 ?>
 
       
-
-<table border=0 width=100%>
+<!-- tanda tangan ada di raport halaman teralkhir -->
+<!-- <table border=0 width=100%>
   <tr>
     <td width="260" align="left">Orang Tua / Wali</td>
     <td width="520"align="center">Mengetahui <br> Kepala SMA Negeri 1 Padang</td>
@@ -106,5 +106,5 @@ echo "</tbody></table><br/>";
       NIP : <?php echo $s[nip]; ?></b>
     </td>
   </tr>
-</table> 
+</table>  -->
 </body>
