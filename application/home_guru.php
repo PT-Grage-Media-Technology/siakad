@@ -124,10 +124,10 @@
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>";
                         if($r[kktp]){
-                            echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
+                            echo "<td><form method='POST' class='form-horizontal' action='' id='kktpForm'>
                             <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
                             <input name='kktp' type='number' style='padding:4px' onchange='submitFormWithAlert(this)'/>   
-                          </form>";
+                          </form></td>";
                         }else{
                             echo "<form method='POST' class='form-horizontal' action='' id='kktpForm'>
                             <input type='hidden' name='kodejdwl' value='$r[kodejdwl]'>
