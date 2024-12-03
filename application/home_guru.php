@@ -145,15 +145,15 @@
             </button>
         </div>
         <div class='modal-body'>
-            <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
+            <input type='hidden' name='kodejdwl' id='modalKodeJdwl' value='$r[kodejdwl]'> <!-- Ganti dengan nilai dinamis -->
             <div class='form-group'>
                 <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required value=$r[kktp]>
+                <input type='number' class='form-control' name='kktp' id='modalKktp' required value='$r[kktp]'> <!-- Ganti dengan nilai dinamis -->
             </div>
         </div>
         <div class='modal-footer'>
             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
+            <button type='submit' class='btn btn-primary' name='editkktp'>Simpan Perubahan</button>
         </div>
     </div>
 </form>
@@ -212,8 +212,30 @@
 
             </script> -->
 <?php
-if(isset($_POST['editkktp'])){
-    var_dump($_POST['editkktp']);
+// Cek apakah form disubmit
+if (isset($_POST['editkktp'])) {
+    // Ambil data dari form
+    $kodejdwl = $_POST['kodejdwl']; // Misal: '123'
+    $kktp = $_POST['kktp']; // Misal: '456'
+
+    // Pastikan kktp adalah angka yang valid
+    if (!is_numeric($kktp)) {
+        echo 'Gagal: KKTP harus berupa angka.';
+        exit;
+    }
+
+    // Lakukan query update ke database
+    $query = "UPDATE your_table SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
+
+    // Jalankan query
+    $result = mysql_query($query);
+
+    // Cek apakah query berhasil
+    if ($result) {
+        echo 'success'; // Jika sukses, kembalikan 'success'
+    } else {
+        echo 'Gagal memperbarui KKTP'; // Jika gagal
+    }
 }
 ?>
 
@@ -322,3 +344,33 @@ if(isset($_POST['editkktp'])){
         }
     }
 </style>
+
+<script>
+// Menggunakan AJAX untuk submit form
+document.getElementById('editKktpForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Mencegah pengiriman form standar
+
+    const formData = new FormData(this); // Mengambil data dari form
+
+    // Mengirimkan data menggunakan fetch
+    fetch('', { // Mengirim data ke halaman yang sama
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // Menunggu respons dalam bentuk teks
+    .then(data => {
+        // Memeriksa respons dari server
+        if (data.includes('success')) {
+            alert('KKTP berhasil diperbarui!');
+            $('#editKktpModal').modal('hide'); // Menutup modal jika menggunakan Bootstrap
+            location.reload(); // Reload halaman untuk memperbarui data
+        } else {
+            alert('Gagal memperbarui KKTP: ' + data); // Menampilkan pesan kesalahan
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memperbarui KKTP.');
+    });
+});
+</script>
