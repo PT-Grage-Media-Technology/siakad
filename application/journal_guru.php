@@ -687,7 +687,18 @@ while ($r = mysql_fetch_array($tampil)) {
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
-                    <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[tujuan_pembelajaran]</textarea></td></tr>
+                    <tr>
+                      <th scope='row'>Tujuan Pembelajaran</th>  
+                      <select id='result_tujuan' class='form-control' style='display: none;'>
+                          <option value=''>Pilih Tujuan Pembelajaran..</option>";
+                          while ($row = mysql_fetch_array($tampilInput)) {
+                            if($row['id_parent_journal'] == null){
+                              echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                            }
+                          }
+                          echo "
+                      </select>
+                    </tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
