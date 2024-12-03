@@ -41,8 +41,7 @@ echo "<b>C. Extrakulikuler</b>
           <tr>
             <th width='40px'>No</th>
             <th width='30%'>Kegiatan Extrakulikuler</th>
-            <th hidden>Nilai</th>
-            <th>Deskripsi</th>
+            <th>Keterangan</th>
           </tr>";
 
           $extra = mysql_query("SELECT * FROM rb_nilai_extrakulikuler where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
@@ -58,42 +57,42 @@ echo "<b>C. Extrakulikuler</b>
           }
       echo "</table>";
 
-echo "<b>D. Prestasi</b>
-      <table id='tablemodul1' width=100% border=1>
-          <tr>
-            <th width='40px'>No</th>
-            <th width='30%'>Jenis Kegiatan</th>
-            <th>Keterangan</th>
-          </tr>";
+// echo "<b>D. Prestasi</b>
+//       <table id='tablemodul1' width=100% border=1>
+//           <tr>
+//             <th width='40px'>No</th>
+//             <th width='30%'>Jenis Kegiatan</th>
+//             <th>Keterangan</th>
+//           </tr>";
 
-          $prestasi = mysql_query("SELECT * FROM rb_nilai_prestasi where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
-          $no = 1;
-          while ($pr = mysql_fetch_array($prestasi)){
-            echo "<tr>
-                    <td>$no</td>
-                    <td>$pr[jenis_kegiatan]</td>
-                    <td>$pr[keterangan]</td>
-                  </tr>";
-              $no++;
-          }
-      echo "</table>";
+//           $prestasi = mysql_query("SELECT * FROM rb_nilai_prestasi where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
+//           $no = 1;
+//           while ($pr = mysql_fetch_array($prestasi)){
+//             echo "<tr>
+//                     <td>$no</td>
+//                     <td>$pr[jenis_kegiatan]</td>
+//                     <td>$pr[keterangan]</td>
+//                   </tr>";
+//               $no++;
+//           }
+//       echo "</table>";
 
-echo "<b>E. Ketidak hadiran</b>
+echo "<b>D. Ketidak hadiran</b>
       <table id='tablemodul1' width=85% border=1>
         <tr><td width='70%'>Sakit</td>  <td width='30px' align=center> 0 </td> <td align=center>Hari</td> </tr>
         <tr><td>Izin</td>               <td> 0 </td>              <td align=center>Hari</td> </tr>
         <tr><td>Tanpa Keterangan</td>   <td> 0 </td>              <td align=center>Hari</td> </tr>
       </table>";
 
-echo "<b>F. Catatan Wali Kelas</b>
-      <table id='tablemodul1' width=100% height=80px border=1>
-        <tr><td></td></tr>
-      </table>";
+// echo "<b>E. Catatan Wali Kelas</b>
+//       <table id='tablemodul1' width=100% height=80px border=1>
+//         <tr><td></td></tr>
+//       </table>";
 
-echo "<b>G. Tanggapan Orang tua / Wali</b>
-      <table id='tablemodul1' width=100% height=80px border=1>
-        <tr><td></td></tr>
-      </table><br/>";
+// echo "<b>G. Tanggapan Orang tua / Wali</b>
+//       <table id='tablemodul1' width=100% height=80px border=1>
+//         <tr><td></td></tr>
+//       </table><br/>";
 
 ?>
 
@@ -107,14 +106,15 @@ echo "<b>G. Tanggapan Orang tua / Wali</b>
     <td align="left"><br /><br /><br />
       ................................... <br /><br /></td>
 
-    <td align="center" valign="top"><br /><br /><br />
-      <b>DRS. AMRI JUNA, M.Pd<br>
-      NIP : 196209051987031007</b>
-    </td>
-
     <td align="left" valign="top"><br /><br /><br />
       <b><?php echo $s[walikelas]; ?><br />
       NIP : <?php echo $s[nip]; ?></b>
+    </td>
+  </tr>
+  <tr>
+  <td align="center" valign="top"><br /><br /><br />
+      <b>DRS. AMRI JUNA, M.Pd<br>
+      NIP : 196209051987031007</b>
     </td>
   </tr>
 </table> 
