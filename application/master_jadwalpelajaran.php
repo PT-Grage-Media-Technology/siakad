@@ -71,6 +71,7 @@
                 <th>Kelas</th>
                 <th>Guru</th>
                 <th>Hari</th>
+                <th>Kktp</th>
                 <th>Mulai</th>
                 <th>Selesai</th>
                 <th>Ruangan</th>
@@ -99,6 +100,7 @@
                                         <td>$r[nama_kelas]</td>
                                         <td>$r[nama_guru]</td>
                                         <td>$r[hari]</td>
+                                        <td>$r[kktp]</td>
                                         <td>$r[jam_mulai]</td>
                                         <td>$r[jam_selesai]</td>
                                         <td>$r[nama_ruangan]</td>";
