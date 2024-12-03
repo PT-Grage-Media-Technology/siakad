@@ -702,8 +702,8 @@ while ($r = mysql_fetch_array($tampil)) {
 
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
-                                class='btn btn-danger btn-sm ml-2' 
-                                style='display: <?= $e[id_parent_journal] ? 'inline-block' : 'none'; ?>;'>Hapus</button>
+    class='btn btn-danger btn-sm ml-2' 
+    style='display: " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'inline-block' : 'none') . ";'>Hapus</button>
 
                             <!-- Dropdown untuk memilih tujuan pembelajaran -->
                             <select id='result_tujuan' class='form-control' style='display: none;'>
