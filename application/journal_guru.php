@@ -461,11 +461,7 @@ $_SESSION['akses_agenda'] = true;
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'></textarea></td></tr>
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>
-                        <td>
-                            <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                            <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
-                        </td>
+                        
                     </tr>
                   </tbody>
                   </table>
@@ -477,6 +473,19 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
+if (isset($_POST['search'])) {
+  $search = mysqli_real_escape_string($conn, $_POST['search']);
+  $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
+  $result = mysqli_query($conn, $query);
+
+  if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+          echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+      }
+  } else {
+      echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+  }
+}            
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
   //   $d = tgl_simpan($_POST[d]);
@@ -689,5 +698,38 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
             </div>";
 }
+?>
+
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script>
+$(document).ready(function () {
+    $('#search_tujuan').on('input', function () {
+        const query = $(this).val();
+        if (query.length > 0) {
+            $.ajax({
+                url: '', // Ganti dengan nama file PHP untuk mencari data
+                method: 'POST',
+                data: { search: query },
+                success: function (data) {
+                    $('#result_tujuan').html(data).fadeIn();
+                }
+            });
+        } else {
+            $('#result_tujuan').fadeOut();
+        }
+    });
+
+    // Pilih hasil pencarian
+    $(document).on('click', '.result-item', function () {
+        const id = $(this).data('id');
+        const name = $(this).text();
+        $('#search_tujuan').val(name);
+        $('#id_parent_journal').val(id);
+        $('#result_tujuan').fadeOut();
+    });
+});
+</script>
