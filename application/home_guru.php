@@ -218,6 +218,8 @@ if (isset($_POST['editkktp'])) {
     $kodejdwl = $_POST['kodejdwl']; // Misal: '123'
     $kktp = $_POST['kktp']; // Misal: '456'
 
+    echo $kodejdwl;
+    echo $kktp;
     // Pastikan kktp adalah angka yang valid
     if (!is_numeric($kktp)) {
         echo 'Gagal: KKTP harus berupa angka.';
