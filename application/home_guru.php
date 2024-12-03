@@ -218,6 +218,8 @@ if (isset($_POST['editkktp'])) {
     $kodejdwl = $_POST['kodejdwl']; // Misal: '123'
     $kktp = $_POST['kktp']; // Misal: '456'
 
+    echo $kodejdwl;
+    echo $kktp;
     // Pastikan kktp adalah angka yang valid
     if (!is_numeric($kktp)) {
         echo 'Gagal: KKTP harus berupa angka.';
@@ -225,7 +227,7 @@ if (isset($_POST['editkktp'])) {
     }
 
     // Lakukan query update ke database
-    $query = "UPDATE your_table SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
+    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
 
     // Jalankan query
     $result = mysql_query($query);
