@@ -212,22 +212,35 @@
 
             </script> -->
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editkktp'])) {
-    // Ambil data dari POST
-    $kodejdwl = isset($_POST['kodejdwl']) ? $_POST['kodejdwl'] : '';
-    $kktp = isset($_POST['kktp']) ? $_POST['kktp'] : '';
+// Aktifkan error reporting untuk debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-    // Proses query menggunakan mysql_query
+// Periksa apakah form disubmit
+if (isset($_POST['editkktp'])) {
+    // Ambil data dari form
+    $kodejdwl = $_POST['kodejdwl'];
+    $kktp = $_POST['kktp'];
+
+    // Pastikan kktp adalah angka yang valid
+    if (!is_numeric($kktp)) {
+        echo json_encode(['success' => false, 'message' => 'KKTP harus berupa angka.']);
+        exit;
+    }
+
+    // Lakukan query update
     $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
+
+    // Jalankan query
     $result = mysql_query($query);
 
     // Cek apakah query berhasil
     if ($result) {
-        echo"dsdwsds";
+        echo "dsd";
     } else {
-       echo"hehe";
+        // Jika gagal, tampilkan error MySQL
+        echo"dsds";
     }
-    exit; // Hentikan eksekusi PHP agar tidak melanjutkan pemuatan halaman
 }
 ?>
 
