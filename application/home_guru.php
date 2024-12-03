@@ -225,7 +225,7 @@ if (isset($_POST['editkktp'])) {
     }
 
     // Lakukan query update ke database
-    $query = "UPDATE your_table SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
+    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'"; // Ganti 'your_table' dengan nama tabel yang sesuai
 
     // Jalankan query
     $result = mysql_query($query);
