@@ -35,6 +35,7 @@
                                                       ORDER BY a.urutan ASC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
+                      var_dump($r);
                     echo "<tr><td>$no</td>
                               <td>$r[kode_pelajaran]</td>
                               <td>$r[namamatapelajaran]</td>
