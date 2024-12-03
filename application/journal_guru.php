@@ -487,7 +487,7 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
-            
+
             if (isset($_POST['search'])) {
               $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
               $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";  // Query untuk pencarian
@@ -730,7 +730,7 @@ $(document).ready(function () {
         if (query.length > 0) {
             // Kirim request AJAX untuk pencarian
             $.ajax({
-                url: 'search.php',  // File PHP yang menangani pencarian
+                url: '',  // File PHP yang menangani pencarian
                 method: 'POST',
                 data: { search: query },  // Kirim input pencarian
                 success: function (data) {
