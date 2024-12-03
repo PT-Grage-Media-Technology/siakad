@@ -9,7 +9,7 @@ cek_session_guru();
                 <div class="box-header">
                   <h3 class="box-title"><?php if (isset($_GET[kelas]) AND isset($_GET[tahun])){ echo "Jadwal Pelajaran"; }else{ echo "Jadwal Pelajaran Pada Tahun ".date('Y'); } ?></h3>
                   <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
-                    <input type="hidden" name='view' value='raportuts'>
+                    <input type="hidden" name='view' value='raportsas'>
                     <select name='tahun' style='padding:4px'>
                         <?php 
                             echo "<option value=''>- Pilih Tahun Akademik -</option>";
@@ -112,7 +112,7 @@ cek_session_guru();
 <?php
 }elseif($_GET[act]=='detailguru'){
 cek_session_guru();
-    include "raport/raport_uts_halaman_guru.php";
+    include "raport/raport_sas_halaman_guru.php";
 
 }elseif($_GET[act]=='listsiswa'){
 cek_session_guru();
@@ -172,7 +172,7 @@ cek_session_guru();
                 $no = 1;
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                 while($r=mysql_fetch_array($tampil)){
-                  $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
+                  $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
                   $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
                   if ($cekpredikat >= 1){
                     $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
