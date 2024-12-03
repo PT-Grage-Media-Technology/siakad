@@ -41,7 +41,7 @@ echo "<b>C. Extrakulikuler</b>
           <tr>
             <th width='40px'>No</th>
             <th width='30%'>Kegiatan Extrakulikuler</th>
-            <th>Nilai</th>
+            <th hidden>Nilai</th>
             <th>Deskripsi</th>
           </tr>";
 
@@ -51,7 +51,7 @@ echo "<b>C. Extrakulikuler</b>
             echo "<tr>
                     <td>$no</td>
                     <td>$ex[kegiatan]</td>
-                    <td>$ex[nilai]</td>
+                    <td hidden>$ex[nilai]</td>
                     <td>$ex[deskripsi]</td>
                   </tr>";
               $no++;
