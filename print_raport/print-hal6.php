@@ -27,6 +27,7 @@ $t = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik where id_tah
 $s = mysql_fetch_array(mysql_query("SELECT a.*, b.*, c.nama_guru as walikelas, c.nip FROM rb_siswa a 
                                       JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas 
                                         LEFT JOIN rb_guru c ON b.nip=c.nip where a.nisn='$_GET[id]'"));
+$kepsek = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where level!='superuser' AND jabatan='Kepala Sekolah' ORDER BY id_user DESC"));
 if (substr($_GET[tahun],4,5)=='1'){ $semester = 'Ganjil'; }else{ $semester = 'Genap'; }
 $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_identitas_sekolah ORDER BY id_identitas_sekolah DESC LIMIT 1"));
 echo "<table width=100%>
@@ -106,15 +107,14 @@ echo "<b>D. Ketidak hadiran</b>
     <td align="left"><br /><br /><br />
       ................................... <br /><br /></td>
 
+    <td align="center" valign="top"><br /><br /><br />
+      <b><?php echo $kepsek[nama_lengkap];?><br>
+      NIP : <?php echo $kepsek[username];?></b>
+    </td>
+
     <td align="left" valign="top"><br /><br /><br />
       <b><?php echo $s[walikelas]; ?><br />
       NIP : <?php echo $s[nip]; ?></b>
-    </td>
-  </tr>
-  <tr>
-  <td align="center" valign="top"><br /><br /><br />
-      <b>DRS. AMRI JUNA, M.Pd<br>
-      NIP : 196209051987031007</b>
     </td>
   </tr>
 </table> 
