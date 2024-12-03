@@ -80,7 +80,7 @@
 
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        < class="box-body">
             <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -148,12 +148,12 @@
             <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
             <div class='form-group'>
                 <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required>
+                <input type='number' class='form-control' name='kktp' id='modalKktp' required value=$r[kktp]>
             </div>
         </div>
         <div class='modal-footer'>
             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button type='submit' class='btn btn-primary'>Simpan Perubahan</button>
+            <button name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
         </div>
     </div>
 </form>
@@ -211,22 +211,9 @@
                 // });
 
             </script> -->
-            <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kodejdwl']) && isset($_POST['kktp'])) {
-    // Ambil data dari POST
-    $kodejdwl = htmlspecialchars($_POST['kodejdwl']);
-    $kktp = htmlspecialchars($_POST['kktp']);
-
-    // Query untuk update data
-    $query = "UPDATE table_name SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
-    $result = mysql_query($query); // Menggunakan mysql_query
-
-    if ($result) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Gagal mengupdate data: ' . mysql_error()]);
-    }
-    exit; // Hentikan eksekusi PHP agar tidak memuat bagian lain dari halaman
+<?php
+if(isset($_POST['editkktp'])){
+    var_dump($_POST['editkktp']);
 }
 ?>
 
