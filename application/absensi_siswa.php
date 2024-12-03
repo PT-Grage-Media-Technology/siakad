@@ -204,10 +204,10 @@
                             </tr>
                             <tr>
                                 <th scope='row'>Tujuan Pembelajaran</th>
-                                <td>$j[materi]</td>
+                                <td>$j[tujuan_pembelajaran]</td>
                             </tr>
                             <tr>
-                                <th scope='row'>Tujuan Pembelajaran</th>
+                                <th scope='row'>Materi</th>
                                 <td>$j[materi]</td>
                             </tr>
                         </tbody>
@@ -216,6 +216,12 @@
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Refleksi</div>
+                    </div>
+                 </a>
+                     <a class='btn btn-success btn-sm mb-2' title='Rekap SRL' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&id_jawaban=$jawaban_refleksi[id_pertanyaan_penilaian]&id_journal=$_GET[id_journal]'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Rekap SRL</div>
                     </div>
                  </a>
                 </div>
@@ -412,19 +418,19 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
-    
-    
+
+
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-      
+
       $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
-      
-      
+
+
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query(
-                  "UPDATE rb_absensi_siswa 
+          "UPDATE rb_absensi_siswa 
                   SET kode_kehadiran='" . $a[$i] . "', 
                       nilai_sikap='" . $nilai_sikap[$i] . "',
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
@@ -433,16 +439,16 @@
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
-              );
-              
+        );
+
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
         }
       } else {
         // Insert data jika belum ada di tabel
-        
-        
+
+
         $insertAbsensiSiswa = mysql_query("
         INSERT INTO rb_absensi_siswa 
               VALUES (
@@ -458,7 +464,7 @@
                 NOW()
             )
         ");
-                  
+
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;

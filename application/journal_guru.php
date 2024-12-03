@@ -146,8 +146,8 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump($_POST['id_parent_journal'] == '');
-    exit;
+    // var_dump($_POST['id_parent_journal'] == '');
+    // exit;
 
 
     $d = tgl_simpan($_POST[d]);
@@ -165,39 +165,23 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // Validasi dan pindahkan file
     if ($_FILES['file']['size'] > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
       // Simpan data ke database
-      if($_POST['id_parent_journal'] == ''){
-        $query = "INSERT INTO rb_journal_list VALUES(
-            '',
-            '$_GET[id]',
-            '$_POST[c]', 
-            '$d',
-            '$_POST[e]', 
-            '$_POST[ee]', 
-            '$_POST[f]', 
-            '$_POST[tujuan_pembelajaran]', 
-            '$target_file', 
-            '" . date('Y-m-d H:i:s') . "', 
-            '$_POST[nip_users]',
-            NULL,
-            NULL
-        )";
-      } else {
-        $query = "INSERT INTO rb_journal_list VALUES(
-            '',
-            '$_GET[id]',
-            '$_POST[c]', 
-            '$d',
-            '$_POST[e]', 
-            '$_POST[ee]', 
-            '$_POST[f]', 
-            '$_POST[tujuan_pembelajaran]', 
-            '$target_file', 
-            '" . date('Y-m-d H:i:s') . "', 
-            '$_POST[nip_users]',
-            NULL,
-            '$_POST[id_parent_journal]'
-        )";
-      }
+      $id_parent_journal = empty($_POST['id_parent_journal']) ? "NULL" : "'$_POST[id_parent_journal]'";
+
+      $query = "INSERT INTO rb_journal_list VALUES(
+          '',
+          '$_GET[id]',
+          '$_POST[c]', 
+          '$d',
+          '$_POST[e]', 
+          '$_POST[ee]', 
+          '$_POST[f]', 
+          '$_POST[tujuan_pembelajaran]', 
+          '$target_file', 
+          '" . date('Y-m-d H:i:s') . "', 
+          '$_POST[nip_users]',
+          NULL,
+          $id_parent_journal
+      )";
 
       
       mysql_query("INSERT INTO rb_forum_topic VALUES ('','$_GET[id]','$_POST[f]','$_POST[f]','" . date('Y-m-d H:i:s') . "')");
@@ -291,7 +275,9 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                               <select id='result_tujuan' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   while ($row = mysql_fetch_array($tampilInput)) {
+                                    if($row['id_parent_journal'] == null){
                                       echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                    }
                                   }
                                   echo "
                               </select>
@@ -379,33 +365,63 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // Cek jika tidak ada data
     echo "<tr><td colspan='9' style='text-align:center;'>Tidak ada data</td></tr>";
   } else {
-    while ($r = mysql_fetch_array($tampil)) {
-      // Logika untuk mengatur status button absen
-      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]&id_journal=$r[id_journal]";
 
-      echo "<tr>
-      <td>$no</td>
-      <td>$r[hari]</td>
-      <td>" . tgl_indo($r['tanggal']) . "</td>
-      <td align=center>$r[jam_ke]</td>
-      <td align=center>$r[sampai_jam_ke]</td>
-      <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[tujuan_pembelajaran]</td>
-      <td>$r[materi]</td>";
+while ($r = mysql_fetch_array($tampil)) {
+    // Periksa apakah data ini adalah data utama
+    if ($r['id_parent_journal'] == NULL || $r['id_parent_journal'] == '') {
+        echo "<tr>
+            <td>{$no}</td>
+            <td>{$r['hari']}</td>
+            <td>" . tgl_indo($r['tanggal']) . "</td>
+            <td align='center'>{$r['jam_ke']}</td>
+            <td align='center'>{$r['sampai_jam_ke']}</td>
+            <td align='center'>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
+            <td>{$r['tujuan_pembelajaran']}</td>
+            <td>{$r['materi']}</td>";
 
-      if ($_SESSION['level'] != 'kepala') {
-        echo "<td style='width: 200px; !important'><center>
-                  <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
-                 <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
-              <span class='glyphicon glyphicon-remove'>Hapus</span>
-          </a>
+        if ($_SESSION['level'] != 'kepala') {
+            $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+            $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
+            echo "<td style='width: 200px; !important'><center>
+                    <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                    <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$r['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
+                    <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus={$r['id_journal']}&jdwl={$_GET['id']}' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+                    <span class='glyphicon glyphicon-remove'>Hapus</span>
+                </a>
                 </center></td>";
-      }
-      echo "</tr>";
-      $no++;
+        }
+        echo "</tr>";
+
+        // Cari sub-data untuk data utama ini
+        $tampilSub = mysql_query("SELECT * FROM rb_journal_list WHERE id_parent_journal = '{$r['id_journal']}'");
+        while ($sub = mysql_fetch_array($tampilSub)) {
+            echo "<tr style='background-color: #f9f9f9;'>
+                <td></td>
+                <td >{$sub['hari']}</td>
+                <td >" . tgl_indo($sub['tanggal']) . "</td>
+                <td align='center'>{$sub['jam_ke']}</td>
+                <td align='center'>{$sub['sampai_jam_ke']}</td>
+                <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
+                <td> --- </td>
+                <td>{$sub['materi']}</td>";
+
+            if ($_SESSION['level'] != 'kepala') {
+              $buttonDisabledSub = ($sub['tanggal'] > $today) ? 'disabled' : '';
+              $absenLinkSub = ($sub['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$sub['tanggal']}&jam={$sub['jam_ke']}&id_journal={$sub['id_journal']}";
+                echo "<td style='width: 200px; !important'><center>
+                        <a class='btn btn-success btn-xs' title='Absen' href='$absenLinkSub' $buttonDisabledSub onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$sub['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
+                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus={$sub['id_journal']}&jdwl={$_GET['id']}' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+                        <span class='glyphicon glyphicon-remove'>Hapus</span>
+                    </a>
+                    </center></td>";
+            }
+            echo "</tr>";
+        }
+        $no++; // Nomor bertambah hanya untuk data utama
     }
+}
+
   }
 
   if (isset($_GET['hapus'])) {
@@ -671,7 +687,23 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                     <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
-                    <tr><th scope='row'>Tujuan Pembelajaran</th>  <td><textarea style='height:160px'  class='form-control' name='g'>$e[tujuan_pembelajaran]</textarea></td></tr>
+                    <tr>
+                      <th scope='row'>Tujuan Pembelajaran</th>  
+                      <td>
+                          <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                          <input type='text' id='search_tujuan' name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                          <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
+                          <select id='result_tujuan' class='form-control' style='display: none;'>
+                              <option value=''>Pilih Tujuan Pembelajaran..</option>";
+                              while ($row = mysql_fetch_array($tampilInput)) {
+                                if($row['id_parent_journal'] == null){
+                                  echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                }
+                              }
+                              echo "
+                          </select>
+                      </td>
+                    </tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
                     <td>
