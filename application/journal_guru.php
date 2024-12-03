@@ -365,33 +365,58 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // Cek jika tidak ada data
     echo "<tr><td colspan='9' style='text-align:center;'>Tidak ada data</td></tr>";
   } else {
-    while ($r = mysql_fetch_array($tampil)) {
-      // Logika untuk mengatur status button absen
-      $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-      $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl=$r[tanggal]&jam=$r[jam_ke]&id_journal=$r[id_journal]";
 
-      echo "<tr>
-      <td>$no</td>
-      <td>$r[hari]</td>
-      <td>" . tgl_indo($r['tanggal']) . "</td>
-      <td align=center>$r[jam_ke]</td>
-      <td align=center>$r[sampai_jam_ke]</td>
-      <td align=center>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-      <td>$r[tujuan_pembelajaran]</td>
-      <td>$r[materi]</td>";
+while ($r = mysql_fetch_array($tampil)) {
+    // Periksa apakah data ini adalah data utama
+    if ($r['id_parent_journal'] == NULL || $r['id_parent_journal'] == '') {
+        echo "<tr>
+            <td>{$no}</td>
+            <td>{$r['hari']}</td>
+            <td>" . tgl_indo($r['tanggal']) . "</td>
+            <td align='center'>{$r['jam_ke']}</td>
+            <td align='center'>{$r['sampai_jam_ke']}</td>
+            <td align='center'>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
+            <td>{$r['tujuan_pembelajaran']}</td>
+            <td>{$r['materi']}</td>";
 
-      if ($_SESSION['level'] != 'kepala') {
-        echo "<td style='width: 200px; !important'><center>
-                  <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
-                   <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id=$r[id_journal]&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
-                 <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus=" . $r['id_journal'] . "&jdwl=" . $_GET['id'] . "' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
-              <span class='glyphicon glyphicon-remove'>Hapus</span>
-          </a>
+        if ($_SESSION['level'] != 'kepala') {
+            $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+            $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
+            echo "<td style='width: 200px; !important'><center>
+                    <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
+                    <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$r['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
+                    <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus={$r['id_journal']}&jdwl={$_GET['id']}' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+                    <span class='glyphicon glyphicon-remove'>Hapus</span>
+                </a>
                 </center></td>";
-      }
-      echo "</tr>";
-      $no++;
+        }
+        echo "</tr>";
+
+        // Cari sub-data untuk data utama ini
+        $tampilSub = mysql_query("SELECT * FROM rb_journal_list WHERE id_parent_journal = '{$r['id_journal']}'");
+        while ($sub = mysql_fetch_array($tampilSub)) {
+            echo "<tr style='background-color: #f9f9f9;'>
+                <td></td>
+                <td colspan='2'>Sub: {$sub['tujuan_pembelajaran']}</td>
+                <td align='center'>{$sub['jam_ke']}</td>
+                <td align='center'>{$sub['sampai_jam_ke']}</td>
+                <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
+                <td>{$sub['materi']}</td>";
+
+            if ($_SESSION['level'] != 'kepala') {
+                echo "<td style='width: 200px; !important'><center>
+                        <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$sub['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
+                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus={$sub['id_journal']}&jdwl={$_GET['id']}' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
+                        <span class='glyphicon glyphicon-remove'>Hapus</span>
+                    </a>
+                    </center></td>";
+            }
+            echo "</tr>";
+        }
+        $no++; // Nomor bertambah hanya untuk data utama
     }
+}
+
   }
 
   if (isset($_GET['hapus'])) {
