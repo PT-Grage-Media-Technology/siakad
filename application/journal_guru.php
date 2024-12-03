@@ -784,6 +784,11 @@ $(document).ready(function(){
         document.getElementById('search_tujuan').value = '';  // Kosongkan input text
         document.getElementById('id_parent_journal').value = '';  // Kosongkan input hidden
         document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown
+
+        // Reset dropdown ke opsi awal
+        var selectElement = document.getElementById('result_tujuan');
+        selectElement.selectedIndex = 0;  // Pilih opsi kosong kembali (opsi pertama)
+
         this.style.display = 'none';  // Sembunyikan tombol hapus
         document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
     });
