@@ -491,7 +491,7 @@ $_SESSION['akses_agenda'] = true;
 
             if (isset($_POST['search'])) {
               // Amankan input dari pengguna
-              $search = mysql_real_escape_string($_POST['search']);
+              $search = $_POST['search'];
             
               // Query untuk mencari data
               $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
