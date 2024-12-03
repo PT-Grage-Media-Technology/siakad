@@ -688,21 +688,36 @@ while ($r = mysql_fetch_array($tampil)) {
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>
                     <tr>
-                      <th scope='row'>Tujuan Pembelajaran</th>  
-                      <td>
-                          <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
-                          <input type='text' id='search_tujuan' name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                          <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
-                          <select id='result_tujuan' class='form-control' style='display: none;'>
-                              <option value=''>Pilih Tujuan Pembelajaran..</option>";
-                              while ($row = mysql_fetch_array($tampilInput)) {
-                                if($row['id_parent_journal'] == null){
-                                  echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                        <th scope='row'>Tujuan Pembelajaran</th>  
+                        <td>
+                            <!-- Hidden field untuk menyimpan id_parent_journal -->
+                            <input type='hidden' name='id_parent_journal' id='id_parent_journal' value='$e[id_parent_journal]'>
+
+                            <!-- Input pencarian -->
+                            <input type='text' id='search_tujuan' name='tujuan_pembelajaran' 
+                                class='form-control' 
+                                placeholder='Cari tujuan pembelajaran...' 
+                                value='htmlspecialchars($e[tujuan_pembelajaran])' 
+                                <?= $e[id_parent_journal] ? 'readonly' : ''; ?>>
+
+                            <!-- Tombol hapus -->
+                            <button type='button' id='clear_search' 
+                                class='btn btn-danger btn-sm ml-2' 
+                                style='display: <?= $e[id_parent_journal] ? 'inline-block' : 'none'; ?>;'>Hapus</button>
+
+                            <!-- Dropdown untuk memilih tujuan pembelajaran -->
+                            <select id='result_tujuan' class='form-control' style='display: none;'>
+                                <option value=''>Pilih Tujuan Pembelajaran...</option>";
+                                $tampilInput = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$e[id_jdwl]' ORDER BY id_journal DESC");
+                                while ($row = mysql_fetch_array($tampilInput)) {
+                                    if ($row['id_parent_journal'] == null) {
+                                        $selected = ($row['id_journal'] == $e['id_parent_journal']) ? 'selected' : '';
+                                        echo "<option value='{$row['id_journal']}' $selected>{$row['tujuan_pembelajaran']}</option>";
+                                    }
                                 }
-                              }
-                              echo "
-                          </select>
-                      </td>
+                                echo "
+                            </select>
+                        </td>
                     </tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
                     <tr><th width=120px scope='row'> File</th>             
