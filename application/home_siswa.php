@@ -238,7 +238,7 @@ echo "
          }
        }
        echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
-                history.back();</script>";
+                </script>";
     }
            echo" <div class='col-12'>  
               <div class='box'>
