@@ -516,7 +516,7 @@ if (isset($_POST['search'])) {
                       echo "<option value='{$row['id_journal']}'>{$row['file']}</option>";
                   }
               } else {
-                  echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
+                  echo "<option value='' disabled>Tidak ada hasil ditemukan 123</option>";
               }
               exit;
           }
