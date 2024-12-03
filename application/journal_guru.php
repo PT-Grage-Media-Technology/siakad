@@ -487,7 +487,7 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
-            
+
             if (isset($_POST['search'])) {
               $search = mysql_real_escape_string($_POST['search']);
               $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
@@ -733,6 +733,7 @@ $(document).ready(function(){
                     method: 'POST',
                     data: { search: query },
                     success: function (data) {
+                      console.log(data);
                         $('#result_tujuan').html(data).show(); // Clear previous options
                     },
                 });
