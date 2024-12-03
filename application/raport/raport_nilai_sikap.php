@@ -190,9 +190,7 @@ if (isset($_GET['delete_keterampilan'])){
                                 <tr>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>UH</center></th>
                                   <th style='border:1px solid #e3e3e3; width:55px'><center>STS</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center>TU</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center>SM</center></th>
-                                  <th style='border:1px solid #e3e3e3; width:55px'><center></center></th>
+                                  <th style='border:1px solid #e3e3e3; width:55px'><center>SAS</center></th>
                                 </tr>
                               <tbody>";
                               $no = 1;
@@ -216,8 +214,6 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='number' name='b' value='$e[nilai1]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$e[nilai2]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$e[nilai3]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='e' value='$e[nilai4]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='f' value='$e[nilai5]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
