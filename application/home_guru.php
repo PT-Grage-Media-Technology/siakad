@@ -324,29 +324,7 @@ if(isset($_POST['editkktp'])){
 </style>
 <script>
  document.getElementById('editKktpForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Mencegah pengiriman form standar
-
-    const formData = new FormData(this); // Ambil data form
-    console.log(formData);
-
-    fetch('', { // Arahkan ke halaman yang sama
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json()) // Respons dalam format JSON
-        .then(data => {
-            if (data.success) {
-                alert('KKTP berhasil diperbarui!');
-                $('#editKktpModal').modal('hide'); // Tutup modal
-                location.reload(); // Reload halaman untuk memperbarui data
-            } else {
-                alert('Gagal memperbarui KKTP: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat memperbarui KKTP.');
-        });
+   console.log('sajs');
 });
 
 </script>
