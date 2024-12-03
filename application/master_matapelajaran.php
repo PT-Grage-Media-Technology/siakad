@@ -15,10 +15,10 @@
                         <th style='width:30px'>No</th>
                         <th>Kode Mapel</th>
                         <th>Nama Mapel</th>
-                        <th>KKTP</th>
                         <th>Jurusan</th>
                         <th>Tingkat</th>
                         <th>Guru Pengampu</th>
+                        <th>KKTP</th>
                         <th>Urutan</th>
                         <?php if($_SESSION[level]!='kepala'){ ?>
                         <th style='width:70px'>Action</th>
