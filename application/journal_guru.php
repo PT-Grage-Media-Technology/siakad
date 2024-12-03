@@ -732,7 +732,7 @@ $(document).ready(function(){
             if (query.length > 0) {
                 // Kirim request AJAX
                 $.ajax({
-                    url: 'search_tujuan.php', // Target the correct PHP file
+                    url: '', // Target the correct PHP file
                     method: 'POST',
                     data: { search: query },
                     success: function (data) {
