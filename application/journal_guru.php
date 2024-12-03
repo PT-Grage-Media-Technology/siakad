@@ -16,7 +16,8 @@ if (isset($_POST['search'])) {
       }
       exit;
   } else {
-      echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
+      echo 123;
+      // echo "<option value='' disabled>Tidak ada hasil ditemukan</option>";
   }
   exit;
 }
