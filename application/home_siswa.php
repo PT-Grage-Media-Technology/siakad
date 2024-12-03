@@ -268,7 +268,7 @@ echo "
                           <tr><td></td>
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
-                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'>$jwb[jawaban]</textarea></td>
+                              <td><textarea style='height:60px; width:100%' class='form-control' name='jawab".$no."' placeholder='Tulis Jawaban disini..'></textarea></td>
                           </tr>";
                       $no++;
                       }
