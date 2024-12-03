@@ -361,7 +361,8 @@ document.getElementById('editKktpForm').addEventListener('submit', function (e) 
     })
     .then(response => response.text()) // Menunggu respons dalam bentuk teks
     .then(data => {
-        console.log(data);
+        console.log(data); // Menampilkan data untuk debugging
+
         // Memeriksa respons dari server
         if (data.includes('success')) {
             alert('KKTP berhasil diperbarui!');
@@ -376,4 +377,5 @@ document.getElementById('editKktpForm').addEventListener('submit', function (e) 
         alert('Terjadi kesalahan saat memperbarui KKTP.');
     });
 });
+
 </script>
