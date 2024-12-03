@@ -267,7 +267,12 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                         <td>
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                            <div id='result_tujuan' style='position: absolute; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;'></div>
+                            <select id='result_tujuan' class='form-control' >";
+                                foreach ($options as $option) {
+                                    echo "<option value='$option[id]'>$option[tujuan]</option>";
+                                }
+                                echo"
+                            </select>
                         </td>
                       </tr>
                           
