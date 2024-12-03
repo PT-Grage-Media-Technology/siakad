@@ -5,7 +5,35 @@
 session_start();
 $_SESSION['akses_agenda'] = true;
 
+// $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+//                       FROM rb_journal_list jl 
+//                       LEFT JOIN rb_guru g ON jl.users = g.nip 
+//                       WHERE jl.kodejdwl='$_GET[id]' 
+//                       ORDER BY jl.id_journal DESC");
 
+if (isset($_GET['search_term'])) {
+  $search_term = $_GET['search_term'];
+  
+  // Koneksi ke database dan query pencarian
+  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                         FROM rb_journal_list jl 
+                         LEFT JOIN rb_guru g ON jl.users = g.nip 
+                         WHERE jl.kodejdwl='$_GET[id]' 
+                         AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
+                         ORDER BY jl.id_journal DESC");
+
+  $options = [];
+  while ($row = mysql_fetch_array($tampil)) {
+      $options[] = [
+          'id' => $row['id_journal'],
+          'tujuan' => $row['tujuan_pembelajaran']
+      ];
+  }
+
+  // Return options as JSON for frontend usage
+  echo json_encode($options);
+  exit; // Agar tidak mengeksekusi kode HTML
+}
 
 ?>
 
@@ -315,11 +343,11 @@ $_SESSION['akses_agenda'] = true;
   // $no = 1;
   // $today = date('Y-m-d');
 
-  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
-                      FROM rb_journal_list jl 
-                      LEFT JOIN rb_guru g ON jl.users = g.nip 
-                      WHERE jl.kodejdwl='$_GET[id]' 
-                      ORDER BY jl.id_journal DESC");
+  // $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+  //                     FROM rb_journal_list jl 
+  //                     LEFT JOIN rb_guru g ON jl.users = g.nip 
+  //                     WHERE jl.kodejdwl='$_GET[id]' 
+  //                     ORDER BY jl.id_journal DESC");
   $no = 1;
   $today = date('Y-m-d');
 
@@ -488,33 +516,6 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
-
-            if (isset($_POST['search'])) {
-              // Amankan input dari pengguna
-              $search = $_POST['search'];
-            
-              // Query untuk mencari data
-              $result = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10");
-            
-              $options = []; // Array untuk menampung tag <option> dalam format HTML
-            
-              if (mysql_num_rows($result) > 0) {
-                  // Tambahkan placeholder
-                  $options[] = "<option value='' disabled selected>Pilih tujuan pembelajaran...</option>";
-            
-                  // Tambahkan hasil pencarian ke dalam array options dengan tag <option>
-                  while ($row = mysql_fetch_assoc($result)) {
-                      $options[] = "<option value='{$row['id_journal']}'>{$row['file']}</option>";
-                  }
-            
-                  // Kirimkan tag <option> dalam format JSON
-                  return json_encode($options);
-              } else {
-                  // Kirimkan hasil jika tidak ada yang ditemukan
-                  $options[] = "<option value='' disabled>Tidak ada hasil ditemukan</option>";
-                  return json_encode($options);
-              }
-            }
             
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
@@ -735,46 +736,39 @@ $(document).ready(function(){
 ?>
 
 <script>
-    $(document).ready(function () {
-        $('#search_tujuan').on('input', function () {
-            var query = $(this).val();
+    document.getElementById('search_tujuan').addEventListener('input', function() {
+        let search_term = this.value;
 
-            if (query.length > 0) {
-                // Kirim request AJAX
-                $.ajax({
-                    url: '', // Targetkan file PHP yang benar
-                    method: 'POST',
-                    data: { search: query },
-                    success: function (data) {
-                        // Mengonversi data JSON menjadi objek JavaScript
-                        var options = JSON.parse(data);
-                        
-                        // Kosongkan dropdown sebelumnya
-                        $('#result_tujuan').empty();
+        if (search_term.length > 2) {
+            // Ambil data dari PHP dengan menggunakan Fetch
+            fetch(`index.php?search_term=${search_term}&id=your_kodejdwl_value`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultSelect = document.getElementById('result_tujuan');
+                    resultSelect.innerHTML = ''; // Clear previous results
+                    resultSelect.style.display = 'block'; // Show dropdown
 
-                        // Menyisipkan HTML yang diterima langsung ke dropdown
-                        $('#result_tujuan').html(options.join('')).show();
-                    },
-                    error: function() {
-                        // Menangani jika ada error saat AJAX request
-                        console.error("Terjadi kesalahan saat melakukan request.");
-                    }
+                    // Menambahkan option ke dropdown
+                    data.forEach(option => {
+                        let optionElement = document.createElement('option');
+                        optionElement.value = option.id;
+                        optionElement.textContent = option.tujuan;
+                        resultSelect.appendChild(optionElement);
+                    });
                 });
-            } else {
-                $('#result_tujuan').hide(); // Sembunyikan dropdown jika input kosong
-            }
-        });
+        } else {
+            document.getElementById('result_tujuan').style.display = 'none';
+        }
+    });
 
-        // Tangkap perubahan pada dropdown
-        $('#result_tujuan').on('change', function () {
-            var selectedOption = $(this).find(':selected');
-            var id = selectedOption.val(); // Ambil value (ID)
-            var name = selectedOption.text(); // Ambil teks (Nama)
-
-            // Masukkan nilai ke input
-            $('#search_tujuan').val(name);
-            $('#id_parent_journal').val(id);
-            $('#result_tujuan').hide(); // Sembunyikan dropdown setelah memilih
-        });
+    // Ketika memilih opsi, set id_parent_journal
+    document.getElementById('result_tujuan').addEventListener('change', function() {
+        let selectedOption = this.options[this.selectedIndex];
+        document.getElementById('id_parent_journal').value = selectedOption.value;
+        document.getElementById('result_tujuan').style.display = 'none'; // Hide dropdown
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
