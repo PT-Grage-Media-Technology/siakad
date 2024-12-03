@@ -21,6 +21,40 @@ while ($k = mysql_fetch_array($tahun)) {
 mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
 ?>
 
+<?php
+include 'koneksi.php';
+
+// Periksa apakah data dikirim melalui POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Tangkap data dari form
+    $kodejdwl = $_POST['kodejdwl'];
+    $kktp = $_POST['kktp'];
+
+    // Tangkap parameter tahun dari URL
+    $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+
+    // Perbarui data KKTP di database
+    $query = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='$kktp' WHERE kodejdwl='$kodejdwl'");
+
+    // Feedback dan pengalihan
+    if ($query) {
+        echo "<script>
+            alert('KKTP berhasil diperbarui!');
+            window.location='index.php?view=jadwalguru&tahun=$tahun';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Gagal memperbarui KKTP!');
+            window.location='index.php?view=jadwalguru&tahun=$tahun';
+        </script>";
+    }
+} else {
+    // Jika halaman diakses tanpa submit, redirect atau tampilkan pesan
+    header('Location: index.php?view=jadwalguru&tahun=' . (isset($_GET['tahun']) ? $_GET['tahun'] : ''));
+    exit();
+}
+?>
+
 
 <!-- Menampilkan form dan h3 -->
 <h3 class="box-title">
@@ -148,6 +182,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+//memastikan edit kktp
+// document.addEventListener('DOMContentLoaded', function () {
+//     const saveButton = document.querySelector('.btn-primary');
+//     const modalKodeJdwl = document.getElementById('modalKodeJdwl');
+//     const modalKktp = document.getElementById('modalKktp');
+
+//     saveButton.addEventListener('click', function (e) {
+//         if (!modalKodeJdwl.value || !modalKktp.value) {
+//             e.preventDefault();
+//             alert('Pastikan semua field diisi!');
+//         }
+//     });
+// });
+
 </script>
 
     </div><!-- /.box-body -->
