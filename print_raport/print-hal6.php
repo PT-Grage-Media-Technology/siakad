@@ -100,23 +100,24 @@ echo "<b>D. Ketidak hadiran</b>
 <table border=0 width=100%>
   <tr>
     <td width="260" align="left">Orang Tua / Wali</td>
-    <td width="520"align="center">Mengetahui <br> Kepala SMA Negeri 1 Padang</td>
     <td width="260" align="left">Bukittinggi, <?php echo tgl_raport(date("Y-m-d")); ?> <br> Wali Kelas</td>
   </tr>
   <tr>
     <td align="left"><br /><br /><br />
       ................................... <br /><br /></td>
-
-    <td align="center" valign="top"><br /><br /><br />
-      <b><?php echo $kepsek[nama_lengkap];?><br>
-      NIP : <?php echo $kepsek[username];?></b>
-    </td>
-
     <td align="left" valign="top"><br /><br /><br />
-      <b><?php echo $s[walikelas]; ?><br />
-      NIP : <?php echo $s[nip]; ?></b>
+      <b><?php echo $s['walikelas']; ?><br />
+      NIP : <?php echo $s['nip']; ?></b>
     </td>
   </tr>
-</table> 
+  <tr>
+    <td colspan="2" align="center" valign="top"><br /><br /><br />
+      Mengetahui <br> Kepala SMA Negeri 1 Padang <br /><br />
+      <b><?php echo $kepsek['nama_lengkap']; ?><br>
+      NIP : <?php echo $kepsek['username']; ?></b>
+    </td>
+  </tr>
+</table>
+
 </body>
 </html>
