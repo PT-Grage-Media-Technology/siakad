@@ -477,6 +477,19 @@ $_SESSION['akses_agenda'] = true;
                   </div>
               </form>
             </div>";
+if (isset($_POST['search'])) {
+  $search = mysqli_real_escape_string($conn, $_POST['search']);
+  $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";
+  $result = mysqli_query($conn, $query);
+
+  if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+          echo "<div class='result-item' data-id='{$row['id_journal']}' style='padding: 5px; cursor: pointer;'>{$row['file']}</div>";
+      }
+  } else {
+      echo "<div style='padding: 5px;'>Tidak ada hasil ditemukan</div>";
+  }
+}            
 } elseif ($_GET[act] == 'edit') {
   // if (isset($_POST[update])) {
   //   $d = tgl_simpan($_POST[d]);
@@ -686,6 +699,37 @@ $(document).ready(function(){
         size: 10,
         noneResultsText: 'Tidak ada hasil yang cocok {0}',
         liveSearchPlaceholder: 'Cari guru...'
+    });
+});
+</script>
+
+
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script>
+$(document).ready(function () {
+    $('#search_tujuan').on('input', function () {
+        const query = $(this).val();
+        if (query.length > 0) {
+            $.ajax({
+                url: 'search.php', // Ganti dengan nama file PHP untuk mencari data
+                method: 'POST',
+                data: { search: query },
+                success: function (data) {
+                    $('#result_tujuan').html(data).fadeIn();
+                }
+            });
+        } else {
+            $('#result_tujuan').fadeOut();
+        }
+    });
+
+    // Pilih hasil pencarian
+    $(document).on('click', '.result-item', function () {
+        const id = $(this).data('id');
+        const name = $(this).text();
+        $('#search_tujuan').val(name);
+        $('#id_parent_journal').val(id);
+        $('#result_tujuan').fadeOut();
     });
 });
 </script>
