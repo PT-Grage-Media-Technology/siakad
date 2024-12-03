@@ -704,6 +704,10 @@ $(document).ready(function(){
 </script>
 
 
+            </div>";
+}
+?>
+
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script>
 $(document).ready(function () {
@@ -711,7 +715,7 @@ $(document).ready(function () {
         const query = $(this).val();
         if (query.length > 0) {
             $.ajax({
-                url: 'search.php', // Ganti dengan nama file PHP untuk mencari data
+                url: '', // Ganti dengan nama file PHP untuk mencari data
                 method: 'POST',
                 data: { search: query },
                 success: function (data) {
@@ -733,5 +737,3 @@ $(document).ready(function () {
     });
 });
 </script>
-            </div>";
-}
