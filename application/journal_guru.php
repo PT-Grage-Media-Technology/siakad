@@ -16,7 +16,7 @@ $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
 $id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
 
 // Query untuk mencari tujuan pembelajaran berdasarkan search term
-$tampil = mysql_query("SELECT jl.*, g.nama_guru 
+$tampilInput = mysql_query("SELECT jl.*, g.nama_guru 
                        FROM rb_journal_list jl 
                        LEFT JOIN rb_guru g ON jl.users = g.nip 
                        WHERE jl.kodejdwl='$id_jdwl' 
@@ -268,7 +268,7 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                               <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
                               <select id='result_tujuan' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
-                                  while ($row = mysql_fetch_array($tampil)) {
+                                  while ($row = mysql_fetch_array($tampilInput)) {
                                       echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
                                   }
                                   echo "
@@ -338,11 +338,11 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
   // $no = 1;
   // $today = date('Y-m-d');
 
-  // $tampil = mysql_query("SELECT jl.*, g.nama_guru 
-  //                     FROM rb_journal_list jl 
-  //                     LEFT JOIN rb_guru g ON jl.users = g.nip 
-  //                     WHERE jl.kodejdwl='$_GET[id]' 
-  //                     ORDER BY jl.id_journal DESC");
+  $tampil = mysql_query("SELECT jl.*, g.nama_guru 
+                      FROM rb_journal_list jl 
+                      LEFT JOIN rb_guru g ON jl.users = g.nip 
+                      WHERE jl.kodejdwl='$_GET[id]' 
+                      ORDER BY jl.id_journal DESC");
   $no = 1;
   $today = date('Y-m-d');
 
