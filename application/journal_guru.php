@@ -735,27 +735,46 @@ $(document).ready(function(){
 ?>
 
 <script>
-  document.getElementById('search_tujuan').addEventListener('input', function() {
-    var searchValue = this.value.toLowerCase();
-    var selectElement = document.getElementById('result_tujuan');
-    var options = selectElement.getElementsByTagName('option');
-    
-    // Menampilkan select jika input tidak kosong
-    if (searchValue !== '') {
-        selectElement.style.display = 'block';
-    } else {
-        selectElement.style.display = 'none';
-    }
-    
-    // Menyembunyikan opsi yang tidak sesuai dengan pencarian
-    for (var i = 0; i < options.length; i++) {
-        var optionText = options[i].textContent || options[i].innerText;
-        if (optionText.toLowerCase().indexOf(searchValue) > -1) {
-            options[i].style.display = 'block';
+    document.getElementById('search_tujuan').addEventListener('input', function() {
+        var searchValue = this.value.toLowerCase();
+        var selectElement = document.getElementById('result_tujuan');
+        var options = selectElement.getElementsByTagName('option');
+        
+        // Menampilkan select jika input tidak kosong
+        if (searchValue !== '') {
+            selectElement.style.display = 'block';
         } else {
-            options[i].style.display = 'none';
+            selectElement.style.display = 'none';
         }
-    }
-});
+        
+        // Menyembunyikan opsi yang tidak sesuai dengan pencarian
+        var anyMatch = false;
+        for (var i = 0; i < options.length; i++) {
+            var optionText = options[i].textContent || options[i].innerText;
+            if (optionText.toLowerCase().indexOf(searchValue) > -1) {
+                options[i].style.display = 'block';
+                anyMatch = true;
+            } else {
+                options[i].style.display = 'none';
+            }
+        }
 
+        // Jika tidak ada opsi yang cocok, sembunyikan dropdown
+        if (!anyMatch) {
+            selectElement.style.display = 'none';
+        }
+    });
+
+    // Ketika memilih opsi, set value input dan id_parent_journal
+    document.getElementById('result_tujuan').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        document.getElementById('search_tujuan').value = selectedOption.text;  // Set tujuan_pembelajaran ke input text
+        document.getElementById('id_parent_journal').value = selectedOption.value;  // Set id_journal ke input hidden
+        document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown setelah memilih
+    });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
