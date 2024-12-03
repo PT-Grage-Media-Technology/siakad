@@ -184,18 +184,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //memastikan edit kktp
-document.addEventListener('DOMContentLoaded', function () {
-    const saveButton = document.querySelector('.btn-primary');
-    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-    const modalKktp = document.getElementById('modalKktp');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const saveButton = document.querySelector('.btn-primary');
+//     const modalKodeJdwl = document.getElementById('modalKodeJdwl');
+//     const modalKktp = document.getElementById('modalKktp');
 
-    saveButton.addEventListener('click', function (e) {
-        if (!modalKodeJdwl.value || !modalKktp.value) {
-            e.preventDefault();
-            alert('Pastikan semua field diisi!');
-        }
-    });
-});
+//     saveButton.addEventListener('click', function (e) {
+//         if (!modalKodeJdwl.value || !modalKktp.value) {
+//             e.preventDefault();
+//             alert('Pastikan semua field diisi!');
+//         }
+//     });
+// });
 
 </script>
 
