@@ -148,12 +148,12 @@
             <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
             <div class='form-group'>
                 <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required value=$r[kktp]>
+                <input type='number' class='form-control' name='kktp' id='modalKktp' required value='$r[kktp]'>
             </div>
         </div>
         <div class='modal-footer'>
             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
+            <button type='submit' class='btn btn-primary' name='editkktp'>Simpan Perubahan</button>
         </div>
     </div>
 </form>
@@ -173,44 +173,7 @@
                 </table>
             </div>
 
-            
-
-
-
-            <!-- <script>
-                // Script untuk menangani pengisian nilai lama di modal
-                document.addEventListener('DOMContentLoaded', function () {
-                    const editButtons = document.querySelectorAll('.edit-kktp-btn');
-                    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-                    const modalKktp = document.getElementById('modalKktp');
-
-                    editButtons.forEach(button => {
-                        button.addEventListener('click', function () {
-                            console.log("ds");
-                            const kodejdwl = this.getAttribute('data-id');
-                            const kktp = this.getAttribute('data-kktp');
-
-                            modalKodeJdwl.value = kodejdwl;
-                            modalKktp.value = kktp;
-                        });
-                    });
-                });
-
-                //memastikan edit kktp
-                // document.addEventListener('DOMContentLoaded', function () {
-                //     const saveButton = document.querySelector('.btn-primary');
-                //     const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-                //     const modalKktp = document.getElementById('modalKktp');
-
-                //     saveButton.addEventListener('click', function (e) {
-                //         if (!modalKodeJdwl.value || !modalKktp.value) {
-                //             e.preventDefault();
-                //             alert('Pastikan semua field diisi!');
-                //         }
-                //     });
-                // });
-
-            </script> -->
+        
 <?php
 if(isset($_POST['editkktp'])){
     var_dump($_POST['editkktp']);
