@@ -269,12 +269,16 @@ echo "
                                   <input type='hidden' value='$t[kode_kelas]' name='kelas".$no."'>
                                   <input type='hidden' value='$r[id_pertanyaan_penilaian]' name='id".$no."'>
                                   <td>
-                                <select class='form-control' name='jawab".$no."'>
-                                  <option value=''>- Pilih Jawaban -</option>
-                                  <option value='Jawaban 1'>Penjelasan Nya Baik Dan Mudah Di Pahami</option>
-                                  <option value='Jawaban 2'>Penjelasan Nya Kurang Baik Dan Kurang Dapat Di Pahami</option>
-                                  <option value='Jawaban 3'>Tidak Dapat Memahami Apa Yang Dijelaskan</option>
-                                </select>
+                                <select class='form-control' name='jawab".$no."' style='background: none;'>
+                                  <option value='' disabled>- Pilih Rating -</option>";
+                                  
+                                  // Ambil nilai bintang dari rb_rating
+                                  $rating_query = mysql_query("SELECT * FROM rb_rating");
+                                  while ($rating = mysql_fetch_array($rating_query)) {
+                                      $stars = str_repeat('⭐', $rating['bintang']); // Mengulangi bintang sesuai nilai
+                                      echo "<option value='{$rating['kesan']}' style='background: url(star-icon.png) no-repeat left center; padding-left: 20px;'>$stars - {$rating['kesan']}</option>";
+                                  }
+                    echo "    </select>
                               </td>
                           </tr>";
                       $no++;
