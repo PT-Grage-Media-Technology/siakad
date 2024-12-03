@@ -509,7 +509,7 @@ if (isset($_POST['search'])) {
 
             if (isset($_POST['search'])) {
               $search = mysql_real_escape_string($_POST['search']);  // Lindungi dari SQL Injection
-              $query = "SELECT id_journal, file FROM rb_journal_list WHERE file LIKE '%$search%' LIMIT 10";  // Query untuk pencarian
+              $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran LIKE '%$search%' LIMIT 10";  // Query untuk pencarian
               $result = mysql_query($query);
           
               if (mysql_num_rows($result) > 0) {
