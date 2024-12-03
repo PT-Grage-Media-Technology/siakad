@@ -114,7 +114,6 @@ if ($_GET[act]==''){
                                         <td></td>
                                         <td></td>
                                         <td>$n[kegiatan]</td>
-                                        <td align=center>$n[nilai]</td>
                                         <td>$n[deskripsi]</td>
                                         <td align=center><a href='index.php?view=extrakulikuler&tahun=".$_GET[tahun]."&kelas=".$_GET[kelas]."&edit=".$n[id_nilai_extrakulikuler]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                         <a href='index.php?view=extrakulikuler&tahun=".$_GET[tahun]."&kelas=".$_GET[kelas]."&delete=".$n[id_nilai_extrakulikuler]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
