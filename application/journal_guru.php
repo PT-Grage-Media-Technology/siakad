@@ -275,7 +275,9 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                               <select id='result_tujuan' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   while ($row = mysql_fetch_array($tampilInput)) {
+                                    if($row['id_parent_journal'] == null){
                                       echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                    }
                                   }
                                   echo "
                               </select>
