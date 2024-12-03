@@ -212,38 +212,10 @@
 
             </script> -->
 <?php
-// Aktifkan error reporting untuk debugging
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-// Periksa apakah form disubmit
-if (isset($_POST['editkktp'])) {
-    // Ambil data dari form
-    $kodejdwl = $_POST['kodejdwl'];
-    $kktp = $_POST['kktp'];
-
-    // Pastikan kktp adalah angka yang valid
-    if (!is_numeric($kktp)) {
-        echo"gagal";
-        exit;
-    }
-
-    // Lakukan query update
-    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
-
-    // Jalankan query
-    $result = mysql_query($query);
-
-    // Cek apakah query berhasil
-    if ($result) {
-        echo "dsd";
-    } else {
-        // Jika gagal, tampilkan error MySQL
-        echo"dsds";
-    }
+if(isset($_POST['editkktp'])){
+    var_dump($_POST['editkktp']);
 }
 ?>
-
 
 
 
@@ -350,41 +322,3 @@ if (isset($_POST['editkktp'])) {
         }
     }
 </style>
-<script>
- document.getElementById('editKktpForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Mencegah pengiriman form standar
-
-    const formData = new FormData(this); // Ambil data form
-
-    // Periksa data form sebelum dikirim
-    console.log("Form data yang akan dikirim:", formData);
-
-    fetch('', { // Arahkan ke halaman yang sama untuk diproses di PHP
-        method: 'POST',
-        body: formData // Mengirimkan form data ke server
-    })
-    .then(response => {
-        // Memastikan respons memiliki status 200
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Mengubah respons menjadi format JSON
-    })
-    .then(data => {
-        // Memeriksa apakah server memberikan respons sukses
-        if (data.success) {
-            alert('KKTP berhasil diperbarui!');
-            $('#editKktpModal').modal('hide'); // Tutup modal
-            location.reload(); // Reload halaman untuk memperbarui data
-        } else {
-            alert('Gagal memperbarui KKTP: ' + data.message); // Menampilkan pesan kesalahan
-        }
-    })
-    .catch(error => {
-        // Menangani error jika fetch gagal
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat memperbarui KKTP.');
-    });
-});
-
-</script>
