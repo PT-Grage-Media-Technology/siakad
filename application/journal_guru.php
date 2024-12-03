@@ -494,7 +494,6 @@ $tampil = mysql_query("SELECT jl.*, g.nama_guru
                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
                             <input type='text' id='search_tujuan' class='form-control' placeholder='Cari tujuan pembelajaran...'>
                             <select id='result_tujuan' class='form-control' style='display: none;'>";
-                                // Menggunakan foreach untuk membuat option berdasarkan data dari query
                                 foreach ($options as $option) {
                                     echo "<option value='$option[id]'>$option[tujuan]</option>";
                                 }
@@ -731,26 +730,28 @@ $(document).ready(function(){
 }
 ?>
 
-<!-- <script>
-    document.getElementById('search_tujuan').addEventListener('input', function() {
-        let search_term = this.value;
-
-        if (search_term.length > 2) {
-            // Mengirim permintaan untuk mencari tujuan pembelajaran
-            window.location.href = `index.php?search_term=${search_term}&id=your_kodejdwl_value`;
+<script>
+  document.getElementById('search_tujuan').addEventListener('input', function() {
+    var searchValue = this.value.toLowerCase();
+    var selectElement = document.getElementById('result_tujuan');
+    var options = selectElement.getElementsByTagName('option');
+    
+    // Menampilkan select jika input tidak kosong
+    if (searchValue !== '') {
+        selectElement.style.display = 'block';
+    } else {
+        selectElement.style.display = 'none';
+    }
+    
+    // Menyembunyikan opsi yang tidak sesuai dengan pencarian
+    for (var i = 0; i < options.length; i++) {
+        var optionText = options[i].textContent || options[i].innerText;
+        if (optionText.toLowerCase().indexOf(searchValue) > -1) {
+            options[i].style.display = 'block';
         } else {
-            document.getElementById('result_tujuan').style.display = 'none';
+            options[i].style.display = 'none';
         }
-    });
+    }
+});
 
-    // Ketika memilih opsi, set id_parent_journal
-    document.getElementById('result_tujuan').addEventListener('change', function() {
-        let selectedOption = this.options[this.selectedIndex];
-        document.getElementById('id_parent_journal').value = selectedOption.value;
-        document.getElementById('result_tujuan').style.display = 'none'; // Sembunyikan dropdown
-    });
-</script> -->
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</script>
