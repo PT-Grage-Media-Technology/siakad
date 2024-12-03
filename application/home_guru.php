@@ -176,8 +176,6 @@
         
 <?php
 if (isset($_POST['submit']) && isset($_POST['kktp'])) {
-    echo"cek aja";
-    exit;
     // Ambil data dari POST
     $kodejdwl = htmlspecialchars($_POST['kodejdwl']);
     $kktp = htmlspecialchars($_POST['kktp']);
