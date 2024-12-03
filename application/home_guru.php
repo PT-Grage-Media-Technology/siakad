@@ -210,7 +210,7 @@ document.getElementById('editKktpForm').addEventListener('submit', function(e) {
     const formData = new FormData(this); // Ambil data form
 
     // Kirim data form menggunakan AJAX (fetch API)
-    fetch('', { // Ubah dengan nama file PHP yang sesuai
+    fetch('index.php?view=jadwalguru', { // Ubah dengan nama file PHP yang sesuai
         method: 'POST',
         body: formData
     })
