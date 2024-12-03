@@ -146,7 +146,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
       </tbody>
     </table>";
   if (isset($_POST[tambah])) {
-    var_dump($_POST['tambah']);
+    var_dump($_POST);
     exit;
 
 
