@@ -148,12 +148,12 @@
             <input type='hidden' name='kodejdwl' id='modalKodeJdwl'>
             <div class='form-group'>
                 <label for='modalKktp'>KKTP</label>
-                <input type='number' class='form-control' name='kktp' id='modalKktp' required value='$r[kktp]'>
+                <input type='number' class='form-control' name='kktp' id='modalKktp' required value=$r[kktp]>
             </div>
         </div>
         <div class='modal-footer'>
             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
-            <button type='submit' class='btn btn-primary' name='editkktp'>Simpan Perubahan</button>
+            <button name='editkktp' class='btn btn-primary'>Simpan Perubahan</button>
         </div>
     </div>
 </form>
@@ -173,65 +173,49 @@
                 </table>
             </div>
 
-        
+            
+
+
+
+            <!-- <script>
+                // Script untuk menangani pengisian nilai lama di modal
+                document.addEventListener('DOMContentLoaded', function () {
+                    const editButtons = document.querySelectorAll('.edit-kktp-btn');
+                    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
+                    const modalKktp = document.getElementById('modalKktp');
+
+                    editButtons.forEach(button => {
+                        button.addEventListener('click', function () {
+                            console.log("ds");
+                            const kodejdwl = this.getAttribute('data-id');
+                            const kktp = this.getAttribute('data-kktp');
+
+                            modalKodeJdwl.value = kodejdwl;
+                            modalKktp.value = kktp;
+                        });
+                    });
+                });
+
+                //memastikan edit kktp
+                // document.addEventListener('DOMContentLoaded', function () {
+                //     const saveButton = document.querySelector('.btn-primary');
+                //     const modalKodeJdwl = document.getElementById('modalKodeJdwl');
+                //     const modalKktp = document.getElementById('modalKktp');
+
+                //     saveButton.addEventListener('click', function (e) {
+                //         if (!modalKodeJdwl.value || !modalKktp.value) {
+                //             e.preventDefault();
+                //             alert('Pastikan semua field diisi!');
+                //         }
+                //     });
+                // });
+
+            </script> -->
 <?php
-if (isset($_POST['editkktp'])) {
-    // Ambil data dari form
-    $kodejdwl = $_POST['kodejdwl'];
-    $kktp = $_POST['kktp'];
-
-    // Pastikan kktp adalah angka yang valid
-    if (!is_numeric($kktp)) {
-        echo 'Gagal: KKTP harus berupa angka.';
-        exit;
-    }
-
-    // Lakukan query update
-    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
-
-    // Jalankan query
-    $result = mysql_query($query);
-
-    // Cek apakah query berhasil
-    if ($result) {
-        echo 'success'; // Mengirimkan status sukses sebagai respons
-    } else {
-        // Jika gagal, tampilkan error MySQL
-        echo 'Gagal: ' . mysql_error(); // Kirimkan pesan error jika query gagal
-    }
+if(isset($_POST['editkktp'])){
+    var_dump($_POST['editkktp']);
 }
 ?>
-
-<script>
-// Menambahkan event listener untuk form submit
-document.getElementById('editKktpForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Mencegah pengiriman form standar
-
-    const formData = new FormData(this); // Ambil data form
-
-    // Kirim data form menggunakan AJAX (fetch API)
-    fetch('index.php?view=jadwalguru', { // Ubah dengan nama file PHP yang sesuai
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text()) // Mengharapkan respons dalam bentuk teks biasa
-    .then(data => {
-        console.log(data);
-        // Menangani hasil respons dari server
-        if (data.includes("success")) {
-            alert('KKTP berhasil diperbarui!');
-            $('#editKktpModal').modal('hide'); // Tutup modal jika menggunakan Bootstrap
-            location.reload(); // Reload halaman untuk memperbarui data
-        } else {
-            alert('Gagal memperbarui KKTP: ' + data);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat memperbarui KKTP.');
-    });
-});
-</script>
 
 
 
