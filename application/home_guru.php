@@ -173,26 +173,7 @@
                 </table>
             </div>
 
-        
-<?php
-if (isset($_POST['submit']) && isset($_POST['kktp'])) {
-    // Ambil data dari POST
-    $kodejdwl = htmlspecialchars($_POST['kodejdwl']);
-    $kktp = htmlspecialchars($_POST['kktp']);
-
-    // Query untuk update data
-    $query = "UPDATE rb_jadwal_pelajaran SET kktp = '$kktp' WHERE kodejdwl = '$kodejdwl'";
-    $result = mysql_query($query); // Menggunakan mysql_query
-
-    if ($result) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Gagal mengupdate data: ' . mysql_error()]);
-    }
-    exit; // Hentikan eksekusi PHP agar tidak memuat bagian lain dari halaman
-}
-?>
-
+            
 
 
 
