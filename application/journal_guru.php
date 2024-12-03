@@ -771,6 +771,15 @@ $(document).ready(function(){
         document.getElementById('search_tujuan').value = selectedOption.text;  // Set tujuan_pembelajaran ke input text
         document.getElementById('id_parent_journal').value = selectedOption.value;  // Set id_journal ke input hidden
         document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown setelah memilih
+        document.getElementById('clear_search').style.display = 'inline-block';  // Tampilkan tombol hapus
+    });
+
+    // Ketika tombol hapus diklik, kosongkan input dan sembunyikan tombol hapus
+    document.getElementById('clear_search').addEventListener('click', function() {
+        document.getElementById('search_tujuan').value = '';  // Kosongkan input text
+        document.getElementById('id_parent_journal').value = '';  // Kosongkan input hidden
+        document.getElementById('result_tujuan').style.display = 'none';  // Sembunyikan dropdown
+        this.style.display = 'none';  // Sembunyikan tombol hapus
     });
 </script>
 
