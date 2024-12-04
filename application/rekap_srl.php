@@ -13,9 +13,9 @@
 </style>
 <?php
                 // Tabel Rekap SRL
-                echo '<div class="table-responsive">
+                echo "<div class='table-responsive'>
                     <h3>Tabel Rekap SRL</h3>
-                    <table id="rekap_srl" class="table table-bordered table-striped">
+                    <table id='rekap_srl' class='table table-bordered table-striped'>
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -25,7 +25,7 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>';
+                        <tbody>";
                             // Data dummy rekap SRL
                             $rekap_data = [
                                 ['no' => 1, 'nama' => 'Siswa A', 'kelas' => 'Kelas 1', 'nilai' => 85, 'status' => 'Lulus'],
@@ -41,7 +41,7 @@
                                     <td>{$r['status']}</td>
                                 </tr>";
                             }
-                echo '        </tbody>
+                echo "       </tbody>
                     </table>
-                </div>';
+                </div>";
 ?>
