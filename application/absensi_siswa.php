@@ -339,6 +339,7 @@
 
     echo "<tr>
               <td>$no</td>
+              <input type='number' value='$_GET[id_parent]' name='nisn[$no]' style='width:50px;' hidden>
               <td>$r[nipd]</td>
               <td>
               $r[nisn]
@@ -417,6 +418,7 @@
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
+    $id_parent = $_POST['id_parent'];
     $guruInserted = false;
 
 
@@ -459,6 +461,7 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
+                '" . $id_parent[$i] . "', 
                 '" . $total_nilai[$i] . "', 
                 '$tgl', 
                 NOW()
