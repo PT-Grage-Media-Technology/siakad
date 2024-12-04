@@ -39,7 +39,9 @@
                               } else {
                                 echo "Rekap Sumatif Ruang Lingkup " . date('Y');
                               } ?></h3>
-
+<?php
+    $siswa = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_GET[id]'"))
+?>
 
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -56,7 +58,15 @@
                 <th rowspan="2">NA SUMATIF AKHIR SEMESTER (AS)</th>
                 <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th>
               </tr>
-              <tr>
+
+              <tbody>
+                <?php 
+                $no = 1;
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              while ($r = mysql_fetch_array($tampil)) {
+              
+              echo"
+               <tr>
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
@@ -65,7 +75,7 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td>ABDUL RISKI</td>
+                <td>$r[nama]/td>
                 <td>90</td>
                 <td>90</td>
                 <td>90</td>
@@ -77,6 +87,13 @@
               </tr>
               <!-- ... existing code for dynamic rows ... -->
             </tbody>
+              ";
+
+
+              $no++;
+              }
+                ?>
+                </tbody>
           </table>
         </div>
       </div><!-- /.box-body -->
