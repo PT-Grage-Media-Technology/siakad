@@ -34,7 +34,7 @@ echo "          </select>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='3'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
