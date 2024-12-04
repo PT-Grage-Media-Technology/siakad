@@ -11,6 +11,11 @@
         }
     }
 </style>
+<div>
+    <h3>
+        Rekap SRL
+    </h3>
+</div>
 <?php
                 // Tabel Rekap SRL
                 echo "<div class='table-responsive'>
