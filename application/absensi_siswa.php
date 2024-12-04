@@ -339,8 +339,10 @@
 
     echo "<tr>
               <td>$no</td>
+              
+              <td>$r[nipd]
               <input type='number' value='$_GET[id_parent]' name='id_parent[$no]' style='width:50px;' hidden>
-              <td>$r[nipd]</td>
+              </td>
               <td>
               $r[nisn]
               <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
