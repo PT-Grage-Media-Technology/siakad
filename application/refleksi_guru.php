@@ -41,15 +41,16 @@ if ($_GET[act] == '') {
         // <td align=right>" . number_format($persen, 2) . " %</td>";
 
         // var_dump($hadir);
-        echo "<tr bgcolor=$warna>
-                            <td>$no</td>
-                            <td>$r[nip]</td>
-                            <td>$r[nama_guru]</td>
-                            <td></td>
-                            ";
-        echo "</tr>";
-        $no++;
     }
+
+    echo "<tr bgcolor=$warna>
+    <td>$no</td>
+    <td>$r[nip]</td>
+    <td>$r[nama_guru]</td>
+    <td></td>
+    ";
+echo "</tr>";
+$no++;
 
     echo "</tbody>
                   </table>
