@@ -34,12 +34,7 @@ echo "          </select>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Pengetahuan</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
-                  </tr>
-                  <tr>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
@@ -65,7 +60,6 @@ echo "          </select>
 
         // Fetch predicates
         $grade1Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_pengetahuan']} BETWEEN nilai_a AND nilai_b");
-        $grade2Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_keterampilan']} BETWEEN nilai_a AND nilai_b");
 
         $grade1 = mysql_fetch_array($grade1Query);
         $grade2 = mysql_fetch_array($grade2Query);
@@ -73,8 +67,7 @@ echo "          </select>
         echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
-                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
+                                <td>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
                             </tr>";
         $no++;
       }
