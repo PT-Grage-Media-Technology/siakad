@@ -246,8 +246,7 @@
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>";
                                     if($j['id_parent_journal'] === $_GET['id_parent']){
-
-                                      var_dump($result[]);
+                                      echo $result;
                                     }
                                     echo"<th>Nilai Pengetahuan</th>
                                     <th>Nilai Keterampilan</th>
