@@ -467,7 +467,7 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
-                '" . $id_parent[$i] . "', 
+                '" . $id_parent . "', 
                 '$tgl', 
                 NOW()
             )
@@ -482,7 +482,7 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
-                '" . $id_parent[$i] . "', 
+                '" . $id_parent . "', 
                 '$tgl', 
                 NOW()
             )";
