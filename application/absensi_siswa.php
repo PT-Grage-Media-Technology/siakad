@@ -339,7 +339,7 @@
 
     echo "<tr>
               <td>$no</td>
-              <input type='number' value='$_GET[id_parent]' name='nisn[$no]' style='width:50px;' hidden>
+              <input type='number' value='$_GET[id_parent]' name='id_parent[$no]' style='width:50px;' hidden>
               <td>$r[nipd]</td>
               <td>
               $r[nisn]
@@ -461,7 +461,7 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
-                '" . $id_parent[$i] . "', 
+                '" . $id_parent . "', 
                 '" . $total_nilai[$i] . "', 
                 '$tgl', 
                 NOW()
