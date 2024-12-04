@@ -132,7 +132,7 @@ cek_session_guru();
             }
           }
         }
-        echo "INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','','".date('Y-m-d H:i:s')."')";
+        echo "INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','".date('Y-m-d H:i:s')."')";
         // echo "<script>document.location='index.php?view=raportsas&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
 
