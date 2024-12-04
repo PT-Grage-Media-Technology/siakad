@@ -229,7 +229,7 @@
         $kelas = $_POST['kelas' . $i];
 
         // Cek apakah sudah ada jawaban untuk nisn ini
-        $cek_jawaban = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_pertanyaan_penilaian_jawab WHERE nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas'"));
+        $cek_jawaban = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_pertanyaan_penilaian_jawab WHERE nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas' AND id_journal='$_GET[id_journal]'"));
         if ($cek_jawaban['total'] > 0) {
           echo "<script>alert('Anda sudah memberikan jawaban untuk pertanyaan ini.');</script>";
           continue; // Lewati input jika sudah ada
