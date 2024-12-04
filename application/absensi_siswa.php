@@ -163,7 +163,7 @@
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
   $absensi = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[idjr]' AND tanggal='$j[tanggal]'"));
-  // var_dump($absensi);
+  var_dump($absensi);
   // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
   
@@ -237,7 +237,7 @@
                 <input type='hidden' name='pelajaran' value='$_GET[kd]'>
                 <input type='hidden' name='jdwl' value='$_GET[idjr]'>
                 <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
-                <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
+                <input type='hidden' name='id_parent' value='$_GET[id_parent]'>
                 <div class='col-md-12'>
                     <div class='table-responsive'>
                         <table class='table table-condensed table-bordered table-striped'>
@@ -348,7 +348,6 @@
               <td>
               $r[nisn]
               <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
-              <input type='number' value='$_GET[id_parent]' name='id_parent[$no]' style='width:50px;' hidden>
               </td>
               <td>$r[nama]</td>
               <td>$r[jenis_kelamin]</td>";
@@ -424,8 +423,6 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $id_parent = $_POST['id_parent'];
-    echo $id_parent;
-    exit;
     $guruInserted = false;
 
 
