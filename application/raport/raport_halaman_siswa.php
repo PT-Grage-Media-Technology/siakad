@@ -84,6 +84,7 @@ while ($k = mysql_fetch_array($kelompok)) {
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
+                  <td align=center  colspan='2'>" . number_format($rapn['raport']) . "</td>
                  
                   <td align=center  colspan='2'>" . number_format($rapnk['raport']) . "</td>
                  
