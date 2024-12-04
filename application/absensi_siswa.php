@@ -471,7 +471,21 @@
                 NOW()
             )
         ");
-
+        echo " INSERT INTO rb_absensi_siswa 
+              VALUES (
+                '', 
+                '$kodejdwl', 
+                '" . $nisn[$i] . "', 
+                '" . $a[$i] . "', 
+                '" . $nilai_sikap[$i] . "', 
+                '" . $nilai_pengetahuan[$i] . "', 
+                '" . $nilai_keterampilan[$i] . "', 
+                '" . $total_nilai[$i] . "', 
+                '" . $id_parent[$i] . "', 
+                '$tgl', 
+                NOW()
+            )";
+            exit;
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
