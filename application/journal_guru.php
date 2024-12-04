@@ -697,7 +697,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                     placeholder='Cari tujuan pembelajaran...' 
                                     value='" . (isset($e['tujuan_pembelajaran']) ? $e['tujuan_pembelajaran'] : '') . "' 
                                     " . (isset($e['tujuan_pembelajaran']) ? "readonly" : "") . ">
-                              <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' 
+                              <button type='button' id='clear_search_edit' class='btn btn-danger btn-sm ml-2' 
                                       style='" . (isset($e['tujuan_pembelajaran']) ? "display: inline-block;" : "display: none;") . "'>Hapus</button>
                               <select id='result_tujuan_edit' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
@@ -846,9 +846,11 @@ $(document).ready(function(){
         this.style.display = 'none';  // Sembunyikan tombol hapus
         document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
     });
+</script>
 
-    // edit
-    document.getElementById('search_tujuan_edit').addEventListener('input', function() {
+<script>
+  // edit
+  document.getElementById('search_tujuan_edit').addEventListener('input', function() {
         var searchValue = this.value.toLowerCase();
         var selectElement = document.getElementById('result_tujuan_edit');
         var options = selectElement.getElementsByTagName('option');
