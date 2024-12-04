@@ -117,6 +117,7 @@ cek_session_guru();
 }elseif($_GET[act]=='listsiswa'){
 cek_session_guru();
     if (isset($_POST[simpan])){
+      var_dump($_POST['simpan']);
         $jumls = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$jumls; $ia++){
           $a  = $_POST['a'.$ia];
@@ -187,7 +188,7 @@ cek_session_guru();
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
                           <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>
+                          <td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
                   }
