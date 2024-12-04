@@ -164,6 +164,7 @@
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
   // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
+  $hasil = [];
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
   $bulane = $ex[1];
@@ -323,6 +324,7 @@
 
   while ($r = mysql_fetch_array($tampil)) {
     // Ambil nilai dari tabel terkait
+
     $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai_pengetahuan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
@@ -337,7 +339,7 @@
                                     AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
                                     AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
 
-
+    $result = $r;
     echo "<tr>
               <td>$no</td>
               <td>$r[nipd]</td>
