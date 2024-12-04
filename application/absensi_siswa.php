@@ -246,7 +246,6 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>";
-                                  
                                     echo"<th>Nilai Pengetahuan</th>
                                     <th>Nilai Keterampilan</th>
                                     <th>Nilai Sikap</th>
