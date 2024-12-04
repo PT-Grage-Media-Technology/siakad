@@ -72,7 +72,7 @@ echo "          </select>
                                 echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
+                                <td align=center>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
                             </tr>";
         $no++;
       }
