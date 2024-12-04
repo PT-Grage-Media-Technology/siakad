@@ -237,7 +237,7 @@
           //   continue; // Lewati input jika sudah ada
           // }
           
-        $coba = mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','$guru[users]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$guru[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
+        $coba = mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','$guru[users]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
         var_dump($coba);
         exit;
       }
