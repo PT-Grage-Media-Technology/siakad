@@ -421,7 +421,7 @@
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
-    $id_parent = $_GET['id_parent_journal'];
+    $id_parent = $_GET['id_parent'];
     $guruInserted = false;
 
 
