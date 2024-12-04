@@ -21,10 +21,7 @@ if ($_GET[act] == '') {
                         <th>No</th>
                         <th>Nip</th>
                         <th>Nama Guru</th>
-                        <th>Hadir</th>
-                        <th>Sakit</th>
-                        <th>Izin</th>
-                        <th>Alpa</th>
+                        <th>Ratting</th>
                       </tr>
                     </thead>
                     <tbody>";
@@ -34,10 +31,10 @@ if ($_GET[act] == '') {
     while ($r = mysql_fetch_array($tampil)) {
       // var_dump($r);
         // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-        $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
-        $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
-        $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
-        $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
+        // $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
+        // $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
+        // $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
+        // $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
         // $persen = $hadir / ($total) * 100;
         // <th><center>% Kehadiran</center></th>
 
@@ -48,10 +45,8 @@ if ($_GET[act] == '') {
                             <td>$no</td>
                             <td>$r[nip]</td>
                             <td>$r[nama_guru]</td>
-                            <td align=center>$hadir</td>
-                            <td align=center>$sakit</td>
-                            <td align=center>$izin</td>
-                            <td align=center>$alpa</td>";
+                            <td></td>
+                            ";
         echo "</tr>";
         $no++;
     }
