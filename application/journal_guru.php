@@ -690,16 +690,9 @@ while ($r = mysql_fetch_array($tampil)) {
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>  
                         <td>
-                            <!-- Hidden field untuk menyimpan id_parent_journal -->
-                            <input type='hidden' name='id_parent_journal' id='id_parent_journal' value='$e[id_parent_journal]'>
-
-                            <!-- Input pencarian -->
-                            <input type='text' id='search_tujuan' name='tujuan_pembelajaran' 
-                              class='form-control' 
-                              placeholder='Cari tujuan pembelajaran...' 
-                              value='" . htmlspecialchars($e['tujuan_pembelajaran']) . "' 
-                              " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'readonly' : '') . ">
- 
+                             <input type='hidden' name='id_parent_journal' id='id_parent_journal'>
+                              <input type='text' id='search_tujuan' value=$e[tujuan_pembelajaran] name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
+                              <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
                               class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
