@@ -220,6 +220,7 @@
 
   if (isset($_POST['submit'])) {
     $jml = mysql_fetch_array(mysql_query("SELECT count(*) as jmlp FROM `rb_pertanyaan_penilaian` where status='refleksi'"));
+    $guru = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list jl JOIN rb_guru gt ON jl.users=gt.nip JOIN rb_forum_topic fd ON jl.materi=fd.judul_topic WHERE jl.kodejdwl='$_GET[kodejdwl]'"));
     $n = $jml['jmlp'];
     for ($i = 0; $i <= $n; $i++) {
       if (isset($_POST['jawab' . $i])) {
@@ -234,11 +235,11 @@
           continue; // Lewati input jika sudah ada
         }
 
-        mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$r[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
+        mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$guru[nip]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
         exit;
       }
     }
-    echo"INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$r[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')";
+    echo"INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$r[nip]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')";
     // echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
     //        history.back();</script>";
   }
