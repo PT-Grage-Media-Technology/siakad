@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Rekap Absensi Siswa Dummy</h3>
+                <h3 class="box-title">Rekap Sumatif Ruang Lingkup</h3>
                 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='rekapabsensiswa'>
 
