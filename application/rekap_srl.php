@@ -76,9 +76,7 @@
               <tr>
                 <td>$no</td>
                 <td>$r[nama]
-              <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>                
                 </td>
-
                 <td>90</td>
                 <td>90</td>
                 <td>90</td>
