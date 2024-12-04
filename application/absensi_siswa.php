@@ -218,7 +218,7 @@
                       <div class='' style='font-size:14px;'>Refleksi</div>
                     </div>
                  </a>
-                     <a class='btn btn-success btn-sm mb-2' title='Rekap SRL' href='index.php?view='>
+                     <a class='btn btn-success btn-sm mb-2' title='Rekap SRL' href='index.php?view=rekap_srl'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Rekap SRL</div>
