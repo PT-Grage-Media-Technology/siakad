@@ -1,7 +1,7 @@
 <?php
-if ($_GET[act] == '') {
-    $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
-    $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+if ($_GET['act'] == '') {
+    $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
+    $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -10,7 +10,6 @@ if ($_GET[act] == '') {
               <div class='box-body'>
 
               <div class='col-md-12'>
-              
               </div>
 
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -19,9 +18,9 @@ if ($_GET[act] == '') {
                       <thead>
                       <tr>
                         <th>No</th>
-                        <th>Nip</th>
+                        <th>NIP</th>
                         <th>Nama Guru</th>
-                        <th>Ratting</th>
+                        <th>Rating</th>
                       </tr>
                     </thead>
                     <tbody>";
@@ -29,25 +28,19 @@ if ($_GET[act] == '') {
     $no = 1;
     $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($r = mysql_fetch_array($tampil)) {
-      // var_dump($r);
-        // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-        // $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
-        // $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
-        // $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
-        // $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
-        // $persen = $hadir / ($total) * 100;
-        // <th><center>% Kehadiran</center></th>
+        // Mengambil rating dari rb_pertanyaan_penilaian_jawab berdasarkan NIP guru
+        $rating_query = mysql_query("SELECT AVG(jawaban) as rata_rata 
+                                     FROM rb_pertanyaan_penilaian_jawab 
+                                     WHERE nip_guru = '$r[nip]'");
+        $rating_data = mysql_fetch_array($rating_query);
+        $rating = number_format($rating_data['rata_rata'], 2); // Format angka menjadi 2 desimal
 
-        // <td align=right>" . number_format($persen, 2) . " %</td>";
-
-        // var_dump($hadir);
-        echo "<tr bgcolor=$warna>
-                            <td>$no</td>
-                            <td>$r[nip]</td>
-                            <td>$r[nama_guru]</td>
-                            <td></td>
-                            ";
-        echo "</tr>";
+        echo "<tr>
+                <td>$no</td>
+                <td>$r[nip]</td>
+                <td>$r[nama_guru]</td>
+                <td>$rating</td>
+              </tr>";
         $no++;
     }
 
@@ -57,3 +50,4 @@ if ($_GET[act] == '') {
               </div>
             </div>";
 }
+?>
