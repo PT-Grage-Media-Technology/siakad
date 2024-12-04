@@ -50,7 +50,6 @@
             <thead>
               <tr>
                 <th rowspan="2">No</th>
-                <th colspan="2">NISN</th>
                 <th rowspan="2">Nama Siswa</th>
                 <th colspan="3">SUMATIF LINGKUP MATERI</th>
                 <th rowspan="2">NA SUMATIF (S)</th>
@@ -76,11 +75,9 @@
             <tbody>
               <tr>
                 <td>$no</td>
-                <td>
-                $r[nisn]
-                <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>                
+                <td>$r[nama]
+              <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>                
                 </td>
-                <td>$r[nama]</td>
 
                 <td>90</td>
                 <td>90</td>
