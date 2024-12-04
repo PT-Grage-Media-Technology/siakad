@@ -407,7 +407,7 @@ while ($r = mysql_fetch_array($tampil)) {
 
             if ($_SESSION['level'] != 'kepala') {
               $buttonDisabledSub = ($sub['tanggal'] > $today) ? 'disabled' : '';
-              $absenLinkSub = ($sub['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$sub['tanggal']}&jam={$sub['jam_ke']}&id_journal={$sub['id_journal']}&id_parent={$sub['id_parent_journal']}";
+              $absenLinkSub = ($sub['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$sub['tanggal']}&jam={$sub['jam_ke']}&id_journal={$sub['id_journal']}%";
                 echo "<td style='width: 200px; !important'><center>
                         <a class='btn btn-success btn-xs' title='Absen' href='$absenLinkSub' $buttonDisabledSub onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen</span></a>
                         <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$sub['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
@@ -690,15 +690,22 @@ while ($r = mysql_fetch_array($tampil)) {
                     <tr>
                         <th scope='row'>Tujuan Pembelajaran</th>  
                         <td>
-                             <input type='hidden' name='edit_id_parent_journal' id='edit_id_parent_journal'>
-                              <input type='text' id='search_tujuan_edit' value=$e[tujuan_pembelajaran] name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
-                              <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
+                            <!-- Hidden field untuk menyimpan id_parent_journal -->
+                            <input type='hidden' name='id_parent_journal' id='id_parent_journal' value='$e[id_parent_journal]'>
+
+                            <!-- Input pencarian -->
+                            <input type='text' id='search_tujuan' name='tujuan_pembelajaran' 
+                              class='form-control' 
+                              placeholder='Cari tujuan pembelajaran...' 
+                              value='" . htmlspecialchars($e['tujuan_pembelajaran']) . "' 
+                              " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'readonly' : '') . ">
+ 
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
                               class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
 
                             <!-- Dropdown untuk memilih tujuan pembelajaran -->
-                            <select id='result_tujuan_edit' class='form-control' style='display: none;'>
+                            <select id='result_tujuan' class='form-control' style='display: none;'>
                                     <option value=''>Pilih Tujuan Pembelajaran...</option>";
                                     
                                     $tampilInput = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='{$e['id_jdwl']}' ORDER BY id_journal DESC");
@@ -844,67 +851,6 @@ $(document).ready(function(){
 
         this.style.display = 'none';  // Sembunyikan tombol hapus
         document.getElementById('search_tujuan').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
-    });
-
-
-
-
-    // buat edit
-    // Ketika mengetik pada input pencarian
-    document.getElementById('search_tujuan_edit').addEventListener('input', function() {
-        var searchValue = this.value.toLowerCase();
-        var selectElement = document.getElementById('result_tujuan_edit');
-        var options = selectElement.getElementsByTagName('option');
-        
-        // Menampilkan select jika input tidak kosong
-        if (searchValue !== '') {
-            selectElement.style.display = 'block';
-        } else {
-            selectElement.style.display = 'none';
-        }
-        
-        // Menyembunyikan opsi yang tidak sesuai dengan pencarian
-        var anyMatch = false;
-        for (var i = 0; i < options.length; i++) {
-            var optionText = options[i].textContent || options[i].innerText;
-            if (optionText.toLowerCase().indexOf(searchValue) > -1) {
-                options[i].style.display = 'block';
-                anyMatch = true;
-            } else {
-                options[i].style.display = 'none';
-            }
-        }
-
-        // Jika tidak ada opsi yang cocok, sembunyikan dropdown
-        if (!anyMatch) {
-            selectElement.style.display = 'none';
-        }
-    });
-
-    // Ketika memilih opsi, set value input dan id_parent_journal
-    document.getElementById('result_tujuan_edit').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        document.getElementById('search_tujuan_edit').value = selectedOption.text;  // Set tujuan_pembelajaran ke input text
-        document.getElementById('edit_id_parent_journal').value = selectedOption.value;  // Set id_journal ke input hidden
-        document.getElementById('result_tujuan_edit').style.display = 'none';  // Sembunyikan dropdown setelah memilih
-        
-        // Set input menjadi readonly dan tombol hapus muncul
-        document.getElementById('search_tujuan_edit').setAttribute('readonly', true);
-        document.getElementById('clear_search').style.display = 'inline-block';  // Tampilkan tombol hapus
-    });
-
-    // Ketika tombol hapus diklik, kosongkan input dan sembunyikan tombol hapus
-    document.getElementById('clear_search').addEventListener('click', function() {
-        document.getElementById('search_tujuan_edit').value = '';  // Kosongkan input text
-        document.getElementById('edit_id_parent_journal').value = '';  // Kosongkan input hidden
-        document.getElementById('result_tujuan_edit').style.display = 'none';  // Sembunyikan dropdown
-
-        // Reset dropdown ke opsi awal
-        var selectElement = document.getElementById('result_tujuan_edit');
-        selectElement.selectedIndex = 0;  // Pilih opsi kosong kembali (opsi pertama)
-
-        this.style.display = 'none';  // Sembunyikan tombol hapus
-        document.getElementById('search_tujuan_edit').removeAttribute('readonly');  // Hilangkan readonly agar input bisa diedit kembali
     });
 </script>
 
