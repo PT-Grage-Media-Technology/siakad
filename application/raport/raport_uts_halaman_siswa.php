@@ -34,23 +34,22 @@ echo "          </select>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Pengetahuan</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
-                  </tr>
-                  <tr>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2'><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
   if (empty($selectedTahunId)) {
-    echo "<tr><td colspan='7'><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
+    echo "<tr><td colspan='8'><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
   } else {
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
     while ($kelompokRow = mysql_fetch_array($kelompokQuery)) {
-      echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}</b></td></tr>";
+      echo "<tr></tr>
+            <tr>
+              <td style='border:1px solid #e3e3e3; background-color: #f5f5f5; font-weight: bold; text-align: left; padding: 10px;' colspan='8'>
+                {$kelompokRow['nama_kelompok_mata_pelajaran']}
+              </td>
+            </tr>";
 
       // Fetch subjects based on selected year and class
       $mapelQuery = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
@@ -60,23 +59,20 @@ echo "          </select>
                                                       AND b.id_kelompok_mata_pelajaran = '{$kelompokRow['id_kelompok_mata_pelajaran']}'
                                                       AND b.kode_kurikulum = '{$kurikulum['kode_kurikulum']}'");
 
-      $no = 1;
-      while ($mapelRow = mysql_fetch_array($mapelQuery)) {
-        $nilaiRow = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl = '{$mapelRow['kodejdwl']}' AND nisn = '{$iden['nisn']}'"));
+                              $no = 1;
+                              while ($mapelRow = mysql_fetch_array($mapelQuery)) {
+                                $nilaiRow = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl = '{$mapelRow['kodejdwl']}' AND nisn = '{$iden['nisn']}'"));
 
-        // Fetch predicates
-        $grade1Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_pengetahuan']} BETWEEN nilai_a AND nilai_b");
-        $grade2Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_keterampilan']} BETWEEN nilai_a AND nilai_b");
+                                // Fetch predicates
+                                $grade1Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_pengetahuan']} BETWEEN nilai_a AND nilai_b");
 
-        $grade1 = mysql_fetch_array($grade1Query);
-        $grade2 = mysql_fetch_array($grade2Query);
+                                $grade1 = mysql_fetch_array($grade1Query);
+                                $grade2 = mysql_fetch_array($grade2Query);
 
-        echo "<tr>
+                                echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td align='center'>{$mapelRow['kkm']}</td>
-                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
-                                <td align='center' colspan='2'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
+                                <td align=center>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
                             </tr>";
         $no++;
       }

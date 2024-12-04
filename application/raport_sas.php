@@ -117,6 +117,7 @@ cek_session_guru();
 }elseif($_GET[act]=='listsiswa'){
 cek_session_guru();
     if (isset($_POST[simpan])){
+      var_dump($_POST['simpan']);
         $jumls = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$jumls; $ia++){
           $a  = $_POST['a'.$ia];
@@ -127,10 +128,11 @@ cek_session_guru();
             if ($cek >= '1'){
               mysql_query("UPDATE rb_nilai_sas SET angka_pengetahuan='$a', angka_keterampilan='$b' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
             }else{
-              mysql_query("INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','','".date('Y-m-d H:i:s')."')");
+              mysql_query("INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','".date('Y-m-d H:i:s')."')");
             }
           }
         }
+        // echo "INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','".date('Y-m-d H:i:s')."')";
         echo "<script>document.location='index.php?view=raportsas&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
 
@@ -173,21 +175,21 @@ cek_session_guru();
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                 while($r=mysql_fetch_array($tampil)){
                   $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
-                  $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
-                  if ($cekpredikat >= 1){
-                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                  }else{
-                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
-                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
-                  }
+                  // $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
+                  // if ($cekpredikat >= 1){
+                  //   $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                  //   $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                  // }else{
+                  //   $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
+                  //   $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
+                  // }
                     echo "<tr>
                           <td>$no</td>
                           <td>$r[nisn]</td>
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                          <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
-                          <td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>
+                          <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
                   }

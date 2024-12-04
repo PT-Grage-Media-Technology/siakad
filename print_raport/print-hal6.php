@@ -38,11 +38,11 @@ echo "<table width=100%>
         <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td></td></tr>
       </table><br>";
 
-echo "<b>C. Extrakulikuler</b>
+echo "<b>C. Ektrakulikuler</b>
       <table id='tablemodul1' width=100% border=1>
           <tr>
             <th width='40px'>No</th>
-            <th width='30%'>Kegiatan Extrakulikuler</th>
+            <th width='30%'>Ektrakulikuler</th>
             <th>Keterangan</th>
           </tr>";
 
@@ -52,8 +52,7 @@ echo "<b>C. Extrakulikuler</b>
             echo "<tr>
                     <td>$no</td>
                     <td>$ex[kegiatan]</td>
-                    <td hidden>$ex[nilai]</td>
-                    <td>$ex[deskripsi]</td>
+                    <td align='center'>$ex[deskripsi]</td>
                   </tr>";
               $no++;
           }

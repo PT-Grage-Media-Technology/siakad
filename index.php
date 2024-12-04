@@ -383,7 +383,16 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/absensi_siswa.php";
             echo "</div>";
-          } elseif ($_GET[view] == 'rekapguru') {
+          } elseif ($_GET[view] == 'rekapsrl') {
+            cek_session_guru();
+            echo "<div class='row'>";
+            if (file_exists("application/rekap_srl.php")) {
+                include "application/rekap_srl.php";
+            } else {
+                echo "File rekap_srl.php tidak ditemukan.";
+            }
+            echo "</div>";
+        } elseif ($_GET[view] == 'rekapguru') {
             $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
