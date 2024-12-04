@@ -34,7 +34,7 @@ echo "          </select>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2' colspan='2' ><center>Nilai</center></th>
+                    <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Nilai</center></th>
                   </tr>";
 
   // Check if the academic year is selected
@@ -44,7 +44,12 @@ echo "          </select>
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
     while ($kelompokRow = mysql_fetch_array($kelompokQuery)) {
-      echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}123</b></td></tr>";
+      echo "<tr></tr>
+            <tr>
+              <td style='border:1px solid #e3e3e3; background-color: #f5f5f5; font-weight: bold; text-align: left; padding: 10px;' colspan='8'>
+                {$kelompokRow['nama_kelompok_mata_pelajaran']}
+              </td>
+            </tr>";
 
       // Fetch subjects based on selected year and class
       $mapelQuery = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
@@ -67,7 +72,7 @@ echo "          </select>
                                 echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
+                                <td align=center>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
                             </tr>";
         $no++;
       }
