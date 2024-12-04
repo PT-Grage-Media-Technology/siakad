@@ -50,7 +50,7 @@
             <thead>
               <tr>
                 <th rowspan="2">No</th>
-                <th rowspan="2">NISN</th>
+                <th colspan="2">NISN</th>
                 <th rowspan="2">Nama Siswa</th>
                 <th colspan="3">SUMATIF LINGKUP MATERI</th>
                 <th rowspan="2">NA SUMATIF (S)</th>
