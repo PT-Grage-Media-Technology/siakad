@@ -38,12 +38,12 @@ echo "<table width=100%>
         <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td></td></tr>
       </table><br>";
 
-echo "<b>C. Extrakulikuler</b>
+echo "<b>C. Ektrakulikuler</b>
       <table id='tablemodul1' width=100% border=1>
           <tr>
             <th width='40px'>No</th>
-            <th width='30%'>Kegiatan Extrakulikuler</th>
-            <th>Keterangan</th>
+            <th width='30%'>Ektrakulikuler</th>
+            <th width='40%'>Keterangan</th>
           </tr>";
 
           $extra = mysql_query("SELECT * FROM rb_nilai_extrakulikuler where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
