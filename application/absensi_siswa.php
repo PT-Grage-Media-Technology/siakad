@@ -165,6 +165,7 @@
   $results = array(); // Menyimpan hasil
   // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
+  var_dump($results);
   
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
