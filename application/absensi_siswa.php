@@ -163,8 +163,7 @@
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
   $absensi = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[idjr]' AND tanggal='$j[tanggal]'"));
-  echo"SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[idjr]' AND tanggal='$j[tanggal]'";
-  var_dump(count($absensi));
+  var_dump($absensi);
   // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
   
@@ -248,7 +247,7 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>";
-                                    var_dump($absensi);
+
                                     echo"<th>Nilai Pengetahuan</th>
                                     <th>Nilai Keterampilan</th>
                                     <th>Nilai Sikap</th>
@@ -422,6 +421,7 @@
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
+    $id_parent = $_GET['id_parent_journal'];
     $guruInserted = false;
 
 
@@ -465,6 +465,7 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
+                '" . $id_parent[$i] . "', 
                 '$tgl', 
                 NOW()
             )
