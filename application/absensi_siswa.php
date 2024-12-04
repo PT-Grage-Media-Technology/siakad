@@ -162,8 +162,11 @@
   $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
+  $absensi = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[idjr]' AND tanggal='$j[tanggal]'"));
+  var_dump($absensi);
   // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
   // var_dump($jawaban_refleksi);
+  
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
   $bulane = $ex[1];
@@ -243,8 +246,9 @@
                                     <th>NIPD</th>
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Nilai Pengetahuan</th>
+                                    <th>Jenis Kelamin</th>";
+
+                                    echo"<th>Nilai Pengetahuan</th>
                                     <th>Nilai Keterampilan</th>
                                     <th>Nilai Sikap</th>
                                     <th width='120px'>Kehadiran</th>
@@ -417,6 +421,7 @@
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
+    $id_parent = $_GET['id_parent'];
     $guruInserted = false;
 
 
@@ -436,6 +441,7 @@
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                       nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
                       total='" . $total_nilai[$i] . "' 
+                      id_parent_journal='" . $id_parent[$i] . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
@@ -460,11 +466,26 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
+                '" . $id_parent . "', 
                 '$tgl', 
                 NOW()
             )
         ");
-
+        echo " INSERT INTO rb_absensi_siswa 
+              VALUES (
+                '', 
+                '$kodejdwl', 
+                '" . $nisn[$i] . "', 
+                '" . $a[$i] . "', 
+                '" . $nilai_sikap[$i] . "', 
+                '" . $nilai_pengetahuan[$i] . "', 
+                '" . $nilai_keterampilan[$i] . "', 
+                '" . $total_nilai[$i] . "', 
+                '" . $id_parent . "', 
+                '$tgl', 
+                NOW()
+            )";
+            exit;
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
