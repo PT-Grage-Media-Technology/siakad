@@ -5,7 +5,7 @@ if ($_GET[act] == '') {
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Rekap Data Absensi Guru $_GET[tahun]</b></h3>
+                  <h3 class='box-title'>Hasil Refleksi Guru $_GET[tahun]</b></h3>
                 </div>
               <div class='box-body'>
 
