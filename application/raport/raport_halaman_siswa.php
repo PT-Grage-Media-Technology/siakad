@@ -48,7 +48,6 @@ if ($tahun_terpilih == '') {
 $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
 while ($k = mysql_fetch_array($kelompok)) {
     echo "
-    <tr></tr>
     <tr>
                 <td style='border:1px solid #e3e3e3' colspan='2'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
                 <td style='border:1px solid #e3e3e3' colspan='5'></td>
