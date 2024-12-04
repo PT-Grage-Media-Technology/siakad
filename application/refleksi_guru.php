@@ -26,9 +26,9 @@ if ($_GET[act] == '') {
                     </thead>
                     <tbody>";
 
-    $no = 1;
-    $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
-    while ($r = mysql_fetch_array($tampil)) {
+    // $no = 1;
+    // $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+    // while ($r = mysql_fetch_array($tampil)) {
       // var_dump($r);
         // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
         // $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
@@ -41,15 +41,38 @@ if ($_GET[act] == '') {
         // <td align=right>" . number_format($persen, 2) . " %</td>";
 
         // var_dump($hadir);
-        echo "<tr bgcolor=$warna>
-                            <td>$no</td>
-                            <td>$r[nip]</td>
-                            <td>$r[nama_guru]</td>
-                            <td></td>
-                            ";
-        echo "</tr>";
-        $no++;
-    }
+
+    //     echo "<tr bgcolor=$warna>
+    //                         <td>$no</td>
+    //                         <td>$r[nip]</td>
+    //                         <td>$r[nama_guru]</td>
+    //                         <td></td>
+    //                         ";
+    //     echo "</tr>";
+    //     $no++;
+    // }
+
+
+    $no = 1;
+$tampil = mysql_query("
+    SELECT g.nip, g.nama_guru 
+    FROM rb_guru g 
+    INNER JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip 
+    WHERE g.id_jenis_ptk NOT IN (6, 7) 
+    GROUP BY g.nip 
+    ORDER BY g.nama_guru ASC
+");
+
+while ($r = mysql_fetch_array($tampil)) {
+    echo "<tr>
+            <td>$no</td>
+            <td>$r[nip]</td>
+            <td>$r[nama_guru]</td>
+            <td></td>
+          </tr>";
+    $no++;
+}
+
 
     echo "</tbody>
                   </table>
