@@ -39,7 +39,7 @@ echo "          </select>
 
   // Check if the academic year is selected
   if (empty($selectedTahunId)) {
-    echo "<tr><td colspan='7'><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
+    echo "<tr><td colspan='8'><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
   } else {
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
