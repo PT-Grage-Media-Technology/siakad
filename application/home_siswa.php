@@ -234,7 +234,7 @@
           continue; // Lewati input jika sudah ada
         }
 
-        mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
+        mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$r[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
       }
     }
     echo "<script>window.alert('Sukses Simpan Jawaban Penilaian refleksi...');
