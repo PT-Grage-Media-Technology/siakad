@@ -339,7 +339,7 @@
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                     AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
                                     AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
-    array_push($results, $a); // Menambahkan setiap $r ke dalam array
+    array_push($results, $r); // Menambahkan setiap $r ke dalam array
 
     echo "<tr>
               <td>$no</td>
