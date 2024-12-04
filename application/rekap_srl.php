@@ -19,7 +19,7 @@
         <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
                                 echo "Rekap Absensi siswa";
                               } else {
-                                echo "Rekap Absensi Siswa Pada Tahun " . date('Y');
+                                echo "Rekap Sumatif Ruang Lingkup " . date('Y');
                               } ?></h3>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='rekapabsensiswa'>
