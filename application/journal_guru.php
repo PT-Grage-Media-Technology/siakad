@@ -724,7 +724,7 @@ while ($r = mysql_fetch_array($tampil)) {
                     <td>
                       <div class='d-flex flex-column align-items-start'>
                       <!-- Gambar -->
-                        <img src='$e[file]' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
+                        <img src='files/$e[file]' alt='foto materi' class='img-fluid mb-2' style='max-width: 100%; height: auto;'>
                         <!-- File Upload -->
                         <div style='position: relative;' class='w-100'>
                           <a class='btn btn-primary w-100 mb-2' href='javascript:;'>
