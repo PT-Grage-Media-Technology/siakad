@@ -423,7 +423,8 @@
     $jam_ke = $_GET['jam'];
     $id_parent = $_GET['id_parent'];
     $guruInserted = false;
-
+    echo $id_parent;
+    exit;
 
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
