@@ -424,6 +424,8 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $id_parent = $_POST['id_parent'];
+    echo $id_parent;
+    exit;
     $guruInserted = false;
 
 
