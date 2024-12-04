@@ -339,9 +339,7 @@
 
     echo "<tr>
               <td>$no</td>
-              <td>$r[nipd]
-              <input type='number' value='$_GET[id_parent]' name='id_parent' style='width:50px;' hidden>
-              </td>
+              <td>$r[nipd]</td>
               <td>
               $r[nisn]
               <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
@@ -488,8 +486,7 @@
     }
 
     // Redirect setelah semua proses selesai
-    echo "<script>history.back();</script>";
-    // echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
+    echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
   }
 } elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
