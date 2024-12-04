@@ -40,7 +40,6 @@ echo "</select>
         <tr>
           <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
           <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
           <th style='border:1px solid #ffffff; background-color:lightblue' colspan='4' style='text-align:center'><center>Nilai</center></th>
         </tr>";
 
@@ -115,8 +114,7 @@ while ($k = mysql_fetch_array($kelompok)) {
 
         echo "<tr>
         <td align=center>$no</td>
-        <td>$m[namamatapelajaran]</td>
-        <td align=center>$m[kkm]</td>";
+        <td>$m[namamatapelajaran]</td>";
 
 // Query untuk mengambil tanggal absensi yang diurutkan secara menurun (tanggal terbaru di atas)
 $query_pertemuan = mysql_query("
