@@ -35,13 +35,13 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
-                                echo "Rekap Absensi siswa";
-                              } else {
-                                echo "Rekap Sumatif Ruang Lingkup " . date('Y');
-                              } ?></h3>
-<?php
-    $siswa = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_GET[id]'"))
-?>
+          echo "Rekap Absensi siswa";
+        } else {
+          echo "Rekap Sumatif Ruang Lingkup " . date('Y');
+        } ?></h3>
+        <?php
+        $siswa = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_GET[id]'"))
+          ?>
 
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -58,48 +58,40 @@
                 <th rowspan="2">NA SUMATIF AKHIR SEMESTER (AS)</th>
                 <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th>
               </tr>
-
-              <tbody>
-                <?php 
-                $no = 1;
-              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-              while ($r = mysql_fetch_array($tampil)) {
-              
-              echo"
-               <tr>
+              <tr>
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>$no</td>
-                <td>$r[nama]
-                </td>
-                <td>90</td>
-                <td>90</td>
-                <td>90</td>
-                <td>80</td>
-                <td>88</td>
-                <td>95</td>
-                <td>90</td>
-                <td>90</td>
-              </tr>
-              <!-- ... existing code for dynamic rows ... -->
-            </tbody>
-              ";
-
-
-              $no++;
+              <?php
+              $no = 1;
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              while ($r = mysql_fetch_array($tampil)) {
+                echo "
+      <tr>
+        <td>$no</td>
+        <td>$r[nama]</td>
+        <td>90</td>
+        <td>90</td>
+        <td>90</td>
+        <td>80</td>
+        <td>88</td>
+        <td>95</td>
+        <td>90</td>
+        <td>90</td>
+      </tr>";
+                $no++;
               }
-                ?>
-                </tbody>
+              ?>
+            </tbody>
           </table>
+
         </div>
       </div><!-- /.box-body -->
     </div>
   </div>
-<?php
+  <?php
 }
 ?>
