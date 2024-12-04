@@ -43,7 +43,7 @@ echo "<b>C. Ektrakulikuler</b>
           <tr>
             <th width='40px'>No</th>
             <th width='30%'>Ektrakulikuler</th>
-            <th width='50px'>Keterangan</th>
+            <th>Keterangan</th>
           </tr>";
 
           $extra = mysql_query("SELECT * FROM rb_nilai_extrakulikuler where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
@@ -52,8 +52,7 @@ echo "<b>C. Ektrakulikuler</b>
             echo "<tr>
                     <td>$no</td>
                     <td>$ex[kegiatan]</td>
-                    <td hidden>$ex[nilai]</td>
-                    <td>$ex[deskripsi]</td>
+                    <center><td>$ex[deskripsi]</td></center>
                   </tr>";
               $no++;
           }
