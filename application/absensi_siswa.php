@@ -162,12 +162,10 @@
   $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
   $idtopic = mysql_fetch_array(mysql_query("SELECT * FROM rb_forum_topic WHERE judul_topic='$j[materi]'"));
   $jawaban_refleksi = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status='refleksi' AND kodejdwl='$_GET[idjr]'"));
-  $absensi = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-  WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-  AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
-  AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
-  // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
+  $absensi = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[idjr]' AND tanggal='$j[tanggal]'"));
   var_dump($absensi);
+  // echo"SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE status=refleksi AND kodejdwl='$_GET[idjr]'";
+  // var_dump($jawaban_refleksi);
   
   $ex = explode('-', $filtertgl);
   $tahun = $ex[0];
@@ -249,7 +247,6 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>";
-
                                     echo"<th>Nilai Pengetahuan</th>
                                     <th>Nilai Keterampilan</th>
                                     <th>Nilai Sikap</th>
