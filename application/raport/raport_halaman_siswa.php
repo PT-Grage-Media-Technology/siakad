@@ -70,13 +70,13 @@ while ($k = mysql_fetch_array($kelompok)) {
             $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapn['raport']) . " >=nilai_a) AND (" . number_format($rapn['raport']) . " <= nilai_b) AND kode_kelas='0'"));
         }
 
-        // $rapnk = mysql_fetch_array(mysql_query("SELECT sum(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/count(nisn) as raport FROM rb_nilai_keterampilan where kodejdwl='$m[kodejdwl]' AND nisn='$iden[nisn]'"));
-        // $cekpredikat2 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_SESSION[kelas]'"));
-        // if ($cekpredikat2 >= 1) {
-        //     $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='$_SESSION[kelas]'"));
-        // } else {
-        //     $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='0'"));
-        // }
+        $rapnk = mysql_fetch_array(mysql_query("SELECT sum(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/count(nisn) as raport FROM rb_nilai_keterampilan where kodejdwl='$m[kodejdwl]' AND nisn='$iden[nisn]'"));
+        $cekpredikat2 = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_SESSION[kelas]'"));
+        if ($cekpredikat2 >= 1) {
+            $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='$_SESSION[kelas]'"));
+        } else {
+            $grade = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (" . number_format($rapnk['raport']) . " >=nilai_a) AND (" . number_format($rapnk['raport']) . " <= nilai_b) AND kode_kelas='0'"));
+        }
 
         echo "<tr>
                   <td align=center>$no</td>
