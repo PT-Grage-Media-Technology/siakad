@@ -60,16 +60,22 @@
               </tr>
 
               <tbody>
-              <?php 
+                <?php 
                 $no = 1;
-                $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-                while ($r = mysql_fetch_array($tampil)) {
-                  var_dump($r);
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              while ($r = mysql_fetch_array($tampil)) {
               
-                echo"
+              echo"
                <tr>
-                <td>$no</td> <!-- Perbaiki tag <th> menjadi <td> untuk data -->
-                <td>$r[nama]</td> <!-- Perbaiki penutupan tag <td> yang hilang -->
+                <th>Proses perumusan pancasila</th>
+                <th>Proses perumusan pancasila</th>
+                <th>Proses perumusan pancasila</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>$no</td>
+                <td>$r[nama]/td>
                 <td>90</td>
                 <td>90</td>
                 <td>90</td>
@@ -79,10 +85,13 @@
                 <td>90</td>
                 <td>90</td>
               </tr>
+              <!-- ... existing code for dynamic rows ... -->
+            </tbody>
               ";
-// ... existing code ...
-                $no++;
-                }
+
+
+              $no++;
+              }
                 ?>
                 </tbody>
           </table>
