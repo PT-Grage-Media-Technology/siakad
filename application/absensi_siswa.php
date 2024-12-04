@@ -463,6 +463,7 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
+                '', 
                 '" . $id_parent . "', 
                 '" . $total_nilai[$i] . "', 
                 '$tgl', 
