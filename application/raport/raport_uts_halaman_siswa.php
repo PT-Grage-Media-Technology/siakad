@@ -44,7 +44,8 @@ echo "          </select>
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
     while ($kelompokRow = mysql_fetch_array($kelompokQuery)) {
-      echo "<tr>
+      echo "<tr></tr>
+            <tr>
               <td style='border:1px solid #e3e3e3; background-color: #f5f5f5; font-weight: bold; text-align: left; padding: 10px;' colspan='8'>
                 {$kelompokRow['nama_kelompok_mata_pelajaran']}
               </td>
