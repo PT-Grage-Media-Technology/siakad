@@ -54,24 +54,25 @@ if ($_GET[act] == '') {
 
 
     $no = 1;
-$tampil = mysql_query("
-    SELECT g.nip, g.nama_guru 
-    FROM rb_guru g 
-    INNER JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip 
-    WHERE g.id_jenis_ptk NOT IN (6, 7) 
-    GROUP BY g.nip 
-    ORDER BY g.nama_guru ASC
-");
-
-while ($r = mysql_fetch_array($tampil)) {
-    echo "<tr>
-            <td>$no</td>
-            <td>$r[nip]</td>
-            <td>$r[nama_guru]</td>
-            <td></td>
-          </tr>";
-    $no++;
-}
+    $tampil = mysql_query("
+        SELECT g.nip, g.nama_guru, p.jawaban 
+        FROM rb_guru g 
+        INNER JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip 
+        WHERE g.id_jenis_ptk NOT IN (6, 7) 
+        GROUP BY g.nip 
+        ORDER BY g.nama_guru ASC
+    ");
+    
+    while ($r = mysql_fetch_array($tampil)) {
+        echo "<tr>
+                <td>$no</td>
+                <td>$r[nip]</td>
+                <td>$r[nama_guru]</td>
+                <td>$r[jawaban]</td>
+              </tr>";
+        $no++;
+    }
+    
 
 
     echo "</tbody>
