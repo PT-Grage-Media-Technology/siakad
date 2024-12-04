@@ -44,7 +44,7 @@ echo "          </select>
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
     while ($kelompokRow = mysql_fetch_array($kelompokQuery)) {
-      echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}</b></td></tr>";
+      echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}123</b></td></tr>";
 
       // Fetch subjects based on selected year and class
       $mapelQuery = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
@@ -54,17 +54,17 @@ echo "          </select>
                                                       AND b.id_kelompok_mata_pelajaran = '{$kelompokRow['id_kelompok_mata_pelajaran']}'
                                                       AND b.kode_kurikulum = '{$kurikulum['kode_kurikulum']}'");
 
-      $no = 1;
-      while ($mapelRow = mysql_fetch_array($mapelQuery)) {
-        $nilaiRow = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl = '{$mapelRow['kodejdwl']}' AND nisn = '{$iden['nisn']}'"));
+                              $no = 1;
+                              while ($mapelRow = mysql_fetch_array($mapelQuery)) {
+                                $nilaiRow = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl = '{$mapelRow['kodejdwl']}' AND nisn = '{$iden['nisn']}'"));
 
-        // Fetch predicates
-        $grade1Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_pengetahuan']} BETWEEN nilai_a AND nilai_b");
+                                // Fetch predicates
+                                $grade1Query = mysql_query("SELECT * FROM rb_predikat WHERE kode_kelas = '{$_SESSION['kode_kelas']}' AND {$nilaiRow['angka_pengetahuan']} BETWEEN nilai_a AND nilai_b");
 
-        $grade1 = mysql_fetch_array($grade1Query);
-        $grade2 = mysql_fetch_array($grade2Query);
+                                $grade1 = mysql_fetch_array($grade1Query);
+                                $grade2 = mysql_fetch_array($grade2Query);
 
-        echo "<tr>
+                                echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
                                 <td>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
