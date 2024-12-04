@@ -40,15 +40,19 @@ echo "</select>
         <tr>
           <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
           <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-          <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Nilai</center></th> 
+          <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Pengetahuan</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
+        </tr>
+        <tr>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
+          <th style='border:1px solid #ffffff; background-color:lightblue'  colspan='2'><center>Nilai</center></th>
         </tr>";
 if ($tahun_terpilih == '') {
     echo "<tr><td colspan=7><center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik Terlebih dahulu...</center></td></tr>";
 }
 $kelompok = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
 while ($k = mysql_fetch_array($kelompok)) {
-    echo "
-    <tr>
+    echo "<tr>
                 <td style='border:1px solid #e3e3e3' colspan='2'><b>$k[nama_kelompok_mata_pelajaran]</b></td>
                 <td style='border:1px solid #e3e3e3' colspan='5'></td>
               </tr>";
@@ -80,7 +84,9 @@ while ($k = mysql_fetch_array($kelompok)) {
         echo "<tr>
                   <td align=center>$no</td>
                   <td>$m[namamatapelajaran]</td>
-                  <td align=center " . number_format($rapn['raport']) . "</td>
+                  <td align=center  colspan='2'>" . number_format($rapn['raport']) . "</td>
+                 
+                  <td align=center  colspan='2'>" . number_format($rapnk['raport']) . "</td>
                  
               </tr>";
         $no++;
