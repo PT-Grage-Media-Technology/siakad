@@ -52,7 +52,7 @@ echo "<b>C. Ektrakulikuler</b>
             echo "<tr>
                     <td>$no</td>
                     <td>$ex[kegiatan]</td>
-                    <center><td>$ex[deskripsi]</td></center>
+                    <td align='center'>$ex[deskripsi]</td>
                   </tr>";
               $no++;
           }
