@@ -702,23 +702,21 @@ while ($r = mysql_fetch_array($tampil)) {
  
                             <!-- Tombol hapus -->
                             <button type='button' id='clear_search' 
-                              class='btn btn-danger btn-sm ml-2' 
-                              style='display: " . (isset($e['id_parent_journal']) && $e['id_parent_journal'] ? 'inline-block' : 'none') . ";'>Hapus</button>
+                              class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
 
                             <!-- Dropdown untuk memilih tujuan pembelajaran -->
                             <select id='result_tujuan' class='form-control' style='display: none;'>
                                     <option value=''>Pilih Tujuan Pembelajaran...</option>";
                                     
-                            $tampilInput = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='{$e['id_jdwl']}' ORDER BY id_journal DESC");
+                                    $tampilInput = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='{$e['id_jdwl']}' ORDER BY id_journal DESC");
 
-                            while ($row = mysql_fetch_array($tampilInput)) {
-                                if ($row['id_parent_journal'] == null) {
-                                    $selected = ($row['id_journal'] == $e['id_parent_journal']) ? 'selected' : '';
-                                    echo "<option value='{$row['id_journal']}' $selected>{$row['tujuan_pembelajaran']}</option>";
-                                }
-                            }
-                                echo "
-                            </select>
+                                    while ($row = mysql_fetch_array($tampilInput)) {
+                                        if ($row['id_parent_journal'] == null) {
+                                            $selected = ($row['id_journal'] == $e['id_parent_journal']) ? 'selected' : '';
+                                            echo "<option value='{$row['id_journal']}' >{$row['tujuan_pembelajaran']}</option>";
+                                        }
+                                    }
+                            echo " </select>
                         </td>
                     </tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
