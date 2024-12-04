@@ -44,7 +44,7 @@ echo "          </select>
     // Fetch subject groups
     $kelompokQuery = mysql_query("SELECT * FROM rb_kelompok_mata_pelajaran");
     while ($kelompokRow = mysql_fetch_array($kelompokQuery)) {
-      // echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}</b></td></tr>";
+      echo "<tr><td style='border:1px solid #e3e3e3' colspan='8'><b>{$kelompokRow['nama_kelompok_mata_pelajaran']}</b></td></tr>";
 
       // Fetch subjects based on selected year and class
       $mapelQuery = mysql_query("SELECT * FROM rb_jadwal_pelajaran a 
