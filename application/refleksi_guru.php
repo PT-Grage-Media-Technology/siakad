@@ -26,15 +26,15 @@ if ($_GET['act'] == '') {
                     <tbody>";
 
     $no = 1;
-    $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+    // Query untuk mendapatkan data guru yang memiliki rating di rb_pertanyaan_penilaian_jawab
+    $tampil = mysql_query("SELECT g.nip, g.nama_guru, AVG(p.jawaban) as rata_rata
+                           FROM rb_guru g
+                           JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip_guru
+                           WHERE g.id_jenis_ptk NOT IN (6, 7)
+                           GROUP BY g.nip
+                           ORDER BY g.nama_guru ASC");
     while ($r = mysql_fetch_array($tampil)) {
-        // Mengambil rating dari rb_pertanyaan_penilaian_jawab berdasarkan NIP guru
-        $rating_query = mysql_query("SELECT AVG(jawaban) as rata_rata 
-                                     FROM rb_pertanyaan_penilaian_jawab 
-                                     WHERE nip_guru = '$r[nip]'");
-        $rating_data = mysql_fetch_array($rating_query);
-        $rating = number_format($rating_data['rata_rata'], 2); // Format angka menjadi 2 desimal
-
+        $rating = number_format($r['rata_rata'], 2); // Format angka menjadi 2 desimal
         echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>

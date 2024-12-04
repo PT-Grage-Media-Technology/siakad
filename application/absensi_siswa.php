@@ -237,6 +237,7 @@
                 <input type='hidden' name='pelajaran' value='$_GET[kd]'>
                 <input type='hidden' name='jdwl' value='$_GET[idjr]'>
                 <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
+                <input type='hidden' name='kodejdwl' value='$_GET[idjr]'>
                 <div class='col-md-12'>
                     <div class='table-responsive'>
                         <table class='table table-condensed table-bordered table-striped'>
@@ -347,6 +348,7 @@
               <td>
               $r[nisn]
               <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
+              <input type='number' value='$_GET[id_parent]' name='id_parent[$no]' style='width:50px;' hidden>
               </td>
               <td>$r[nama]</td>
               <td>$r[jenis_kelamin]</td>";
@@ -466,7 +468,7 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
-                '" . $id_parent . "', 
+                '" . $id_parent[$i] . "', 
                 '$tgl', 
                 NOW()
             )
@@ -481,7 +483,7 @@
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
                 '" . $total_nilai[$i] . "', 
-                '" . $id_parent . "', 
+                '" . $id_parent[$i] . "', 
                 '$tgl', 
                 NOW()
             )";
