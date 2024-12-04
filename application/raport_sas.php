@@ -175,14 +175,14 @@ cek_session_guru();
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                 while($r=mysql_fetch_array($tampil)){
                   $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
-                  $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
-                  if ($cekpredikat >= 1){
-                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
-                  }else{
-                    $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
-                    $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
-                  }
+                  // $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
+                  // if ($cekpredikat >= 1){
+                  //   $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                  //   $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='$_GET[id]'"));
+                  // }else{
+                  //   $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
+                  //   $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
+                  // }
                     echo "<tr>
                           <td>$no</td>
                           <td>$r[nisn]</td>
