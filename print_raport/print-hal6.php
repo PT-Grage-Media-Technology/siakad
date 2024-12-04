@@ -43,7 +43,7 @@ echo "<b>C. Ektrakulikuler</b>
           <tr>
             <th width='40px'>No</th>
             <th width='30%'>Ektrakulikuler</th>
-            <th width='5%'>Keterangan</th>
+            <th width='50px'>Keterangan</th>
           </tr>";
 
           $extra = mysql_query("SELECT * FROM rb_nilai_extrakulikuler where id_tahun_akademik='$_GET[tahun]' AND nisn='$_GET[id]' AND kode_kelas='$_GET[kelas]'");
