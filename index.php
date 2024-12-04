@@ -383,6 +383,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/absensi_siswa.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'rekapsrl') {
+            cek_session_guru();
+            echo "<div class='row'>";
+            include "application/rekap_srl.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'rekapguru') {
             $_SESSION['is_kurikulum'];
             // cek_session_guru();
