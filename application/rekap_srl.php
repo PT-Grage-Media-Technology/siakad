@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Rekap Absensi Siswa Dummy</h3>
+                <h3 class="box-title">Rekap Sumatif Ruang Lingkup</h3>
                 <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='rekapabsensiswa'>
 
@@ -94,78 +94,5 @@
         </div>
     </div>
 <?php
-} elseif ($_GET[act] == 'tampilabsen') {
-    // Data dummy untuk tampilan absensi
-    echo "<div class='col-md-12 table-responsive'>
-            <div class='box box-info table-responsive'>
-                <div class='box-header with-border'>
-                    <h3 class='box-title'>Rekap Data Absensi Siswa Dummy</h3>
-                </div>
-                <div class='box-body'>
-                    <div class='col-md-12'>
-                        <table class='table table-condensed table-hover'>
-                            <tbody>
-                                <tr><th width='120px' scope='row'>Kode Kelas</th> <td>Kelas 1</td></tr>
-                                <tr><th scope='row'>Nama Kelas</th> <td>Kelas Pertama</td></tr>
-                                <tr><th scope='row'>Mata Pelajaran</th> <td>Matematika</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='col-md-12'>
-                        <table class='table table-condensed table-bordered table-striped table-responsive'>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NISN</th>
-                                    <th>Nama Siswa</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Pertemuan</th>
-                                    <th>Hadir</th>
-                                    <th>Sakit</th>
-                                    <th>Izin</th>
-                                    <th>Alpa</th>
-                                    <th>Sikap</th>
-                                    <th>Keterampilan</th>
-                                    <th>Pengetahuan</th>
-                                    <th>Total</th>
-                                    <th>Rata-Rata</th>
-                                    <th><center>% Kehadiran</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>";
-
-    // Data dummy siswa
-    $dummy_siswa = [
-        ['no' => 1, 'nisn' => '123456', 'nama' => 'Siswa A', 'jenis_kelamin' => 'L', 'hadir' => 10, 'sakit' => 1, 'izin' => 0, 'alpa' => 1],
-        ['no' => 2, 'nisn' => '123457', 'nama' => 'Siswa B', 'jenis_kelamin' => 'P', 'hadir' => 9, 'sakit' => 2, 'izin' => 0, 'alpa' => 2],
-    ];
-
-    foreach ($dummy_siswa as $s) {
-        $total = 12; // Total pertemuan
-        $persen = ($s['hadir'] / $total) * 100;
-        echo "<tr>
-                        <td>{$s['no']}</td>
-                        <td>{$s['nisn']}</td>
-                        <td>{$s['nama']}</td>
-                        <td>{$s['jenis_kelamin']}</td>
-                        <td align=center>$total</td>
-                        <td align=center>{$s['hadir']}</td>
-                        <td align=center>{$s['sakit']}</td>
-                        <td align=center>{$s['izin']}</td>
-                        <td align=center>{$s['alpa']}</td>
-                        <td align=center>80</td>
-                        <td align=center>85</td>
-                        <td align=center>90</td>
-                        <td align=center>" . ($s['hadir'] + $s['sakit'] + $s['izin'] + $s['alpa']) . "</td>
-                        <td align=center>85.00</td>
-                        <td align=right>" . number_format($persen, 2) . " %</td>
-                      </tr>";
-    }
-
-    echo "</tbody>
-                  </table>
-                </div>
-              </div>
-            </div>";
 }
 ?>
