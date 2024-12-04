@@ -1,52 +1,29 @@
-<style>
-    .table-responsive {
-        overflow-x: auto;
-        /* Hanya aktifkan scroll horizontal jika diperlukan */
-    }
-
-    @media (min-width: 768px) {
-        .table-responsive {
-            overflow-x: visible;
-            /* Nonaktifkan scroll horizontal di desktop */
-        }
-    }
-</style>
-<div>
-    <h3>
-        Rekap SRL
-    </h3>
-</div>
 <?php
-                // Tabel Rekap SRL
-                echo "<div class='table-responsive'>
-                    <h3>Tabel Rekap SRL</h3>
-                    <table id='rekap_srl' class='table table-bordered table-striped'>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Siswa</th>
-                                <th>Kelas</th>
-                                <th>Nilai</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>";
-                            // Data dummy rekap SRL
-                            $rekap_data = [
-                                ['no' => 1, 'nama' => 'Siswa A', 'kelas' => 'Kelas 1', 'nilai' => 85, 'status' => 'Lulus'],
-                                ['no' => 2, 'nama' => 'Siswa B', 'kelas' => 'Kelas 1', 'nilai' => 78, 'status' => 'Lulus'],
-                            ];
+// Membuat tabel rekap SRL
+echo "Rekap Sumatif Ruang Lingkup";
+echo '<table border="1">';
+echo '<tr>';
+echo '<th>ID</th>';
+echo '<th>Nama</th>';
+echo '<th>Tanggal</th>';
+echo '<th>Status</th>';
+echo '</tr>';
 
-                            foreach ($rekap_data as $r) {
-                                echo "<tr>
-                                    <td>{$r['no']}</td>
-                                    <td>{$r['nama']}</td>
-                                    <td>{$r['kelas']}</td>
-                                    <td>{$r['nilai']}</td>
-                                    <td>{$r['status']}</td>
-                                </tr>";
-                            }
-                echo "       </tbody>
-                    </table>
-                </div>";
+// Contoh data, ganti dengan data yang sesuai
+$data = [
+    ['id' => 1, 'nama' => 'John Doe', 'tanggal' => '2023-01-01', 'status' => 'Aktif'],
+    ['id' => 2, 'nama' => 'Jane Smith', 'tanggal' => '2023-01-02', 'status' => 'Tidak Aktif'],
+];
+
+// Menampilkan data dalam tabel
+foreach ($data as $row) {
+    echo '<tr>';
+    echo '<td>' . $row['id'] . '</td>';
+    echo '<td>' . $row['nama'] . '</td>';
+    echo '<td>' . $row['tanggal'] . '</td>';
+    echo '<td>' . $row['status'] . '</td>';
+    echo '</tr>';
+}
+
+echo '</table>';
 ?>
