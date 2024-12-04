@@ -423,8 +423,7 @@
     $jam_ke = $_GET['jam'];
     $id_parent = $_GET['id_parent'];
     $guruInserted = false;
-    echo $id_parent;
-    exit;
+
 
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
@@ -442,6 +441,7 @@
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                       nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
                       total='" . $total_nilai[$i] . "' 
+                      id_parent_journal='" . $id_parent[$i] . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
