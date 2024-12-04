@@ -118,11 +118,6 @@
         </table>
       </div>
       </div><!-- /.box-body -->
-      <?php
-      if ($_GET[kelas] == '' and $_GET[tahun] == '') {
-        echo "<center style='padding:60px; color:red'>Silahkan Memilih Tahun akademik dan Kelas Terlebih dahulu...</center>";
-      }
-      ?>
     </div>
   </div>
 <?php
