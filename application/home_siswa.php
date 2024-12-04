@@ -230,14 +230,16 @@
 
         // Cek apakah sudah ada jawaban untuk nisn ini
         $cek_jawaban = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_pertanyaan_penilaian_jawab WHERE nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas' AND id_journal='$_GET[id_journal]'"));
-        var_dump($cek_jawaban['total'] > 0);
-        exit;
+        // var_dump($cek_jawaban['total'] > 0);
+        // exit;
         // if ($cek_jawaban['total'] > 0) {
-        //   echo "<script>alert('Anda sudah memberikan jawaban untuk pertanyaan ini.');</script>";
-        //   continue; // Lewati input jika sudah ada
-        // }
-
-        mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','$guru[users]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$guru[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
+          //   echo "<script>alert('Anda sudah memberikan jawaban untuk pertanyaan ini.');</script>";
+          //   continue; // Lewati input jika sudah ada
+          // }
+          
+        $coba = mysql_query("INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','$guru[users]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','$guru[users]','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')");
+        var_dump($coba);
+        exit;
       }
     }
     // echo"INSERT INTO rb_pertanyaan_penilaian_jawab VALUES('','$pertanyaan','$_SESSION[id]','$guru[users]','','$jawab','$_GET[kodejdwl]','refleksi','$kelas','" . date('Y-m-d H:i:s') . "','$_GET[id_journal]')";
