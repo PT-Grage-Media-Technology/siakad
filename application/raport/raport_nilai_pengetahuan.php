@@ -25,19 +25,9 @@
                   <h3 class='box-title'>Input Nilai Pengetahuan Siswa</b></h3>
                 </div>
             
-        <div class='box-body'>
-              <div class='col-md-12'>
-              <table class='table table-condensed table-hover'>
-                  <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
-                    <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                    <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
-                    <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
-                  </tbody>
-              </table>
-              </div>
-
-           <tr>
+        <div class='panel-body' style='overflow-x: auto; display: block;'>
+              <table class='table table-bordered table-striped'>
+                                <tr>
                                   <th style='border:1px solid #e3e3e3' width='30px' rowspan='2'>No</th>
                                   <th style='border:1px solid #e3e3e3' width='170px' rowspan='2'>Nama Lengkap</th>
                                   <th style='border:1px solid #e3e3e3' colspan='3'><center>Penilaian</center></th>
@@ -162,7 +152,6 @@
                                 echo "</tbody>
                             </table>
                        
-                        </div>
                         </div>
         </div>
       </div>";
