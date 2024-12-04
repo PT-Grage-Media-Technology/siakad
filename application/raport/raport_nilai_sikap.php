@@ -200,6 +200,7 @@ if (isset($_GET['delete_keterampilan'])){
                               while($r=mysql_fetch_array($tampil)){
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
+                                $nilaiAkhir = 0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
                                 var_dump($nilaiSTS);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
@@ -218,7 +219,7 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='number' name='b' value='' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='nilai_akhir' style='width:35px; border:1px solid #e3e3e3;'></td>
+                                        <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
@@ -237,7 +238,7 @@ if (isset($_GET['delete_keterampilan'])){
                                         <td align=center><input type='number' name='b' value='' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='nilai_akhir' style='width:35px; border:1px solid #e3e3e3;'></td>
+                                        <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='text' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
