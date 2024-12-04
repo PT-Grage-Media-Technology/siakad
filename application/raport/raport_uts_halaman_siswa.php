@@ -34,7 +34,6 @@ echo "          </select>
                   <tr>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='40px' rowspan='2'>No</th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' width='300px' rowspan='2'><center>Mata Pelajaran</center></th>
-                    <th style='border:1px solid #ffffff; background-color:lightblue' rowspan='2'><center>KKM</center></th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Pengetahuan</center></th>
                     <th style='border:1px solid #ffffff; background-color:lightblue' colspan='2' style='text-align:center'><center>Keterampilan</center></th>
                   </tr>
@@ -74,7 +73,6 @@ echo "          </select>
         echo "<tr>
                                 <td align='center'>{$no}</td>
                                 <td>{$mapelRow['namamatapelajaran']}</td>
-                                <td align='center'>{$mapelRow['kkm']}</td>
                                 <td align='center' colspan='2'>" . number_format($nilaiRow['angka_pengetahuan']) . "</td>
                                 <td align='center' colspan='2'>" . number_format($nilaiRow['angka_keterampilan']) . "</td>
                             </tr>";
