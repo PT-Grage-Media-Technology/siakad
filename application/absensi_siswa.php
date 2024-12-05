@@ -346,7 +346,7 @@
     
     $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
 
-    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = $j[tujuan_pembelajaran]");
+    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
 
     $query = "SELECT 
                   rb_journal_list.*, 
