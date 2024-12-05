@@ -703,14 +703,13 @@ while ($r = mysql_fetch_array($tampil)) {
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   
                                   while ($row = mysql_fetch_array($tampilInput)) {
-                                      if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
+                                      // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
                                           echo "<option value='{$row['id_journal']}' " . 
                                               ($row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') ? "selected" : "") . 
                                               ">{$row['tujuan_pembelajaran']}</option>";
-                                      }
+                                      // }
                                   }
-
-                      echo "</select>
+                    echo "</select>
                           </td>
                       </tr>
                     <tr><th scope='row'>Materi</th>  <td><textarea style='height:80px' class='form-control' name='f'>$e[materi]</textarea></td></tr>
