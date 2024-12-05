@@ -22,9 +22,10 @@ if ($_GET[act] == '') {
                         <th>Nip</th>
                         <th>Nama Guru</th>
                         <?php
-                        $ratings = mysql_query('SELECT kesan FROM rb_rating');
-                        while ($row = mysql_fetch_array($ratings)) {
-                            echo '<td>{$row['kesan']}</td>';
+                        // Ambil data kesan dari tabel rb_rating
+                        $rating_query = mysql_query('SELECT kesan FROM rb_rating ORDER BY id');
+                        while ($rating = mysql_fetch_array($rating_query)) {
+                             echo '<th>{$rating['kesan']}</th>';
                         }
                         ?>
                       </tr>
