@@ -344,7 +344,7 @@
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
     
-    $jadwal = mysql_query("SELECT * FROM rb_journal_list where tujuan_pemmbelajaran = $j[tujuan_pembelajaran]");
+    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = $j[tujuan_pembelajaran]");
     var_dump($jadwal);
     var_dump($j['tujuan_pembelajaran']);
     
