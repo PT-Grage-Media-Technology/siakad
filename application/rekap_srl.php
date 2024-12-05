@@ -83,7 +83,8 @@
               <?php
               $no = 1;
               $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-              while ($r = mysql_fetch_array($tampil)) {
+              $kktp = mysql_query("SELECT kktp FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
+              while ($r = mysql_fetch_array($tampil, $kktp)) {
                 // var_dump($tanggalArray);
                 echo "
                 <tr>
@@ -91,7 +92,7 @@
                 <td>$r[nama]
                 <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
                 </td>
-                <td>75</td>";
+                <td>$kktp</td>";
                 for ($i = 0; $i < $header_count; $i++) {
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
