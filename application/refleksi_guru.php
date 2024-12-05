@@ -72,7 +72,7 @@ if ($_GET[act] == '') {
                 <td>$no</td>
                 <td>$r[nip]</td>
                 <td>$r[nama_guru]</td>
-                <td></td>
+                <td>$rating[kesan]</td>
                 <td></td>
                 <td></td>
                 <td></td>
