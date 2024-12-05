@@ -50,7 +50,7 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        mysql_query("UPDATE rb_golongan SET id_golongan = '$_POST[a]',
+        mysql_query("UPDATE rb_golongan SET nama_golongan = '$_POST[a]',
                                          keterangan = '$_POST[b]' where id_golongan='$_POST[id]'");
       echo "<script>document.location='index.php?view=golongan';</script>";
     }
