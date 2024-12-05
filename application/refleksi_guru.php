@@ -70,7 +70,6 @@ if ($_GET[act] == '') {
 
     while ($r = mysql_fetch_array($tampil)) {
       // Mengambil nilai rating berdasarkan kesan
-      $ratingValues = [];
       foreach ($ratingArray as $ratingId) {
           $ratingValue = mysql_fetch_array(mysql_query("SELECT jawaban FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$ratingId'"));
           $ratingValues[] = $ratingValue['jawaban'] ?? ''; // Menggunakan null coalescing untuk menghindari error
