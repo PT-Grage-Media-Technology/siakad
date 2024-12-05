@@ -343,13 +343,10 @@
     //                                       WHERE kodejdwl='$_GET[idjr]' 
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
-    var_dump($j['tujuan_pembelajaran']);
-
-    $jadwal = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                    WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                    AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
-                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
-
+    
+    $jadwal = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where tujuan_pemmbelajaran = $j[tujuan_pembelajaran]"));
+    var_dump($jadwal);
+    
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                     AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
