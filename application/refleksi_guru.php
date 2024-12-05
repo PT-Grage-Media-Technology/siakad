@@ -68,18 +68,20 @@ if ($_GET[act] == '') {
         ORDER BY g.nama_guru ASC
     ");
 
-  while ($r = mysql_fetch_array($tampil)) {
-    var_dump($ratingArray);
-    echo "<tr>
-                <td>$no</td>
-                <td>$r[nip]</td>
-                <td>$r[nama_guru]</td>
-                <td>$rating[kesan]</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>";
+    while ($r = mysql_fetch_array($tampil)) {
+      // Mengambil nilai rating berdasarkan kesan
+      foreach ($ratingArray as $ratingId) {
+          $ratingValue = mysql_fetch_array(mysql_query("SELECT jawaban FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$ratingId'"));
+          $ratingValues[] = $ratingValue['jawaban'] ?? ''; // Menggunakan null coalescing untuk menghindari error
+      }
+      echo "<tr>
+                  <td>$no</td>
+                  <td>$r[nip]</td>
+                  <td>$r[nama_guru]</td>";
+      foreach ($ratingValues as $value) {
+          echo "<td>$value</td>"; // Menampilkan nilai rating
+      }
+      echo "</tr>";
     $no++;
   }
 
