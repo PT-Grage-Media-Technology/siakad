@@ -400,7 +400,7 @@ if (isset($_SESSION['id'])) {
             echo "</div>";
           } elseif ($_GET[view] == 'rekapabsensiswa') {
         } elseif ($_GET[view] == 'refleksiguru') {
-            // $_SESSION['is_kurikulum'];
+            $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
             include "application/refleksi_guru.php";
