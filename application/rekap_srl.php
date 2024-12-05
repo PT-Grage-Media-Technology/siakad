@@ -62,6 +62,8 @@
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
                 <th>Proses perumusan pancasila</th>
+                <th>Proses perumusan pancasila</th>
+                <th>Proses perumusan pancasila</th>
               </tr>
             </thead>
             <tbody>
