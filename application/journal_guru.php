@@ -704,17 +704,17 @@ while ($r = mysql_fetch_array($tampil)) {
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   
                                   // Koneksi ke database dan query pencarian jika ada
-                                  $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
-                                  $id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
+                                  // $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
+                                  // $id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
 
-                                  // Query untuk mencari tujuan pembelajaran berdasarkan search term
-                                  $tampilInput = mysql_query("SELECT jl.*, g.nama_guru 
-                                                        FROM rb_journal_list jl 
-                                                        LEFT JOIN rb_guru g ON jl.users = g.nip 
-                                                        WHERE jl.kodejdwl='$id_jdwl' 
-                                                        AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
-                                                        ORDER BY jl.id_journal DESC");
-
+                                  // // Query untuk mencari tujuan pembelajaran berdasarkan search term
+                                  // $tampilInput = mysql_query("SELECT jl.*, g.nama_guru 
+                                  //                       FROM rb_journal_list jl 
+                                  //                       LEFT JOIN rb_guru g ON jl.users = g.nip 
+                                  //                       WHERE jl.kodejdwl='$id_jdwl' 
+                                  //                       AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
+                                  //                       ORDER BY jl.id_journal DESC");
+                                  var_dump('coba aja');
                                   while ($row = mysql_fetch_array($tampilInput)) {
                                       // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
                                           // echo "<option value='{$row['id_journal']}' " . 
