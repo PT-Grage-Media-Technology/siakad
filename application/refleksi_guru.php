@@ -1,17 +1,15 @@
 <?php
-if ($_GET[act] == '') {
+if ($_GET['act'] == '') {
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Hasil Refleksi Guru $_GET[tahun]</b></h3>
+                  <h3 class='box-title'>Hasil Refleksi Guru $_GET[tahun]</h3>
                 </div>
               <div class='box-body'>
 
-              <div class='col-md-12'>
-              
-              </div>
+              <div class='col-md-12'></div>
 
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
@@ -21,73 +19,45 @@ if ($_GET[act] == '') {
                         <th>No</th>
                         <th>Nip</th>
                         <th>Nama Guru</th>";
+
+  // Simpan data rating ke dalam array untuk digunakan kembali
   $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
   while ($rating = mysql_fetch_array($rating_query)) {
-    echo "<th>" . $rating["kesan"], $rating["id"] . "</th>";
-    $ratingArray[] = $rating['id'];
+    echo "<th>" . $rating["kesan"] . "</th>";
+    $ratingArray[] = $rating['id']; // Simpan ID rating
   }
+
   echo "
                       </tr>
                     </thead>
                     <tbody>";
 
-  // $no = 1;
-  // $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
-  // while ($r = mysql_fetch_array($tampil)) {
-  // var_dump($r);
-  // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-  // $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
-  // $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
-  // $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
-  // $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
-  // $persen = $hadir / ($total) * 100;
-  // <th><center>% Kehadiran</center></th>
-
-  // <td align=right>" . number_format($persen, 2) . " %</td>";
-
-  // var_dump($hadir);
-
-  //     echo "<tr bgcolor=$warna>
-  //                         <td>$no</td>
-  //                         <td>$r[nip]</td>
-  //                         <td>$r[nama_guru]</td>
-  //                         <td></td>
-  //                         ";
-  //     echo "</tr>";
-  //     $no++;
-  // }
-
-
+  // Loop data guru dan tampilkan data berdasarkan ratingArray
   $no = 1;
   $tampil = mysql_query("
-        SELECT g.nip, g.nama_guru, p.jawaban 
+        SELECT g.nip, g.nama_guru 
         FROM rb_guru g 
-        INNER JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip 
         WHERE g.id_jenis_ptk NOT IN (6, 7) 
-        GROUP BY g.nip 
         ORDER BY g.nama_guru ASC
     ");
 
   while ($r = mysql_fetch_array($tampil)) {
-    var_dump($ratingArray);
     echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>
-                <td>$r[nama_guru]</td>
-                <td>$rating[kesan]</td>";
-                $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
-                while ($rating = mysql_fetch_array($rating_query)) {
-                    // Ambil jawaban berdasarkan nip dan id rating
-                    $jawaban_query = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$rating[id]'");
-                    $jawaban = mysql_fetch_array($jawaban_query);
-                    echo "<td>" . ($jawaban ? $jawaban['id_rating'] : '-') . "</td>"; // Tampilkan jawaban atau '-' jika tidak ada 
-                }
-          
-              echo"</tr>";
+                <td>$r[nama_guru]</td>";
+
+    // Loop untuk menampilkan jawaban berdasarkan ratingArray
+    foreach ($ratingArray as $ratingID) {
+      // Ambil jawaban berdasarkan nip dan id rating
+      $jawaban_query = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$ratingID'");
+      $jawaban = mysql_fetch_array($jawaban_query);
+      echo "<td>" . ($jawaban ? count($jawaban['jawaban']) : '-') . "</td>"; // Tampilkan jawaban atau '-' jika tidak ada  echo
+    }
+
+    echo "</tr>";
     $no++;
   }
-
-
 
   echo "</tbody>
                   </table>
@@ -95,3 +65,4 @@ if ($_GET[act] == '') {
               </div>
             </div>";
 }
+?>
