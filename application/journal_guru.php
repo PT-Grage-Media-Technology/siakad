@@ -714,13 +714,13 @@ while ($r = mysql_fetch_array($tampil)) {
                                                         AND jl.tujuan_pembelajaran LIKE '%$search_terms%' 
                                                         ORDER BY jl.id_journal DESC");
 
-                                  var_dump('coba aja');
+                                  // var_dump('coba aja');
                                   if (mysql_num_rows($tampilInputs) > 0) {
                                       while ($rows = mysql_fetch_array($tampilInputs)) {
                                           echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
                                       }
                                   } else {
-                                      echo "<option value=''>Data tidak ditemukan</option>";
+                                      echo "<option value=''>Data tidak ditemukan = $id_jdwls, $search_terms</option>";
                                   }
                     echo "</select>
                           </td>
