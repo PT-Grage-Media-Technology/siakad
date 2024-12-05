@@ -72,7 +72,11 @@ if ($_GET[act] == '') {
       // Mengambil nilai rating berdasarkan kesan
       foreach ($ratingArray as $ratingId) {
           $ratingValue = mysql_fetch_array(mysql_query("SELECT jawaban FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$ratingId'"));
-          $ratingValues[] = $ratingValue['jawaban'] ?? ''; // Menggunakan null coalescing untuk menghindari error
+          if ($ratingValue) {
+              $ratingValues[] = $ratingValue['jawaban'] ?? ''; // Menggunakan null coalescing untuk menghindari error
+          } else {
+              $ratingValues[] = 'Tidak ada data'; // Menambahkan pesan jika tidak ada data
+          }
       }
       echo "<tr>
                   <td>$no</td>
