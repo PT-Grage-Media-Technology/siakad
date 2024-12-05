@@ -21,7 +21,6 @@ if ($_GET['act'] == '') {
                         <th>Nama Guru</th>";
 
   // Simpan data rating ke dalam array untuk digunakan kembali
-  $ratingArray = [];
   $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
   while ($rating = mysql_fetch_array($rating_query)) {
     echo "<th>" . $rating["kesan"] . "</th>";
