@@ -109,20 +109,30 @@
                 echo "
                     <td>";
                     if (isset($totalAbsensi) && $headerCount > 0) {
-                        $rataRata = $totalAbsensi / $headerCount;
-                        echo $rataRata;
-
-                        // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
-                        // Misalnya, menggunakan POST untuk menyimpan ke database
-                        $nisn = $_POST['nisn'];
-                        for ($i = 1; $i <= $jml_data; $i++) {
-
-                          mysql_query("INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW())");
-                          echo "INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW()";
-                        } 
-                    } else {
-                        echo 0; // Jika tidak ada nilai, tampilkan 0
-                    }
+                      $rataRata = $totalAbsensi / $headerCount;
+                  
+                      // Pastikan POST['nisn'] tersedia dan merupakan array
+                      if (isset($_POST['nisn']) && is_array($_POST['nisn'])) {
+                          foreach ($_POST['nisn'] as $index => $nisn) {
+                              // Hanya insert jika rata-rata ada nilai
+                              if ($rataRata > 0) {
+                                  $query = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, rata_rata, created_at) 
+                                            VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
+                                                    '" . mysql_real_escape_string($nisn) . "', 
+                                                    '" . mysql_real_escape_string($rataRata) . "', 
+                                                    NOW())";
+                                  mysql_query($query) or die(mysql_error());
+                  
+                                  echo "Data berhasil disimpan: $query<br>";
+                              }
+                          }
+                      } else {
+                          echo "Data NISN tidak ditemukan.";
+                      }
+                  } else {
+                      echo "Rata-rata atau header tidak valid.";
+                  }
+                  
                     echo "</td> 
                     <td>88</td>
                   </tr>";
