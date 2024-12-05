@@ -25,9 +25,6 @@ if ($_GET[act] == '') {
   while ($rating = mysql_fetch_array($rating_query)) {
     echo "<th>" . $rating["kesan"], $rating["id"] . "</th>";
   }
-  $ratingArr = [];
-  $ratingArr = $rating;
-  var_dump($ratingArr);
   echo "
                       </tr>
                     </thead>
