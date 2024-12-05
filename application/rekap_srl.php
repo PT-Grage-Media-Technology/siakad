@@ -60,10 +60,11 @@
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 ?>
                 <th rowspan="2">NA SUMATIF (S)</th>
-                <th rowspan="2">STS</th>
+                <th rowspan="2">Status</th>
+                <!-- <th rowspan="2">STS</th>
                 <th rowspan="2">NON TES</th>
                 <th rowspan="2">NA SUMATIF AKHIR SEMESTER (AS)</th>
-                <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th>
+                <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th> -->
               </tr>
               <tr>
                 <?php
