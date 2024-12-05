@@ -344,28 +344,14 @@
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
     
-    if (isset($j['tujuan_pembelajaran'])) {
-      // Escape input untuk menghindari SQL Injection
+
       $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
   
       // Query ke database
       $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'";
       $jadwal = mysql_query($query);
-  
-      // Tampilkan hasil untuk debug
-      if ($jadwal) {
-          while ($row = mysql_fetch_assoc($jadwal)) {
-              var_dump($row);
-          }
-      } else {
-          echo "Error pada query: " . mysql_error();
-      }
-  
-      // Debug $j['tujuan_pembelajaran']
-      var_dump($j['tujuan_pembelajaran']);
-  } else {
-      echo "Variabel \$j['tujuan_pembelajaran'] tidak ditemukan.";
-  }
+
+      var_dump($jadwal);
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
