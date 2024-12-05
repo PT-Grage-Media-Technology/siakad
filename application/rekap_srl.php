@@ -91,7 +91,7 @@
                       <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
                     </td>";
                 for ($i = 0; $i < $header_count; $i++) {
-                  echo "<td>$abs[total]aa</td>";
+                  echo "<td>$abs[kodejdwl]aa</td>";
                 }
                 echo "
                     <td>80</td>
