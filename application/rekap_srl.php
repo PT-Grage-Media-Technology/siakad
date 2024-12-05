@@ -127,7 +127,7 @@
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[idjr]' AND nisn='$r[nisn]'"));
                 if($cekNilai >= $kk['kktp']){
-                  echo "<td>d</td>";
+                  echo "d";
                 }else{
                   echo "<td>Remedial</td>";
                 }
