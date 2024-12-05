@@ -80,6 +80,8 @@
         <td>90</td>
         <td>90</td>
         <td>90</td>
+        <td>90</td>
+        <td>90</td>
         <td>80</td>
         <td>88</td>
         <td>95</td>
