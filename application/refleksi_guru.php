@@ -76,7 +76,12 @@ if ($_GET[act] == '') {
                 <td>$r[nama_guru]</td>
                 <td>$rating[kesan]</td>";
                 $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
+                $ratings = []; // Menyimpan hasil rating
                 while ($rating = mysql_fetch_array($rating_query)) {
+                    $ratings[] = $rating; // Simpan setiap rating ke dalam array
+                }
+
+                foreach ($ratings as $rating) { // Loop melalui array rating
                     // Ambil jawaban berdasarkan nip dan id rating
                     $jawaban_query = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$rating[id]'");
                     $jawaban = mysql_fetch_array($jawaban_query);
