@@ -24,7 +24,7 @@ if ($_GET[act] == '') {
   $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
   while ($rating = mysql_fetch_array($rating_query)) {
     echo "<th>" . $rating["kesan"], $rating["id"] . "</th>";
-    $ratingArray[] = $rating;
+    $ratingArray[] = $rating['id'];
   }
   echo "
                       </tr>
@@ -69,6 +69,7 @@ if ($_GET[act] == '') {
     ");
 
   while ($r = mysql_fetch_array($tampil)) {
+    var_dump($ratingArray);
     echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>
