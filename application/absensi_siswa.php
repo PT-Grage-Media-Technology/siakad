@@ -363,7 +363,13 @@
                 ";
       $jadwal = mysql_query($query);
 
-      var_dump($jadwal[0]);
+      // Ambil data satu per satu
+      while ($row = mysql_fetch_assoc($jadwal)) {
+        // Menampilkan data per baris
+        echo "<pre>";
+        print_r($row);
+        echo "</pre>";
+      }
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
