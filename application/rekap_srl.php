@@ -110,7 +110,7 @@
                     <td>";
                     if (isset($totalAbsensi) && $headerCount > 0) {
                         $rataRata = $totalAbsensi / $headerCount;
-                        echo $rataRata;
+                        // echo $rataRata;
 
                         // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
                         // Misalnya, menggunakan POST untuk menyimpan ke database
