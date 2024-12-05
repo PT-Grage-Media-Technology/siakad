@@ -224,6 +224,13 @@
                       <div class='' style='font-size:14px;'>Rekap SRL</div>
                     </div>
                  </a>
+                 </a>
+                      <a class='btn btn-success btn-sm mb-2' title='Remadial' href='#'>
+                    <div class='d-flex flex-column align-items-center'>
+                      <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
+                      <div class='' style='font-size:14px;'>Remadial</div>
+                    </div>
+                 </a>
                 </div>
             </div>
             <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -423,8 +430,9 @@
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-
-      $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
+      
+      // ini adalah rata rata
+      $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
 
 
       if ($total >= 1) {
@@ -435,7 +443,7 @@
                       nilai_sikap='" . $nilai_sikap[$i] . "',
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                       nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
-                      total='" . $total_nilai[$i] . "' 
+                      total='" . number_format($total_nilai[$i], 1) . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
@@ -459,7 +467,7 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
-                '" . $total_nilai[$i] . "', 
+                '" . number_format($total_nilai[$i], 1) . "', 
                 '$tgl', 
                 NOW()
             )
