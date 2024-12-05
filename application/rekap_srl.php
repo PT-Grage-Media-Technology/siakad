@@ -53,7 +53,7 @@
                 <th rowspan="2">Nama Siswa</th>
                 <?php
                 // Ambil data header dari tabel rb_journal_list
-                $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal DESC");
+                $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
