@@ -83,7 +83,7 @@
                $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                     AND nisn='" . mysql_real_escape_string($r['nisn']) . "' ORDER BY tanggal ASC"));
-                var_dump($abs);
+                var_dump($abs['total']);
                 echo "
                   <tr>
                     <td>$no</td>
