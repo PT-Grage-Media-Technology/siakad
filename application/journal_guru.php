@@ -714,6 +714,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                   //                       WHERE jl.kodejdwl='$id_jdwl' 
                                   //                       AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
                                   //                       ORDER BY jl.id_journal DESC");
+                                  
                                   var_dump('coba aja');
                                   while ($row = mysql_fetch_array($tampilInput)) {
                                       // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
