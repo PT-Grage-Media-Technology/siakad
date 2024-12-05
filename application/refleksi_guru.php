@@ -80,7 +80,7 @@ if ($_GET[act] == '') {
                     // Ambil jawaban berdasarkan nip dan id rating
                     $jawaban_query = mysql_query("SELECT jawaban FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$rating[id]'");
                     $jawaban = mysql_fetch_array($jawaban_query);
-                    echo "<td>" . ($jawaban ? $jawaban['jawaban'] : '-') . "</td>"; // Tampilkan jawaban atau '-' jika tidak ada
+                    echo "<td>" . ($jawaban ? $jawaban['id_rating'] : '-') . "</td>"; // Tampilkan jawaban atau '-' jika tidak ada 
                 }
           
               echo"</tr>";
