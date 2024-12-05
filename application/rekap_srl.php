@@ -69,7 +69,7 @@
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
                   // echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
-                  var_dump($header);
+                  // var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $headerCount = count($tanggalArray);
                   echo $headerCount;
