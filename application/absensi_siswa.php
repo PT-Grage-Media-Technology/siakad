@@ -372,6 +372,8 @@
               die("Query gagal: " . mysql_error());
               }
 
+              var_dump($jadwal);
+
               // Ambil data
               while ($row = mysql_fetch_assoc($jadwal)) {
               echo "<pre>";
