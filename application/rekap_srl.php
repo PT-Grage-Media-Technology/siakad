@@ -51,6 +51,7 @@
               <tr>
                 <th rowspan="2">No</th>
                 <th rowspan="2">Nama Siswa</th>
+                <th rowspan="2">KKTP</th>
                 <?php
                 // Ambil data header dari tabel rb_journal_list
                 $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
@@ -89,7 +90,8 @@
                 <td>$no</td>
                 <td>$r[nama]
                 <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
-                </td>";
+                </td>
+                <td>75</td>";
                 for ($i = 0; $i < $header_count; $i++) {
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
