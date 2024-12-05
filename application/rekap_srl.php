@@ -53,7 +53,7 @@
                 <th rowspan="2">Nama Siswa</th>
                 <?php
                 // Ambil data header dari tabel rb_journal_list
-                $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal=NULL");
+                $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL");
                 $header_count = mysql_num_rows($headers);
 
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
@@ -68,6 +68,7 @@
                 <?php
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
+                  echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
                   var_dump($header);
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
