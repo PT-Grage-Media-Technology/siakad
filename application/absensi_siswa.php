@@ -345,7 +345,7 @@
                                     AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
                                     AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
 
-    var_dump($r);
+    var_dump($a);
     echo "<tr>
               <td>$no</td>
               <td>$r[nipd]</td>
