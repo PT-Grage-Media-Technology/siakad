@@ -70,6 +70,7 @@
                 while ($header = mysql_fetch_array($headers)) {
                   echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
                   var_dump($header);
+                  $tanggalArray[] = $header['tanggal'];
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
@@ -83,7 +84,7 @@
                $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                     AND nisn='" . mysql_real_escape_string($r['nisn']) . "' ORDER BY tanggal ASC"));
-                var_dump($abs);
+                var_dump($tanggalArray);
                 echo "
                   <tr>
                     <td>$no</td>
