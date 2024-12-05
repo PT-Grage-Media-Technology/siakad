@@ -704,7 +704,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                   
                                   // Koneksi ke database dan query pencarian jika ada
                                   $search_terms = isset($_GET['search_term']) ? $_GET['search_term'] : '';
-                                  $id_jdwls = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
+                                  $id_jdwls = isset($_GET['jdwl']) ? $_GET['jdwl'] : '';  // Mendapatkan kodejdwl dari query string
 
                                   // Query untuk mencari tujuan pembelajaran berdasarkan search term
                                   $tampilInputs = mysql_query("SELECT jl.*, g.nama_guru 
