@@ -21,12 +21,12 @@ if ($_GET[act] == '') {
                         <th>No</th>
                         <th>Nip</th>
                         <th>Nama Guru</th>
-                        <th>Ratting</th>
-                        <td>Sangat Baik</td>
-                        <td>Baik</td>
-                        <td>Cukup</td>
-                        <td>Buruk</td>
-                        <td>Sangat Buruk</td>
+                        <?php
+                        $ratings = mysql_query('SELECT kesan FROM rb_rating');
+                        while ($row = mysql_fetch_array($ratings)) {
+                            echo '<td>{$row['kesan']}</td>';
+                        }
+                        ?>
                       </tr>
                     </thead>
                     <tbody>";

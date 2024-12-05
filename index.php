@@ -407,7 +407,7 @@ if (isset($_SESSION['id'])) {
             echo "</div>";
           } elseif ($_GET[view] == 'rekapabsensiswa') {
             // if($_SESSION['is_kesiswaan'] == true){
-              cek_session_admin();
+              // cek_session_guru();
               echo "<div class='row'>";
               include "application/absensi_siswa_rekap.php";
               echo "</div>";
