@@ -97,19 +97,21 @@
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
 
-                // Hitung rata-rata dan simpan ke tabel rb_nilai_srl
+                // Hitung rata-rata dan masukkan/ubah ke tabel rb_nilai_srl
                 echo "<td>";
                 if ($header_count > 0) {
                   $rataRata = $totalAbsensi / $header_count;
 
-                  // Insert ke tabel rb_nilai_srl jika nilai rata-rata ada
-                  $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
-                                  VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
-                                          '" . mysql_real_escape_string($r['nisn']) . "', 
-                                          '" . mysql_real_escape_string($rataRata) . "', 
-                                          NOW())
-                                  ON DUPLICATE KEY UPDATE nilai = VALUES(nilai), waktu_input = NOW()";
-                  mysql_query($queryInsert);
+                  // Insert atau update ke tabel rb_nilai_srl
+                  $queryInsertUpdate = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
+                                        VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
+                                                '" . mysql_real_escape_string($r['nisn']) . "', 
+                                                '" . mysql_real_escape_string($rataRata) . "', 
+                                                NOW())
+                                        ON DUPLICATE KEY UPDATE 
+                                            nilai = VALUES(nilai), 
+                                            waktu_input = NOW()";
+                  mysql_query($queryInsertUpdate);
 
                   echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
