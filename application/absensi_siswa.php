@@ -400,7 +400,7 @@
     </div>
     </div>
       <div class='box-footer'>
-              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi 123</button>
+              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
             </div>
         ";
     }
