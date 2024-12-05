@@ -435,7 +435,7 @@
                       nilai_sikap='" . $nilai_sikap[$i] . "',
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                       nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
-                      total='" . $total_nilai[$i] . "' 
+                      total='" . number_format($total_nilai[$i], 1) . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
@@ -459,7 +459,7 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
-                '" . $total_nilai[$i] . "', 
+                '" . number_format($total_nilai[$i], 1) . "', 
                 '$tgl', 
                 NOW()
             )
