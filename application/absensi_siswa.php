@@ -346,6 +346,7 @@
     
     $jadwal = mysql_query("SELECT * FROM rb_journal_list where tujuan_pemmbelajaran = $j[tujuan_pembelajaran]");
     var_dump($jadwal);
+    var_dump($j['tujuan_pembelajaran']);
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
