@@ -109,37 +109,21 @@
                 echo "
                     <td>";
                     if (isset($totalAbsensi) && $headerCount > 0) {
-                      $rataRata = $totalAbsensi / $headerCount; // Hitung rata-rata
-                      echo "Rata-rata: $rataRata <br>";
-                  
-                      // Pastikan $_POST['nisn'] adalah array yang valid
-                      if (isset($_POST['nisn']) && is_array($_POST['nisn'])) {
-                          $nisn = $_POST['nisn']; // Ambil array NISN
-                          for ($i = 1; $i <= count($nisn); $i++) {
-                              // Pastikan rata-rata memiliki nilai
-                              if ($rataRata > 0) {
-                                  // Query untuk menyimpan data rata-rata
-                                  $query = "INSERT INTO rb_nilai_srl 
-                                            VALUES ('', 
-                                                    '" . mysql_real_escape_string($_GET['idjr']) . "', 
-                                                    '" . mysql_real_escape_string($nisn[$i]) . "', 
-                                                    '" . mysql_real_escape_string($rataRata) . "', 
-                                                    NOW())";
-                  
-                                  mysql_query($query) or die("Error: " . mysql_error());
-                  
-                                  echo "Query berhasil: $query<br>";
-                              } else {
-                                  echo "Rata-rata kosong untuk NISN $nisn[$i].<br>";
-                              }
-                          }
-                      } else {
-                          echo "Data NISN tidak ditemukan atau tidak valid.";
-                      }
-                  } else {
-                      echo "Tidak ada data rata-rata atau header tidak valid.";
-                  }
-                  
+                        $rataRata = $totalAbsensi / $headerCount;
+                        echo $rataRata;
+
+                        // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
+                        // Misalnya, menggunakan POST untuk menyimpan ke database
+                        $nisn = $_POST['nisn'];
+                        echo $nisn;
+                        for ($i = 1; $i <= $jml_data; $i++) {
+
+                          mysql_query("INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW())");
+                          echo "INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW()";
+                        } 
+                    } else {
+                        echo 0; // Jika tidak ada nilai, tampilkan 0
+                    }
                     echo "</td> 
                     <td>88</td>
                   </tr>";
