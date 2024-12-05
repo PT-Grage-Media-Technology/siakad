@@ -21,25 +21,49 @@ if ($_GET[act] == '') {
                         <th>No</th>
                         <th>Nip</th>
                         <th>Nama Guru</th>";
-
-  // Ambil semua kesan dari tabel rb_rating
   $rating_query = mysql_query("SELECT kesan FROM rb_rating ORDER BY id");
-  $kesan_list = [];
   while ($rating = mysql_fetch_array($rating_query)) {
     echo "<th>" . $rating["kesan"] . "</th>";
-    $kesan_list[] = $rating["kesan"]; // Simpan kesan ke dalam array
   }
-
-  echo "</tr>
+  echo "
+                      </tr>
                     </thead>
                     <tbody>";
 
-  // Query untuk mendapatkan data guru
+  // $no = 1;
+  // $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+  // while ($r = mysql_fetch_array($tampil)) {
+  // var_dump($r);
+  // $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
+  // $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` where nip='$r[nip]' AND kode_kehadiran='Hadir'"));
+  // $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='sakit'"));
+  // $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='izin'"));
+  // $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` where nip='$r[nip]' AND kode_kehadiran='alpa'"));
+  // $persen = $hadir / ($total) * 100;
+  // <th><center>% Kehadiran</center></th>
+
+  // <td align=right>" . number_format($persen, 2) . " %</td>";
+
+  // var_dump($hadir);
+
+  //     echo "<tr bgcolor=$warna>
+  //                         <td>$no</td>
+  //                         <td>$r[nip]</td>
+  //                         <td>$r[nama_guru]</td>
+  //                         <td></td>
+  //                         ";
+  //     echo "</tr>";
+  //     $no++;
+  // }
+
+
   $no = 1;
   $tampil = mysql_query("
-        SELECT g.nip, g.nama_guru 
+        SELECT g.nip, g.nama_guru, p.jawaban 
         FROM rb_guru g 
+        INNER JOIN rb_pertanyaan_penilaian_jawab p ON g.nip = p.nip 
         WHERE g.id_jenis_ptk NOT IN (6, 7) 
+        GROUP BY g.nip 
         ORDER BY g.nama_guru ASC
     ");
 
@@ -47,24 +71,17 @@ if ($_GET[act] == '') {
     echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>
-                <td>$r[nama_guru]</td>";
-
-    // Hitung jumlah jawaban sesuai dengan setiap kesan untuk guru ini
-    foreach ($kesan_list as $kesan) {
-      $count_query = mysql_query("
-          SELECT COUNT(*) as jumlah 
-          FROM rb_pertanyaan_penilaian_jawab 
-          WHERE nip='$r[nip]' AND jawaban='$kesan'
-      ");
-      $count_result = mysql_fetch_array($count_query);
-      $jumlah = $count_result['jumlah'];
-
-      echo "<td>$jumlah</td>";
-    }
-
-    echo "</tr>";
+                <td>$r[nama_guru]</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>";
     $no++;
   }
+
+
 
   echo "</tbody>
                   </table>
@@ -72,4 +89,3 @@ if ($_GET[act] == '') {
               </div>
             </div>";
 }
-?>
