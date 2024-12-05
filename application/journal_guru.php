@@ -603,6 +603,7 @@ while ($r = mysql_fetch_array($tampil)) {
                   materi = '$_POST[f]',
                   tujuan_pembelajaran = '$_POST[g]',
                   users = '$_POST[nip_users]',
+                  tujuan_pembelajaran = '$_POST[tujuan_pembelajaran]',
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";
 
@@ -613,6 +614,7 @@ while ($r = mysql_fetch_array($tampil)) {
     } else {
       echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
     }
+
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
