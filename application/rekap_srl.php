@@ -125,13 +125,14 @@
                 echo "</td>";
 
                 echo "<td>";
-                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[idjr]' AND nisn='$r[nisn]'"));
-                if($cekNilai >= $kk['kktp']){
-                  echo "d";
-                }else{
-                  echo "<td>Remedial</td>";
+                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
+                if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
+                    echo "Remedial";
+                } else {
+                    echo "Lulus";
                 }
-                echo"</td>"; // Kolom status (contoh nilai default)
+                echo "</td>";
+                // Kolom status (contoh nilai default)
                 echo "</tr>";
 
                 $no++;
