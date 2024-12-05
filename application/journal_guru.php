@@ -717,10 +717,12 @@ while ($r = mysql_fetch_array($tampil)) {
                                   // var_dump('coba aja');
                                   if (mysql_num_rows($tampilInputs) > 0) {
                                       while ($rows = mysql_fetch_array($tampilInputs)) {
-                                          echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
+                                        if($rows['id_parent_journal'] == null){
+                                          echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                        }
                                       }
                                   } else {
-                                      echo "<option value=''>Data tidak ditemukan = $_GET[jdwl], $_GET[search_term]</option>";
+                                      echo "<option value=''>Data tidak ditemukan</option>";
                                   }
                     echo "</select>
                           </td>
