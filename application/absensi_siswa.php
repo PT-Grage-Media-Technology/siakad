@@ -356,23 +356,23 @@
 
     // Nilai Pengetahuan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+      echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+      echo "<td>2<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Keterampilan
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+      echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      echo "<td>4<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
     }
 
     // Nilai Sikap
     if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+      echo "<td>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+      echo "<td>6<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
     }
 
     // Kehadiran
