@@ -229,7 +229,7 @@
         $kelas = $_POST['kelas' . $i];
 
          // Ambil id_rating berdasarkan jawaban yang dipilih
-        $id_rating = mysql_fetch_array(mysql_query("SELECT id FROM rb_rating WHERE kesan='$jawab'"));
+        $id_rating = mysql_fetch_array(mysql_query("SELECT id FROM rb_rating WHERE kesan='$jawab'"))['id'];
 
         // Cek apakah sudah ada jawaban untuk nisn ini
         $cek_jawaban = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_pertanyaan_penilaian_jawab WHERE nisn='$_SESSION[id]' AND id_pertanyaan_penilaian='$pertanyaan' AND status='refleksi' AND kode_kelas='$kelas' AND id_journal='$_GET[id_journal]'"));
