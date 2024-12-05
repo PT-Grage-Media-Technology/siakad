@@ -218,7 +218,7 @@
                       <div class='' style='font-size:14px;'>Refleksi</div>
                     </div>
                  </a>
-                      <a class='btn btn-success btn-sm mb-2' title='Rekap SRL' href='index.php?view=rekapsrl'>
+                      <a class='btn btn-success btn-sm mb-2' title='Rekap SRL' href='index.php?view=rekapsrl&id=$_GET[id]&idjr=$_GET[idjr]'>
                     <div class='d-flex flex-column align-items-center'>
                       <div class='glyphicon glyphicon-tasks' style='font-size:28px; margin-right:5px;'></div>
                       <div class='' style='font-size:14px;'>Rekap SRL</div>
@@ -339,7 +339,6 @@
 
     echo "<tr>
               <td>$no</td>
-              <input type='number' value='$_GET[id_parent]' name='nisn[$no]' style='width:50px;' hidden>
               <td>$r[nipd]</td>
               <td>
               $r[nisn]
@@ -418,7 +417,6 @@
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
-    $id_parent = $_POST['id_parent'];
     $guruInserted = false;
 
 
@@ -426,7 +424,7 @@
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
 
-      $total_nilai[$i] = $nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i];
+      $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
 
 
       if ($total >= 1) {
@@ -461,7 +459,6 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
-                '" . $id_parent[$i] . "', 
                 '" . $total_nilai[$i] . "', 
                 '$tgl', 
                 NOW()
