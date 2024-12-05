@@ -23,7 +23,7 @@ if ($_GET[act] == '') {
                         <th>Nama Guru</th>";
   $rating_query = mysql_query("SELECT kesan FROM rb_rating ORDER BY id");
   while ($rating = mysql_fetch_array($rating_query)) {
-    echo "<th>" . $rating["kesan"] . "</th>";
+    echo "<th>" . $rating["kesan"] . " , " . $rating["id"] . "</th>";
   }
   echo "
                       </tr>
