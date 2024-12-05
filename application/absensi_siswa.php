@@ -348,18 +348,37 @@
 
     $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
 
+    $total_data = 0;
+    $keterampilan_kosong = 0;
+    $pengetahuan_kosong = 0;
+    $sikap_kosong = 0;
+
     while ($row = mysql_fetch_assoc($jadwal)) {
         $kodejdwl = $row['kodejdwl'];
         $tanggal = $row['tanggal'];
-    
+
         $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
-    
+
         while ($absen = mysql_fetch_assoc($absensi)) {
-          echo "<pre>";
-          print_r($absen);
-          echo "</pre>";
+            $total_data++;
+
+            // Hitung data nilai_keterampilan yang 0, NULL, atau ''
+            if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
+                $keterampilan_kosong++;
+            }
+
+            // Hitung data nilai_pengetahuan yang 0, NULL, atau ''
+            if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
+                $pengetahuan_kosong++;
+            }
+
+            // Hitung data nilai_sikap yang 0, NULL, atau ''
+            if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
+                $sikap_kosong++;
+            }
         }
     }
+
 
               // Ambil data
             //   while ($row = mysql_fetch_assoc($jadwal)) {
