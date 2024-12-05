@@ -124,6 +124,7 @@
                     } else {
                         echo 0; // Jika tidak ada nilai, tampilkan 0
                     }
+                    echo $nisn;
                     echo "</td> 
                     <td>88</td>
                   </tr>";
