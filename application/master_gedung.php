@@ -139,7 +139,7 @@
                       <tr><th scope='row'>Tinggi</th>               <td><input type='text' class='form-control' name='e'></td></tr>
                       <tr><th scope='row'>Lebar</th>                <td><input type='text' class='form-control' name='f'></td></tr>
                       <tr><th scope='row'>Keterangan</th>           <td><input type='text' class='form-control' name='g'></td></tr>
-                      <tr><th scope='row'>Aktif</th>                <td><input type='radio' name='h' value='Ya'> Ya
+                      <tr><th scope='row'>Aktif</th>                <td><input type='radio' name='h' value='Y'> Ya
                                                                            <input type='radio' name='h' value='Tidak'> Tidak
                       </td></tr>
                   </tbody>
