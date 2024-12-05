@@ -75,7 +75,7 @@ if ($_GET[act] == '') {
                 <td>$r[nip]</td>
                 <td>$r[nama_guru]</td>";
     foreach ($ratings as $rating) {
-      echo "<td></td>";
+      echo "<td>asdas</td>";
     }
     echo "</tr>";
     $no++;
