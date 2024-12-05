@@ -68,6 +68,7 @@
                 <?php
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
+                  var_dump($header);
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
