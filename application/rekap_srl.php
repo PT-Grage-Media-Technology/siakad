@@ -93,7 +93,7 @@
                 <td>$r[nama]
                 <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
                 </td>
-                <td>$kk</td>";
+                <td>$kk[kktp]</td>";
                 for ($i = 0; $i < $header_count; $i++) {
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
