@@ -363,7 +363,7 @@
                 ";
       $jadwal = mysql_query($query);
 
-      var_dump($jadwal);
+      var_dump($jadwal[0]);
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
