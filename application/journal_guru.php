@@ -601,9 +601,9 @@ while ($r = mysql_fetch_array($tampil)) {
                   jam_ke = '$_POST[e]',
                   sampai_jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
-                  tujuan_pembelajaran = '$_POST[g]',
                   users = '$_POST[nip_users]',
                   tujuan_pembelajaran = '$_POST[tujuan_pembelajaran]',
+                  id_parent_journal = '$_POST[id_parent_journal]',
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";
 
