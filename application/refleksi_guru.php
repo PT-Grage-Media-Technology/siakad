@@ -74,12 +74,16 @@ if ($_GET[act] == '') {
                 <td>$no</td>
                 <td>$r[nip]</td>
                 <td>$r[nama_guru]</td>
-                <td>$rating[kesan]</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>";
+                <td>$rating[kesan]</td>";
+                $rating_query = mysql_query("SELECT * FROM rb_rating ORDER BY id");
+                while ($rating = mysql_fetch_array($rating_query)) {
+                    // Ambil jawaban berdasarkan nip dan id rating
+                    $jawaban_query = mysql_query("SELECT jawaban FROM rb_pertanyaan_penilaian_jawab WHERE nip='$r[nip]' AND id_rating='$rating[id]'");
+                    $jawaban = mysql_fetch_array($jawaban_query);
+                    echo "<td>" . ($jawaban ? $jawaban['jawaban'] : '-') . "</td>"; // Tampilkan jawaban atau '-' jika tidak ada
+                }
+          
+              echo"</tr>";
     $no++;
   }
 
