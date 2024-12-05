@@ -94,7 +94,7 @@
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
 
-                  echo "<td>$abs[total]aa</td>";
+                  echo "<td>$abs[total]</td>";
                 }
                 echo "
                     <td>80</td>
