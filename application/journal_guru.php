@@ -273,7 +273,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                               <input type='text' id='search_tujuan' name='tujuan_pembelajaran' class='form-control' placeholder='Cari tujuan pembelajaran...'>
                               <button type='button' id='clear_search' class='btn btn-danger btn-sm ml-2' style='display: none;'>Hapus</button>
                               <select id='result_tujuan' class='form-control' style='display: none;'>
-                                  <option value=''>Pilih Tujuan Pembelajaran..</option>";
+                                  <option value=''>Pilih Tujuan Pembelajaran111..</option>";
                                   while ($row = mysql_fetch_array($tampilInput)) {
                                     if($row['id_parent_journal'] == null){
                                       echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
@@ -701,7 +701,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                       style='" . (isset($e['tujuan_pembelajaran']) ? "display: inline-block;" : "display: none;") . "'>Hapus</button>
 
                               <select id='result_tujuan_edit' class='form-control' style='display: none;'>
-                                  <option value=''>Pilih Tujuan Pembelajaran123..</option>";
+                                  <option value=''>Pilih Tujuan Pembelajaran222..</option>";
                                   
                                   // Koneksi ke database dan query pencarian jika ada
                                   // $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
