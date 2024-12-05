@@ -22,7 +22,9 @@ if ($_GET[act] == '') {
                         <th>Nip</th>
                         <th>Nama Guru</th>";
   $rating_query = mysql_query("SELECT kesan FROM rb_rating ORDER BY id");
+  $ratings = [];
   while ($rating = mysql_fetch_array($rating_query)) {
+    $ratings[] = $rating["kesan"];
     echo "<th>" . $rating["kesan"] . "</th>";
   }
   echo "
@@ -71,13 +73,11 @@ if ($_GET[act] == '') {
     echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>
-                <td>$r[nama_guru]</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>";
+                <td>$r[nama_guru]</td>";
+    foreach ($ratings as $rating) {
+      echo "<td></td>";
+    }
+    echo "</tr>";
     $no++;
   }
 
