@@ -720,7 +720,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                           echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
                                       }
                                   } else {
-                                      echo "<option value=''>Data tidak ditemukan = $id_jdwls, $search_terms</option>";
+                                      echo "<option value=''>Data tidak ditemukan = $_GET[jdwl], $_GET[search_term]</option>";
                                   }
                     echo "</select>
                           </td>
