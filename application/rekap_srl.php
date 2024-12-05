@@ -72,7 +72,7 @@
                   // var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $headerCount = count($tanggalArray);
-                  echo $headerCount;
+                  // echo $headerCount;
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
