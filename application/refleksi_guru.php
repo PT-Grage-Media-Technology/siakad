@@ -21,13 +21,11 @@ if ($_GET[act] == '') {
                         <th>No</th>
                         <th>Nip</th>
                         <th>Nama Guru</th>
-                        <?php
-                        // Ambil data kesan dari tabel rb_rating
-                        $rating_query = mysql_query('SELECT * FROM rb_rating ORDER BY id');
-                        while ($rating = mysql_fetch_array($rating_query)) {
-                             echo '<th>{$rating['kesan']}</th>';
-                        }
-                        ?>
+                        <th>Sangat Baik</th>
+                        <th>Baik</th>
+                        <th>Cukup</th>
+                        <th>Buruk</th>
+                        <th>Sangat Buruk</th>
                       </tr>
                     </thead>
                     <tbody>";
@@ -74,7 +72,6 @@ if ($_GET[act] == '') {
                 <td>$no</td>
                 <td>$r[nip]</td>
                 <td>$r[nama_guru]</td>
-                <td>$r[jawaban]</td>
                 <td></td>
                 <td></td>
                 <td></td>
