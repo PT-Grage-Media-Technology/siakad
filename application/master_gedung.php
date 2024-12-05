@@ -97,10 +97,10 @@
                       <tr><th scope='row'>Keterangan</th>           <td><input type='text' class='form-control' name='g' value='$s[keterangan]'></td></tr>
                       <tr><th scope='row'>Aktif</th>                <td>";
   if ($s['aktif'] == 'Ya') {
-    echo "<input type='radio' name='h' value='Ya' checked> Ya
+    echo "<input type='radio' name='h' value='Y' checked> Ya
                                                                                <input type='radio' name='h' value='Tidak'> Tidak";
   } else {
-    echo "<input type='radio' name='h' value='Ya'> Ya
+    echo "<input type='radio' name='h' value='Y'> Ya
                                                                                <input type='radio' name='h' value='Tidak' checked> Tidak";
   }
   echo "</td></tr>
