@@ -722,6 +722,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                           //     ($row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') ? "selected" : "") . 
                                           //     ">{$row['tujuan_pembelajaran']}</option>";
                                       // }
+                                      
                                       echo "<option value='$rows[id_journal]'>$rows[tujuan_pembelajaran]</option>";
                                   }
                     echo "</select>
