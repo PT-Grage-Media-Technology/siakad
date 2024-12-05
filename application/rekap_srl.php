@@ -69,10 +69,10 @@
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
                   // echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
-                  var_dump($header);
+                  // var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $headerCount = count($tanggalArray);
-                  echo $headerCount;
+                  // echo $headerCount;
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
@@ -96,8 +96,9 @@
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   
+                                       
                   $totalAbsensi += $abs['total']; // Tambahkan total absensi                 
-                  echo "<td>$abs[total]</td>";
+                  echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 
                 echo "
