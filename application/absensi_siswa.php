@@ -346,6 +346,8 @@
     
     $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
 
+    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = $j[tujuan_pembelajaran]");
+
     $query = "SELECT 
                   rb_journal_list.*, 
                   rb_absensi_siswa.* 
@@ -358,8 +360,21 @@
                   AND rb_journal_list.tanggal = rb_absensi_siswa.tanggal
               WHERE 
                   rb_journal_list.tujuan_pembelajaran = '$tujuan_pembelajaran'";
+                  
+    // $query = "SELECT 
+    //               rb_journal_list.*, 
+    //               rb_absensi_siswa.* 
+    //           FROM 
+    //               rb_journal_list 
+    //           JOIN 
+    //               rb_absensi_siswa 
+    //           ON 
+    //               rb_journal_list.kodejdwl = rb_absensi_siswa.kodejdwl 
+    //               AND rb_journal_list.tanggal = rb_absensi_siswa.tanggal
+    //           WHERE 
+    //               rb_journal_list.tujuan_pembelajaran = '$tujuan_pembelajaran'";
 
-              $jadwal = mysql_query($query);
+              // $jadwal = mysql_query($query);
 
               // if (!$jadwal) {
               // die("Query gagal: " . mysql_error());
