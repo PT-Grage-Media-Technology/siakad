@@ -718,7 +718,7 @@ while ($r = mysql_fetch_array($tampil)) {
                                   if (mysql_num_rows($tampilInputs) > 0) {
                                       while ($rows = mysql_fetch_array($tampilInputs)) {
                                         if($rows['id_parent_journal'] == null){
-                                          echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
+                                          echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
                                         }
                                       }
                                   } else {
