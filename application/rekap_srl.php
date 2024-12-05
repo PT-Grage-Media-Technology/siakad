@@ -68,9 +68,11 @@
                 <?php
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
-                  echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
+                  // echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
                   var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
+                  $headerCount = count($tanggalArray);
+                  echo $headerCount;
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
@@ -81,7 +83,7 @@
               $no = 1;
               $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
               while ($r = mysql_fetch_array($tampil)) {
-                var_dump($tanggalArray);
+                // var_dump($tanggalArray);
                 echo "
                 <tr>
                 <td>$no</td>
@@ -93,11 +95,13 @@
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
-
+                  
+                  $totalAbsensi += $abs['total']; // Tambahkan total absensi                 
                   echo "<td>$abs[total]</td>";
                 }
+                
                 echo "
-                    <td>80</td>
+                    <td>";echo $totalAbsensi / $headerCount; echo"</td> 
                     <td>88</td>
                     <td>95</td>
                     <td>90</td>
