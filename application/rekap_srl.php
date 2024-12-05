@@ -60,10 +60,11 @@
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 ?>
                 <th rowspan="2">NA SUMATIF (S)</th>
-                <th rowspan="2">STS</th>
+                <th rowspan="2">Status</th>
+                <!-- <th rowspan="2">STS</th>
                 <th rowspan="2">NON TES</th>
                 <th rowspan="2">NA SUMATIF AKHIR SEMESTER (AS)</th>
-                <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th>
+                <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th> -->
               </tr>
               <tr>
                 <?php
@@ -106,11 +107,25 @@
                 }
                 
                 echo "
-                    <td>";echo $totalAbsensi / $headerCount; echo"</td> 
+                    <td>";
+                    if (isset($totalAbsensi) && $headerCount > 0) {
+                        $rataRata = $totalAbsensi / $headerCount;
+                        // echo $rataRata;
+
+                        // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
+                        // Misalnya, menggunakan POST untuk menyimpan ke database
+                        $nisn = $_POST['nisn'];
+                        echo $nisn;
+                        for ($i = 1; $i <= $jml_data; $i++) {
+
+                          mysql_query("INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW())");
+                          echo "INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW()";
+                        } 
+                    } else {
+                        echo 0; // Jika tidak ada nilai, tampilkan 0
+                    }
+                    echo "</td> 
                     <td>88</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>90</td>
                   </tr>";
                 $no++;
               }

@@ -210,6 +210,10 @@
                                 <th scope='row'>Materi</th>
                                 <td>$j[materi]</td>
                             </tr>
+                            <tr>
+                                <th scope='row'>test</th>
+                                <td>$j[id_parent_journal]</td>
+                            </tr>
                         </tbody>
                     </table>
                      <a class='btn btn-success btn-sm mb-2' title='Bahan dan Tugas' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&id_jawaban=$jawaban_refleksi[id_pertanyaan_penilaian]&id_journal=$_GET[id_journal]'>
@@ -339,6 +343,11 @@
     //                                       WHERE kodejdwl='$_GET[idjr]' 
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
+
+    // $jadwal = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+    //                                 WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+    //                                 AND DATE(waktu_input)='" . mysql_real_escape_string($_GET['tgl']) . "' 
+    //                                 AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
 
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
@@ -554,12 +563,12 @@
                   JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
                   JOIN rb_guru c ON a.nip=c.nip 
                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
-                  JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
+                  JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas $a
                   where a.nip='$_SESSION[id]' AND a.id_tahun_akademik='$_GET[tahun]' ORDER BY a.hari DESC");
               } else {
                 $tampil = mysql_query("SELECT a.*, e.nama_kelas, b.namamatapelajaran, b.kode_pelajaran, c.nama_guru, d.nama_ruangan FROM rb_jadwal_pelajaran a 
                   JOIN rb_mata_pelajaran b ON a.kode_pelajaran=b.kode_pelajaran
-                  JOIN rb_guru c ON a.nip=c.nip 
+                  JOIN rb_guru c ON a.nip=c.nip
                   JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan
                   JOIN rb_kelas e ON a.kode_kelas=e.kode_kelas 
                   where a.nip='$_SESSION[id]' AND a.id_tahun_akademik LIKE '" . date('Y') . "%' ORDER BY a.hari DESC");
