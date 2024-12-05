@@ -344,7 +344,8 @@
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
     
-
+    $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
+    
     $query = "SELECT 
                   rb_journal_list.*, 
                   rb_absensi_siswa.* 
@@ -356,7 +357,18 @@
                   rb_journal_list.kodejdwl = rb_absensi_siswa.kodejdwl 
                   AND rb_journal_list.tanggal = rb_absensi_siswa.tanggal
               WHERE 
-                  rb_journal_list.tujuan_pembelajaran = '$tujuan_pembelajaran'";
+                  rb_journal_list.tujuan_pembelajaran = '$tujuan_pembelajaran'
+                  AND (
+                    rb_absensi_siswa.nilai_keterampilan IS NULL 
+                    OR rb_absensi_siswa.nilai_keterampilan = 0 
+                    OR rb_absensi_siswa.nilai_keterampilan = '' 
+                    OR rb_absensi_siswa.nilai_pengetahuan IS NULL 
+                    OR rb_absensi_siswa.nilai_pengetahuan = 0 
+                    OR rb_absensi_siswa.nilai_pengetahuan = '' 
+                    OR rb_absensi_siswa.nilai_sikap IS NULL 
+                    OR rb_absensi_siswa.nilai_sikap = 0 
+                    OR rb_absensi_siswa.nilai_sikap = ''
+                  );";
 
               $jadwal = mysql_query($query);
 
