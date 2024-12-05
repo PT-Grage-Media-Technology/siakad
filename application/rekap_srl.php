@@ -107,11 +107,24 @@
                 }
                 
                 echo "
-                    <td>";echo $totalAbsensi / $headerCount; echo"</td> 
+                    <td>";
+                    if (isset($totalAbsensi) && $headerCount > 0) {
+                        $rataRata = $totalAbsensi / $headerCount;
+                        echo $rataRata;
+
+                        // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
+                        // Misalnya, menggunakan POST untuk menyimpan ke database
+                        $nisn = $_POST['nisn'];
+                        for ($i = 1; $i <= $jml_data; $i++) {
+
+                          mysql_query("INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW())");
+                          echo "INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW()";
+                        } 
+                    } else {
+                        echo 0; // Jika tidak ada nilai, tampilkan 0
+                    }
+                    echo "</td> 
                     <td>88</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>90</td>
                   </tr>";
                 $no++;
               }
