@@ -90,40 +90,50 @@
                 // var_dump($tanggalArray);
                 echo "
                 <tr>
-                <td>$no</td>
-                <td>$r[nama]
-                <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
-                </td>
-                <td>$kk[kktp]</td>";
+                    <td>$no</td>
+                    <td>$r[nama]
+                        <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
+                    </td>
+                    <td>$kk[kktp]</td>";
+                
+                $totalAbsensi = 0; // Pastikan totalAbsensi di-reset untuk setiap siswa
                 for ($i = 0; $i < $header_count; $i++) {
-                  $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                       WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
-                                       AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
-                  
-                                       
-                  $totalAbsensi += $abs['total']; // Tambahkan total absensi                 
-                  echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                    $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
+                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
+                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
+                
+                    $totalAbsensi += isset($abs['total']) ? $abs['total'] : 0; // Tambahkan total absensi
+                    echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 
-                echo "
-                    <td>";
-                    if (isset($totalAbsensi) && $headerCount > 0) {
-                        $rataRata = $totalAbsensi / $headerCount;
-                        // echo $rataRata;
-
-                        // Tambahkan kode untuk menyimpan nilai ke tabel jika ada nilai
-                        // Misalnya, menggunakan POST untuk menyimpan ke database
-                        $nisn = $_POST['nisn'];
-                        echo $nisn;
-                        for ($i = 1; $i <= $jml_data; $i++) {
-
-                          mysql_query("INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW())");
-                          echo "INSERT INTO rb_nilai_srl VALUES ('','$_GET[idjr]','$_POST[nisn][$i]','$rataRata[$i]', NOW()";
-                        } 
-                    } else {
-                        echo 0; // Jika tidak ada nilai, tampilkan 0
+                echo "<td>";
+                if ($header_count > 0) {
+                    $rataRata = $totalAbsensi / $header_count;
+                    echo $rataRata; // Tampilkan rata-rata nilai
+                
+                    // Simpan rata-rata nilai ke tabel
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        // Pastikan $_POST['nisn'] ada
+                        if (isset($_POST['nisn'][$no])) {
+                            $nisn = mysql_real_escape_string($_POST['nisn'][$no]); // Ambil NISN berdasarkan $no
+                            $query = "INSERT INTO rb_nilai_srl VALUES ('', 
+                                        '" . mysql_real_escape_string($_GET['idjr']) . "', 
+                                        '$nisn', 
+                                        '$rataRata', 
+                                        NOW())";
+                            mysql_query($query) or die("Error: " . mysql_error());
+                
+                            echo "<br>Query berhasil: $query";
+                        } else {
+                            echo "<br>Data NISN tidak ditemukan!";
+                        }
                     }
+                } else {
+                    echo 0; // Jika header count = 0, tampilkan 0
+                }
+                echo "</td>";
+                
                     echo "</td> 
                     <td>88</td>
                   </tr>";
