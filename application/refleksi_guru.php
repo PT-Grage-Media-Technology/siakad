@@ -74,7 +74,7 @@ if ($_GET[act] == '') {
                 <td>$r[nama_guru]</td>";
                 $rating_query = mysql_query("SELECT kesan FROM rb_rating ORDER BY id");
                 while ($rating = mysql_fetch_array($rating_query)) {
-                  echo "<th>" . $rating["kesan"] . "</th>";
+                  echo "<td>" . $rating["kesan"] . "</td>";
                 echo"
                </tr>";
     $no++;
