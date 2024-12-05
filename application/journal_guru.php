@@ -149,7 +149,6 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
     // var_dump($_POST['id_parent_journal'] == '');
     // exit;
 
-
     $d = tgl_simpan($_POST[d]);
 
     // Periksa dan proses file yang diunggah
@@ -691,10 +690,14 @@ while ($r = mysql_fetch_array($tampil)) {
                       <tr>
                           <th scope='row'>Tujuan Pembelajaran</th>
                           <td>
-                              <input type='hidden' name='id_parent_journal' id='id_parent_journal_edit'>
+                              <input type='hidden' name='id_parent_journal' id='id_parent_journal_edit' 
+                                    value='" . (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') . "'>
                               <input type='text' id='search_tujuan_edit' name='tujuan_pembelajaran' class='form-control' 
-                                    placeholder='Cari tujuan pembelajaran...' >
-                              <button type='button' id='clear_search_edit' class='btn btn-danger btn-sm ml-2' >Hapus</button>
+                                    placeholder='Cari tujuan pembelajaran...' 
+                                    value='" . (isset($e['tujuan_pembelajaran']) ? $e['tujuan_pembelajaran'] : '') . "' 
+                                    " . (isset($e['tujuan_pembelajaran']) ? "readonly" : "") . ">
+                              <button type='button' id='clear_search_edit' class='btn btn-danger btn-sm ml-2' 
+                                      style='" . (isset($e['tujuan_pembelajaran']) ? "display: inline-block;" : "display: none;") . "'>Hapus</button>
 
                               <select id='result_tujuan_edit' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran222..</option>";
@@ -711,15 +714,13 @@ while ($r = mysql_fetch_array($tampil)) {
                                                         AND jl.tujuan_pembelajaran LIKE '%$search_terms%' 
                                                         ORDER BY jl.id_journal DESC");
 
-                                  var_dump('coba aja');
-                                  while ($rows = mysql_fetch_array($tampilInputs)) {
-                                      // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
-                                          // echo "<option value='{$row['id_journal']}' " . 
-                                          //     ($row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') ? "selected" : "") . 
-                                          //     ">{$row['tujuan_pembelajaran']}</option>";
-                                      // }
-
-                                      echo "<option value='$rows[id_journal]'>$rows[tujuan_pembelajaran]</option>";
+                                  // var_dump('coba aja');
+                                  if (mysql_num_rows($tampilInputs) > 0) {
+                                      while ($rows = mysql_fetch_array($tampilInputs)) {
+                                          echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
+                                      }
+                                  } else {
+                                      echo "<option value=''>Data tidak ditemukan = $id_jdwls, $search_terms</option>";
                                   }
                     echo "</select>
                           </td>
