@@ -345,7 +345,7 @@
     //                                       AND nisn='$r[nisn]'"));
     
     $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
-    
+
     $query = "SELECT 
                   rb_journal_list.*, 
                   rb_absensi_siswa.* 
@@ -372,14 +372,14 @@
 
               $jadwal = mysql_query($query);
 
-              if (!$jadwal) {
-              die("Query gagal: " . mysql_error());
-              }
+              // if (!$jadwal) {
+              // die("Query gagal: " . mysql_error());
+              // }
 
               var_dump($jadwal);
 
               // Ambil data
-              while ($row = mysql_fetch_assoc($jadwal)) {
+              while ($row = mysql_fetch_array($jadwal)) {
               echo "<pre>";
               print_r($row);
               echo "</pre>";
