@@ -25,7 +25,7 @@ if ($_GET[act] == '') {
                         // Ambil data kesan dari tabel rb_rating
                         $rating_query = mysql_query('SELECT * FROM rb_rating ORDER BY id');
                         while ($rating = mysql_fetch_array($rating_query)) {
-                             echo '<th>' . {$rating['kesan']} . '</th>';
+                             echo '<th>$rating</th>';
                         }
                         ?>
                       </tr>
