@@ -22,6 +22,11 @@ if ($_GET[act] == '') {
                         <th>Nip</th>
                         <th>Nama Guru</th>
                         <th>Ratting</th>
+                        <td>Sangat Baik</td>
+                        <td>Baik</td>
+                        <td>Cukup</td>
+                        <td>Buruk</td>
+                        <td>Sangat Buruk</td>
                       </tr>
                     </thead>
                     <tbody>";
@@ -69,6 +74,11 @@ if ($_GET[act] == '') {
                 <td>$r[nip]</td>
                 <td>$r[nama_guru]</td>
                 <td>$r[jawaban]</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>";
         $no++;
     }
