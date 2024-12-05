@@ -135,7 +135,7 @@
 <?php
 } elseif ($_GET[act] == 'tambah') {
   if (isset($_POST[tambah])) {
-    mysql_query("INSERT INTO rb_jadwal_pelajaran VALUES('','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[h]','$_POST[i]','$_POST[j]','$_POST[k]')");
+    mysql_query("INSERT INTO rb_jadwal_pelajaran VALUES('','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_POST[h]','$_POST[i]','$_POST[j]','$_POST[kktp]','$_POST[k]')");
     echo "<script>document.location='index.php?view=jadwalpelajaran';</script>";
   }
 
@@ -201,6 +201,7 @@
                                                 <option value='Sabtu'>Sabtu</option>
                                                 <option value='Minggu'>Minggu</option>
                     </td></tr>
+                    <tr style='display:none;'><th scope='row'>KKTP</th><td><input type='text' class='form-control' name='kktp' placeholder='KKTP' value='75'></td></tr>
                     <tr><th scope='row'>Aktif</th>                <td><input type='radio' name='k' value='Ya' checked> Ya
                                                                              <input type='radio' name='k' value='Tidak'> Tidak
                     </td></tr>
