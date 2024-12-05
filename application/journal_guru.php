@@ -704,10 +704,11 @@ while ($r = mysql_fetch_array($tampil)) {
                                   
                                   while ($row = mysql_fetch_array($tampilInput)) {
                                       // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
-                                          echo "<option value='{$row['id_journal']}' " . 
-                                              ($row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') ? "selected" : "") . 
-                                              ">{$row['tujuan_pembelajaran']}</option>";
+                                          // echo "<option value='{$row['id_journal']}' " . 
+                                          //     ($row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') ? "selected" : "") . 
+                                          //     ">{$row['tujuan_pembelajaran']}</option>";
                                       // }
+                                      echo "<option value='{$row['id_journal']}'>{$row['tujuan_pembelajaran']}</option>";
                                   }
                     echo "</select>
                           </td>
