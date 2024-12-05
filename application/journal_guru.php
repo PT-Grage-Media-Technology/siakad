@@ -699,9 +699,22 @@ while ($r = mysql_fetch_array($tampil)) {
                                     " . (isset($e['tujuan_pembelajaran']) ? "readonly" : "") . ">
                               <button type='button' id='clear_search_edit' class='btn btn-danger btn-sm ml-2' 
                                       style='" . (isset($e['tujuan_pembelajaran']) ? "display: inline-block;" : "display: none;") . "'>Hapus</button>
+
                               <select id='result_tujuan_edit' class='form-control' style='display: none;'>
                                   <option value=''>Pilih Tujuan Pembelajaran..</option>";
                                   
+                                  // Koneksi ke database dan query pencarian jika ada
+                                  $search_term = isset($_GET['search_term']) ? $_GET['search_term'] : '';
+                                  $id_jdwl = isset($_GET['id']) ? $_GET['id'] : '';  // Mendapatkan kodejdwl dari query string
+
+                                  // Query untuk mencari tujuan pembelajaran berdasarkan search term
+                                  $tampilInput = mysql_query("SELECT jl.*, g.nama_guru 
+                                                        FROM rb_journal_list jl 
+                                                        LEFT JOIN rb_guru g ON jl.users = g.nip 
+                                                        WHERE jl.kodejdwl='$id_jdwl' 
+                                                        AND jl.tujuan_pembelajaran LIKE '%$search_term%' 
+                                                        ORDER BY jl.id_journal DESC");
+
                                   while ($row = mysql_fetch_array($tampilInput)) {
                                       // if ($row['id_parent_journal'] == null || $row['id_journal'] == (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '')) {
                                           // echo "<option value='{$row['id_journal']}' " . 
