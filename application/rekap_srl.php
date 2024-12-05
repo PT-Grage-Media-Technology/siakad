@@ -46,102 +46,89 @@
       </div>
       <div class="box-body">
         <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th rowspan="2">No</th>
-                <th rowspan="2">Nama Siswa</th>
-                <th rowspan="2">KKTP</th>
-                <?php
-                // Ambil data header dari tabel rb_journal_list
-                $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
-                $header_count = mysql_num_rows($headers);
-
-                echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
-                ?>
-                <th rowspan="2">NA SUMATIF (S)</th>
-                <th rowspan="2">Status</th>
-                <!-- <th rowspan="2">STS</th>
-                <th rowspan="2">NON TES</th>
-                <th rowspan="2">NA SUMATIF AKHIR SEMESTER (AS)</th>
-                <th rowspan="2">Nilai Rapor<br>(Rerata S + AS)</th> -->
-              </tr>
-              <tr>
-                <?php
-                // Loop untuk menampilkan header dinamis
-                while ($header = mysql_fetch_array($headers)) {
-                  // echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
-                  // var_dump($header);
-                  $tanggalArray[] = $header['tanggal'];
-                  $headerCount = count($tanggalArray);
-                  // echo $headerCount;
-                  echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
-                }
-                ?>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $no = 1;
-              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-              $kktp = mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
-              $kk = mysql_fetch_array($kktp);
-              while ($r = mysql_fetch_array($tampil)) {
-                // var_dump($tanggalArray);
-                echo "
+          <form method="POST" action="">
+            <table>
+              <thead>
                 <tr>
-                    <td>$no</td>
-                    <td>$r[nama]
-                        <input type='number' value='$r[nisn]' name='nisn[$no]' style='width:50px;' hidden>
-                    </td>
-                    <td>$kk[kktp]</td>";
-                
-                $totalAbsensi = 0; // Pastikan totalAbsensi di-reset untuk setiap siswa
-                for ($i = 0; $i < $header_count; $i++) {
+                  <th rowspan="2">No</th>
+                  <th rowspan="2">Nama Siswa</th>
+                  <th rowspan="2">KKTP</th>
+                  <?php
+                  $headers = mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
+                  $header_count = mysql_num_rows($headers);
+
+                  echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+                  ?>
+                  <th rowspan="2">NA SUMATIF (S)</th>
+                  <th rowspan="2">Status</th>
+                </tr>
+                <tr>
+                  <?php
+                  $tanggalArray = [];
+                  while ($header = mysql_fetch_array($headers)) {
+                    $tanggalArray[] = $header['tanggal'];
+                    echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  }
+                  ?>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $no = 1;
+                $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+                $kktp = mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
+                $kk = mysql_fetch_array($kktp);
+
+                while ($r = mysql_fetch_array($tampil)) {
+                  echo "
+                  <tr>
+                  <td>$no</td>
+                  <td>$r[nama]
+                  <input type='hidden' value='$r[nisn]' name='nisn[$no]' style='width:50px;'>
+                  </td>
+                  <td>$kk[kktp]</td>";
+                  $totalAbsensi = 0;
+                  for ($i = 0; $i < $header_count; $i++) {
                     $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
-                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
-                
-                    $totalAbsensi += isset($abs['total']) ? $abs['total'] : 0; // Tambahkan total absensi
+                                         WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                                         AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
+                                         AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
+
+                    $totalAbsensi += isset($abs['total']) ? $abs['total'] : 0;
                     echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
-                }
-                
-                echo "<td>";
-                if ($header_count > 0) {
+                  }
+
+                  echo "
+                      <td>";
+                  if ($header_count > 0) {
                     $rataRata = $totalAbsensi / $header_count;
-                    echo $rataRata; // Tampilkan rata-rata nilai
-                
-                    // Simpan rata-rata nilai ke tabel
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        // Pastikan $_POST['nisn'] ada
-                        if (isset($_POST['nisn'][$no])) {
-                            $nisn = mysql_real_escape_string($_POST['nisn'][$no]); // Ambil NISN berdasarkan $no
-                            $query = "INSERT INTO rb_nilai_srl VALUES ('', 
-                                        '" . mysql_real_escape_string($_GET['idjr']) . "', 
-                                        '$nisn', 
-                                        '$rataRata', 
-                                        NOW())";
-                            mysql_query($query) or die("Error: " . mysql_error());
-                
-                            echo "<br>Query berhasil: $query";
-                        } else {
-                            echo "<br>Data NISN tidak ditemukan!";
-                        }
+
+                    // Tampilkan rata-rata
+                    echo number_format($rataRata, 2);
+
+                    // Simpan rata-rata ke database
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nisn'][$no])) {
+                      $nisn = mysql_real_escape_string($_POST['nisn'][$no]);
+                      $query = "INSERT INTO rb_nilai_srl VALUES ('', 
+                                  '" . mysql_real_escape_string($_GET['idjr']) . "', 
+                                  '$nisn', 
+                                  '$rataRata', 
+                                  NOW())";
+                      mysql_query($query) or die("Error: " . mysql_error());
                     }
-                } else {
-                    echo 0; // Jika header count = 0, tampilkan 0
+                  } else {
+                    echo 0;
+                  }
+                  echo "</td> 
+                      <td>88</td>
+                    </tr>";
+                  $no++;
                 }
-                echo "</td>";
-                
-                    echo "</td> 
-                    <td>88</td>
-                  </tr>";
-                $no++;
-              }
-              ?>
-            </tbody>
-          </table>
+                ?>
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </form>
         </div>
       </div>
     </div>
