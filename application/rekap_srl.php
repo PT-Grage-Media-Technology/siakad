@@ -104,7 +104,7 @@
                     $rataRata = $totalAbsensi / $header_count;
 
                     // Tampilkan rata-rata
-                    echo number_format($rataRata, 2);
+                    echo $rataRata;
 
                     // Simpan rata-rata ke database
                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nisn'][$no])) {
