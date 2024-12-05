@@ -47,10 +47,11 @@
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
+                                $nilaiUH = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
-                                $nilaiAkhir = 0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
-                                var_dump($nilaiSTS);
+                                $nilaiAkhir = 0.5*$nilaiUH['total']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
+                                var_dump($nilaiUH['total']);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
