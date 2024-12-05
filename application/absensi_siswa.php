@@ -379,11 +379,12 @@
               var_dump($jadwal);
 
               // Ambil data
-              while ($row = mysql_fetch_array($jadwal)) {
-              echo "<pre>";
-              print_r($row);
-              echo "</pre>";
-              }
+              while ($row = mysql_fetch_assoc($jadwal)) {
+                // Menampilkan data per baris
+                echo "<pre>";
+                print_r($row);
+                echo "</pre>";
+            };
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
