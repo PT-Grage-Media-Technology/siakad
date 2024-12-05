@@ -80,7 +80,7 @@
               $no = 1;
               $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
               while ($r = mysql_fetch_array($tampil)) {
-                $total = mysql_fetch_array(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
+                $total = mysql_fetch_array(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[idjr]' GROUP BY tanggal"));
                 var_dump($total);
                 echo "
                   <tr>
