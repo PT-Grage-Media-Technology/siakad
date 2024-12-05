@@ -430,7 +430,8 @@
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-
+      
+      // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
 
 
