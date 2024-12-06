@@ -82,6 +82,7 @@
 
               while ($r = mysql_fetch_array($tampil)) {
                 $totalAbsensi = 0; // Reset total absensi untuk setiap siswa
+                $nilaiArray = []; // Reset nilaiArray untuk setiap siswa
                 echo "
                 <tr>
                   <td>$no</td>
@@ -213,6 +214,7 @@
 
               while ($r = mysql_fetch_array($tampil)) {
                 $totalAbsensi = 0; // Reset total absensi untuk setiap siswa
+                $nilaiArray = []; // Reset nilaiArray untuk setiap siswa
                 echo "
                 <tr>
                   <td>$no</td>
