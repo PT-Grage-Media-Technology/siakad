@@ -66,7 +66,6 @@
                   $tanggalArray[] = $header['tanggal'];
                   $headerCells .= "<th>{$header['tujuan_pembelajaran']}</th>"; // Simpan dalam variabel
                 }
-                echo $headerCells; // Tampilkan sel header di sini
                 ?>
               </tr>
             </thead>
@@ -97,7 +96,7 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td class='nilai-max'><input type='hidden' name='' value='sasa'/>"
+                echo"<td class='nilai-max'><input type='hidden' name='' value='$headerCells'/>"
                 
                 .max($nilaiArray).
                 "</td>";
