@@ -55,7 +55,7 @@
 
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 ?>
-                <th rowspan="1">Nilai Tertinggi</th>
+                <th rowspan="2">Nilai Tertinggi</th>
                 <th rowspan="2">NA SUMATIF (S)</th>
                 <th rowspan="2">Status</th>
               </tr>
@@ -94,7 +94,7 @@
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td>$abs[total]</td>";
+                echo"<td>".MAX($abs['total'])."</td>";
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
