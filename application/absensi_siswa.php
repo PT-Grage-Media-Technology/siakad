@@ -369,19 +369,19 @@
             // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
-            echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
+            // echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
               $keterampilan_kosong++;
             }
             
             // Cek nilai_pengetahuan
-            echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
+            // echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
             if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
                 $pengetahuan_kosong++;
             }
         
             // Cek nilai_sikap
-            echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
+            // echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
             if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
                 $sikap_kosong++;
             }
@@ -481,9 +481,9 @@
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['kehadiran'];
-    $nilai_sikap = $_POST['nilai_sikap'];
-    $nilai_keterampilan = $_POST['nilai_keterampilan'];
-    $nilai_pengetahuan = $_POST['nilai_pengetahuan'];
+    $nilai_sikap = isset($_POST['nilai_sikap']) ? $_POST['nilai_sikap'] : 0 ;
+    $nilai_keterampilan = isset($_POST['nilai_keterampilan']) ? $_POST['nilai_keterampilan'] : 0 ;
+    $nilai_pengetahuan = isset($_POST['nilai_pengetahuan']) ? $_POST['nilai_pengetahuan'] : 0 ;
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
@@ -500,6 +500,8 @@
       // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
 
+      var_dump($total);
+      exit;
 
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
@@ -509,7 +511,7 @@
                       nilai_sikap='" . $nilai_sikap[$i] . "',
                       nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
                       nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
-                      total='" . number_format($total_nilai[$i], 1) . "' 
+                      total='" . round($total_nilai[$i]) . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
                     AND tanggal='$tgl'"
@@ -522,7 +524,6 @@
       } else {
         // Insert data jika belum ada di tabel
 
-
         $insertAbsensiSiswa = mysql_query("
         INSERT INTO rb_absensi_siswa 
               VALUES (
@@ -533,11 +534,12 @@
                 '" . $nilai_sikap[$i] . "', 
                 '" . $nilai_pengetahuan[$i] . "', 
                 '" . $nilai_keterampilan[$i] . "', 
-                '" . number_format($total_nilai[$i], 1) . "', 
+                '" . round($total_nilai[$i]) . "', 
                 '$tgl', 
                 NOW()
             )
         ");
+
 
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
