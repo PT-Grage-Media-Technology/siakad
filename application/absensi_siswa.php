@@ -391,10 +391,10 @@
         // $no++;
     }
 
-    // echo "Total data: $total_data\n";
-    // echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
-    // echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
-    // echo "Nilai sikap kosong: $sikap_kosong\n";
+    echo "Total data: $total_data\n";
+    echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
+    echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
+    echo "Nilai sikap kosong: $sikap_kosong\n";
 
 
               // Ambil data
@@ -514,7 +514,7 @@
                 nilai_pengetahuan='" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "',
                 nilai_keterampilan='" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
                 total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
-            WHERE nisn='" . $nisn[$i] . "' 
+              WHERE nisn='" . $nisn[$i] . "' 
               AND kodejdwl='" . $kodejdwl . "'
               AND tanggal='" . $tgl . "'"
         );
@@ -525,8 +525,8 @@
         }
       } else {
         // Insert data jika belum ada di tabel
-        var_dump('test', $nilai_sikapInput[$i]);
-        exit;
+        // var_dump('test', $nilai_sikapInput[$i]);
+        // exit;
 
         $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
         $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
