@@ -518,7 +518,7 @@
 
     // var_dump('test', $_POST);
     // exit;
-    if($j['id_parent_journal'] != null){
+    if($j['id_parent_journal']){
       $dataParentQuery = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
       $dataParent = mysql_fetch_assoc($dataParentQuery);
     }
@@ -553,7 +553,7 @@
               AND tanggal='" . $_GET['tgl'] . "'"
         );
 
-        if ($j['id_parent_journal'] != null) {
+        if ($j['id_parent_journal']) {
             // Membuat query awal
             $updateQuery = "UPDATE rb_absensi_siswa SET ";
         
@@ -614,7 +614,7 @@
         // var_dump('test', $nilai_sikapInput[$i]);
         // exit;
 
-        if ($j['id_parent_journal'] != null) {
+        if ($j['id_parent_journal']) {
             // Membuat query awal
             $updateQuery = "UPDATE rb_absensi_siswa SET ";
         
@@ -651,6 +651,8 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
+                echo $dataParent['tanggal'];
+                exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
