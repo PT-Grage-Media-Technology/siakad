@@ -226,15 +226,15 @@
   }
 
   // Setelah looping selesai
-  if ($keterampilan_kosong != $total_data) {
+  if ($keterampilan_kosong != $total_data && $j['id_parent_journal']) {
     $keterampilan_set = true;
   }
 
-  if ($pengetahuan_kosong != $total_data) {
+  if ($pengetahuan_kosong != $total_data && $j['id_parent_journal']) {
     $pengetahuan_set = true;
   }
 
-  if ($sikap_kosong != $total_data) {
+  if ($sikap_kosong != $total_data && $j['id_parent_journal']) {
       $sikap_set = true;
   }
 
