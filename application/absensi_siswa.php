@@ -594,10 +594,8 @@
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.1";
-                    exit;
                 } else {
                     echo "Update gagal: 2" . mysql_error();
-                    exit;
                 }
             } else {
                 echo "Tidak ada data yang perlu diupdate.";
@@ -657,10 +655,8 @@
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
-                    exit;
                   } else {
                     echo "Update gagal: 4" . mysql_error();
-                    exit;
                 }
             } else {
                 echo "Tidak ada data yang perlu diupdate.";
