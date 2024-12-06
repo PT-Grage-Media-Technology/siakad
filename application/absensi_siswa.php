@@ -333,16 +333,10 @@
   
   while ($r = mysql_fetch_array($tampil)) {
     
-    
     // Ambil nilai dari tabel terkait
     $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai_pengetahuan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
-    
-    // $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-    //                                       WHERE kodejdwl='$_GET[idjr]' 
-    //                                       AND waktu_input='$_GET[tgl]' 
-    //                                       AND nisn='$r[nisn]'"));
     
     $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
     
@@ -352,7 +346,6 @@
     $keterampilan_kosong = 0;
     $pengetahuan_kosong = 0;
     $sikap_kosong = 0;
-    // $no = 1;
 
     while ($row = mysql_fetch_assoc($jadwal)) {
       
@@ -388,7 +381,19 @@
             echo "\n";
         }
 
-        // $no++;
+    }
+
+    // Setelah looping selesai
+    if ($keterampilan_kosong == $total_data) {
+        echo "Semua nilai keterampilan kosong\n";
+    }
+
+    if ($pengetahuan_kosong == $total_data) {
+        echo "Semua nilai pengetahuan kosong\n";
+    }
+
+    if ($sikap_kosong == $total_data) {
+        echo "Semua nilai sikap kosong\n";
     }
 
     echo "Total data: $total_data\n";
@@ -397,13 +402,13 @@
     echo "Nilai sikap kosong: $sikap_kosong\n";
 
 
-              // Ambil data
-            //   while ($row = mysql_fetch_assoc($jadwal)) {
-            //     // Menampilkan data per baris
-            //     echo "<pre>";
-            //     print_r($row);
-            //     echo "</pre>";
-            // };
+      // Ambil data
+    //   while ($row = mysql_fetch_assoc($jadwal)) {
+    //     // Menampilkan data per baris
+    //     echo "<pre>";
+    //     print_r($row);
+    //     echo "</pre>";
+    // };
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
