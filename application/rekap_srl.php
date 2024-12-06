@@ -56,6 +56,7 @@
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 ?>
                 <th rowspan="2">Nilai Tertinggi</th>
+                <th rowspan="2">Nilai Terendah</th>
                 <th rowspan="2">NA SUMATIF (S)</th>
                 <th rowspan="2">Status</th>
               </tr>
@@ -102,6 +103,13 @@
                 echo"<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>"
                 
                 .max($nilaiArray).
+                "</td>";
+
+                $minIndex = array_search(min($nilaiArray), $nilaiArray); 
+                echo $minIndex;
+                echo"<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='{$headerCells[$minIndex]}'/>"
+                
+                .min($nilaiArray).
                 "</td>";
                 // Hitung rata-rata
                 echo "<td>";
