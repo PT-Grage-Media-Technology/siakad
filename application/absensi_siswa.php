@@ -481,9 +481,6 @@
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['kehadiran'];
-    $nilai_sikapInput = isset($_POST['nilai_sikap']) ? $_POST['nilai_sikap'] : 0 ;
-    $nilai_keterampilanInput = isset($_POST['nilai_keterampilan']) ? $_POST['nilai_keterampilan'] : 0 ;
-    $nilai_pengetahuanInput = isset($_POST['nilai_pengetahuan']) ? $_POST['nilai_pengetahuan'] : 0 ;
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
@@ -491,10 +488,14 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
-
-
+    
+    
     
     for ($i = 1; $i <= $jml_data; $i++) {
+      $nilai_sikapInput[$i] = isset($_POST['nilai_sikap'][$i]) ? $_POST['nilai_sikap'][$i] : 0 ;
+      $nilai_keterampilanInput[$i] = isset($_POST['nilai_keterampilan'][$i]) ? $_POST['nilai_keterampilan'][$i] : 0 ;
+      $nilai_pengetahuanInput[$i] = isset($_POST['nilai_pengetahuan'][$i]) ? $_POST['nilai_pengetahuan'][$i] : 0 ;
+      
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       var_dump('jml_data : ', $jml_data);
