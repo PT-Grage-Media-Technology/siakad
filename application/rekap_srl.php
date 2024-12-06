@@ -55,7 +55,7 @@
 
                 echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 ?>
-                <th rowspan="1">Nilai Tertinggi</th>
+                <th rowspan="2">Nilai Tertinggi</th>
                 <th rowspan="2">NA SUMATIF (S)</th>
                 <th rowspan="2">Status</th>
               </tr>
