@@ -601,8 +601,9 @@ while ($r = mysql_fetch_array($tampil)) {
                   jam_ke = '$_POST[e]',
                   sampai_jam_ke = '$_POST[ee]',
                   materi = '$_POST[f]',
-                  tujuan_pembelajaran = '$_POST[g]',
                   users = '$_POST[nip_users]',
+                  tujuan_pembelajaran = '$_POST[tujuan_pembelajaran]',
+                  id_parent_journal = '$_POST[id_parent_journal]',
                   file = '$target_file'
                 WHERE id_journal = '$_POST[id]'";
 
@@ -613,6 +614,7 @@ while ($r = mysql_fetch_array($tampil)) {
     } else {
       echo "<script>alert('Gagal memperbarui data: " . mysql_error() . "');</script>";
     }
+
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT a.*, b.kode_pelajaran, b.kode_kelas FROM rb_journal_list a JOIN rb_jadwal_pelajaran b ON a.kodejdwl=b.kodejdwl where a.id_journal='$_GET[id]'"));
@@ -717,10 +719,12 @@ while ($r = mysql_fetch_array($tampil)) {
                                   // var_dump('coba aja');
                                   if (mysql_num_rows($tampilInputs) > 0) {
                                       while ($rows = mysql_fetch_array($tampilInputs)) {
+                                        if($rows['id_parent_journal'] == null){
                                           echo "<option value='{$rows['id_journal']}'>{$rows['tujuan_pembelajaran']}</option>";
+                                        }
                                       }
                                   } else {
-                                      echo "<option value=''>Data tidak ditemukan = $_GET[jdwl], $_GET[search_term]</option>";
+                                      echo "<option value=''>Data tidak ditemukan</option>";
                                   }
                     echo "</select>
                           </td>
