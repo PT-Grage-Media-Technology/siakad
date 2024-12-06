@@ -520,7 +520,7 @@
     // exit;
     if($j['id_parent_journal']){
       $dataParentQuery = mysql_query("SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]'");
-      echo "SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]";
+      // echo "SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]";
       $dataParent = mysql_fetch_array($dataParentQuery);
     }
     
@@ -652,8 +652,8 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                var_dump($j['id_parent_journal']);
-                exit;
+                // var_dump($j['id_parent_journal']);
+                // exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
