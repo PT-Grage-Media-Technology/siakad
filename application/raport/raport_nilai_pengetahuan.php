@@ -68,7 +68,7 @@
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='b' value='' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='b' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
@@ -87,7 +87,7 @@
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='b' value='' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='b' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
