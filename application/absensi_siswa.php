@@ -330,28 +330,28 @@
   // } else {
   //   echo "<td>Tidak ada predikat yang sesuai</td>";
   // }
-  $total_data = 0;
-  $keterampilan_kosong = 0;
-  $pengetahuan_kosong = 0;
-  $sikap_kosong = 0;
-
+  
   while ($r = mysql_fetch_array($tampil)) {
     
-
+    
     // Ambil nilai dari tabel terkait
     $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai_pengetahuan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
-
+    
     // $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
     //                                       WHERE kodejdwl='$_GET[idjr]' 
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
     
     $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
-
+    
     $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
-
+    
+    $total_data = 0;
+    $keterampilan_kosong = 0;
+    $pengetahuan_kosong = 0;
+    $sikap_kosong = 0;
 
     while ($row = mysql_fetch_assoc($jadwal)) {
         $kodejdwl = $row['kodejdwl'];
@@ -361,6 +361,8 @@
 
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
+
+            echo "$absen[nisn] : $absen[nilai_keterampilan], ";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
@@ -379,10 +381,10 @@
         }
     }
 
-    echo "Total data: $total_data\n";
-    echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
-    echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
-    echo "Nilai sikap kosong: $sikap_kosong\n";
+    // echo "Total data: $total_data\n";
+    // echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
+    // echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
+    // echo "Nilai sikap kosong: $sikap_kosong\n";
 
 
               // Ambil data
