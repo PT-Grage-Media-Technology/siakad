@@ -90,7 +90,7 @@
                         <td>$r[jam_selesai]</td>
                         <td>$r[nama_ruangan]</td>
                         <td>$r[id_tahun_akademik]</td>
-                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=rekapsiswa&act=rekapsiswa&id=$r[kode_kelas]&idjr=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Lihat Nilai</a></td>
+                        <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=rekapsrl&act=rekapsiswa&id=$r[kode_kelas]&idjr=$r[kodejdwl]'><span class='glyphicon glyphicon-list'></span> Lihat Nilai</a></td>
                     </tr>";
                 $no++;
               }
