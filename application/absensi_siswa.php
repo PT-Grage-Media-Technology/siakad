@@ -497,8 +497,8 @@
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-      var_dump($jml_data);
-      exit;
+      var_dump('jml_data : ', $jml_data);
+      // exit;
       
       // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
@@ -541,7 +541,8 @@
             )
         ");
 
-
+        
+      var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
