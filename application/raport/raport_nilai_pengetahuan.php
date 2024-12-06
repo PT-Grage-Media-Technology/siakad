@@ -7,7 +7,7 @@
       }else{
         mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[nilai_uh]','$_POST[sts]','$_POST[sas]','$_POST[nilai_akhir]','$_POST[nilai_tertinggi]','$_POST[nilai_terendah]','$_POST[deskripsi_tertinggi]','$_POST[deskripsi_terendah]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
       }
-      echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun];</script>";
+      echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun];</script>";
   }
 
   if (isset($_GET['delete_pengetahuan'])){
