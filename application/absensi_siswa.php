@@ -361,7 +361,7 @@
 
         $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
 
-        echo "$no";
+        echo "$row[tanggal]";
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
 
