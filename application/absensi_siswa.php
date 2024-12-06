@@ -520,7 +520,8 @@
     // exit;
     if($j['id_parent_journal']){
       $dataParentQuery = mysql_query("SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]");
-      $dataParent = mysql_fetch_assoc($dataParentQuery);
+      echo "SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]";
+      $dataParent = mysql_fetch_array($dataParentQuery);
     }
     
     for ($i = 1; $i <= $jml_data; $i++) {
