@@ -330,6 +330,10 @@
   // } else {
   //   echo "<td>Tidak ada predikat yang sesuai</td>";
   // }
+  $total_data = 0;
+  $keterampilan_kosong = 0;
+  $pengetahuan_kosong = 0;
+  $sikap_kosong = 0;
 
   while ($r = mysql_fetch_array($tampil)) {
     
@@ -348,10 +352,6 @@
 
     $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
 
-    $total_data = 0;
-    $keterampilan_kosong = 0;
-    $pengetahuan_kosong = 0;
-    $sikap_kosong = 0;
 
     while ($row = mysql_fetch_assoc($jadwal)) {
         $kodejdwl = $row['kodejdwl'];
