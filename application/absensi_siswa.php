@@ -628,38 +628,53 @@
                 )
         ");
 
-        // if($j['id_parent_journal']){
-        //   // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
-        //   $updateParts = [];
-
-        //   if ($nilai_sikapInsert !== null) {
-        //       $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
-        //   }
-
-        //   if ($nilai_pengetahuanInsert !== null) {
-        //       $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
-        //   }
-
-        //   if ($nilai_keterampilanInsert !== null) {
-        //       $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
-        //   }
-
-        //   if ($total_nilai !== null) {
-        //       $updateParts[] = "total='$total_nilai'";
-        //   }
-
-        //   // Menyusun query update jika ada nilai yang perlu diupdate
-        //   if (count($updateParts) > 0) {
-        //       // $updateQuery = "UPDATE rb_absensi_siswa 
-        //       //                 SET " . implode(", ", $updateParts) . "
-        //       //                 WHERE nisn='" . $nisn[$i] . "' 
-        //       //                 AND kodejdwl='" . $kodejdwl . "' 
-        //       //                 AND tanggal='" . $dataParent['tanggal'] . "'";
-
-        //       // Menjalankan query update
-        //       $updateAbsensiSiswaParent = mysql_query($updateQuery);
-        //   }
-        // }
+        if ($j['id_parent_journal']) {
+          // Membuat query awal
+          $updateQuery = "UPDATE rb_absensi_siswa SET ";
+      
+          // Variabel untuk menambahkan bagian-bagian query
+          $queryParts = "";
+      
+          // Tambahkan nilai ke query jika tersedia
+          if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null) {
+              $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
+          }
+      
+          if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null) {
+              $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "', ";
+          }
+      
+          if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null) {
+              $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "', ";
+          }
+      
+          if (isset($total_nilai) && $total_nilai !== null) {
+              $queryParts .= "total='" . mysql_real_escape_string($total_nilai) . "', ";
+          }
+      
+          // Menghapus koma terakhir jika ada query parts
+          $queryParts = rtrim($queryParts, ', ');
+      
+          // Jika ada bagian query yang ditambahkan, jalankan query
+          if (!empty($queryParts)) {
+              $updateQuery .= $queryParts . " 
+                              WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
+                              AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "' 
+                              AND tanggal='" . mysql_real_escape_string($dataParent['tanggal']) . "'";
+      
+              // Jalankan query
+              $updateAbsensiSiswaParent = mysql_query($updateQuery);
+      
+              // Cek keberhasilan query
+              if ($updateAbsensiSiswaParent) {
+                  echo "Update berhasil.";
+              } else {
+                  echo "Update gagal: " . mysql_error();
+              }
+          } else {
+              echo "Tidak ada data yang perlu diupdate.";
+          }
+      }
 
         
       // var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
