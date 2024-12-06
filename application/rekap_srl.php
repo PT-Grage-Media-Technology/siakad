@@ -41,7 +41,7 @@
             echo "Rekap Sumatif Ruang Lingkup " . date('Y');
           }
           ?>
-        </h3>
+        </h3> 
       </div>
       <div class="box-body">
         <div class="table-responsive">
