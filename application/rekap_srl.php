@@ -61,10 +61,12 @@
               </tr>
               <tr>
                 <?php
+                $headerCells = ""; // Menyimpan sel header
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
-                  echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  $headerCells .= "<th>{$header['tujuan_pembelajaran']}</th>"; // Simpan dalam variabel
                 }
+                echo $headerCells; // Tampilkan sel header di sini
                 ?>
               </tr>
             </thead>
