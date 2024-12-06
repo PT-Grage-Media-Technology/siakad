@@ -207,7 +207,7 @@
             <tbody>";
 
               $no = 1;
-              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.nisn='$_SESSION[id]' AND a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
               $kktp = mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
               $kk = mysql_fetch_array($kktp);
 
