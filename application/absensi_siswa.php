@@ -518,10 +518,19 @@
 
     // var_dump('test', $_POST);
     // exit;
+    if($j['tujuan_pembelajaran']){
+      $dataParent = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
+    }
     
     for ($i = 1; $i <= $jml_data; $i++) {
-      $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
+      $cek = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
+
+      $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
+      $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
+      $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
+      $nilaiJadi = round($total_nilai[$i]);
+
       // var_dump('jml_data : ', $jml_data);
       // exit;
       
@@ -543,6 +552,40 @@
               AND tanggal='" . $tgl . "'"
         );
 
+        if($j['tujuan_pembelajaran']){
+          // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
+          $updateParts = [];
+
+          if ($nilai_sikap !== null) {
+              $updateParts[] = "nilai_sikap='$nilai_sikap'";
+          }
+
+          if ($nilai_pengetahuan !== null) {
+              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuan'";
+          }
+
+          if ($nilai_keterampilan !== null) {
+              $updateParts[] = "nilai_keterampilan='$nilai_keterampilan'";
+          }
+
+          if ($total_nilai !== null) {
+              $updateParts[] = "total='$total_nilai'";
+          }
+
+          // Menyusun query update jika ada nilai yang perlu diupdate
+          if (count($updateParts) > 0) {
+              $updateQuery = "UPDATE rb_absensi_siswa 
+                              SET " . implode(", ", $updateParts) . "
+                              WHERE nisn='" . $nisn[$i] . "' 
+                              AND kodejdwl='" . $kodejdwl . "' 
+                              AND tanggal='" . $dataParent['tanggal'] . "'";
+
+              // Menjalankan query update
+              $updateAbsensiSiswaParent = mysql_query($updateQuery);
+          }
+        }
+
+
         if ($updateAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
@@ -551,11 +594,6 @@
         // Insert data jika belum ada di tabel
         // var_dump('test', $nilai_sikapInput[$i]);
         // exit;
-
-        $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
-        $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
-        $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
-        $nilaiJadi = round($total_nilai[$i]);
 
         $insertAbsensiSiswa = mysql_query("
             INSERT INTO rb_absensi_siswa 
@@ -572,6 +610,39 @@
                     NOW()
                 )
         ");
+
+        if($j['tujuan_pembelajaran']){
+          // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
+          $updateParts = [];
+
+          if ($nilai_sikap !== null) {
+              $updateParts[] = "nilai_sikap='$nilai_sikap'";
+          }
+
+          if ($nilai_pengetahuan !== null) {
+              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuan'";
+          }
+
+          if ($nilai_keterampilan !== null) {
+              $updateParts[] = "nilai_keterampilan='$nilai_keterampilan'";
+          }
+
+          if ($total_nilai !== null) {
+              $updateParts[] = "total='$total_nilai'";
+          }
+
+          // Menyusun query update jika ada nilai yang perlu diupdate
+          if (count($updateParts) > 0) {
+              $updateQuery = "UPDATE rb_absensi_siswa 
+                              SET " . implode(", ", $updateParts) . "
+                              WHERE nisn='" . $nisn[$i] . "' 
+                              AND kodejdwl='" . $kodejdwl . "' 
+                              AND tanggal='" . $dataParent['tanggal'] . "'";
+
+              // Menjalankan query update
+              $updateAbsensiSiswaParent = mysql_query($updateQuery);
+          }
+        }
 
         
       // var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
