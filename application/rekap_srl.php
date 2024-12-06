@@ -61,11 +61,11 @@
               </tr>
               <tr>
                 <?php
-                $headerCells = ""; // Menyimpan sel header
+                // $headerCells = ""; // Menyimpan sel header
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
-                  $headerCells .= "{$header['tujuan_pembelajaran']}"; 
+                  $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
                 ?>
               </tr>
