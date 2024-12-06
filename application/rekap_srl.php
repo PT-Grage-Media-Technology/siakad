@@ -300,7 +300,7 @@
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
-                    echo "<a href='#' style='color: red;'>Remedial</a>";
+                    echo "<a href='' style='color: red;'>Remedial</a>";
                 } else {
                     echo "<span style='color: green;'>Lulus</span>";
                 }
