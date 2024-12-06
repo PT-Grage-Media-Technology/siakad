@@ -352,8 +352,10 @@
     $keterampilan_kosong = 0;
     $pengetahuan_kosong = 0;
     $sikap_kosong = 0;
+    $no = 0;
 
     while ($row = mysql_fetch_assoc($jadwal)) {
+      
         $kodejdwl = $row['kodejdwl'];
         $tanggal = $row['tanggal'];
 
@@ -362,7 +364,8 @@
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
 
-            echo "$absen[nisn] : $absen[nilai_keterampilan], ";
+            // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
+            echo "$no";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
@@ -379,6 +382,7 @@
                 $sikap_kosong++;
             }
         }
+        $no++;
     }
 
     // echo "Total data: $total_data\n";
