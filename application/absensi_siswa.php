@@ -361,7 +361,7 @@
 
         $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
 
-        echo "$row[tanggal] : $row[kodejdwl], ";
+        // echo "$row[tanggal] : $row[kodejdwl], ";
 
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
@@ -370,18 +370,22 @@
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
-                $keterampilan_kosong++;
+              $keterampilan_kosong++;
+              echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
             }
-
-            // Hitung data nilai_pengetahuan yang 0, NULL, atau ''
+        
+            // Cek nilai_pengetahuan
             if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
                 $pengetahuan_kosong++;
+                echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
             }
-
-            // Hitung data nilai_sikap yang 0, NULL, atau ''
+        
+            // Cek nilai_sikap
             if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
                 $sikap_kosong++;
+                echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
             }
+            echo "\n";
         }
 
         $no++;
