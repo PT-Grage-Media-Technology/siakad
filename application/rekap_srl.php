@@ -95,7 +95,7 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td>".max($abs['total'])."</td>";
+                echo"<td>".max($nilaiArray)."</td>";
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
