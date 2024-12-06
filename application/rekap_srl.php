@@ -207,7 +207,7 @@
             <tbody>";
 
               $no = 1;
-              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_SESSION[id]' ORDER BY a.id_siswa");
               $kktp = mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
               $kk = mysql_fetch_array($kktp);
 
@@ -225,7 +225,7 @@
                 for ($i = 0; $i < $header_count; $i++) {
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
+                                       AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
@@ -255,27 +255,27 @@
                 if ($header_count > 0) {
                   $rataRata = $totalAbsensi / $header_count;
 
-                  // Validasi sebelum insert atau update
-                  $cekData = mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'");
-                  if (mysql_num_rows($cekData) > 0) {
-                    // Jika data sudah ada, lakukan update
-                    $queryUpdate = "UPDATE rb_nilai_srl 
-                                    SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
-                                    WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"
-                                    ;
-                    mysql_query($queryUpdate);
-                  } else {
-                    // Jika data belum ada, lakukan insert
-                    $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
-                                    VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
-                                            '" . mysql_real_escape_string($r['nisn']) . "', 
-                                            '" . mysql_real_escape_string($rataRata) . "', 
-                                            '" . mysql_real_escape_string($nilaiTertinggi) . "', 
-                                            '" . mysql_real_escape_string($nilaiTerendah) . "', 
-                                            NOW())";
-                    mysql_query($queryInsert);
-                  }
+                  // // Validasi sebelum insert atau update
+                  // $cekData = mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'");
+                  // if (mysql_num_rows($cekData) > 0) {
+                  //   // Jika data sudah ada, lakukan update
+                  //   $queryUpdate = "UPDATE rb_nilai_srl 
+                  //                   SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
+                  //                   WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                  //                   AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"
+                  //                   ;
+                  //   mysql_query($queryUpdate);
+                  // } else {
+                  //   // Jika data belum ada, lakukan insert
+                  //   $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
+                  //                   VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
+                  //                           '" . mysql_real_escape_string($r['nisn']) . "', 
+                  //                           '" . mysql_real_escape_string($rataRata) . "', 
+                  //                           '" . mysql_real_escape_string($nilaiTertinggi) . "', 
+                  //                           '" . mysql_real_escape_string($nilaiTerendah) . "', 
+                  //                           NOW())";
+                  //   mysql_query($queryInsert);
+                  // }
 
                   echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
@@ -284,7 +284,7 @@
                 echo "</td>";
 
                 echo "<td>";
-                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
+                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
                     echo "<a href='#' style='color: red;'>Remedial</a>";
                 } else {
