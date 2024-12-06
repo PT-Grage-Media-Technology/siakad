@@ -481,9 +481,9 @@
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['kehadiran'];
-    $nilai_sikap = $_POST['nilai_sikap'];
-    $nilai_keterampilan = $_POST['nilai_keterampilan'];
-    $nilai_pengetahuan = $_POST['nilai_pengetahuan'];
+    $nilai_sikap = $_POST['nilai_sikap'] ?? 0;
+    $nilai_keterampilan = $_POST['nilai_keterampilan'] ?? 0;
+    $nilai_pengetahuan = $_POST['nilai_pengetahuan'] ?? 0;
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
