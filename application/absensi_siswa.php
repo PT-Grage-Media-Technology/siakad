@@ -553,48 +553,48 @@
               AND tanggal='" . $tgl . "'"
         );
 
-        if ($j['id_parent_journal']) {
-          // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
-          $updateParts = [];
-      
-          // Pastikan variabel telah diinisialisasi dengan nilai yang sesuai dan aman
-          // if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null) {
-          //     $updateParts[] = "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "'";
-          // }
-      
-          // if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null) {
-          //     $updateParts[] = "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "'";
-          // }
-      
-          // if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null) {
-          //     $updateParts[] = "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "'";
-          // }
-      
-          // if (isset($total_nilai) && $total_nilai !== null) {
-          //     $updateParts[] = "total='" . mysql_real_escape_string($total_nilai) . "'";
-          // }
-      
-          // Menyusun query update jika ada nilai yang perlu diupdate
-          if (count($updateParts) > 0) {
-              $updateQuery = "UPDATE rb_absensi_siswa 
-                              SET " . implode(", ", $updateParts) . "
-                              WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
-                              AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "' 
-                              AND tanggal='" . mysql_real_escape_string($dataParent['tanggal']) . "'";
-      
-              // Menjalankan query update dan memeriksa apakah query berhasil
-              $updateAbsensiSiswaParent = mysql_query($updateQuery);
-              
-              // Cek apakah query berhasil
-              if ($updateAbsensiSiswaParent) {
-                  echo "Update berhasil.";
-              } else {
-                  echo "Update gagal: " . mysql_error();
-              }
-          } else {
-              echo "Tidak ada data yang perlu diupdate.";
-          }
-      }
+        // if ($j['id_parent_journal']) {
+        //     // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
+        //     $updateParts = [];
+        
+        //     // Pastikan variabel telah diinisialisasi dengan nilai yang sesuai dan aman
+        //     if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null) {
+        //         $updateParts[] = "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "'";
+        //     }
+        
+        //     if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null) {
+        //         $updateParts[] = "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "'";
+        //     }
+        
+        //     if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null) {
+        //         $updateParts[] = "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "'";
+        //     }
+        
+        //     if (isset($total_nilai) && $total_nilai !== null) {
+        //         $updateParts[] = "total='" . mysql_real_escape_string($total_nilai) . "'";
+        //     }
+        
+        //     // Menyusun query update jika ada nilai yang perlu diupdate
+        //     if (count($updateParts) > 0) {
+        //         $updateQuery = "UPDATE rb_absensi_siswa 
+        //                         SET " . implode(", ", $updateParts) . "
+        //                         WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
+        //                         AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "' 
+        //                         AND tanggal='" . mysql_real_escape_string($dataParent['tanggal']) . "'";
+        
+        //         // Menjalankan query update dan memeriksa apakah query berhasil
+        //         $updateAbsensiSiswaParent = mysql_query($updateQuery);
+                
+        //         // Cek apakah query berhasil
+        //         if ($updateAbsensiSiswaParent) {
+        //             echo "Update berhasil.";
+        //         } else {
+        //             echo "Update gagal: " . mysql_error();
+        //         }
+        //     } else {
+        //         echo "Tidak ada data yang perlu diupdate.";
+        //     }
+        // }
 
 
         if ($updateAbsensiSiswa && !$guruInserted) {
