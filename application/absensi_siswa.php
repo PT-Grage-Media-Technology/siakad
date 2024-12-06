@@ -550,7 +550,7 @@
                 total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
               WHERE nisn='" . $nisn[$i] . "' 
               AND kodejdwl='" . $kodejdwl . "'
-              AND tanggal='" . $tgl . "'"
+              AND tanggal='" . $_GET['tgl'] . "'"
         );
 
         if ($j['id_parent_journal']) {
@@ -611,7 +611,7 @@
         // Insert data jika belum ada di tabel
         // var_dump('test', $nilai_sikapInput[$i]);
         // exit;
-        
+
         if ($j['id_parent_journal']) {
             // Membuat query awal
             $updateQuery = "UPDATE rb_absensi_siswa SET ";
@@ -671,7 +671,7 @@
                     '$nilai_pengetahuanInsert', 
                     '$nilai_keterampilanInsert', 
                     '$nilaiJadi', 
-                    '$tgl', 
+                    '$_GET[tgl]', 
                     NOW()
                 )
         ");
