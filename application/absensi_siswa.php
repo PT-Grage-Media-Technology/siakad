@@ -530,8 +530,8 @@
                 VALUES (
                     '', 
                     '$kodejdwl', 
-                    '" . mysql_real_escape_string($nisn[$i]) . "', 
-                    '" . mysql_real_escape_string($a[$i]) . "', 
+                    '" . $nisn[$i] . "', 
+                    '" . $a[$i] . "', 
                     '" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "', 
                     '" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "', 
                     '" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
@@ -567,7 +567,7 @@
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
   }
- elseif ($_GET[act] == 'detailabsenguru') { ?>
+} elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
