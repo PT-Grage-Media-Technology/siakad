@@ -225,7 +225,7 @@ if (isset($_POST['kktp'])) {
                 }
             }
             mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
-            ?>
+            ?> 
 
             <!-- Menampilkan form dan h3 -->
             <h3 class="box-title">
