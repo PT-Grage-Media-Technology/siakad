@@ -95,7 +95,7 @@
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
-                  $nilaiArray[] = $abs['total']; // Simpan nilai absensi ke dalam array
+                  $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
