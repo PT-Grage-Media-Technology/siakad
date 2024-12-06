@@ -106,10 +106,17 @@
                 echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
-                echo"<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='{$headerCells[$minIndex]}'/>"
+                echo "<td class='nilai-min'>";
+                echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$minIndex]}'/>";
+                $nilaiTerendah = min($nilaiArray);
+                echo $nilaiTerendah; // Memastikan nilai tertinggi ditampilkan
+                echo "</td>";
+
+                // $minIndex = array_search(min($nilaiArray), $nilaiArray); 
+                // echo"<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='{$headerCells[$minIndex]}'/>"
                 
-                .min($nilaiArray).
-                "</td>";
+                // .min($nilaiArray).
+                // "</td>";
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
@@ -120,9 +127,10 @@
                   if (mysql_num_rows($cekData) > 0) {
                     // Jika data sudah ada, lakukan update
                     $queryUpdate = "UPDATE rb_nilai_srl 
-                                    SET nilai='" . mysql_real_escape_string($rataRata) . "', waktu_input=NOW() 
+                                    SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'";
+                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"
+                                    ;
                     mysql_query($queryUpdate);
                   } else {
                     // Jika data belum ada, lakukan insert
@@ -130,7 +138,8 @@
                                     VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
                                             '" . mysql_real_escape_string($r['nisn']) . "', 
                                             '" . mysql_real_escape_string($rataRata) . "', 
-                                            '" . mysql_real_escape_string($rataRata) . "', 
+                                            '" . mysql_real_escape_string($nilaiTertinggi) . "', 
+                                            '" . mysql_real_escape_string($nilaiTerendah) . "', 
                                             NOW())";
                     mysql_query($queryInsert);
                   }
