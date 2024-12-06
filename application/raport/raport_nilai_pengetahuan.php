@@ -3,11 +3,11 @@
       // Debugging: Cek data yang diterima
       
       if ($_POST['status']=='Update'){
-        mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai1='$_POST[b]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
+        mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai_ulangan_harian='$_POST[nilai_uh]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
       }else{
-        mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
+        mysql_query("INSERT INTO rb_nilai_pengetahuan VALUES('','$_GET[jdwl]','$_POST[nisn]','$_POST[nilai_uh]','$_POST[sts]','$_POST[sas]','$_POST[nilai_akhir]','$_POST[nilai_tertinggi]','$_POST[nilai_terendah]','$_POST[deskripsi_tertinggi]','$_POST[deskripsi_terendah]','$_SESSION[id]','".date('Y-m-d H:i:s')."')");
       }
-      echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_POST[nisn]';</script>";
+      echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun];</script>";
   }
 
   if (isset($_GET['delete_pengetahuan'])){
@@ -68,9 +68,9 @@
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='b' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='sas' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
                                         <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
@@ -92,9 +92,9 @@
                                         <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
+                                        <td align=center><input type='text' name='deskripsi_tertinggi' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='text' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='text' name='g' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
+                                        <td align=center><input type='text' name='deskripsi_terendah' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>
                                       </form>";
@@ -103,7 +103,7 @@
                                     $pe = mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
                                     while ($n = mysql_fetch_array($pe)){
                                     $ratarata = average(array($n[nilai1],$n[nilai2],$n[nilai3],$n[nilai4],$n[nilai5]));
-                                    $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
+                                    // $cekpredikat = mysql_num_rows(mysql_query("SELECT * FROM rb_predikat where kode_kelas='$_GET[id]'"));
                                     // if ($cekpredikat >= 1){
                                     //   $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($ratarata)." >=nilai_a) AND (".number_format($ratarata)." <= nilai_b) AND kode_kelas='$_GET[id]'"));
                                     // }else{
