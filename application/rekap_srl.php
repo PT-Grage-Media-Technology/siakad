@@ -95,7 +95,7 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td class='nilai-max'><input type='hidden' name='' value='$header[tujuan_pembelajaran]'/>"
+                echo"<td class='nilai-max'><input type='hidden' name='' value='sasa'/>"
                 
                 .max($nilaiArray).
                 "</td>";
