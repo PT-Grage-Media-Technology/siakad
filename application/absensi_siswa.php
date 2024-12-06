@@ -553,38 +553,38 @@
               AND tanggal='" . $tgl . "'"
         );
 
-        // if($j['id_parent_journal']){
-        //   // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
-        //   $updateParts = [];
+        if($j['id_parent_journal']){
+          // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
+          $updateParts = [];
 
-        //   if ($nilai_sikapInsert !== null) {
-        //       $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
-        //   }
+          if ($nilai_sikapInsert !== null) {
+              $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
+          }
 
-        //   if ($nilai_pengetahuanInsert !== null) {
-        //       $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
-        //   }
+          if ($nilai_pengetahuanInsert !== null) {
+              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
+          }
 
-        //   if ($nilai_keterampilanInsert !== null) {
-        //       $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
-        //   }
+          if ($nilai_keterampilanInsert !== null) {
+              $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
+          }
 
-        //   if ($total_nilai !== null) {
-        //       $updateParts[] = "total='$total_nilai'";
-        //   }
+          if ($total_nilai !== null) {
+              $updateParts[] = "total='$total_nilai'";
+          }
 
-        //   // Menyusun query update jika ada nilai yang perlu diupdate
-        //   // if (count($updateParts) > 0) {
-        //   //     $updateQuery = "UPDATE rb_absensi_siswa 
-        //   //                     SET " . implode(", ", $updateParts) . "
-        //   //                     WHERE nisn='" . $nisn[$i] . "' 
-        //   //                     AND kodejdwl='" . $kodejdwl . "' 
-        //   //                     AND tanggal='" . $dataParent['tanggal'] . "'";
+          // Menyusun query update jika ada nilai yang perlu diupdate
+          if (count($updateParts) > 0) {
+              $updateQuery = "UPDATE rb_absensi_siswa 
+                              SET " . implode(", ", $updateParts) . "
+                              WHERE nisn='" . $nisn[$i] . "' 
+                              AND kodejdwl='" . $kodejdwl . "' 
+                              AND tanggal='" . $dataParent['tanggal'] . "'";
 
-        //   //     // Menjalankan query update
-        //   //     $updateAbsensiSiswaParent = mysql_query($updateQuery);
-        //   // }
-        // }
+              // Menjalankan query update
+              $updateAbsensiSiswaParent = mysql_query($updateQuery);
+          }
+        }
 
 
         if ($updateAbsensiSiswa && !$guruInserted) {
