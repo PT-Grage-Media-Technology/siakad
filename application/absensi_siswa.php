@@ -497,8 +497,8 @@
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-      var_dump('jml_data : ', $jml_data);
-      exit;
+      // var_dump('jml_data : ', $jml_data);
+      // exit;
       
       // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
@@ -524,26 +524,33 @@
         }
       } else {
         // Insert data jika belum ada di tabel
+        // var_dump('masuk');
+        // exit;
+
+        $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
+        $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
+        $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
+        $nilaiJadi = round($total_nilai[$i]);
 
         $insertAbsensiSiswa = mysql_query("
             INSERT INTO rb_absensi_siswa 
                 VALUES (
                     '', 
                     '$kodejdwl', 
-                    '" . $nisn[$i] . "', 
-                    '" . $a[$i] . "', 
-                    '" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "', 
-                    '" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "', 
-                    '" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
-                    '" . mysql_real_escape_string(round($total_nilai[$i])) . "', 
+                    '$nisn[$i]', 
+                    '$a[$i]', 
+                    '$nilai_sikapInsert', 
+                    '$nilai_pengetahuanInsert', 
+                    '$nilai_keterampilanInsert', 
+                    '$nilaiJadi', 
                     '$tgl', 
                     NOW()
                 )
         ");
 
         
-      var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
-      exit;
+      // var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
+      // exit;
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
