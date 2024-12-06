@@ -492,7 +492,7 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
 
-    var_dump('test', $nilai_sikapInput);
+    var_dump('test', $_POST);
     exit;
     
     for ($i = 1; $i <= $jml_data; $i++) {
