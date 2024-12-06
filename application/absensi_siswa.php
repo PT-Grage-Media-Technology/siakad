@@ -518,7 +518,7 @@
 
     // var_dump('test', $_POST);
     // exit;
-    if($j['tujuan_pembelajaran']){
+    if($j['id_parent_journal']){
       $dataParent = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
     }
     
@@ -552,7 +552,7 @@
               AND tanggal='" . $tgl . "'"
         );
 
-        if($j['tujuan_pembelajaran']){
+        if($j['id_parent_journal']){
           // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
           $updateParts = [];
 
@@ -611,7 +611,7 @@
                 )
         ");
 
-        if($j['tujuan_pembelajaran']){
+        if($j['id_parent_journal']){
           // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
           $updateParts = [];
 
