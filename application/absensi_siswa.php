@@ -344,14 +344,54 @@
     //                                       AND waktu_input='$_GET[tgl]' 
     //                                       AND nisn='$r[nisn]'"));
     
+    $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
 
-      $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
-  
-      // Query ke database
-      $query = "SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'";
-      $jadwal = mysql_query($query);
+    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
 
-      var_dump($jadwal);
+    $total_data = 0;
+    $keterampilan_kosong = 0;
+    $pengetahuan_kosong = 0;
+    $sikap_kosong = 0;
+
+    while ($row = mysql_fetch_assoc($jadwal)) {
+        $kodejdwl = $row['kodejdwl'];
+        $tanggal = $row['tanggal'];
+
+        $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
+
+        while ($absen = mysql_fetch_assoc($absensi)) {
+            $total_data++;
+
+            // Hitung data nilai_keterampilan yang 0, NULL, atau ''
+            if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
+                $keterampilan_kosong++;
+            }
+
+            // Hitung data nilai_pengetahuan yang 0, NULL, atau ''
+            if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
+                $pengetahuan_kosong++;
+            }
+
+            // Hitung data nilai_sikap yang 0, NULL, atau ''
+            if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
+                $sikap_kosong++;
+            }
+        }
+    }
+
+    echo "Total data: $total_data\n";
+    echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
+    echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
+    echo "Nilai sikap kosong: $sikap_kosong\n";
+
+
+              // Ambil data
+            //   while ($row = mysql_fetch_assoc($jadwal)) {
+            //     // Menampilkan data per baris
+            //     echo "<pre>";
+            //     print_r($row);
+            //     echo "</pre>";
+            // };
     
     $a = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
