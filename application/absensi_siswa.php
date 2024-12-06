@@ -519,7 +519,8 @@
     // var_dump('test', $_POST);
     // exit;
     if($j['id_parent_journal']){
-      $dataParent = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
+      $dataParentQuery = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
+      $dataParent = mysql_fetch_assoc($dataParentQuery)
     }
     
     for ($i = 1; $i <= $jml_data; $i++) {
