@@ -551,7 +551,7 @@
                 total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
               WHERE nisn='" . $nisn[$i] . "' 
               AND kodejdwl='" . $kodejdwl . "'
-              AND tanggal='" . $_GET['tgl'] . "'"
+              AND tanggal='" . $tgl . "'"
         );
 
         if ($j['id_parent_journal']) {
@@ -678,7 +678,7 @@
                     '$nilai_pengetahuanInsert', 
                     '$nilai_keterampilanInsert', 
                     '$nilaiJadi', 
-                    '$_GET[tgl]', 
+                    '$tgl', 
                     NOW()
                 )
         ");
