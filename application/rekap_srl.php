@@ -69,7 +69,7 @@
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
                   echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
-                  var_dump($header);
+                  // var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $headerCount = count($tanggalArray);
                   echo $headerCount;
@@ -83,7 +83,7 @@
               $no = 1;
               $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
               while ($r = mysql_fetch_array($tampil)) {
-                var_dump($tanggalArray);
+                // var_dump($tanggalArray);
                 echo "
                 <tr>
                 <td>$no</td>
