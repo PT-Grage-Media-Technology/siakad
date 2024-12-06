@@ -525,17 +525,22 @@
       } else {
         // Insert data jika belum ada di tabel
 
+        $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
+        $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
+        $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
+        $nilaiJadi = round($total_nilai[$i]);
+
         $insertAbsensiSiswa = mysql_query("
             INSERT INTO rb_absensi_siswa 
                 VALUES (
                     '', 
                     '$kodejdwl', 
-                    '" . $nisn[$i] . "', 
-                    '" . $a[$i] . "', 
-                    '" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "', 
-                    '" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "', 
-                    '" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
-                    '" . mysql_real_escape_string(round($total_nilai[$i])) . "', 
+                    '$nisn[$i]', 
+                    '$a[$i]', 
+                    '$nilai_sikapInsert', 
+                    '$nilai_pengetahuanInsert', 
+                    '$nilai_keterampilanInsert', 
+                    '$nilaiJadi', 
                     '$tgl', 
                     NOW()
                 )
