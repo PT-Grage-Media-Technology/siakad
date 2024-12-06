@@ -429,24 +429,36 @@
               <td>$r[jenis_kelamin]</td>";
 
     // Nilai Pengetahuan
-    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+    if ($pengetahuan_set) {
+      echo "<td hidden>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td>2<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+          echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+      } else {
+          echo "<td>2<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+      }
     }
 
     // Nilai Keterampilan
-    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+    if ($keterampilan_set) {
+      echo "<td hidden>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td>4<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+          echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+      } else {
+          echo "<td>4<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      }
     }
 
     // Nilai Sikap
-    if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-      echo "<td>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+    if ($sikap_set) {
+      echo "<td hidden>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
     } else {
-      echo "<td>6<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+      if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
+          echo "<td>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
+      } else {
+          echo "<td>6<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+      }
     }
 
     // Kehadiran
