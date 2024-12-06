@@ -593,10 +593,10 @@
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.1";
-                    exit;
+                    // exit;
                 } else {
                     echo "Update gagal: 2" . mysql_error();
-                    exit;
+                    // exit;
                 }
             } else {
                 echo "Tidak ada data yang perlu diupdate.";
@@ -651,15 +651,15 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                var_dump('coba', $j['id_parent_journal']);
-                exit;
+                // var_dump('coba', $j['id_parent_journal']);
+                // exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
-                    exit;
+                    // exit;
                   } else {
                     echo "Update gagal: 4" . mysql_error();
-                    exit;
+                    // exit;
                 }
             } else {
                 echo "Tidak ada data yang perlu diupdate.";
