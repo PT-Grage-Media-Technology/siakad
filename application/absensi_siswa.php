@@ -224,6 +224,10 @@
       }
 
   }
+  
+  $keterampilan_set = false;
+  $pengetahuan_set = false;
+  $sikap_set = false;
 
   // Setelah looping selesai
   if ($keterampilan_kosong != $total_data && $j['id_parent_journal']) {
