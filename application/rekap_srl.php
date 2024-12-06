@@ -61,9 +61,11 @@
               </tr>
               <tr>
                 <?php
+                $headerCells = ""; // Menyimpan sel header
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  $headerCells .= "{$header['tujuan_pembelajaran']}"; 
                 }
                 ?>
               </tr>
@@ -95,7 +97,7 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td class='nilai-max'><input type='hidden' name='' value='$header[tujuan_pembelajaran]'/>"
+                echo"<td class='nilai-max'><input type='hidden' name='' value='$headerCells'/>"
                 
                 .max($nilaiArray).
                 "</td>";
