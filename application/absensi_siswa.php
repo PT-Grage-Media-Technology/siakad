@@ -524,7 +524,7 @@
         }
       } else {
         // Insert data jika belum ada di tabel
-        var_dump($nilai_sikapInput[$i]);
+        var_dump('test', $nilai_sikapInput[$i]);
         exit;
 
         $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
