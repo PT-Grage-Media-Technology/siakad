@@ -96,13 +96,12 @@
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   
-                  $totalAbsensi += $abs['total']; // Tambahkan total absensi
-                  echo $totalAbsensi;                   
-                  echo "<td>$abs[total],$totalAbsensi,</td>";
+                  $totalAbsensi += $abs['total']; // Tambahkan total absensi                 
+                  echo "<td>$abs[total]</td>";
                 }
                 
                 echo "
-                    <td>";echo $abs['total'] / 2; echo"</td> 
+                    <td>";echo $totalAbsensi / $headerCount; echo"</td> 
                     <td>88</td>
                     <td>95</td>
                     <td>90</td>
