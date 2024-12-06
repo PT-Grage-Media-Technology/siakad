@@ -324,7 +324,7 @@ if ($_GET[act] == '') {
                     <tbody>";
                  
                     $tampil = mysql_query("SELECT * FROM rb_pertanyaan_penilaian where status='refleksi' ORDER BY id_pertanyaan_penilaian DESC");
-                    $jwb = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab where id_pertanyaan_penilaian='$_GET[id_jawaban]' AND kodejdwl='$_GET[jdwl]'");
+                    $jwb = mysql_query("SELECT * FROM rb_pertanyaan_penilaian_jawab WHERE id_pertanyaan_penilaian='$_GET[id_jawaban]' AND kodejdwl='$_GET[jdwl]' AND nip='$_SESSION[id]'");
                     $no = 1;
                     while($r=mysql_fetch_array($jwb)){
                       // var_dump($r);

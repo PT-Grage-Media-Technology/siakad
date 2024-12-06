@@ -519,8 +519,9 @@
     // var_dump('test', $_POST);
     // exit;
     if($j['id_parent_journal']){
-      $dataParentQuery = mysql_query("SELECT * FROM rb_absensi_siswa WHERE id_journal='$j[id_parent_journal]");
-      $dataParent = mysql_fetch_assoc($dataParentQuery);
+      $dataParentQuery = mysql_query("SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]'");
+      // echo "SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]";
+      $dataParent = mysql_fetch_array($dataParentQuery);
     }
     
     for ($i = 1; $i <= $jml_data; $i++) {
@@ -561,19 +562,19 @@
             $queryParts = "";
         
             // Tambahkan nilai ke query jika tersedia
-            if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null) {
+            if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
                 $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
             }
         
-            if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null) {
+            if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null && $nilai_pengetahuanInsert !== 0) {
                 $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "', ";
             }
         
-            if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null) {
+            if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null && $nilai_keterampilanInsert !== 0) {
                 $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "', ";
             }
         
-            if (isset($total_nilai) && $total_nilai !== null) {
+            if (isset($total_nilai) && $total_nilai !== null && $total_nilai !== 0) {
                 $queryParts .= "total='" . mysql_real_escape_string($total_nilai) . "', ";
             }
         
@@ -622,19 +623,19 @@
             $queryParts = "";
         
             // Tambahkan nilai ke query jika tersedia
-            if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null) {
+            if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
                 $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
             }
         
-            if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null) {
+            if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null && $nilai_pengetahuanInsert !== 0) {
                 $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "', ";
             }
         
-            if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null) {
+            if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null && $nilai_keterampilanInsert !== 0) {
                 $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "', ";
             }
         
-            if (isset($total_nilai) && $total_nilai !== null) {
+            if (isset($total_nilai) && $total_nilai !== null && $total_nilai !== 0) {
                 $queryParts .= "total='" . mysql_real_escape_string($total_nilai) . "', ";
             }
         
@@ -651,8 +652,8 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                echo $dataParent['tanggal'];
-                exit;
+                // var_dump($j['id_parent_journal']);
+                // exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
