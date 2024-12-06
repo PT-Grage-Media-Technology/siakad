@@ -94,7 +94,7 @@
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td>ds</td>";
+                echo"<td>$abs[total]</td>";
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
