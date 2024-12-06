@@ -516,9 +516,6 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
 
-    var_dump($tgl);
-    exit;
-
     // var_dump('test', $_POST);
     // exit;
     if($j['id_parent_journal']){
