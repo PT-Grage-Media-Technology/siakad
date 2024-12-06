@@ -97,7 +97,9 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                echo"<td class='nilai-max'><input type='hidden' name='' value='$headerCells'/>"
+                $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
+                echo "Max Index: $maxIndex, Header Cells: " . implode(", ", $headerCells);
+                echo"<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>"
                 
                 .max($nilaiArray).
                 "</td>";
