@@ -509,7 +509,8 @@
     $nilai_keterampilanInput = $_POST['nilai_keterampilan'];
     $nilai_pengetahuanInput = $_POST['nilai_pengetahuan'];
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
-    $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
+    // $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
+    $tgl = $_GET['tgl'];
     $nip = $_SESSION['id'];
     $kodejdwl = $_POST['jdwl'];
     $kdhadir = 'Hadir';
