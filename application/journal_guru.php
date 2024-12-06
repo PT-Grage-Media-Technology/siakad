@@ -686,7 +686,7 @@ while ($r = mysql_fetch_array($tampil)) {
 
   echo "</td>
                     </tr>
-                    <tr><th scope='row'>Tanggal</th>  <td><input type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
+                    <tr><th scope='row'>Tanggal</th>  <td><input hidden type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>";
                     echo "
