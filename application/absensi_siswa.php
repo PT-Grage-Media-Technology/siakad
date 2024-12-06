@@ -677,6 +677,19 @@
                     NOW()
                 )
         ");
+        echo " INSERT INTO rb_absensi_siswa 
+                VALUES (
+                    '', 
+                    '$kodejdwl', 
+                    '$nisn[$i]', 
+                    '$a[$i]', 
+                    '$nilai_sikapInsert', 
+                    '$nilai_pengetahuanInsert', 
+                    '$nilai_keterampilanInsert', 
+                    '$nilaiJadi', 
+                    '$tgl', 
+                    NOW()
+                )";
 
 
         
