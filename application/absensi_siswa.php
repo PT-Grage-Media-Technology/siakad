@@ -498,7 +498,7 @@
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       var_dump('jml_data : ', $jml_data);
-      // exit;
+      exit;
       
       // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
@@ -513,9 +513,9 @@
                 nilai_pengetahuan='" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "',
                 nilai_keterampilan='" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
                 total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
-            WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
-              AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "'
-              AND tanggal='" . mysql_real_escape_string($tgl) . "'"
+            WHERE nisn='" . $nisn[$i] . "' 
+              AND kodejdwl='" . $kodejdwl . "'
+              AND tanggal='" . $tgl . "'"
         );
 
         if ($updateAbsensiSiswa && !$guruInserted) {
@@ -567,7 +567,7 @@
     // Redirect setelah semua proses selesai
     echo "<script>document.location='index.php?view=absensiswa&act=tampilabsen&id=" . $_POST['kelas'] . "&kd=" . $_POST['pelajaran'] . "&idjr=" . $_POST['jdwl'] . "&tgl=" . $_GET['tgl'] . "&jam=" . $_GET['jam'] . "';</script>";
   }
-} elseif ($_GET[act] == 'detailabsenguru') { ?>
+ elseif ($_GET[act] == 'detailabsenguru') { ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
