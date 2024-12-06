@@ -193,7 +193,7 @@
                 if ($header_count > 0) {
                   echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
               } else {
-                  echo "<td colspan='1'>Tidak ada data</td>"; // Menampilkan pesan jika tidak ada data
+                  echo "<td colspan='1'>Tidak ada data</tdsasas>"; // Menampilkan pesan jika tidak ada data
               }
                 echo"
                 <th rowspan='2'>Nilai Tertinggi</th>
