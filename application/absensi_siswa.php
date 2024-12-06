@@ -481,9 +481,6 @@
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['kehadiran'];
-    $nilai_sikap = isset($_POST['nilai_sikap']) ? $_POST['nilai_sikap'] : 0 ;
-    $nilai_keterampilan = isset($_POST['nilai_keterampilan']) ? $_POST['nilai_keterampilan'] : 0 ;
-    $nilai_pengetahuan = isset($_POST['nilai_pengetahuan']) ? $_POST['nilai_pengetahuan'] : 0 ;
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
@@ -491,17 +488,21 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
-
-
+    
+    
     
     for ($i = 1; $i <= $jml_data; $i++) {
+      $nilai_sikapInput[$i] = isset($_POST['nilai_sikap'][$i]) ? $_POST['nilai_sikap'][$i] : 0 ;
+      $nilai_keterampilanInput[$i] = isset($_POST['nilai_keterampilan'][$i]) ? $_POST['nilai_keterampilan'][$i] : 0 ;
+      $nilai_pengetahuanInput[$i] = isset($_POST['nilai_pengetahuan'][$i]) ? $_POST['nilai_pengetahuan'][$i] : 0 ;
+      
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       var_dump('jml_data : ', $jml_data);
       // exit;
       
       // ini adalah rata rata
-      $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
+      $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
 
 
       if ($total >= 1) {
@@ -509,9 +510,9 @@
         $updateAbsensiSiswa = mysql_query(
           "UPDATE rb_absensi_siswa 
                   SET kode_kehadiran='" . $a[$i] . "', 
-                      nilai_sikap='" . $nilai_sikap[$i] . "',
-                      nilai_pengetahuan='" . $nilai_pengetahuan[$i] . "',
-                      nilai_keterampilan='" . $nilai_keterampilan[$i] . "', 
+                      nilai_sikap='" . $nilai_sikapInput[$i] . "',
+                      nilai_pengetahuan='" . $nilai_pengetahuanInput[$i] . "',
+                      nilai_keterampilan='" . $nilai_keterampilanInput[$i] . "', 
                       total='" . round($total_nilai[$i]) . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
@@ -532,9 +533,9 @@
                 '$kodejdwl', 
                 '" . $nisn[$i] . "', 
                 '" . $a[$i] . "', 
-                '" . $nilai_sikap[$i] . "', 
-                '" . $nilai_pengetahuan[$i] . "', 
-                '" . $nilai_keterampilan[$i] . "', 
+                '" . $nilai_sikapInput[$i] . "', 
+                '" . $nilai_pengetahuanInput[$i] . "', 
+                '" . $nilai_keterampilanInput[$i] . "', 
                 '" . round($total_nilai[$i]) . "', 
                 '$tgl', 
                 NOW()
@@ -543,6 +544,7 @@
 
         
       var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
+      exit;
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
