@@ -556,15 +556,15 @@
           // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
           $updateParts = [];
 
-          if ($nilai_sikap !== null) {
+          if ($nilai_sikapInsert !== null) {
               $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
           }
 
-          if ($nilai_pengetahuan !== null) {
+          if ($nilai_pengetahuanInsert !== null) {
               $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
           }
 
-          if ($nilai_keterampilan !== null) {
+          if ($nilai_keterampilanInsert !== null) {
               $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
           }
 
@@ -615,15 +615,15 @@
           // Membuat bagian update secara dinamis berdasarkan nilai yang tersedia
           $updateParts = [];
 
-          if ($nilai_sikap !== null) {
+          if ($nilai_sikapInsert !== null) {
               $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
           }
 
-          if ($nilai_pengetahuan !== null) {
+          if ($nilai_pengetahuanInsert !== null) {
               $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
           }
 
-          if ($nilai_keterampilan !== null) {
+          if ($nilai_keterampilanInsert !== null) {
               $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
           }
 
