@@ -94,8 +94,8 @@
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
-                  echo"<td>".max($nilaiArray)."</td>";
                 }
+                echo"<td class='nilai-max'>".max($nilaiArray)."</td>";
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
