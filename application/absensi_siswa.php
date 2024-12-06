@@ -178,6 +178,67 @@
   } else {
     $blnee = substr($bulane, 0, 2);
   }
+
+  // cek nilai
+  $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
+    
+  $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
+  
+  $total_data = 0;
+  $keterampilan_kosong = 0;
+  $pengetahuan_kosong = 0;
+  $sikap_kosong = 0;
+
+  while ($row = mysql_fetch_assoc($jadwal)) {
+    
+      $kodejdwl = $row['kodejdwl'];
+      $tanggal = $row['tanggal'];
+
+      $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
+
+      // echo "$row[tanggal] : $row[kodejdwl], ";
+
+      while ($absen = mysql_fetch_assoc($absensi)) {
+          $total_data++;
+
+          // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
+
+          // Hitung data nilai_keterampilan yang 0, NULL, atau ''
+          // echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
+          if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
+            $keterampilan_kosong++;
+          }
+          
+          // Cek nilai_pengetahuan
+          // echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
+          if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
+              $pengetahuan_kosong++;
+          }
+      
+          // Cek nilai_sikap
+          // echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
+          if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
+              $sikap_kosong++;
+          }
+          echo "\n";
+      }
+
+  }
+
+  // Setelah looping selesai
+  if ($keterampilan_kosong != $total_data) {
+    $keterampilan_set = true;
+  }
+
+  if ($pengetahuan_kosong != $total_data) {
+    $pengetahuan_set = true;
+  }
+
+  if ($sikap_kosong != $total_data) {
+      $sikap_set = true;
+  }
+
+
   echo "
 <div class='col-md-12'>
     <div class='box box-info'>
@@ -255,9 +316,9 @@
                                     <th>NISN</th>
                                     <th>Nama Siswa</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Nilai Pengetahuan</th>
-                                    <th>Nilai Keterampilan</th>
-                                    <th>Nilai Sikap</th>
+                                    <th " . ($pengetahuan_set ? 'hidden' : '') . ">Nilai Pengetahuan</th>
+                                    <th " . ($keterampilan_set ? 'hidden' : '') . ">Nilai Keterampilan</th>
+                                    <th " . ($sikap_set ? 'hidden' : '') . ">Nilai Sikap</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
@@ -337,64 +398,6 @@
     $nilai_pengetahuan = mysql_fetch_array(mysql_query("SELECT nilai_pengetahuan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='pengetahuan'"));
     $nilai_keterampilan = mysql_fetch_array(mysql_query("SELECT nilai_keterampilan FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='keterampilan'"));
     $nilai_sikap = mysql_fetch_array(mysql_query("SELECT nilai_sikap FROM rb_elearning_jawab WHERE id_elearning='$data_tugas[id_elearning]' AND nisn='$r[nisn]' AND jenis_nilai='sikap'"));
-    
-    $tujuan_pembelajaran = mysql_real_escape_string($j['tujuan_pembelajaran']);
-    
-    $jadwal = mysql_query("SELECT * FROM rb_journal_list WHERE tujuan_pembelajaran = '$tujuan_pembelajaran'");
-    
-    $total_data = 0;
-    $keterampilan_kosong = 0;
-    $pengetahuan_kosong = 0;
-    $sikap_kosong = 0;
-
-    while ($row = mysql_fetch_assoc($jadwal)) {
-      
-        $kodejdwl = $row['kodejdwl'];
-        $tanggal = $row['tanggal'];
-
-        $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
-
-        // echo "$row[tanggal] : $row[kodejdwl], ";
-
-        while ($absen = mysql_fetch_assoc($absensi)) {
-            $total_data++;
-
-            // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
-
-            // Hitung data nilai_keterampilan yang 0, NULL, atau ''
-            // echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
-            if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
-              $keterampilan_kosong++;
-            }
-            
-            // Cek nilai_pengetahuan
-            // echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
-            if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
-                $pengetahuan_kosong++;
-            }
-        
-            // Cek nilai_sikap
-            // echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
-            if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
-                $sikap_kosong++;
-            }
-            echo "\n";
-        }
-
-    }
-
-    // Setelah looping selesai
-    if ($keterampilan_kosong == $total_data) {
-        echo "Semua nilai keterampilan kosong\n";
-    }
-
-    if ($pengetahuan_kosong == $total_data) {
-        echo "Semua nilai pengetahuan kosong\n";
-    }
-
-    if ($sikap_kosong == $total_data) {
-        echo "Semua nilai sikap kosong\n";
-    }
 
     // echo "Total data: $total_data\n";
     // echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
