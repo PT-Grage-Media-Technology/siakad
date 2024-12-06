@@ -519,7 +519,7 @@
     // var_dump('test', $_POST);
     // exit;
     if($j['id_parent_journal']){
-      $dataParentQuery = mysql_query("SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]");
+      $dataParentQuery = mysql_query("SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]'");
       echo "SELECT * FROM rb_journal_list WHERE id_journal='$j[id_parent_journal]";
       $dataParent = mysql_fetch_array($dataParentQuery);
     }
