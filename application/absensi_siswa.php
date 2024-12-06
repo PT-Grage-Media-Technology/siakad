@@ -507,15 +507,15 @@
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
         $updateAbsensiSiswa = mysql_query(
-          "UPDATE rb_absensi_siswa 
-                  SET kode_kehadiran='" . $a[$i] . "', 
-                      nilai_sikap='" . isset($nilai_sikapInput[$i]) ? $nilai_sikapInput[$i] : 0 . "',
-                      nilai_pengetahuan='" . isset($nilai_pengetahuanInput[$i]) ? $nilai_pengetahuanInput[$i] : 0 . "',
-                      nilai_keterampilan='" . isset($nilai_keterampilanInput[$i]) ? $nilai_keterampilanInput[$i] : 0 . "', 
-                      total='" . round($total_nilai[$i]) . "' 
-                  WHERE nisn='" . $nisn[$i] . "' 
-                    AND kodejdwl='$kodejdwl'
-                    AND tanggal='$tgl'"
+            "UPDATE rb_absensi_siswa 
+            SET kode_kehadiran='" . mysql_real_escape_string($a[$i]) . "', 
+                nilai_sikap='" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "',
+                nilai_pengetahuan='" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "',
+                nilai_keterampilan='" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
+                total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
+            WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
+              AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "'
+              AND tanggal='" . mysql_real_escape_string($tgl) . "'"
         );
 
         if ($updateAbsensiSiswa && !$guruInserted) {
