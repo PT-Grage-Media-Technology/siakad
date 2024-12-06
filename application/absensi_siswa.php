@@ -530,8 +530,8 @@
                 VALUES (
                     '', 
                     '$kodejdwl', 
-                    '" . mysql_real_escape_string($nisn[$i]) . "', 
-                    '" . mysql_real_escape_string($a[$i]) . "', 
+                    '" . $nisn[$i] . "', 
+                    '" . $a[$i] . "', 
                     '" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "', 
                     '" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "', 
                     '" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
