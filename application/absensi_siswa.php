@@ -396,10 +396,10 @@
         echo "Semua nilai sikap kosong\n";
     }
 
-    echo "Total data: $total_data\n";
-    echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
-    echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
-    echo "Nilai sikap kosong: $sikap_kosong\n";
+    // echo "Total data: $total_data\n";
+    // echo "Nilai keterampilan kosong: $keterampilan_kosong\n";
+    // echo "Nilai pengetahuan kosong: $pengetahuan_kosong\n";
+    // echo "Nilai sikap kosong: $sikap_kosong\n";
 
 
       // Ambil data
