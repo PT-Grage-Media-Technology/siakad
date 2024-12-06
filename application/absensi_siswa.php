@@ -524,6 +524,8 @@
         }
       } else {
         // Insert data jika belum ada di tabel
+        var_dump('masuk');
+        exit;
 
         $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
         $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
@@ -547,8 +549,8 @@
         ");
 
         
-      var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
-      exit;
+      // var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
+      // exit;
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
           $guruInserted = true;
