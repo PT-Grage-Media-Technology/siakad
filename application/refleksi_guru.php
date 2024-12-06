@@ -25,10 +25,8 @@ if ($_GET['act'] == '') {
   while ($rating = mysql_fetch_array($rating_query)) {
     echo "<th>" . $rating["kesan"] . "</th>";
     $ratingArray[] = $rating['id']; // Simpan ID rating
-    
-      $headerCount = count($ratingArray); // Hitung jumlah header berdasarkan ratingArray
-      var_dump($headerCount);
   }
+
   echo "
                       </tr>
                     </thead>
