@@ -102,7 +102,7 @@
                 echo $maxIndex;
                 echo"<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>"
                 
-                .max($nilaiArray).
+                .max(isset($nilaiArray) && count($nilaiArray) > 0 ? $nilaiArray : [0]).
                 "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
