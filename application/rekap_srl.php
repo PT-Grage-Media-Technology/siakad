@@ -55,7 +55,11 @@
                 $headers = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
-                echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+                if ($header_count > 0) {
+                    echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+                } else {
+                    echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
+                }
                 ?>
                 <th rowspan="2">Nilai Tertinggi</th>
                 <th rowspan="2">Nilai Terendah</th>
@@ -186,7 +190,11 @@
                 $headers = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
-                echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+                if ($header_count > 0) {
+                  echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+              } else {
+                  echo "<td colspan='1'>Tidak ada data</tdsasas>"; // Menampilkan pesan jika tidak ada data
+              }
                 echo"
                 <th rowspan='2'>Nilai Tertinggi</th>
                 <th rowspan='2'>Nilai Terendah</th>
