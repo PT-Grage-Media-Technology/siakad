@@ -98,7 +98,7 @@
                   
                   $totalAbsensi += $abs['total']; // Tambahkan total absensi
                   echo $totalAbsensi;                   
-                  echo "<td>$abs[total]</td>";
+                  echo "<td>$abs[total],$totalAbsensi,</td>";
                 }
                 
                 echo "
