@@ -224,6 +224,10 @@
       }
 
   }
+  
+  $keterampilan_set = false;
+  $pengetahuan_set = false;
+  $sikap_set = false;
 
   // Setelah looping selesai
   if ($keterampilan_kosong != $total_data && $j['id_parent_journal']) {
@@ -430,7 +434,7 @@
 
     // Nilai Pengetahuan
     if ($pengetahuan_set) {
-      echo "<td hidden>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
+      echo "";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
           echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
@@ -441,7 +445,7 @@
 
     // Nilai Keterampilan
     if ($keterampilan_set) {
-      echo "<td hidden>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
+      echo "";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
           echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
