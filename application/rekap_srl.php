@@ -71,8 +71,6 @@
                   echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
                   var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
-                  $jumlahHead = count($tanggalArray[]);
-                  var_dump('data :', $jumlahHead);
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
