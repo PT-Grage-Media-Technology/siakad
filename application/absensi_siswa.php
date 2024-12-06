@@ -361,11 +361,11 @@
 
         $absensi = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl = '$kodejdwl' AND tanggal = '$tanggal'");
 
+        echo "$no";
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
 
             // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
-            echo "$no";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
