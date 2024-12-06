@@ -352,7 +352,7 @@
     $keterampilan_kosong = 0;
     $pengetahuan_kosong = 0;
     $sikap_kosong = 0;
-    $no = 1;
+    // $no = 1;
 
     while ($row = mysql_fetch_assoc($jadwal)) {
       
@@ -388,7 +388,7 @@
             echo "\n";
         }
 
-        $no++;
+        // $no++;
     }
 
     // echo "Total data: $total_data\n";
