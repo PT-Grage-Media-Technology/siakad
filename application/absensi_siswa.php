@@ -529,13 +529,13 @@
       $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
       $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
       $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
+      $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
       $nilaiJadi = round($total_nilai[$i]);
 
       // var_dump('jml_data : ', $jml_data);
       // exit;
       
       // ini adalah rata rata
-      $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
 
 
       if ($total >= 1) {
@@ -557,15 +557,15 @@
           $updateParts = [];
 
           if ($nilai_sikap !== null) {
-              $updateParts[] = "nilai_sikap='$nilai_sikap'";
+              $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
           }
 
           if ($nilai_pengetahuan !== null) {
-              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuan'";
+              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
           }
 
           if ($nilai_keterampilan !== null) {
-              $updateParts[] = "nilai_keterampilan='$nilai_keterampilan'";
+              $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
           }
 
           if ($total_nilai !== null) {
@@ -616,15 +616,15 @@
           $updateParts = [];
 
           if ($nilai_sikap !== null) {
-              $updateParts[] = "nilai_sikap='$nilai_sikap'";
+              $updateParts[] = "nilai_sikap='$nilai_sikapInsert'";
           }
 
           if ($nilai_pengetahuan !== null) {
-              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuan'";
+              $updateParts[] = "nilai_pengetahuan='$nilai_pengetahuanInsert'";
           }
 
           if ($nilai_keterampilan !== null) {
-              $updateParts[] = "nilai_keterampilan='$nilai_keterampilan'";
+              $updateParts[] = "nilai_keterampilan='$nilai_keterampilanInsert'";
           }
 
           if ($total_nilai !== null) {
