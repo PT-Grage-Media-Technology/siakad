@@ -68,8 +68,8 @@
                 <?php
                 // Loop untuk menampilkan header dinamis
                 while ($header = mysql_fetch_array($headers)) {
-                  echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
-                  // var_dump($header);
+                  // echo"SELECT * FROM rb_journal_list where kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL";
+                  var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $headerCount = count($tanggalArray);
                   echo $headerCount;
@@ -99,7 +99,7 @@
                   echo "<td>$abs[total]</td>";
                 }
                 echo "
-                    <td>80</td>
+                    <td>$abs[total]</td>
                     <td>88</td>
                     <td>95</td>
                     <td>90</td>
