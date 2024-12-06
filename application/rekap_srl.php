@@ -72,7 +72,7 @@
                   var_dump($header);
                   $tanggalArray[] = $header['tanggal'];
                   $jumlahHead = count($header);
-                  var_dump($jumlahHead);
+                  var_dump('data :', $jumlahHead);
                   echo "<th>{$header['tujuan_pembelajaran']}</th>"; // Ganti 'column_name' dengan nama kolom header yang relevan
                 }
                 ?>
