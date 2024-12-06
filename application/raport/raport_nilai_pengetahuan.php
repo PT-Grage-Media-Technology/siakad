@@ -14,7 +14,7 @@
       // Debugging: Cek ID yang akan dihapus
       
       mysql_query("DELETE FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[delete_pengetahuan]'");
-      echo "<script>document.location='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
+      echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
   }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
@@ -61,7 +61,7 @@
                                       $name = 'Simpan';
                                   }
                                   if ($_GET[nisn]==$r[nisn]){
-                                    echo "<form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
+                                    echo "<form action='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
                                       <tr>
                                         <td>$no</td>
                                         <td style='font-size:12px' id='$r[nisn]'>$r[nama]</td>
@@ -80,20 +80,20 @@
                                       </tr>
                                       </form>";
                                   }else{
-                                    echo "<form action='index.php?view=raport&act=listsiswasikap&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
+                                    echo "<form action='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]' method='POST'>
                                       <tr>
                                         <td>$no</td>
                                         <td style='font-size:12px' id='$r[nisn]'>$r[nama]</td>
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' name='b' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='c' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='d' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
+                                        <td align=center><input type='number' name='sas' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
-                                        <td align=center><input type='text' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='number' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='deskripsi_tertinggi' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='text' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
+                                        <td align=center><input type='number' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='deskripsi_terendah' value='$e[deskripsi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='$name'></td>
                                       </tr>

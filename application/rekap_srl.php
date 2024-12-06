@@ -170,4 +170,11 @@
       </div>
     </div>
   </div>
-<?php } ?>
+<?php 
+}
+elseif($_GET['act'] == 'srlsiswa'){
+  cek_session_siswa();
+  echo"siswa";
+}
+
+?>

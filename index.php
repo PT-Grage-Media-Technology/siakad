@@ -384,7 +384,7 @@ if (isset($_SESSION['id'])) {
             include "application/absensi_siswa.php";
             echo "</div>";
           } elseif ($_GET[view] == 'rekapsrl') {
-            cek_session_guru();
+            // cek_session_guru();
             echo "<div class='row'>";
             if (file_exists("application/rekap_srl.php")) {
                 include "application/rekap_srl.php";
