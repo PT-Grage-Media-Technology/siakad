@@ -497,7 +497,7 @@
     for ($i = 1; $i <= $jml_data; $i++) {
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
-      var_dump($total);
+      var_dump($_POST['nisn']);
       exit;
       
       // ini adalah rata rata
