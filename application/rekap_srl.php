@@ -190,11 +190,9 @@
                 $headers = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
-                if ($header_count > 0) {
+               
                   echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
-              } else {
-                  echo "<td colspan='1'>Tidak ada data</tdsasas>"; // Menampilkan pesan jika tidak ada data
-              }
+            
                 echo"
                 <th rowspan='2'>Nilai Tertinggi</th>
                 <th rowspan='2'>Nilai Terendah</th>
@@ -206,7 +204,11 @@
                 // $headerCells = ""; // Menyimpan sel header
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
+                  if ($header_count > 0) {
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  }else {
+                    echo "<td colspan='1'>Tidak ada data</td>"; // Menampilkan pesan jika tidak ada data
+                }
                   $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
 
