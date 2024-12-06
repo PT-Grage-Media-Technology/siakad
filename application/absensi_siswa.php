@@ -369,21 +369,21 @@
             // echo "$absen[nisn] : $absen[nilai_keterampilan], ";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
+            echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
               $keterampilan_kosong++;
-              echo "nilai_keterampilan kosong atau $absen[nilai_keterampilan]\n";
             }
-        
+            
             // Cek nilai_pengetahuan
+            echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
             if (empty($absen['nilai_pengetahuan']) || $absen['nilai_pengetahuan'] == 0) {
                 $pengetahuan_kosong++;
-                echo "nilai_pengetahuan kosong atau $absen[nilai_pengetahuan]\]\n";
             }
         
             // Cek nilai_sikap
+            echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
             if (empty($absen['nilai_sikap']) || $absen['nilai_sikap'] == 0) {
                 $sikap_kosong++;
-                echo "nilai_sikap kosong atau $absen[nilai_sikap]\n";
             }
             echo "\n";
         }
