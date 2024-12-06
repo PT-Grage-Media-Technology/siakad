@@ -651,7 +651,7 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                echo $updateAbsensiSiswaParent;
+                echo $dataParent['tanggal'];
                 exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
