@@ -95,7 +95,9 @@
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
-
+                  
+                  $totalAbsensi += $abs['total']; // Tambahkan total absensi
+                  echo $totalAbsensi;                   
                   echo "<td>$abs[total]</td>";
                 }
                 
