@@ -500,6 +500,8 @@
       // ini adalah rata rata
       $total_nilai[$i] = ($nilai_keterampilan[$i] + $nilai_pengetahuan[$i] + $nilai_sikap[$i]) / 3;
 
+      var_dump($total);
+      exit;
 
       if ($total >= 1) {
         // Update data jika sudah ada di tabel
@@ -522,7 +524,6 @@
       } else {
         // Insert data jika belum ada di tabel
 
-
         $insertAbsensiSiswa = mysql_query("
         INSERT INTO rb_absensi_siswa 
               VALUES (
@@ -539,8 +540,6 @@
             )
         ");
 
-        var_dump($insertAbsensiSiswa);
-        exit;
 
         if ($insertAbsensiSiswa && !$guruInserted) {
           $insertAbsensiGuru = mysql_query("INSERT INTO rb_absensi_guru VALUES('', '$kodejdwl', '$nip', '$kdhadir','$jam_ke', '$tgl', NOW())");
