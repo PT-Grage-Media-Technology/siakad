@@ -651,8 +651,8 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                // var_dump('coba', $j['id_parent_journal']);
-                // exit;
+                var_dump($updateAbsensiSiswaParent);
+                exit;
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
