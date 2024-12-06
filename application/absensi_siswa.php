@@ -429,7 +429,7 @@
               <td>$r[jenis_kelamin]</td>";
 
     // Nilai Pengetahuan
-    if (!$pengetahuan_set) {
+    if ($pengetahuan_set) {
       echo "<td hidden>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;' disabled></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
@@ -440,7 +440,7 @@
     }
 
     // Nilai Keterampilan
-    if (!$keterampilan_set) {
+    if ($keterampilan_set) {
       echo "<td hidden>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;' disabled></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
@@ -451,7 +451,7 @@
     }
 
     // Nilai Sikap
-    if (!$sikap_set) {
+    if ($sikap_set) {
       echo "<td hidden>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;' disabled></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
