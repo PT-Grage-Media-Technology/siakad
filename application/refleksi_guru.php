@@ -28,8 +28,7 @@ if ($_GET['act'] == '') {
   }
 
   $headerCount = count($ratingArray); // Hitung jumlah header berdasarkan ratingArray
-  echo "<p>Jumlah header: $headerCount</p>"; // Tampilkan jumlah header
-
+  var_dump($headerCount);
   echo "
                       </tr>
                     </thead>
