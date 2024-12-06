@@ -66,7 +66,7 @@
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
-                  $headerCells[] = $header['tujuan_pembelajaran']; 
+                  $headerCells[] = $header['tujuan_pembelajaran'];
                 }
                 ?>
               </tr>
@@ -98,17 +98,32 @@
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
-                $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
-                echo"<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>"
-                
-                .max($nilaiArray).
-                "</td>";
+                // Cek apakah semua nilai di $nilaiArray kosong atau nol
+                if (empty(array_filter($nilaiArray, fn($value) => $value > 0))) {
+                  $maxValue = 0; // Atur nilai tertinggi menjadi 0
+                  $maxIndex = null; // Tidak ada indeks
+                } else {
+                  $maxValue = max($nilaiArray); // Ambil nilai maksimum
+                  $maxIndex = array_search($maxValue, $nilaiArray);
+                }
 
-                $minIndex = array_search(min($nilaiArray), $nilaiArray); 
-                echo"<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='{$headerCells[$minIndex]}'/>"
-                
-                .min($nilaiArray).
-                "</td>";
+                echo "<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='" . ($maxIndex !== null ? $headerCells[$maxIndex] : '') . "'/>"
+                  . $maxValue .
+                  "</td>";
+
+                // Logika yang sama untuk nilai terendah
+                if (empty(array_filter($nilaiArray, fn($value) => $value > 0))) {
+                  $minValue = 0; // Atur nilai terendah menjadi 0
+                  $minIndex = null; // Tidak ada indeks
+                } else {
+                  $minValue = min($nilaiArray); // Ambil nilai minimum
+                  $minIndex = array_search($minValue, $nilaiArray);
+                }
+
+                echo "<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='" . ($minIndex !== null ? $headerCells[$minIndex] : '') . "'/>"
+                  . $minValue .
+                  "</td>";
+
                 // Hitung rata-rata
                 echo "<td>";
                 if ($header_count > 0) {
@@ -142,12 +157,12 @@
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
-                    echo "<a href='#' style='color: red;'>Remedial</a>";
+                  echo "<a href='#' style='color: red;'>Remedial</a>";
                 } else {
-                    echo "<span style='color: green;'>Lulus</span>";
+                  echo "<span style='color: green;'>Lulus</span>";
                 }
                 echo "</td>";
-                
+
                 echo "</tr>";
 
                 $no++;
