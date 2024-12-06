@@ -362,7 +362,7 @@
         while ($absen = mysql_fetch_assoc($absensi)) {
             $total_data++;
 
-            echo "$absen[nilai_keterampilan]";
+            echo "$absen[nisn] : $absen[nilai_keterampilan]";
 
             // Hitung data nilai_keterampilan yang 0, NULL, atau ''
             if (empty($absen['nilai_keterampilan']) || $absen['nilai_keterampilan'] == 0) {
