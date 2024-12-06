@@ -574,16 +574,16 @@
           }
 
           // Menyusun query update jika ada nilai yang perlu diupdate
-          if (count($updateParts) > 0) {
-              $updateQuery = "UPDATE rb_absensi_siswa 
-                              SET " . implode(", ", $updateParts) . "
-                              WHERE nisn='" . $nisn[$i] . "' 
-                              AND kodejdwl='" . $kodejdwl . "' 
-                              AND tanggal='" . $dataParent['tanggal'] . "'";
+          // if (count($updateParts) > 0) {
+          //     $updateQuery = "UPDATE rb_absensi_siswa 
+          //                     SET " . implode(", ", $updateParts) . "
+          //                     WHERE nisn='" . $nisn[$i] . "' 
+          //                     AND kodejdwl='" . $kodejdwl . "' 
+          //                     AND tanggal='" . $dataParent['tanggal'] . "'";
 
-              // Menjalankan query update
-              $updateAbsensiSiswaParent = mysql_query($updateQuery);
-          }
+          //     // Menjalankan query update
+          //     $updateAbsensiSiswaParent = mysql_query($updateQuery);
+          // }
         }
 
 
@@ -634,11 +634,11 @@
 
           // Menyusun query update jika ada nilai yang perlu diupdate
           if (count($updateParts) > 0) {
-              $updateQuery = "UPDATE rb_absensi_siswa 
-                              SET " . implode(", ", $updateParts) . "
-                              WHERE nisn='" . $nisn[$i] . "' 
-                              AND kodejdwl='" . $kodejdwl . "' 
-                              AND tanggal='" . $dataParent['tanggal'] . "'";
+              // $updateQuery = "UPDATE rb_absensi_siswa 
+              //                 SET " . implode(", ", $updateParts) . "
+              //                 WHERE nisn='" . $nisn[$i] . "' 
+              //                 AND kodejdwl='" . $kodejdwl . "' 
+              //                 AND tanggal='" . $dataParent['tanggal'] . "'";
 
               // Menjalankan query update
               $updateAbsensiSiswaParent = mysql_query($updateQuery);
