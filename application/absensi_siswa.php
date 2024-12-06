@@ -516,6 +516,9 @@
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
 
+    var_dump($tgl);
+    exit;
+
     // var_dump('test', $_POST);
     // exit;
     if($j['id_parent_journal']){
@@ -650,8 +653,7 @@
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
         
-                // var_dump($_GET['tgl']);
-                // exit;
+                
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
                     echo "Update berhasil.3";
