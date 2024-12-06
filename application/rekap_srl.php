@@ -99,14 +99,12 @@
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
-                echo $maxIndex;
                 echo"<td class='nilai-max'><input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>"
                 
-                .max(isset($nilaiArray) ? $nilaiArray : 0 ).
+                .max($nilaiArray).
                 "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
-                echo $minIndex;
                 echo"<td class='nilai-min'><input type='hidden' name='header-nilai-terendah' value='{$headerCells[$minIndex]}'/>"
                 
                 .min($nilaiArray).
