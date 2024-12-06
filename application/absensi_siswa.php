@@ -481,6 +481,9 @@
     // $jml_data = count($_POST['nilai_sikap']);
     $nisn = $_POST['nisn'];
     $a = $_POST['kehadiran'];
+    $nilai_sikapInput = $_POST['nilai_sikap'];
+    $nilai_keterampilanInput = $_POST['nilai_keterampilan'];
+    $nilai_pengetahuanInput = $_POST['nilai_pengetahuan'];
     // $tgl = $_POST['tgla'] . '-' . $_POST['blna'] . '-' . $_POST['thna'];
     $tgl = $_POST['thna'] . '-' . $_POST['blna'] . '-' . $_POST['tgla'];
     $nip = $_SESSION['id'];
@@ -488,14 +491,10 @@
     $kdhadir = 'Hadir';
     $jam_ke = $_GET['jam'];
     $guruInserted = false;
-    
-    
+
+
     
     for ($i = 1; $i <= $jml_data; $i++) {
-      $nilai_sikapInput[$i] = isset($_POST['nilai_sikap'][$i]) ? $_POST['nilai_sikap'][$i] : 0 ;
-      $nilai_keterampilanInput[$i] = isset($_POST['nilai_keterampilan'][$i]) ? $_POST['nilai_keterampilan'][$i] : 0 ;
-      $nilai_pengetahuanInput[$i] = isset($_POST['nilai_pengetahuan'][$i]) ? $_POST['nilai_pengetahuan'][$i] : 0 ;
-      
       $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
       var_dump('jml_data : ', $jml_data);
@@ -510,9 +509,9 @@
         $updateAbsensiSiswa = mysql_query(
           "UPDATE rb_absensi_siswa 
                   SET kode_kehadiran='" . $a[$i] . "', 
-                      nilai_sikap='" . $nilai_sikapInput[$i] . "',
-                      nilai_pengetahuan='" . $nilai_pengetahuanInput[$i] . "',
-                      nilai_keterampilan='" . $nilai_keterampilanInput[$i] . "', 
+                      nilai_sikap='" . isset($nilai_sikapInput[$i]) ? $nilai_sikapInput[$i] : 0 . "',
+                      nilai_pengetahuan='" . isset($nilai_pengetahuanInput[$i]) ? $nilai_pengetahuanInput[$i] : 0 . "',
+                      nilai_keterampilan='" . isset($nilai_keterampilanInput[$i]) ? $nilai_keterampilanInput[$i] : 0 . "', 
                       total='" . round($total_nilai[$i]) . "' 
                   WHERE nisn='" . $nisn[$i] . "' 
                     AND kodejdwl='$kodejdwl'
@@ -533,9 +532,9 @@
                 '$kodejdwl', 
                 '" . $nisn[$i] . "', 
                 '" . $a[$i] . "', 
-                '" . $nilai_sikapInput[$i] . "', 
-                '" . $nilai_pengetahuanInput[$i] . "', 
-                '" . $nilai_keterampilanInput[$i] . "', 
+                '" . isset($nilai_sikapInput[$i]) ? $nilai_sikapInput[$i] : 0 . "', 
+                '" . isset($nilai_pengetahuanInput[$i]) ? $nilai_pengetahuanInput[$i] : 0 . "', 
+                '" . isset($nilai_keterampilanInput[$i]) ? $nilai_keterampilanInput[$i] : 0 . "', 
                 '" . round($total_nilai[$i]) . "', 
                 '$tgl', 
                 NOW()
