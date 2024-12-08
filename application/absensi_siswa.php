@@ -675,7 +675,7 @@
                     '$nilai_keterampilanInsert', 
                     '$nilaiJadi', 
                     '$tgl', 
-                    NOW()
+                    '$tgl " . date('H:i:s') . "'
                 )
         ");
         echo " INSERT INTO rb_absensi_siswa 
@@ -689,7 +689,7 @@
                     '$nilai_keterampilanInsert', 
                     '$nilaiJadi', 
                     '$tgl', 
-                    NOW()
+                    '$tgl " . date('H:i:s') . "'
                 )";
 
         
