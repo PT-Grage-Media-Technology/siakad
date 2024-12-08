@@ -526,7 +526,7 @@
     }
     
     for ($i = 1; $i <= $jml_data; $i++) {
-      $cek = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
+      $cek = mysql_query("SELECT * FROM rb_absensi_siswa WHERE kodejdwl='$kodejdwl' AND nisn='" . $nisn[$i] . "' AND tanggal='$tgl'");
       $total = mysql_num_rows($cek);
 
       $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
