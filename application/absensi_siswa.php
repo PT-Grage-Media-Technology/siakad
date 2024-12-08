@@ -561,7 +561,10 @@
         
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
-        
+
+            var_dump($nilai_sikapInsert);
+            exit;
+            
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
                 $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
@@ -620,6 +623,8 @@
         
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
+            var_dump($nilai_sikapInsert);
+            exit;
         
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
