@@ -562,8 +562,8 @@
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
 
-            var_dump($nilai_sikapInsert);
-            exit;
+            // var_dump($nilai_sikapInsert);
+            // exit;
             
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
@@ -623,8 +623,8 @@
         
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
-            var_dump($nilai_sikapInsert);
-            exit;
+            // var_dump($nilai_sikapInsert);
+            // exit;
         
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0) {
