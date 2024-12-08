@@ -434,7 +434,7 @@
 
     // Nilai Pengetahuan
     if ($pengetahuan_set) {
-      echo "";
+      echo "<td hidden>5<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
           echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
@@ -445,7 +445,7 @@
 
     // Nilai Keterampilan
     if ($keterampilan_set) {
-      echo "";
+      echo "<td hidden>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
           echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
