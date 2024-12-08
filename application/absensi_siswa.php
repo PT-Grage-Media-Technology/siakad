@@ -532,7 +532,7 @@
       $nilai_sikapInsert = isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0;
       $nilai_pengetahuanInsert = isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0;
       $nilai_keterampilanInsert = isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0;
-      $total_nilai[$i] = ($nilai_keterampilanInput[$i] + $nilai_pengetahuanInput[$i] + $nilai_sikapInput[$i]) / 3;
+      $total_nilai[$i] = ($nilai_sikapInsert + $nilai_pengetahuanInsert + $nilai_keterampilanInsert) / 3;
       $nilaiJadi = round($total_nilai[$i]);
 
       // ini adalah rata rata
@@ -543,9 +543,9 @@
         $updateAbsensiSiswa = mysql_query(
             "UPDATE rb_absensi_siswa 
             SET kode_kehadiran='" . mysql_real_escape_string($a[$i]) . "', 
-                nilai_sikap='" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : 0) . "',
-                nilai_pengetahuan='" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : 0) . "',
-                nilai_keterampilan='" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : 0) . "', 
+                nilai_sikap='" . (isset($nilai_sikapInput[$i]) ? mysql_real_escape_string($nilai_sikapInput[$i]) : '') . "',
+                nilai_pengetahuan='" . (isset($nilai_pengetahuanInput[$i]) ? mysql_real_escape_string($nilai_pengetahuanInput[$i]) : '') . "',
+                nilai_keterampilan='" . (isset($nilai_keterampilanInput[$i]) ? mysql_real_escape_string($nilai_keterampilanInput[$i]) : '') . "', 
                 total='" . mysql_real_escape_string(round($total_nilai[$i])) . "' 
               WHERE nisn='" . $nisn[$i] . "' 
               AND kodejdwl='" . $kodejdwl . "'
