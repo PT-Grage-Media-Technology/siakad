@@ -596,17 +596,19 @@ while ($r = mysql_fetch_array($tampil)) {
     }
 
     // Query update
+    $id_parent_journal = empty($_POST['id_parent_journal']) ? "NULL" : "'$_POST[id_parent_journal]'";
+
     $query = "UPDATE rb_journal_list SET 
-                  hari = '$_POST[c]',
-                  tanggal = '$d',
-                  jam_ke = '$_POST[e]',
-                  sampai_jam_ke = '$_POST[ee]',
-                  materi = '$_POST[f]',
-                  users = '$_POST[nip_users]',
-                  tujuan_pembelajaran = '$_POST[tujuan_pembelajaran]',
-                  id_parent_journal = '$_POST[id_parent_journal]',
-                  file = '$target_file'
-                WHERE id_journal = '$_POST[id]'";
+                      hari = '$_POST[c]',
+                      tanggal = '$d',
+                      jam_ke = '$_POST[e]',
+                      sampai_jam_ke = '$_POST[ee]',
+                      materi = '$_POST[f]',
+                      users = '$_POST[nip_users]',
+                      tujuan_pembelajaran = '$_POST[tujuan_pembelajaran]',
+                      id_parent_journal = $id_parent_journal,
+                      file = '$target_file'
+                    WHERE id_journal = '$_POST[id]'";
 
     // Eksekusi query
     if (mysql_query($query)) {
@@ -689,12 +691,11 @@ while ($r = mysql_fetch_array($tampil)) {
                     <tr><th scope='row'>Tanggal</th>  <td><input hidden type='text' style='border-radius:0px; padding-left:12px' class='datepicker form-control' value='" . tgl_view($e['tanggal']) . "' name='d' data-date-format='dd-mm-yyyy'></td></tr>
                     <tr><th scope='row'>Dari Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[jam_ke]' name='e'></td></tr>
                     <tr><th scope='row'>Sampai Jam Ke-</th>  <td><input type='number' class='form-control' value='$e[sampai_jam_ke]' name='ee'></td></tr>";
-                    var_dump($e);
                     echo "
                       <tr>
                           <th scope='row'>Tujuan Pembelajaran</th>
                           <td>
-                              <input type='text' name='id_parent_journal' id='id_parent_journal_edit' 
+                              <input type='hidden' name='id_parent_journal' id='id_parent_journal_edit' 
                                     value='" . (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') . "'>
                               <input type='text' id='search_tujuan_edit' name='tujuan_pembelajaran' class='form-control' 
                                     placeholder='Cari tujuan pembelajaran...' 
