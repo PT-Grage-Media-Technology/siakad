@@ -379,10 +379,11 @@ while ($r = mysql_fetch_array($tampil)) {
             <td>{$r['materi']}</td>";
 
         if ($_SESSION['level'] != 'kepala') {
-            $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
-            $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
+            // $buttonDisabled = ($r['tanggal'] > $today) ? 'disabled' : '';
+            // $absenLink = ($r['tanggal'] > $today) ? '#' : "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
+            $absenLink = "index.php?view=absensiswa&act=tampilabsen&id=$d[kode_kelas]&kd=$d[kode_pelajaran]&idjr=$_GET[id]&tgl={$r['tanggal']}&jam={$r['jam_ke']}&id_journal={$r['id_journal']}";
             echo "<td style='width: 200px; !important'><center>
-                    <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' $buttonDisabled onclick='this.onclick=null; this.classList.add(\"disabled\");'><span class='glyphicon glyphicon-edit'>Absen11</span></a>
+                    <a class='btn btn-success btn-xs' title='Absen' href='$absenLink' ><span class='glyphicon glyphicon-edit'>Absen11</span></a>
                     <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=journalguru&act=edit&id={$r['id_journal']}&jdwl=$_GET[id]'><span class='glyphicon glyphicon-edit'>Edit</span></a>
                     <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=journalguru&act=lihat&hapus={$r['id_journal']}&jdwl={$_GET['id']}' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\");'>
                     <span class='glyphicon glyphicon-remove'>Hapus</span>
