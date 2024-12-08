@@ -693,7 +693,7 @@ while ($r = mysql_fetch_array($tampil)) {
                       <tr>
                           <th scope='row'>Tujuan Pembelajaran</th>
                           <td>
-                              <input type='hidden' name='id_parent_journal' id='id_parent_journal_edit' 
+                              <input type='text' name='id_parent_journal' id='id_parent_journal_edit' 
                                     value='" . (isset($e['id_parent_journal']) ? $e['id_parent_journal'] : '') . "'>
                               <input type='text' id='search_tujuan_edit' name='tujuan_pembelajaran' class='form-control' 
                                     placeholder='Cari tujuan pembelajaran...' 

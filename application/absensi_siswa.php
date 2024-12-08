@@ -691,8 +691,6 @@
                     '$tgl', 
                     NOW()
                 )";
-                
-
 
         
       // var_dump('insertAbsensiSiswa : ', $insertAbsensiSiswa);
