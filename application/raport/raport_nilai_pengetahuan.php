@@ -139,7 +139,7 @@
                                         <td align=center><input type='text' name='deskripsi_tertinggi' value='$nilaiResult[deskripsi_tertinggi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='deskripsi_terendah' value='$nilaiResult[deskripsi_terendah]' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='simpan'></td>
+                                        <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='simpan1'></td>
                                       </tr>
                                       </form>";
                                   }
