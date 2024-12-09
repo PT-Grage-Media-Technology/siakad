@@ -363,11 +363,10 @@
     }
      $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
     // $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%guru%'"));
-    
-    if($_POST['as'] == $id_ptk){
-      echo $_POST['as'] == $id_ptk;
-      // var_dump($id_ptk);
+    var_dump($id_ptk);
+    echo $_POST['as'];
     exit;
+    if($_POST['as'] == $id_ptk){
       // 2 adalah id_jenis_ptk guru mapel
       mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
       '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','2','$_POST[ar]', 
