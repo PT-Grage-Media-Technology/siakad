@@ -22,8 +22,7 @@
                              nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
                              nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
                              deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
-                             waktu='" . date('Y-m-d H:i:s') . "' 
-                         WHERE id_nilai_pengetahuan='$id'");
+                             waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'");
         } else {
             // Periksa apakah data sudah ada berdasarkan kode_jdwl dan nisn
             $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
