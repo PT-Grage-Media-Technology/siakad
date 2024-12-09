@@ -4,6 +4,9 @@
 
       // Debugging: Cek data yang diterima
       $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'");
+     echo"SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'";
+      var_dump($query);
+      exit;
       if (mysql_num_rows($query) > 0) {
         mysql_query("UPDATE rb_nilai_pengetahuan 
                          SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
@@ -13,7 +16,7 @@
                              waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'");
           
       }else{
-        // Jika data tidak ada, lakukan INSERT
+      
         mysql_query("INSERT INTO rb_nilai_pengetahuan 
         VALUES ('', '$_GET[jdwl]', '$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', 
                 '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', 
