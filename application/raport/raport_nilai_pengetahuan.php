@@ -19,8 +19,8 @@
                              deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
                              waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'");
       }
-      var_dump($_POST['simpan-pengetahuan']);
-      exit;
+      // var_dump($_POST['simpan-pengetahuan']);
+      // exit;
     }
 
         // if ($_POST['status'] == 'Update') {
