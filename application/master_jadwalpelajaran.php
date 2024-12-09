@@ -18,7 +18,7 @@
           } 
 
           if (empty($_GET['kelas'])) {
-            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ORDER BY kode_kelas"));
+            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas"));
             $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
           } else {
             $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas = '".$_GET['kelas']."'"));
