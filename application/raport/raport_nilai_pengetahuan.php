@@ -4,10 +4,11 @@
 
       // Debugging: Cek data yang diterima
       $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE nisn='$_POST[nisn]' AND id_nilai_pengetahuan='$_POST[id]'");
-    //  echo"SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'";
-    //   var_dump($query);
-    //   exit;
+      // echo"SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'";
+      // var_dump($query);
+      // exit;
       if (mysql_num_rows($query) > 0) {
+        echo "UPDATE rb_nilai_pengetahuan";
         mysql_query("UPDATE rb_nilai_pengetahuan 
                          SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
                              nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
