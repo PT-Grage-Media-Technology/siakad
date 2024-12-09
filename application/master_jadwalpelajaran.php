@@ -47,12 +47,12 @@
           <select name='kelas' style='padding:4px' onchange="this.form.submit()">
             <?php
             echo "<option value=''>- Pilih Kelas -</option>";
-            $kelas = mysql_query("SELECT * FROM rb_kelas");
+            $kelas = mysql_query("SELECT * FROM rb_kelas ORDER BY id_kelas ASC");
             while ($k = mysql_fetch_array($kelas)) {
               if ($kelas_terpilih == $k['kode_kelas']) {
                 echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
               } else {
-                $selected = ($kelas_terpilih == $k['kode_kelas']) ? "selected" : "";
+                $selected = ($id_terakhir == $k['kode_kelas']) ? "selected" : "";
                 echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]</option>";
               }
             }
