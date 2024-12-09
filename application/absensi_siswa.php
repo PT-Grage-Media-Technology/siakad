@@ -562,19 +562,28 @@
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0 && $nilai_sikapInsert !== "") {
               $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
+              $nilai_sikap = $nilai_sikapInsert;
+            } else {
+              $nilai_sikap = $dataParent['nilai_sikap'];
             }
 
             if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null && $nilai_pengetahuanInsert !== 0 && $nilai_pengetahuanInsert !== "") {
               $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "', ";
+              $nilai_pengetahuan = $nilai_pengetahuanInsert;
+            } else {
+              $nilai_pengetahuan = $dataParent['nilai_pengetahuan'];
             }
 
             if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null && $nilai_keterampilanInsert !== 0 && $nilai_keterampilanInsert !== "") {
               $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "', ";
+              $nilai_keterampilan = $nilai_keterampilanInsert;
+            } else {
+              $nilai_keterampilan = $dataParent['nilai_keterampilan'];
             }
 
-            if (isset($total_nilai) && $total_nilai !== null && $total_nilai !== 0 && $total_nilai !== "") {
-              $queryParts .= "total='" . mysql_real_escape_string($total_nilai) . "', ";
-            }
+            // Hitung total berdasarkan nilai yang tersedia
+            $total = round(($nilai_sikap + $nilai_pengetahuan + $nilai_keterampilan) / 3);
+            $queryParts .= "total='" . mysql_real_escape_string($total) . "', ";
         
             // Menghapus koma terakhir jika ada query parts
             $queryParts = rtrim($queryParts, ', ');
