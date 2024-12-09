@@ -124,8 +124,8 @@
 } elseif ($_GET['act'] == 'tambah') {
   if (isset($_POST['tambah'])) {
     mysql_query("INSERT INTO rb_ruangan VALUES('$_POST[a]', '$_POST[b]', '$_POST[c]', '$_POST[d]', '$_POST[e]', '$_POST[f]', '$_POST[g]')");
-    // echo "<script>document.location='index.php?view=ruangan';</script>";
-    echo "INSERT INTO rb_ruangan VALUES('$_POST[a]', '$_POST[b]', '$_POST[c]', '$_POST[d]', '$_POST[e]', '$_POST[f]', '$_POST[g]')";
+    echo "<script>document.location='index.php?view=ruangan';</script>";
+    // echo "INSERT INTO rb_ruangan VALUES('$_POST[a]', '$_POST[b]', '$_POST[c]', '$_POST[d]', '$_POST[e]', '$_POST[f]', '$_POST[g]')";
   }
 
   echo "<div class='col-md-12'>
