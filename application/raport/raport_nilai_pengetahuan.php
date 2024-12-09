@@ -24,33 +24,20 @@
                            nilai_terendah='$nilai_terendah', deskripsi_tertinggi='$deskripsi_tertinggi', 
                            deskripsi_terendah='$deskripsi_terendah', user_akses='$user_akses', 
                            waktu='$waktu' 
-                       WHERE kode_jdwl='$kode_jdwl' AND nisn='$nisn'");
-        echo "UPDATE rb_nilai_pengetahuan 
-                       SET nilai_uh='$nilai_uh', sts='$sts', sas='$sas', 
-                           nilai_akhir='$nilai_akhir', nilai_tertinggi='$nilai_tertinggi', 
-                           nilai_terendah='$nilai_terendah', deskripsi_tertinggi='$deskripsi_tertinggi', 
-                           deskripsi_terendah='$deskripsi_terendah', user_akses='$user_akses', 
-                           waktu='$waktu' 
-                       WHERE kode_jdwl='$kode_jdwl' AND nisn='$nisn'";
+                       WHERE nisn='$nisn' AND kode_jdwl='$kode_jdwl'");
       } else {
           // Jika data belum ada, lakukan insert
           mysql_query("INSERT INTO rb_nilai_pengetahuan 
-                       (kode_jdwl, nisn, nilai_uh, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, 
+                       (id_nilai_pengetahuan,kode_jdwl, nisn, nilai_uh, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, 
                         deskripsi_tertinggi, deskripsi_terendah, user_akses, waktu) 
                        VALUES 
-                       ('$kode_jdwl', '$nisn', '$nilai_uh', '$sts', '$sas', '$nilai_akhir', '$nilai_tertinggi', 
+                       ('','$kode_jdwl', '$nisn', '$nilai_uh', '$sts', '$sas', '$nilai_akhir', '$nilai_tertinggi', 
                         '$nilai_terendah', '$deskripsi_tertinggi', '$deskripsi_terendah', '$user_akses', '$waktu')");
-                        echo "INSERT INTO rb_nilai_pengetahuan 
-                       (kode_jdwl, nisn, nilai_uh, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, 
-                        deskripsi_tertinggi, deskripsi_terendah, user_akses, waktu) 
-                       VALUES 
-                       ('$kode_jdwl', '$nisn', '$nilai_uh', '$sts', '$sas', '$nilai_akhir', '$nilai_tertinggi', 
-                        '$nilai_terendah', '$deskripsi_tertinggi', '$deskripsi_terendah', '$user_akses', '$waktu')";
       }
   
       // Redirect setelah proses selesai
-      // echo "<script>alert('Data berhasil disimpan!');</script>";
-      // echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+      echo "<script>alert('Data berhasil disimpan!');</script>";
+      echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
   }
   
 
