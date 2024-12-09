@@ -13,7 +13,7 @@
                         nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
                         nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
                         deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
-                        tanggal_update='".date('Y-m-d H:i:s')."' 
+                        waktu='".date('Y-m-d H:i:s')."' 
                     WHERE id_nilai_pengetahuan='$_POST[id]' AND kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
       } else {
         // Jika data tidak ada, lakukan INSERT
