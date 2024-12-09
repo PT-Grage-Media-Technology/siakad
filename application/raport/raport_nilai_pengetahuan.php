@@ -1,45 +1,28 @@
 <?php 
-    if (isset($_POST['simpan-pengetahuan'])) {
-      $nisn = $_POST['nisn'];
-      $kode_jdwl = $_GET['jdwl'];
-      $nilai_uh = $_POST['nilai_uh'];
-      $sts = $_POST['sts'];
-      $sas = $_POST['sas'];
-      $nilai_akhir = $_POST['nilai_akhir'];
-      $nilai_tertinggi = $_POST['nilai_tertinggi'];
-      $nilai_terendah = $_POST['nilai_terendah'];
-      $deskripsi_tertinggi = $_POST['deskripsi_tertinggi'];
-      $deskripsi_terendah = $_POST['deskripsi_terendah'];
-      $user_akses = $_SESSION['id'];
-      $waktu = date('Y-m-d H:i:s');
-  
-      // Cek apakah data sudah ada berdasarkan kode_jdwl dan nisn
-      $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$kode_jdwl' AND nisn='$nisn'");
-  
+    if (isset($_POST['simpan-pengetahuan'])){
+      $id = $_POST['id'];
+
+      // Debugging: Cek data yang diterima
+      $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'");
       if (mysql_num_rows($query) > 0) {
-          // Jika data sudah ada, lakukan update
-          mysql_query("UPDATE rb_nilai_pengetahuan 
-                       SET nilai_uh='$nilai_uh', sts='$sts', sas='$sas', 
-                           nilai_akhir='$nilai_akhir', nilai_tertinggi='$nilai_tertinggi', 
-                           nilai_terendah='$nilai_terendah', deskripsi_tertinggi='$deskripsi_tertinggi', 
-                           deskripsi_terendah='$deskripsi_terendah', user_akses='$user_akses', 
-                           waktu='$waktu' 
-                       WHERE nisn='$nisn' AND kode_jdwl='$kode_jdwl'");
-      } else {
-          // Jika data belum ada, lakukan insert
-          mysql_query("INSERT INTO rb_nilai_pengetahuan 
-                       (id_nilai_pengetahuan,kode_jdwl, nisn, nilai_uh, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, 
-                        deskripsi_tertinggi, deskripsi_terendah, user_akses, waktu) 
-                       VALUES 
-                       ('','$kode_jdwl', '$nisn', '$nilai_uh', '$sts', '$sas', '$nilai_akhir', '$nilai_tertinggi', 
-                        '$nilai_terendah', '$deskripsi_tertinggi', '$deskripsi_terendah', '$user_akses', '$waktu')");
+        mysql_query("UPDATE rb_nilai_pengetahuan 
+                         SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
+                             nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
+                             nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
+                             deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
+                             waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'");
+          
+      }else{
+        // Jika data tidak ada, lakukan INSERT
+        mysql_query("INSERT INTO rb_nilai_pengetahuan 
+        VALUES ('', '$_GET[jdwl]', '$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', 
+                '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', 
+                '$_POST[deskripsi_tertinggi]', '$_POST[deskripsi_terendah]', '$_SESSION[id]', 
+                '" . date('Y-m-d H:i:s') . "')");
       }
-  
-      // Redirect setelah proses selesai
-      echo "<script>alert('Data berhasil disimpan!');</script>";
-      echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
-  }
-  
+        // var_dump($_POST['simpan-pengetahuan']);
+        // exit;
+    }
 
         // if ($_POST['status'] == 'Update') {
         //     // Update data jika status adalah 'Update'
