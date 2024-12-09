@@ -48,8 +48,7 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        mysql_query("UPDATE rb_angkatan SET nama_kurikulum = '$_POST[a]',
-                                         status_kurikulum = '$_POST[b]' where id_tahun_angkatan='$_POST[id]'");
+        mysql_query("UPDATE rb_angkatan SET tahun_angkatan = '$_POST[a]' where id_tahun_angkatan='$_POST[id]'");
       echo "<script>document.location='index.php?view=kurikulum';</script>";
     }
     $edit = mysql_query("SELECT * FROM rb_angkatan where id_tahun_angkatan='$_GET[id]'");
@@ -57,7 +56,7 @@
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Edit Data Kurikulum</h3>
+                  <h3 class='box-title'>Edit Data Tahun Angkatan</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -65,16 +64,9 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                     <input type='hidden' name='id' value='$s[id_tahun_angkatan]'>
-                    <tr><th width='120px' scope='row'>Nama Kurikulum</th> <td><input type='text' class='form-control' name='a' value='$s[nama_kurikulum]'> </td></tr>
-                    <tr><th scope='row'>Status Aktif</th>     <td>";
-                                                                  if ($s[status_kurikulum]=='Ya'){
-                                                                      echo "<input type='radio' name='b' value='Ya' checked> Ya
-                                                                             <input type='radio' name='b' value='Tidak'> Tidak";
-                                                                  }else{
-                                                                      echo "<input type='radio' name='b' value='Ya'> Ya
-                                                                             <input type='radio' name='b' value='Tidak' checked> Tidak";
-                                                                  }
-                  echo "</td></tr>
+                    <tr><th width='120px' scope='row'>Nama Kurikulum</th> <td><input type='text' class='form-control' name='a' value='$s[nama_kurikulum]'> </td></tr>";
+                   
+                  echo "
                   </tbody>
                   </table>
                 </div>
