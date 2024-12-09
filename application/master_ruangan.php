@@ -147,8 +147,8 @@
   }
   echo "</select></td></tr>
                     <tr><th scope='row'>Nama Ruangan</th>        <td><input type='text' class='form-control' name='c'></td></tr>
-                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='text' class='form-control' name='d'></td></tr>
-                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='text' class='form-control' name='e'></td></tr>
+                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='number' class='form-control' name='d'></td></tr>
+                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='number' class='form-control' name='e'></td></tr>
                     <tr><th scope='row'>Keterangan</th>          <td><input type='text' class='form-control' name='f'></td></tr>
                     <tr><th scope='row'>Aktif</th>               <td><input type='radio' name='g' value='Ya'> Ya
                                                                           <input type='radio' name='g' value='Tidak'> Tidak</td></tr>
