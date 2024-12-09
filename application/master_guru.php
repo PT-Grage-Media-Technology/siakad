@@ -364,6 +364,7 @@
      $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
     // $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%guru%'"));
     var_dump($id_ptk);
+    echo $_POST['as'];
     exit;
     if($_POST['as'] == $id_ptk){
       // 2 adalah id_jenis_ptk guru mapel
