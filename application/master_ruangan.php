@@ -29,7 +29,7 @@
               <?php
               $tampil = mysql_query("SELECT * FROM rb_ruangan a 
                                                 JOIN rb_gedung b ON a.kode_gedung = b.kode_gedung 
-                                                ORDER BY a.kode_ruangan DESC");
+                                                ORDER BY a.kode_ruangan ASC");
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr><td>$no</td>
