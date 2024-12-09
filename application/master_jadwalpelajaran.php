@@ -53,7 +53,7 @@
                 echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
               } else {
                 $selected = ($id_terakhir == $k['kode_kelas']) ? "selected" : "";
-                echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]</option>";
+                echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]sad</option>";
               }
             }
             ?>
