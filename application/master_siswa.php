@@ -44,13 +44,15 @@ if ($_GET[act] == '') {
           $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
           $angkatan_data = mysql_fetch_array($angkatan_query);
           ?>
-          <select name='angkatan' style='padding:6px'>
+          <select name='angkatan' style='padding:4px'>
             <option value=''>- Pilih Angkatan -</option>
             <?php
             // Menampilkan opsi angkatan dari database
             $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
             while ($angkatan = mysql_fetch_array($angkatan_query)) {
-              echo "<option value='$angkatan[tahun_angkatan]'>$angkatan[tahun_angkatan]</option>";
+              // Menambahkan logika untuk menjaga pilihan yang dipilih
+              $selected = ($_GET['angkatan'] == $angkatan['tahun_angkatan']) ? 'selected' : '';
+              echo "<option value='$angkatan[tahun_angkatan]' $selected>$angkatan[tahun_angkatan]</option>";
             }
             ?>
           </select>
@@ -59,7 +61,7 @@ if ($_GET[act] == '') {
             echo "<option value=''>- Filter Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($_GET[kelas] == $k[kode_kelas]) {
+              if ($_GET['kelas'] == $k['kode_kelas']) {
                 echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
               } else {
                 echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
@@ -633,8 +635,11 @@ if ($_GET[act] == '') {
   } else {
     echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/$s[foto]'>";
   }
-  echo "</th></tr>
-                            <input type='hidden' value='$s[nipd]' name='id'>
+  if ($_SESSION[level] != 'kepala') {
+    echo "<a href='index.php?view=siswa&act=editsiswa&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+  }
+  echo "</th>
+                            </tr>
                             <tr bgcolor=#e3e3e3><th width='130px' scope='row'>Nama Ayah</th> <td><input type='text' class='form-control' value='$s[nama_ayah]' name='ca'></td></tr>
                             <tr><th scope='row'>Tahun Lahir</th> <td><input type='text' class='form-control' value='$s[tahun_lahir_ayah]' name='cb'></td></tr>
                             <tr><th scope='row'>Pendidikan</th> <td><input type='text' class='form-control' value='$s[pendidikan_ayah]' name='cc'></td></tr>
