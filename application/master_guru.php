@@ -150,7 +150,7 @@
                     <tr><th scope='row'>Kode Pos</th>               <td><input type='text' class='form-control' name='ap'></td></tr>
                     <tr><th scope='row'>NUPTK</th>                  <td><input type='text' class='form-control' name='aq'></td></tr>
                     <tr><th scope='row'>Bidang Studi</th>           <td><input type='text' class='form-control' name='ar'></td></tr>
-                    <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as'> 
+                    <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as' id='id_jenis_ptk'> 
                                                                           <option value='0' selected>- Pilih Jenis PTK -</option>";
   $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
   while ($a = mysql_fetch_array($ptk)) {
@@ -825,4 +825,26 @@
     document.getElementById('cancelButton').onclick = function() {
         history.back();
     };
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#id_jenis_ptk").change(function () {
+            const selectedValue = $(this).val(); // Ambil value yang dipilih
+
+            // Kirim data menggunakan AJAX
+            $.ajax({
+                url: "", // Kosongkan karena di file yang sama
+                type: "POST",
+                data: { id_jenis_ptk: selectedValue },
+                success: function (response) {
+                    console.log("Respons dari PHP:", response); // Lihat hasilnya di console
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                },
+            });
+        });
+    });
 </script>
