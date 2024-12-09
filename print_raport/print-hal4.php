@@ -61,7 +61,8 @@ while ($k = mysql_fetch_array($kelompok)){
                           AND a.id_tahun_akademik='$_GET[tahun]' 
                           AND b.id_kelompok_mata_pelajaran='$k[id_kelompok_mata_pelajaran]'");
     $no = 1;
-    while ($m = mysql_fetch_array($mapel)) {        
+    while ($m = mysql_fetch_array($mapel)) {      
+      $rapot = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
       $rapn = mysql_fetch_array(mysql_query("SELECT SUM((nilai1+nilai2+nilai3+nilai4+nilai5)/5)/COUNT(nisn) AS raport FROM rb_nilai_pengetahuan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
         
@@ -72,10 +73,10 @@ while ($k = mysql_fetch_array($kelompok)){
                     " . number_format($rapn['raport']) . "
                 </td>
                 
-                    <td align='center'>Ini Capaian Kompetensi</td>
+                    <td align='center'>$rapot[deskripsi_tertinggi]</td>
 
                     <tr>
-                    <td align='center'>Ini Capaian Kompetensi</td>
+                    <td align='center'>$rapot[deskripsi_terendah]</td>
                     </tr>
               </tr>";
         $no++;
