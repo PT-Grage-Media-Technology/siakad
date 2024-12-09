@@ -86,7 +86,6 @@
                                                kode_ruangan = '$_POST[d]',
                                                nama_kelas = '$_POST[e]', 
                                                aktif = '$_POST[f]' where kode_kelas='$_POST[id]'";
-            exit;
           }
           $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip=b.nip 
                                   LEFT JOIN rb_jurusan c ON a.kode_jurusan=c.kode_jurusan 
