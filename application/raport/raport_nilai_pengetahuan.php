@@ -42,8 +42,7 @@
                              nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
                              nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
                              deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
-                             waktu='" . date('Y-m-d H:i:s') . "' 
-                         WHERE id_nilai_pengetahuan='$id'";
+                             waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'";
         // Redirect setelah simpan
         // echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
   }
