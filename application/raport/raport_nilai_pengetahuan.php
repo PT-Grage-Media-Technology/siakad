@@ -45,6 +45,8 @@
                              waktu='" . date('Y-m-d H:i:s') . "' WHERE nisn='$_POST[nisn]'";
         // Redirect setelah simpan
         // echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        var_dump($_POST['simpan-pengetahuan']);
+        exit;
   }
 
 
