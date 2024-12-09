@@ -247,7 +247,19 @@ if ($_GET[act] == '') {
     echo "<option value='$a[kode_kelas]'>$a[nama_kelas]</option>";
   }
   echo "</select></td></tr>
-                              <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' name='af'></td></tr>
+                              <tr><th scope='row'>Angkatan</th> 
+<td>
+  <select class='form-control' name='af'>
+    <option value=''>- Pilih Angkatan -</option>";
+
+  $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+  while ($angkatan = mysql_fetch_array($angkatan_query)) {
+    echo "<option value='$angkatan[tahun_angkatan]'>$angkatan[tahun_angkatan]</option>";
+  }
+  echo "
+  </select>
+</td>
+</tr>
                               <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag'> 
                                                                             <option value='0' selected>- Pilih Jurusan -</option>";
   $jurusan = mysql_query("SELECT * FROM rb_jurusan");
