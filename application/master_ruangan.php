@@ -98,8 +98,8 @@
   }
   echo "</select></td></tr>
                     <tr><th scope='row'>Nama Ruangan</th>        <td><input type='text' class='form-control' name='c' value='$s[nama_ruangan]'></td></tr>
-                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='text' class='form-control' name='d' value='$s[kapasitas_belajar]'></td></tr>
-                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='text' class='form-control' name='e' value='$s[kapasitas_ujian]'></td></tr>
+                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='number' class='form-control' name='d' value='$s[kapasitas_belajar]'></td></tr>
+                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='number' class='form-control' name='e' value='$s[kapasitas_ujian]'></td></tr>
                     <tr><th scope='row'>Keterangan</th>          <td><input type='text' class='form-control' name='f' value='$s[keterangan]'></td></tr>
                     <tr><th scope='row'>Aktif</th>                <td>";
   if ($s['aktif'] == 'Ya') {
