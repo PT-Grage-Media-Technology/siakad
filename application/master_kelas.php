@@ -72,102 +72,86 @@
 
 <?php 
 }elseif($_GET[act] == 'edit'){
-  if (isset($_POST['update'])){
-      mysql_query("UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
-                                       nip = '$_POST[b]',
-                                       kode_jurusan = '$_POST[c]',
-                                       kode_ruangan = '$_POST[d]',
-                                       nama_kelas = '$_POST[e]', 
-                                       aktif = '$_POST[f]' WHERE kode_kelas = '$_POST[id]'");
-      // echo "<script>document.location='index.php?view=kelas';</script>";
-      var_dump($_POST['update']);
-      exit;
-  }
-
-  $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip = b.nip 
-                          LEFT JOIN rb_jurusan c ON a.kode_jurusan = c.kode_jurusan 
-                          LEFT JOIN rb_ruangan d ON a.kode_ruangan = d.kode_ruangan 
-                          WHERE a.kode_kelas = '$_GET[id]'");
-  $s = mysql_fetch_array($edit);
-  echo "<div class='col-12'>
-            <div class='box box-info'>
-              <div class='box-header with-border'>
-                <h3 class='box-title'>Edit Data Kelas</h3>
-              </div><!-- /.box-header -->
-
-              <div class='box-body'>
-                <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                  <div class='col-12'>
-                    <table class='table table-condensed table-bordered'>
-                      <tbody>
-                        <input type='hidden' name='id' value='$s[kode_kelas]'>
-                        <tr>
-                          <th width='120px' scope='row'>Kode Kelas</th> 
-                          <td><input type='text' class='form-control' name='a' value='$s[kode_kelas]'> </td>
-                        </tr>
-                        <tr>
-                          <th scope='row'>Wali Kelas</th>               
-                          <td>
-                            <select class='form-control' name='b'> 
-                              <option value='0' selected>- Pilih Wali Kelas -</option>"; 
-                              $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
-                              while($a = mysql_fetch_array($wali)){
-                                  echo "<option value='$a[nip]' ".($a['nip'] == $s['nip'] ? 'selected' : '').">$a[nama_guru]</option>";
-                              }
-                            echo "</select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope='row'>Jurusan</th>               
-                          <td>
-                            <select class='form-control' name='c'> 
-                              <option value='0' selected>- Pilih Jurusan -</option>"; 
-                              $jur = mysql_query("SELECT * FROM rb_jurusan");
-                              while($a = mysql_fetch_array($jur)){
-                                  echo "<option value='$a[kode_jurusan]' ".($a['kode_jurusan'] == $s['kode_jurusan'] ? 'selected' : '').">$a[nama_jurusan]</option>";
-                              }
-                            echo "</select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope='row'>Ruangan</th>               
-                          <td>
-                            <select class='form-control' name='d'> 
-                              <option value='0' selected>- Pilih Ruangan -</option>"; 
-                              $rua = mysql_query("SELECT * FROM rb_ruangan a JOIN rb_gedung b ON a.kode_gedung = b.kode_gedung");
-                              while($a = mysql_fetch_array($rua)){
-                                  echo "<option value='$a[kode_ruangan]' ".($a['kode_ruangan'] == $s['kode_ruangan'] ? 'selected' : '').">$a[nama_gedung] - $a[nama_ruangan]</option>";
-                              }
-                            echo "</select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope='row'>Nama Kelas</th>           
-                          <td><input type='text' class='form-control' name='e' value='$s[nama_kelas]'></td>
-                        </tr>
-                        <tr>
-                          <th scope='row'>Aktif</th>                
-                          <td>";
-                            if ($s['aktif'] == 'Ya'){
-                                echo "<input type='radio' name='f' value='Ya' checked> Ya
-                                       <input type='radio' name='f' value='Tidak'> Tidak";
-                            }else{
-                                echo "<input type='radio' name='f' value='Ya'> Ya
-                                       <input type='radio' name='f' value='Tidak' checked> Tidak";
-                            }
-                        echo "</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div><!-- /.col-12 -->
-                </form><!-- /.form -->
-              </div><!-- /.box-body -->
-              <div class='box-footer'>
-                <button type='submit' name='update' class='btn btn-info'>Update</button>
-                <a href='index.php?view=kelas'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
-              </div><!-- /.box-footer -->
-            </div><!-- /.box -->
-          </div><!-- /.col-12 -->";
+          if (isset($_POST['update'])){
+              mysql_query("UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
+                                               nip = '$_POST[b]',
+                                               kode_jurusan = '$_POST[c]',
+                                               kode_ruangan = '$_POST[d]',
+                                               nama_kelas = '$_POST[e]', 
+                                               aktif = '$_POST[f]' where kode_kelas='$_POST[id]'");
+            echo "<script>document.location='index.php?view=kelas';</script>";
+          }
+          $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip=b.nip 
+                                  LEFT JOIN rb_jurusan c ON a.kode_jurusan=c.kode_jurusan 
+                                    LEFT JOIN rb_ruangan d ON a.kode_ruangan=d.kode_ruangan 
+                                        where a.kode_kelas='$_GET[id]'");
+          $s = mysql_fetch_array($edit);
+          echo "<div class='col-md-12'>
+                    <div class='box box-info'>
+                      <div class='box-header with-border'>
+                        <h3 class='box-title'>Edit Data Kelas</h3>
+                      </div>
+                    <div class='box-body'>
+                    <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                      <div class='col-md-12'>
+                        <table class='table table-condensed table-bordered'>
+                        <tbody>
+                          <input type='hidden' name='id' value='$s[kode_kelas]'>
+                          <tr><th width='120px' scope='row'>Kode Kelas</th> <td><input type='text' class='form-control' name='a' value='$s[kode_kelas]'> </td></tr>
+                          <tr><th scope='row'>Wali Kelas</th>               <td><select class='form-control' name='b'> 
+                                                                                <option value='0' selected>- Pilih Wali Kelas -</option>"; 
+                                                                                  $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
+                                                                                  while($a = mysql_fetch_array($wali)){
+                                                                                    if ($a['nip'] == $s['nip']){
+                                                                                      echo "<option value='$a[nip]' selected>$a[nama_guru]</option>";
+                                                                                    }else{
+                                                                                      echo "<option value='$a[nip]'>$a[nama_guru]</option>";
+                                                                                    }
+                                                                                  }
+                                                                               echo "</select></td></tr>
+                          <tr><th scope='row'>Jurusan</th>               <td><select class='form-control' name='c'> 
+                                                                                <option value='0' selected>- Pilih Jurusan -</option>"; 
+                                                                                  $jur = mysql_query("SELECT * FROM rb_jurusan");
+                                                                                  while($a = mysql_fetch_array($jur)){
+                                                                                    if ($a['kode_jurusan'] == $s['kode_jurusan']){
+                                                                                      echo "<option value='$a[kode_jurusan]' selected>$a[nama_jurusan]</option>";
+                                                                                    }else{
+                                                                                      echo "<option value='$a[kode_jurusan]'>$a[nama_jurusan]</option>";
+                                                                                    }
+                                                                                  }
+                                                                               echo "</select></td></tr>
+                          <tr><th scope='row'>Ruangan</th>               <td><select class='form-control' name='d'> 
+                                                                                <option value='0' selected>- Pilih Ruangan -</option>"; 
+                                                                                  $rua = mysql_query("SELECT * FROM rb_ruangan a JOIN rb_gedung b ON a.kode_gedung=b.kode_gedung ");
+                                                                                  while($a = mysql_fetch_array($rua)){
+                                                                                    if ($a['kode_ruangan'] == $s['kode_ruangan']){
+                                                                                      echo "<option value='$a[kode_ruangan]' selected>$a[nama_gedung] - $a[nama_ruangan]</option>";
+                                                                                    }else{
+                                                                                      echo "<option value='$a[kode_ruangan]'>$a[nama_gedung] - $a[nama_ruangan]</option>";
+                                                                                    }
+                                                                                  }
+                                                                               echo "</select></td></tr>
+                          <tr><th scope='row'>Nama Kelas</th>           <td><input type='text' class='form-control' name='e' value='$s[nama_kelas]'></td></tr>
+                          <tr><th scope='row'>Aktif</th>                <td>";
+                                                                        if ($s['aktif']=='Ya'){
+                                                                            echo "<input type='radio' name='f' value='Ya' checked> Ya
+                                                                                   <input type='radio' name='f' value='Tidak'> Tidak";
+                                                                        }else{
+                                                                            echo "<input type='radio' name='f' value='Ya'> Ya
+                                                                                   <input type='radio' name='f' value='Tidak' checked> Tidak";
+                                                                        }
+                        echo "</td></tr>
+                        </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class='box-footer'>
+                          <button type='submit' name='update' class='btn btn-info'>Update</button>
+                          <a href='index.php?view=kelas'><button class='btn btn-default pull-right'>Cancel</button></a>
+                          
+                        </div>
+                    </form>
+                  </div>";
 }elseif($_GET[act]=='tambah'){
           if (isset($_POST['tambah'])){
               mysql_query("INSERT INTO rb_kelas VALUES('$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]')");
