@@ -31,6 +31,7 @@
 
   if (isset($_GET['delete_pengetahuan'])){
       // Debugging: Cek ID yang akan dihapus
+
       
       mysql_query("DELETE FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[delete_pengetahuan]'");
       echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]#$_GET[nisn]';</script>";
@@ -66,6 +67,40 @@
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
+                                if (isset($_POST['simpan-pengetahuan'])) {
+                                  if ($_POST['status'] == 'Update') {
+                                      // Update data jika status adalah 'Update'
+                                      mysql_query("UPDATE rb_nilai_pengetahuan 
+                                                   SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
+                                                       nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
+                                                       nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
+                                                       deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
+                                                       waktu='" . date('Y-m-d H:i:s') . "' 
+                                                   WHERE id_nilai_pengetahuan='$_POST[id]'");
+                                  } else {
+                                      // Periksa apakah data sudah ada
+                                      $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
+                                      if (mysql_num_rows($query) > 0) {
+                                          // Jika data ada, lakukan UPDATE
+                                          mysql_query("UPDATE rb_nilai_pengetahuan 
+                                                       SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
+                                                           nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
+                                                           nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
+                                                           deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
+                                                           waktu='" . date('Y-m-d H:i:s') . "' 
+                                                       WHERE kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
+                                      } else {
+                                          // Jika data tidak ada, lakukan INSERT
+                                          mysql_query("INSERT INTO rb_nilai_pengetahuan 
+                                                       VALUES ('', '$_GET[jdwl]', '$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', 
+                                                               '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', 
+                                                               '$_POST[deskripsi_tertinggi]', '$_POST[deskripsi_terendah]', '$_SESSION[id]', 
+                                                               '" . date('Y-m-d H:i:s') . "')");
+                                      }
+                                  }
+                                  // Redirect setelah simpan
+                                  echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+                              }                              
                                
                                 $nilaiUH = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
