@@ -255,6 +255,11 @@ if (isset($_SESSION['id'])) {
             echo "<div class='row'>";
             include "application/master_tahun_akademik.php";
             echo "</div>";
+          } elseif ($_GET[view] == 'angkatan') {
+            cek_session_admin();
+            echo "<div class='row'>";
+            include "application/master-angkatan.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'gedung') {
             cek_session_admin();
             echo "<div class='row'>";
