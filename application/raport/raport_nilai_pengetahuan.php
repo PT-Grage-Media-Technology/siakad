@@ -13,7 +13,7 @@
         //                      waktu='" . date('Y-m-d H:i:s') . "' 
         //                  WHERE id_nilai_pengetahuan='$_POST[id]'");
         // } $id = $_POST['id'];
-
+        $id = $_POST['id'];
         if (!empty($id)) {
             // Update data jika id sudah ada
             mysql_query("UPDATE rb_nilai_pengetahuan 
@@ -37,9 +37,15 @@
                 echo "<script>alert('Data sudah ada, silakan periksa kembali!');</script>";
             }
         }
-    
+        echo"UPDATE rb_nilai_pengetahuan 
+                         SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
+                             nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
+                             nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
+                             deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
+                             waktu='" . date('Y-m-d H:i:s') . "' 
+                         WHERE id_nilai_pengetahuan='$id'";
         // Redirect setelah simpan
-        echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        // echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
   }
 
 
