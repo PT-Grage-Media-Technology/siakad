@@ -42,10 +42,10 @@
                                   // Debugging: Cek data yang diterima
                                   
                                   if ($_POST['status']=='Update'){
-                                    mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai_ulangan_harian='$_POST[nilai_uh]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
+                                    mysql_query("UPDATE rb_nilai_pengetahuan SET nilai_ulangan_harian='$_POST[nilai_uh]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
                                   }else{
                                     // Periksa apakah data sudah ada
-                                  if (mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'")) > 0) {
+                                  if (mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE id_nilai_pengetahuan='$_POST[id]' AND kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'")) > 0) {
                                     // Jika data ada, lakukan UPDATE
                                     mysql_query("UPDATE rb_nilai_pengetahuan 
                                                 SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
@@ -53,7 +53,7 @@
                                                     nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
                                                     deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
                                                     tanggal_update='".date('Y-m-d H:i:s')."' 
-                                                WHERE kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
+                                                WHERE id_nilai_pengetahuan='$_POST[id]' AND kode_jdwl='$_GET[jdwl]' AND nisn='$_POST[nisn]'");
                                   } else {
                                     // Jika data tidak ada, lakukan INSERT
                                     mysql_query("INSERT INTO rb_nilai_pengetahuan 
@@ -106,7 +106,7 @@
                                         <td>$no</td>
                                         <td style='font-size:12px' id='$r[nisn]'>$r[nama]</td>
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
-                                        <input type='hidden' name='id' value='$e[id_nilai_pengetahuan]'>
+                                        <input type='hidden' name='id' value='$nilaiResult[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
                                         <td align=center><input type='number' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
