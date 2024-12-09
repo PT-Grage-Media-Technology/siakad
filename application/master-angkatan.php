@@ -27,8 +27,8 @@
                               <td>$r[tahun_angkatan]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=kurikulum&act=edit&id=$r[id_tahun_angkatan]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=kurikulum&hapus=$r[id_tahun_angkatan]'><span class='glyphicon glyphicon-remove'></span></a>
+                                <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=angkatan&act=edit&id=$r[id_tahun_angkatan]'><span class='glyphicon glyphicon-edit'></span></a>
+                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=angkatan&hapus=$r[id_tahun_angkatan]'><span class='glyphicon glyphicon-remove'></span></a>
                               </center></td>";
                               }
                             echo "</tr>";
@@ -48,16 +48,15 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        mysql_query("UPDATE rb_angkatan SET nama_kurikulum = '$_POST[a]',
-                                         status_kurikulum = '$_POST[b]' where id_tahun_angkatan='$_POST[id]'");
-      echo "<script>document.location='index.php?view=kurikulum';</script>";
+        mysql_query("UPDATE rb_angkatan SET tahun_angkatan = '$_POST[a]' where id_tahun_angkatan='$_POST[id]'");
+      echo "<script>document.location='index.php?view=angkatan';</script>";
     }
     $edit = mysql_query("SELECT * FROM rb_angkatan where id_tahun_angkatan='$_GET[id]'");
     $s = mysql_fetch_array($edit);
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Edit Data Kurikulum</h3>
+                  <h3 class='box-title'>Edit Data Tahun Angkatan</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -65,23 +64,16 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                     <input type='hidden' name='id' value='$s[id_tahun_angkatan]'>
-                    <tr><th width='120px' scope='row'>Nama Kurikulum</th> <td><input type='text' class='form-control' name='a' value='$s[nama_kurikulum]'> </td></tr>
-                    <tr><th scope='row'>Status Aktif</th>     <td>";
-                                                                  if ($s[status_kurikulum]=='Ya'){
-                                                                      echo "<input type='radio' name='b' value='Ya' checked> Ya
-                                                                             <input type='radio' name='b' value='Tidak'> Tidak";
-                                                                  }else{
-                                                                      echo "<input type='radio' name='b' value='Ya'> Ya
-                                                                             <input type='radio' name='b' value='Tidak' checked> Tidak";
-                                                                  }
-                  echo "</td></tr>
+                    <tr><th width='120px' scope='row'>Tahun Angkatan</th> <td><input type='text' class='form-control' name='a' value='$s[tahun_angkatan]'> </td></tr>";
+                   
+                  echo "
                   </tbody>
                   </table>
                 </div>
               </div>
               <div class='box-footer'>
                     <button type='submit' name='update' class='btn btn-info'>Update</button>
-                    <a href='index.php?view=kurikulum'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=angkatan'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
@@ -89,20 +81,20 @@
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
         mysql_query("INSERT INTO rb_angkatan VALUES('','$_POST[a]','$_POST[b]')");
-        echo "<script>document.location='index.php?view=kurikulum';</script>";
+        echo "<script>document.location='index.php?view=angkatan';</script>";
     }
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Data Kurikulum</h3>
+                  <h3 class='box-title'>Tambah Data angkatan</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <tr><th width='120px' scope='row'>Nama Kurikulum</th> <td><input type='text' class='form-control' name='a'> </td></tr>
+                    <tr><th width='120px' scope='row'>Nama angkatan</th> <td><input type='text' class='form-control' name='a'> </td></tr>
                     <tr><th scope='row'>Status Aktif</th>     <td><input type='radio' name='b' value='Ya'> Ya
                                                                   <input type='radio' name='b' value='Tidak'> Tidak</td></tr>
                   </tbody>
@@ -111,7 +103,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='tambah' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php?view=kurikulum'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php?view=angkatan'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
                     
                   </div>
               </form>
