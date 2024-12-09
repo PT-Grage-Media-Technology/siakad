@@ -49,7 +49,7 @@
         <li><a href="index.php?view=kelompokmapel"><i class="fa fa-circle-o"></i> Data Kelompok Mapel</a></li>
         <li><a href="index.php?view=matapelajaran"><i class="fa fa-circle-o"></i> Data Mata Pelajaran</a></li>
         <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-circle-o"></i> Data Jadwal Pelajaran</a></li>
-        <li><a href="index.php?view=bahantugas"><i class="fa fa-circle-o"></i>Data Bahan dan Tugas</a></li>
+        <!-- <li><a href="index.php?view=bahantugas"><i class="fa fa-circle-o"></i>Data Bahan dan Tugas</a></li> -->
         <!-- <li><a href="index.php?view=kompetensidasar"><i class="fa fa-circle-o"></i>Data Kompetensi Dasar</a></li> -->
         <!--<li><a href="index.php?view=bahantugas"><i class="fa fa-circle-o"></i>Data Bobot Raport *</a></li>-->
         <li><a href="index.php?view=penilaiandiri"><i class="fa fa-circle-o"></i>Data Penilaian Diri</a></li>
