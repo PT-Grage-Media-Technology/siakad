@@ -66,7 +66,7 @@
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Input Nilai Pengetahuan Siswa</b></h3>
+                  <h3 class='box-title'>Input Nilai Raport Siswa</b></h3>
                 </div>
             
         <div class='panel-body' style='overflow-x: auto; display: block;'>
