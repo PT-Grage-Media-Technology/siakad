@@ -80,14 +80,14 @@
             </div>";
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
-        mysql_query("INSERT INTO rb_angkatan VALUES('','$_POST[a]','$_POST[b]')");
+        mysql_query("INSERT INTO rb_angkatan VALUES('','$_POST[a]')");
         echo "<script>document.location='index.php?view=angkatan';</script>";
     }
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tambah Data angkatan</h3>
+                  <h3 class='box-title'>Tambah Data Tahun angkatan</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
@@ -95,8 +95,6 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                     <tr><th width='120px' scope='row'>Nama angkatan</th> <td><input type='text' class='form-control' name='a'> </td></tr>
-                    <tr><th scope='row'>Status Aktif</th>     <td><input type='radio' name='b' value='Ya'> Ya
-                                                                  <input type='radio' name='b' value='Tidak'> Tidak</td></tr>
                   </tbody>
                   </table>
                 </div>
