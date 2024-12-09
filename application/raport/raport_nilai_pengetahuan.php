@@ -134,19 +134,25 @@
                                         <input type='hidden' name='nisn' value='$r[nisn]'>
                                         <input type='hidden' name='id' value='$nilaiResult[id_nilai_pengetahuan]'>
                                         <input type='hidden' name='status' value='$name'>
-                                        <td align=center><input type='number' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px' disabled></td>
-                                        <td align=center><input type='hidden' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px' disabled></td>
-                                        <td align=center><input type='hidden' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px' disabled></td>
-                                        <td align=center><input type='hidden' name='sas' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='hidden' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
-                                        <td align=center><input type='number' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='hidden' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
+
+                                        <td align=center><input type='number' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px' disabled>
+                                        <input type='hidden' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+
+                                        <td align=center><input type='number' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px' disabled>
+                                        <input type='hidden' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
+                                        
+                                        <td align=center><input type='number' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px' disabled>
+                                        <input type='hidden' name='sas' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
+
+                                        <td align=center><input type='number' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;' disabled>
+                                        <input type='hidden' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
+
+                                        <td align=center><input type='number' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled>
+                                        <input type='hidden' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text'   name='deskripsi_tertinggi' value='$nilaiResult[deskripsi_tertinggi]' style='width:100%; padding:0px'></td>
-                                        <td align=center><input type='number' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled></td>
-                                        <td align=center><input type='hidden' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
+
+                                        <td align=center><input type='number' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;' disabled>
+                                        <input type='hidden' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='deskripsi_terendah' value='$nilaiResult[deskripsi_terendah]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='submit' name='simpan-pengetahuan' class='btn btn-xs btn-primary' style='width:65px' value='simpan'></td>
                                       </tr>
