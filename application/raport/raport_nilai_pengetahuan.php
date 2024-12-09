@@ -38,7 +38,7 @@
     
         // Redirect setelah proses selesai
         // echo "<script>alert('Data berhasil disimpan!');</script>";
-        echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     
     }
 
@@ -99,7 +99,6 @@
                                 $nilaiAkhir = 0.5*$nilaiUH['nilai']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
-                                echo"SELECT * FROM rb_rekap_srl WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'";
                                 // var_dump($nilaiUH);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
