@@ -20,7 +20,7 @@
                          SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
                              nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
                              nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
-                             deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
+                             deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
                              waktu='" . date('Y-m-d H:i:s') . "' 
                          WHERE id_nilai_pengetahuan='$id'");
         } else {
@@ -41,7 +41,7 @@
                          SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
                              nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', 
                              nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', 
-                             deskripsi_terendah='$_POST[deskripsi_terendah]', id_user='$_SESSION[id]', 
+                             deskripsi_terendah='$_POST[deskripsi_terendah]', user_akses='$_SESSION[id]', 
                              waktu='" . date('Y-m-d H:i:s') . "' 
                          WHERE id_nilai_pengetahuan='$id'";
         // Redirect setelah simpan
