@@ -119,8 +119,8 @@
                                               <td align=center>$n[nilai_sas]</td>
                                               <td align=center>$n[nilai_akhir]</td>
                                               <td align=center>$n[nilai_tertinggi]</td>
-                                              <td align=center>$n[nilai_terendah]</td>
                                               <td align=center>$n[deskripsi_tertinggi]</td>
+                                              <td align=center>$n[nilai_terendah]</td>
                                               <td align=center>$n[deskripsi_terendah]</td>
                                               <td align=center><a href='index.php?view=raport&act=listsiswa&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&edit_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."#$r[nisn]' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-edit'></span></a>
                                                               <a href='index.php?view=raport&act=listsiswa&jdwl=".$_GET[jdwl]."&kd=".$_GET[kd]."&id=".$_GET[id]."&tahun=".$_GET[tahun]."&delete_pengetahuan=".$n[id_nilai_pengetahuan]."&nisn=".$r[nisn]."' class='btn btn-xs btn-danger' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a></td>
