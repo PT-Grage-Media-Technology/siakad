@@ -49,7 +49,7 @@
             echo "<option value=''>- Pilih Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($kelas_terpilih == $k['kode_kelas']) {
+              if ($k['kode_kelas']) {
                 echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
               } else {
                 $selected = ($id_terakhir == $k['kode_kelas']) ? "selected" : "";
