@@ -6,11 +6,15 @@
         mysql_query("UPDATE rb_nilai_pengetahuan SET kd='$_POST[a]', nilai_ulangan_harian='$_POST[nilai_uh]', nilai2='$_POST[c]', nilai3='$_POST[d]', nilai4='$_POST[e]', nilai5='$_POST[f]', deskripsi='$_POST[g]' where id_nilai_pengetahuan='$_POST[id]'");
       }else{
         mysql_query("INSERT INTO rb_nilai_pengetahuan (nisn, nilai_ulangan_harian, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, deskripsi_tertinggi, deskripsi_terendah, user_akses) 
-                     VALUES('$_GET[jdwl]', '$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', '$_POST[deskripsi_tertinggi]', '$_POST[deskripsi_terendah]', '$_SESSION[id]', '".date('Y-m-d H:i:s')."')
+                     VALUES('$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', '$_POST[deskripsi_tertinggi]', '$_POST[deskripsi_terendah]', '$_SESSION[id]', '".date('Y-m-d H:i:s')."')
                      ON DUPLICATE KEY UPDATE 
                      nilai_ulangan_harian='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', deskripsi_terendah='$_POST[deskripsi_terendah]'");
       }
-      echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&id=$_GET[id]&tahun=$_GET[tahun];</script>";
+      echo"INSERT INTO rb_nilai_pengetahuan (nisn, nilai_ulangan_harian, sts, sas, nilai_akhir, nilai_tertinggi, nilai_terendah, deskripsi_tertinggi, deskripsi_terendah, user_akses) 
+                     VALUES('$_POST[nisn]', '$_POST[nilai_uh]', '$_POST[sts]', '$_POST[sas]', '$_POST[nilai_akhir]', '$_POST[nilai_tertinggi]', '$_POST[nilai_terendah]', '$_POST[deskripsi_tertinggi]', '$_POST[deskripsi_terendah]', '$_SESSION[id]', '".date('Y-m-d H:i:s')."')
+                     ON DUPLICATE KEY UPDATE 
+                     nilai_ulangan_harian='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', nilai_akhir='$_POST[nilai_akhir]', nilai_tertinggi='$_POST[nilai_tertinggi]', nilai_terendah='$_POST[nilai_terendah]', deskripsi_tertinggi='$_POST[deskripsi_tertinggi]', deskripsi_terendah='$_POST[deskripsi_terendah]'";
+      // echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$_GET[jdwl]&id=$_GET[id]&tahun=$_GET[tahun];</script>";
   }
 
   if (isset($_GET['delete_pengetahuan'])){
