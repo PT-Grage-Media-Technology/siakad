@@ -142,16 +142,7 @@
                                       //   $grade3 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b) AND kode_kelas='0'"));
                                       // }
 
-                                      echo "<tr>
-                                              <td></td><td></td>
-                                              <td align=center colspan='6'>Nilai Max/Min</td>
-                                              <td align=center>".number_format($maxn[rata_rata])."</td>
-                                            </tr>
-                                            <tr>
-                                              <td></td><td></td>
-                                              <td align=center colspan='6'>Raport</td>
-                                              <td align=center>".number_format($rapn[raport])."</td>
-                                            </tr>";
+                                     
                                   $no++;
                                 }
 
@@ -162,3 +153,14 @@
         </div>
       </div>";
 ?>
+
+<!-- echo "<tr>
+                                              <td></td><td></td>
+                                              <td align=center colspan='6'>Nilai Max/Min</td>
+                                              <td align=center>".number_format($maxn[rata_rata])."</td>
+                                            </tr>
+                                            <tr>
+                                              <td></td><td></td>
+                                              <td align=center colspan='6'>Raport</td>
+                                              <td align=center>".number_format($rapn[raport])."</td>
+                                            </tr>"; -->
