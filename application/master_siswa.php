@@ -41,11 +41,19 @@ if ($_GET[act] == '') {
           <input type="hidden" name='view' value='siswa'>
           <?php
           // Ambil angkatan dengan nilai terbesar
-          $angkatan_query = mysql_query("SELECT MAX(angkatan) as max_angkatan FROM rb_siswa");
+          $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
           $angkatan_data = mysql_fetch_array($angkatan_query);
-          $max_angkatan = $angkatan_data['max_angkatan'];
           ?>
-          <input type="number" name='angkatan' style='padding:3px' placeholder='Angkatan' value='<?php echo $max_angkatan; ?>'>
+          <select name='angkatan' style='padding:3px'>
+            <option value=''>- Pilih Angkatan -</option>
+            <?php
+            // Menampilkan opsi angkatan dari database
+            $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+            while ($angkatan = mysql_fetch_array($angkatan_query)) {
+              echo "<option value='$angkatan[tahun_angkatan]'>$angkatan[tahun_angkatan]</option>";
+            }
+            ?>
+          </select>
           <select name='kelas' style='padding:4px'>
             <?php
             echo "<option value=''>- Filter Kelas -</option>";
