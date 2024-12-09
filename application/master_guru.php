@@ -106,19 +106,6 @@
                            '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
                            '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
     }
-    $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
-    // $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%guru%'"));
-
-    if($_POST['as'] == $id_ptk){
-      // 2 adalah id_jenis_ptk guru mapel
-      mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','2','$_POST[ar]', 
-      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-    }
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[aa] . "';</script>";
   }
 
@@ -137,7 +124,7 @@
                     <tr><th scope='row'>Password</th>               <td><input type='text' class='form-control' name='ab'></td></tr>
                     <tr><th scope='row'>Nama Lengkap</th>           <td><input type='text' class='form-control' name='ac'></td></tr>
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' name='ad'></td></tr>
-                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='date' class='form-control' name='ae'></td></tr>
+                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
                                                                           <option value='0' selected>- Pilih Jenis Kelamin -</option>";
   $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
@@ -208,7 +195,7 @@
                   <tbody>
                     <tr><th width='150px' scope='row'>NIK</th>      <td><input type='text' class='form-control' name='ba'></td></tr>
                     <tr><th scope='row'>SK CPNS</th>                <td><input type='text' class='form-control' name='bb'></td></tr>
-                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='date' class='form-control' name='bc'></td></tr>
+                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='text' class='form-control' name='bc'></td></tr>
                     <tr><th scope='row'>SK Pengangkat</th>          <td><input type='text' class='form-control' name='bd'></td></tr>
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' name='bf'></td></tr>
@@ -258,124 +245,109 @@
     $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
     $uploadfile = $dir_gambar . $filenamee;
     if ($filename != '') {
-      // Query untuk mendapatkan id_jenis_ptk yang mengandung "kulum"
-$id_ptk_query = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
-$id_ptk_kulum = $id_ptk_query['id_jenis_ptk'];
+      if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
+        mysql_query("UPDATE rb_guru SET 
+                           nip          = '$_POST[aa]',
+                           password     = '$_POST[ab]',
+                           nama_guru         = '$_POST[ac]',
+                           tempat_lahir       = '$_POST[ad]',
+                           tanggal_lahir = '$_POST[ae]',
+                           id_jenis_kelamin       = '$_POST[af]',
+                           id_agama           = '$_POST[ag]',
+                           hp         = '$_POST[ah]',
+                           telepon       = '$_POST[ai]',
+                           email        = '$_POST[aj]',
+                           alamat_jalan      = '$_POST[ak]',
+                           rt = '$rt',
+                           rw          = '$rw',
+                           nama_dusun = '$_POST[am]',
+                           desa_kelurahan = '$_POST[an]',
+                           kecamatan = '$_POST[ao]',
+                           kode_pos = '$_POST[ap]',
+                           nuptk = '$_POST[aq]',
+                           pengawas_bidang_studi = '$_POST[ar]', 
+                           id_jenis_ptk = '$_POST[as]',
+                           tugas_tambahan = '$_POST[at]', 
+                           id_status_kepegawaian = '$_POST[au]',
+                           id_status_keaktifan = '$_POST[av]',
+                           id_status_pernikahan = '$_POST[aw]', 
+                           foto = '$filenamee', 
 
-// Proses penyimpanan data guru baru
-if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
-    mysql_query("UPDATE rb_guru SET 
-        nip = '$_POST[aa]',
-        password = '$_POST[ab]',
-        nama_guru = '$_POST[ac]',
-        tempat_lahir = '$_POST[ad]',
-        tanggal_lahir = '$_POST[ae]',
-        id_jenis_kelamin = '$_POST[af]',
-        id_agama = '$_POST[ag]',
-        hp = '$_POST[ah]',
-        telepon = '$_POST[ai]',
-        email = '$_POST[aj]',
-        alamat_jalan = '$_POST[ak]',
-        rt = '$rt',
-        rw = '$rw',
-        nama_dusun = '$_POST[am]',
-        desa_kelurahan = '$_POST[an]',
-        kecamatan = '$_POST[ao]',
-        kode_pos = '$_POST[ap]',
-        nuptk = '$_POST[aq]',
-        pengawas_bidang_studi = '$_POST[ar]', 
-        id_jenis_ptk = '$_POST[as]',
-        tugas_tambahan = '$_POST[at]', 
-        id_status_kepegawaian = '$_POST[au]',
-        id_status_keaktifan = '$_POST[av]',
-        id_status_pernikahan = '$_POST[aw]', 
-        foto = '$filenamee',
-        nik = '$_POST[ba]', 
-        sk_cpns = '$_POST[bb]', 
-        tanggal_cpns = '$_POST[bc]', 
-        sk_pengangkatan = '$_POST[bd]', 
-        tmt_pengangkatan = '$_POST[be]', 
-        lembaga_pengangkatan = '$_POST[bf]',
-        id_golongan = '$_POST[bg]', 
-        sumber_gaji = '$_POST[bh]',
-        keahlian_laboratorium = '$_POST[bi]',
-        nama_ibu_kandung = '$_POST[bj]',
-        nama_suami_istri = '$_POST[bk]',
-        nip_suami_istri = '$_POST[bl]',
-        pekerjaan_suami_istri = '$_POST[bm]',
-        tmt_pns = '$_POST[bn]',
-        lisensi_kepsek = '$_POST[bo]',
-        jumlah_sekolah_binaan = '$_POST[bp]',
-        diklat_kepengawasan = '$_POST[bq]',
-        mampu_handle_kk = '$_POST[br]',
-        keahlian_breile = '$_POST[bs]',
-        keahlian_bahasa_isyarat = '$_POST[bt]',
-        kewarganegaraan = '$_POST[bu]',
-        niy_nigk = '$_POST[bv]',
-        npwp = '$_POST[bw]'
-        WHERE nip = '$_POST[id]'");
-}
-} else {
-    mysql_query("UPDATE rb_guru SET 
-        nip = '$_POST[aa]',
-        password = '$_POST[ab]',
-        nama_guru = '$_POST[ac]',
-        tempat_lahir = '$_POST[ad]',
-        tanggal_lahir = '$_POST[ae]',
-        id_jenis_kelamin = '$_POST[af]',
-        id_agama = '$_POST[ag]',
-        hp = '$_POST[ah]',
-        telepon = '$_POST[ai]',
-        email = '$_POST[aj]',
-        alamat_jalan = '$_POST[ak]',
-        rt = '$rt',
-        rw = '$rw',
-        nama_dusun = '$_POST[am]',
-        desa_kelurahan = '$_POST[an]',
-        kecamatan = '$_POST[ao]',
-        kode_pos = '$_POST[ap]',
-        nuptk = '$_POST[aq]',
-        pengawas_bidang_studi = '$_POST[ar]', 
-        id_jenis_ptk = '$_POST[as]',
-        tugas_tambahan = '$_POST[at]', 
-        id_status_kepegawaian = '$_POST[au]',
-        id_status_keaktifan = '$_POST[av]',
-        id_status_pernikahan = '$_POST[aw]', 
-        nik = '$_POST[ba]', 
-        sk_cpns = '$_POST[bb]', 
-        tanggal_cpns = '$_POST[bc]', 
-        sk_pengangkatan = '$_POST[bd]', 
-        tmt_pengangkatan = '$_POST[be]', 
-        lembaga_pengangkatan = '$_POST[bf]',
-        id_golongan = '$_POST[bg]', 
-        sumber_gaji = '$_POST[bh]',
-        keahlian_laboratorium = '$_POST[bi]',
-        nama_ibu_kandung = '$_POST[bj]',
-        nama_suami_istri = '$_POST[bk]',
-        nip_suami_istri = '$_POST[bl]',
-        pekerjaan_suami_istri = '$_POST[bm]',
-        tmt_pns = '$_POST[bn]',
-        lisensi_kepsek = '$_POST[bo]',
-        jumlah_sekolah_binaan = '$_POST[bp]',
-        diklat_kepengawasan = '$_POST[bq]',
-        mampu_handle_kk = '$_POST[br]',
-        keahlian_breile = '$_POST[bs]',
-        keahlian_bahasa_isyarat = '$_POST[bt]',
-        kewarganegaraan = '$_POST[bu]',
-        niy_nigk = '$_POST[bv]',
-        npwp = '$_POST[bw]'
-        WHERE nip = '$_POST[id]'");
-}
+                           nik = '$_POST[ba]', 
+                           sk_cpns = '$_POST[bb]', 
+                           tanggal_cpns = '$_POST[bc]', 
+                           sk_pengangkatan = '$_POST[bd]', 
+                           tmt_pengangkatan = '$_POST[be]', 
+                           lembaga_pengangkatan = '$_POST[bf]',
+                           id_golongan = '$_POST[bg]', 
+                           sumber_gaji = '$_POST[bh]',
+                           keahlian_laboratorium = '$_POST[bi]',
+                           nama_ibu_kandung = '$_POST[bj]',
+                           nama_suami_istri = '$_POST[bk]',
+                           nip_suami_istri = '$_POST[bl]',
+                           pekerjaan_suami_istri = '$_POST[bm]',
+                           tmt_pns = '$_POST[bn]',
+                           lisensi_kepsek = '$_POST[bo]',
+                           jumlah_sekolah_binaan = '$_POST[bp]',
+                           diklat_kepengawasan = '$_POST[bq]',
+                           mampu_handle_kk = '$_POST[br]',
+                           keahlian_breile = '$_POST[bs]',
+                           keahlian_bahasa_isyarat = '$_POST[bt]',
+                           kewarganegaraan = '$_POST[bu]',
+                           niy_nigk = '$_POST[bv]',
+                           npwp = '$_POST[bw]' where nip='$_POST[id]'");
+      }
+    } else {
+      mysql_query("UPDATE rb_guru SET 
+                           nip          = '$_POST[aa]',
+                           password     = '$_POST[ab]',
+                           nama_guru         = '$_POST[ac]',
+                           tempat_lahir       = '$_POST[ad]',
+                           tanggal_lahir = '$_POST[ae]',
+                           id_jenis_kelamin       = '$_POST[af]',
+                           id_agama           = '$_POST[ag]',
+                           hp         = '$_POST[ah]',
+                           telepon       = '$_POST[ai]',
+                           email        = '$_POST[aj]',
+                           alamat_jalan      = '$_POST[ak]',
+                           rt = '$rt',
+                           rw          = '$rw',
+                           nama_dusun = '$_POST[am]',
+                           desa_kelurahan = '$_POST[an]',
+                           kecamatan = '$_POST[ao]',
+                           kode_pos = '$_POST[ap]',
+                           nuptk = '$_POST[aq]',
+                           pengawas_bidang_studi = '$_POST[ar]', 
+                           id_jenis_ptk = '$_POST[as]',
+                           tugas_tambahan = '$_POST[at]', 
+                           id_status_kepegawaian = '$_POST[au]',
+                           id_status_keaktifan = '$_POST[av]',
+                           id_status_pernikahan = '$_POST[aw]',
 
-// Cek apakah id_jenis_ptk mengandung "kulum"
-if ($_POST['as'] == $id_ptk_kulum) {
-    // Buat akun baru dengan id_jenis_ptk 2
-    mysql_query("INSERT INTO rb_guru 
-        (nip, password, nama_guru, id_jenis_kelamin, tempat_lahir, tanggal_lahir, nik, niy_nigk, nuptk, id_status_kepegawaian, id_jenis_ptk, pengawas_bidang_studi, id_agama, alamat_jalan, rt, rw, nama_dusun, desa_kelurahan, kecamatan, kode_pos, telepon, hp, email, tugas_tambahan, id_status_keaktifan, sk_cpns, tanggal_cpns, sk_pengangkatan, tmt_pengangkatan, lembaga_pengangkatan, id_golongan, keahlian_laboratorium, sumber_gaji, nama_ibu_kandung, id_status_pernikahan, nama_suami_istri, nip_suami_istri, pekerjaan_suami_istri, tmt_pns, lisensi_kepsek, jumlah_sekolah_binaan, diklat_kepengawasan, mampu_handle_kk, keahlian_breile, keahlian_bahasa_isyarat, npwp, kewarganegaraan, foto) 
-        VALUES
-        ('$_POST[aa]', '$_POST[ab]', '$_POST[ac]', '$_POST[af]', '$_POST[ad]', '$_POST[ae]', '$_POST[ba]', '$_POST[bv]', '$_POST[aq]', '$_POST[au]', '2', '$_POST[ar]', '$_POST[ag]', '$_POST[ak]', '$rt', '$rw', '$_POST[am]', '$_POST[an]', '$_POST[ao]', '$_POST[ap]', '$_POST[ai]', '$_POST[ah]', '$_POST[aj]', '$_POST[at]', '$_POST[av]', '$_POST[bb]', '$_POST[bc]', '$_POST[bd]', '$_POST[be]', '$_POST[bf]', '$_POST[bg]', '$_POST[bi]', '$_POST[bh]', '$_POST[bj]', '$_POST[aw]', '$_POST[bk]', '$_POST[bl]', '$_POST[bm]', '$_POST[bn]', '$_POST[bo]', '$_POST[bp]', '$_POST[bq]', '$_POST[br]', '$_POST[bs]', '$_POST[bt]', '$_POST[bw]', '$_POST[bu]', '')");
-}
-
+                           nik = '$_POST[ba]', 
+                           sk_cpns = '$_POST[bb]', 
+                           tanggal_cpns = '$_POST[bc]', 
+                           sk_pengangkatan = '$_POST[bd]', 
+                           tmt_pengangkatan = '$_POST[be]', 
+                           lembaga_pengangkatan = '$_POST[bf]',
+                           id_golongan = '$_POST[bg]', 
+                           sumber_gaji = '$_POST[bh]',
+                           keahlian_laboratorium = '$_POST[bi]',
+                           nama_ibu_kandung = '$_POST[bj]',
+                           nama_suami_istri = '$_POST[bk]',
+                           nip_suami_istri = '$_POST[bl]',
+                           pekerjaan_suami_istri = '$_POST[bm]',
+                           tmt_pns = '$_POST[bn]',
+                           lisensi_kepsek = '$_POST[bo]',
+                           jumlah_sekolah_binaan = '$_POST[bp]',
+                           diklat_kepengawasan = '$_POST[bq]',
+                           mampu_handle_kk = '$_POST[br]',
+                           keahlian_breile = '$_POST[bs]',
+                           keahlian_bahasa_isyarat = '$_POST[bt]',
+                           kewarganegaraan = '$_POST[bu]',
+                           niy_nigk = '$_POST[bv]',
+                           npwp = '$_POST[bw]' where nip='$_POST[id]'");
+    }
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
   }
 
@@ -410,7 +382,7 @@ if ($_POST['as'] == $id_ptk_kulum) {
                     <tr><th scope='row'>Password</th>               <td><input type='text' class='form-control' value='$s[password]' name='ab'></td></tr>
                     <tr><th scope='row'>Nama Lengkap</th>           <td><input type='text' class='form-control' value='$s[nama_guru]' name='ac'></td></tr>
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' value='$s[tempat_lahir]' name='ad'></td></tr>
-                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='date' class='form-control' value='$s[tanggal_lahir]' name='ae'></td></tr>
+                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' value='$s[tanggal_lahir]' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
                                                                           <option value='0' selected>- Pilih Jenis Kelamin -</option>";
   $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
@@ -506,7 +478,7 @@ if ($_POST['as'] == $id_ptk_kulum) {
                   <tbody>
                     <tr><th width='150px' scope='row'>NIK</th>      <td><input type='text' class='form-control' value='$s[nik]' name='ba'></td></tr>
                     <tr><th scope='row'>SK CPNS</th>                <td><input type='text' class='form-control' value='$s[sk_cpns]' name='bb'></td></tr>
-                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='date' class='form-control' value='$s[tanggal_cpns]' name='bc'></td></tr>
+                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='text' class='form-control' value='$s[tanggal_cpns]' name='bc'></td></tr>
                     <tr><th scope='row'>SK Pengangkat</th>          <td><input type='text' class='form-control' value='$s[sk_pengangkatan]' name='bd'></td></tr>
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' value='$s[tmt_pengangkatan]' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' value='$s[lembaga_pengangkatan]' name='bf'></td></tr>
