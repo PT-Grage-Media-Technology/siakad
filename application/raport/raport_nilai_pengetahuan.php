@@ -3,7 +3,7 @@
       $id = $_POST['id'];
 
       // Debugging: Cek data yang diterima
-      $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'");
+      $query = mysql_query("SELECT * FROM rb_nilai_pengetahuan WHERE nisn='$_POST[nisn]' AND id_nilai_pengetahuan='$_POST[id]'");
      echo"SELECT * FROM rb_nilai_pengetahuan WHERE kode_jdwl='$_GET[jdwl]' AND id_nilai_pengetahuan='$_POST[id]'";
       var_dump($query);
       exit;
