@@ -15,6 +15,7 @@
         // } $id = $_POST['id'];
         $id = $_POST['id'];
         if (!empty($id)) {
+          echo"sa";
             // Update data jika id sudah ada
             mysql_query("UPDATE rb_nilai_pengetahuan 
                          SET nilai_uh='$_POST[nilai_uh]', sts='$_POST[sts]', sas='$_POST[sas]', 
