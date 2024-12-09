@@ -37,7 +37,7 @@
         }
     
         // Redirect setelah proses selesai
-        echo "<script>alert('Data berhasil disimpan!');</script>";
+        // echo "<script>alert('Data berhasil disimpan!');</script>";
         echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
     }
