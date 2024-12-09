@@ -73,19 +73,25 @@
 <?php 
 }elseif($_GET[act] == 'edit'){
           if (isset($_POST['update'])){
-              mysql_query("UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
-                                               nip = '$_POST[b]',
-                                               kode_jurusan = '$_POST[c]',
-                                               kode_ruangan = '$_POST[d]',
-                                               nama_kelas = '$_POST[e]', 
-                                               aktif = '$_POST[f]' where kode_kelas='$_POST[id]'");
-            // echo "<script>document.location='index.php?view=kelas';</script>";
-          echo "UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
-                                               nip = '$_POST[b]',
-                                               kode_jurusan = '$_POST[c]',
-                                               kode_ruangan = '$_POST[d]',
-                                               nama_kelas = '$_POST[e]', 
-                                               aktif = '$_POST[f]' where kode_kelas='$_POST[id]'";
+              // Validasi input
+              if (!empty($_POST['a']) && !empty($_POST['b']) && !empty($_POST['c']) && !empty($_POST['d']) && !empty($_POST['e']) && isset($_POST['id'])) {
+                  $query = "UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
+                                                  nip = '$_POST[b]',
+                                                  kode_jurusan = '$_POST[c]',
+                                                  kode_ruangan = '$_POST[d]',
+                                                  nama_kelas = '$_POST[e]', 
+                                                  aktif = '$_POST[f]' WHERE kode_kelas='$_POST[id]'";
+                  $result = mysql_query($query);
+                  
+                  // Cek apakah query berhasil
+                  if ($result) {
+                      echo "<script>document.location='index.php?view=kelas';</script>";
+                  } else {
+                      echo "Error: " . mysql_error();
+                  }
+              } else {
+                  echo "Semua field harus diisi.";
+              }
           }
           $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip=b.nip 
                                   LEFT JOIN rb_jurusan c ON a.kode_jurusan=c.kode_jurusan 
