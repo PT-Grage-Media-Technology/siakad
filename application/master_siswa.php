@@ -542,7 +542,20 @@ if ($_GET[act] == '') {
     }
   }
   echo "</select></td></tr>
-                            <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' value='$s[angkatan]' name='af' $close></td></tr>
+                            <tr><th scope='row'>Angkatan</th> 
+<td>
+  <select class='form-control' name='af'>
+    <option value=''>- Pilih Angkatan -</option>";
+    $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+    while ($angkatan = mysql_fetch_array($angkatan_query)) {
+      // Menambahkan logika untuk menjaga pilihan yang dipilih
+      $selected = ($angkatan['tahun_angkatan'] == $s['angkatan']) ? 'selected' : '';
+      echo "<option value='$angkatan[tahun_angkatan]' $selected>$angkatan[tahun_angkatan]</option>";
+    }
+   echo"
+  </select>
+</td>
+</tr>
                             <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag' $close> 
                                                                           <option value='0' selected>- Pilih Jurusan -</option>";
   $jurusan = mysql_query("SELECT * FROM rb_jurusan");
