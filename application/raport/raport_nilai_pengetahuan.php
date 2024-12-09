@@ -1,6 +1,6 @@
 <?php 
     if (isset($_POST['simpan-pengetahuan'])){
-      if (isset($_POST['simpan-pengetahuan'])) {
+     
         $nisn = $_POST['nisn'];
         $kode_jdwl = $_GET['jdwl'];
         $nilai_uh = $_POST['nilai_uh'];
@@ -39,7 +39,7 @@
         // Redirect setelah proses selesai
         // echo "<script>alert('Data berhasil disimpan!');</script>";
         echo "<script>document.location='index.php?view=raport&act=listsiswa&jdwl=$kode_jdwl&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
-    }
+    
     }
 
         // if ($_POST['status'] == 'Update') {
