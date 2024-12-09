@@ -87,10 +87,10 @@
                   if ($result) {
                       echo "<script>document.location='index.php?view=kelas';</script>";
                   } else {
-                      echo "Error: " . mysql_error();
+                      echo "<script>alert('Gagal Update');</script>";
                   }
               } else {
-                  echo "Semua field harus diisi.";
+                  echo "<script>alert('Gagal Menyimpan Perubahan');</script>";
               }
           }
           $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip=b.nip 
