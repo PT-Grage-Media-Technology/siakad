@@ -44,7 +44,7 @@ if ($_GET[act] == '') {
           $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
           $angkatan_data = mysql_fetch_array($angkatan_query);
           ?>
-          <select name='angkatan' style='padding:6px'>
+          <select name='angkatan' style='padding:4px; margin: 0px 2px 0px 2px;'>
             <option value=''>- Pilih Angkatan -</option>
             <?php
             // Menampilkan opsi angkatan dari database
