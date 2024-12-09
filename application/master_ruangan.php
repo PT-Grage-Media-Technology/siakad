@@ -27,7 +27,7 @@
             </thead>
             <tbody>
               <?php
-              $tampil = mysql_query("SELECT * FROM rb_ruangan a 
+              $tampil = mysql_query("SELECT a.*, b.nama_gedung FROM rb_ruangan a 
                                                 JOIN rb_gedung b ON a.kode_gedung = b.kode_gedung 
                                                 ORDER BY a.kode_ruangan ASC");
               $no = 1;
