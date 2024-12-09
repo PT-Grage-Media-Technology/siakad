@@ -80,7 +80,12 @@
                                                nama_kelas = '$_POST[e]', 
                                                aktif = '$_POST[f]' where kode_kelas='$_POST[id]'");
             // echo "<script>document.location='index.php?view=kelas';</script>";
-            var_dump($_POST['update']);
+          echo "UPDATE rb_kelas SET kode_kelas = '$_POST[a]',
+                                               nip = '$_POST[b]',
+                                               kode_jurusan = '$_POST[c]',
+                                               kode_ruangan = '$_POST[d]',
+                                               nama_kelas = '$_POST[e]', 
+                                               aktif = '$_POST[f]' where kode_kelas='$_POST[id]'";
             exit;
           }
           $edit = mysql_query("SELECT * FROM rb_kelas a LEFT JOIN rb_guru b ON a.nip=b.nip 
