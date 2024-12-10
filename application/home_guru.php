@@ -166,7 +166,7 @@ if (isset($_POST['kktp'])) {
     </div>
 </div>
 
-<div class="col-xs-12">
+<div class="col-12">
     <div class="box">
         <div class="box-header">
 
