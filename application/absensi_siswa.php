@@ -323,7 +323,7 @@
                                     <th " . ($pengetahuan_set ? 'hidden' : '') . ">Nilai Pengetahuan</th>
                                     <th " . ($keterampilan_set ? 'hidden' : '') . ">Nilai Keterampilan</th>
                                     <th " . ($sikap_set ? 'hidden' : '') . ">Nilai Sikap</th>
-                                    <th " . (!$j['id_parent_journal'] ? 'hidden' : '') . ">Total</th>
+                                    <th " . ($j['id_parent_journal'] ? 'hidden' : '') . ">Total</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
@@ -466,7 +466,7 @@
         }
       }
       
-      if($j['id_parent_journal']){
+      if(!$j['id_parent_journal']){
           echo "<td>$a[total]</td>";
       }
 
