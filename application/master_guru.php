@@ -245,6 +245,7 @@
     $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
     $uploadfile = $dir_gambar . $filenamee;
     if ($filename != '') {
+      $waka = $_POST['as'];
       if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
         mysql_query("UPDATE rb_guru SET 
                            nip          = '$_POST[aa]',
@@ -348,7 +349,8 @@
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
     }
-    echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
+    echo $waka;
+    // echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
   }
 
   $detail = mysql_query("SELECT * FROM rb_guru where nip='$_GET[id]'");
