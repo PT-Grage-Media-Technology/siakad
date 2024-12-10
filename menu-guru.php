@@ -47,14 +47,14 @@
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
         $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl=$_GET[id]"));
-        $idjr = $mapel['kodejdwl'];
         if (
           // isset($_GET['act']) && $_GET['act'] === 'lihat' &&
           isset($_GET['id']) &&
           isset($_GET['tahun']) &&
           ($_GET['view'] == 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
       ) {
-        
+        // $idjr = $mapel['kodejdwl'];
+        $idjr = $_GET['id'] ?? $_GET['kodejdwl'];
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
       <li><a href='index.php?view=raportsas&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
