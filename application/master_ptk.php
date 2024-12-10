@@ -30,9 +30,9 @@
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=ptk&act=edit&id=$r[id_jenis_ptk]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=ptk&hapus=$r[id_jenis_ptk]'><span class='glyphicon glyphicon-remove'></span></a>
-                              </center></td>";
+                                </center></td>";
                               }
+                              // <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=ptk&hapus=$r[id_jenis_ptk]'><span class='glyphicon glyphicon-remove'></span></a>
                             echo "</tr>";
                       $no++;
                       }
