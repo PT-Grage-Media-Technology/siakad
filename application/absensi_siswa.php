@@ -323,6 +323,7 @@
                                     <th " . ($pengetahuan_set ? 'hidden' : '') . ">Nilai Pengetahuan</th>
                                     <th " . ($keterampilan_set ? 'hidden' : '') . ">Nilai Keterampilan</th>
                                     <th " . ($sikap_set ? 'hidden' : '') . ">Nilai Sikap</th>
+                                    <th " . ($j['id_parent_journal'] ? 'hidden' : '') . ">Total</th>
                                     <th width='120px'>Kehadiran</th>
                                 </tr>
                             </thead>
@@ -460,10 +461,14 @@
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
           echo "<td>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
-      } else {
+        } else {
           echo "<td>6<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+        }
       }
-    }
+      
+      if($j['id_parent_journal']){
+          echo "<td>$a[total]</td>";
+      }
 
     // Kehadiran
     echo "<td><select style='width:100px;' name='kehadiran[$no]' class='form-control' " . (strtotime(date('Y-m-d')) > strtotime($_GET['tgl']) ? "disabled" : "") . ">";
