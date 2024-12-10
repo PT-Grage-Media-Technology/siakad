@@ -609,7 +609,6 @@
                       <tr><th scope='row'>Jenis Kelamin</th> <td>$s[jenis_kelamin]</td></tr>
                       <tr><th scope='row'>Agama</th> <td>$s[nama_agama]</td></tr>
                       <tr><th scope='row'>No Hp</th> <td>$s[hp]</td></tr>
-                      <tr><th scope='row'>No Telpon</th> <td>$s[telepon]</td></tr>
                       <tr><th scope='row'>Alamat Email</th> <td>$s[email]</td></tr>
                       <tr><th scope='row'>Alamat</th> <td>$s[alamat_jalan]</td></tr>
                       <tr><th scope='row'>RT/RW</th> <td>$s[rt]/$s[rw]</td></tr>
