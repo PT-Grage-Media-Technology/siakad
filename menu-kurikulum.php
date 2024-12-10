@@ -41,8 +41,8 @@
         <li><a href="index.php?view=raport&act=detailguru"><i class="fa fa-circle-o"></i> Input Nilai Raport</a></li>
       </ul>
     </li> -->
-    <li><a href="index.php?view=rekapguru"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Rekap Absensi Guru</span></a></li>
-    <li><a href="index.php?view=refleksiguru"><i class="fa fa-address-book-o"></i> <span>Hasil Refleksi</span></a></li>
-    <li><a href="index.php?view=dokumentasiguru"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span>Documentation</span></a></li>
+    <li><a href="index.php?view=rekapguru"><i class="fa fa-list" aria-hidden="true"></i> <span>Rekap Absensi Guru</span></a></li>
+    <li><a href="index.php?view=refleksiguru"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Hasil Refleksi</span></a></li>
+    <li><a href="index.php?view=dokumentasiguru"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
