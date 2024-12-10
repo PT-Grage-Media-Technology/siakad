@@ -38,6 +38,7 @@
                   </form>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                    <div class="table-responsive">
                     <table id="example" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -76,6 +77,7 @@
                   ?>
                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[tahun] == ''){
@@ -86,3 +88,15 @@
             </div>
 
 <?php } ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto; /* Hanya aktifkan scroll horizontal jika diperlukan */
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible; /* Nonaktifkan scroll horizontal di desktop */
+    }
+}
+</style>
