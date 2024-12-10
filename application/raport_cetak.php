@@ -6,9 +6,9 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Cetak Raport Semester Siswa <?php echo $_GET[tahun]; ?></h3>
-                  <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
+                  <form style='margin-right:5px; margin-top:0px; display: flex; flex-wrap: wrap;' class='pull-right' action='' method='GET'>
                     <input type="hidden" name='view' value='raportcetak'>
-                    <select name='tahun' style='padding:4px'>
+                    <select name='tahun' style='padding:4px; margin-right: 5px;'>
                         <?php 
                             echo "<option value=''>- Pilih Tahun Akademik -</option>";
                             $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
@@ -21,7 +21,7 @@
                             }
                         ?>
                     </select>
-                    <select name='id' style='padding:4px'>
+                    <select name='id' style='padding:4px; margin-right: 5px;'>
                         <?php 
                             echo "<option value=''>- Filter Kelas -</option>";
                             $kelas = mysql_query("SELECT * FROM rb_kelas");
