@@ -175,7 +175,7 @@ if ($_GET[act] == '') {
     if(isset($_GET['kategori']) && $_GET['kategori'] == 'remedial'){
       $tampil = mysql_query("SELECT * FROM rb_elearning a 
                             JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
-                            WHERE kodejdwl='$_GET[jdwl]' AND a.status='active' AND id_kategori_elearning='3'
+                            WHERE kodejdwl='$_GET[jdwl]' AND a.status='active' AND a.id_kategori_elearning='3'
                             ORDER BY a.id_elearning");
     } else {
       $tampil = mysql_query("SELECT * FROM rb_elearning a 
@@ -189,7 +189,7 @@ if ($_GET[act] == '') {
       // Tampilkan semua tugas untuk user selain siswa
       $tampil = mysql_query("SELECT * FROM rb_elearning a 
                               JOIN rb_kategori_elearning b ON a.id_kategori_elearning=b.id_kategori_elearning 
-                              WHERE kodejdwl='$_GET[jdwl]' AND id_kategori_elearning='3'
+                              WHERE kodejdwl='$_GET[jdwl]' AND a.id_kategori_elearning='3'
                               ORDER BY a.id_elearning");
       
     } else {
