@@ -237,8 +237,10 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
+    $id_waka = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE %kulum%"));
     if($_POST['as'] == 6 ){
       var_dump($_POST['as']);
+      var_dump($id_waka);
     }else{
       echo '<pre>';
       var_dump($_POST);
