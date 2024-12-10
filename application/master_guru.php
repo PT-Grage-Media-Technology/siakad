@@ -80,31 +80,53 @@
 <?php
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
-    $rtrw = explode('/', $_POST[al]);
-    $rt = $rtrw[0];
-    $rw = $rtrw[1];
-    $dir_gambar = 'foto_pegawai/';
-    $filename = basename($_FILES['ax']['name']);
-    $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
-    $uploadfile = $dir_gambar . $filenamee;
-    if ($filename != '') {
-      if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
+    $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
+    $id_mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%mapel%' "));
+    // echo '<pre>';
+    // var_dump($id_waka);
+    // var_dump($id_mapel);
+    // echo '</pre>';
+    // exit;
+    
+    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
+      // var_dump($_POST['as']);
+      // echo 'masuk';
+      $nip = $_POST['aa'] . rand(10, 99);
+
+      mysql_query("INSERT INTO rb_guru VALUES('$nip','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
+      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$id_mapel[id_jenis_ptk]','$_POST[ar]', 
+      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
+      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
+      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
+      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
+      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
+    }else{
+      $rtrw = explode('/', $_POST[al]);
+      $rt = $rtrw[0];
+      $rw = $rtrw[1];
+      $dir_gambar = 'foto_pegawai/';
+      $filename = basename($_FILES['ax']['name']);
+      $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
+      $uploadfile = $dir_gambar . $filenamee;
+      if ($filename != '') {
+        if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
+          mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
+                             '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
+                             '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
+                             '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
+                             '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
+                             '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
+                             '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','$filenamee')");
+        }
+      } else {
         mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-                           '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
-                           '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-                           '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-                           '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-                           '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-                           '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','$filenamee')");
+                             '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
+                             '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
+                             '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
+                             '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
+                             '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
+                             '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
       }
-    } else {
-      mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-                           '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
-                           '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-                           '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-                           '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-                           '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-                           '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
     }
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[aa] . "';</script>";
   }
@@ -237,32 +259,6 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
-    $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
-    $id_mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%mapel%' "));
-    echo '<pre>';
-    var_dump($id_waka);
-    var_dump($id_mapel);
-    echo '</pre>';
-    // exit;
-    
-    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
-      // var_dump($_POST['as']);
-      // echo 'masuk';
-      $nip = $_POST['aa'] . rand(10, 99);
-
-      mysql_query("INSERT INTO rb_guru VALUES('$nip','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$id_mapel[id_jenis_ptk]','$_POST[ar]', 
-      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-    }else{
-      echo '<pre>';
-      var_dump($_POST);
-      // var_dump($_FILES);
-      echo '</pre>';
-    }
     // exit;
     $rtrw = explode('/', $_POST[al]);
     $rt = $rtrw[0];
