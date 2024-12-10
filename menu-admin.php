@@ -103,13 +103,3 @@
     <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
-
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script>
-
-  $(document).ready(function () {
-    $(".dropdown-toggle").click(function (e) {
-      e.stopPropagation(); // Mencegah event click untuk menutup dropdown
-    });
-  });
-  </script>
