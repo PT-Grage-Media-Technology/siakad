@@ -159,11 +159,6 @@ echo "<div class='col-md-12 table-responsive'>
                                 <th>Sakit</th>
                                 <th>Izin</th>
                                 <th>Alpa</th>
-                                <th>Sikap</th>
-                                <th>Keterampilan</th>
-                                <th>Pengetahuan</th>
-                                <th>Total</th>
-                                <th>Rata-Rata</th>
                                 <th><center>% Kehadiran</center></th>
                             </tr>
                         </thead>
@@ -206,11 +201,6 @@ echo "<div class='col-md-12 table-responsive'>
                         <td align=center>$sakit</td>
                         <td align=center>$izin</td>
                         <td align=center>$alpa</td>
-                        <td align=center>$total_nilai_sikap</td>
-                        <td align=center>$total_nilai_keterampilan</td>
-                        <td align=center>$total_nilai_pengetahuan</td>
-                        <td align=center>".($total_nilai_sikap + $total_nilai_keterampilan + $total_nilai_pengetahuan)."</td>
-                        <td align=center>".number_format($rata_rata, 2)."</td>
                         <td align=right>".number_format($persen, 2)." %</td>
                       </tr>";
                 $no++;
@@ -225,3 +215,7 @@ echo "<div class='col-md-12 table-responsive'>
 }
 ?>
 
+<!-- <td align=center>$total_nilai_sikap</td>
+                        <td align=center>$total_nilai_keterampilan</td>
+                        <td align=center>$total_nilai_pengetahuan</td>
+                        <td align=center>".($total_nilai_sikap + $total_nilai_keterampilan + $total_nilai_pengetahuan)."</td> -->
