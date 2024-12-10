@@ -15,20 +15,20 @@
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU <?php echo $level; ?></li>
     <li><a href="index.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
-    <li class="treeview <?php echo ($_GET['view'] == 'identitas' || $_GET['view'] == 'kurikulum') ? 'active' : ''; ?>">
+    <li class="treeview <?php echo ($_GET['view'] == 'identitas' || $_GET['view'] == 'kurikulum') || $_GET['view'] == 'tahunakademik' || $_GET['view'] == 'angkatan' || $_GET['view'] == 'gedung' || $_GET['view'] == 'ruangan' || $_GET['view'] == 'golongan' || $_GET['view'] == 'ptk' || $_GET['view'] == 'jurusan' || $_GET['view'] == 'kelas' || $_GET['view'] == 'statuspegawai' ? 'active' : ''; ?>">
       <a href="#"><i class="fa fa-th"></i> <span>Data Master</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <li class="<?php echo ($_GET['view'] == 'identitas') ? 'active' : ''; ?>"><a href="index.php?view=identitas"><i class="fa fa-circle-o"></i> Data Identitas Sekolah</a></li>
-        <li class="<?php echo ($_GET['view'] == 'kurikulum') ? 'active' : ''; ?>"><a href="index.php?view=kurikulum"><i class="fa fa-circle-o"></i> Data Kurikulum</a></li>
-        <li class="<?php echo ($_GET['view'] == 'tahunakademik') ? 'active' : ''; ?>"><a href="index.php?view=tahunakademik"><i class="fa fa-circle-o"></i> Data Tahun Akademik</a></li>
-        <li class="<?php echo ($_GET['view'] == 'angkatan') ? 'active' : ''; ?>"><a href="index.php?view=angkatan"><i class="fa fa-circle-o"></i> Data Tahun Angkatan</a></li>
-        <li class="<?php echo ($_GET['view'] == 'gedung') ? 'active' : ''; ?>"><a href="index.php?view=gedung"><i class="fa fa-circle-o"></i> Data Gedung</a></li>
-        <li class="<?php echo ($_GET['view'] == 'ruangan') ? 'active' : ''; ?>"><a href="index.php?view=ruangan"><i class="fa fa-circle-o"></i> Data Ruangan</a></li>
-        <li class="<?php echo ($_GET['view'] == 'golongan') ? 'active' : ''; ?>"><a href="index.php?view=golongan"><i class="fa fa-circle-o"></i> Data Golongan</a></li>
-        <li class="<?php echo ($_GET['view'] == 'ptk') ? 'active' : ''; ?>"><a href="index.php?view=ptk"><i class="fa fa-circle-o"></i> Data Jenis PTK</a></li>
-        <li class="<?php echo ($_GET['view'] == 'jurusan') ? 'active' : ''; ?>"><a href="index.php?view=jurusan"><i class="fa fa-circle-o"></i> Data Jurusan</a></li>
-        <li class="<?php echo ($_GET['view'] == 'kelas') ? 'active' : ''; ?>"><a href="index.php?view=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
-        <li class="<?php echo ($_GET['view'] == 'statuspegawai') ? 'active' : ''; ?>"><a href="index.php?view=statuspegawai"><i class="fa fa-circle-o"></i> Data Status Kepegawaian</a></li>
+      <li><a href="index.php?view=identitas"><i class="fa fa-circle-o"></i> Data Identitas Sekolah</a></li>
+        <li><a href="index.php?view=kurikulum"><i class="fa fa-circle-o"></i> Data Kurikulum</a></li>
+        <li><a href="index.php?view=tahunakademik"><i class="fa fa-circle-o"></i> Data Tahun Akademik</a></li>
+        <li><a href="index.php?view=angkatan"><i class="fa fa-circle-o"></i> Data Tahun Angkatan</a></li>
+        <li><a href="index.php?view=gedung"><i class="fa fa-circle-o"></i> Data Gedung</a></li>
+        <li><a href="index.php?view=ruangan"><i class="fa fa-circle-o"></i> Data Ruangan</a></li>
+        <li><a href="index.php?view=golongan"><i class="fa fa-circle-o"></i> Data Golongan</a></li>
+        <li><a href="index.php?view=ptk"><i class="fa fa-circle-o"></i> Data Jenis PTK</a></li>
+        <li><a href="index.php?view=jurusan"><i class="fa fa-circle-o"></i> Data Jurusan</a></li>
+        <li><a href="index.php?view=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
+        <li><a href="index.php?view=statuspegawai"><i class="fa fa-circle-o"></i> Data Status Kepegawaian</a></li>
       </ul>
     </li>
     <li class="treeview <?php echo ($_GET['view'] == 'siswa' || $_GET['view'] == 'guru' || $_GET['view'] == 'wakilkepala' || $_GET['view'] == 'admin') ? 'active' : ''; ?>">
