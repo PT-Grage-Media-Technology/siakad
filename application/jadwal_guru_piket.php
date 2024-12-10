@@ -2,8 +2,13 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
+        <?php
+        if($_SESSION[level] != 'kepala'){ ?>
+   
       <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
       title='Tambah Jadwal'>Tambah Jadwal</a>
+        <?php } ?>
+           
         <?php
         // Ambil tahun akademik yang terbaru
         $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
