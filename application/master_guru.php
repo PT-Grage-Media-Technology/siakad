@@ -101,7 +101,7 @@
       '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
       '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
     }
-    
+
       $rtrw = explode('/', $_POST[al]);
       $rt = $rtrw[0];
       $rw = $rtrw[1];
@@ -163,7 +163,7 @@
   }
   echo "</select></td></tr>
                     <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' name='ah'></td></tr>
-                    <tr><th scope='row'>No Telpon</th>              <td><input type='text' class='form-control' name='ai'></td></tr>
+                    <tr><th scope='row'>No Telpon</th>              <td><input type='hidden' class='form-control' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' name='ak'></td></tr>
                     <tr><th scope='row'>RT/RW</th>                  <td><input type='text' class='form-control' value='00/00' name='al'></td></tr>
@@ -431,7 +431,7 @@
   }
   echo "</select></td></tr>
                                   <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
-                    <tr><th scope='row'>No Telpon</th>              <td><input type='text' class='form-control' value='$s[telepon]' name='ai'></td></tr>
+                    <tr><th scope='row'>No Telpon</th>              <td><input type='hidden' class='form-control' value='$s[telepon]' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' value='$s[email]' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' value='$s[alamat_jalan]' name='ak'></td></tr>
                     <tr><th scope='row'>RT/RW</th>                  <td><input type='text' class='form-control' value='$s[rt]/$s[rw]' name='al'></td></tr>
