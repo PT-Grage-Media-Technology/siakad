@@ -162,7 +162,7 @@
     echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
   }
   echo "</select></td></tr>
-                    <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' name='ah'>
+                    <tr><th scope='row'>No Hp</th>                  <td><input type='number' class='form-control' name='ah'>
                                 <input type='hidden' class='form-control' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' name='ak'></td></tr>
