@@ -15,7 +15,7 @@
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU
       <?php echo $level; ?></li>
     <li><a href="index.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-    <li class="treeview active">
+    <li class="treeview" id="data-pengguna">
       <a href="#"><i class="fa fa-user"></i> <span>Data Pengguna</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
@@ -23,7 +23,7 @@
         <li><a href="index.php?view=wakilkepala"><i class="fa fa-circle-o"></i> Data Kepala Sekolah</a></li>
       </ul>
     </li>
-    <li class="treeview active">
+    <li class="treeview" id="data-master">
       <a href="#"><i class="fa fa-th"></i> <span>Data Master</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
@@ -31,7 +31,7 @@
         <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-circle-o"></i> Data Jadwal Pelajaran</a></li>
       </ul>
     </li>
-    <li class="treeview active">
+    <li class="treeview" id="data-absensi">
       <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i
           class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
@@ -50,3 +50,25 @@
     <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
+
+<script>
+  document.querySelectorAll('.treeview > a').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault(); // Mencegah link default
+      const parent = this.parentElement;
+
+      // Tutup semua dropdown lainnya
+      document.querySelectorAll('.treeview.active').forEach(treeview => {
+        if (treeview !== parent) {
+          treeview.classList.remove('active');
+          treeview.querySelector('.treeview-menu').style.display = 'none'; // Menyembunyikan menu
+        }
+      });
+
+      // Toggle dropdown yang diklik
+      parent.classList.toggle('active');
+      const menu = parent.querySelector('.treeview-menu');
+      menu.style.display = parent.classList.contains('active') ? 'block' : 'none'; // Menampilkan atau menyembunyikan menu
+    });
+  });
+</script>
