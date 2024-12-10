@@ -100,7 +100,8 @@
       '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
       '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
       '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-    }else{
+    }
+    
       $rtrw = explode('/', $_POST[al]);
       $rt = $rtrw[0];
       $rw = $rtrw[1];
@@ -127,7 +128,7 @@
                              '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
                              '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
       }
-    }
+    
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[aa] . "';</script>";
   }
 
