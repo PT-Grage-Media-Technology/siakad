@@ -29,7 +29,7 @@
                               if ($_GET[id]==$k[kode_kelas]){
                                 echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
                               }else{
-                                echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
+                                echo "<option value='$k[kode_kelas]'>$k[nama_kelas]</option>";
                               }
                             }
                         ?>
