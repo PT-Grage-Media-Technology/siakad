@@ -466,7 +466,7 @@
         }
       }
       
-      if($j['id_parent_journal']){
+      if(!$j['id_parent_journal']){
           echo "<td>$a[total]</td>";
       }
 
