@@ -81,6 +81,7 @@
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
+    $id_kesiswaan = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%siswaan%' "));
     $id_mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%mapel%' "));
     // echo '<pre>';
     // var_dump($id_waka);
@@ -88,7 +89,7 @@
     // echo '</pre>';
     // exit;
     
-    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
+    if(($_POST['as'] == $id_waka['id_jenis_ptk']) || ($_POST['as'] == $id_kesiswaan['id_jenis_ptk'])  ){
       // var_dump($_POST['as']);
       // echo 'masuk';
       $nip = $_POST['aa'] . rand(10, 99);
@@ -162,8 +163,8 @@
     echo "<option value='$a[id_agama]'>$a[nama_agama]</option>";
   }
   echo "</select></td></tr>
-                    <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' name='ah'></td></tr>
-                    <tr><th scope='row' hidden>No Telpon</th>              <td><input type='hidden' class='form-control' name='ai'></td></tr>
+                    <tr><th scope='row'>No Hp</th>                  <td><input type='number' class='form-control' name='ah'>
+                                <input type='hidden' class='form-control' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' name='ak'></td></tr>
                     <tr><th scope='row'>RT/RW</th>                  <td><input type='text' class='form-control' value='00/00' name='al'></td></tr>
@@ -430,8 +431,8 @@
     }
   }
   echo "</select></td></tr>
-                                  <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
-                    <tr><th scope='row'>No Telpon</th>              <td><input type='hidden' class='form-control' value='$s[telepon]' name='ai'></td></tr>
+                                  <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'>
+                    <td><input type='hidden' class='form-control' value='$s[telepon]' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' value='$s[email]' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' value='$s[alamat_jalan]' name='ak'></td></tr>
                     <tr><th scope='row'>RT/RW</th>                  <td><input type='text' class='form-control' value='$s[rt]/$s[rw]' name='al'></td></tr>
@@ -593,10 +594,10 @@
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
-  if ($_SESSION[level] != 'kepala') {
+  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser') {
     echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
-    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   }
+  echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   echo "
                       </tr>
 
@@ -609,7 +610,6 @@
                       <tr><th scope='row'>Jenis Kelamin</th> <td>$s[jenis_kelamin]</td></tr>
                       <tr><th scope='row'>Agama</th> <td>$s[nama_agama]</td></tr>
                       <tr><th scope='row'>No Hp</th> <td>$s[hp]</td></tr>
-                      <tr><th scope='row'>No Telpon</th> <td>$s[telepon]</td></tr>
                       <tr><th scope='row'>Alamat Email</th> <td>$s[email]</td></tr>
                       <tr><th scope='row'>Alamat</th> <td>$s[alamat_jalan]</td></tr>
                       <tr><th scope='row'>RT/RW</th> <td>$s[rt]/$s[rw]</td></tr>
