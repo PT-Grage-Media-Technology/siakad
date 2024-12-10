@@ -65,12 +65,11 @@
       </ul>
     </li> -->
 
-    <li class="treeview">
+    <li class="treeview <?php echo ($_GET['view'] == 'absensiswa' || $_GET['view'] == 'rekapabsensiswa') ? 'active' : ''; ?>">
       <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <!-- <li><a href="index.php?view=absenguru"><i class="fa fa-circle-o"></i> Absensi Guru</a></li> -->
-        <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
-        <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o"></i> Rekap Absensi Siswa</a></li>
+        <li class="<?php echo ($_GET['view'] == 'absensiswa') ? 'active' : ''; ?>"><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
+        <li class="<?php echo ($_GET['view'] == 'rekapabsensiswa') ? 'active' : ''; ?>"><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o"></i> Rekap Absensi Siswa</a></li>
       </ul>
     </li>
 
@@ -89,18 +88,16 @@
     <!-- <li><a href="index.php?view=journalkbm"><i class="fa fa-tags"></i><span>Journal KBM</span></a></li> -->
     <!-- <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
     <!-- <li><a href="index.php?view=soal"><i class="fa fa-users"></i><span>Quiz/Ujian Online</span></a></li> -->
-    <li class="treeview">
+    <li class="treeview <?php echo ($_GET['view'] == 'raportuts' || $_GET['view'] == 'raportcetakuts' || $_GET['view'] == 'capaianhasilbelajar' || $_GET['view'] == 'extrakulikuler' || $_GET['view'] == 'prestasi' || $_GET['view'] == 'raport' || $_GET['view'] == 'raportcetak') ? 'active' : ''; ?>">
       <a href="#"><i class="fa fa-calendar"></i> <span>Laporan Nilai Siswa</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <li><a href="index.php?view=raportuts"><i class="fa fa-circle-o"></i> Data Nilai STS</a></li>
-        <li><a href="index.php?view=raportcetakuts"><i class="fa fa-circle-o"></i> Cetak Raport STS</a></li>
-
-        <li><a href="index.php?view=capaianhasilbelajar"><i class="fa fa-circle-o"></i> Data Capaian Belajar</a></li>
-        <li><a href="index.php?view=extrakulikuler"><i class="fa fa-circle-o"></i> Data Ekstrakulikuler</a></li>
-        <li><a href="index.php?view=prestasi"><i class="fa fa-circle-o"></i> Data Prestasi</a></li>
-        <li><a href="index.php?view=raport"><i class="fa fa-circle-o"></i> Data Nilai Raport</a></li>
-        <li><a href="index.php?view=raportcetak"><i class="fa fa-circle-o"></i> Cetak Raport</a></li>
-        <!--<li><a href="index.php?view=bukuinduk"><i class="fa fa-circle-o"></i> Cetak Buku Induk</a></li>-->
+        <li class="<?php echo ($_GET['view'] == 'raportuts') ? 'active' : ''; ?>"><a href="index.php?view=raportuts"><i class="fa fa-circle-o"></i> Data Nilai STS</a></li>
+        <li class="<?php echo ($_GET['view'] == 'raportcetakuts') ? 'active' : ''; ?>"><a href="index.php?view=raportcetakuts"><i class="fa fa-circle-o"></i> Cetak Raport STS</a></li>
+        <li class="<?php echo ($_GET['view'] == 'capaianhasilbelajar') ? 'active' : ''; ?>"><a href="index.php?view=capaianhasilbelajar"><i class="fa fa-circle-o"></i> Data Capaian Belajar</a></li>
+        <li class="<?php echo ($_GET['view'] == 'extrakulikuler') ? 'active' : ''; ?>"><a href="index.php?view=extrakulikuler"><i class="fa fa-circle-o"></i> Data Ekstrakulikuler</a></li>
+        <li class="<?php echo ($_GET['view'] == 'prestasi') ? 'active' : ''; ?>"><a href="index.php?view=prestasi"><i class="fa fa-circle-o"></i> Data Prestasi</a></li>
+        <li class="<?php echo ($_GET['view'] == 'raport') ? 'active' : ''; ?>"><a href="index.php?view=raport"><i class="fa fa-circle-o"></i> Data Nilai Raport</a></li>
+        <li class="<?php echo ($_GET['view'] == 'raportcetak') ? 'active' : ''; ?>"><a href="index.php?view=raportcetak"><i class="fa fa-circle-o"></i> Cetak Raport</a></li>
       </ul>
     </li>
     <li><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
