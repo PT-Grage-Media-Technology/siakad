@@ -91,10 +91,13 @@
                                 <td>$r[nip]</td>
                                 <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>";
-                          echo "<td style='width:80px !important'><center>
-                                                  <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
-                                                  <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
-                                                </center></td>";
+                                if($_SESSION[level] != 'kepala'){
+
+                                  echo "<td style='width:80px !important'><center>
+                                                    <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
+                                                    <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
+                                                  </center></td>";
+                                }
                   echo "</tr>";
                   $no++;
                 }
