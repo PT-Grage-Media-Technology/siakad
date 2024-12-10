@@ -239,7 +239,7 @@
   if (isset($_POST[update1])) {
     $id_waka = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE %kulum%"));
     echo '<pre>';
-    print_r($id_waka);
+    var_dump($id_waka);
     echo '</pre>';
     
     if($_POST['as'] == 6 ){
