@@ -634,36 +634,34 @@
             $nilai_pengetahuan_parent = isset($dataParent['nilai_pengetahuan']) ? $dataParent['nilai_pengetahuan'] : 0;
             $nilai_keterampilan_parent = isset($dataParent['nilai_keterampilan']) ? $dataParent['nilai_keterampilan'] : 0;
 
-            // Tambahkan nilai ke query jika tersedia
+            // Tambahkan nilai dari input dengan nilai parent
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0 && $nilai_sikapInsert !== "") {
-                $nilai_sikap = $nilai_sikap_parent + $nilai_sikapInsert;
+                $nilai_sikap = $nilai_sikap_parent + $nilai_sikapInsert; // Penjumlahan
                 $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikap) . "', ";
             } else {
-                $nilai_sikap = $nilai_sikap_parent;
+                $nilai_sikap = $nilai_sikap_parent; // Jika input kosong, gunakan nilai parent saja
             }
 
             if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null && $nilai_pengetahuanInsert !== 0 && $nilai_pengetahuanInsert !== "") {
-                $nilai_pengetahuan = $nilai_pengetahuan_parent + $nilai_pengetahuanInsert;
+                $nilai_pengetahuan = $nilai_pengetahuan_parent + $nilai_pengetahuanInsert; // Penjumlahan
                 $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuan) . "', ";
             } else {
-                $nilai_pengetahuan = $nilai_pengetahuan_parent;
+                $nilai_pengetahuan = $nilai_pengetahuan_parent; // Jika input kosong, gunakan nilai parent saja
             }
 
             if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null && $nilai_keterampilanInsert !== 0 && $nilai_keterampilanInsert !== "") {
-                $nilai_keterampilan = $nilai_keterampilan_parent + $nilai_keterampilanInsert;
+                $nilai_keterampilan = $nilai_keterampilan_parent + $nilai_keterampilanInsert; // Penjumlahan
                 $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilan) . "', ";
             } else {
-                $nilai_keterampilan = $nilai_keterampilan_parent;
+                $nilai_keterampilan = $nilai_keterampilan_parent; // Jika input kosong, gunakan nilai parent saja
             }
 
-            // Hitung total berdasarkan nilai yang tersedia dan tambahkan nilai total dari parent jika diperlukan
-            $total_parent = isset($dataParent['total']) ? $dataParent['total'] : 0;
-            $total = $total_parent + round(($nilai_sikap + $nilai_pengetahuan + $nilai_keterampilan) / 3);
+            // Hitung total berdasarkan nilai yang tersedia
+            $total = round(($nilai_sikap + $nilai_pengetahuan + $nilai_keterampilan) / 3);
             $queryParts .= "total='" . mysql_real_escape_string($total) . "', ";
 
             // Menghapus koma terakhir jika ada query parts
             $queryParts = rtrim($queryParts, ', ');
-
 
         
             // Jika ada bagian query yang ditambahkan, jalankan query
