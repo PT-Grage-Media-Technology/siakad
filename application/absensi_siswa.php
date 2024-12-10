@@ -281,7 +281,7 @@
                             </tr>
                         </tbody>
                     </table>
-                     <a class='btn btn-success btn-xs' title='List Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$j[kodejdwl]&kd=$_GET[kd]&id=$d[kode_kelas]&tgl=$_GET[tgl]&jam=$_GET[jam]'><span class='glyphicon glyphicon-th'></span> List Bahan dan Tugas</a>
+                     <a class='btn btn-success btn-xs' title='List Bahan dan Tugas' href='index.php?view=bahantugas&act=listbahantugas&jdwl=$j[kodejdwl]&kd=$_GET[kd]&id=$d[kode_kelas]&tgl=$_GET[tgl]&jam=$_GET[jam]&kategori=remedial'><span class='glyphicon glyphicon-th'></span> List Bahan dan Tugas</a>
                     
                      <a class='btn btn-success btn-sm mb-2' title='Refleksi' href='index.php?view=forum&act=detailtopic&jdwl=$j[kodejdwl]&idtopic=$idtopic[id_forum_topic]&id_jawaban=$jawaban_refleksi[id_pertanyaan_penilaian]&id_journal=$_GET[id_journal]'>
                     <div class='d-flex flex-column align-items-center'>
