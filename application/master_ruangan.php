@@ -27,9 +27,9 @@
             </thead>
             <tbody>
               <?php
-              $tampil = mysql_query("SELECT * FROM rb_ruangan a 
+              $tampil = mysql_query("SELECT a.*, b.nama_gedung FROM rb_ruangan a 
                                                 JOIN rb_gedung b ON a.kode_gedung = b.kode_gedung 
-                                                ORDER BY a.kode_ruangan DESC");
+                                                ORDER BY a.kode_ruangan ASC");
               $no = 1;
               while ($r = mysql_fetch_array($tampil)) {
                 echo "<tr><td>$no</td>
@@ -98,8 +98,8 @@
   }
   echo "</select></td></tr>
                     <tr><th scope='row'>Nama Ruangan</th>        <td><input type='text' class='form-control' name='c' value='$s[nama_ruangan]'></td></tr>
-                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='text' class='form-control' name='d' value='$s[kapasitas_belajar]'></td></tr>
-                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='text' class='form-control' name='e' value='$s[kapasitas_ujian]'></td></tr>
+                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='number' class='form-control' name='d' value='$s[kapasitas_belajar]'></td></tr>
+                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='number' class='form-control' name='e' value='$s[kapasitas_ujian]'></td></tr>
                     <tr><th scope='row'>Keterangan</th>          <td><input type='text' class='form-control' name='f' value='$s[keterangan]'></td></tr>
                     <tr><th scope='row'>Aktif</th>                <td>";
   if ($s['aktif'] == 'Ya') {
@@ -125,6 +125,7 @@
   if (isset($_POST['tambah'])) {
     mysql_query("INSERT INTO rb_ruangan VALUES('$_POST[a]', '$_POST[b]', '$_POST[c]', '$_POST[d]', '$_POST[e]', '$_POST[f]', '$_POST[g]')");
     echo "<script>document.location='index.php?view=ruangan';</script>";
+    // echo "INSERT INTO rb_ruangan VALUES('$_POST[a]', '$_POST[b]', '$_POST[c]', '$_POST[d]', '$_POST[e]', '$_POST[f]', '$_POST[g]')";
   }
 
   echo "<div class='col-md-12'>
@@ -146,8 +147,8 @@
   }
   echo "</select></td></tr>
                     <tr><th scope='row'>Nama Ruangan</th>        <td><input type='text' class='form-control' name='c'></td></tr>
-                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='text' class='form-control' name='d'></td></tr>
-                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='text' class='form-control' name='e'></td></tr>
+                    <tr><th scope='row'>Kapasitas Belajar</th>   <td><input type='number' class='form-control' name='d'></td></tr>
+                    <tr><th scope='row'>Kapasitas Ujian</th>     <td><input type='number' class='form-control' name='e'></td></tr>
                     <tr><th scope='row'>Keterangan</th>          <td><input type='text' class='form-control' name='f'></td></tr>
                     <tr><th scope='row'>Aktif</th>               <td><input type='radio' name='g' value='Ya'> Ya
                                                                           <input type='radio' name='g' value='Tidak'> Tidak</td></tr>

@@ -41,17 +41,27 @@ if ($_GET[act] == '') {
           <input type="hidden" name='view' value='siswa'>
           <?php
           // Ambil angkatan dengan nilai terbesar
-          $angkatan_query = mysql_query("SELECT MAX(angkatan) as max_angkatan FROM rb_siswa");
+          $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
           $angkatan_data = mysql_fetch_array($angkatan_query);
-          $max_angkatan = $angkatan_data['max_angkatan'];
           ?>
-          <input type="number" name='angkatan' style='padding:3px' placeholder='Angkatan' value='<?php echo $max_angkatan; ?>'>
+          <select name='angkatan' style='padding:4px'>
+            <option value=''>- Pilih Angkatan -</option>
+            <?php
+            // Menampilkan opsi angkatan dari database
+            $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+            while ($angkatan = mysql_fetch_array($angkatan_query)) {
+              // Menambahkan logika untuk menjaga pilihan yang dipilih
+              $selected = ($_GET['angkatan'] == $angkatan['tahun_angkatan']) ? 'selected' : '';
+              echo "<option value='$angkatan[tahun_angkatan]' $selected>$angkatan[tahun_angkatan]</option>";
+            }
+            ?>
+          </select>
           <select name='kelas' style='padding:4px'>
             <?php
             echo "<option value=''>- Filter Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($_GET[kelas] == $k[kode_kelas]) {
+              if ($_GET['kelas'] == $k['kode_kelas']) {
                 echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
               } else {
                 echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
@@ -237,7 +247,19 @@ if ($_GET[act] == '') {
     echo "<option value='$a[kode_kelas]'>$a[nama_kelas]</option>";
   }
   echo "</select></td></tr>
-                              <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' name='af'></td></tr>
+                              <tr><th scope='row'>Angkatan</th> 
+<td>
+  <select class='form-control' name='af'>
+    <option value=''>- Pilih Angkatan -</option>";
+
+  $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+  while ($angkatan = mysql_fetch_array($angkatan_query)) {
+    echo "<option value='$angkatan[tahun_angkatan]'>$angkatan[tahun_angkatan]</option>";
+  }
+  echo "
+  </select>
+</td>
+</tr>
                               <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag'> 
                                                                             <option value='0' selected>- Pilih Jurusan -</option>";
   $jurusan = mysql_query("SELECT * FROM rb_jurusan");
@@ -520,7 +542,20 @@ if ($_GET[act] == '') {
     }
   }
   echo "</select></td></tr>
-                            <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' value='$s[angkatan]' name='af' $close></td></tr>
+                            <tr><th scope='row'>Angkatan</th> 
+<td>
+  <select class='form-control' name='af'>
+    <option value=''>- Pilih Angkatan -</option>";
+    $angkatan_query = mysql_query("SELECT * FROM rb_angkatan");
+    while ($angkatan = mysql_fetch_array($angkatan_query)) {
+      // Menambahkan logika untuk menjaga pilihan yang dipilih
+      $selected = ($angkatan['tahun_angkatan'] == $s['angkatan']) ? 'selected' : '';
+      echo "<option value='$angkatan[tahun_angkatan]' $selected>$angkatan[tahun_angkatan]</option>";
+    }
+   echo"
+  </select>
+</td>
+</tr>
                             <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag' $close> 
                                                                           <option value='0' selected>- Pilih Jurusan -</option>";
   $jurusan = mysql_query("SELECT * FROM rb_jurusan");
@@ -625,8 +660,11 @@ if ($_GET[act] == '') {
   } else {
     echo "<img class='img-thumbnail' style='width:155px' src='foto_siswa/$s[foto]'>";
   }
-  echo "</th></tr>
-                            <input type='hidden' value='$s[nipd]' name='id'>
+  if ($_SESSION[level] != 'kepala') {
+    echo "<a href='index.php?view=siswa&act=editsiswa&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
+  }
+  echo "</th>
+                            </tr>
                             <tr bgcolor=#e3e3e3><th width='130px' scope='row'>Nama Ayah</th> <td><input type='text' class='form-control' value='$s[nama_ayah]' name='ca'></td></tr>
                             <tr><th scope='row'>Tahun Lahir</th> <td><input type='text' class='form-control' value='$s[tahun_lahir_ayah]' name='cb'></td></tr>
                             <tr><th scope='row'>Pendidikan</th> <td><input type='text' class='form-control' value='$s[pendidikan_ayah]' name='cc'></td></tr>
