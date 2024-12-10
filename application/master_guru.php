@@ -260,7 +260,7 @@
       // var_dump($_FILES);
       echo '</pre>';
     }
-    exit;
+    // exit;
     $rtrw = explode('/', $_POST[al]);
     $rt = $rtrw[0];
     $rw = $rtrw[1];
