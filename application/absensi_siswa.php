@@ -630,9 +630,9 @@
             $queryParts = "";
 
             // Ambil nilai dari parent terlebih dahulu
-            $nilai_sikap_parent = $dataParent['nilai_sikap'] ?? 0;
-            $nilai_pengetahuan_parent = $dataParent['nilai_pengetahuan'] ?? 0;
-            $nilai_keterampilan_parent = $dataParent['nilai_keterampilan'] ?? 0;
+            $nilai_sikap_parent = isset($dataParent['nilai_sikap']) ? $dataParent['nilai_sikap'] : 0;
+            $nilai_pengetahuan_parent = isset($dataParent['nilai_pengetahuan']) ? $dataParent['nilai_pengetahuan'] : 0;
+            $nilai_keterampilan_parent = isset($dataParent['nilai_keterampilan']) ? $dataParent['nilai_keterampilan'] : 0;
 
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0 && $nilai_sikapInsert !== "") {
@@ -657,12 +657,13 @@
             }
 
             // Hitung total berdasarkan nilai yang tersedia dan tambahkan nilai total dari parent jika diperlukan
-            $total_parent = $dataParent['total'] ?? 0;
+            $total_parent = isset($dataParent['total']) ? $dataParent['total'] : 0;
             $total = $total_parent + round(($nilai_sikap + $nilai_pengetahuan + $nilai_keterampilan) / 3);
             $queryParts .= "total='" . mysql_real_escape_string($total) . "', ";
 
             // Menghapus koma terakhir jika ada query parts
             $queryParts = rtrim($queryParts, ', ');
+
 
         
             // Jika ada bagian query yang ditambahkan, jalankan query
