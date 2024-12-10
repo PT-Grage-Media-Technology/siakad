@@ -27,7 +27,7 @@
                             $kelas = mysql_query("SELECT * FROM rb_kelas");
                             while ($k = mysql_fetch_array($kelas)){
                               if ($_GET[id]==$k[kode_kelas]){
-                                echo "<option value='$k[kode_kelas]' selected>$k[kode_kelas] - $k[nama_kelas]</option>";
+                                echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
                               }else{
                                 echo "<option value='$k[kode_kelas]'>$k[kode_kelas] - $k[nama_kelas]</option>";
                               }
