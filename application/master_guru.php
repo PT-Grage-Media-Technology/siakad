@@ -430,8 +430,8 @@
     }
   }
   echo "</select></td></tr>
-                                  <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'></td></tr>
-                    <tr><th scope='row'>No Telpon</th>              <td><input type='hidden' class='form-control' value='$s[telepon]' name='ai'></td></tr>
+                                  <tr><th scope='row'>No Hp</th>                  <td><input type='text' class='form-control' value='$s[hp]' name='ah'>
+                    <td><input type='hidden' class='form-control' value='$s[telepon]' name='ai'></td></tr>
                     <tr><th scope='row'>Alamat Email</th>           <td><input type='text' class='form-control' value='$s[email]' name='aj'></td></tr>
                     <tr><th scope='row'>Alamat</th>                 <td><input type='text' class='form-control' value='$s[alamat_jalan]' name='ak'></td></tr>
                     <tr><th scope='row'>RT/RW</th>                  <td><input type='text' class='form-control' value='$s[rt]/$s[rw]' name='al'></td></tr>
