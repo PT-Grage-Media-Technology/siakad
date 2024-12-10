@@ -106,6 +106,8 @@ if ($_GET[act] == '') {
   cek_session_guru();
   $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
   $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
+  $j = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list where kodejdwl='$_GET[jdwl]' AND tanggal='$_GET[tgl]' AND jam_ke='$_GET[jam]'"));
+
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -127,10 +129,18 @@ if ($_GET[act] == '') {
               <div class='col-md-12'>
               <table class='table table-condensed table-hover'>
                   <tbody>
-                    <input type='hidden' name='id' value='$s[kodekelas]'>
+                    <input type='hidden' name='id' value='$s[kodekelas]'>123
                     <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
                     <tr><th scope='row'>Nama Kelas</th>               <td>$d[nama_kelas]</td></tr>
                     <tr><th scope='row'>Mata Pelajaran</th>           <td>$m[namamatapelajaran]</td></tr>
+                    <tr>
+                        <th scope='row'>Tujuan Pembelajaran</th>
+                        <td>$j[tujuan_pembelajaran]</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>Materi</th>
+                        <td>$j[materi]</td>
+                    </tr>
                   </tbody>
               </table>
               </div>
