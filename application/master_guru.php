@@ -243,8 +243,17 @@
     echo '</pre>';
     
     if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
-      var_dump($_POST['as']);
-      echo 'masuk';
+      // var_dump($_POST['as']);
+      // echo 'masuk';
+      $nip = $_POST['aa'] . rand(10, 99);
+
+      mysql_query("INSERT INTO rb_guru VALUES('$nip','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
+      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$_POST[as]','$_POST[ar]', 
+      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
+      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
+      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
+      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
+      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
     }else{
       echo '<pre>';
       var_dump($_POST);
