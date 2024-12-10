@@ -237,10 +237,14 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
-    echo '<pre>';
-    var_dump($_POST);
-    var_dump($_FILES);
-    echo '</pre>';
+    if($_POST['as'] == 6 ){
+      var_dump($_POST['as']);
+    }else{
+      echo '<pre>';
+      var_dump($_POST);
+      // var_dump($_FILES);
+      echo '</pre>';
+    }
     exit;
     $rtrw = explode('/', $_POST[al]);
     $rt = $rtrw[0];
