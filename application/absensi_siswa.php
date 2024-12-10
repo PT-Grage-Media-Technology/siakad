@@ -562,33 +562,38 @@
             
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
-
+        
+            // Ambil nilai dari parent terlebih dahulu
+            $nilai_sikap_parent = isset($dataParent['nilai_sikap']) ? $dataParent['nilai_sikap'] : 0;
+            $nilai_pengetahuan_parent = isset($dataParent['nilai_pengetahuan']) ? $dataParent['nilai_pengetahuan'] : 0;
+            $nilai_keterampilan_parent = isset($dataParent['nilai_keterampilan']) ? $dataParent['nilai_keterampilan'] : 0;
+        
             // Tambahkan nilai ke query jika tersedia
             if (isset($nilai_sikapInsert) && $nilai_sikapInsert !== null && $nilai_sikapInsert !== 0 && $nilai_sikapInsert !== "") {
-              $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikapInsert) . "', ";
-              $nilai_sikap = $nilai_sikapInsert;
+                $nilai_sikap = $nilai_sikap_parent + $nilai_sikapInsert; // Penjumlahan
+                $queryParts .= "nilai_sikap='" . mysql_real_escape_string($nilai_sikap) . "', ";
             } else {
-              $nilai_sikap = $dataParent['nilai_sikap'];
+                $nilai_sikap = $nilai_sikap_parent; // Gunakan nilai parent saja
             }
-
+        
             if (isset($nilai_pengetahuanInsert) && $nilai_pengetahuanInsert !== null && $nilai_pengetahuanInsert !== 0 && $nilai_pengetahuanInsert !== "") {
-              $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuanInsert) . "', ";
-              $nilai_pengetahuan = $nilai_pengetahuanInsert;
+                $nilai_pengetahuan = $nilai_pengetahuan_parent + $nilai_pengetahuanInsert; // Penjumlahan
+                $queryParts .= "nilai_pengetahuan='" . mysql_real_escape_string($nilai_pengetahuan) . "', ";
             } else {
-              $nilai_pengetahuan = $dataParent['nilai_pengetahuan'];
+                $nilai_pengetahuan = $nilai_pengetahuan_parent; // Gunakan nilai parent saja
             }
-
+        
             if (isset($nilai_keterampilanInsert) && $nilai_keterampilanInsert !== null && $nilai_keterampilanInsert !== 0 && $nilai_keterampilanInsert !== "") {
-              $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilanInsert) . "', ";
-              $nilai_keterampilan = $nilai_keterampilanInsert;
+                $nilai_keterampilan = $nilai_keterampilan_parent + $nilai_keterampilanInsert; // Penjumlahan
+                $queryParts .= "nilai_keterampilan='" . mysql_real_escape_string($nilai_keterampilan) . "', ";
             } else {
-              $nilai_keterampilan = $dataParent['nilai_keterampilan'];
+                $nilai_keterampilan = $nilai_keterampilan_parent; // Gunakan nilai parent saja
             }
-
+        
             // Hitung total berdasarkan nilai yang tersedia
             $total = round(($nilai_sikap + $nilai_pengetahuan + $nilai_keterampilan) / 3);
             $queryParts .= "total='" . mysql_real_escape_string($total) . "', ";
-        
+            
             // Menghapus koma terakhir jika ada query parts
             $queryParts = rtrim($queryParts, ', ');
         
@@ -598,20 +603,21 @@
                                 WHERE nisn='" . mysql_real_escape_string($nisn[$i]) . "' 
                                 AND kodejdwl='" . mysql_real_escape_string($kodejdwl) . "' 
                                 AND tanggal='" . mysql_real_escape_string($dataParent['tanggal']) . "'";
-        
+                
                 // Jalankan query
                 $updateAbsensiSiswaParent = mysql_query($updateQuery);
-        
+                
                 // Cek keberhasilan query
                 if ($updateAbsensiSiswaParent) {
-                    echo "Update berhasil.1";
+                    echo "Update berhasil.";
                 } else {
-                    echo "Update gagal: 2" . mysql_error();
+                    echo "Update gagal: " . mysql_error();
                 }
             } else {
                 echo "Tidak ada data yang perlu diupdate.";
             }
         }
+      
       
 
 
