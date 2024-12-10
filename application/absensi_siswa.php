@@ -467,7 +467,7 @@
       }
       
       if(!$j['id_parent_journal']){
-          echo "<td>$a[total]</td>";
+        echo "<td>" . (isset($a['total']) && $a['total'] !== '' ? $a['total'] : 0) . "</td>";
       }
 
     // Kehadiran
