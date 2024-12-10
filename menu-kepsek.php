@@ -66,9 +66,14 @@
       });
 
       // Toggle dropdown yang diklik
-      parent.classList.toggle('active');
       const menu = parent.querySelector('.treeview-menu');
-      menu.style.display = parent.classList.contains('active') ? 'block' : 'none'; // Menampilkan atau menyembunyikan menu
+      if (parent.classList.contains('active')) {
+        parent.classList.remove('active');
+        menu.style.display = 'none'; // Menyembunyikan menu
+      } else {
+        parent.classList.add('active');
+        menu.style.display = 'block'; // Menampilkan menu
+      }
     });
   });
 </script>
