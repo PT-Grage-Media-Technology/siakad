@@ -2,12 +2,11 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <?php
-        if($_SESSION[level] != 'kepala'){ ?>
+        
    
       <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
       title='Tambah Jadwal'>Tambah Jadwal</a>
-        <?php } ?>
+       
            
         <?php
         // Ambil tahun akademik yang terbaru
@@ -76,7 +75,10 @@
                 <th>Nip</th>
                 <th>Hari</th>
                 <th>Guru</th>
+                <?php
+        if($_SESSION[level] != 'kepala'){ ?>
                 <th>Action</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -91,10 +93,13 @@
                                 <td>$r[nip]</td>
                                 <td>$r[hari]</td>
                                 <td>$r[nama_guru]</td>";
-                          echo "<td style='width:80px !important'><center>
-                                                  <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
-                                                  <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
-                                                </center></td>";
+                                if($_SESSION[level] != 'kepala'){
+
+                                  echo "<td style='width:80px !important'><center>
+                                                    <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=jadwalgurupiket&act=edit&nip=$r[nip]'><span class='glyphicon glyphicon-pencil'></span> Edit</a>
+                                                    <a class='btn btn-danger btn-xs' title='Hapus Jadwal' href='index.php?view=jadwalgurupiket&act=delete&nip=$r[nip]' onclick=\"return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')\"><span class='glyphicon glyphicon-trash'></span> Delete</a>
+                                                  </center></td>";
+                                }
                   echo "</tr>";
                   $no++;
                 }
