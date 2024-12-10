@@ -150,45 +150,7 @@
                 </table>
             </div>
 
-            
-
-
-
-            <!-- <script>
-                // Script untuk menangani pengisian nilai lama di modal
-                document.addEventListener('DOMContentLoaded', function () {
-                    const editButtons = document.querySelectorAll('.edit-kktp-btn');
-                    const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-                    const modalKktp = document.getElementById('modalKktp');
-
-                    editButtons.forEach(button => {
-                        button.addEventListener('click', function () {
-                            console.log("ds");
-                            const kodejdwl = this.getAttribute('data-id');
-                            const kktp = this.getAttribute('data-kktp');
-
-                            modalKodeJdwl.value = kodejdwl;
-                            modalKktp.value = kktp;
-                        });
-                    });
-                });
-
-                //memastikan edit kktp
-                // document.addEventListener('DOMContentLoaded', function () {
-                //     const saveButton = document.querySelector('.btn-primary');
-                //     const modalKodeJdwl = document.getElementById('modalKodeJdwl');
-                //     const modalKktp = document.getElementById('modalKktp');
-
-                //     saveButton.addEventListener('click', function (e) {
-                //         if (!modalKodeJdwl.value || !modalKktp.value) {
-                //             e.preventDefault();
-                //             alert('Pastikan semua field diisi!');
-                //         }
-                //     });
-                // });
-
-            </script> -->
-<?php
+            <?php
 // Cek apakah form disubmit
 if (isset($_POST['kktp'])) {
     $coba = mysql_query("UPDATE rb_jadwal_pelajaran SET kktp='{$_POST['kktp']}' WHERE kodejdwl='{$_POST['kodejdwl']}'");
@@ -204,7 +166,7 @@ if (isset($_POST['kktp'])) {
     </div>
 </div>
 
-<div class="col-xs-12">
+<div class="col-12">
     <div class="box">
         <div class="box-header">
 
