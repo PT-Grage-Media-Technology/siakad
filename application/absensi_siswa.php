@@ -629,8 +629,8 @@
             // Variabel untuk menambahkan bagian-bagian query
             $queryParts = "";
 
-            var_dump($dataParent['nilai_pengetahuan']);
-            exit;
+            // var_dump($dataParent['nilai_pengetahuan']);
+            // exit;
 
             // Ambil nilai dari parent terlebih dahulu
             $nilai_sikap_parent = isset($dataParent['nilai_sikap']) ? $dataParent['nilai_sikap'] : 0;
