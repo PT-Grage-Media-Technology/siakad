@@ -46,7 +46,13 @@
       <a href='#'><i class='fa fa-user'></i> <span>Modul Mengajar</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
-        $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl=$_GET[id]"));
+        if ($_GET['view'] == 'journalguru') {
+          $idjr = $_GET['id'];
+        } else {
+          $idjr = $_GET['jdwl'];
+        }
+
+        $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl=$idjr"));
         if (
           // isset($_GET['act']) && $_GET['act'] === 'lihat' &&
           isset($_GET['id']) &&
@@ -54,11 +60,6 @@
           ($_GET['view'] == 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
       ) {
         // $idjr = $mapel['kodejdwl'];
-        if ($_GET['view'] == 'journalguru') {
-          $idjr = $_GET['id'];
-        } else {
-          $idjr = $_GET['jdwl'];
-        }
       
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
