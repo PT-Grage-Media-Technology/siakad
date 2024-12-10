@@ -51,11 +51,11 @@
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
       <li><a href='index.php?view=raportsas&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
-      <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
       ";
     } 
-      echo"</ul>
+    echo"</ul>
     </li>";
+    // <li><a href='index.php?view=raport&act=listsiswasikap&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai Raport</a></li>
     
 
     // Menu Guru Piket

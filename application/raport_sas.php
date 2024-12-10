@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$_SESSION['akses_agenda'] = true;
 if ($_GET[act]==''){
 // cek_session_admin();
 cek_session_guru();
