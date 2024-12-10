@@ -41,13 +41,13 @@
     }
 
     // Modul Mengajar
-    $activeMengajar = ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' ||$_GET['view'] == 'raportsas' || $_GET['view'] == 'raport' )  ? 'active' : '';
+    $activeMengajar = ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport' )  ? 'active' : '';
     echo "<li class='treeview $activeMengajar'>
       <a href='#'><i class='fa fa-user'></i> <span>Modul Mengajar</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
         $mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl=$_GET[id]"));
-    if (isset($_GET['act']) && $_GET['act'] === 'lihat' && $_GET['act'] === 'listsiswa' && isset($_GET['id']) && isset($_GET['tahun']) ) {
+    if (isset($_GET['act']) && $_GET['act'] === 'lihat' && isset($_GET['id']) && isset($_GET['tahun']) ) {
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
       <li><a href='index.php?view=raportsas&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
