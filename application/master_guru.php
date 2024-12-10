@@ -237,7 +237,7 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
-    $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk"));
+    $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
     echo '<pre>';
     var_dump($id_waka);
     echo '</pre>';
