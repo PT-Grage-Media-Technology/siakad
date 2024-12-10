@@ -106,19 +106,6 @@
                            '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
                            '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
     }
-    $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
-    // $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%guru%'"));
-
-    if($_POST['as'] == $id_ptk){
-      // 2 adalah id_jenis_ptk guru mapel
-      mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','2','$_POST[ar]', 
-      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-    }
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[aa] . "';</script>";
   }
 
@@ -137,7 +124,7 @@
                     <tr><th scope='row'>Password</th>               <td><input type='text' class='form-control' name='ab'></td></tr>
                     <tr><th scope='row'>Nama Lengkap</th>           <td><input type='text' class='form-control' name='ac'></td></tr>
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' name='ad'></td></tr>
-                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='date' class='form-control' name='ae'></td></tr>
+                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
                                                                           <option value='0' selected>- Pilih Jenis Kelamin -</option>";
   $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
@@ -163,7 +150,7 @@
                     <tr><th scope='row'>Kode Pos</th>               <td><input type='text' class='form-control' name='ap'></td></tr>
                     <tr><th scope='row'>NUPTK</th>                  <td><input type='text' class='form-control' name='aq'></td></tr>
                     <tr><th scope='row'>Bidang Studi</th>           <td><input type='text' class='form-control' name='ar'></td></tr>
-                    <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as'> 
+                    <tr><th scope='row'>Jenis PTK</th>              <td><select class='form-control' name='as' id='id_jenis_ptk'> 
                                                                           <option value='0' selected>- Pilih Jenis PTK -</option>";
   $ptk = mysql_query("SELECT * FROM rb_jenis_ptk");
   while ($a = mysql_fetch_array($ptk)) {
@@ -208,7 +195,7 @@
                   <tbody>
                     <tr><th width='150px' scope='row'>NIK</th>      <td><input type='text' class='form-control' name='ba'></td></tr>
                     <tr><th scope='row'>SK CPNS</th>                <td><input type='text' class='form-control' name='bb'></td></tr>
-                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='date' class='form-control' name='bc'></td></tr>
+                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='text' class='form-control' name='bc'></td></tr>
                     <tr><th scope='row'>SK Pengangkat</th>          <td><input type='text' class='form-control' name='bd'></td></tr>
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' name='bf'></td></tr>
@@ -250,6 +237,21 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
+    $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
+    echo '<pre>';
+    var_dump($id_waka);
+    echo '</pre>';
+    
+    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
+      var_dump($_POST['as']);
+      echo 'masuk';
+    }else{
+      echo '<pre>';
+      var_dump($_POST);
+      // var_dump($_FILES);
+      echo '</pre>';
+    }
+    exit;
     $rtrw = explode('/', $_POST[al]);
     $rt = $rtrw[0];
     $rw = $rtrw[1];
@@ -258,6 +260,7 @@
     $filenamee = date("YmdHis") . '-' . basename($_FILES['ax']['name']);
     $uploadfile = $dir_gambar . $filenamee;
     if ($filename != '') {
+      $waka = $_POST['as'];
       if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
         mysql_query("UPDATE rb_guru SET 
                            nip          = '$_POST[aa]',
@@ -361,21 +364,6 @@
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
     }
-     $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%'"));
-    // $id_ptk = mysql_fetch_array(mysql_query("SELECT id_jenis_ptk FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%guru%'"));
-    var_dump($id_ptk);
-    echo $_POST['as'];
-    exit;
-    if($_POST['as'] == $id_ptk){
-      // 2 adalah id_jenis_ptk guru mapel
-      mysql_query("INSERT INTO rb_guru VALUES('$_POST[aa]','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','2','$_POST[ar]', 
-      '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
-      '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
-      '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
-      '$_POST[aw]','$_POST[bk]','$_POST[bl]','$_POST[bm]','$_POST[bn]','$_POST[bo]','$_POST[bp]',
-      '$_POST[bq]','$_POST[br]','$_POST[bs]','$_POST[bt]','$_POST[bw]','$_POST[bu]','')");
-    }
     echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
   }
 
@@ -410,7 +398,7 @@
                     <tr><th scope='row'>Password</th>               <td><input type='text' class='form-control' value='$s[password]' name='ab'></td></tr>
                     <tr><th scope='row'>Nama Lengkap</th>           <td><input type='text' class='form-control' value='$s[nama_guru]' name='ac'></td></tr>
                     <tr><th scope='row'>Tempat Lahir</th>           <td><input type='text' class='form-control' value='$s[tempat_lahir]' name='ad'></td></tr>
-                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='date' class='form-control' value='$s[tanggal_lahir]' name='ae'></td></tr>
+                    <tr><th scope='row'>Tanggal Lahir</th>          <td><input type='text' class='form-control' value='$s[tanggal_lahir]' name='ae'></td></tr>
                     <tr><th scope='row'>Jenis Kelamin</th>          <td><select class='form-control' name='af'> 
                                                                           <option value='0' selected>- Pilih Jenis Kelamin -</option>";
   $jk = mysql_query("SELECT * FROM rb_jenis_kelamin");
@@ -506,7 +494,7 @@
                   <tbody>
                     <tr><th width='150px' scope='row'>NIK</th>      <td><input type='text' class='form-control' value='$s[nik]' name='ba'></td></tr>
                     <tr><th scope='row'>SK CPNS</th>                <td><input type='text' class='form-control' value='$s[sk_cpns]' name='bb'></td></tr>
-                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='date' class='form-control' value='$s[tanggal_cpns]' name='bc'></td></tr>
+                    <tr><th scope='row'>Tanggal CPNS</th>           <td><input type='text' class='form-control' value='$s[tanggal_cpns]' name='bc'></td></tr>
                     <tr><th scope='row'>SK Pengangkat</th>          <td><input type='text' class='form-control' value='$s[sk_pengangkatan]' name='bd'></td></tr>
                     <tr><th scope='row'>TMT Pengangkat</th>         <td><input type='text' class='form-control' value='$s[tmt_pengangkatan]' name='be'></td></tr>
                     <tr><th scope='row'>Lemb. Pengangkat</th>       <td><input type='text' class='form-control' value='$s[lembaga_pengangkatan]' name='bf'></td></tr>
@@ -853,4 +841,26 @@
     document.getElementById('cancelButton').onclick = function() {
         history.back();
     };
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#id_jenis_ptk").change(function () {
+            const selectedValue = $(this).val(); // Ambil value yang dipilih
+
+            // Kirim data menggunakan AJAX
+            $.ajax({
+                url: "", // Kosongkan karena di file yang sama
+                type: "POST",
+                data: { id_jenis_ptk: selectedValue },
+                success: function (response) {
+                    console.log("Respons dari PHP:", response); // Lihat hasilnya di console
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                },
+            });
+        });
+    });
 </script>
