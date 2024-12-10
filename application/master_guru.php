@@ -242,9 +242,9 @@
     var_dump($id_waka);
     echo '</pre>';
     
-    if($_POST['as'] == 6 ){
+    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
       var_dump($_POST['as']);
-      echo $id_waka;
+      echo 'masuk';
     }else{
       echo '<pre>';
       var_dump($_POST);
