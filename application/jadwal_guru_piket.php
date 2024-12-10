@@ -2,12 +2,11 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <?php
-        if($_SESSION[level] != 'kepala'){ ?>
+        
    
       <a class='btn btn-primary pull-right' href='index.php?view=jadwalgurupiket&act=tambah'
       title='Tambah Jadwal'>Tambah Jadwal</a>
-        <?php } ?>
+       
            
         <?php
         // Ambil tahun akademik yang terbaru
@@ -76,7 +75,10 @@
                 <th>Nip</th>
                 <th>Hari</th>
                 <th>Guru</th>
+                <?php
+        if($_SESSION[level] != 'kepala'){ ?>
                 <th>Action</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
