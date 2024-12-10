@@ -81,6 +81,7 @@
 } elseif ($_GET[act] == 'tambahguru') {
   if (isset($_POST[tambah])) {
     $id_waka = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%kulum%' "));
+    $id_kesiswaan = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%siswaan%' "));
     $id_mapel = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%mapel%' "));
     // echo '<pre>';
     // var_dump($id_waka);
@@ -88,7 +89,7 @@
     // echo '</pre>';
     // exit;
     
-    if($_POST['as'] == $id_waka['id_jenis_ptk'] ){
+    if(($_POST['as'] == $id_waka['id_jenis_ptk']) || ($_POST['as'] == $id_kesiswaan['id_jenis_ptk'])  ){
       // var_dump($_POST['as']);
       // echo 'masuk';
       $nip = $_POST['aa'] . rand(10, 99);
