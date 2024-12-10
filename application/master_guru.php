@@ -251,7 +251,7 @@
       $nip = $_POST['aa'] . rand(10, 99);
 
       mysql_query("INSERT INTO rb_guru VALUES('$nip','$_POST[ab]','$_POST[ac]','$_POST[af]','$_POST[ad]',
-      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$id_mapel','$_POST[ar]', 
+      '$_POST[ae]','$_POST[ba]','$_POST[bv]','$_POST[aq]','$_POST[au]','$id_mapel[id_jenis_ptk]','$_POST[ar]', 
       '$_POST[ag]','$_POST[ak]','$rt','$rw','$_POST[am]','$_POST[an]','$_POST[ao]','$_POST[ap]',
       '$_POST[ai]','$_POST[ah]','$_POST[aj]','$_POST[at]','$_POST[av]','$_POST[bb]','$_POST[bc]', 
       '$_POST[bd]','$_POST[be]','$_POST[bf]','$_POST[bg]','$_POST[bi]','$_POST[bh]','$_POST[bj]',
