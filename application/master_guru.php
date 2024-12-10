@@ -593,10 +593,10 @@
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
-  if ($_SESSION[level] != 'kepala') {
+  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser') {
     echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
-    echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   }
+  echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   echo "
                       </tr>
 
