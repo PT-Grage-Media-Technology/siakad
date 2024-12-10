@@ -51,7 +51,7 @@
           // isset($_GET['act']) && $_GET['act'] === 'lihat' &&
           isset($_GET['id']) &&
           isset($_GET['tahun']) &&
-          ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
+          ($_GET['view'] == 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
       ) {
       echo "
       <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$_GET['id']}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
