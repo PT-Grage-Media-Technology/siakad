@@ -55,9 +55,9 @@
       ) {
         // $idjr = $mapel['kodejdwl'];
         if ($_GET['view'] == 'journalguru') {
-          $idjr = $_GET['kodejdwl'];
-        } else {
           $idjr = $_GET['id'];
+        } else {
+          $idjr = $_GET['jdwl'];
         }
       
       echo "
