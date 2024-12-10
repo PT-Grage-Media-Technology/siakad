@@ -631,7 +631,7 @@
 
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>";
-  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
+  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser' && $_SESSION[is_kurikulum] == true && $_SESSION[is_kesiswaan] == true) {
     echo "
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
