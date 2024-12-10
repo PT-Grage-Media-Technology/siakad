@@ -15,7 +15,7 @@
     <li class="header" style='color:#fff; text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU
       <?php echo $level; ?></li>
     <li><a href="index.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-    <li class="treeview">
+    <li class="treeview active">
       <a href="#"><i class="fa fa-user"></i> <span>Data Pengguna</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
@@ -23,7 +23,7 @@
         <li><a href="index.php?view=wakilkepala"><i class="fa fa-circle-o"></i> Data Kepala Sekolah</a></li>
       </ul>
     </li>
-    <li class="treeview">
+    <li class="treeview active">
       <a href="#"><i class="fa fa-th"></i> <span>Data Master</span><i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
         <li><a href="index.php?view=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
@@ -31,21 +31,15 @@
         <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-circle-o"></i> Data Jadwal Pelajaran</a></li>
       </ul>
     </li>
-    <li class="treeview">
+    <li class="treeview active">
       <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i
           class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <!-- <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi
-              Siswa</span></a></li> -->
-        <!-- <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li>
-                <li><a href="index.php?view=absenguru"><i class="fa fa-circle-o"></i> Absensi Guru</a></li> -->
         <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-th-large"></i> <span>Rekap Absensi Siswa</span></a>
         </li>
         <li><a href="index.php?view=rekapguru"><i class="fa fa-address-book-o"></i> <span>Rekap Absensi Guru</span></a>
         </li>
         <li><a href="index.php?view=jadwalgurupiket"><i class="fa fa-tags"></i><span>Jadwal Guru Piket</span></a></li>
-
-
       </ul>
     </li>
     <li><a href="index.php?view=bahantugas"><i class="fa fa-file"></i><span>Bahan dan Tugas</span></a></li>
