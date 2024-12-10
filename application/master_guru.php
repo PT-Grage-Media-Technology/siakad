@@ -237,6 +237,11 @@
             </div>";
 } elseif ($_GET[act] == 'editguru') {
   if (isset($_POST[update1])) {
+    echo '<pre>';
+    var_dump($_POST);
+    var_dump($_FILES);
+    echo '</pre>';
+    exit;
     $rtrw = explode('/', $_POST[al]);
     $rt = $rtrw[0];
     $rw = $rtrw[1];
@@ -246,8 +251,6 @@
     $uploadfile = $dir_gambar . $filenamee;
     if ($filename != '') {
       $waka = $_POST['as'];
-       echo $waka;
-
       if (move_uploaded_file($_FILES['ax']['tmp_name'], $uploadfile)) {
         mysql_query("UPDATE rb_guru SET 
                            nip          = '$_POST[aa]',
@@ -351,9 +354,7 @@
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
     }
-    // echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
-    echo $waka;
-
+    echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
   }
 
   $detail = mysql_query("SELECT * FROM rb_guru where nip='$_GET[id]'");
