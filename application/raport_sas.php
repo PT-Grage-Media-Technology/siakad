@@ -119,7 +119,6 @@ cek_session_guru();
 }elseif($_GET[act]=='listsiswa'){
 cek_session_guru();
     if (isset($_POST[simpan])){
-      var_dump($_POST['simpan']);
         $jumls = mysql_num_rows(mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]'"));
         for ($ia=1; $ia<=$jumls; $ia++){
           $a  = $_POST['a'.$ia];
@@ -134,8 +133,10 @@ cek_session_guru();
             }
           }
         }
+      var_dump($_POST['simpan']);
+
         // echo "INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','".date('Y-m-d H:i:s')."')";
-        echo "<script>document.location='index.php?view=raportsas&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
+        // echo "<script>document.location='index.php?view=raportsas&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[id]&tahun=$_GET[tahun]';</script>";
     }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
