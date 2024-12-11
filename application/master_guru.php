@@ -594,8 +594,8 @@
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
-  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser' && $_SESSION[is_kurikulum] == true && $_SESSION[is_kesiswaan] == true) {
-    echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
+  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser' && ($_SESSION[is_kurikulum] == true || $_SESSION[is_kesiswaan] == true)) {
+      echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
   }
   echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
   echo "
