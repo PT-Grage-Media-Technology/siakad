@@ -249,6 +249,10 @@
                   }else{
                     echo"<td>no data</td>";
                   }
+
+                  if ($header_count == 0) {
+                    echo "<td>Tidak ada data</td>"; // Menampilkan data default
+                  }
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
