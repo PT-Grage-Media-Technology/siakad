@@ -267,7 +267,7 @@ cek_session_siswa();
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
                 $nilaiTertinggi = max($nilaiArray);
-                echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
+                echo isset($nilaiTertinggi) ? $nilaiTertinggi : 0 ; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
