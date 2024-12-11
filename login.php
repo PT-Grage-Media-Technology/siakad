@@ -92,7 +92,7 @@ if (isset($_POST['login'])) {
   $hitungsiswa = mysql_num_rows($siswa);
 
   var_dump($_POST['a']);
-  var_dump($passlain);
+  var_dump($_POST['b']);
   var_dump($admin);
   exit;
 
