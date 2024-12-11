@@ -92,6 +92,7 @@ if (isset($_POST['login'])) {
   $hitungsiswa = mysql_num_rows($siswa);
 
   var_dump($admin);
+  exit;
 
   if (true) {
     $r = mysql_fetch_array($admin);
