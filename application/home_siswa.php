@@ -191,17 +191,17 @@
                             <td>{$d['namamatapelajaran']}</td>
                         </tr>
                         <tr>
-                            <th scope='row'>Materi</th>
-                            <td>{$d['materi']}</td>
+                            <th scope='row'>Tujuan Pembelajaran</th>
+                            <td>{$d['tujuan_pembelajaran']}</td>
                         </tr>
                         <tr>
-                            <th scope='row'>Keterangan</th>
+                            <th scope='row'>Materi</th>
                             <td>";
 
-  if (filter_var($d['keterangan'], FILTER_VALIDATE_URL)) {
-    echo "<a href='{$d['keterangan']}' target='_blank'>{$d['keterangan']}</a>";
+  if (filter_var($d['materi'], FILTER_VALIDATE_URL)) {
+    echo "<a href='{$d['materi']}' target='_blank'>{$d['materi']}</a>";
   } else {
-    echo $d['keterangan'];
+    echo $d['materi'];
   }
 
   echo "
