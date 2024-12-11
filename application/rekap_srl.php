@@ -249,6 +249,9 @@ cek_session_siswa();
                     <input type='hidden' value='$r[nisn]' name='nisn[$no]'>
                   </td>
                   <td>$kk[kktp]</td>";
+                  if($header_count == 0){
+                    echo "<td>Tidak ada </td>"; 
+                  }
 
                 // Loop untuk nilai absensi
                 for ($i = 0; $i < $header_count; $i++) {
