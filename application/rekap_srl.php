@@ -150,6 +150,7 @@
                     mysql_query($queryInsert);
                   }
 
+                  // ini adalah nilai rata rata sumatif S
                   echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
                   echo "0";
@@ -290,8 +291,9 @@
                   //                           NOW())";
                   //   mysql_query($queryInsert);
                   // }
+                  
+                  echo isset($rataRata) && $rataRata !== null ? round($rataRata, 2) : '0';
 
-                  echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
                   echo "0";
                 }
