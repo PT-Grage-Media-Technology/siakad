@@ -202,15 +202,21 @@
               </tr> 
               <tr>";
             
-                // $headerCells = ""; // Menyimpan sel header
-                while ($header = mysql_fetch_array($headers)) {
-                  $tanggalArray[] = $header['tanggal'];
-                  echo $header_count > 0 
+              // Menyimpan sel header
+            while ($header = mysql_fetch_array($headers)) {
+              $tanggalArray[] = $header['tanggal'];
+              echo $header_count > 0 
                   ? "<th>{$header['tujuan_pembelajaran']}</th>" 
-                  : "<th colspan='0'>Tidak ada data</th>";
+                  : "<th>Tidak ada data</th>"; // Menampilkan data default saat header_count = 0
 
-                  $headerCells[] = $header['tujuan_pembelajaran']; 
-                }
+              $headerCells[] = $header['tujuan_pembelajaran'];
+            }
+
+            // Jika header_count 0, tampilkan data default di luar loop
+            if ($header_count == 0) {
+              echo "<th>Tidak ada data</th>"; // Menampilkan data default
+            }
+
 
               echo"</tr>
             </thead>
@@ -239,8 +245,8 @@
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count < 1){
-                    echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                  if($header_count > 0){
+                    echo "<td>$totalAbsensi</td>";
                   }else{
                     echo"<td>no data</td>";
                   }
