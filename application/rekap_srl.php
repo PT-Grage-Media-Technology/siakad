@@ -292,7 +292,7 @@
                   //   mysql_query($queryInsert);
                   // }
                   
-                  echo isset($rataRata) && $rataRata !== null ? round($rataRata, 2) : '0';
+                  echo isset($rataRata) && $rataRata !== null ? round($rataRata, 2) : 'Data tidak tersedia';
 
                 } else {
                   echo "0";
