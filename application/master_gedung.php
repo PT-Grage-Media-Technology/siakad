@@ -88,7 +88,7 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                       <input type='hidden' name='id' value='$s[kode_gedung]'>
-                      <tr><th width='120px' scope='row'>Kode Gedung</th> <td><input type='text' class='form-control' name='a' value='$s[id_gedung]'> </td></tr>
+                      <tr><th width='120px' scope='row'>Kode Gedung</th> <td><input type='text' class='form-control' name='a' value='$s[kode_gedung]'> </td></tr>
                       <tr><th scope='row'>Nama Gedung</th>          <td><input type='text' class='form-control' name='b' value='$s[nama_gedung]'></td></tr>
                       <tr><th scope='row'>Jumlah Lantai</th>        <td><input type='text' class='form-control' name='c' value='$s[jumlah_lantai]'></td></tr>
                       <tr><th scope='row'>Panjang</th>              <td><input type='text' class='form-control' name='d' value='$s[panjang]'></td></tr>
@@ -156,3 +156,17 @@
 }
 
 ?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto;
+    /* Hanya aktifkan scroll horizontal jika diperlukan */
+  }
+
+  @media (min-width: 768px) {
+    .table-responsive {
+      overflow-x: visible;
+      /* Nonaktifkan scroll horizontal di desktop */
+    }
+  }
+</style>
