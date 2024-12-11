@@ -205,10 +205,10 @@
                 // $headerCells = ""; // Menyimpan sel header
                 while ($header = mysql_fetch_array($headers)) {
                   $tanggalArray[] = $header['tanggal'];
-                  if ($header_count > 0) {
-                  echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  if ($header_count = 0) {
+                    echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
                   }else {
-                    echo "<th colspan='0'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
+                  echo "<th>{$header['tujuan_pembelajaran']}</th>";
                 }
                   $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
