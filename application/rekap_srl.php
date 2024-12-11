@@ -202,15 +202,21 @@
               </tr> 
               <tr>";
             
-                // $headerCells = ""; // Menyimpan sel header
-                while ($header = mysql_fetch_array($headers)) {
-                  $tanggalArray[] = $header['tanggal'];
-                  echo $header_count > 0 
+              // Menyimpan sel header
+            while ($header = mysql_fetch_array($headers)) {
+              $tanggalArray[] = $header['tanggal'];
+              echo $header_count > 0 
                   ? "<th>{$header['tujuan_pembelajaran']}</th>" 
-                  : "<th colspan='0'>Tidak ada data</th>";
+                  : "<th>Tidak ada data</th>"; // Menampilkan data default saat header_count = 0
 
-                  $headerCells[] = $header['tujuan_pembelajaran']; 
-                }
+              $headerCells[] = $header['tujuan_pembelajaran'];
+            }
+
+            // Jika header_count 0, tampilkan data default di luar loop
+            if ($header_count == 0) {
+              echo "<th>Tidak ada data</th>"; // Menampilkan data default
+            }
+
 
               echo"</tr>
             </thead>
