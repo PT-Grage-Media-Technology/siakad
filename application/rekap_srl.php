@@ -237,20 +237,33 @@
                   </td>
                   <td>$kk[kktp]</td>";
 
-                // Loop untuk nilai absensi
+               // Loop untuk nilai absensi
                 for ($i = 0; $i < $header_count; $i++) {
-                  $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                       WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "' 
-                                       AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
+                  // Query untuk mendapatkan data absensi
+                  $query = "SELECT * FROM rb_absensi_siswa 
+                            WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                            AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "' 
+                            AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' 
+                            ORDER BY tanggal ASC";
+                  
+                  // Eksekusi query
+                  $abs = mysql_fetch_array(mysql_query($query));
+                  
+                  // Debugging: periksa apakah $abs berisi data
+                  // var_dump($abs); // Uncomment untuk melihat hasil query
+                  
+                  // Menambahkan total absensi jika ada data
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count > 0){
-                    echo "<td>$totalAbsensi</td>";
-                  }else{
-                    echo"<td>no data</td>";
+                  
+                  // Cek nilai $header_count dan tampilkan total absensi
+                  if ($header_count > 0) {
+                      echo "<td>$totalAbsensi</td>";
+                  } else {
+                      echo "<td>no data</td>";
                   }
                 }
+
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
