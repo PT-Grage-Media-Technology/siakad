@@ -94,7 +94,7 @@
       <ul class="treeview-menu">
         <li><a href="index.php?view=raportuts"><i class="fa fa-circle-o"></i> Data Nilai STS</a></li>
         <li><a href="index.php?view=raportcetakuts"><i class="fa fa-circle-o"></i> Cetak Raport STS</a></li>
-        <li><a href="index.php?view=capaianhasilbelajar"><i class="fa fa-circle-o"></i> Data Capaian Belajar</a></li>
+        <!-- <li><a href="index.php?view=capaianhasilbelajar"><i class="fa fa-circle-o"></i> Data Capaian Belajar</a></li> -->
         <li><a href="index.php?view=extrakulikuler"><i class="fa fa-circle-o"></i> Data Ekstrakulikuler</a></li>
         <li><a href="index.php?view=prestasi"><i class="fa fa-circle-o"></i> Data Prestasi</a></li>
         <li><a href="index.php?view=raport"><i class="fa fa-circle-o"></i> Data Nilai Raport</a></li>
