@@ -594,7 +594,7 @@
                       <!-- Image for Desktop View -->
                       <tr class='d-none d-md-table-row'> <!-- Hanya tampil di perangkat desktop -->
                         ";
-  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser' && ($_SESSION[is_kurikulum] == true || $_SESSION[is_kesiswaan] == true)) {
+  if ($_SESSION[level] != 'kepala' && $_SESSION[level] != 'superuser') {
       echo "<a href='index.php?view=guru&act=izin' class='btn btn-primary btn-block'>Izin</a>";
   }
   echo "<a href='index.php?view=guru&act=editguru&id=$_GET[id]' class='btn btn-success btn-block'>Edit Profile</a>";
@@ -631,7 +631,7 @@
 
               <div class='col-md-5 col-sm-12'>
                 <div class='table-responsive'>";
-  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser' && $_SESSION[is_kurikulum] == true && $_SESSION[is_kesiswaan] == true) {
+  if ($_SESSION['level'] != 'kepala' && $_SESSION['level'] != 'superuser') {
     echo "
                 <!-- Modal -->
                 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
