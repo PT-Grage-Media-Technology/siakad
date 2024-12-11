@@ -206,11 +206,11 @@ cek_session_siswa();
                 $headers = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
-                if ($header_count > 0) {
+                // if ($header_count > 0) {
                     echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
-                } else {
+                // } else {
                     echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
-                }
+                // }
                 ?>
                 <th rowspan="2">Nilai Tertinggi</th>
                 <th rowspan="2">Nilai Terendah</th>
@@ -224,6 +224,11 @@ cek_session_siswa();
                   $tanggalArray[] = $header['tanggal'];
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
                   $headerCells[] = $header['tujuan_pembelajaran']; 
+                }
+
+                if($header_count == 0){
+                  echo "<th>tidak ada tujuan</th>";
+
                 }
                 ?>
               </tr>
