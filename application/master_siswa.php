@@ -472,7 +472,7 @@ if ($_GET[act] == '') {
                                pekerjaan_wali       = '$_POST[cr]',
                                penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[id]'");
 
-    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[id] . "';</script>";
+    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[ab] . "';</script>";
   }
   if ($_SESSION[level] == 'siswa') {
     $nisn = $_SESSION[id];
