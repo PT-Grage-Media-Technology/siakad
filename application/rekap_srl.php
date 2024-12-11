@@ -103,7 +103,6 @@
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
-                  var_dump($abs);
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
@@ -247,8 +246,7 @@
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   if($header_count > 0){
-                    // echo "<td>$totalAbsensi</td>";
-                    echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) ." </td>";
+                    echo "<td>$totalAbsensi</td>";
                   }else{
                     echo"<td>no data</td>";
                   }
