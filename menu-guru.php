@@ -28,21 +28,17 @@
     if (mysql_num_rows($tampil) > 0) {
       $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'"));
       $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
-
-      $activeWaliKelas = ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts') ? 'active' : '';
-
-      echo "<li class='treeview $activeWaliKelas'>
-        <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
-        <ul class='treeview-menu'>
-          <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class='" . ($_GET['view'] == 'rekapabsensiswa' ? 'active' : '') . "'><i class='fa fa-th-large'></i> Rekap Absensi Siswa</a></li>
-          <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class='" . ($_GET['view'] == 'raportuts' ? 'active' : '') . "'><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
-        </ul>
+      echo "<li class='treeview " . ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts' ? 'active' : '') . "'>
+      <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
+      <ul class='treeview-menu'>
+        <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class=''><i class='fa fa-th-large'></i> Rekap Absensi Siswa</a></li>
+        <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]')><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
+      </ul>
       </li>";
     }
 
     // Modul Mengajar
-    $activeMengajar = ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport' )  ? 'active' : '';
-    echo "<li class='treeview $activeMengajar'>
+    echo "<li class='treeview" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>
       <a href='#'><i class='fa fa-user'></i> <span>Modul Mengajar</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
