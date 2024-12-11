@@ -127,7 +127,7 @@ cek_session_guru();
           if ($a != '' OR $b != ''){
             $cek = mysql_num_rows(mysql_query("SELECT * FROM rb_nilai_sas where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'"));
             if ($cek >= '1'){
-              mysql_query("UPDATE rb_nilai_sas SET angka_pengetahuan='$a', angka_keterampilan='$b' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
+              mysql_query("UPDATE rb_nilai_sas SET nilai='$a', waktu_input='".date('Y-m-d H:i:s')."' where kodejdwl='$_POST[jdwl]' AND nisn='$nisn'");
             }else{
               mysql_query("INSERT INTO rb_nilai_sas VALUES('','$_POST[jdwl]','$nisn','$a','$b','".date('Y-m-d H:i:s')."')");
             }
