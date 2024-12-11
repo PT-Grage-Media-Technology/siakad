@@ -146,7 +146,7 @@
                     $queryInsert = "INSERT INTO rb_nilai_srl (id_nilai_srl,kodejdwl, nisn, nilai, waktu_input)
 
                                     VALUES (
-                                            ''
+                                            '',
                                             '" . mysql_real_escape_string($_GET['idjr']) . "', 
                                             '" . mysql_real_escape_string($r['nisn']) . "', 
                                             '" . mysql_real_escape_string($rataRata) . "', 
