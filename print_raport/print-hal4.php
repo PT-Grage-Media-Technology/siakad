@@ -75,7 +75,16 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       echo "<tr>
                 <td rowspan='2' align='center'>$no</td>
                 <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>
-                <td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
+                if ($rapn[raport] < $m[kktp]) {
+                    echo '<script>
+                        alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
+                        window.history.back();
+                    </script>';
+                    exit;
+                }
+                ?>
+
+                <td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kktp'] ? 'red' : 'black') . ";'>
                     " . number_format($rapot['nilai_akhir']) . "
                 </td>
                 
