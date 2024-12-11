@@ -28,9 +28,6 @@
     if (mysql_num_rows($tampil) > 0) {
       $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'"));
       $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
-
-      $activeWaliKelas = ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts') ? 'active' : '';
-
       echo "<li class='treeview " . ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts' ? 'active' : '') . "'>
       <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
@@ -41,8 +38,7 @@
     }
 
     // Modul Mengajar
-    $activeMengajar = ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport' )  ? 'active' : '';
-    echo "<li class='treeview $activeMengajar'>
+    echo "<li class='treeview" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>
       <a href='#'><i class='fa fa-user'></i> <span>Modul Mengajar</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
