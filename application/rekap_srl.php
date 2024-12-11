@@ -143,10 +143,9 @@
                     echo "else ini";
 
                     // Jika data belum ada, lakukan insert
-                    $queryInsert = "INSERT INTO rb_nilai_srl (id_nilai_srl,kodejdwl, nisn, nilai, waktu_input)
+                    $queryInsert = "INSERT INTO rb_nilai_srl (id_nilai_srl,kodejdwl, nisn, nilai, nilai_tertinggi, nilai_terendah, waktu_input)
 
-                                    VALUES (
-                                            '',
+                                    VALUES ('',
                                             '" . mysql_real_escape_string($_GET['idjr']) . "', 
                                             '" . mysql_real_escape_string($r['nisn']) . "', 
                                             '" . mysql_real_escape_string($rataRata) . "', 
