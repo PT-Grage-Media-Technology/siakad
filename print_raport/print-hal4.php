@@ -8,17 +8,6 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
 
 <head>
   <title>Hal 4 - Raport Siswa</title>
-  <script>
-    function handlePrint() {
-      // Membuka dialog cetak
-      window.print();
-
-      // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
-      setTimeout(() => {
-        window.close();
-      }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
-    }
-  </script>
   <link rel="stylesheet" href="../bootstrap/css/printer.css">
 </head>
 
@@ -125,3 +114,15 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
   </tr>
 </table>  -->
 </body>
+
+<script>
+    function handlePrint() {
+      // Membuka dialog cetak
+      window.print();
+
+      // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+      setTimeout(() => {
+        window.close();
+      }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+    }
+  </script>
