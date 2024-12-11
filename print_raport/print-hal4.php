@@ -73,25 +73,28 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
 
       echo "<tr>
-                <td rowspan='2' align='center'>$no</td>
-                <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>";
-                if ($rapn['raport'] < $m['kktp']) {
-                    echo "<script>
-                        alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
-                        window.history.back();
-                    </script>";
-                    exit;
-                }
-                echo"<td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kktp'] ? 'red' : 'black') . ";'>
-                    " . number_format($rapot['nilai_akhir']) . "
-                </td>
-                
-                    <td align='center'>$rapot[deskripsi_tertinggi]</td>
+              <td rowspan='2' align='center'>$no</td>
+              <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>";
 
-                    <tr>
-                    <td align='center'>$rapot[deskripsi_terendah]</td>
-                    </tr>
-              </tr>";
+      // Periksa apakah nilai raport kurang dari KKTp
+      if ($rapn['raport'] < $m['kktp']) {
+          echo "<script>
+              alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
+              window.history.back();
+          </script>";
+          exit;
+      }
+
+      // Jika nilai raport mencukupi, lanjutkan menampilkan data
+      echo "<td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kktp'] ? 'red' : 'black') . ";'>
+              " . number_format($rapot['nilai_akhir']) . "
+            </td>
+            <td align='center'>$rapot[deskripsi_tertinggi]</td>
+          </tr>
+          <tr>
+            <td align='center'>$rapot[deskripsi_terendah]</td>
+          </tr>";
+
       $no++;
     }
   }
