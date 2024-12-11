@@ -209,7 +209,7 @@ cek_session_siswa();
                 // if ($header_count > 0) {
                     echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
                 // } else {
-                    echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
+                    // echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
                 // }
                 ?>
                 <th rowspan="2">Nilai Tertinggi</th>
