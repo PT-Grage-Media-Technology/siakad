@@ -141,6 +141,7 @@
                     mysql_query($queryUpdate);
                   } else {
                     echo "else ini";
+
                     // Jika data belum ada, lakukan insert
                     $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
                                     VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
@@ -149,6 +150,7 @@
                                             '" . mysql_real_escape_string($nilaiTertinggi) . "', 
                                             '" . mysql_real_escape_string($nilaiTerendah) . "', 
                                             NOW())";
+                                            var_dump($queryInsert);
                     mysql_query($queryInsert);
                   }
 
