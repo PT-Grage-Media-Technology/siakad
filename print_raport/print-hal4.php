@@ -71,7 +71,6 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
               alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
               window.history.back();
           </script>";
-          exit;
       }
 
       // Jika nilai raport mencukupi, lanjutkan menampilkan data
