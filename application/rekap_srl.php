@@ -245,7 +245,7 @@
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count < 1){
+                  if($header_count > 0){
                     echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                   }else{
                     echo"<td>no data</td>";
