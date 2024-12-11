@@ -150,7 +150,6 @@
                     mysql_query($queryInsert);
                   }
 
-                  // ini adalah nilai rata rata sumatif S
                   echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
                   echo "0";
@@ -199,24 +198,19 @@
                 <th rowspan='2'>Nilai Terendah</th>
                 <th rowspan='2'>NA SUMATIF (S)</th>
                 <th rowspan='2'>Status</th>
-              </tr> 
+              </tr>
               <tr>";
             
-              // Menyimpan sel header
-            while ($header = mysql_fetch_array($headers)) {
-              $tanggalArray[] = $header['tanggal'];
-              echo $header_count > 0 
-                  ? "<th>{$header['tujuan_pembelajaran']}</th>" 
-                  : "<th>Tidak ada data</th>"; // Menampilkan data default saat header_count = 0
-
-              $headerCells[] = $header['tujuan_pembelajaran'];
-            }
-
-            // Jika header_count 0, tampilkan data default di luar loop
-            if ($header_count == 0) {
-              echo "<th>Tidak ada data</th>"; // Menampilkan data default
-            }
-
+                // $headerCells = ""; // Menyimpan sel header
+                while ($header = mysql_fetch_array($headers)) {
+                  $tanggalArray[] = $header['tanggal'];
+                  if ($header_count > 0) {
+                  echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  }else {
+                    echo "<td colspan='1'>Tidak ada data</td>"; // Menampilkan pesan jika tidak ada data
+                }
+                  $headerCells[] = $header['tujuan_pembelajaran']; 
+                }
 
               echo"</tr>
             </thead>
@@ -245,8 +239,8 @@
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count > 0){
-                    echo "<td>$totalAbsensi</td>";
+                  if($header_count < 1){
+                    echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                   }else{
                     echo"<td>no data</td>";
                   }
@@ -271,14 +265,38 @@
                 // .min($nilaiArray).
                 // "</td>";
                 // Hitung rata-rata
+                echo "<td>";
                 if ($header_count > 0) {
-                  echo "<td>";
-                  ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
-                  echo"</td>";
-                }else{
-                  echo "<td>0</td>";
+                  $rataRata = $totalAbsensi / $header_count;
+
+                  // // Validasi sebelum insert atau update
+                  // $cekData = mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'");
+                  // if (mysql_num_rows($cekData) > 0) {
+                  //   // Jika data sudah ada, lakukan update
+                  //   $queryUpdate = "UPDATE rb_nilai_srl 
+                  //                   SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
+                  //                   WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
+                  //                   AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"
+                  //                   ;
+                  //   mysql_query($queryUpdate);
+                  // } else {
+                  //   // Jika data belum ada, lakukan insert
+                  //   $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
+                  //                   VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
+                  //                           '" . mysql_real_escape_string($r['nisn']) . "', 
+                  //                           '" . mysql_real_escape_string($rataRata) . "', 
+                  //                           '" . mysql_real_escape_string($nilaiTertinggi) . "', 
+                  //                           '" . mysql_real_escape_string($nilaiTerendah) . "', 
+                  //                           NOW())";
+                  //   mysql_query($queryInsert);
+                  // }
+
+                  echo round($rataRata, 2); // Tampilkan nilai rata-rata
+                } else {
+                  echo "0";
                 }
-           
+                echo "</td>";
+
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
