@@ -124,7 +124,7 @@ if (isset($_POST['login'])) {
     mysql_query("INSERT INTO rb_users_aktivitas VALUES('', '" . $r['nisn'] . "', '$ip', '$user_browser $version', '$user_os', 'siswa', '" . date('H:i:s') . "', '" . date('Y-m-d') . "')");
     echo "<script>document.location='index.php';</script>";
   } else {
-    echo "<script>document.location='index.php';</script>";
+    
     echo "<script>alert('Login gagal, silakan coba lagi.');</script>"; 
   }
 }
