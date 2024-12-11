@@ -225,6 +225,10 @@ cek_session_siswa();
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
                   $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
+
+                if($header_count == 0){
+                  echo "<th>Tidak ada tujuan pemb.</th>";
+                }
                 
                 ?>
               </tr>
