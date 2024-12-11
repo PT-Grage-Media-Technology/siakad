@@ -31,12 +31,12 @@
 
       $activeWaliKelas = ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts') ? 'active' : '';
 
-      echo "<li class='treeview $activeWaliKelas'>
-        <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
-        <ul class='treeview-menu'>
-          <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class='" . ($_GET['view'] == 'rekapabsensiswa' ? 'active' : '') . "'><i class='fa fa-th-large'></i> Rekap Absensi Siswa</a></li>
-          <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class='" . ($_GET['view'] == 'raportuts' ? 'active' : '') . "'><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
-        </ul>
+      echo "<li class='treeview " . ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts' ? 'active' : '') . "'>
+      <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
+      <ul class='treeview-menu'>
+        <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]' class=''><i class='fa fa-th-large'></i> Rekap Absensi Siswa</a></li>
+        <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]')><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
+      </ul>
       </li>";
     }
 
