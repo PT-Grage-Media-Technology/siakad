@@ -274,7 +274,7 @@ cek_session_siswa();
                 echo "<td class='nilai-min'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$minIndex]}'/>";
                 $nilaiTerendah = min($nilaiArray);
-                echo $nilaiTerendah; // Memastikan nilai tertinggi ditampilkan
+                echo isset($nilaiTerendah) ? $nilaiTerendah : 0 ; // Memastikan nilai tertinggi ditampilkan                // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 // $minIndex = array_search(min($nilaiArray), $nilaiArray); 
