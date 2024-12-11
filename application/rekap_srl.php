@@ -266,9 +266,14 @@
                 // .min($nilaiArray).
                 // "</td>";
                 // Hitung rata-rata
-                echo "<td>";
-                echo ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
-                echo "</td>";
+                if ($header_count > 0) {
+                  echo "<td>awiawjkaiwk</td>";
+                }else{
+                  echo "<td>1</td>";
+                }
+                // echo "<td>";
+                // echo ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
+                // echo "</td>";
 
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
