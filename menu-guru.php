@@ -33,15 +33,15 @@
       <ul class='treeview-menu'>
         <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-th-large'></i> <span>Rekap Absensi
           Siswa</span></a></li>
-        <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
-        <li><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport STS</a></li>
-        <li><a href='index.php?view=raportsas&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai SAS</a></li>
-        <li><a href='index.php?view=extrakulikuler&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Ekstrakulikuler</a></li>
-        <li><a href='index.php?view=prestasi&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Prestasi</a></li>
-        <li><a href='index.php?view=raport&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai Raport</a></li>
-        <li><a href='index.php?view=raportcetak&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport</a></li>
-      </ul>
-      </li>";
+          <li><a href='index.php?view=extrakulikuler&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Ekstrakulikuler</a></li>
+          <li><a href='index.php?view=prestasi&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Prestasi</a></li>
+          <li><a href='index.php?view=raport&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai Raport</a></li>
+          <li><a href='index.php?view=raportcetak&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport</a></li>
+          </ul>
+          </li>";
+          // <li><a href='index.php?view=raportuts&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai STS</a></li>
+          // <li><a href='index.php?view=raportcetakuts&tahun=$tahun[id_tahun_akademik]&id=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Cetak Raport STS</a></li>
+          // <li><a href='index.php?view=raportsas&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-circle-o'></i> Data Nilai SAS</a></li>
     }
 
     // Modul Mengajar
