@@ -91,6 +91,8 @@ if (isset($_POST['login'])) {
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
 
+  var_dump($_POST['a']);
+  var_dump($passlain);
   var_dump($admin);
   exit;
 
