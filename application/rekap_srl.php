@@ -150,7 +150,6 @@
                     mysql_query($queryInsert);
                   }
 
-                  // ini adalah nilai rata rata sumatif S
                   echo round($rataRata, 2); // Tampilkan nilai rata-rata
                 } else {
                   echo "0";
@@ -178,52 +177,66 @@
     </div>
   </div>
 <?php 
-}elseif($_GET['act'] == 'rekapsiswa'){
-  echo"<div class='box-body'>
-        <div class='table-responsive'>
+}elseif($_GET['act'] == 'rekapsiswa') {
+cek_session_siswa();
+?>
+
+<div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">
+          <?php
+          if (isset($_GET['kelas']) and isset($_GET['tahun'])) {
+            echo "Rekap Absensi Siswa";
+          } else {
+            echo "Rekap Sumatif Ruang Lingkup " . date('Y');
+          }
+          ?>
+        </h3>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
           <table>
             <thead>
               <tr>
-                <th rowspan='2'>No</th>
-                <th rowspan='2'>Nama Siswa</th>
-                <th rowspan='2'>KKTP</th>";
-    
+                <th rowspan="2">No</th>
+                <th rowspan="2">Nama Siswa</th>
+                <th rowspan="2">KKTP</th>
+                <?php
                 $headers = mysql_query("SELECT * FROM rb_journal_list WHERE kodejdwl='$_GET[idjr]' AND id_parent_journal IS NULL ORDER BY tanggal ASC");
                 $header_count = mysql_num_rows($headers);
 
-               
-                  echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
-            
-                echo"
-                <th rowspan='2'>Nilai Tertinggi</th>
-                <th rowspan='2'>Nilai Terendah</th>
-                <th rowspan='2'>NA SUMATIF (S)</th>
-                <th rowspan='2'>Status</th>
-              </tr> 
-              <tr>";
-            
-              // Menyimpan sel header
-            while ($header = mysql_fetch_array($headers)) {
-              $tanggalArray[] = $header['tanggal'];
-              echo $header_count > 0 
-                  ? "<th>{$header['tujuan_pembelajaran']}</th>" 
-                  : "<th>Tidak ada data</th>"; // Menampilkan data default saat header_count = 0
+                // if ($header_count > 0) {
+                    echo "<th colspan='$header_count'>SUMATIF LINGKUP MATERI</th>";
+                // } else {
+                    // echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
+                // }
+                ?>
+                <th rowspan="2">Nilai Tertinggi</th>
+                <th rowspan="2">Nilai Terendah</th>
+                <th rowspan="2">NA SUMATIF (S)</th>
+                <th rowspan="2">Status</th>
+              </tr>
+              <tr>
+                <?php
+                // $headerCells = ""; // Menyimpan sel header
+                while ($header = mysql_fetch_array($headers)) {
+                  $tanggalArray[] = $header['tanggal'];
+                  echo "<th>{$header['tujuan_pembelajaran']}</th>";
+                  $headerCells[] = $header['tujuan_pembelajaran']; 
+                }
 
-              $headerCells[] = $header['tujuan_pembelajaran'];
-            }
-
-            // Jika header_count 0, tampilkan data default di luar loop
-            if ($header_count == 0) {
-              echo "<th>Tidak ada data</th>"; // Menampilkan data default
-            }
-
-
-              echo"</tr>
+                if($header_count == 0){
+                  echo "<th>Tidak ada tujuan pemb.</th>";
+                }
+                
+                ?>
+              </tr>
             </thead>
-            <tbody>";
-
+            <tbody>
+              <?php
               $no = 1;
-              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.nisn='$_SESSION[id]' AND a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+              $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.nisn='$_SESSION[id]' ORDER BY a.id_siswa");
               $kktp = mysql_query("SELECT * FROM rb_jadwal_pelajaran WHERE kodejdwl='$_GET[idjr]'");
               $kk = mysql_fetch_array($kktp);
 
@@ -236,33 +249,32 @@
                     <input type='hidden' value='$r[nisn]' name='nisn[$no]'>
                   </td>
                   <td>$kk[kktp]</td>";
+                  if($header_count == 0){
+                    echo "<td>Tidak ada </td>"; 
+                  }
 
                 // Loop untuk nilai absensi
                 for ($i = 0; $i < $header_count; $i++) {
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
                                        WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "' 
+                                       AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count > 0){
-                    echo "<td>$totalAbsensi</td>";
-                  }else{
-                    echo"<td>no data</td>";
-                  }
+                  echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
                 $nilaiTertinggi = max($nilaiArray);
-                echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
+                echo isset($nilaiTertinggi) ? $nilaiTertinggi : 0 ; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-min'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$minIndex]}'/>";
                 $nilaiTerendah = min($nilaiArray);
-                echo $nilaiTerendah; // Memastikan nilai tertinggi ditampilkan
+                echo isset($nilaiTerendah) ? $nilaiTerendah : 0 ; // Memastikan nilai tertinggi ditampilkan                // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 // $minIndex = array_search(min($nilaiArray), $nilaiArray); 
@@ -271,18 +283,21 @@
                 // .min($nilaiArray).
                 // "</td>";
                 // Hitung rata-rata
-                if ($header_count > 0) {
-                  echo "<td>";
-                  ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
-                  echo"</td>";
-                }else{
-                  echo "<td>0</td>";
-                }
-           
                 echo "<td>";
-                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
+                if ($header_count > 0) {
+                  $rataRata = $totalAbsensi / $header_count;
+
+
+                  echo round($rataRata, 2); // Tampilkan nilai rata-rata
+                } else {
+                  echo "0";
+                }
+                echo "</td>";
+
+                echo "<td>";
+                $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
-                    echo "<a href='' style='color: red;'>Remedial</a>";
+                    echo "<a href='#' style='color: red;'>Remedial</a>";
                 } else {
                     echo "<span style='color: green;'>Lulus</span>";
                 }
@@ -292,12 +307,12 @@
 
                 $no++;
               }
-
-            echo"</tbody>
+              ?>
+            </tbody>
           </table>
         </div>
-      </div>";
+      </div>
+    </div>
+  </div>
+<?php } ?>
 
-}
-
-?>
