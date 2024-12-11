@@ -68,7 +68,7 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       // Periksa apakah nilai raport kurang dari KKTp
       if ($rapn['raport'] < $m['kktp']) {
           echo "<script>
-              alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
+              alert('Nilai raport mapel $m[namamatapelajaran] kurang dari KKTp. Harap periksa kembali.');
               window.close();
           </script>";
           exit;
