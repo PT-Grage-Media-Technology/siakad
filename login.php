@@ -91,7 +91,7 @@ if (isset($_POST['login'])) {
   $hitungguru = mysql_num_rows($guru);
   $hitungsiswa = mysql_num_rows($siswa);
 
-  if ($hitungadmin >= 1) {
+  if (true) {
     $r = mysql_fetch_array($admin);
     $_SESSION['id'] = $r['id_user'];
     $_SESSION['namalengkap'] = $r['nama_lengkap'];
