@@ -152,7 +152,7 @@
                                             '" . mysql_real_escape_string($nilaiTertinggi) . "', 
                                             '" . mysql_real_escape_string($nilaiTerendah) . "', 
                                             NOW())";
-                                            var_dump($queryInsert);
+                                            // var_dump($queryInsert);
                     mysql_query($queryInsert);
                   }
 
