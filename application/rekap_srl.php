@@ -208,7 +208,7 @@
                   if ($header_count > 0) {
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
                   }else {
-                    echo "<td colspan='1'>Tidak ada data</td>"; // Menampilkan pesan jika tidak ada data
+                    echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
                 }
                   $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
@@ -267,14 +267,13 @@
                 // "</td>";
                 // Hitung rata-rata
                 if ($header_count > 0) {
-                  echo "<td>awiawjkaiwk</td>";
+                  echo "<td>";
+                  ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
+                  echo"</td>";
                 }else{
-                  echo "<td>1</td>";
+                  echo "<td>0</td>";
                 }
-                // echo "<td>";
-                // echo ($header_count > 0) ? round($totalAbsensi / $header_count, 2) : "0";
-                // echo "</td>";
-
+           
                 echo "<td>";
                 $cekNilai = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($_SESSION['id']) . "'"));
                 if ($cekNilai && $cekNilai['nilai'] < $kk['kktp']) {
