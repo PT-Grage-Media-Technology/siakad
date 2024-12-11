@@ -199,7 +199,7 @@
                 <th rowspan='2'>Nilai Terendah</th>
                 <th rowspan='2'>NA SUMATIF (S)</th>
                 <th rowspan='2'>Status</th>
-              </tr>
+              </tr> 
               <tr>";
             
                 // $headerCells = ""; // Menyimpan sel header
@@ -208,7 +208,7 @@
                   if ($header_count > 0) {
                   echo "<th>{$header['tujuan_pembelajaran']}</th>";
                   }else {
-                    echo "<th colspan='1'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
+                    echo "<th colspan='0'>Tidak ada data</th>"; // Menampilkan pesan jika tidak ada data
                 }
                   $headerCells[] = $header['tujuan_pembelajaran']; 
                 }
