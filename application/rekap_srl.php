@@ -131,6 +131,7 @@
                   // Validasi sebelum insert atau update
                   $cekData = mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' AND nisn='" . mysql_real_escape_string($r['nisn']) . "'");
                   if (mysql_num_rows($cekData) > 0) {
+                    echo"dskdsjmd";
                     // Jika data sudah ada, lakukan update
                     $queryUpdate = "UPDATE rb_nilai_srl 
                                     SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
@@ -139,14 +140,20 @@
                                     ;
                     mysql_query($queryUpdate);
                   } else {
+                    echo "else ini";
+
                     // Jika data belum ada, lakukan insert
-                    $queryInsert = "INSERT INTO rb_nilai_srl (kodejdwl, nisn, nilai, waktu_input) 
-                                    VALUES ('" . mysql_real_escape_string($_GET['idjr']) . "', 
+                    $queryInsert = "INSERT INTO rb_nilai_srl (id_nilai_srl,kodejdwl, nisn, nilai, waktu_input)
+
+                                    VALUES (
+                                            '',
+                                            '" . mysql_real_escape_string($_GET['idjr']) . "', 
                                             '" . mysql_real_escape_string($r['nisn']) . "', 
                                             '" . mysql_real_escape_string($rataRata) . "', 
                                             '" . mysql_real_escape_string($nilaiTertinggi) . "', 
                                             '" . mysql_real_escape_string($nilaiTerendah) . "', 
                                             NOW())";
+                                            var_dump($queryInsert);
                     mysql_query($queryInsert);
                   }
 
