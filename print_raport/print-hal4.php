@@ -69,8 +69,9 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       if ($rapn['raport'] < $m['kktp']) {
           echo "<script>
               alert('Nilai raport kurang dari KKTp. Harap periksa kembali.');
-              window.history.back();
+              window.close();
           </script>";
+          exit;
       }
 
       // Jika nilai raport mencukupi, lanjutkan menampilkan data
