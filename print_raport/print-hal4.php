@@ -8,17 +8,6 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
 
 <head>
   <title>Hal 4 - Raport Siswa</title>
-  <script>
-    function handlePrint() {
-      // Membuka dialog cetak
-      window.print();
-
-      // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
-      setTimeout(() => {
-        window.close();
-      }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
-    }
-  </script>
   <link rel="stylesheet" href="../bootstrap/css/printer.css">
 </head>
 
@@ -73,18 +62,28 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       $rapnk = mysql_fetch_array(mysql_query("SELECT SUM(GREATEST(nilai1,nilai2,nilai3,nilai4,nilai5,nilai6))/COUNT(nisn) AS raport FROM rb_nilai_keterampilan WHERE kodejdwl='$m[kodejdwl]' AND nisn='$s[nisn]'"));
 
       echo "<tr>
-                <td rowspan='2' align='center'>$no</td>
-                <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>
-                <td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kkm'] ? 'red' : 'black') . ";'>
-                    " . number_format($rapot['nilai_akhir']) . "
-                </td>
-                
-                    <td align='center'>$rapot[deskripsi_tertinggi]</td>
+              <td rowspan='2' align='center'>$no</td>
+              <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>";
 
-                    <tr>
-                    <td align='center'>$rapot[deskripsi_terendah]</td>
-                    </tr>
-              </tr>";
+      // Periksa apakah nilai raport kurang dari KKTp
+      if ($rapn['raport'] < $m['kktp']) {
+          echo "<script>
+              alert('Nilai raport mapel $m[namamatapelajaran] kurang dari KKTp. Harap periksa kembali.');
+              window.close();
+          </script>";
+          exit;
+      }
+
+      // Jika nilai raport mencukupi, lanjutkan menampilkan data
+      echo "<td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kktp'] ? 'red' : 'black') . ";'>
+              " . number_format($rapot['nilai_akhir']) . "
+            </td>
+            <td align='center'>$rapot[deskripsi_tertinggi]</td>
+          </tr>
+          <tr>
+            <td align='center'>$rapot[deskripsi_terendah]</td>
+          </tr>";
+
       $no++;
     }
   }
@@ -115,3 +114,15 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
   </tr>
 </table>  -->
 </body>
+
+<script>
+    function handlePrint() {
+      // Membuka dialog cetak
+      window.print();
+
+      // Setelah dialog cetak ditutup, kembali ke halaman sebelumnya
+      setTimeout(() => {
+        window.close();
+      }, 500); // Tambahkan sedikit jeda untuk memastikan dialog selesai ditutup
+    }
+  </script>
