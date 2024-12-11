@@ -374,7 +374,7 @@
                            niy_nigk = '$_POST[bv]',
                            npwp = '$_POST[bw]' where nip='$_POST[id]'");
     }
-    echo "<script>document.location='index.php?view=guru&act=detailguru&id=" . $_POST[id] . "';</script>";
+    echo "<script>document.location='index.php?view=guru&act=editguru&id=" . $_POST[id] . "';</script>";
   }
 
   $detail = mysql_query("SELECT * FROM rb_guru where nip='$_GET[id]'");
