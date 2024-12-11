@@ -244,14 +244,10 @@
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  if($header_count > 0){
+                  if($header_count < 1){
                     echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                   }else{
                     echo"<td>no data</td>";
-                  }
-
-                  if ($header_count == 0) {
-                    echo "<td>Tidak ada data</td>"; // Menampilkan data default
                   }
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
