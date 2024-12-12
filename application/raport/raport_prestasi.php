@@ -50,7 +50,7 @@ if ($_GET[act]==''){
                     <input type="submit" style='margin-top:-4px' class='btn btn-info btn-sm' value='Lihat'>
                   </form>
                 </div><!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-body table-responsive">
                 <?php 
                   echo "<table id='example' class='table table-bordered table-striped'>
                     <thead>

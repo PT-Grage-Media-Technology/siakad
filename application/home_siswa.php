@@ -135,8 +135,8 @@
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Jam Ke</th>
                         <th style='width:220px' align=center>Guru</th>
+                        <th>Tujuan Pembelajaran</th>
                         <th style='width:220px'>Materi</th>
-                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                   </thead>
@@ -155,8 +155,8 @@
                               <td>$r[tanggal]</td>
                               <td>$r[jam_ke]</td>
                               <td>$r[nama_guru]</td>
+                              <td>$r[tujuan_pembelajaran]</td>
                               <td>$r[materi]</td>
-                              <td>$r[keterangan]</td>
                               <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]&id_journal=$r[id_journal]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                           </tr>";
       $no++;
@@ -366,7 +366,7 @@
         echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
       }
       echo "<p class='message'><small class='text-muted'>
-                                                    <a href='index.php?view=home&act=detailpembelajaran&kodejdwl=$_GET[kodejdwl]&tanggal=$_GET[tanggal]&jam_ke=$_GET[jam_ke]&idtopic=$_GET[idtopic]&deletekomentar=$k[id_forum_komentar]' onclick=\"return confirm('Apakah anda Yakin Data ini Dihapus?')\"><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
+                                                   <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
                                                     <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
                                             </div>";
     } else {

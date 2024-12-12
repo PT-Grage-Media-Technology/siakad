@@ -13,10 +13,10 @@ if ($_GET[act] == '') {
               
               </div>
 
-              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
-                <div class='col-md-12'>
-                  <table class='table table-condensed table-bordered table-striped'>
-                      <thead>
+              <div class='col-md-12'>
+                <div class='table-responsive'>
+                  <table class='table table-condensed table-bordered table-striped table-hover'>
+                    <thead>
                       <tr>
                         <th>No</th>
                         <th>Nip</th>
@@ -62,3 +62,18 @@ if ($_GET[act] == '') {
               </div>
             </div>";
 }
+?>
+
+<style>
+  .table-responsive {
+    overflow-x: auto;
+    /* Hanya aktifkan scroll horizontal jika diperlukan */
+  }
+
+  @media (min-width: 768px) {
+    .table-responsive {
+      overflow-x: visible;
+      /* Nonaktifkan scroll horizontal di desktop */
+    }
+  }
+</style>
