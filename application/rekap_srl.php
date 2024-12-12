@@ -108,7 +108,7 @@
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
                 $nilaiTertinggi = max($nilaiArray);
-                echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
+                // echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
