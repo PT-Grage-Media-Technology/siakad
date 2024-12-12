@@ -108,10 +108,12 @@
                                                         ORDER BY tanggal ASC"));
 
                   // Query ke journal_list
-                  $journal = mysql_fetch_array(mysql_query("SELECT * FROM journal_list 
+                  $journal = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list 
                                                             WHERE kodejdwl='$kodejdwl' 
                                                             AND tanggal='$tanggal' 
                                                             ORDER BY tanggal ASC"));
+
+                  echo "$journal";
 
                   // Gabungkan data atau gunakan sesuai kebutuhan
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
