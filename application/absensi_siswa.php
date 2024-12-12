@@ -439,20 +439,20 @@
       echo "<td hidden>5<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-          echo "<td>1<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
       } else {
-          echo "<td>2<input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_pengetahuan]' name='nilai_pengetahuan[$no]' style='width:50px;'></td>";
       }
     }
 
     // Nilai Keterampilan
     if ($keterampilan_set) {
-      echo "<td hidden>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+      echo "<td hidden><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-          echo "<td>3<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
       } else {
-          echo "<td>4<input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_keterampilan]' name='nilai_keterampilan[$no]' style='width:50px;'></td>";
       }
     }
 
@@ -461,9 +461,9 @@
       echo "<td hidden>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
     } else {
       if (strtotime(date('Y-m-d')) > strtotime($_GET['tgl'])) {
-          echo "<td>5<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
         } else {
-          echo "<td>6<input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
+          echo "<td><input type='number' value='$a[nilai_sikap]' name='nilai_sikap[$no]' style='width:50px;'></td>";
         }
       }
       
