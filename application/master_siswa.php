@@ -449,30 +449,6 @@ if ($_GET[act] == '') {
   }
 
   if (isset($_POST[update2])) {
-    echo "UPDATE rb_siswa SET 
-                               nama_ayah        = '$_POST[ca]',
-                               tahun_lahir_ayah   = '$_POST[cb]',
-                               pendidikan_ayah         = '$_POST[cc]',
-                               pekerjaan_ayah       = '$_POST[cd]',
-                               penghasilan_ayah    = '$_POST[ce]',
-                               kebutuhan_khusus_ayah   = '$_POST[cf]',
-                               no_telpon_ayah   = '$_POST[cg]',
-
-                               nama_ibu        = '$_POST[ch]',
-                               tahun_lahir_ibu   = '$_POST[ci]',
-                               pendidikan_ibu         = '$_POST[cj]',
-                               pekerjaan_ibu       = '$_POST[ck]',
-                               penghasilan_ibu    = '$_POST[cl]',
-                               kebutuhan_khusus_ibu   = '$_POST[cm]',
-                               no_telpon_ibu   = '$_POST[cn]',
-
-                               nama_wali        = '$_POST[co]',
-                               tahun_lahir_wali   = '$_POST[cp]',
-                               pendidikan_wali         = '$_POST[cq]',
-                               pekerjaan_wali       = '$_POST[cr]',
-                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[nisn]'";
-    var_dump($_POST['update2']);
-    exit;
     mysql_query("UPDATE rb_siswa SET 
                                nama_ayah        = '$_POST[ca]',
                                tahun_lahir_ayah   = '$_POST[cb]',
@@ -496,7 +472,7 @@ if ($_GET[act] == '') {
                                pekerjaan_wali       = '$_POST[cr]',
                                penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[nisn]'");
 
-    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[ab] . "';</script>";
+    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[nisn] . "';</script>";
   }
   if ($_SESSION[level] == 'siswa') {
     $nisn = $_SESSION[id];
