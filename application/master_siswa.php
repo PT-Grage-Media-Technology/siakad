@@ -494,7 +494,7 @@ if ($_GET[act] == '') {
                                tahun_lahir_wali   = '$_POST[cp]',
                                pendidikan_wali         = '$_POST[cq]',
                                pekerjaan_wali       = '$_POST[cr]',
-                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[id]'");
+                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[ab]'");
 
     echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[ab] . "';</script>";
   }
