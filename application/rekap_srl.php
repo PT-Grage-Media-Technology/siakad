@@ -125,9 +125,9 @@
 
                   echo "<td><a href='index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] .
                       "&kd=" . $d['kode_pelajaran'] . 
-                      "&idjr=" . $_GET['id'] . 
+                      "&idjr=" . $kodejdwl . 
                       "&tgl=" . $tanggal . 
-                      "&jam=" . $r['jam_ke'] . 
+                      "&jam=" . $journal['jam_ke'] . 
                       "&id_journal=" . $r['id_journal'] . "'>" . 
                       (isset($abs['total']) ? $abs['total'] : 0) . 
                       "</a> - " . $journalContent . "</td>";
