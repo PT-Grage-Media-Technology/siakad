@@ -114,18 +114,14 @@
                                                             ORDER BY tanggal ASC 
                                                             LIMIT 1"));
 
-                  echo "SELECT * FROM rb_journal_list 
-                                                            WHERE kodejdwl='$kodejdwl' 
-                                                            AND tanggal='$tanggal' 
-                                                            ORDER BY tanggal ASC 
-                                                            LIMIT 1";
+                  // echo "$journal[tujuan pembelajaran]";
 
                   // Gabungkan data atau gunakan sesuai kebutuhan
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
 
                   // Misal, gunakan nilai dari journal
-                  $journalContent = isset($journal['content']) ? $journal['content'] : 'Tidak ada jurnal';
+                  $journalContent = isset($journal['tujuan pembelajaran']) ? $journal['tujuan pembelajaran'] : 'Tidak ada jurnal';
 
                   echo "<td><a href='index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] .
                       "&kd=" . $d['kode_pelajaran'] . 
