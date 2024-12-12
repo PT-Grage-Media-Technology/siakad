@@ -470,7 +470,7 @@ if ($_GET[act] == '') {
                                tahun_lahir_wali   = '$_POST[cp]',
                                pendidikan_wali         = '$_POST[cq]',
                                pekerjaan_wali       = '$_POST[cr]',
-                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[id]'";
+                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[ab]'";
     var_dump($_POST['update2']);
     exit;
     mysql_query("UPDATE rb_siswa SET 
