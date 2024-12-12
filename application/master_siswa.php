@@ -470,9 +470,9 @@ if ($_GET[act] == '') {
                                tahun_lahir_wali   = '$_POST[cp]',
                                pendidikan_wali         = '$_POST[cq]',
                                pekerjaan_wali       = '$_POST[cr]',
-                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[id]'");
+                               penghasilan_wali    = '$_POST[cs]' where nisn='$_POST[nisn]'");
 
-    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[ab] . "';</script>";
+    echo "<script>document.location='index.php?view=siswa&act=editsiswa&id=" . $_POST[nisn] . "';</script>";
   }
   if ($_SESSION[level] == 'siswa') {
     $nisn = $_SESSION[id];
@@ -666,7 +666,9 @@ if ($_GET[act] == '') {
   echo "</th>
                             </tr>
                             <tr bgcolor=#e3e3e3><th width='130px' scope='row'>Nama Ayah</th> <td><input type='text' class='form-control' value='$s[nama_ayah]' name='ca'></td></tr>
-                            <tr><th scope='row'>Tahun Lahir</th> <td><input type='text' class='form-control' value='$s[tahun_lahir_ayah]' name='cb'></td></tr>
+                            <tr><th scope='row'>Tahun Lahir</th> <td><input type='text' class='form-control' value='$s[tahun_lahir_ayah]' name='cb'>
+                            <input type='hidden' class='form-control' value='$s[nisn]' name='nisn'>
+                            </td></tr>
                             <tr><th scope='row'>Pendidikan</th> <td><input type='text' class='form-control' value='$s[pendidikan_ayah]' name='cc'></td></tr>
                             <tr><th scope='row'>Pekerjaan</th> <td><input type='text' class='form-control' value='$s[pekerjaan_ayah]' name='cd'></td></tr>
                             <tr><th scope='row'>Penghasilan</th> <td><input type='text' class='form-control' value='$s[penghasilan_ayah]' name='ce'></td></tr>
