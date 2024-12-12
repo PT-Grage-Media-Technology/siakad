@@ -121,7 +121,7 @@
                   // echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
 
                   // Misal, gunakan nilai dari journal
-                  $journalContent = isset($journal['tujuan pembelajaran']) ? $journal['tujuan pembelajaran'] : 'Tidak ada jurnal';
+                  $journalContent = isset($journal['tujuan_pembelajaran']) ? $journal['tujuan_pembelajaran'] : 'Tidak ada jurnal';
 
                   echo "<td><a href='index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] .
                       "&kd=" . $d['kode_pelajaran'] . 
