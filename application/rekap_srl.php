@@ -96,13 +96,41 @@
 
                 // Loop untuk nilai absensi
                 for ($i = 0; $i < $header_count; $i++) {
+                  $kodejdwl = mysql_real_escape_string($_GET['idjr']);
+                  $nisn = mysql_real_escape_string($r['nisn']);
+                  $tanggal = mysql_real_escape_string($tanggalArray[$i]);
+
+                  // Query ke rb_absensi_siswa
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                       WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
-                                       AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
+                                                        WHERE kodejdwl='$kodejdwl' 
+                                                        AND nisn='$nisn' 
+                                                        AND tanggal='$tanggal' 
+                                                        ORDER BY tanggal ASC"));
+
+                  // Query ke journal_list
+                  $journal = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list 
+                                                            WHERE kodejdwl='$kodejdwl' 
+                                                            AND tanggal='$tanggal' 
+                                                            ORDER BY tanggal ASC"));
+
+                  // echo "$journal[tujuan pembelajaran]";
+
+
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[$i] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                  // echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+
+                  // Misal, gunakan nilai dari journal
+                  $journalContent = isset($journal['tujuan pembelajaran']) ? $journal['tujuan pembelajaran'] : 'Tidak ada jurnal';
+
+                  echo "<td><a href='index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] .
+                      "&kd=" . $d['kode_pelajaran'] . 
+                      "&idjr=" . $_GET['id'] . 
+                      "&tgl=" . $tanggal . 
+                      "&jam=" . $r['jam_ke'] . 
+                      "&id_journal=" . $r['id_journal'] . "'>" . 
+                      (isset($abs['total']) ? $abs['total'] : 0) . 
+                      "</a> - " . $journalContent . "</td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
