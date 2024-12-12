@@ -114,7 +114,7 @@
                                                             ORDER BY tanggal ASC 
                                                             LIMIT 1"));
 
-                  echo "$journal";
+                  echo "$journal[0]";
 
                   // Gabungkan data atau gunakan sesuai kebutuhan
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
