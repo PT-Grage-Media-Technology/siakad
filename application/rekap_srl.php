@@ -113,7 +113,7 @@
                                                             AND tanggal='$tanggal' 
                                                             ORDER BY tanggal ASC"));
 
-                  echo "$journal";
+                  echo "$kodejdwl, $tanggal";
 
                   // Gabungkan data atau gunakan sesuai kebutuhan
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
