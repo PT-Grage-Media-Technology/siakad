@@ -107,14 +107,14 @@
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
-                $nilaiTertinggi = max($nilaiArray[$i]);
+                $nilaiTertinggi = max($nilaiArray);
                 echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-min'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$minIndex]}'/>";
-                $nilaiTerendah = min($nilaiArray[$i]);
+                $nilaiTerendah = min($nilaiArray);
                 echo $nilaiTerendah; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
