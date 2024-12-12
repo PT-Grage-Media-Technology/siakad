@@ -108,7 +108,7 @@
                                                         ORDER BY tanggal ASC"));
 
                   // Query ke journal_list
-                  $journal = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list 
+                  $journal = mysql_fetch_assoc(mysql_query("SELECT * FROM rb_journal_list 
                                                             WHERE kodejdwl='$kodejdwl' 
                                                             AND tanggal='$tanggal' 
                                                             ORDER BY tanggal ASC"));
