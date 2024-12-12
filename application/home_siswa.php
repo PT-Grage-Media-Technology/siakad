@@ -366,6 +366,7 @@
         echo "<img src='foto_pegawai/$topic[foto]' alt='user image' class='online'>";
       }
       echo "<p class='message'><small class='text-muted'>
+                                                   <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB </small>
                                                     <a href='#' class='name'>$topic[nama_guru] (Guru)</a> $k[isi_komentar]</p>
                                             </div>";
     } else {
@@ -376,6 +377,7 @@
         echo "<img src='foto_siswa/$k[foto]' alt='user image' class='offline'>";
       }
       echo "<p class='message'><small class='text-muted'>
+                                                    <a href='index.php?view=home&act=detailpembelajaran&kodejdwl=$_GET[kodejdwl]&tanggal=$_GET[tanggal]&jam_ke=$_GET[jam_ke]&idtopic=$_GET[idtopic]&deletekomentar=$k[id_forum_komentar]''><i class='fa fa-remove pull-right'></i></a> <i class='fa fa-clock-o'></i> $k[waktu_komentar] WIB</small> 
                                                     <a href='#' class='name'>$k[nama] (Siswa)</a>$k[isi_komentar]</p>
                                             </div>";
     }
