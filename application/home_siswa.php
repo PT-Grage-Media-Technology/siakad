@@ -135,8 +135,8 @@
                         <th style='width:90px'>Tanggal</th>
                         <th style='width:70px'>Jam Ke</th>
                         <th style='width:220px' align=center>Guru</th>
+                        <th>Tujuan Pembelajaran</th>
                         <th style='width:220px'>Materi</th>
-                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                   </thead>
@@ -155,8 +155,8 @@
                               <td>$r[tanggal]</td>
                               <td>$r[jam_ke]</td>
                               <td>$r[nama_guru]</td>
+                              <td>$r[tujuan_pembelajaran]</td>
                               <td>$r[materi]</td>
-                              <td>$r[keterangan]</td>
                               <td><a class='btn btn-success btn-xs' title='Lihat Data' href='index.php?view=home&act=detailpembelajaran&kodejdwl=$r[kodejdwl]&tanggal=$r[tanggal]&jam_ke=$r[jam_ke]&idtopic=$r[id_forum_topic]&id_journal=$r[id_journal]'><span class='glyphicon glyphicon-list'></span> Detail</a></td>
                           </tr>";
       $no++;
