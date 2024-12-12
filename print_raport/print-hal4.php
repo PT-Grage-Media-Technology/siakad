@@ -66,7 +66,7 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
               <td colspan='2' rowspan='2'>$m[namamatapelajaran]</td>";
 
       // Periksa apakah nilai raport kurang dari KKTp
-      if ($rapn['raport'] < $m['kktp']) {
+      if ($rapot['nilai_akhir'] <= $m['kktp']) {
           echo "<script>
               alert('Nilai raport mapel $m[namamatapelajaran] kurang dari KKTp. Harap periksa kembali.');
               window.close();
@@ -75,7 +75,7 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
       }
 
       // Jika nilai raport mencukupi, lanjutkan menampilkan data
-      echo "<td rowspan='2' align='center' style='color: " . ($rapn['raport'] < $m['kktp'] ? 'red' : 'black') . ";'>
+      echo "<td rowspan='2' align='center'>
               " . number_format($rapot['nilai_akhir']) . "
             </td>
             <td align='center'>$rapot[deskripsi_tertinggi]</td>
