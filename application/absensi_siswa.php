@@ -276,8 +276,14 @@
                                 <td>$j[materi]</td>
                             </tr>
                             <tr>
-                                <th scope='row'>test</th>
-                                <td>$j[id_parent_journal]</td>
+                                <th scope='row'>";
+                                if ($j['id_parent_journal'] === null) {
+                                    echo "Menu Utama";
+                                } else {
+                                    echo "Sub Menu";
+                                }
+                                echo "   
+                                </th>
                             </tr>
                         </tbody>
                     </table>
