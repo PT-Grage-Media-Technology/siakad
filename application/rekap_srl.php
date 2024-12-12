@@ -135,8 +135,7 @@
                     $queryUpdate = "UPDATE rb_nilai_srl 
                                     SET nilai='" . mysql_real_escape_string($rataRata) . "',nilai_tertinggi='" . mysql_real_escape_string($nilaiTertinggi) . "',nilai_terendah='" . mysql_real_escape_string($nilaiTerendah) . "', waktu_input=NOW() 
                                     WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'"
-                                    ;
+                                    AND nisn='" . mysql_real_escape_string($r['nisn']) . "'";
                     mysql_query($queryUpdate);
                   } else {
                     echo "else ini";
