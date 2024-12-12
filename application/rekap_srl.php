@@ -106,11 +106,11 @@
 
                   // URL untuk href
                   $url = "index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] . 
-                  "&kd=" . $d['kode_pelajaran'] . 
-                  "&idjr=" . $_GET['id'] . 
+                  "&kd=" . $abs['kode_pelajaran'] . 
+                  "&idjr=" . $_GET['idjr'] . 
                   "&tgl=" . $tanggalArray[$i] . 
-                  "&jam=" . $r['jam_ke'] . 
-                  "&id_journal=" . $r['id_journal'];
+                  "&jam=" . $abs['jam_ke'] . 
+                  "&id_journal=" . $abs['id_journal'];
 
                   // Tampilkan tautan
                   echo "<td><a href='{$url}'>" . (isset($abs['total']) ? $abs['total'] : 0) . "123</a></td>";
