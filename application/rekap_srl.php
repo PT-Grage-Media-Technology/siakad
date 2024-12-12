@@ -275,7 +275,7 @@ cek_session_siswa();
                   "&id_journal=" . $r['id_journal'];
 
                   // Tampilkan tautan
-                  echo "<td><a href='{$url}'>" . (isset($abs['total']) ? $abs['total'] : 0) . "</a></td>";
+                  echo "<td><a href='{$url}'>" . (isset($abs['total']) ? $abs['total'] : 0) . "123</a></td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
