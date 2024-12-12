@@ -449,6 +449,7 @@ if ($_GET[act] == '') {
   }
 
   if (isset($_POST[update2])) {
+    var_dump($_POST['update2']);
     mysql_query("UPDATE rb_siswa SET 
                                nama_ayah        = '$_POST[ca]',
                                tahun_lahir_ayah   = '$_POST[cb]',
