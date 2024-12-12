@@ -265,7 +265,17 @@ cek_session_siswa();
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                  // echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                   // URL untuk href
+                  $url = "index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] . 
+                  "&kd=" . $d['kode_pelajaran'] . 
+                  "&idjr=" . $_GET['id'] . 
+                  "&tgl=" . $tanggalArray[$i] . 
+                  "&jam=" . $r['jam_ke'] . 
+                  "&id_journal=" . $r['id_journal'];
+
+                  // Tampilkan tautan
+                  echo "<td><a href='{$url}'>" . (isset($abs['total']) ? $abs['total'] : 0) . "</a></td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
