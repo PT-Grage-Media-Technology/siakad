@@ -96,24 +96,39 @@
 
                 // Loop untuk nilai absensi
                 for ($i = 0; $i < $header_count; $i++) {
+                  $kodejdwl = mysql_real_escape_string($_GET['idjr']);
+                  $nisn = mysql_real_escape_string($r['nisn']);
+                  $tanggal = mysql_real_escape_string($tanggalArray[$i]);
+
+                  // Query ke rb_absensi_siswa
                   $abs = mysql_fetch_array(mysql_query("SELECT * FROM rb_absensi_siswa 
-                                       WHERE kodejdwl='" . mysql_real_escape_string($_GET['idjr']) . "' 
-                                       AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
-                                       AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
+                                                        WHERE kodejdwl='$kodejdwl' 
+                                                        AND nisn='$nisn' 
+                                                        AND tanggal='$tanggal' 
+                                                        ORDER BY tanggal ASC"));
+
+                  // Query ke journal_list
+                  $journal = mysql_fetch_array(mysql_query("SELECT * FROM journal_list 
+                                                            WHERE kodejdwl='$kodejdwl' 
+                                                            AND tanggal='$tanggal' 
+                                                            ORDER BY tanggal ASC"));
+
+                  // Gabungkan data atau gunakan sesuai kebutuhan
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
-                  $nilaiArray[$i] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
-                  // echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
+                  $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
 
-                  // URL untuk href
-                  $url = "index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] . 
-                  "&kd=" . $abs['kode_pelajaran'] . 
-                  "&idjr=" . $_GET['idjr'] . 
-                  "&tgl=" . $tanggalArray[$i] . 
-                  "&jam=" . $abs['jam_ke'] . 
-                  "&id_journal=" . $abs['id_journal'];
+                  // Misal, gunakan nilai dari journal
+                  $journalContent = isset($journal['content']) ? $journal['content'] : 'Tidak ada jurnal';
 
-                  // Tampilkan tautan
-                  echo "<td><a href='{$url}'>" . (isset($abs['total']) ? $abs['total'] : 0) . "123</a></td>";
+                  echo "<td><a href='index.php?view=absensiswa&act=tampilabsen&id=" . $d['kode_kelas'] .
+                      "&kd=" . $d['kode_pelajaran'] . 
+                      "&idjr=" . $_GET['id'] . 
+                      "&tgl=" . $tanggal . 
+                      "&jam=" . $r['jam_ke'] . 
+                      "&id_journal=" . $r['id_journal'] . "'>" . 
+                      (isset($abs['total']) ? $abs['total'] : 0) . 
+                      "</a> - " . $journalContent . "</td>";
+
 
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
