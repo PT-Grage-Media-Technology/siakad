@@ -101,20 +101,20 @@
                                        AND nisn='" . mysql_real_escape_string($r['nisn']) . "' 
                                        AND tanggal='" . mysql_real_escape_string($tanggalArray[$i]) . "' ORDER BY tanggal ASC"));
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
-                  $nilaiArray[] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
+                  $nilaiArray[$i] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-max'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$maxIndex]}'/>";
-                $nilaiTertinggi = max($nilaiArray);
-                // echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
-                echo "</td>"; 
+                $nilaiTertinggi = max($nilaiArray[$i]);
+                echo $nilaiTertinggi; // Memastikan nilai tertinggi ditampilkan
+                echo "</td>";
 
                 $minIndex = array_search(min($nilaiArray), $nilaiArray); 
                 echo "<td class='nilai-min'>";
                 echo "<input type='hidden' name='header-nilai-tertinggi' value='{$headerCells[$minIndex]}'/>";
-                $nilaiTerendah = min($nilaiArray);
+                $nilaiTerendah = min($nilaiArray[$i]);
                 echo $nilaiTerendah; // Memastikan nilai tertinggi ditampilkan
                 echo "</td>";
 
