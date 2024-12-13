@@ -206,13 +206,13 @@
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>";
-                                echo "<td>{$r['users']}</td>";
-                                echo"<td>$r[nama_guru]</td>";
                                 if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
-                                    echo "<td>". isset($r['pengganti']) ? $r['pengganti'] : "-" . "</td>";
+                                    echo "<td>{$r['pengganti']}</td>";
+                                } else {
+                                    echo "<td>{$r['users']}</td>";
                                 }
-                               
                                 
+                                echo"<td>$r[nama_guru]</td>";
                                 if ($row = mysql_fetch_array($guru_pengganti)) {
                                     echo"<td>$row[nama_guru]</td>";
                                 }
@@ -227,7 +227,7 @@
                                   if(!$r['pengganti']){
                                     echo"<a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>";
                                   }
-                                  echo"<a href='' class='btn btn-danger' name='hapus' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                                  echo"<a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
                                 echo "</tr>";
