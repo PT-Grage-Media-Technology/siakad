@@ -56,3 +56,41 @@ while ($r = mysql_fetch_array($tampil)) {
 
     echo "<tr>  
             <td>$no</td>
+            <td>{$r['nisn']}</td>  
+            <td>{$r['nama']}</td>  
+            <td>{$r['jenis_kelamin']}</td>  
+            <td align='center'>$hadir</td>  
+            <td align='center'>$hadir</td>  
+            <td align='center'>$sakit</td>  
+            <td align='center'>$izin</td>  
+            <td align='center'>$alpa</td>  
+            <td align='right'>{$persen} %</td>  
+            <td align='center'>  
+              <table border='0'>  
+                <tr>  
+                  <td>";  
+    
+    // Fetch and display unique absence dates for this student  
+    $absence_dates = mysql_query("SELECT tanggal FROM rb_absensi_siswa WHERE kodejdwl='$kd' AND nisn='{$r['nisn']}' GROUP BY tanggal");  
+    $dates_array = [];  
+    while ($absence_record = mysql_fetch_array($absence_dates)) {  
+        $dates_array[] = $absence_record['tanggal'];  
+    }  
+    
+    echo implode(", ", $dates_array); // Join dates with a comma  
+    echo "</td>  
+                </tr>  
+              </table>  
+            </td>  
+          </tr>";  
+    $no++;  
+}  
+
+echo "</table>";  
+
+// Make sure to close the database connection if opened  
+mysql_close($connection);  
+
+// Stop script execution  
+exit();  
+?>  
