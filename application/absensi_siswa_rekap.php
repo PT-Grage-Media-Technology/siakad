@@ -14,6 +14,9 @@
 
 <?php if ($_GET[act] == '') { ?>
   <div class="col-xs-12">
+  <div class='box-footer'>  
+    <a href='export_to_excel.php?tahun=".$_GET[tahun]."&kd=" . $_GET[kd] . "&id=" . $_GET[id] . "' class='btn btn-primary'>Export to Excel</a>  
+  </div>
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php if (isset($_GET[kelas]) and isset($_GET[tahun])) {
