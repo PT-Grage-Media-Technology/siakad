@@ -235,8 +235,12 @@
                                   if(!$r['pengganti']){
                                     echo"<a href='index.php?view=absensiguru&act=gantikan&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-success' title='detail'><i class='fa fa-eye'></i>Gantikan Mengajar</a>";
                                   }
-                                  echo"<a href='index.php?view=absensiguru&act=detail&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]&hapus=$r[pengganti]' name='hapus' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
-                                </td>";
+
+                                  if($r['pengganti']){
+                                      echo"<a href='index.php?view=absensiguru&act=detail&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]&hapus=$r[pengganti]' name='hapus' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i>Hapus Pengganti</a>";
+                                  }
+                                      
+                                echo"</td>";
 
                                 echo "</tr>"; 
                                 $no++;
