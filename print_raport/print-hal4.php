@@ -25,9 +25,9 @@ $frt = mysql_fetch_array(mysql_query("SELECT * FROM rb_header_print ORDER BY id_
   $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_identitas_sekolah ORDER BY id_identitas_sekolah DESC LIMIT 1"));
   echo "<table width=100%>
         <tr><td>Nama Peserta Didik</td>       <td> : <b>$s[nama]</b> </td>       <td width=140px>Kelas </td>   <td>: $s[kode_kelas]</td></tr>
-        <tr><td>No Induk/NISN</td>            <td> : $s[nipd] / $s[nisn]</td>        <td>Fase </td> <td>: $s[fase]</td></tr>
-        <tr><td width=140px>Nama Sekolah</td> <td> : $iden[nama_sekolah] </td>     <td>Semester </td> <td>: $semester</td></tr>
-        <tr>   <td>Alamat</td>                   <td> : $iden[alamat_sekolah] </td>         <td>Tahun Ajaran </td> <td>: $t[keterangan]</td></tr>
+        <tr><td>NIS/NISN</td>                 <td> : $s[nisn]</td>        <td>Fase </td> <td>: $s[fase]</td></tr>
+        <tr><td width=140px>Sekolah</td> <td> : $iden[nama_sekolah] </td>     <td>Semester </td> <td>: $semester</td></tr>
+        <tr>   <td>Alamat</td>                <td> : $iden[alamat_sekolah] </td>         <td>Tahun Ajaran </td> <td>: $t[keterangan]</td></tr>
       </table><br>";
 
   echo "<table id='tablemodul1' width='100%' border='1'>
