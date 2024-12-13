@@ -16,7 +16,7 @@
           $nama_tahun_dipilih = '';
           while ($k = mysql_fetch_array($tahun)) {
             if ($tahun_dipilih == $k['id_tahun_akademik']) {
-              $nama_tahun_dipilih = $k['nama_tahun'];
+              $nama_tahun_dipilih = $k['nama_tahun']; 
             }
           }
           mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
