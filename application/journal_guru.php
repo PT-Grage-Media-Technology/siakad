@@ -71,6 +71,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                 <th>Selesai</th>
                 <th>Ruangan</th>
                 <th>Semester</th>
+                <th>Pertemuan</th>
                 <th></th>
               </tr>
             </thead>
@@ -103,6 +104,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                                 <td>$r[jam_selesai]</td>
                                 <td>$r[nama_ruangan]</td>
                                 <td>$r[id_tahun_akademik]</td>
+                                <td>$r[pertemuan]</td>
                                 <td style='width:80px !important'><center>
                                           <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Lihat Journal</a>
                                         </center></td>
@@ -334,6 +336,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                         <th style='width:70px'>Sampai Jam Ke</th>
                         <th style='width:200px' align=center>Guru</th>
                         <th style='width:220px'>Tujuan Pembelajaran</th>
+                        <th style='width:70px'>Pertemuan</th>
                         <th style='width:220px'>Materi</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
@@ -367,6 +370,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
 
 while ($r = mysql_fetch_array($tampil)) {
     // Periksa apakah data ini adalah data utama
+    $Pertemuan = 1;
     if ($r['id_parent_journal'] == NULL || $r['id_parent_journal'] == '') {
         echo "<tr>
             <td>{$no}</td>
@@ -376,6 +380,7 @@ while ($r = mysql_fetch_array($tampil)) {
             <td align='center'>{$r['sampai_jam_ke']}</td>
             <td align='center'>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
             <td>{$r['tujuan_pembelajaran']}</td>
+            <td>{$Pertemuan}</td>
             <td>{$r['materi']}</td>";
 
         if ($_SESSION['level'] != 'kepala') {
@@ -394,6 +399,7 @@ while ($r = mysql_fetch_array($tampil)) {
 
         // Cari sub-data untuk data utama ini
         $tampilSub = mysql_query("SELECT * FROM rb_journal_list WHERE id_parent_journal = '{$r['id_journal']}'");
+        $subPertemuan = 2; // Mulai dari pertemuan ke-2 untuk sub-data
         while ($sub = mysql_fetch_array($tampilSub)) {
             echo "<tr style='background-color: #f9f9f9;'>
                 <td></td>
@@ -402,8 +408,10 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td align='center'>{$sub['jam_ke']}</td>
                 <td align='center'>{$sub['sampai_jam_ke']}</td>
                 <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
-                <td> --- </td>
+                <td> {$sub['tujuan_pembelajaran']} </td>
+                <td> {$subPertemuan} </td>
                 <td>{$sub['materi']}</td>";
+            $subPertemuan++; // Increment untuk sub-data
 
             if ($_SESSION['level'] != 'kepala') {
               // $buttonDisabledSub = ($sub['tanggal'] > $today) ? 'disabled' : '';
