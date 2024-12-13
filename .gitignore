@@ -1,0 +1,54 @@
+# Composer
+/vendor/
+/composer.lock
+
+# PhpStorm / JetBrains
+.idea/
+
+# Laravel specific
+/.env
+/.env.*.local
+/storage/*
+!/storage/app/public
+/storage/*.key
+/.vscode/
+
+# PHPStorm project settings
+/.phpunit.result.cache
+/.php_cs.cache
+
+# Node modules (if you use npm or yarn)
+node_modules/
+
+# Laravel mix
+/public/mix-manifest.json
+/public/css/
+/public/js/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# log files
+*.log
+
+# PHPUnit result cache
+.phpunit.result.cache
+
+# Ignoring Composer Auth file for security
+/composer.json.auth
+
+# Ignoring compiled PHP files
+*.php~
+
+# Ignoring .env files for local settings
+.env.local
+.env.*.local
+
+# Ignoring custom directories for temporary files or backups
+/temp/
+*.bak
+*.swp
+
+# Ignoring IDE backup files
+*~
