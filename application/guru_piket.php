@@ -132,6 +132,8 @@
     
     if(isset($_GET['hapus'])){
         mysql_query("UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal='$_GET[id]'");
+        echo "<script>window.history.back();</script>";
+
         // echo "UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal=$_GET[id]";
     }
     // Ambil data sesuai NIP
