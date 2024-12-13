@@ -133,7 +133,7 @@ $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_p
 echo "<div class='col-md-12 table-responsive'>
         <div class='box box-info table-responsive'>
         <div class='box-footer'>  
-          <a href='export_to_excel.php?tahun='.$_GET[tahun].'&kd=' . $_GET[kd] . '&id=' . $_GET[id] . '' class='btn btn-primary'>Export to Excel</a>  
+          <a href='index.php?tahun='.$_GET[tahun].'&kd=' . $_GET[kd] . '&id=' . $_GET[id] . '' class='btn btn-primary'>Export to Excel</a>  
         </div>
             <div class='box-header with-border'>
                 <h3 class='box-title'>Rekap Data Absensi Siswa Pada $_GET[tahun]</b></h3>
