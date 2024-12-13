@@ -403,8 +403,8 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td align='center'>{$sub['jam_ke']}</td>
                 <td align='center'>{$sub['sampai_jam_ke']}</td>
                 <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
-                <td> --- </td>
-                <td>{$sub['materi']} (Pertemuan ke $subPertemuan)</td>";
+                <td> {$sub['tujuan_pembelajaran']} (Pertemuan ke $subPertemuan)</td>
+                <td>{$sub['materi']}</td>";
             $subPertemuan++; // Increment untuk sub-data
 
             if ($_SESSION['level'] != 'kepala') {
