@@ -16,6 +16,7 @@
                                   <th style='width:40px'>No</th>
                                   <th>Kode Kelas</th>
                                   <th>Nama Kelas</th>
+                                  <th>Fase</th>
                                   <th>Wali Kelas</th>
                                   <th>Jurusan</th>
                                   <th>Ruangan</th>
@@ -39,6 +40,7 @@
                                   echo "<tr>
                                           <td>$no</td>
                                           <td>$r[kode_kelas]</td>
+                                          <td>$r[nama_kelas]</td>
                                           <td>$r[nama_kelas]</td>
                                           <td>$r[nama_guru]</td>
                                           <td>$r[nama_jurusan]</td>
