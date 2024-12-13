@@ -493,7 +493,7 @@
 
   if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
-    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
+    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ?  : '';
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
     } else {
       echo "
