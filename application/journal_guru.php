@@ -71,6 +71,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                 <th>Selesai</th>
                 <th>Ruangan</th>
                 <th>Semester</th>
+                <th>Pertemuan</th>
                 <th></th>
               </tr>
             </thead>
@@ -103,6 +104,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                                 <td>$r[jam_selesai]</td>
                                 <td>$r[nama_ruangan]</td>
                                 <td>$r[id_tahun_akademik]</td>
+                                <td>$r[pertemuan]</td>
                                 <td style='width:80px !important'><center>
                                           <a class='btn btn-success btn-xs' title='Lihat Journal' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]'><span class='glyphicon glyphicon-search'></span> Lihat Journal</a>
                                         </center></td>
