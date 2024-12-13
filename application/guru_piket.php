@@ -110,7 +110,7 @@
                                 <td>" . tgl_indo($r['tanggal']) . "</td>
                                 <td>
                                   <a href='index.php?view=absensiguru&act=detail&id_absen=$r[id_absensi]&nip=$r[nip]&bulan=$bulan_dipilih&tanggal=$tanggal_dipilih' class='btn btn-info' title='detail'><i class='fa fa-eye'></i></a>
-                                  <a href=''  class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
+                                  <a href='' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
                                 echo "</tr>";
@@ -130,10 +130,6 @@
 <?php
 } elseif ($_GET[act] == 'detail') {
     cek_session_guru();
-
-    if(isset($_GET['hapus'])){
-        echo "haha";
-    }
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip WHERE a.nip=$_GET[nip] AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
     $cek_absen = mysql_query("SELECT * FROM rb_rekap_absen_guru WHERE id_absensi = '$_GET[id_absen]' AND status=1 AND DAY(tanggal) = '$_GET[tanggal]' AND MONTH(tanggal) = '$_GET[bulan]'");
