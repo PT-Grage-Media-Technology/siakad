@@ -97,7 +97,7 @@ echo "<b>D. Ketidak hadiran</b>
 
 ?>
 <?php
-if (strpos($t['keterangan'], 'Genap') !== false) {
+if (strpos($t['nama_tahun'], 'Genap') !== false) {
     echo "<table border='0' width='100%'>
             <tr>
                 <td>Berdasarkan hasil pencapaian kompetensi peserta didik dinyatakan: Naik / Tinggal di Kelas X / XI</td>
