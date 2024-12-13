@@ -491,7 +491,7 @@
   }
 
 
-  if ($_SESSION['level'] != 'kepala') {
+  // if ($_SESSION['level'] != 'kepala') {
     $tglAbsen = $_GET['tgl'];
     $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
@@ -506,7 +506,7 @@
             </div>
         ";
     }
-  }
+  // }
 
   echo "
     </form>
