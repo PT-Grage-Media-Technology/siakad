@@ -1,3 +1,12 @@
 <?php
-var_dump('coba');
+	// If you need to parse XLS files, include php-excel-reader
+	require('php-excel-reader/excel_reader2.php');
+
+	require('SpreadsheetReader.php');
+
+	$Reader = new SpreadsheetReader('example.xlsx');
+	foreach ($Reader as $Row)
+	{
+		print_r($Row);
+	}
 ?>
