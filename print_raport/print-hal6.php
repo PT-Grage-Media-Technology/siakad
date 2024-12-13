@@ -96,7 +96,18 @@ echo "<b>D. Ketidak hadiran</b>
 //       </table><br/>";
 
 ?>
-
+<?php
+if (strpos($t['keterangan'], 'Genap') !== false) {
+    echo "<table border='0' width='100%'>
+            <tr>
+                <td>Berdasarkan hasil pencapaian kompetensi peserta didik dinyatakan: Naik / Tinggal di Kelas X / XI</td>
+            </tr>
+            <tr>
+                <td>*) Coret yang tidak perlu.</td>
+            </tr>
+          </table><br/>";
+}
+?>
 <table border=0 width=100%>
   <tr>
     <td width="260" align="left">Orang Tua / Wali</td>
