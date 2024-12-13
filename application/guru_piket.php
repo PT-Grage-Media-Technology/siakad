@@ -237,7 +237,7 @@
                                   echo"<a href='index.php?view=absensiguru&act=detail&id=$r[id_journal]&jdwl=$r[kodejdwl]&nip=$r[users]&bulan=$_GET[bulan]&tanggal=$_GET[tanggal]' class='btn btn-danger' title='Hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\")'><i class='fa fa-times'></i></a>
                                 </td>";
 
-                                echo "</tr>";
+                                echo "</tr>"; 
                                 $no++;
                             }
                         } else {
