@@ -1,6 +1,6 @@
 <?php
 // Sertakan file SimpleXLSXGen yang telah diunduh
-require_once 'connfig/SimpleXLSX.php';
+require_once 'config/SimpleXLSX.php';
 
 // Data yang akan diekspor ke Excel
 $data = [
