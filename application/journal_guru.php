@@ -378,7 +378,7 @@ while ($r = mysql_fetch_array($tampil)) {
             <td>" . tgl_indo($r['tanggal']) . "</td>
             <td align='center'>{$r['jam_ke']}</td>
             <td align='center'>{$r['sampai_jam_ke']}</td>
-            <td align='center'>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
+            <td align='center'>" . (!empty($r['pengganti']) ? $r['pengganti'] : $r['nama_guru']) . "</td>
             <td>{$r['tujuan_pembelajaran']}</td>
             <td>{$Pertemuan}</td>
             <td>{$r['materi']}</td>";
@@ -407,7 +407,7 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td >" . tgl_indo($sub['tanggal']) . "</td>
                 <td align='center'>{$sub['jam_ke']}</td>
                 <td align='center'>{$sub['sampai_jam_ke']}</td>
-                <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
+                <td align='center'>" . (!empty($sub['pengganti']) ? $sub['pengganti'] : $sub['nama_guru']) . "</td>
                 <td> {$sub['tujuan_pembelajaran']} </td>
                 <td> {$subPertemuan} </td>
                 <td>{$sub['materi']}</td>";
