@@ -153,7 +153,7 @@
                                                                                    <input type='radio' name='f' value='Tidak' checked> Tidak";
                                                                         }
                         echo "</td></tr>
-                        </tbody>
+                        </tbody> 
                         </table>
                       </div> 
                     </div>
