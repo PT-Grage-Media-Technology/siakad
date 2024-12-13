@@ -487,16 +487,6 @@
 
     echo "</select></td>";
     echo "</tr>";
-
-    echo "
-       </tbody>
-    </table>
-    </div>
-    </div>
-      <div class='box-footer'>
-              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
-            </div>
-        ";
     $no++;
   }
 
@@ -507,12 +497,20 @@
     if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
     } else {
       echo "
-      </form>
-    </div>";
+       </tbody>
+    </table>
+    </div>
+    </div>
+      <div class='box-footer'>
+              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
+            </div>
+        ";
     }
   }
 
- 
+  echo "
+    </form>
+  </div>";
 
   if (isset($_POST['simpann'])) {
     $jml_data = count($_POST['nisn']);
