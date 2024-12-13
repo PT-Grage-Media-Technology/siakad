@@ -1,11 +1,11 @@
 <?php
 echo "coba";
 
-// Include PhpSpreadsheet library
-require 'vendor/autoload.php'; // Pastikan path ini sesuai dengan lokasi PhpSpreadsheet di proyek Anda
+// Include PHPExcel library
+require 'vendor/autoload.php'; // Pastikan path ini sesuai dengan lokasi PHPExcel di proyek Anda
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PHPExcel;
+use PHPExcel_IOFactory;
 
 // Cek apakah parameter GET sudah diterima
 if (isset($_GET['tahun'], $_GET['kd'], $_GET['id'])) {
@@ -21,8 +21,8 @@ if (isset($_GET['tahun'], $_GET['kd'], $_GET['id'])) {
                             ORDER BY a.id_siswa");
 
     // Membuat objek spreadsheet baru
-    $spreadsheet = new Spreadsheet();
-    $sheet = $spreadsheet->getActiveSheet();
+    $objPHPExcel = new PHPExcel();
+    $sheet = $objPHPExcel->getActiveSheet();
     $sheet->setTitle('Absensi Siswa');
 
     // Menambahkan header kolom
@@ -68,7 +68,7 @@ if (isset($_GET['tahun'], $_GET['kd'], $_GET['id'])) {
     }
 
     // Menulis file Excel
-    $writer = new Xlsx($spreadsheet);
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 
     // Mengatur header untuk download file
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -76,7 +76,7 @@ if (isset($_GET['tahun'], $_GET['kd'], $_GET['id'])) {
     header('Cache-Control: max-age=0');
 
     // Menyimpan dan mengunduh file Excel
-    $writer->save('php://output');
+    $objWriter->save('php://output');
     exit;
 }
 ?>
