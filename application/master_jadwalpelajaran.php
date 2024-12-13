@@ -3,56 +3,56 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">
-          <?php if (isset($_GET['kelas']) and isset($_GET['tahun'])) {
-            echo "Jadwal Pelajaran";
-          } else {
-            echo "Jadwal Pelajaran Pada Tahun " . date('Y');
-          }
+          <?php
+          // Ambil tahun akademik yang terbaru
+          $tahun = mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC");
+          $tahun_terbaru = mysql_fetch_array($tahun); // Ambil tahun terbaru
+          mysql_data_seek($tahun, 0); // Kembali ke awal data query untuk loop
 
-          if (empty($_GET['tahun'])) {
-            $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
-            $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
-          } else {
-            $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '" . $_GET['tahun'] . "'"));
-            $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
-          }
+          // Jika pengguna belum memilih tahun, gunakan tahun terbaru
+          $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : $tahun_terbaru['id_tahun_akademik'];
 
-          if (empty($_GET['kelas'])) {
-            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas"));
-            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
-          } else {
-            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas = '" . $_GET['kelas'] . "'"));
-            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
+          // Ambil nama tahun akademik yang dipilih
+          $nama_tahun_dipilih = '';
+          while ($k = mysql_fetch_array($tahun)) {
+            if ($tahun_dipilih == $k['id_tahun_akademik']) {
+              $nama_tahun_dipilih = $k['nama_tahun'];
+            }
           }
+          mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
+
+          // Mendapatkan kelas yang dipilih
+          $kelas_dipilih = isset($_GET['kelas']) ? $_GET['kelas'] : '';
           ?>
+          Jadwal Pelajaran Pada Tahun <?php echo $nama_tahun_dipilih; ?>
         </h3>
-        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=jadwalpelajaran&act=tambah'>Tambahkan Jadwal
-          Pelajaran</a>
+        <a class='pull-right btn btn-primary btn-sm' href='index.php?view=jadwalpelajaran&act=tambah'>Tambahkan Jadwal Pelajaran</a>
         <form style='margin-right:5px; margin-top:0px' class='pull-right' action='' method='GET'>
           <input type="hidden" name='view' value='jadwalpelajaran'>
-          <select name='tahun' style='padding:4px'>
+
+          <!-- Dropdown untuk memilih Tahun Akademik -->
+          <select name='tahun' style='padding:4px' onchange='this.form.submit()'>
+            <option value=''>- Pilih Tahun Akademik -</option>
             <?php
-            echo "<option value=''>- Pilih Tahun Akademik -</option>";
-            $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
+            mysql_data_seek($tahun, 0); // Kembali ke awal untuk loop dropdown
             while ($k = mysql_fetch_array($tahun)) {
-              // Menandai tahun terpilih berdasarkan $_GET['tahun']
-              $selected = (isset($_GET['tahun']) && $_GET['tahun'] == $k['id_tahun_akademik']) ? "selected" : "";
-              echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
+              $selected = ($tahun_dipilih == $k['id_tahun_akademik']) ? 'selected' : '';
+              echo "<option value='{$k['id_tahun_akademik']}' $selected>{$k['nama_tahun']}</option>";
             }
             ?>
           </select>
+
+          <!-- Dropdown untuk memilih Kelas -->
           <select name='kelas' style='padding:4px' onchange="this.form.submit()">
+            <option value=''>- Pilih Kelas -</option>
             <?php
-            echo "<option value=''>- Pilih Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              // Menandai kelas terpilih berdasarkan $_GET['kelas']
-              $selected = (isset($_GET['kelas']) && $_GET['kelas'] == $k['kode_kelas']) ? "selected" : "";
+              $selected = ($kelas_dipilih == $k['kode_kelas']) ? 'selected' : '';
               echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]</option>";
             }
             ?>
           </select>
-          <!-- <input type="submit" style='margin-top:-4px' class='btn btn-success btn-sm' value='Lihat'> -->
         </form>
       </div><!-- /.box-header -->
       <div class="box-body">
