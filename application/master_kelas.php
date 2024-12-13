@@ -155,13 +155,11 @@
                         echo "</td></tr>
                         </tbody>
                         </table>
-                      </div>
+                      </div> 
                     </div>
                     <div class='box-footer'>
                           <button type='submit' name='update' class='btn btn-info'>Update</button>
-                          <a href='javascript:history.back()'> <
-    <button class='btn btn-default pull-right'>Cancel</button>
-</a>
+                         
 
                           
                         </div>
