@@ -416,7 +416,7 @@ if (isset($_SESSION['id'])) {
               include "application/absensi_siswa_rekap.php";
               echo "</div>";
             // }
-          } elseif ($_GET[view] == 'rekapabsensiswa') {
+          } elseif ($_GET[view] == 'export_to_excel') {
               echo "<div class='row'>";
               include "application/export_to_excel.php";
               echo "</div>";
