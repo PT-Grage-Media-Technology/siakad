@@ -1,4 +1,17 @@
 <?php if ($_GET[act] == '') { ?>
+  <?php
+  // Tambahkan kode ini untuk mengarahkan ke URL dengan id_tahun_akademik dan kode_kelas
+  if (empty($_GET['tahun']) && empty($_GET['kelas'])) {
+      $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
+      $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
+
+      $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas"));
+      $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID kelas terakhir
+
+      // Redirect ke URL dengan tahun dan kelas yang dipilih
+      echo "<script>document.location='index.php?view=jadwalpelajaran&tahun=$tahun_terpilih&kelas=$kelas_terpilih';</script>";
+  }
+  ?>
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
@@ -10,23 +23,19 @@
           } 
           
           if (empty($_GET['tahun'])) {
-            // Ambil ID tahun terakhir jika tahun tidak dipilih
             $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC LIMIT 1"));
             $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
           } else {
-            // Ambil ID tahun berdasarkan yang dipilih
             $data_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik WHERE id_tahun_akademik = '".$_GET['tahun']."'"));
             $tahun_terpilih = $data_terakhir['id_tahun_akademik'];  // Ambil ID tahun terakhir
           } 
 
-          // Ambil kelas terakhir jika kelas tidak dipilih
           if (empty($_GET['kelas'])) {
-            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ORDER BY kode_kelas LIMIT 1")); // Ambil kelas pertama
-            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID kelas pertama
+            $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas"));
+            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
           } else {
-            // Ambil kelas berdasarkan yang dipilih
             $data_kelas_terakhir = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas = '".$_GET['kelas']."'"));
-            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID kelas terakhir
+            $kelas_terpilih = $data_kelas_terakhir['kode_kelas'];  // Ambil ID tahun terakhir
           } 
           ?>
         </h3>
