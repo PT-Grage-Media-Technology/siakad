@@ -41,7 +41,7 @@
                                           <td>$no</td>
                                           <td>$r[kode_kelas]</td>
                                           <td>$r[nama_kelas]</td>
-                                          <td>$r[nama_kelas]</td>
+                                          <td>$r[fase]</td>
                                           <td>$r[nama_guru]</td>
                                           <td>$r[nama_jurusan]</td>
                                           <td>$r[nama_ruangan]</td>
