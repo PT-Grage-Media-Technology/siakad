@@ -492,21 +492,39 @@
 
 
   // if ($_SESSION['level'] != 'kepala') {
-    $tglAbsen = $_GET['tgl'];
-    $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
-    if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
-    } else {
-      echo "
-       </tbody>
-    </table>
-    </div>
-    </div>
-      <div class='box-footer'>
-              <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
-            </div>
-        ";
-    }
+  //   $tglAbsen = $_GET['tgl'];
+  //   $isDisabled = (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) ? 'hidden' : '';
+  //   if (strtotime(date('Y-m-d')) > strtotime($tglAbsen)) {
+  //   } else {
+  //     echo "
+  //      </tbody>
+  //   </table>
+  //   </div>
+  //   </div>
+  //     <div class='box-footer'>
+  //             <button type='submit' name='simpann' class='btn btn-info pull-right' >Simpan Absensi</button>
+  //           </div>
+  //       ";
+  //   }
   // }
+
+  if ($_SESSION['level'] != 'kepala') {
+    $tglAbsen = $_GET['tgl']; 
+    if (strtotime(date('Y-m-d')) <= strtotime($tglAbsen)) {
+        echo "
+           </tbody>
+        </table>
+        </div>
+        </div>
+          <div class='box-footer'>
+                  <button type='submit' name='simpann' class='btn btn-info pull-right'>Simpan Absensi</button>
+          </div>
+        ";
+    } else {
+        echo "<div class='alert alert-warning'>Absensi hanya bisa dilakukan untuk tanggal hari ini atau mendatang.</div>";
+    }
+}
+
 
   echo "
     </form>
