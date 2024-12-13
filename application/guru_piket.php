@@ -209,16 +209,16 @@
                                 echo "<td>{$r['users']}</td>";
                                 echo"<td>$r[nama_guru]</td>";
                                 if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
-                                    echo "<td> {$r['pengganti']} </td>";
+                                    if ($row = mysql_fetch_array($guru_pengganti)) {
+                                        echo"<td>$row[nama_guru]</td>";
+                                    }
                                 }else{
-                                    echo "<td> -- </td>";
+                                    echo "<td text-align='center'> -- </td>";
 
                                 }
                                
                                 
-                                if ($row = mysql_fetch_array($guru_pengganti)) {
-                                    echo"<td>$row[nama_guru]</td>";
-                                }
+                               
                      
 
                                 echo"<td>$r[namamatapelajaran]</td>
