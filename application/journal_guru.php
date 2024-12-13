@@ -398,7 +398,7 @@ while ($r = mysql_fetch_array($tampil)) {
         echo "</tr>";
 
         // Cari sub-data untuk data utama ini
-        $tampilSub = mysql_query("SELECT * FROM rb_journal_list WHERE id_parent_journal = '{$r['id_journal']}'");
+        $tampilSub = mysql_query("SELECT jl.*, g.nama_guru FROM rb_journal_list jl LEFT JOIN rb_guru g ON jl.users = g.nip WHERE id_parent_journal = '{$r['id_journal']}'");
         $subPertemuan = 2; // Mulai dari pertemuan ke-2 untuk sub-data
         while ($sub = mysql_fetch_array($tampilSub)) {
             echo "<tr style='background-color: #f9f9f9;'>
