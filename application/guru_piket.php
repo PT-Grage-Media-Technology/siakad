@@ -131,7 +131,7 @@
 } elseif ($_GET[act] == 'detail') {
     cek_session_guru();
     
-    if(isset($_POST['hapus'])){
+    if(isset($_GET['hapus'])){
         echo "dssdds";
         exit;
     }
