@@ -336,6 +336,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
                         <th style='width:70px'>Sampai Jam Ke</th>
                         <th style='width:200px' align=center>Guru</th>
                         <th style='width:220px'>Tujuan Pembelajaran</th>
+                        <th style='width:70px'>Pertemuan</th>
                         <th style='width:220px'>Materi</th>";
   if ($_SESSION['level'] != 'kepala') {
     echo "<th>Action</th>";
@@ -369,6 +370,7 @@ $tampilInput = mysql_query("SELECT jl.*, g.nama_guru
 
 while ($r = mysql_fetch_array($tampil)) {
     // Periksa apakah data ini adalah data utama
+    $Pertemuan = 1;
     if ($r['id_parent_journal'] == NULL || $r['id_parent_journal'] == '') {
         echo "<tr>
             <td>{$no}</td>
@@ -377,7 +379,8 @@ while ($r = mysql_fetch_array($tampil)) {
             <td align='center'>{$r['jam_ke']}</td>
             <td align='center'>{$r['sampai_jam_ke']}</td>
             <td align='center'>" . ($r['nama_guru'] ? $r['nama_guru'] : 'Tidak ada') . "</td>
-            <td>{$r['tujuan_pembelajaran']} (Pertemuan ke 1)</td>
+            <td>{$r['tujuan_pembelajaran']}</td>
+            <td>{$Pertemuan}</td>
             <td>{$r['materi']}</td>";
 
         if ($_SESSION['level'] != 'kepala') {
@@ -405,7 +408,8 @@ while ($r = mysql_fetch_array($tampil)) {
                 <td align='center'>{$sub['jam_ke']}</td>
                 <td align='center'>{$sub['sampai_jam_ke']}</td>
                 <td align='center'>" . ($sub['nama_guru'] ? $sub['nama_guru'] : 'Tidak ada') . "</td>
-                <td> {$sub['tujuan_pembelajaran']} (Pertemuan ke $subPertemuan)</td>
+                <td> {$sub['tujuan_pembelajaran']} </td>
+                <td> {$subPertemuan} </td>
                 <td>{$sub['materi']}</td>";
             $subPertemuan++; // Increment untuk sub-data
 
