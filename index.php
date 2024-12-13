@@ -5,7 +5,7 @@ include "config/koneksi.php";
 include "config/library.php";
 include "config/fungsi_indotgl.php";
 include "config/fungsi_seo.php";
-include "config/SimpleXLSXGen.php";
+include "config/Classes/PHPExcel.php";
 
 if (isset($_SESSION['id'])) { 
   if ($_SESSION['level'] == 'superuser') {
