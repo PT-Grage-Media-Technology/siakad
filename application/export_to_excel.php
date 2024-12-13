@@ -1,5 +1,6 @@
 <?php
 // Sertakan file PHPExcel
+require_once 'config/Classes/PHPExcel.php';
 
 // Buat objek PHPExcel
 $objPHPExcel = new PHPExcel();
