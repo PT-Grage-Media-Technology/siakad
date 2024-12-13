@@ -209,7 +209,10 @@
                                 echo "<td>{$r['users']}</td>";
                                 echo"<td>$r[nama_guru]</td>";
                                 if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
-                                    echo "<td>". isset($r['pengganti']) ? $r['pengganti'] : "-" . "</td>";
+                                    echo "<td> {$r['pengganti']} </td>";
+                                }else{
+                                    echo "<td> -- </td>";
+
                                 }
                                
                                 
