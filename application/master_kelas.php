@@ -1,5 +1,5 @@
 <?php if ($_GET[act]==''){ ?> 
-        <div class="col-12">  
+        <div class="col-xs-12">  
           <div class="box">
               <div class="box-header">
                   <h3 class="box-title">Data Kelas</h3>
@@ -16,6 +16,7 @@
                                   <th style='width:40px'>No</th>
                                   <th>Kode Kelas</th>
                                   <th>Nama Kelas</th>
+                                  <th>Fase</th>
                                   <th>Wali Kelas</th>
                                   <th>Jurusan</th>
                                   <th>Ruangan</th>
@@ -39,6 +40,7 @@
                                   echo "<tr>
                                           <td>$no</td>
                                           <td>$r[kode_kelas]</td>
+                                          <td>$r[nama_kelas]</td>
                                           <td>$r[nama_kelas]</td>
                                           <td>$r[nama_guru]</td>
                                           <td>$r[nama_jurusan]</td>
@@ -153,13 +155,14 @@
                                                                                    <input type='radio' name='f' value='Tidak' checked> Tidak";
                                                                         }
                         echo "</td></tr>
-                        </tbody>
+                        </tbody> 
                         </table>
-                      </div>
+                      </div> 
                     </div>
                     <div class='box-footer'>
                           <button type='submit' name='update' class='btn btn-info'>Update</button>
-                          <a href='index.php?view=kelas'><button class='btn btn-default pull-right'>Cancel</button></a>
+                         
+
                           
                         </div>
                     </form>
