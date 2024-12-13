@@ -206,13 +206,13 @@
                             while ($r = mysql_fetch_array($tampil)) {
                                 // var_dump($r);
                                 echo "<tr><td>$no</td>";
+                                echo "<td>{$r['users']}</td>";
+                                echo"<td>$r[nama_guru]</td>";
                                 if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
-                                    echo "<td>{$r['pengganti']}</td>";
+                                    echo "<td>". isset($r['pengganti']) ? $r['pengganti'] : "-" . "</td>";
                                 }
-                                    echo "<td>{$r['users']}</td>";
                                
                                 
-                                echo"<td>$r[nama_guru]</td>";
                                 if ($row = mysql_fetch_array($guru_pengganti)) {
                                     echo"<td>$row[nama_guru]</td>";
                                 }
