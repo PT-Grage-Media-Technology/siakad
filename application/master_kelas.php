@@ -81,6 +81,7 @@
                                                   nip = '$_POST[b]',
                                                   kode_jurusan = '$_POST[c]',
                                                   kode_ruangan = '$_POST[d]',
+                                                  fase = '$_POST[fase]',
                                                   nama_kelas = '$_POST[e]', 
                                                   aktif = '$_POST[f]' WHERE kode_kelas='$_POST[id]'";
                   $result = mysql_query($query);
@@ -112,6 +113,7 @@
                         <tbody>
                           <input type='hidden' name='id' value='$s[kode_kelas]'>
                           <tr><th width='120px' scope='row'>Kode Kelas</th> <td><input type='text' class='form-control' name='a' value='$s[kode_kelas]'> </td></tr>
+                           <tr><th scope='row'>Fase</th>           <td><input type='text' class='form-control' name='fase'></td></tr>
                           <tr><th scope='row'>Wali Kelas</th>               <td><select class='form-control' name='b'> 
                                                                                 <option value='0' selected>- Pilih Wali Kelas -</option>"; 
                                                                                   $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
@@ -169,7 +171,7 @@
                   </div>";
 }elseif($_GET[act]=='tambah'){
           if (isset($_POST['tambah'])){
-              mysql_query("INSERT INTO rb_kelas VALUES('$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]')");
+              mysql_query("INSERT INTO rb_kelas VALUES('$_POST[a]','$_POST[fase]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]')");
               echo "<script>document.location='index.php?view=kelas';</script>";
           }
       
@@ -184,6 +186,7 @@
                         <table class='table table-condensed table-bordered'>
                         <tbody>
                           <tr><th width='120px' scope='row'>Kode Kelas</th> <td><input type='text' class='form-control' name='a'> </td></tr>
+                           <tr><th scope='row'>Fase</th>           <td><input type='text' class='form-control' name='fase'></td></tr>
                           <tr><th scope='row'>Wali Kelas</th>               <td><select class='form-control' name='b'> 
                                                                                 <option value='0' selected>- Pilih Wali Kelas -</option>"; 
                                                                                   $wali = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
