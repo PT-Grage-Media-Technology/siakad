@@ -107,31 +107,9 @@
                                                         AND tanggal='$tanggal' 
                                                         ORDER BY tanggal ASC"));
 
-                  // Query ke journal_list
-                  // $journal = mysql_fetch_array(mysql_query("SELECT * FROM rb_journal_list 
-                  //                                           WHERE kodejdwl='$kodejdwl' 
-                  //                                           AND tanggal='$tanggal' 
-                  //                                           ORDER BY tanggal ASC"));
-
-                  // echo "$journal[tujuan pembelajaran]";
-
-
                   $totalAbsensi += (isset($abs['total']) ? $abs['total'] : 0); // Tambahkan absensi
                   $nilaiArray[$i] = isset($abs['total']) ? $abs['total'] : 0; // Simpan nilai absensi ke dalam array
                   echo "<td>" . (isset($abs['total']) ? $abs['total'] : 0) . "</td>";
-
-                  // Misal, gunakan nilai dari journal
-                  // $journalContent = isset($journal['tujuan_pembelajaran']) ? $journal['tujuan_pembelajaran'] : 'Tidak ada jurnal';
-
-                  // echo "<td><a href='index.php?view=absensiswa&act=tampilabsen
-                  //     &id=" . $d['kode_kelas'] .
-                  //     // "&kd=" . $d['kode_pelajaran'] . 
-                  //     "&idjr=" . $kodejdwl . 
-                  //     "&tgl=" . $tanggal . 
-                  //     "&jam=" . $journal['jam_ke'] . 
-                  //     "&id_journal=" . $r['id_journal'] . "'>" . 
-                  //     (isset($abs['total']) ? $abs['total'] : 0) . 
-                  //     "</a> - " . $journalContent . "</td>";
 
                 }
                 $maxIndex = array_search(max($nilaiArray), $nilaiArray); 
