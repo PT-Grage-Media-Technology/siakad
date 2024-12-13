@@ -133,7 +133,7 @@
     
     if(isset($_GET['hapus'])){
         // mysql_query('UPDATE rb_journal_guru SET pengganti=NULL WHERE id_journal=$_GET[id]');
-        echo "UPDATE rb_journal_guru SET pengganti=NULL WHERE id_journal=$_GET[id]";
+        echo "UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal=$_GET[id]";
     }
     // Ambil data sesuai NIP
     $m = mysql_query("SELECT * FROM rb_rekap_absen_guru a JOIN rb_guru b ON a.nip=b.nip WHERE a.nip=$_GET[nip] AND DAY(a.tanggal) = '$_GET[tanggal]' AND MONTH(a.tanggal) = '$_GET[bulan]'");
