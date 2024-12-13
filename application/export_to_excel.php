@@ -1,6 +1,6 @@
 <?php
 // Sertakan file SimpleCSV yang telah diunduh
-require_once 'config/SimpleCSV.php'; // Ganti dengan path yang sesuai
+include 'config/SimpleCSV.php'; // Ganti dengan path yang sesuai
 
 // Data yang akan diekspor ke CSV
 $data = [
