@@ -35,12 +35,8 @@
             echo "<option value=''>- Pilih Tahun Akademik -</option>";
             $tahun = mysql_query("SELECT * FROM rb_tahun_akademik");
             while ($k = mysql_fetch_array($tahun)) {
-              if ($tahun_terpilih == $k['id_tahun_akademik']) {
-                echo "<option value='$k[id_tahun_akademik]' selected>$k[nama_tahun]</option>";
-              } else {
-                $selected = ($id_terakhir == $k['id_tahun_akademik']) ? "selected" : "";
+                $selected = ($tahun_terpilih == $k['id_tahun_akademik']) ? "selected" : "";
                 echo "<option value='$k[id_tahun_akademik]' $selected>$k[nama_tahun]</option>";
-              }
             }
             ?>
           </select>
@@ -49,12 +45,8 @@
             echo "<option value=''>- Pilih Kelas -</option>";
             $kelas = mysql_query("SELECT * FROM rb_kelas");
             while ($k = mysql_fetch_array($kelas)) {
-              if ($kelas_terpilih == $k['kode_kelas']) {
-                echo "<option value='$k[kode_kelas]' selected>$k[nama_kelas]</option>";
-              } else {
-                $selected = ($id_terakhir == $k['kode_kelas']) ? "selected" : "";
+                $selected = ($kelas_terpilih == $k['kode_kelas']) ? "selected" : "";
                 echo "<option value='$k[kode_kelas]' $selected>$k[nama_kelas]</option>";
-              }
             }
             ?>
           </select>
