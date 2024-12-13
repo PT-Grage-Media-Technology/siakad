@@ -159,7 +159,10 @@
                     </div>
                     <div class='box-footer'>
                           <button type='submit' name='update' class='btn btn-info'>Update</button>
-                          <a href='index.php?view=kelas'><button class='btn btn-default pull-right'>Cancel</button></a>
+                          <a href='javascript:history.back()'> <
+    <button class='btn btn-default pull-right'>Cancel</button>
+</a>
+
                           
                         </div>
                     </form>
