@@ -132,7 +132,7 @@
     cek_session_guru();
     
     if(isset($_GET['hapus'])){
-        mysql_query('UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal=$_GET[id]');
+        mysql_query("UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal='$_GET[id]'");
         // echo "UPDATE rb_journal_list SET pengganti=NULL WHERE id_journal=$_GET[id]";
     }
     // Ambil data sesuai NIP
