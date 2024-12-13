@@ -208,9 +208,9 @@
                                 echo "<tr><td>$no</td>";
                                 if (!empty($r['pengganti'])) { // Memeriksa apakah kolom pengganti tidak kosong
                                     echo "<td>{$r['pengganti']}</td>";
-                                } else {
-                                    echo "<td>{$r['users']}</td>";
                                 }
+                                    echo "<td>{$r['users']}</td>";
+                               
                                 
                                 echo"<td>$r[nama_guru]</td>";
                                 if ($row = mysql_fetch_array($guru_pengganti)) {
