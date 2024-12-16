@@ -211,7 +211,15 @@
             <td>$no</td>
             <td>$r[nisn]</td>
             <td>$r[nama]</td>
-            <td>$r[jenis_kelamin]</td>";
+            <td>";
+                if ($r['jenis_kelamin'] == 'Laki-laki') {
+                    echo 'L';
+                } elseif ($r['jenis_kelamin'] == 'Perempuan') {
+                    echo 'P';
+                } else {
+                    echo '-';  // Jika jenis kelamin tidak terisi atau tidak sesuai
+                }
+                echo "</td>";
 
     // Isi data absensi per tanggal
     for ($i = 1; $i <= $jumlahHari; $i++) {
