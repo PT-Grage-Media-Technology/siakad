@@ -108,6 +108,10 @@ if ($_GET['act'] == '') {
     .btn, form {
       display: none;
     }
+    @page {
+      size: landscape;
+    }
+    
     .table-responsive {
       overflow-x: visible;
     }
