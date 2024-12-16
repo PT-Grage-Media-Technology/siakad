@@ -8,12 +8,23 @@ if ($_GET['act'] == '') {
     $filterTahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
     $jumlahHari = cal_days_in_month(CAL_GREGORIAN, $filterBulan, $filterTahun);
 
+    // Array nama bulan
+    $bulanArr = [
+        '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', 
+        '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+        '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+    ];
+    
+    // Mendapatkan nama bulan dari kode bulan
+    $namaBulan = $bulanArr[$filterBulan];
+
     echo "<div class='col-md-12 print-page'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Rekap Data Absensi Guru Tahun $filterTahun Bulan $filterBulan</h3>
+                  <h3 class='box-title'>Rekap Data Absensi Guru Tahun $filterTahun Bulan $namaBulan</h3>
                 </div>
               <div class='box-body'>
+
 
               <div class='col-md-12'>
                 <form method='GET' action=''>
@@ -47,7 +58,7 @@ if ($_GET['act'] == '') {
               </div>
 
               <div class='col-md-12'>
-                <h4>Data Absensi Guru Periode: $filterBulan - $filterTahun</h4>
+                <h4>Data Absensi Guru Periode: $namaBulan - $filterTahun</h4>
               </div>
 
               <div class='col-md-12'>
