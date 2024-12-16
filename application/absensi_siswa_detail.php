@@ -8,7 +8,7 @@ if ($_GET['act'] == '') {
     $filterTahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
     $jumlahHari = cal_days_in_month(CAL_GREGORIAN, $filterBulan, $filterTahun);
 
-    echo "<div class='col-md-12'>
+    echo "<div class='col-md-12 print-page'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Rekap Data Absensi Guru Tahun $filterTahun Bulan $filterBulan</h3>
@@ -110,29 +110,29 @@ if ($_GET['act'] == '') {
     }
 
     @page {
-      size: landscape;
+      size: A4 landscape;  /* Ensure A4 size in landscape mode */
+      margin: 0;            /* Remove default margin */
     }
 
-    /* Scale the content to 70% */
-    body {
+    /* Scale the content to fit on A4 landscape */
+    .print-page {
       transform: scale(0.7);
-      transform-origin: top center; /* Ensures content is scaled from the top-center */
+      transform-origin: top center;  /* Scale from the top-center */
       width: 100%;
       margin: 0;
     }
 
-    /* Make the table width 100% and remove overflow */
     .table-responsive {
       width: 100%;
       overflow-x: visible;
     }
 
     table {
-      width: 100%;  /* Ensures table occupies full width */
+      width: 100%;  /* Ensure table takes up the full page width */
     }
 
-    /* Optional: Remove the margin and padding of the page */
-    body, html {
+    /* Optional: Remove margin and padding of the page for cleaner printing */
+    html, body {
       margin: 0;
       padding: 0;
     }
@@ -142,4 +142,5 @@ if ($_GET['act'] == '') {
     overflow-x: auto;
   }
 </style>
+
 
