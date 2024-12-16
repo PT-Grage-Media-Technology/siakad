@@ -255,8 +255,39 @@ echo "</tbody>
             display: none;
         }
         
-        /* Opsional: sembunyikan tombol filter dan print */
+        /* Sembunyikan tombol filter dan print */
         .print-page .btn {
+            display: none;
+        }
+
+        /* Mengatur ukuran halaman untuk landscape */
+        @page {
+            size: landscape;
+            margin: 1cm; /* Atur margin sesuai kebutuhan */
+        }
+
+        /* Mengatur tabel agar menyesuaikan dengan lebar halaman */
+        .table {
+            width: 100%;
+            table-layout: fixed;
+            font-size: 10px; /* Sesuaikan ukuran font agar lebih kecil */
+        }
+
+        /* Mengatur tampilan header dan cell agar tidak terpotong */
+        .table th, .table td {
+            word-wrap: break-word;
+            word-break: break-word;
+            padding: 4px;
+            text-align: center;
+        }
+
+        /* Menyesuaikan header dengan banyak kolom tanggal */
+        .table th {
+            font-size: 9px; /* Ukuran font header */
+        }
+
+        /* Menyembunyikan kolom nomor dan NISN pada tampilan cetak jika diinginkan */
+        .table td:nth-child(1), .table td:nth-child(2) {
             display: none;
         }
     }
