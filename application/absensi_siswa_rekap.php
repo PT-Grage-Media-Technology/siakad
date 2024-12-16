@@ -260,9 +260,9 @@ echo "</tbody>
             display: none;
         }
 
-        /* Mengatur ukuran halaman untuk landscape */
+        /* Mengatur ukuran halaman menjadi A4 landscape */
         @page {
-            size: landscape;
+            size: A4 landscape;
             margin: 1cm; /* Atur margin sesuai kebutuhan */
         }
 
