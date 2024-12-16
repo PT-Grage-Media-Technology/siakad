@@ -105,7 +105,7 @@ if ($_GET['act'] == '') {
 
 <style>
   @media print {
-    .btn,.box-header, form {
+    .btn,.box-header,.box, .box-info, form {
       display: none;
     }
 
