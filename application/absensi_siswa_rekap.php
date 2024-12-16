@@ -148,6 +148,8 @@
                           <input type='hidden' name='view' value='rekapabsensiswa'>
                           <input type='hidden' name='act' value='tampilabsen'>
                           <input type='hidden' name='id' value='$_GET[id]'>
+                          <input type='hidden' name='kd' value='$_GET[kd]'>
+                          <input type='hidden' name='jdwl' value='$_GET[jdwl]'>
                           <div class='form-group col-md-4'>
                               <label for='bulan'>Pilih Bulan:</label>
                               <select name='bulan' class='form-control'>
