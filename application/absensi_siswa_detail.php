@@ -112,6 +112,7 @@ if ($_GET['act'] == '') {
     @page {
       size: A4 landscape;  /* Ensure A4 size in landscape mode */
       margin: 0;            /* Remove default margin */
+      margin-top: 4px;            /* Remove default margin */
     }
 
     /* Scale the content to fit on A4 landscape */
