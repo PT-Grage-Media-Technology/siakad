@@ -86,6 +86,8 @@ if ($_GET['act'] == '') {
             $status = $absen ? $absen['kode_kehadiran'] : '-';
             if($status == 'Hadir'){
             echo "<td align='center'>H</td>";
+            }else{
+            echo "<td align='center'> - </td>";
             }
         }
 
