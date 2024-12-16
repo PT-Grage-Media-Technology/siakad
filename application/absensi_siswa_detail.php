@@ -53,12 +53,12 @@ if ($_GET['act'] == '') {
                     <button type='button' class='btn btn-success' style='margin-top: 25px;' onclick='window.print()'>Print</button>
                   </div>
                 </form>
-              </div>"
+              </div>";
 
               // Menampilkan Data Absensi Guru
               echo "<div class='col-md-12'>
                 <h4>Data Absensi Guru Periode: $bulanText - $filterTahun</h4>
-              </div>"
+              </div>";
 
               echo "<div class='col-md-12'>
                 <div class='table-responsive'>
