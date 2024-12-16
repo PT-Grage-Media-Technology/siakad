@@ -113,8 +113,8 @@ if ($_GET['act'] == '') {
     }
       /* Scale the content to 80% */
       body {
-      transform: scale(0.8);
-      transform-origin: top left;  /* Ensures content is scaled from the top-left corner */
+      transform: scale(0.7);
+      transform-origin: top center;  /* Ensures content is scaled from the top-left corner */
     }
 
     .table-responsive {
