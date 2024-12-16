@@ -145,7 +145,7 @@
               <div class='box-body'>
                   <div class='col-md-12'>
                       <form method='GET' action=''>
-                          <input type='hidden' name='act' value='tampilabsen'>
+                          <input type='hidden' name='view' value='tampilabsen'>
                           <div class='form-group col-md-4'>
                               <label for='bulan'>Pilih Bulan:</label>
                               <select name='bulan' class='form-control'>
