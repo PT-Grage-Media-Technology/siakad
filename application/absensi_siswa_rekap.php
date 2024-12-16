@@ -127,91 +127,103 @@
     </div>
   </div>
 <?php
-} elseif ($_GET[act] == 'tampilabsen') {
-$d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
-$m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
-echo "<div class='col-md-12 table-responsive'>
-        <div class='box box-info table-responsive'>
-            <div class='box-header with-border'>
-                <h3 class='box-title'>Rekap Data Absensi Siswa Pada $_GET[tahun]</b></h3>
-            </div>
-            <div class='box-body'>
-                <div class='col-md-12'>
-                    <table class='table table-condensed table-hover'>
-                        <tbody>
-                            <input type='hidden' name='id' value='$s[kode_kelas]'>
-                            <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                            <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
-                            <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class='col-md-12'>
-                    <table class='table table-condensed table-bordered table-striped table-responsive'>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NISN</th>
-                                <th>Nama Siswa</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Pertemuan</th>
-                                <th>Hadir</th>
-                                <th>Sakit</th>
-                                <th>Izin</th>
-                                <th>Alpa</th>
-                                <th><center>% Kehadiran</center></th>
-                            </tr>
-                        </thead>
-                        <tbody>";
+} elseif ($_GET['act'] == 'tampilabsen') {
+  // Sanitize GET variables
+  $id_kelas = mysql_real_escape_string($conn, $_GET['id']);
+  $kd_pelajaran = mysql_real_escape_string($conn, $_GET['kd']);
+  $tahun = mysql_real_escape_string($conn, $_GET['tahun']);
+  $jdwl = mysql_real_escape_string($conn, $_GET['jdwl']);
 
-            $no = 1;
-            $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin where a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-            while ($r = mysql_fetch_array($tampil)) {
-                $total = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' GROUP BY tanggal"));
-                $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
-                $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
-                $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
-                $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_siswa` where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
-                
-                $akademik_query = mysql_query("SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'");
-                $total_nilai_sikap = 0;
-                $total_nilai_keterampilan = 0;
-                $total_nilai_pengetahuan = 0;
-                $jumlah_pertemuan = 0;
+  // Query to fetch class details
+  $d = mysqli_fetch_array(mysql_query($conn, "SELECT * FROM rb_kelas WHERE kode_kelas='$id_kelas'"));
+  $m = mysqli_fetch_array(mysql_query($conn, "SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$kd_pelajaran'"));
 
-                while ($akademik = mysql_fetch_array($akademik_query)) {
-                    $total_nilai_sikap += $akademik['nilai_sikap'];
-                    $total_nilai_keterampilan += $akademik['nilai_keterampilan'];
-                    $total_nilai_pengetahuan += $akademik['nilai_pengetahuan'];
-                    $jumlah_pertemuan++;
-                }
-
-                // Hitung rata-rata
-                $divider = $jumlah_pertemuan * 3; // Total nilai sikap, keterampilan, pengetahuan per pertemuan
-                $rata_rata = ($divider > 0) ? (($total_nilai_sikap + $total_nilai_keterampilan + $total_nilai_pengetahuan) / $divider) : 0;
-
-                $persen = $hadir / ($total) * 100;
-                echo "<tr>
-                        <td>$no</td>
-                        <td>$r[nisn]</td>
-                        <td>$r[nama]</td>
-                        <td>$r[jenis_kelamin]</td>
-                        <td align=center>$jumlah_pertemuan</td>
-                        <td align=center>$hadir</td>
-                        <td align=center>$sakit</td>
-                        <td align=center>$izin</td>
-                        <td align=center>$alpa</td>
-                        <td align=right>".number_format($persen, 2)." %</td>
-                      </tr>";
-                $no++;
-            }
-
-            echo "</tbody>
-                  </table>
-                </div>
+  // Displaying the table headers
+  echo "<div class='col-md-12 table-responsive'>
+          <div class='box box-info table-responsive'>
+              <div class='box-header with-border'>
+                  <h3 class='box-title'>Rekap Data Absensi Siswa Pada $tahun</h3>
               </div>
-            </div>";
+              <div class='box-body'>
+                  <div class='col-md-12'>
+                      <table class='table table-condensed table-hover'>
+                          <tbody>
+                              <input type='hidden' name='id' value='$d[kode_kelas]'>
+                              <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+                              <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+                              <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class='col-md-12'>
+                      <table class='table table-condensed table-bordered table-striped table-responsive'>
+                          <thead>
+                              <tr>
+                                  <th>No</th>
+                                  <th>NISN</th>
+                                  <th>Nama Siswa</th>
+                                  <th>Jenis Kelamin</th>
+                                  <th>Pertemuan</th>
+                                  <th>Hadir</th>
+                                  <th>Sakit</th>
+                                  <th>Izin</th>
+                                  <th>Alpa</th>
+                                  <th><center>% Kehadiran</center></th>
+                              </tr>
+                          </thead>
+                          <tbody>";
 
+  // Query to fetch student details
+  $no = 1;
+  $tampil = mysql_query($conn, "SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$id_kelas' ORDER BY a.id_siswa");
+  while ($r = mysql_fetch_array($tampil)) {
+      // Counting attendance types
+      $total = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' GROUP BY tanggal"));
+      $hadir = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
+      $sakit = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
+      $izin = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
+      $alpa = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
+
+      // Calculate academic scores
+      $akademik_query = mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]'");
+      $total_nilai_sikap = 0;
+      $total_nilai_keterampilan = 0;
+      $total_nilai_pengetahuan = 0;
+      $jumlah_pertemuan = 0;
+
+      while ($akademik = mysql_fetch_array($akademik_query)) {
+          $total_nilai_sikap += $akademik['nilai_sikap'];
+          $total_nilai_keterampilan += $akademik['nilai_keterampilan'];
+          $total_nilai_pengetahuan += $akademik['nilai_pengetahuan'];
+          $jumlah_pertemuan++;
+      }
+
+      // Calculate average score
+      $divider = $jumlah_pertemuan * 3; // Total nilai per pertemuan
+      $rata_rata = ($divider > 0) ? (($total_nilai_sikap + $total_nilai_keterampilan + $total_nilai_pengetahuan) / $divider) : 0;
+
+      // Calculate attendance percentage
+      $persen = $hadir / ($total) * 100;
+      echo "<tr>
+              <td>$no</td>
+              <td>$r[nisn]</td>
+              <td>$r[nama]</td>
+              <td>$r[jenis_kelamin]</td>
+              <td align=center>$jumlah_pertemuan</td>
+              <td align=center>$hadir</td>
+              <td align=center>$sakit</td>
+              <td align=center>$izin</td>
+              <td align=center>$alpa</td>
+              <td align=right>".number_format($persen, 2)." %</td>
+            </tr>";
+      $no++;
+  }
+
+  echo "</tbody>
+        </table>
+      </div>
+    </div>
+  </div>";
 }
 ?>
 
