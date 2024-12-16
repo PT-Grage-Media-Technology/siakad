@@ -108,6 +108,15 @@ if ($_GET['act'] == '') {
     .btn, form {
       display: none;
     }
+    @page {
+      size: landscape;
+    }
+      /* Scale the content to 80% */
+      body {
+      transform: scale(0.7);
+      transform-origin: top center;  /* Ensures content is scaled from the top-left corner */
+    }
+
     .table-responsive {
       overflow-x: visible;
     }

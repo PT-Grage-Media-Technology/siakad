@@ -25,7 +25,7 @@
 
     <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-clipboard"></i> <span>Rekap Absensi Siswa</span></a></li>
     <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
-    <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li>
+    <!-- <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li> -->
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
           Siswa</span></a></li> -->
     <!-- <li><a href="index.php?view=bahantugas&act=listbahantugasguru"><i class="fa fa-file"></i><span>Bahan dan
