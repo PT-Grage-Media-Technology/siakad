@@ -190,7 +190,7 @@
                                       <th rowspan='2'>No</th>
                                       <th rowspan='2'>NISN</th>
                                       <th rowspan='2'>Nama Siswa</th>
-                                      <th rowspan='2'>Jenis Kelamin</th>
+                                      <th rowspan='2'>JK</th>
                                       <th colspan='$jumlahHari'>Tanggal</th>
                                   </tr>
                                   <tr>";
