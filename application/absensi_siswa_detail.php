@@ -17,7 +17,7 @@ if ($_GET['act'] == '') {
 
               <div class='col-md-12'>
                 <form method='GET' action=''>
-                  <input type='hidden' name='act' value=''>
+                  <input type='hidden' name='view' value='rekapguru'>
                   <div class='form-group col-md-4'>
                     <label for='bulan'>Pilih Bulan:</label>
                     <select name='bulan' class='form-control'>
@@ -84,7 +84,11 @@ if ($_GET['act'] == '') {
             $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
             $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_guru WHERE nip='$r[nip]' AND tanggal='$tanggal'"));
             $status = $absen ? $absen['kode_kehadiran'] : '-';
-            echo "<td align='center'>$status</td>";
+            if($status == 'Hadir'){
+            echo "<td align='center'>H</td>";
+            }else{
+            echo "<td align='center'> - </td>";
+            }
         }
 
         echo "</tr>";
