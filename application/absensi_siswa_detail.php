@@ -108,17 +108,33 @@ if ($_GET['act'] == '') {
     .btn, form {
       display: none;
     }
+
     @page {
       size: landscape;
     }
-      /* Scale the content to 80% */
-      body {
+
+    /* Scale the content to 70% */
+    body {
       transform: scale(0.7);
-      transform-origin: top center;  /* Ensures content is scaled from the top-left corner */
+      transform-origin: top center; /* Ensures content is scaled from the top-center */
+      width: 100%;
+      margin: 0;
     }
 
+    /* Make the table width 100% and remove overflow */
     .table-responsive {
+      width: 100%;
       overflow-x: visible;
+    }
+
+    table {
+      width: 100%;  /* Ensures table occupies full width */
+    }
+
+    /* Optional: Remove the margin and padding of the page */
+    body, html {
+      margin: 0;
+      padding: 0;
     }
   }
 
@@ -126,3 +142,4 @@ if ($_GET['act'] == '') {
     overflow-x: auto;
   }
 </style>
+
