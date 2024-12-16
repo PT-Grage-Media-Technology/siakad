@@ -147,6 +147,7 @@
                       <form method='GET' action=''>
                           <input type='hidden' name='view' value='rekapabsensiswa'>
                           <input type='hidden' name='act' value='tampilabsen'>
+                          <input type='hidden' name='id' value='$_GET[id]'>
                           <div class='form-group col-md-4'>
                               <label for='bulan'>Pilih Bulan:</label>
                               <select name='bulan' class='form-control'>
