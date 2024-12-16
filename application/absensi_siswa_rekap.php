@@ -128,102 +128,111 @@
   </div>
 <?php
 } elseif ($_GET['act'] == 'tampilabsen') {
-  // Sanitize GET variables
-  $id_kelas = mysql_real_escape_string($conn, $_GET['id']);
-  $kd_pelajaran = mysql_real_escape_string($conn, $_GET['kd']);
-  $tahun = mysql_real_escape_string($conn, $_GET['tahun']);
-  $jdwl = mysql_real_escape_string($conn, $_GET['jdwl']);
+    $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
+    $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
+    echo "<div class='col-md-12 table-responsive'>
+            <div class='box box-info table-responsive'>
+                <div class='box-header with-border'>
+                    <h3 class='box-title'>Rekap Data Absensi Siswa Pada $_GET[tahun]</b></h3>
+                </div>
+                <div class='box-body'>
+                    <div class='col-md-12'>
+                        <table class='table table-condensed table-hover'>
+                            <tbody>
+                                <input type='hidden' name='id' value='$d[kode_kelas]'>
+                                <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
+                                <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
+                                <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='col-md-12'>
+                        <form method='GET'>
+                            <div class='form-group'>
+                                <label for='bulan'>Pilih Bulan:</label>
+                                <select name='bulan' id='bulan' class='form-control'>
+                                    <option value='1' ".(($_GET['bulan'] == 1) ? 'selected' : '').">Januari</option>
+                                    <option value='2' ".(($_GET['bulan'] == 2) ? 'selected' : '').">Februari</option>
+                                    <option value='3' ".(($_GET['bulan'] == 3) ? 'selected' : '').">Maret</option>
+                                    <option value='4' ".(($_GET['bulan'] == 4) ? 'selected' : '').">April</option>
+                                    <option value='5' ".(($_GET['bulan'] == 5) ? 'selected' : '').">Mei</option>
+                                    <option value='6' ".(($_GET['bulan'] == 6) ? 'selected' : '').">Juni</option>
+                                    <option value='7' ".(($_GET['bulan'] == 7) ? 'selected' : '').">Juli</option>
+                                    <option value='8' ".(($_GET['bulan'] == 8) ? 'selected' : '').">Agustus</option>
+                                    <option value='9' ".(($_GET['bulan'] == 9) ? 'selected' : '').">September</option>
+                                    <option value='10' ".(($_GET['bulan'] == 10) ? 'selected' : '').">Oktober</option>
+                                    <option value='11' ".(($_GET['bulan'] == 11) ? 'selected' : '').">November</option>
+                                    <option value='12' ".(($_GET['bulan'] == 12) ? 'selected' : '').">Desember</option>
+                                </select>
+                            </div>
+                            <div class='form-group'>
+                                <label for='tahun'>Pilih Tahun:</label>
+                                <input type='number' name='tahun' id='tahun' class='form-control' value='".$_GET['tahun']."' required>
+                            </div>
+                            <button type='submit' class='btn btn-primary'>Tampilkan Absensi</button>
+                        </form>
+                    </div>
+                    <div class='col-md-12'>
+                        <table class='table table-condensed table-bordered table-striped table-responsive'>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NISN</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Jenis Kelamin</th>";
+                                
+                                // Menambahkan kolom untuk tanggal (dari 1 sampai 31)
+                                for ($i = 1; $i <= 31; $i++) {
+                                    echo "<th>$i</th>";
+                                }
 
-  // Query to fetch class details
-  $d = mysqli_fetch_array(mysql_query($conn, "SELECT * FROM rb_kelas WHERE kode_kelas='$id_kelas'"));
-  $m = mysqli_fetch_array(mysql_query($conn, "SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$kd_pelajaran'"));
+    echo "      <th><center>% Kehadiran</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>";
 
-  // Displaying the table headers
-  echo "<div class='col-md-12 table-responsive'>
-          <div class='box box-info table-responsive'>
-              <div class='box-header with-border'>
-                  <h3 class='box-title'>Rekap Data Absensi Siswa Pada $tahun</h3>
-              </div>
-              <div class='box-body'>
-                  <div class='col-md-12'>
-                      <table class='table table-condensed table-hover'>
-                          <tbody>
-                              <input type='hidden' name='id' value='$d[kode_kelas]'>
-                              <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                              <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
-                              <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class='col-md-12'>
-                      <table class='table table-condensed table-bordered table-striped table-responsive'>
-                          <thead>
-                              <tr>
-                                  <th>No</th>
-                                  <th>NISN</th>
-                                  <th>Nama Siswa</th>
-                                  <th>Jenis Kelamin</th>
-                                  <th>Pertemuan</th>
-                                  <th>Hadir</th>
-                                  <th>Sakit</th>
-                                  <th>Izin</th>
-                                  <th>Alpa</th>
-                                  <th><center>% Kehadiran</center></th>
-                              </tr>
-                          </thead>
-                          <tbody>";
+    $no = 1;
+    $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
+                            WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+    while ($r = mysql_fetch_array($tampil)) {
+        $total = 0;
+        $hadir = 0;
+        
+        // Menampilkan absensi dan tanggal
+        echo "<tr>
+                <td>$no</td>
+                <td>$r[nisn]</td>
+                <td>$r[nama]</td>
+                <td>$r[jenis_kelamin]</td>";
+        
+        // Menampilkan absensi per tanggal
+        for ($day = 1; $day <= 31; $day++) {
+            $tanggal = $_GET['tahun'] . '-' . $_GET['bulan'] . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
+            $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa 
+                                                    WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
+            $kehadiran = $absen ? $absen['kode_kehadiran'] : '-';
+            
+            // Menampilkan status kehadiran, misal: H (Hadir), S (Sakit), I (Izin), A (Alpa)
+            echo "<td>$kehadiran</td>";
+            
+            // Menghitung jumlah hadir untuk persentase
+            if ($kehadiran == 'H') {
+                $hadir++;
+            }
+            $total++;
+        }
 
-  // Query to fetch student details
-  $no = 1;
-  $tampil = mysql_query($conn, "SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$id_kelas' ORDER BY a.id_siswa");
-  while ($r = mysql_fetch_array($tampil)) {
-      // Counting attendance types
-      $total = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' GROUP BY tanggal"));
-      $hadir = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='H'"));
-      $sakit = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='S'"));
-      $izin = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='I'"));
-      $alpa = mysql_num_rows(mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]' AND kode_kehadiran='A'"));
+        $persen = ($total > 0) ? ($hadir / $total) * 100 : 0;
+        echo "<td align=right>".number_format($persen, 2)." %</td>
+              </tr>";
+        $no++;
+    }
 
-      // Calculate academic scores
-      $akademik_query = mysql_query($conn, "SELECT * FROM `rb_absensi_siswa` WHERE kodejdwl='$jdwl' AND nisn='$r[nisn]'");
-      $total_nilai_sikap = 0;
-      $total_nilai_keterampilan = 0;
-      $total_nilai_pengetahuan = 0;
-      $jumlah_pertemuan = 0;
-
-      while ($akademik = mysql_fetch_array($akademik_query)) {
-          $total_nilai_sikap += $akademik['nilai_sikap'];
-          $total_nilai_keterampilan += $akademik['nilai_keterampilan'];
-          $total_nilai_pengetahuan += $akademik['nilai_pengetahuan'];
-          $jumlah_pertemuan++;
-      }
-
-      // Calculate average score
-      $divider = $jumlah_pertemuan * 3; // Total nilai per pertemuan
-      $rata_rata = ($divider > 0) ? (($total_nilai_sikap + $total_nilai_keterampilan + $total_nilai_pengetahuan) / $divider) : 0;
-
-      // Calculate attendance percentage
-      $persen = $hadir / ($total) * 100;
-      echo "<tr>
-              <td>$no</td>
-              <td>$r[nisn]</td>
-              <td>$r[nama]</td>
-              <td>$r[jenis_kelamin]</td>
-              <td align=center>$jumlah_pertemuan</td>
-              <td align=center>$hadir</td>
-              <td align=center>$sakit</td>
-              <td align=center>$izin</td>
-              <td align=center>$alpa</td>
-              <td align=right>".number_format($persen, 2)." %</td>
-            </tr>";
-      $no++;
-  }
-
-  echo "</tbody>
-        </table>
+    echo "</tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  </div>";
-}
+    </div>";
+  }
 ?>
 
