@@ -17,7 +17,7 @@ if ($_GET['act'] == '') {
 
               <div class='col-md-12'>
                 <form method='GET' action=''>
-                  <input type='hidden' name='rekapguru' value=''>
+                  <input type='hidden' name='view' value='rekapguru'>
                   <div class='form-group col-md-4'>
                     <label for='bulan'>Pilih Bulan:</label>
                     <select name='bulan' class='form-control'>
