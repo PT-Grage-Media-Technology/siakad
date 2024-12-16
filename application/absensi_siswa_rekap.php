@@ -246,3 +246,16 @@ echo "</tbody>
 }
 ?>
 
+<style>
+    @media print {
+        /* Sembunyikan form dan elemen-elemen input saat print */
+        .print-page form {
+            display: none;
+        }
+        
+        /* Opsional: sembunyikan tombol filter dan print */
+        .print-page .btn {
+            display: none;
+        }
+    }
+</style>
