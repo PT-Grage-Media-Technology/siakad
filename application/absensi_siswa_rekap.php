@@ -224,7 +224,7 @@
     // Isi data absensi per tanggal
     for ($i = 1; $i <= $jumlahHari; $i++) {
         $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
-        $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
+        $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa WHERE nisn='$r[nisn]' AND tanggal='$tanggal' AND kodejdwl = '$_GET[jdwl]'"));
         $status = $absen ? $absen['kode_kehadiran'] : '-';
         
         // Menentukan status berdasarkan kode_kehadiran
