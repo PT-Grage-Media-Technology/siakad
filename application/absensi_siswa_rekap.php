@@ -128,111 +128,106 @@
   </div>
 <?php
 } elseif ($_GET['act'] == 'tampilabsen') {
-    $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
-    $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
-    echo "<div class='col-md-12 table-responsive'>
-            <div class='box box-info table-responsive'>
-                <div class='box-header with-border'>
-                    <h3 class='box-title'>Rekap Data Absensi Siswa Pada $_GET[tahun]</b></h3>
-                </div>
-                <div class='box-body'>
-                    <div class='col-md-12'>
-                        <table class='table table-condensed table-hover'>
-                            <tbody>
-                                <input type='hidden' name='id' value='$d[kode_kelas]'>
-                                <tr><th width='120px' scope='row'>Kode Kelas</th> <td>$d[kode_kelas]</td></tr>
-                                <tr><th scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
-                                <tr><th scope='row'>Mata Pelajaran</th> <td>$m[namamatapelajaran]</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='col-md-12'>
-                        <form method='GET'>
-                            <div class='form-group'>
-                                <label for='bulan'>Pilih Bulan:</label>
-                                <select name='bulan' id='bulan' class='form-control'>
-                                    <option value='1' ".(($_GET['bulan'] == 1) ? 'selected' : '').">Januari</option>
-                                    <option value='2' ".(($_GET['bulan'] == 2) ? 'selected' : '').">Februari</option>
-                                    <option value='3' ".(($_GET['bulan'] == 3) ? 'selected' : '').">Maret</option>
-                                    <option value='4' ".(($_GET['bulan'] == 4) ? 'selected' : '').">April</option>
-                                    <option value='5' ".(($_GET['bulan'] == 5) ? 'selected' : '').">Mei</option>
-                                    <option value='6' ".(($_GET['bulan'] == 6) ? 'selected' : '').">Juni</option>
-                                    <option value='7' ".(($_GET['bulan'] == 7) ? 'selected' : '').">Juli</option>
-                                    <option value='8' ".(($_GET['bulan'] == 8) ? 'selected' : '').">Agustus</option>
-                                    <option value='9' ".(($_GET['bulan'] == 9) ? 'selected' : '').">September</option>
-                                    <option value='10' ".(($_GET['bulan'] == 10) ? 'selected' : '').">Oktober</option>
-                                    <option value='11' ".(($_GET['bulan'] == 11) ? 'selected' : '').">November</option>
-                                    <option value='12' ".(($_GET['bulan'] == 12) ? 'selected' : '').">Desember</option>
-                                </select>
-                            </div>
-                            <div class='form-group'>
-                                <label for='tahun'>Pilih Tahun:</label>
-                                <input type='number' name='tahun' id='tahun' class='form-control' value='".$_GET['tahun']."' required>
-                            </div>
-                            <button type='submit' class='btn btn-primary'>Tampilkan Absensi</button>
-                        </form>
-                    </div>
-                    <div class='col-md-12'>
-                        <table class='table table-condensed table-bordered table-striped table-responsive'>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NISN</th>
-                                    <th>Nama Siswa</th>
-                                    <th>Jenis Kelamin</th>";
-                                
-                                // Menambahkan kolom untuk tanggal (dari 1 sampai 31)
-                                for ($i = 1; $i <= 31; $i++) {
-                                    echo "<th>$i</th>";
-                                }
+  // Fetch class and subject information
+  $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas WHERE kode_kelas='$_GET[id]'"));
+  $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran WHERE kode_pelajaran='$_GET[kd]'"));
 
-    echo "      <th><center>% Kehadiran</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>";
+  // Get the filter values for month and year, default to current month and year
+  $filterBulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+  $filterTahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
+  $jumlahHari = cal_days_in_month(CAL_GREGORIAN, $filterBulan, $filterTahun);
 
-    $no = 1;
-    $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
-                            WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
-    while ($r = mysql_fetch_array($tampil)) {
-        $total = 0;
-        $hadir = 0;
-        
-        // Menampilkan absensi dan tanggal
-        echo "<tr>
-                <td>$no</td>
-                <td>$r[nisn]</td>
-                <td>$r[nama]</td>
-                <td>$r[jenis_kelamin]</td>";
-        
-        // Menampilkan absensi per tanggal
-        for ($day = 1; $day <= 31; $day++) {
-            $tanggal = $_GET['tahun'] . '-' . $_GET['bulan'] . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-            $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa 
-                                                    WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
-            $kehadiran = $absen ? $absen['kode_kehadiran'] : '-';
-            
-            // Menampilkan status kehadiran, misal: H (Hadir), S (Sakit), I (Izin), A (Alpa)
-            echo "<td>$kehadiran</td>";
-            
-            // Menghitung jumlah hadir untuk persentase
-            if ($kehadiran == 'H') {
-                $hadir++;
-            }
-            $total++;
-        }
+  echo "<div class='col-md-12 print-page'>
+          <div class='box box-info'>
+              <div class='box-header with-border'>
+                  <h3 class='box-title'>Rekap Data Absensi Siswa Tahun $filterTahun Bulan $filterBulan</h3>
+              </div>
+              <div class='box-body'>
+                  <div class='col-md-12'>
+                      <form method='GET' action=''>
+                          <input type='hidden' name='act' value='tampilabsen'>
+                          <div class='form-group col-md-4'>
+                              <label for='bulan'>Pilih Bulan:</label>
+                              <select name='bulan' class='form-control'>
+                                  <option value='01' " . ($filterBulan == '01' ? 'selected' : '') . ">Januari</option>
+                                  <option value='02' " . ($filterBulan == '02' ? 'selected' : '') . ">Februari</option>
+                                  <option value='03' " . ($filterBulan == '03' ? 'selected' : '') . ">Maret</option>
+                                  <option value='04' " . ($filterBulan == '04' ? 'selected' : '') . ">April</option>
+                                  <option value='05' " . ($filterBulan == '05' ? 'selected' : '') . ">Mei</option>
+                                  <option value='06' " . ($filterBulan == '06' ? 'selected' : '') . ">Juni</option>
+                                  <option value='07' " . ($filterBulan == '07' ? 'selected' : '') . ">Juli</option>
+                                  <option value='08' " . ($filterBulan == '08' ? 'selected' : '') . ">Agustus</option>
+                                  <option value='09' " . ($filterBulan == '09' ? 'selected' : '') . ">September</option>
+                                  <option value='10' " . ($filterBulan == '10' ? 'selected' : '') . ">Oktober</option>
+                                  <option value='11' " . ($filterBulan == '11' ? 'selected' : '') . ">November</option>
+                                  <option value='12' " . ($filterBulan == '12' ? 'selected' : '') . ">Desember</option>
+                              </select>
+                          </div>
+                          <div class='form-group col-md-4'>
+                              <label for='tahun'>Pilih Tahun:</label>
+                              <input type='number' name='tahun' value='$filterTahun' class='form-control'>
+                          </div>
+                          <div class='form-group col-md-4'>
+                              <button type='submit' class='btn btn-primary' style='margin-top: 25px;'>Filter</button>
+                              <button type='button' class='btn btn-success' style='margin-top: 25px;' onclick='window.print()'>Print</button>
+                          </div>
+                      </form>
+                  </div>
 
-        $persen = ($total > 0) ? ($hadir / $total) * 100 : 0;
-        echo "<td align=right>".number_format($persen, 2)." %</td>
-              </tr>";
-        $no++;
-    }
+                  <div class='col-md-12'>
+                      <h4>Data Absensi Siswa Periode: $filterBulan - $filterTahun</h4>
+                  </div>
 
-    echo "</tbody>
-          </table>
-        </div>
-      </div>
-    </div>";
+                  <div class='col-md-12'>
+                      <div class='table-responsive'>
+                          <table class='table table-condensed table-bordered table-striped table-hover'>
+                              <thead>
+                                  <tr>
+                                      <th rowspan='2'>No</th>
+                                      <th rowspan='2'>NISN</th>
+                                      <th rowspan='2'>Nama Siswa</th>
+                                      <th rowspan='2'>Jenis Kelamin</th>
+                                      <th colspan='$jumlahHari'>Tanggal</th>
+                                  </tr>
+                                  <tr>";
+
+  // Generate header tanggal sesuai bulan
+  for ($i = 1; $i <= $jumlahHari; $i++) {
+      echo "<th>$i</th>";
   }
+
+  echo "        </tr>
+                              </thead>
+                              <tbody>";
+
+  $no = 1;
+  $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
+  while ($r = mysql_fetch_array($tampil)) {
+      echo "<tr>
+              <td>$no</td>
+              <td>$r[nisn]</td>
+              <td>$r[nama]</td>
+              <td>$r[jenis_kelamin]</td>";
+
+      // Isi data absensi per tanggal
+      for ($i = 1; $i <= $jumlahHari; $i++) {
+          $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
+          $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
+          $status = $absen ? $absen['kode_kehadiran'] : '-';
+          echo "<td align='center'>" . ($status == 'H' ? 'Hadir' : '-') . "</td>";
+      }
+
+      echo "</tr>";
+      $no++;
+  }
+
+  echo "</tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>";
+}
 ?>
 
