@@ -16,7 +16,7 @@ if ($_GET['act'] == '') {
     ];
     
     // Mendapatkan nama bulan dari kode bulan
-    $namaBulan = $bulanArr[$filterBulan];
+    $namaBulan[] = $bulanArr;
 
     echo "<div class='col-md-12 print-page'>
               <div class='box box-info'>
