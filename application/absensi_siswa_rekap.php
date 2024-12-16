@@ -221,12 +221,12 @@
         
         // Menentukan status berdasarkan kode_kehadiran
         $statusText = '-';
-        if ($status == 'H') {
-            $statusText = 'Hadir';
-        } elseif ($status == 'S') {
-            $statusText = 'Sakit';
-        } elseif ($status == 'A') {
-            $statusText = 'Alpha';
+        if ($status == 'Hadir') {
+            $statusText = 'H';
+        } elseif ($status == 'Sakit') {
+            $statusText = 'S';
+        } elseif ($status == 'Alpha') {
+            $statusText = 'A';
         }
 
         echo "<td align='center'>$statusText</td>";
