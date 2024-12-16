@@ -207,31 +207,42 @@
   $no = 1;
   $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin WHERE a.kode_kelas='$_GET[id]' ORDER BY a.id_siswa");
   while ($r = mysql_fetch_array($tampil)) {
-      echo "<tr>
-              <td>$no</td>
-              <td>$r[nisn]</td>
-              <td>$r[nama]</td>
-              <td>$r[jenis_kelamin]</td>";
+    echo "<tr>
+            <td>$no</td>
+            <td>$r[nisn]</td>
+            <td>$r[nama]</td>
+            <td>$r[jenis_kelamin]</td>";
 
-      // Isi data absensi per tanggal
-      for ($i = 1; $i <= $jumlahHari; $i++) {
-          $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
-          $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
-          $status = $absen ? $absen['kode_kehadiran'] : '-';
-          echo "<td align='center'>" . ($status == 'H' ? 'Hadir' : '-') . "</td>";
-      }
+    // Isi data absensi per tanggal
+    for ($i = 1; $i <= $jumlahHari; $i++) {
+        $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
+        $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_siswa WHERE nisn='$r[nisn]' AND tanggal='$tanggal'"));
+        $status = $absen ? $absen['kode_kehadiran'] : '-';
+        
+        // Menentukan status berdasarkan kode_kehadiran
+        $statusText = '-';
+        if ($status == 'H') {
+            $statusText = 'Hadir';
+        } elseif ($status == 'S') {
+            $statusText = 'Sakit';
+        } elseif ($status == 'A') {
+            $statusText = 'Alpha';
+        }
 
-      echo "</tr>";
-      $no++;
-  }
+        echo "<td align='center'>$statusText</td>";
+    }
 
-  echo "</tbody>
-                          </table>
-                      </div>
-                  </div>
+    echo "</tr>";
+    $no++;
+}
+
+echo "</tbody>
+                  </table>
               </div>
           </div>
-      </div>";
+      </div>
+  </div>
+</div>";
 }
 ?>
 
