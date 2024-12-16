@@ -116,7 +116,7 @@ if ($_GET['act'] == '') {
 
     /* Scale the content to fit on A4 landscape */
     .print-page {
-      transform: scale(0.7);
+      /* transform: scale(0.7); */
       transform-origin: top center;  /* Scale from the top-center */
       width: 100%;
       margin: 0;
