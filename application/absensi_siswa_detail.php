@@ -6,6 +6,7 @@ if ($_GET['act'] == '') {
     // Ambil filter bulan dan tahun jika ada
     $filterBulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
     $filterTahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
+    $jumlahHari = cal_days_in_month(CAL_GREGORIAN, $filterBulan, $filterTahun);
 
     echo "<div class='col-md-12'>
               <div class='box box-info'>
@@ -40,6 +41,7 @@ if ($_GET['act'] == '') {
                   </div>
                   <div class='form-group col-md-4'>
                     <button type='submit' class='btn btn-primary' style='margin-top: 25px;'>Filter</button>
+                    <button type='button' class='btn btn-success' style='margin-top: 25px;' onclick='window.print()'>Print</button>
                   </div>
                 </form>
               </div>
@@ -53,34 +55,39 @@ if ($_GET['act'] == '') {
                   <table class='table table-condensed table-bordered table-striped table-hover'>
                     <thead>
                       <tr>
-                        <th>No</th>
-                        <th>Nip</th>
-                        <th>Nama Guru</th>
-                        <th>Hadir</th>
-                        <th>Sakit</th>
-                        <th>Izin</th>
-                        <th>Alpa</th>
+                        <th rowspan='2'>No</th>
+                        <th rowspan='2'>Nip</th>
+                        <th rowspan='2'>Nama Guru</th>
+                        <th colspan='$jumlahHari'>Tanggal</th>
                       </tr>
+                      <tr>";
+
+    // Generate header tanggal sesuai bulan
+    for ($i = 1; $i <= $jumlahHari; $i++) {
+        echo "<th>$i</th>";
+    }
+
+    echo "        </tr>
                     </thead>
                     <tbody>";
 
     $no = 1;
     $tampil = mysql_query("SELECT * FROM rb_guru WHERE id_jenis_ptk NOT IN (6, 7) ORDER BY nama_guru ASC");
     while ($r = mysql_fetch_array($tampil)) {
-        $hadir = mysql_num_rows(mysql_query("SELECT * FROM `rb_absensi_guru` WHERE nip='$r[nip]' AND kode_kehadiran='Hadir' AND MONTH(tanggal)='$filterBulan' AND YEAR(tanggal)='$filterTahun'"));
-        $sakit = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` WHERE nip='$r[nip]' AND kode_kehadiran='sakit' AND MONTH(tanggal)='$filterBulan' AND YEAR(tanggal)='$filterTahun'"));
-        $izin = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` WHERE nip='$r[nip]' AND kode_kehadiran='izin' AND MONTH(tanggal)='$filterBulan' AND YEAR(tanggal)='$filterTahun'"));
-        $alpa = mysql_num_rows(mysql_query("SELECT * FROM `rb_rekap_absen_guru` WHERE nip='$r[nip]' AND kode_kehadiran='alpa' AND MONTH(tanggal)='$filterBulan' AND YEAR(tanggal)='$filterTahun'"));
-
         echo "<tr>
                 <td>$no</td>
                 <td>$r[nip]</td>
-                <td>$r[nama_guru]</td>
-                <td align=center>$hadir</td>
-                <td align=center>$sakit</td>
-                <td align=center>$izin</td>
-                <td align=center>$alpa</td>
-              </tr>";
+                <td>$r[nama_guru]</td>";
+
+        // Isi data absensi per tanggal
+        for ($i = 1; $i <= $jumlahHari; $i++) {
+            $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
+            $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_guru WHERE nip='$r[nip]' AND tanggal='$tanggal'"));
+            $status = $absen ? $absen['kode_kehadiran'] : '-';
+            echo "<td align='center'>$status</td>";
+        }
+
+        echo "</tr>";
         $no++;
     }
 
@@ -93,13 +100,16 @@ if ($_GET['act'] == '') {
 ?>
 
 <style>
-  .table-responsive {
-    overflow-x: auto;
-  }
-
-  @media (min-width: 768px) {
+  @media print {
+    .btn, form {
+      display: none;
+    }
     .table-responsive {
       overflow-x: visible;
     }
+  }
+
+  .table-responsive {
+    overflow-x: auto;
   }
 </style>
