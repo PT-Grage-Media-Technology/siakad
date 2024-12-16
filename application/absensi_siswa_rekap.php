@@ -169,7 +169,7 @@
                           </div>
                           <div class='form-group col-md-4'>
                               <label for='tahun'>Pilih Tahun:</label>
-                              <input type='number' name='tahun' value='$filterTahun' class='form-control'>
+                              <input type='number' name='tahun' value='date('Y')' class='form-control'>
                           </div>
                           <div class='form-group col-md-4'>
                               <button type='submit' class='btn btn-primary' style='margin-top: 25px;'>Filter</button>
