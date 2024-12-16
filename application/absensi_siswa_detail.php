@@ -111,7 +111,12 @@ if ($_GET['act'] == '') {
     @page {
       size: landscape;
     }
-    
+      /* Scale the content to 80% */
+      body {
+      transform: scale(0.8);
+      transform-origin: top left;  /* Ensures content is scaled from the top-left corner */
+    }
+
     .table-responsive {
       overflow-x: visible;
     }
