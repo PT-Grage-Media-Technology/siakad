@@ -84,7 +84,9 @@ if ($_GET['act'] == '') {
             $tanggal = $filterTahun . '-' . $filterBulan . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
             $absen = mysql_fetch_array(mysql_query("SELECT kode_kehadiran FROM rb_absensi_guru WHERE nip='$r[nip]' AND tanggal='$tanggal'"));
             $status = $absen ? $absen['kode_kehadiran'] : '-';
-            echo "<td align='center'>$status</td>";
+            if($status == 'Hadir'){
+            echo "<td align='center'>H</td>";
+            }
         }
 
         echo "</tr>";
