@@ -1,11 +1,4 @@
 <?php
-// Array bulan untuk konversi angka ke nama bulan
-$bulanNama = [
-    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
-    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
-    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
-];
-
 if ($_GET['act'] == '') {
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[id]'"));
     $m = mysql_fetch_array(mysql_query("SELECT * FROM rb_mata_pelajaran where kode_pelajaran='$_GET[kd]'"));
@@ -14,17 +7,15 @@ if ($_GET['act'] == '') {
     $filterBulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
     $filterTahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
     $jumlahHari = cal_days_in_month(CAL_GREGORIAN, $filterBulan, $filterTahun);
-    $bulanText = $bulanNama[$filterBulan]; // Menyimpan nama bulan berdasarkan angka
 
     echo "<div class='col-md-12 print-page'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Rekap Data Absensi Guru Tahun $filterTahun Bulan $bulanText</h3>
+                  <h3 class='box-title'>Rekap Data Absensi Guru Tahun $filterTahun Bulan $filterBulan</h3>
                 </div>
-              <div class='box-body'>";
+              <div class='box-body'>
 
-              // Form untuk filter bulan dan tahun
-              echo "<div class='col-md-12'>
+              <div class='col-md-12'>
                 <form method='GET' action=''>
                   <input type='hidden' name='view' value='rekapguru'>
                   <div class='form-group col-md-4'>
@@ -53,14 +44,13 @@ if ($_GET['act'] == '') {
                     <button type='button' class='btn btn-success' style='margin-top: 25px;' onclick='window.print()'>Print</button>
                   </div>
                 </form>
-              </div>";
+              </div>
 
-              // Menampilkan Data Absensi Guru
-              echo "<div class='col-md-12'>
-                <h4>Data Absensi Guru Periode: $bulanText - $filterTahun</h4>
-              </div>";
+              <div class='col-md-12'>
+                <h4>Data Absensi Guru Periode: $filterBulan - $filterTahun</h4>
+              </div>
 
-              echo "<div class='col-md-12'>
+              <div class='col-md-12'>
                 <div class='table-responsive'>
                   <table class='table table-condensed table-bordered table-striped table-hover'>
                     <thead>
@@ -115,7 +105,7 @@ if ($_GET['act'] == '') {
 
 <style>
   @media print {
-    .btn,.box-header, form {
+    .btn, .box-header, form {
       display: none;
     }
 
