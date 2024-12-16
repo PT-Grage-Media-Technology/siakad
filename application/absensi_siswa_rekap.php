@@ -249,46 +249,41 @@ echo "</tbody>
 ?>
 
 <style>
-    @media print {
-        /* Sembunyikan form dan elemen-elemen input saat print */
-        .print-page form {
-            display: none;
-        }
-        
-        /* Sembunyikan tombol filter dan print */
-        .print-page .btn {
-            display: none;
-        }
-
-        /* Mengatur ukuran halaman menjadi A4 landscape */
-        @page {
-            size: A4 landscape;
-            margin: 1cm; /* Atur margin sesuai kebutuhan */
-        }
-
-        /* Mengatur tabel agar menyesuaikan dengan lebar halaman */
-        .table {
-            width: 100%;
-            table-layout: fixed;
-            font-size: 10px; /* Sesuaikan ukuran font agar lebih kecil */
-        }
-
-        /* Mengatur tampilan header dan cell agar tidak terpotong */
-        .table th, .table td {
-            word-wrap: break-word;
-            word-break: break-word;
-            padding: 4px;
-            text-align: center;
-        }
-
-        /* Menyesuaikan header dengan banyak kolom tanggal */
-        .table th {
-            font-size: 9px; /* Ukuran font header */
-        }
-
-        /* Menyembunyikan kolom nomor dan NISN pada tampilan cetak jika diinginkan */
-        .table td:nth-child(1), .table td:nth-child(2) {
-            display: none;
-        }
+  @media print {
+    .btn, .box-header, form {
+      display: none;
     }
+
+    @page {
+      size: A4 landscape;  /* Ensure A4 size in landscape mode */
+      margin: 0;            /* Remove default margin */
+      margin-top: 4px;            /* Remove default margin */
+    }
+
+    /* Scale the content to fit on A4 landscape */
+    .print-page {
+      transform-origin: top center;  /* Scale from the top-center */
+      width: 100%;
+      margin: 0;
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: visible;
+    }
+
+    table {
+      width: 100%;  /* Ensure table takes up the full page width */
+    }
+
+    /* Optional: Remove margin and padding of the page for cleaner printing */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
 </style>
