@@ -100,8 +100,8 @@
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
-                                var_dump($nilaiAkhir);
-                                var_dump($bobotRaport[0]['Sumatif Harian']);
+                                // var_dump($nilaiAkhir);
+                                var_dump($bobotRaport);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
