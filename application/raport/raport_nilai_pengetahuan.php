@@ -92,7 +92,7 @@
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
                                 
-                                $bobotHarian =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=1"));
+                                $bobotHarian =  mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport WHERE id=1"));
                                 $bobotSTS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=2"));
                                 $bobotSAS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=3"));
                                 
@@ -113,6 +113,7 @@
                                 
                                 $coba = bcdiv($bobotHarian, 100,2);
                                 echo "bcdiv($bobotHarian, 100,2)";
+                                echo "bcdiv($bobotHarian[bobot], 100,2)";
                                 var_dump($nilaiAkhir);
                                 var_dump($coba);
                                 var_dump($nilaiUH['nilai']);
