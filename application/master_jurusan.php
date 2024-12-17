@@ -74,10 +74,8 @@
                   <input type='hidden' name='id' value='$s[kode_jurusan]'>
                   <tr><th width='140px' scope='row'>Kode Jurusan</th> <td>$s[kode_jurusan]</td></tr>
                   <tr><th scope='row'>Nama Jurusan</th>       <td>$s[nama_jurusan]</td></tr>
-                  <tr><th scope='row'>Nama Jurusan En</th>    <td>$s[nama_jurusan_en]</td></tr>
                   <tr><th scope='row'>Bidang Keahlian</th>    <td>$s[bidang_keahlian]</td></tr>
                   <tr><th scope='row'>Kompetensi Umum</th>    <td>$s[kompetensi_umum]</td></tr>
-                  <tr><th scope='row'>Kompetensi Khusus</th>  <td>$s[kompetensi_khusus]</td></tr>
                   <tr><th scope='row'>Pejabat</th>            <td>$s[pejabat]</td></tr>
                   <tr><th scope='row'>Jabataan</th>           <td>$s[jabatan]</td></tr>
                   <tr><th scope='row'>Keterangan</th>         <td>$s[keterangan]</td></tr>
@@ -120,10 +118,8 @@
                   <input type='hidden' name='id' value='$s[kode_jurusan]'>
                   <tr><th width='140px' scope='row'>Kode Jurusan</th> <td><input type='text' class='form-control' name='a' value='$s[kode_jurusan]'> </td></tr>
                   <tr><th scope='row'>Nama Jurusan</th>       <td><input type='text' class='form-control' name='b' value='$s[nama_jurusan]'></td></tr>
-                  <tr><th scope='row'>Nama Jurusan En</th>    <td><input type='text' class='form-control' name='c' value='$s[nama_jurusan_en]'></td></tr>
                   <tr><th scope='row'>Bidang Keahlian</th>    <td><input type='text' class='form-control' name='d' value='$s[bidang_keahlian]'></td></tr>
                   <tr><th scope='row'>Kompetensi Umum</th>    <td><input type='text' class='form-control' name='e' value='$s[kompetensi_umum]'></td></tr>
-                  <tr><th scope='row'>Kompetensi Khusus</th>  <td><input type='text' class='form-control' name='f' value='$s[kompetensi_khusus]'></td></tr>
                   <tr><th scope='row'>Pejabat</th>            <td><input type='text' class='form-control' name='g' value='$s[pejabat]'></td></tr>
                   <tr><th scope='row'>Jabatan</th>           <td><input type='text' class='form-control' name='h' value='$s[jabatan]'></td></tr>
                   <tr><th scope='row'>Keterangan</th>         <td><input type='text' class='form-control' name='i' value='$s[keterangan]'></td></tr>
@@ -164,10 +160,8 @@
                 <tbody>
                   <tr><th width='140px' scope='row'>Kode Jurusan</th> <td><input type='text' class='form-control' name='a'> </td></tr>
                   <tr><th scope='row'>Nama Jurusan</th>       <td><input type='text' class='form-control' name='b'></td></tr>
-                  <tr><th scope='row'>Nama Jurusan En</th>    <td><input type='text' class='form-control' name='c'></td></tr>
                   <tr><th scope='row'>Bidang Keahlian</th>    <td><input type='text' class='form-control' name='d'></td></tr>
                   <tr><th scope='row'>Kompetensi Umum</th>    <td><input type='text' class='form-control' name='e'></td></tr>
-                  <tr><th scope='row'>Kompetensi Khusus</th>  <td><input type='text' class='form-control' name='f'></td></tr>
                   <tr><th scope='row'>Pejabat</th>            <td><input type='text' class='form-control' name='g'></td></tr>
                   <tr><th scope='row'>Jabatan</th>           <td><input type='text' class='form-control' name='h'></td></tr>
                   <tr><th scope='row'>Keterangan</th>         <td><input type='text' class='form-control' name='i'></td></tr>
