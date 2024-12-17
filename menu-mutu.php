@@ -58,8 +58,7 @@
                 </li>
                 <li><a href="index.php?view=pertanyaanrefleksi"><i class="fa fa-circle-o"></i> Data Pertanyaan
                         Refleksi</a></li>
-                <li><a href="index.php?view=persentasebobotrapot"><i class="fa fa-circle-o"></i> Data Pertanyaan
-                        Refleksi</a></li>
+                <li><a href="index.php?view=persentasebobotrapot"><i class="fa fa-circle-o"></i>Bobot Nilai Raport</a></li>
                 <!-- <li><a href="index.php?view=penilaiandiri"><i class="fa fa-circle-o"></i> Data Penilaian Diri</a></li> -->
                 <!-- <li><a href="index.php?view=penilaianteman"><i class="fa fa-circle-o"></i> Data Penilaian Teman</a></li> -->
             </ul>
