@@ -111,12 +111,12 @@
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
-                                $coba = bcdiv($bobotHarian['bobot'], 100,2);
-                                // echo "bcdiv($bobotHarian, 100,2)";
-                                // echo "bcdiv($bobotHarian[bobot], 100,2)";
-                                var_dump($nilaiAkhir);
-                                var_dump($coba);
-                                var_dump($nilaiUH['nilai']);
+                                // $coba = bcdiv($bobotHarian['bobot'], 100,2);
+                                // // echo "bcdiv($bobotHarian, 100,2)";
+                                // // echo "bcdiv($bobotHarian[bobot], 100,2)";
+                                // var_dump($nilaiAkhir);
+                                // var_dump($coba);
+                                // var_dump($nilaiUH['nilai']);
                                 // var_dump($hasilNilaiUH);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
