@@ -3,9 +3,7 @@ echo"<div class='col-xs-12'>
 <div class='box'>
   <div class='box-header'>
     <h3 class='box-title'>Data Bobot Nilai Raport </h3>";
-   if ($_SESSION['level'] != 'kepala') { 
-      echo"<a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai'>Tambahkan Data</a> ";
-    } 
+
   echo"</div>
   <div class='box-body'>";
 
@@ -42,7 +40,9 @@ while ($kriteriaNilai = mysql_fetch_array($tampil)) {
 }
 
 echo "</table>";
-echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
+if ($_SESSION['level'] != 'kepala') { 
+  echo "<button type='submit' name='update' class='pull-right btn btn-primary btn-sm mt-2'>Update Semua</button>";
+} 
 echo "</form>
       </div>
       </div>
