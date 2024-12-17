@@ -92,14 +92,15 @@
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
                                                  
-                               
+                                $bobotRaport = mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport"));
                                 $nilaiUH = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
-                                $nilaiAkhir = 0.5*$nilaiUH['nilai']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
+                                $nilaiAkhir = $bobotRaport[0]['sumatif_harian']*$nilaiUH['nilai']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
-                                // var_dump($nilaiUH);
+                                
+                                var_dump($nilaiAkhir);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
