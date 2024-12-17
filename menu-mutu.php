@@ -47,7 +47,7 @@
         </li>
 
         <li
-            class="treeview <?php echo ($_GET['view'] == 'datarating' || $_GET['view'] == 'kelompokmapel' || $_GET['view'] == 'matapelajaran' || $_GET['view'] == 'jadwalpelajaran' || $_GET['view'] == 'penilaiandiri' || $_GET['view'] == 'pertanyaanrefleksi' || $_GET['view'] == 'penilaianteman') ? 'active' : ''; ?>">
+            class="treeview <?php echo ($_GET['view'] == 'datarating' || $_GET['view'] == 'kelompokmapel' || $_GET['view'] == 'matapelajaran' || $_GET['view'] == 'jadwalpelajaran' || $_GET['view'] == 'penilaiandiri' || $_GET['view'] == 'pertanyaanrefleksi' || $_GET['view'] == 'penilaianteman' || $_GET['view'] == 'persentasebobotrapot') ? 'active' : ''; ?>">
             <a href="#"><i class="fa fa-tag"></i> <span>Data Akademik</span><i
                     class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">

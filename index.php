@@ -331,7 +331,7 @@ if (isset($_SESSION['id'])) {
             include "application/master_matapelajaran.php";
             echo "</div>";
           } elseif ($_GET[view] == 'jadwalpelajaran') {
-            if ($_SESSION['level'] === 'superuser' || $_SESSION['level'] === 'kepala' || $_SESSION['is_kurikulum'] == 'true') {
+            if ($_SESSION['level'] === 'superuser' || $_SESSION['level'] === 'kepala' || $_SESSION['is_kurikulum'] == 'true' || $_SESSION['is_penjamin_mutu'] == 'true') {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
