@@ -10,21 +10,21 @@
       <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
         <!-- <p><input type="text"> = <input type="text"> - <input type="text"></p> -->
         <?php
-        if (isset($_POST['update'])) {
-          foreach ($_POST['id'] as $key => $id) {
-            $kode_nilai = $_POST['kode_nilai'][$key];
-            $nilai_bawah = $_POST['nilai_bawah'][$key];
-            $nilai_atas = $_POST['nilai_atas'][$key];
+        // if (isset($_POST['update'])) {
+        //   foreach ($_POST['id'] as $key => $id) {
+        //     $kode_nilai = $_POST['kode_nilai'][$key];
+        //     $nilai_bawah = $_POST['nilai_bawah'][$key];
+        //     $nilai_atas = $_POST['nilai_atas'][$key];
 
-            // Query untuk update data berdasarkan ID
-            $update_query = "UPDATE rb_kriteria_nilai SET 
-                                kode_nilai = '$kode_nilai', 
-                                nilai_bawah = '$nilai_bawah', 
-                                nilai_atas = '$nilai_atas' 
-                             WHERE id = '$id'";
-            mysql_query($update_query);
-          }
-        }
+        //     // Query untuk update data berdasarkan ID
+        //     $update_query = "UPDATE rb_kriteria_nilai SET 
+        //                         kode_nilai = '$kode_nilai', 
+        //                         nilai_bawah = '$nilai_bawah', 
+        //                         nilai_atas = '$nilai_atas' 
+        //                      WHERE id = '$id'";
+        //     mysql_query($update_query);
+        //   }
+        // }
         ?>
 
         <?php
@@ -40,10 +40,8 @@
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
           echo "<p>
         <p>$kriteriaNilai[jenis_nilai]</p>
-        <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
-        = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
-        - <input type='text' name='nilai_atas[]' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
-        <br>";
+        </p>";
+    
         }
 
         // Tombol Update untuk mengupdate semua data
