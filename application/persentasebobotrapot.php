@@ -1,7 +1,7 @@
 <div class="col-xs-12">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Data Nilai </h3>
+      <h3 class="box-title">Data Bobot Nilai Raport </h3>
       <?php if ($_SESSION['level'] != 'kepala') { ?>
         <!-- <a class='pull-right btn btn-primary btn-sm' href='index.php?view=nilai'>Tambahkan Data</a> -->
       <?php } ?>
@@ -29,7 +29,7 @@
 
         <?php
 
-        $tampil = mysql_query("SELECT * FROM rb_kriteria_nilai");
+        $tampil = mysql_query("SELECT * FROM rb_bobot_nilai");
 
         //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
         //   echo $kriteriaNilai['kode_nilai'][0];
@@ -39,7 +39,7 @@
         // Loop untuk menampilkan semua data dalam satu form
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
           echo "<p>
-        <input type='hidden' name='id[]' value='{$kriteriaNilai['id']}'>
+        <p>$kriteriaNilai[jenis_nilai]</p>
         <input type='text' name='kode_nilai[]' placeholder='Nilai Huruf' style='width: 40px;' value='{$kriteriaNilai['kode_nilai']}'>
         = <input type='text' name='nilai_bawah[]' style='width: 50px;' value='{$kriteriaNilai['nilai_bawah']}'> 
         - <input type='text' name='nilai_atas[]' style='width: 50px;' value='{$kriteriaNilai['nilai_atas']}'>
