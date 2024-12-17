@@ -60,13 +60,13 @@
           // isset($_GET['act']) && $_GET['act'] === 'lihat' &&
           isset($_GET['id']) &&
           isset($_GET['tahun']) &&
-          isset($_GET['view'])&& $_GET['view'] === 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
-       {
+          ($_GET['view'] == 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
+      ) {
         // $idjr = $mapel['kodejdwl'];
       
       echo "
-      <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
-      <li><a href='index.php?view=raportsas&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&id={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
+      <li><a href='index.php?view=raportuts&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&kode_kelas={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
+      <li><a href='index.php?view=raportsas&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&kode_kelas={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
       ";
     } 
     echo"</ul>
