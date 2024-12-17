@@ -102,9 +102,6 @@
         <li><a href="index.php?view=raportcetak"><i class="fa fa-circle-o"></i> Cetak Raport</a></li>
       </ul>
     </li>
-    <?php
-    renderMenuKurikulum();
-    ?>
     <li class="<?php echo ($_GET['view'] == 'dokumentasi') ? 'active' : ''; ?>"><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
