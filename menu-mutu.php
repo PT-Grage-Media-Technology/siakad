@@ -87,6 +87,8 @@
       </ul>
     </li> -->
     <?php 
+    
+    include "menu-kurikulum.php";
     renderMenuKurikulum();
     ?>
     <li><a href="index.php?view=jadwalgurupiket"><i class="fa fa-tags"></i><span>Jadwal Guru Piket</span></a></li>
