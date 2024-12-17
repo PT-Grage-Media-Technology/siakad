@@ -104,15 +104,15 @@
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 
-                                $hasilNilaiUH = round($bobotHarian * 0.01 * $nilaiUH);
+                                // $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH);
                                 
 
-                                $nilaiAkhir = $hasilNilaiUH +0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
+                                $nilaiAkhir = bcdiv($bobotHarian, 100, 0) * $nilaiUH +0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
-                                // var_dump($nilaiAkhir);
-                                var_dump($hasilNilaiUH);
+                                var_dump($nilaiAkhir);
+                                // var_dump($hasilNilaiUH);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
