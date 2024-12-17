@@ -101,7 +101,7 @@
 
                                 
                                 // var_dump($nilaiAkhir);
-                                var_dump($bobotRaport[0]);
+                                var_dump($bobotRaport);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
