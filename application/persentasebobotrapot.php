@@ -39,18 +39,21 @@
         // Loop untuk menampilkan semua data dalam satu form
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
       
-        echo"<table style='border-collapse: collapse;'>
-  <tr>
-    <td style='padding-right: 5px;'>$kriteriaNilai[jenis_nilai] =
-    <input type='hidden' value='{$kriteriaNilai['id']}'>
-    </td>
-    <td>
-      <input type='text' value='{$kriteriaNilai['bobot']}' style='width: 50px; text-align: center;'>
-    </td>
-    <td style='padding-left: 5px;'>%</td>
-  </tr>
-</table>";
-    
+          echo "<table style='border-collapse: collapse; width: 100%;'>
+          <tr>
+            <td style='text-align: left; vertical-align: middle; padding: 5px;'>
+              {$kriteriaNilai['jenis_nilai']} =
+              <input type='hidden' value='{$kriteriaNilai['id']}'>
+
+            </td>
+            <td style='text-align: center; vertical-align: middle;'>
+              <input type='text' value='{$kriteriaNilai['bobot']}' 
+                     style='width: 50px; text-align: center;'>
+            </td>
+            <td style='text-align: left; vertical-align: middle; padding-left: 5px;'>%</td>
+          </tr>
+        </table>";
+        
         }
 
         // Tombol Update untuk mengupdate semua data
