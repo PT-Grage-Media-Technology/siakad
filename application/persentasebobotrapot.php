@@ -38,10 +38,16 @@
 
         // Loop untuk menampilkan semua data dalam satu form
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
-          echo "<p>
-        <p>$kriteriaNilai[jenis_nilai]  =  <input type='number' value = '{$kriteriaNilai['bobot']}'> %</p>
-        <p></p>
-        </p>";
+      
+        echo"<table style='border-collapse: collapse;'>
+  <tr>
+    <td style='padding-right: 5px;'>$kriteriaNilai[jenis_nilai] =</td>
+    <td>
+      <input type='text' value='{$kriteriaNilai['bobot']}' style='width: 50px; text-align: center;'>
+    </td>
+    <td style='padding-left: 5px;'>%</td>
+  </tr>
+</table>";
     
         }
 
