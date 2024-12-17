@@ -82,7 +82,7 @@
             <ul class="treeview-menu">
                 <!-- Menghapus kelas 'active' dari elemen <li> -->
                 <!-- <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li> -->
-                <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o <?php echo ($_GET['view'] == 'absensiswa') ? 'active' : ''; ?>"></i> Rekap Absensi Siswa</a></li>
+                <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o <?php echo ($_GET['view'] == 'absensiswa') ? 'active-circle' : ''; ?>"></i> Rekap Absensi Siswa</a></li>
                 <li><a href="index.php?view=rekapguru"><i class="fa fa-circle-o" aria-hidden="true"></i> <span>Rekap Absensi
                             Guru</span></a></li>
 
@@ -128,3 +128,10 @@
                 href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
     </ul>
 </section>
+
+
+<style>
+    .active-circle{
+        color :#00c0ef;
+    }
+</style>
