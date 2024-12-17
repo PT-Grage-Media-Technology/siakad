@@ -13,9 +13,8 @@
         if (isset($_POST['update'])) {
           $bobot = $_POST['bobot'];
           $id = $_POST['id'];
-          mysql_query("UPDATE rb_bobot_raport SET bobot='$bobot' WHERE id='$id' ");
+          mysql_query("UPDATE rb_bobot_raport SET bobot='$bobot' WHERE id='$id'");
           echo "UPDATE rb_bobot_raport SET bobot='$bobot' WHERE id='$id'";
-          exit
         
         }
         ?>
