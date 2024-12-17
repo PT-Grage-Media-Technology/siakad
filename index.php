@@ -38,7 +38,7 @@ if (isset($_SESSION['id'])) {
       $level = 'Waka Kesiswaan'; // Ubah level di sini
     }
 
-    $penjamin_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=7"));
+    $penjamin_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=13"));
     if ($penjamin_mutu) {
       $_SESSION['is_penjamin_mutu'] = true; // Set flag jika guru juga merangkap kurikulum
       $level = 'Penjamin Mutu'; // Ubah level di sini
