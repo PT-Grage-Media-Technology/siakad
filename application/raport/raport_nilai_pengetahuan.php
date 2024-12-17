@@ -107,7 +107,7 @@
 
                                 
                                 var_dump($nilai_akhir);
-                                // var_dump($bobotHarian);
+                                var_dump($bobotHarian);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
