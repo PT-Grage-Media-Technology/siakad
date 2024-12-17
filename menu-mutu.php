@@ -76,13 +76,13 @@
     </li> -->
 
         <li
-            class="treeview <?php echo ($_GET['view'] == 'absensiswa' || $_GET['view'] == 'rekapabsensiswa') ? 'active' : ''; ?>">
+            class="treeview <?php echo ($_GET['view'] == 'absensiswa' ||$_GET['view'] == 'rekapguru' || $_GET['view'] == 'rekapabsensiswa') ? 'active' : ''; ?>">
             <a href="#"><i class="fa fa-th-large"></i> <span>Data Absensi</span><i
                     class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
                 <!-- Menghapus kelas 'active' dari elemen <li> -->
                 <!-- <li><a href="index.php?view=absensiswa"><i class="fa fa-circle-o"></i> Absensi Siswa</a></li> -->
-                <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o <?php echo ($_GET['view'] == 'absensiswa') ? 'active-circle' : ''; ?>"></i> Rekap Absensi Siswa</a></li>
+                <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-circle-o"></i> Rekap Absensi Siswa</a></li>
                 <li><a href="index.php?view=rekapguru"><i class="fa fa-circle-o" aria-hidden="true"></i> <span>Rekap Absensi
                             Guru</span></a></li>
 
