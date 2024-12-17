@@ -37,18 +37,38 @@ if (isset($_SESSION['id'])) {
       $_SESSION['is_kesiswaan'] = true; // Set flag jika guru juga merangkap kurikulum
       $level = 'Waka Kesiswaan'; // Ubah level di sini
     }
+
+    $penjamin_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=7"));
+    if ($penjamin_mutu) {
+      $_SESSION['is_penjamin_mutu'] = true; // Set flag jika guru juga merangkap kurikulum
+      $level = 'Penjamin Mutu'; // Ubah level di sini
+    }
+
   } elseif ($_SESSION['is_kurikulum'] == true) {
     // Jika guru juga kurikulum, kita bisa beri label tambahan
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=6"));
     $nama = $iden['nama_guru'];
     $level = 'Guru / Waka Kurikulum'; // Gabungkan role guru dan kurikulum
     $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
+
   } elseif ($_SESSION['is_kesiswaan'] == true) {
     // Jika guru juga kesiswaan, kita bisa beri label tambahan
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=6"));
     $nama = $iden['nama_guru'];
     $level = 'Waka kesiswaan'; // Gabungkan role guru dan kurikulum
     $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
+
+
+    
+  } elseif ($_SESSION['is_penjamin_mutu'] == true) {
+    $id_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%jamin%' "));
+
+    // Jika guru juga kesiswaan, kita bisa beri label tambahan
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=$id_mutu[id_jenis_ptk]"));
+    $nama = $iden['nama_guru'];
+    $level = 'Penjamin Mutu'; // Gabungkan role guru dan kurikulum
+    $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
+
   } elseif ($_SESSION['level'] == 'siswa') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_SESSION[id]'"));
     $nama = $iden['nama'];
