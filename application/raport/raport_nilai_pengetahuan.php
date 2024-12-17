@@ -93,8 +93,8 @@
                               while($r=mysql_fetch_array($tampil)){
                                 
                                 $bobotHarian =  mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport WHERE id=1"));
-                                $bobotSTS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=2"));
-                                $bobotSAS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=3"));
+                                $bobotSTS =  mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport WHERE id=2"));
+                                $bobotSAS =  mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport WHERE id=3"));
                                 
 
                                 
@@ -107,13 +107,13 @@
                                 // $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH);
                                 
 
-                                $nilaiAkhir = bcdiv($bobotHarian, 100,2) * $nilaiUH['nilai'] +0.2*$nilaiSTS['angka_pengetahuan']+0.3 * $nilaiSAS['nilai'];
+                                $nilaiAkhir = bcdiv($bobotHarian['bobot'], 100,2) * $nilaiUH['nilai'] +0.2*$nilaiSTS['angka_pengetahuan']+0.3 * $nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
-                                $coba = bcdiv($bobotHarian, 100,2);
-                                echo "bcdiv($bobotHarian, 100,2)";
-                                echo "bcdiv($bobotHarian[bobot], 100,2)";
+                                $coba = bcdiv($bobotHarian['bobot'], 100,2);
+                                // echo "bcdiv($bobotHarian, 100,2)";
+                                // echo "bcdiv($bobotHarian[bobot], 100,2)";
                                 var_dump($nilaiAkhir);
                                 var_dump($coba);
                                 var_dump($nilaiUH['nilai']);
