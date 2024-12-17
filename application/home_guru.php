@@ -135,7 +135,7 @@
                           </form>";
                         }
                      
-                        echo"<td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]'>Agenda Mengajar</a></td>
+                        echo"<td><a class='btn btn-success btn-xs' href='index.php?view=journalguru&act=lihat&id=$r[kodejdwl]&tahun=$r[id_tahun_akademik]&kode_kelas=$r[kode_kelas]'>Agenda Mengajar</a></td>
                         </tr>";
                     
 
