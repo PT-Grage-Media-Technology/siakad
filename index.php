@@ -163,7 +163,7 @@ if (isset($_SESSION['id'])) {
           } elseif (isset($_SESSION['is_penjamin_mutu']) && $_SESSION['is_penjamin_mutu'] == true) {
             include "menu-mutu.php";
             // include "menu-kurikulum.php"; // Include file menu-kurikulum     // Include file menu-mutu
-          renderMenuKurikulum();
+          // renderMenuKurikulum();
           } else {
             include "menu-guru.php"; // Menu reguler untuk Guru
           }
