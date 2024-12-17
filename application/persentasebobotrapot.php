@@ -34,7 +34,7 @@
           <tr>
             <td style='text-align: left; vertical-align: middle; padding: 3px;'>
               {$kriteriaNilai['jenis_nilai']} =
-              <input type='hidden' value='{$kriteriaNilai['id']}'>
+              <input type='hidden' name='id' value='{$kriteriaNilai['id']}'>
             </td>
             <td style='text-align: center; vertical-align: middle; padding: 3px;'>
               <input name='bobot' type='number' value='{$kriteriaNilai['bobot']}'
