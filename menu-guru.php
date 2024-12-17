@@ -28,7 +28,7 @@
     if (mysql_num_rows($tampil) > 0) {
       $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas ke JOIN rb_guru gu ON ke.nip=gu.nip WHERE ke.nip='$_SESSION[id]'"));
       $tahun = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik ORDER BY id_tahun_akademik DESC"));
-      echo "<li class='treeview " . ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportcetakuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'extrakulikuler' || $_GET['view'] == 'prestasi' || $_GET['view'] == 'raport' || $_GET['view'] == 'raportcetak' ? 'active' : '') . "'>
+      echo "<li class='treeview " . ($_GET['view'] == 'rekapabsensiswa' || $_GET['view'] == 'raportcetakuts'|| $_GET['view'] == 'extrakulikuler' || $_GET['view'] == 'prestasi' || $_GET['view'] == 'raport' || $_GET['view'] == 'raportcetak' ? 'active' : '') . "'>
       <a href='#'><i class='fa fa-user'></i> <span>Menu Wali Kelas</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=rekapabsensiswa&tahun=$tahun[id_tahun_akademik]&kelas=$tampil[kode_kelas]'><i class='fa fa-th-large'></i> <span>Rekap Absensi
