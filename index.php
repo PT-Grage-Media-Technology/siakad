@@ -149,7 +149,7 @@ if (isset($_SESSION['id'])) {
         <?php include "main-header.php"; ?>
       </header>
 
-      <aside class="main-sidebar">
+      <aside class="main-sidebar"> 
         <?php
         if ($_SESSION['level'] == 'siswa') {
           include "menu-siswa.php";
