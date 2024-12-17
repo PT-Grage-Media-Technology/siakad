@@ -45,7 +45,7 @@
     }
 
     // Modul Mengajar
-    echo "<li class='treeview" . ($_GET['view'] == 'jadwalguru' || $_GET['view'] == 'raportuts' ? 'active' : '') . "'>
+    echo "<li class='treeview" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>
       <a href='#'><i class='fa fa-user'></i> <span>Modul Mengajar</span><i class='fa fa-angle-left pull-right'></i></a>
       <ul class='treeview-menu'>
         <li><a href='index.php?view=jadwalguru' class='" . ($_GET['view'] == 'jadwalguru' ? 'active' : '') . "'>Aktivitas Mengajar</a></li>";
