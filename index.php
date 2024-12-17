@@ -64,7 +64,7 @@ if (isset($_SESSION['id'])) {
     $id_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%jamin%' "));
 
     // Jika guru juga kesiswaan, kita bisa beri label tambahan
-    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=$id_mutu[id_jenis_ptk]"));
+    $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_guru WHERE nip='$_SESSION[id]' AND id_jenis_ptk=13"));
     $nama = $iden['nama_guru'];
     $level = 'Penjamin Mutu'; // Gabungkan role guru dan kurikulum
     $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
