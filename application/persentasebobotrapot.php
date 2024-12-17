@@ -29,7 +29,7 @@
 
         <?php
 
-        $tampil = mysql_query("SELECT * FROM rb_bobot_nilai");
+        $tampil = mysql_query("SELECT * FROM rb_bobot_raport");
 
         //   var_dump($kriteriaNilai) ; // Mengambil data dari array ke-0
         //   echo $kriteriaNilai['kode_nilai'][0];
