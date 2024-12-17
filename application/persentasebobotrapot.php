@@ -41,7 +41,9 @@
       
         echo"<table style='border-collapse: collapse;'>
   <tr>
-    <td style='padding-right: 5px;'>$kriteriaNilai[jenis_nilai] =</td>
+    <td style='padding-right: 5px;'>$kriteriaNilai[jenis_nilai] =
+    <input type='hidden' value='{$kriteriaNilai['id']}'>
+    </td>
     <td>
       <input type='text' value='{$kriteriaNilai['bobot']}' style='width: 50px; text-align: center;'>
     </td>
