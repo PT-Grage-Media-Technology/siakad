@@ -160,6 +160,8 @@ if (isset($_SESSION['id'])) {
 
           } elseif (isset($_SESSION['is_kesiswaan']) && $_SESSION['is_kesiswaan'] == true) {
             include "menu-kesiswaan.php";
+          } elseif (isset($_SESSION['is_penjamin_mutu']) && $_SESSION['is_penjamin_mutu'] == true) {
+            include "menu-mutu.php";
           } else {
             include "menu-guru.php"; // Menu reguler untuk Guru
           }
