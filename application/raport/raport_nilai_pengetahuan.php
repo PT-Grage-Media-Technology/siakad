@@ -104,7 +104,7 @@
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 
-                                $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH);
+                                $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH); 
                                 
 
                                 $nilaiAkhir = $hasilNilaiUH +0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
