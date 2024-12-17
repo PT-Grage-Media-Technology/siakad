@@ -86,11 +86,6 @@
         <li><a href="index.php?view=psbsmp"><i class="fa fa-circle-o"></i> Data Pendaftar SMP</a></li>
       </ul>
     </li> -->
-    <?php 
-    
-    include "menu-kurikulum.php";
-    renderMenuKurikulum();
-    ?>
     <li><a href="index.php?view=jadwalgurupiket"><i class="fa fa-tags"></i><span>Jadwal Guru Piket</span></a></li>
     <!-- <li><a href="index.php?view=journalkbm"><i class="fa fa-tags"></i><span>Journal KBM</span></a></li> -->
     <!-- <li><a href="index.php?view=forum"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
@@ -107,6 +102,11 @@
         <li><a href="index.php?view=raportcetak"><i class="fa fa-circle-o"></i> Cetak Raport</a></li>
       </ul>
     </li>
+
+    <!-- menu kurikulum di mutu -->
+    <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>Aktivitas Pembelajaran</span></a></li>
+    <li><a href="index.php?view=rekapguru"><i class="fa fa-list" aria-hidden="true"></i> <span>Rekap Absensi Guru</span></a></li>
+    <li><a href="index.php?view=refleksiguru"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Hasil Refleksi</span></a></li>
     <li class="<?php echo ($_GET['view'] == 'dokumentasi') ? 'active' : ''; ?>"><a href="index.php?view=dokumentasi"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
 </section>
