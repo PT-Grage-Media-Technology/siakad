@@ -39,20 +39,20 @@
         // Loop untuk menampilkan semua data dalam satu form
         while ($kriteriaNilai = mysql_fetch_array($tampil)) {
       
-          echo "<table style='border-collapse: collapse; width: 100%;'>
+          echo "<table style='border-collapse: collapse; width: auto;'>
           <tr>
-            <td style='text-align: left; vertical-align: middle; padding: 5px;'>
+            <td style='text-align: left; vertical-align: middle; padding: 3px;'>
               {$kriteriaNilai['jenis_nilai']} =
               <input type='hidden' value='{$kriteriaNilai['id']}'>
-
             </td>
-            <td style='text-align: center; vertical-align: middle;'>
-              <input type='text' value='{$kriteriaNilai['bobot']}' 
-                     style='width: 50px; text-align: center;'>
+            <td style='text-align: center; vertical-align: middle; padding: 3px;'>
+              <input type='text' value='{$kriteriaNilai['bobot']}'
+                     style='width: 50px; text-align: center; margin: 0;'>
             </td>
-            <td style='text-align: left; vertical-align: middle; padding-left: 5px;'>%</td>
+            <td style='text-align: left; vertical-align: middle; padding: 3px;'>%</td>
           </tr>
         </table>";
+  
         
         }
 
