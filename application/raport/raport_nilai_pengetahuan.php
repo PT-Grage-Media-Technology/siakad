@@ -107,7 +107,7 @@
                                 // $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH);
                                 
 
-                                $nilaiAkhir = bcdiv($bobotHarian['bobot'], 100,2) * $nilaiUH['nilai'] +bcdiv($bobotSTS['bobot'], 100,2)*$nilaiSTS['angka_pengetahuan']+bcdiv($bobotSAS['bobot'], 100,2) * $nilaiSAS['nilai'];
+                                $nilaiAkhir = round(bcdiv($bobotHarian['bobot'], 100,2) * $nilaiUH['nilai']) +round(bcdiv($bobotSTS['bobot'], 100,2)*$nilaiSTS['angka_pengetahuan'])+round(bcdiv($bobotSAS['bobot'], 100,2) * $nilaiSAS['nilai']);
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
@@ -135,7 +135,7 @@
                                         <td align=center><input type='number' name='nilai_uh' value='$nilaiUH[nilai]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='sts' value='$nilaiSTS[angka_pengetahuan]' style='width:35px; text-align:center; padding:0px'></td>
                                         <td align=center><input type='number' name='sas' value='$nilaiSAS[nilai]' style='width:35px; text-align:center; padding:0px'></td>
-                                        <td align=center><input type='number' name='nilai_akhir' value='$nilaiAkhir' style='width:35px; border:1px solid #e3e3e3;'></td>
+                                        <td align=center><input type='number' name='nilai_akhir' value=$nilaiAkhir style='width:35px; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='number' name='nilai_tertinggi' value='$nilaiUH[nilai_tertinggi]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
                                         <td align=center><input type='text' name='deskripsi_tertinggi' value='$nilaiResult[deskripsi_tertinggi]' style='width:100%; padding:0px'></td>
                                         <td align=center><input type='number' name='nilai_terendah' value='$nilaiUH[nilai_terendah]' style='width:35px; background:#e3e3e3; border:1px solid #e3e3e3;'></td>
