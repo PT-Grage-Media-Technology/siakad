@@ -110,7 +110,9 @@
                                 $nilaiAkhir = bcdiv($bobotHarian, 100,2) * $nilaiUH['nilai'] +0.2*$nilaiSTS['angka_pengetahuan']+0.3 * $nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
-                                $coba =bcdiv($bobotHarian, 100,2);
+                                
+                                $coba = bcdiv($bobotHarian, 100,2);
+                                echo "bcdiv($bobotHarian, 100,2)";
                                 var_dump($nilaiAkhir);
                                 var_dump($coba);
                                 var_dump($nilaiUH['nilai']);
