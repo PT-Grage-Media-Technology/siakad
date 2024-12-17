@@ -91,7 +91,11 @@
                               $no = 1;
                               $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[id]' ORDER BY id_siswa");
                               while($r=mysql_fetch_array($tampil)){
-                                                 
+                                
+                                $bobotHarian =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=1"));
+                                $bobotSTS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=2"));
+                                $bobotSAS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=3"));
+                                
                                 $bobotRaport = mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport"));
                                 $nilaiUH = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
@@ -101,7 +105,7 @@
 
                                 
                                 // var_dump($nilaiAkhir);
-                                var_dump($bobotRaport);
+                                var_dump($bobotHarian);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
