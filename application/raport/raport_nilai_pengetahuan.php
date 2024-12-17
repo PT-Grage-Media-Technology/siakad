@@ -96,15 +96,17 @@
                                 $bobotSTS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=2"));
                                 $bobotSAS =  mysql_fetch_array(mysql_query("SELECT bobot FROM rb_bobot_raport WHERE id=3"));
                                 
+
+
                                 $bobotRaport = mysql_fetch_array(mysql_query("SELECT * FROM rb_bobot_raport"));
                                 $nilaiUH = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_srl WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSTS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
                                 $nilaiSAS = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas WHERE kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]'"));
-                                $nilaiAkhir = ($bobotHarian/100)*$nilaiUH['nilai']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
+                                $nilaiAkhir = $bobotHarian / 100*$nilaiUH['nilai']+0.2*$nilaiSTS['angka_pengetahuan']+0.3*$nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
-                                // var_dump($nilaiAkhir);
+                                var_dump($nilaiAkhir);
                                 // var_dump($bobotHarian);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
