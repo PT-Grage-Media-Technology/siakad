@@ -105,8 +105,7 @@
 
                                 
                                 // var_dump($nilaiAkhir);
-                                var_dump(0.2*$nilaiUH['nilai']);
-                                var_dump(($bobotHarian/100)*$nilaiUH['nilai']);
+                                // var_dump($bobotHarian);
                                   if (isset($_GET['edit_pengetahuan'])){
                                       $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where id_nilai_pengetahuan='$_GET[edit_pengetahuan]'"));
                                       $name = 'Update';
