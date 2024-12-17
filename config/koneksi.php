@@ -20,7 +20,7 @@ function average($arr){
 
 function cek_session_admin(){
 	$level = $_SESSION[level];
-	if ($level != 'superuser' AND $level != 'kepala' AND $_SESSION['is_penjamin_mutu']){
+	if ($level != 'superuser' AND $level != 'kepala' AND $_SESSION['is_penjamin_mutu'] != true){
 		echo "<script>document.location='index.php';</script>";
 	}
 }
