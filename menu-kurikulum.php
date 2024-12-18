@@ -20,9 +20,7 @@
       echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> <span>Dashboard</span></a></li>";
     }
     ?>
-    <?php
-  function renderMenuKurikulum() {
-    ?>
+
     <!-- <li><a href="index.php?view=jadwalguru"><i class="fa fa-clipboard"></i><span>Aktivitas Mengajar</span></a></li> -->
 
 
@@ -48,6 +46,4 @@
     <li><a href="index.php?view=refleksiguru"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Hasil Refleksi</span></a></li>
     <li><a href="index.php?view=dokumentasiguru"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
   </ul>
-
-  <?php } ?>
 </section>
