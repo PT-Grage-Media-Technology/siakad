@@ -107,7 +107,7 @@
                                 // $hasilNilaiUH = round(($bobotHarian / 100) *  $nilaiUH);
                                 
 
-                                $nilaiAkhir = bcdiv($bobotHarian['bobot'], 100,2 * $nilaiUH['nilai']) +bcdiv($bobotSTS['bobot'], 100,2)*$nilaiSTS['angka_pengetahuan']+bcdiv($bobotSAS['bobot'], 100,2) * $nilaiSAS['nilai'];
+                                $nilaiAkhir = bcdiv($bobotHarian['bobot'], 100,2) * $nilaiUH['nilai'] +bcdiv($bobotSTS['bobot'], 100,2)*$nilaiSTS['angka_pengetahuan']+bcdiv($bobotSAS['bobot'], 100,2) * $nilaiSAS['nilai'];
                                 $nilaiResult = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pengetahuan where kodejdwl='$_GET[jdwl]' and nisn='$r[nisn]'"));
 
                                 
