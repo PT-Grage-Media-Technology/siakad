@@ -25,7 +25,7 @@
       <li><a href="index.php?view=rekapguru"><i class="fa fa-list" aria-hidden="true"></i> <span>Rekap Absensi Guru</span></a></li>
       <li><a href="index.php?view=rekapabsensiswa"><i class="fa fa-clipboard"></i> <span>Rekap Absensi Siswa</span></a></li>
       <li><a href="index.php?view=refleksiguru"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Hasil Refleksi</span></a></li>
-    <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li>
+    <!-- <li><a href="index.php?view=jadwalpelajaran"><i class="fa fa-clipboard"></i> <span>Data Jadwal Pelajaran</span></a></li> -->
     <!-- <li><a href="index.php?view=aktivitaspembelajaran"><i class="glyphicon glyphicon-align-justify"></i> <span>AktivitasPembelajaran</span></a></li> -->
     <!-- <li><a href="index.php?view=nilai"><i class="glyphicon glyphicon-align-justify"></i> <span>Master Nilai</span></a></li> -->
     <!-- <li><a href="index.php?view=absensiswa&act=detailabsenguru"><i class="fa fa-th-large"></i> <span>Absensi
