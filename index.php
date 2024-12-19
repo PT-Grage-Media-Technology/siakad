@@ -161,18 +161,16 @@ $(document).ready(function () {
 
         // AJAX untuk mengambil data dari server berdasarkan id
         $.ajax({
-            url: '',  // Ganti dengan URL yang sesuai
+            url: 'your_php_script.php',  // Ganti dengan URL yang sesuai
             type: 'POST',
             data: {
                 id_pertanyaan_objektif: id,  // Kirimkan id ke server
                 action: 'get_soal'
             },
             success: function(response) {
-              console.log(response);
-              
-                var data = JSON.parse(response);  // Parse response sebagai JSON
-              console.log(data);
-
+                console.log(response);
+                
+                var data = response;  // Assume response is already in JSON format
 
                 // Jika ada error dalam data
                 if (data.error) {
@@ -828,24 +826,27 @@ $(document).ready(function () {
 
     <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
-    $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
+  $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
-    // Query untuk mengambil data soal berdasarkan id
-    $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
-    $result = mysql_query($query);
+  // Query untuk mengambil data soal berdasarkan id
+  $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
+  $result = mysql_query($query);
 
-    if ($result && mysql_num_rows($result) > 0) {
-        $data = mysql_fetch_assoc($result);
-        // Mengirim data dalam format teks
-        // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
-        // echo json_encode($dataArray);
-        // var_dump($data);
-    } else {
-        echo "error=Data tidak ditemukan";
-    }
+  if ($result && mysql_num_rows($result) > 0) {
+      $data = mysql_fetch_assoc($result);
 
-    exit;
+      // Set Content-Type header for JSON response
+      header('Content-Type: application/json');
+
+      // Send response as JSON
+      echo json_encode($data);
+  } else {
+      echo json_encode(['error' => 'Data tidak ditemukan']);
+  }
+
+  exit;
 }
+
 ?>
 
 
