@@ -277,7 +277,7 @@ elseif ($_GET[act] == 'update') {
     // Update ke database
     mysql_query("UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$_POST[a]', jawab_a='$_POST[b]',jawab_b='$_POST[c]', jawab_c='$_POST[d]', jawab_d='$_POST[e]',jawab_e='$_POST[f]', kunci_jawaban='$_POST[g]' WHERE id_pertanyaan_objektif='$_POST[id_pertanyaan_objektif]'");
     // echo "UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]';";
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
+    // echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[id] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian WHERE id_soal='$_GET[id_soal]'"));
