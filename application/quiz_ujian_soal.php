@@ -423,7 +423,7 @@ elseif ($_GET[act] == 'semuasoal') {
             <h4 class='modal-title' id='myModalLabel'>Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?> </h4>
           </div>
           <form method='POST'
-            action='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id= $_GET[id]&kd=$_GET[kd];'
+            action=''
             class='form-horizontal'>
             <div class='modal-body'>
               <input type='hidden' name='id_pertanyaan' value='$soal[id_pertanyaan_objektif]' id='id_pertanyaan'>
