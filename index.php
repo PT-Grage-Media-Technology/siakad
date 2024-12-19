@@ -148,7 +148,7 @@ if (isset($_SESSION['id'])) {
 
   <body class="hold-transition skin-blue sidebar-mini">
   <script>
-
+    
 $(document).ready(function () {
     // Ketika modal ditampilkan
     $('#objektif-edit').on('show.bs.modal', function (event) {
@@ -837,8 +837,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
         // Mengirim data dalam format teks
-        // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
-        echo json_encode($dataArray);
+        echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
         // var_dump($data);
     } else {
         echo "error=Data tidak ditemukan";
