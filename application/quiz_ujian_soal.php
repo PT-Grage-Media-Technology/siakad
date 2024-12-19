@@ -476,7 +476,7 @@ elseif ($_GET[act] == 'semuasoal') {
               <div class='form-group'>
                 <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' id='kunci_jawaban' value='$soal[kunci_jawaban]' class='form-control' id='kunci'>
+                  <input style='width:50%' type='text' name='g' id='kunci' value='$soal[kunci_jawaban]' class='form-control'>
                 </div>
               </div>
             </div>
