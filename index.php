@@ -811,7 +811,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
           <div class="form-group">
             <label for="soal" class="col-sm-2 control-label">Soal</label>
             <div class="col-sm-10">
-              <textarea rows="3" name="a" class="form-control" id="soal"></textarea>
+              <textarea rows="3" name="a" class="form-control" id="soal"><?php echo $data['pertanyaan_objektif']?></textarea>
             </div>
           </div>
 
