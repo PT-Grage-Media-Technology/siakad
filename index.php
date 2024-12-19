@@ -771,13 +771,15 @@ if (isset($_SESSION['id'])) {
         </div>
       </div>
     </div>
+
+
     <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Tambahkan edit Objektif</h4>
+            <h4 class="modal-title" id="myModalLabel">Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?></h4>
           </div>
           <form method='POST'
             action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>'
