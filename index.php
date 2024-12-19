@@ -788,6 +788,7 @@ if (isset($_SESSION['id'])) {
             class="form-horizontal">
             <div class="modal-body">
               <div class="form-group">
+              <input type="hidden" name="pertanyaan_id" id="data-id" value="">
                 <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
                 <div class="col-sm-10">
                   <textarea rows='3' name='a' class="form-control" placeholder="Tuliskan Soal Objektif..."></textarea>
