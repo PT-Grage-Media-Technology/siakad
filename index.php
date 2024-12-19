@@ -830,9 +830,9 @@ $(document).ready(function () {
 
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
-        return json_encode($data); // Kirimkan data sebagai JSON
+        echo "dsd";
     } else {
-        return json_encode(['error' => 'Data tidak ditemukan']); // Kirim error sebagai JSON
+        echo "sa";
     }
 
     exit; // Berhenti eksekusi setelah mengirim respons
