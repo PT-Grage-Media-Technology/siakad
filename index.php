@@ -1,52 +1,4 @@
 
-<script>
-$(document).ready(function () {
-    // Ketika modal ditampilkan
-    $('#objektif-edit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);  // Tombol yang memicu modal
-        var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
-
-        // Menyimpan id dalam input hidden atau memanipulasi form
-        var modal = $(this);
-        modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
-
-        // AJAX untuk mengambil data dari server berdasarkan id
-        $.ajax({
-            url: '',  // Ganti dengan URL yang sesuai
-            type: 'POST',
-            data: {
-                id_pertanyaan_objektif: id,  // Kirimkan id ke server
-                action: 'get_soal'
-            },
-            success: function(response) {
-              console.log(response);
-              
-                var data = JSON.parse(response);  // Parse response sebagai JSON
-              console.log(data);
-
-
-                // Jika ada error dalam data
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    // Isi form dengan data yang diterima
-                    $('#soal').val(data.pertanyaan_objektif);
-                    $('#jawab_a').val(data.jawab_a);
-                    $('#jawab_b').val(data.jawab_b);
-                    $('#jawab_c').val(data.jawab_c);
-                    $('#jawab_d').val(data.jawab_d);
-                    $('#jawab_e').val(data.jawab_e);
-                    $('#kunci').val(data.kunci);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX request failed", error);
-            }
-        });
-    });
-});
-
-</script>
 
 
 <?php
@@ -195,6 +147,56 @@ if (isset($_SESSION['id'])) {
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini">
+  <script>
+$(document).ready(function () {
+    // Ketika modal ditampilkan
+    $('#objektif-edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);  // Tombol yang memicu modal
+        var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
+
+        // Menyimpan id dalam input hidden atau memanipulasi form
+        var modal = $(this);
+        modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
+
+        // AJAX untuk mengambil data dari server berdasarkan id
+        $.ajax({
+            url: '',  // Ganti dengan URL yang sesuai
+            type: 'POST',
+            data: {
+                id_pertanyaan_objektif: id,  // Kirimkan id ke server
+                action: 'get_soal'
+            },
+            success: function(response) {
+              console.log(response);
+              
+                var data = JSON.parse(response);  // Parse response sebagai JSON
+              console.log(data);
+
+
+                // Jika ada error dalam data
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Isi form dengan data yang diterima
+                    $('#soal').val(data.pertanyaan_objektif);
+                    $('#jawab_a').val(data.jawab_a);
+                    $('#jawab_b').val(data.jawab_b);
+                    $('#jawab_c').val(data.jawab_c);
+                    $('#jawab_d').val(data.jawab_d);
+                    $('#jawab_e').val(data.jawab_e);
+                    $('#kunci').val(data.kunci);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed", error);
+            }
+        });
+    });
+});
+
+</script>
+
+
     <div class="wrapper">
       <header class="main-header">
         <?php include "main-header.php"; ?>
