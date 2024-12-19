@@ -182,13 +182,13 @@ if ($_GET[act] == '') {
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST[tambah])) {
-    if (function_exists('date_default_timezone_set'))
-      date_default_timezone_set('Asia/Jakarta');
-    $waktu = date("Y-m-d H:i:s");
-    $date = date_create($waktu);
-    $tjam = date_add($date, date_interval_create_from_date_string("$_POST[c] minutes"));
-    $bataswaktu = date_format($tjam, 'Y-m-d H:i:s');
-    mysql_query("INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')");
+    // if (function_exists('date_default_timezone_set'))
+    //   date_default_timezone_set('Asia/Jakarta');
+    // $waktu = date("Y-m-d H:i:s");
+    // $date = date_create($waktu);
+    // $tjam = date_add($date, date_interval_create_from_date_string("$_POST[c] minutes"));
+    // $bataswaktu = date_format($tjam, 'Y-m-d H:i:s');
+    // mysql_query("INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')");
     var_dump($_POST['tambah']);
     echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
   }
