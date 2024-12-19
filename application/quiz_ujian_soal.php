@@ -407,7 +407,7 @@ elseif ($_GET[act] == 'semuasoal') {
     echo "<div class='btn btn-default btn-xs btn-block'>Kunci Jawaban : $ko[kunci_jawaban]</div>
                             </td>
                             <td style='width:60px'><a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
-                  <a href='' class='btn btn-primary btn-sm pull-right' data-toggle='modal' data-target='#objektif'><span class='glyphicon glyphicon-remove'></span></a></td>
+                  <a href='' class='btn btn-primary btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif'><span class='glyphicon glyphicon-remove'></span></a></td>
 
                             </tr>";
     $noo++;
