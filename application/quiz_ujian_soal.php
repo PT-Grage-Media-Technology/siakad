@@ -469,7 +469,7 @@ elseif ($_GET[act] == 'semuasoal') {
               <div class='form-group'>
                 <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' id='jawab_f' value='$soal[jawab_e]' class='form-control' id='jawab_e'>
+                  <input style='width:50%' type='text' name='f' id='jawab_e' value='$soal[jawab_e]' class='form-control' id='jawab_e'>
                 </div>
               </div>
 
