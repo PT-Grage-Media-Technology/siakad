@@ -889,6 +889,8 @@ $(document).ready(function () {
               console.log(response);
               
                 var data = JSON.parse(response);  // Parse response sebagai JSON
+              console.log(data);
+
 
                 // Jika ada error dalam data
                 if (data.error) {
