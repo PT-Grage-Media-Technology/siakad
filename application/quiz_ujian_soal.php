@@ -308,10 +308,6 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                   <h3 class='box-title'>Soal Objektif '<span class='text-info'>$so[kategori_quiz_ujian]</span>' 
                   <br><small>$so[nama_kelas] - $so[keterangan]</small></h3>
                   <a href='' class='btn btn-primary btn-sm pull-right' data-toggle='modal' data-target='#objektif'>Tambah Soal Objektif </a>
-                  <a class='btn btn-primary' href='javascript:;'>
-                                                              <span class='glyphicon glyphicon-search'></span> Upload file"; ?>
-  <input type='file' class='files' name='file_csv' onchange='$("#upload-file-info").html($(this).val());'>
-<?php echo "</a>
                 </div>
                 <div class='box-body'>
                   <table class='table table-condensed table-bordered'>
