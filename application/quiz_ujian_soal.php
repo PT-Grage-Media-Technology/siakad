@@ -281,79 +281,7 @@ elseif ($_GET[act] == 'update') {
 
   $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian WHERE id_soal='$_GET[id_soal]'"));
 
-  echo "<div class='modal fade' id='objektif-edit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-      <div class='modal-dialog' role='document'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span
-                aria-hidden='true'>&times;</span></button>
-            <h4 class='modal-title' id='myModalLabel'>Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?> </h4>
-          </div>
-          <form method='POST'
-            action='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id= $_GET[id]&kd=$_GET[kd];'
-            class='form-horizontal'>
-            <div class='modal-body'>
-              <input type='hidden' name='pertanyaan_id' id='id_pertanyaan'>
-
-              <div class='form-group'>
-                <label for='soal' class='col-sm-2 control-label'>Soal</label>
-                <div class='col-sm-10'>
-                  <textarea rows='3' name='a' id='soal' class='form-control'
-                    id='soal'></textarea>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_a' class='col-sm-2 control-label'>Jawab A</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='b' class='form-control' id='jawab_a'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='c' class='form-control' id='jawab_b'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='d' class='form-control' id='jawab_c'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='e' class='form-control' id='jawab_d'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' class='form-control' id='jawab_e'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' class='form-control' id='kunci'>
-                </div>
-              </div>
-            </div>
-            <div class='modal-footer'>
-              <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-              <button type='submit' name='objektif' class='btn btn-primary'>Update</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-";
+  
   echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -483,6 +411,80 @@ elseif ($_GET[act] == 'semuasoal') {
                             <td style='width:60px'><a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
                             <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit' data-id='" . htmlspecialchars($ko['id_pertanyaan_objektif']) . "'><span class='glyphicon glyphicon-edit'>123</span></a></td>
                             </tr>";
+
+                            echo "<div class='modal fade' id='objektif-edit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span
+                aria-hidden='true'>&times;</span></button>
+            <h4 class='modal-title' id='myModalLabel'>Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?> </h4>
+          </div>
+          <form method='POST'
+            action='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id= $_GET[id]&kd=$_GET[kd];'
+            class='form-horizontal'>
+            <div class='modal-body'>
+              <input type='hidden' name='pertanyaan_id' id='id_pertanyaan'>
+
+              <div class='form-group'>
+                <label for='soal' class='col-sm-2 control-label'>Soal</label>
+                <div class='col-sm-10'>
+                  <textarea rows='3' name='a' id='soal' class='form-control'
+                    id='soal'></textarea>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='jawab_a' class='col-sm-2 control-label'>Jawab A</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='b' class='form-control' id='jawab_a'>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='c' class='form-control' id='jawab_b'>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='d' class='form-control' id='jawab_c'>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='e' class='form-control' id='jawab_d'>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='f' class='form-control' id='jawab_e'>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
+                <div class='col-sm-10'>
+                  <input style='width:50%' type='text' name='g' class='form-control' id='kunci'>
+                </div>
+              </div>
+            </div>
+            <div class='modal-footer'>
+              <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+              <button type='submit' name='objektif' class='btn btn-primary'>Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+";
     $noo++;
   }
   echo "</table>
