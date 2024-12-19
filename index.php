@@ -820,28 +820,6 @@ if (isset($_SESSION['id'])) {
       </div>
     </div>
 
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
-      $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
-
-      // Query untuk mengambil data soal berdasarkan id
-      $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
-      $result = mysql_query($query);
-
-      if ($result && mysql_num_rows($result) > 0) {
-        $data = mysql_fetch_assoc($result);
-        // Mengirim data dalam format teks
-        // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
-        return json_decode($data);
-        // var_dump($data);
-      } else {
-        echo "error=Data tidak ditemukan";
-      }
-
-      exit;
-    }
-    ?>
-
 
 
 
