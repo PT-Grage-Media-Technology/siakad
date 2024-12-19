@@ -274,8 +274,8 @@ elseif ($_GET[act] == 'update') {
     $bataswaktu = sprintf('%04d-%02d-%02d %02d:%02d:%02d', $tahun, $bulan, $hari, $jam, $menit, $detik);
 
     // Update ke database
-    mysql_query("UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]'");
-    echo "UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]';";
+    mysql_query("UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$_POST[a]', jawab_a='$_POST[b]',jawab_b='$_POST[c]', jawab_c='$_POST[d]', jawab_d='$_POST[e]',jawab_e='$_POST[f]', kunci_jawaban='$_POST[g]' WHERE id_pertanyaan_objektif='$_POST[id_pertanyaan_objektif]'");
+    // echo "UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]';";
     echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
@@ -425,7 +425,7 @@ elseif ($_GET[act] == 'semuasoal') {
             action='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id= $_GET[id]&kd=$_GET[kd];'
             class='form-horizontal'>
             <div class='modal-body'>
-              <input type='hidden' name='pertanyaan_id' id='id_pertanyaan'>
+              <input type='hidden' name='id_pertanyaan' value='$soal[id_pertanyaan_objektif]' id='id_pertanyaan'>
 
               <div class='form-group'>
                 <label for='soal' class='col-sm-2 control-label'>Soal</label>
