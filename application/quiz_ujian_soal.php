@@ -253,44 +253,7 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                           JOIN rb_jadwal_pelajaran c ON a.kodejdwl=c.kodejdwl 
                             JOIN rb_kelas d ON c.kode_kelas=d.kode_kelas where a.id_quiz_ujian='$_GET[idsoal]'"));
 
-if (isset($_FILES['file_csv'])) {
-    $fileTmpPath = $_FILES['file_csv']['tmp_name'];
-
-    // Buka file CSV
-    if (($handle = fopen($fileTmpPath, 'r')) !== FALSE) {
-        // Lewati header (baris pertama)
-        fgetcsv($handle, 1000, ",");
-
-        // Baca setiap baris
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $question = mysql_real_escape_string($data[0]);
-            $option_a = mysql_real_escape_string($data[1]);
-            $option_b = mysql_real_escape_string($data[2]);
-            $option_c = mysql_real_escape_string($data[3]);
-            $option_d = mysql_real_escape_string($data[4]);
-            $answer_key = mysql_real_escape_string($data[5]);
-
-            // Simpan ke database
-            $sql = "INSERT INTO rb_pertanyaan_objektif (id_pertanyaan_objektif, id_quiz_ujian, pertanyaan_objektif, jawab_a, jawab_b, jawab_c, jawab_d, jawab_e, kunci_jawaban) 
-                    VALUES ('','$_GET[idsoal]','$question', '$option_a', '$option_b', '$option_c', '$option_d', '$answer_key')";
-            $result = mysql_query($sql);
-
-            if (!$result) {
-                echo "Gagal menyimpan data: " . mysql_error();
-                break;
-            }
-        }
-
-        fclose($handle);
-        echo "Data berhasil diupload!";
-    } else {
-        echo "Gagal membaca file.";
-    }
-} else {
-    echo "File tidak ditemukan.";
-}
-
-
+                            
 
   if (isset($_POST[essai])) {
     mysql_query("INSERT INTO rb_pertanyaan_essai VALUES('','$_GET[idsoal]','$_POST[a]')");
