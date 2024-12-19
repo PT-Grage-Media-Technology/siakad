@@ -413,7 +413,6 @@ elseif ($_GET[act] == 'semuasoal') {
                             </tr>";
 
                             $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
-
                             echo "<div class='modal fade' id='objektif-edit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
@@ -480,7 +479,7 @@ elseif ($_GET[act] == 'semuasoal') {
             </div>
             <div class='modal-footer'>
               <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-              <button type='submit' name='objektif' class='btn btn-primary'>Update</button>
+              <button type='submit' name='update' class='btn btn-primary'>Update</button>
             </div>
           </form>
         </div>
