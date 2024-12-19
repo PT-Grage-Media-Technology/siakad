@@ -832,7 +832,7 @@ $(document).ready(function () {
         $data = mysql_fetch_assoc($result);
         return json_encode($data); // Kirimkan data sebagai JSON
     } else {
-        echo json_encode(['error' => 'Data tidak ditemukan']); // Kirim error sebagai JSON
+        return json_encode(['error' => 'Data tidak ditemukan']); // Kirim error sebagai JSON
     }
 
     exit; // Berhenti eksekusi setelah mengirim respons
