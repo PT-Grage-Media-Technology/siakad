@@ -432,7 +432,7 @@ elseif ($_GET[act] == 'semuasoal') {
                 <label for='soal' class='col-sm-2 control-label'>Soal</label>
                 <div class='col-sm-10'>
                   <textarea rows='3' name='a' id='soal' class='form-control'
-                    id='soal'></textarea>
+                    id='soal'>$soal[pertanyaan_objektif]</textarea>
                 </div>
               </div>
 
