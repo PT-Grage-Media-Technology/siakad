@@ -826,25 +826,25 @@ $(document).ready(function () {
 
     <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
-  $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
+    $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
-  // Query untuk mengambil data soal berdasarkan id
-  $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
-  $result = mysql_query($query);
+    // Query untuk mengambil data soal berdasarkan id
+    $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
+    $result = mysql_query($query);
 
-  if ($result && mysql_num_rows($result) > 0) {
-      $data = mysql_fetch_assoc($result);
+    if ($result && mysql_num_rows($result) > 0) {
+        $data = mysql_fetch_assoc($result);
 
-      // Set Content-Type header for JSON response
-      header('Content-Type: application/json');
+        // Set Content-Type header for JSON response
+        header('Content-Type: application/json');
 
-      // Send response as JSON
-      echo json_encode($data);
-  } else {
-      echo json_encode(['error' => 'Data tidak ditemukan']);
-  }
+        // Send response as JSON
+        echo json_encode($data);
+    } else {
+        echo json_encode(['error' => 'Data tidak ditemukan']);
+    }
 
-  exit;
+    exit;
 }
 
 ?>
