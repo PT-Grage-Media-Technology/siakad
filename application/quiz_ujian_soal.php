@@ -250,7 +250,9 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
 elseif ($_GET[act] == 'update') {
   cek_session_guru();
   if (isset($_POST['update'])) {
+    echo "asdda";
     var_dump($_POST['update']);
+    exit;
     // if (function_exists('date_default_timezone_set')) {
     //   date_default_timezone_set('Asia/Jakarta');
     // }
