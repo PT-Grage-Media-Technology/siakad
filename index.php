@@ -830,7 +830,7 @@ $(document).ready(function () {
 
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
-        echo json_encode($data); // Kirimkan data sebagai JSON
+        return json_encode($data); // Kirimkan data sebagai JSON
     } else {
         echo json_encode(['error' => 'Data tidak ditemukan']); // Kirim error sebagai JSON
     }
