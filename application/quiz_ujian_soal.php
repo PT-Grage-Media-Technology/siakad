@@ -416,7 +416,7 @@ elseif ($_GET[act] == 'semuasoal') {
                             </tr>";
 
                             $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
-                            echo "<div class='modal fade' id='objektif-edit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+                            echo "<div class='modal fade' id='objektif-edit[$noo]' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
           <div class='modal-header'>
