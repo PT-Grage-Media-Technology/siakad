@@ -190,6 +190,7 @@ if ($_GET[act] == '') {
     // $bataswaktu = date_format($tjam, 'Y-m-d H:i:s');
     // mysql_query("INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')");
     var_dump($_POST['tambah']);
+    exit;
     echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
