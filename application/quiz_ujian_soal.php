@@ -412,11 +412,11 @@ elseif ($_GET[act] == 'semuasoal') {
     echo "<div class='btn btn-default btn-xs btn-block'>Kunci Jawaban : $ko[kunci_jawaban]</div>
                             </td>
                             <td style='width:60px'><a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
-                            <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'>123</span></a></td>
+                            <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit[$noo]' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'>123</span></a></td>
                             </tr>";
 
                             $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
-                            echo "<div class='modal fade' id='objektif-edit' name=modal[$noo] tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+                            echo "<div class='modal fade' id='objektif-edit[$noo]' name=modal[$noo] tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
           <div class='modal-header'>
