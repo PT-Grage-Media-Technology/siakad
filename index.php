@@ -1,6 +1,3 @@
-
-
-
 <?php
 session_start();
 error_reporting(0);
@@ -10,7 +7,7 @@ include "config/fungsi_indotgl.php";
 include "config/fungsi_seo.php";
 include "config/Classes/PHPExcel.php";
 
-if (isset($_SESSION['id'])) { 
+if (isset($_SESSION['id'])) {
   $id_mutu = mysql_fetch_array(mysql_query("SELECT * FROM rb_jenis_ptk WHERE jenis_ptk LIKE '%jamin%' "));
   if ($_SESSION['level'] == 'superuser') {
     $iden = mysql_fetch_array(mysql_query("SELECT * FROM rb_users where id_user='$_SESSION[id]'"));
@@ -63,7 +60,7 @@ if (isset($_SESSION['id'])) {
     $foto = (trim($iden['foto']) == '') ? 'foto_siswa/no-image.jpg' : 'foto_pegawai/' . $iden['foto'];
 
 
-    
+
   } elseif ($_SESSION['is_penjamin_mutu'] == true) {
 
     // Jika guru juga kesiswaan, kita bisa beri label tambahan
@@ -81,7 +78,7 @@ if (isset($_SESSION['id'])) {
 
   // Ambil data kurikulum aktif
   $kurikulum = mysql_fetch_array(mysql_query("SELECT * FROM rb_kurikulum WHERE status_kurikulum='Ya'"));
-?>
+  ?>
 
 
   <!DOCTYPE html>
@@ -147,55 +144,52 @@ if (isset($_SESSION['id'])) {
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini">
-  <script>
-    
-$(document).ready(function () {
-    // Ketika modal ditampilkan
-    $('#objektif-edit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);  // Tombol yang memicu modal
-        var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
+    <script>
 
-        // Menyimpan id dalam input hidden atau memanipulasi form
-        var modal = $(this);
-        modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
+      $(document).ready(function () {
+        // Ketika modal ditampilkan
+        $('#objektif-edit').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);  // Tombol yang memicu modal
+          var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
 
-        // AJAX untuk mengambil data dari server berdasarkan id
-        $.ajax({
-            url: '',  // Ganti dengan URL yang sesuai
+          // Menyimpan id dalam input hidden atau memanipulasi form
+          var modal = $(this);
+          modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
+
+          // AJAX untuk mengambil data dari server berdasarkan id
+          $.ajax({
+            url: '', // File PHP
             type: 'POST',
             data: {
-                id_pertanyaan_objektif: id,  // Kirimkan id ke server
-                action: 'get_soal'
+              id_pertanyaan_objektif: id,
+              action: 'get_soal'
             },
-            success: function(response) {
-              console.log(response);
-              
-                var data = JSON.parse(response);  // Parse response sebagai JSON
-              console.log(data);
-
-
-                // Jika ada error dalam data
+            success: function (response) {
+              try {
+                var data = JSON.parse(response); // Parse JSON response
                 if (data.error) {
-                    alert(data.error);
+                  alert(data.error);
                 } else {
-                    // Isi form dengan data yang diterima
-                    $('#soal').val(data.pertanyaan_objektif);
-                    $('#jawab_a').val(data.jawab_a);
-                    $('#jawab_b').val(data.jawab_b);
-                    $('#jawab_c').val(data.jawab_c);
-                    $('#jawab_d').val(data.jawab_d);
-                    $('#jawab_e').val(data.jawab_e);
-                    $('#kunci').val(data.kunci);
+                  $('#soal').val(data.pertanyaan_objektif);
+                  $('#jawab_a').val(data.jawab_a);
+                  $('#jawab_b').val(data.jawab_b);
+                  $('#jawab_c').val(data.jawab_c);
+                  $('#jawab_d').val(data.jawab_d);
+                  $('#jawab_e').val(data.jawab_e);
+                  $('#kunci').val(data.kunci);
                 }
+              } catch (e) {
+                console.error('Invalid JSON response', response);
+              }
             },
-            error: function(xhr, status, error) {
-                console.error("AJAX request failed", error);
+            error: function (xhr, status, error) {
+              console.error('AJAX request failed', error);
             }
+          });
         });
-    });
-});
+      });
 
-</script>
+    </script>
 
 
     <div class="wrapper">
@@ -203,7 +197,7 @@ $(document).ready(function () {
         <?php include "main-header.php"; ?>
       </header>
 
-      <aside class="main-sidebar"> 
+      <aside class="main-sidebar">
         <?php
         if ($_SESSION['level'] == 'siswa') {
           include "menu-siswa.php";
@@ -211,13 +205,13 @@ $(document).ready(function () {
           // Jika guru juga merangkap kurikulum, tampilkan menu kurikulum
           if (isset($_SESSION['is_kurikulum']) && $_SESSION['is_kurikulum'] == true) {
             include "menu-kurikulum.php"; // Menu untuk Waka Kurikulum
-
+      
           } elseif (isset($_SESSION['is_kesiswaan']) && $_SESSION['is_kesiswaan'] == true) {
             include "menu-kesiswaan.php";
           } elseif (isset($_SESSION['is_penjamin_mutu']) && $_SESSION['is_penjamin_mutu'] == true) {
             include "menu-mutu.php";
             // include "menu-kurikulum.php"; // Include file menu-kurikulum     // Include file menu-mutu
-          // renderMenuKurikulum();
+            // renderMenuKurikulum();
           } else {
             include "menu-guru.php"; // Menu reguler untuk Guru
           }
@@ -355,7 +349,7 @@ $(document).ready(function () {
             if ($_SESSION['level'] == 'admin') {
               // Fungsi untuk validasi session admin
               // cek_session_admin();
-
+        
               // Render halaman untuk admin atau kurikulum
               echo "<div class='row'>";
               include "application/master_nilai.php";
@@ -389,14 +383,14 @@ $(document).ready(function () {
               echo "<div class='row'>";
               include "application/master_jadwalpelajaran.php";
               echo "</div>";
-            }else{
+            } else {
 
             }
-          // } elseif ($_GET[view] == 'jadwalpelajaran') {
-          //   cek_session_guru();
-          //   echo "<div class='row'>";
-          //   include "application/master_jadwalpelajaran.php";
-          //   echo "</div>";
+            // } elseif ($_GET[view] == 'jadwalpelajaran') {
+            //   cek_session_guru();
+            //   echo "<div class='row'>";
+            //   include "application/master_jadwalpelajaran.php";
+            //   echo "</div>";
           } elseif ($_GET[view] == 'jurusan') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -476,18 +470,18 @@ $(document).ready(function () {
             // cek_session_guru();
             echo "<div class='row'>";
             if (file_exists("application/rekap_srl.php")) {
-                include "application/rekap_srl.php";
+              include "application/rekap_srl.php";
             } else {
-                echo "File rekap_srl.php tidak ditemukan.";
+              echo "File rekap_srl.php tidak ditemukan.";
             }
             echo "</div>";
-        } elseif ($_GET[view] == 'rekapguru') {
+          } elseif ($_GET[view] == 'rekapguru') {
             $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
             include "application/absensi_siswa_detail.php";
             echo "</div>";
-        } elseif ($_GET[view] == 'refleksiguru') {
+          } elseif ($_GET[view] == 'refleksiguru') {
             $_SESSION['is_kurikulum'];
             // cek_session_guru();
             echo "<div class='row'>";
@@ -495,15 +489,15 @@ $(document).ready(function () {
             echo "</div>";
           } elseif ($_GET[view] == 'rekapabsensiswa') {
             // if($_SESSION['is_kesiswaan'] == true){
-              // cek_session_guru();
-              echo "<div class='row'>";
-              include "application/absensi_siswa_rekap.php";
-              echo "</div>";
+            // cek_session_guru();
+            echo "<div class='row'>";
+            include "application/absensi_siswa_rekap.php";
+            echo "</div>";
             // }
           } elseif ($_GET[view] == 'export_to_excel') {
-              echo "<div class='row'>";
-              include "application/export_to_excel.php";
-              echo "</div>";
+            echo "<div class='row'>";
+            include "application/export_to_excel.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'absenguru') {
             cek_session_admin();
             echo "<div class='row'>";
@@ -556,9 +550,9 @@ $(document).ready(function () {
             echo "</div>";
           } elseif ($_GET[view] == 'raportcetakuts') {
             // cek_session_admin();
-              echo "<div class='row'>";
-              include "application/raport_cetak_uts.php";
-              echo "</div>";
+            echo "<div class='row'>";
+            include "application/raport_cetak_uts.php";
+            echo "</div>";
           } elseif ($_GET[view] == 'capaianhasilbelajar') {
             // cek_session_admin();
             echo "<div class='row'>";
@@ -673,7 +667,7 @@ $(document).ready(function () {
     <script src="dist/js/app.min.js"></script>
 
     <script>
-      $(function() {
+      $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,
@@ -827,26 +821,26 @@ $(document).ready(function () {
     </div>
 
     <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
-    $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
+      $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
-    // Query untuk mengambil data soal berdasarkan id
-    $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
-    $result = mysql_query($query);
+      // Query untuk mengambil data soal berdasarkan id
+      $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
+      $result = mysql_query($query);
 
-    if ($result && mysql_num_rows($result) > 0) {
+      if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
         // Mengirim data dalam format teks
         // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
-        echo "sas";
+        return json_decode($data);
         // var_dump($data);
-    } else {
+      } else {
         echo "error=Data tidak ditemukan";
-    }
+      }
 
-    exit;
-}
-?>
+      exit;
+    }
+    ?>
 
 
 
@@ -858,75 +852,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                 aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?> </h4>
           </div>
-          <form method="POST" action="index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET['jdwl']; ?>&idsoal=<?php echo $_GET['idsoal']; ?>&id=<?php echo $_GET['id']; ?>&kd=<?php echo $_GET['kd']; ?>" class="form-horizontal">
-        <div class="modal-body">
-          <input type="hidden" name="pertanyaan_id" id="id_pertanyaan">
-          
-          <div class="form-group">
-            <label for="soal" class="col-sm-2 control-label">Soal</label>
-            <div class="col-sm-10">
-              <textarea rows="3" name="a"  id="soal" class="form-control" id="soal"><?php echo $data['pertanyaan_objektif']?></textarea>
-            </div>
-          </div>
+          <form method="POST"
+            action="index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET['jdwl']; ?>&idsoal=<?php echo $_GET['idsoal']; ?>&id=<?php echo $_GET['id']; ?>&kd=<?php echo $_GET['kd']; ?>"
+            class="form-horizontal">
+            <div class="modal-body">
+              <input type="hidden" name="pertanyaan_id" id="id_pertanyaan">
 
-          <div class="form-group">
-            <label for="jawab_a" class="col-sm-2 control-label">Jawab A</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="b" class="form-control" id="jawab_a">
-            </div>
-          </div>
+              <div class="form-group">
+                <label for="soal" class="col-sm-2 control-label">Soal</label>
+                <div class="col-sm-10">
+                  <textarea rows="3" name="a" id="soal" class="form-control"
+                    id="soal"><?php echo $data['pertanyaan_objektif'] ?></textarea>
+                </div>
+              </div>
 
-          <div class="form-group">
-            <label for="jawab_b" class="col-sm-2 control-label">Jawab B</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="c" class="form-control" id="jawab_b">
-            </div>
-          </div>
+              <div class="form-group">
+                <label for="jawab_a" class="col-sm-2 control-label">Jawab A</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="b" class="form-control" id="jawab_a">
+                </div>
+              </div>
 
-          <div class="form-group">
-            <label for="jawab_c" class="col-sm-2 control-label">Jawab C</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="d" class="form-control" id="jawab_c">
-            </div>
-          </div>
+              <div class="form-group">
+                <label for="jawab_b" class="col-sm-2 control-label">Jawab B</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="c" class="form-control" id="jawab_b">
+                </div>
+              </div>
 
-          <div class="form-group">
-            <label for="jawab_d" class="col-sm-2 control-label">Jawab D</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="e" class="form-control" id="jawab_d">
-            </div>
-          </div>
+              <div class="form-group">
+                <label for="jawab_c" class="col-sm-2 control-label">Jawab C</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="d" class="form-control" id="jawab_c">
+                </div>
+              </div>
 
-          <div class="form-group">
-            <label for="jawab_e" class="col-sm-2 control-label">Jawab E</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="f" class="form-control" id="jawab_e">
-            </div>
-          </div>
+              <div class="form-group">
+                <label for="jawab_d" class="col-sm-2 control-label">Jawab D</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="e" class="form-control" id="jawab_d">
+                </div>
+              </div>
 
-          <div class="form-group">
-            <label for="kunci" class="col-sm-2 control-label">Kunci</label>
-            <div class="col-sm-10">
-              <input style="width:50%" type="text" name="g" class="form-control" id="kunci">
+              <div class="form-group">
+                <label for="jawab_e" class="col-sm-2 control-label">Jawab E</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="f" class="form-control" id="jawab_e">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="kunci" class="col-sm-2 control-label">Kunci</label>
+                <div class="col-sm-10">
+                  <input style="width:50%" type="text" name="g" class="form-control" id="kunci">
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" name="objektif" class="btn btn-primary">Update</button>
-        </div>
-      </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" name="objektif" class="btn btn-primary">Update</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    
+
 
 
   </body>
 
   </html>
 
-<?php
+  <?php
 } else {
   include "login.php";
 }
