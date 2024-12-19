@@ -826,7 +826,7 @@ $(document).ready(function () {
     $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
     $result = mysql_query($query);
 
-    header('Content-Type: application/json'); // Set response header ke JSON
+    // header('Content-Type: application/json'); // Set response header ke JSON
 
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
