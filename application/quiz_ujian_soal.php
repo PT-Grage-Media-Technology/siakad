@@ -415,7 +415,11 @@ elseif ($_GET[act] == 'semuasoal') {
                             <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit' data-id='" . htmlspecialchars($ko['id_pertanyaan_objektif']) . "'><span class='glyphicon glyphicon-edit'>123</span></a></td>
                             </tr>";
 
-                            $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
+                            
+    $noo++;
+  }
+
+  $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
                             echo "<div class='modal fade' id='objektif-edit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
@@ -489,8 +493,6 @@ elseif ($_GET[act] == 'semuasoal') {
       </div>
     </div>
 ";
-    $noo++;
-  }
   echo "</table>
                 </div>
               </div>
