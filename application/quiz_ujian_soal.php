@@ -386,7 +386,7 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                         <th>NISN</th>
                         <th>Nama Siswa</th>
                         <th>Jenis Kelamin</th>
-                        <th>Status Jawaban</th>
+                        <th>Status Jawaban123</th>
                         <th>Action</th>
                       </tr>
                     </thead>
