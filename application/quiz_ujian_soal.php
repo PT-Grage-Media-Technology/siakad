@@ -246,7 +246,74 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                   </div>
               </form>
             </div>";
-} elseif ($_GET[act] == 'semuasoal') {
+} 
+elseif ($_GET[act] == 'update') {
+  cek_session_guru();
+  if (isset($_POST['update'])) {
+    if (function_exists('date_default_timezone_set')) {
+      date_default_timezone_set('Asia/Jakarta');
+    }
+
+    $waktu = date("Y-m-d H:i:s");
+    list($tanggal, $jam) = explode(' ', $waktu);
+    list($tahun, $bulan, $hari) = explode('-', $tanggal);
+    list($jam, $menit, $detik) = explode(':', $jam);
+
+    // Menambahkan waktu secara manual
+    $menit += (int)$_POST['c'];
+    while ($menit >= 60) {
+        $menit -= 60;
+        $jam++;
+    }
+    while ($jam >= 24) {
+        $jam -= 24;
+        $hari++;
+    }
+
+    // Format ulang tanggal dan waktu
+    $bataswaktu = sprintf('%04d-%02d-%02d %02d:%02d:%02d', $tahun, $bulan, $hari, $jam, $menit, $detik);
+
+    // Update ke database
+    mysql_query("UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]'");
+    echo "UPDATE rb_quiz_ujian SET id_kategori_quiz_ujian='$_POST[a]', keterangan='$_POST[b]', batas_waktu='$bataswaktu' WHERE id_soal='$_GET[id_soal]';";
+    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
+  }
+
+  $e = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian WHERE id_soal='$_GET[id_soal]'"));
+  echo "<div class='col-md-12'>
+              <div class='box box-info'>
+                <div class='box-header with-border'>
+                  <h3 class='box-title'>Update List Ujian dan Quiz</h3>
+                </div>
+              <div class='box-body'>
+              <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
+                <div class='col-md-12'>
+                  <table class='table table-condensed table-bordered'>
+                  <tbody>
+                    <tr><th width='120px' scope='row'>Kategori</th> <td><select class='form-control' name='a'> 
+                             <option value='0'>- Pilih Kategori -</option>";
+  $kategori = mysql_query("SELECT * FROM rb_kategori_quiz_ujian");
+  while ($a = mysql_fetch_array($kategori)) {
+    $selected = ($e['id_kategori_quiz_ujian'] == $a['id_kategori_quiz_ujian']) ? 'selected' : '';
+    echo "<option value='$a[id_kategori_quiz_ujian]' $selected>$a[kategori_quiz_ujian]</option>";
+  }
+  echo "</select>
+                    </td></tr>
+                    <tr><th scope='row'>Keterangan</th>        <td><input type='text' class='form-control' name='b' value='$e[keterangan]'></td></tr>
+                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='text' class='pull-left form-control' name='c' value='0'> Menit</td></tr>
+                  </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class='box-footer'>
+                    <button type='submit' name='update' class='btn btn-info'>Update</button>
+                    <a href='index.php?view=bahantugas'><button class='btn btn-default pull-right'>Cancel</button></a>
+                  </div>
+              </form>
+            </div>";
+}
+
+elseif ($_GET[act] == 'semuasoal') {
   cek_session_guru();
   $so = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian a 
                         JOIN rb_kategori_quiz_ujian b ON a.id_kategori_quiz_ujian=b.id_kategori_quiz_ujian 
