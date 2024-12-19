@@ -776,24 +776,22 @@ if (isset($_SESSION['id'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
     $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
-    // Koneksi ke database
     // Query untuk mengambil data soal berdasarkan id
     $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
     $result = mysql_query($query);
 
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
-        // Pastikan output adalah JSON
-        header('Content-Type: application/json');
-        echo json_encode($data); // Mengirim data dalam format JSON
+        // Mengirim data dalam format teks
+        echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['soal']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
     } else {
-        header('Content-Type: application/json');
-        echo json_encode(array("error" => "Data tidak ditemukan"));
+        echo "error=Data tidak ditemukan";
     }
 
     exit;
 }
 ?>
+
 
 
     <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -868,14 +866,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     
 
     <script>
-     $(document).ready(function () {
-  // Ketika modal dibuka
-  $('#objektif-edit').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Tombol yang memicu modal
-    var id = button.data('id'); // Mengambil data-id dari tombol
-
-    // Menggunakan AJAX untuk mengambil data dari database berdasarkan ID yang dipilih
-    $.ajax({
+  $.ajax({
     url: '', // Halaman yang sama atau URL yang benar
     type: 'POST',
     data: { 
@@ -883,28 +874,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
         action: 'get_soal' // Menentukan action untuk mengambil data
     },
     success: function (response) {
-        try {
-            var data = JSON.parse(response);
-            // Lanjutkan proses dengan data yang diterima
-            $('#id_pertanyaan').val(data.id_pertanyaan_objektif);
-            $('#soal').val(data.soal);
-            $('#jawab_a').val(data.jawab_a);
-            $('#jawab_b').val(data.jawab_b);
-            $('#jawab_c').val(data.jawab_c);
-            $('#jawab_d').val(data.jawab_d);
-            $('#jawab_e').val(data.jawab_e);
-            $('#kunci').val(data.kunci);
-        } catch (e) {
-            console.error("Error parsing JSON response", e);
-        }
+        // Menggunakan URLSearchParams untuk memparsing string menjadi objek
+        var params = new URLSearchParams(response);
+        var data = {
+            id_pertanyaan_objektif: params.get('id_pertanyaan_objektif'),
+            soal: params.get('soal'),
+            jawab_a: params.get('jawab_a'),
+            jawab_b: params.get('jawab_b'),
+            jawab_c: params.get('jawab_c'),
+            jawab_d: params.get('jawab_d'),
+            jawab_e: params.get('jawab_e'),
+            kunci: params.get('kunci')
+        };
+
+        // Mengisi form dengan data yang diterima
+        $('#id_pertanyaan').val(data.id_pertanyaan_objektif);
+        $('#soal').val(data.soal);
+        $('#jawab_a').val(data.jawab_a);
+        $('#jawab_b').val(data.jawab_b);
+        $('#jawab_c').val(data.jawab_c);
+        $('#jawab_d').val(data.jawab_d);
+        $('#jawab_e').val(data.jawab_e);
+        $('#kunci').val(data.kunci);
     },
     error: function(xhr, status, error) {
         console.error("AJAX request failed", error);
     }
 });
 
-  });
-});
 
     </script>
   </body>
