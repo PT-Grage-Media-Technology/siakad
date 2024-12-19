@@ -878,7 +878,7 @@ $(document).ready(function () {
 
        // AJAX untuk mengambil data dari server berdasarkan id
        $.ajax({
-           url: 'path_to_php_script.php',  // Ganti dengan URL yang sesuai
+           url: '',  // Ganti dengan URL yang sesuai
            type: 'POST',
            data: { 
                id_pertanyaan_objektif: id  // Kirimkan id ke server
