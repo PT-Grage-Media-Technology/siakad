@@ -446,35 +446,35 @@ elseif ($_GET[act] == 'semuasoal') {
               <div class='form-group'>
                 <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='c' class='form-control' id='jawab_b'>
+                  <input style='width:50%' type='text' name='c' value='$soal[jawab_b]' class='form-control' id='jawab_b'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='d' class='form-control' id='jawab_c'>
+                  <input style='width:50%' type='text' name='d' value='$soal[jawab_c]' class='form-control' id='jawab_c'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='e' class='form-control' id='jawab_d'>
+                  <input style='width:50%' type='text' name='e' value='$soal[jawab_d]' class='form-control' id='jawab_d'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' class='form-control' id='jawab_e'>
+                  <input style='width:50%' type='text' name='f' value='$soal[jawab_e]' class='form-control' id='jawab_e'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' class='form-control' id='kunci'>
+                  <input style='width:50%' type='text' name='g' value='$soal[kunci_jawaban]' class='form-control' id='kunci'>
                 </div>
               </div>
             </div>
