@@ -146,48 +146,46 @@ if (isset($_SESSION['id'])) {
   <body class="hold-transition skin-blue sidebar-mini">
     <script>
 
-      $(document).ready(function () {
-        // Ketika modal ditampilkan
-        $('#objektif-edit').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget);  // Tombol yang memicu modal
-          var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
+$(document).ready(function () {
+    $('#objektif-edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Tombol yang memicu modal
+        var id = button.data('id'); // Menangkap nilai dari data-id
 
-          // Menyimpan id dalam input hidden atau memanipulasi form
-          var modal = $(this);
-          modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
+        var modal = $(this);
+        modal.find('#id_pertanyaan').val(id); // Menyimpan id ke dalam input hidden
 
-          // AJAX untuk mengambil data dari server berdasarkan id
-          $.ajax({
-            url: '', // File PHP
+        // AJAX untuk mengambil data dari server berdasarkan id
+        $.ajax({
+            url: '', // Ganti dengan nama file PHP
             type: 'POST',
             data: {
-              id_pertanyaan_objektif: id,
-              action: 'get_soal'
+                id_pertanyaan_objektif: id,
+                action: 'get_soal'
             },
-            success: function (response) {
-              try {
-                var data = JSON.parse(response); // Parse JSON response
-                if (data.error) {
-                  alert(data.error);
+            success: function(response) {
+                console.log(response); // Debug respons
+
+                // Jika respons memiliki error
+                if (response.error) {
+                    alert(response.error);
                 } else {
-                  $('#soal').val(data.pertanyaan_objektif);
-                  $('#jawab_a').val(data.jawab_a);
-                  $('#jawab_b').val(data.jawab_b);
-                  $('#jawab_c').val(data.jawab_c);
-                  $('#jawab_d').val(data.jawab_d);
-                  $('#jawab_e').val(data.jawab_e);
-                  $('#kunci').val(data.kunci);
+                    // Isi form dengan data yang diterima
+                    $('#soal').val(response.pertanyaan_objektif);
+                    $('#jawab_a').val(response.jawab_a);
+                    $('#jawab_b').val(response.jawab_b);
+                    $('#jawab_c').val(response.jawab_c);
+                    $('#jawab_d').val(response.jawab_d);
+                    $('#jawab_e').val(response.jawab_e);
+                    $('#kunci').val(response.kunci);
                 }
-              } catch (e) {
-                console.error('Invalid JSON response', response);
-              }
             },
-            error: function (xhr, status, error) {
-              console.error('AJAX request failed', error);
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed", error);
             }
-          });
         });
-      });
+    });
+});
+
 
     </script>
 
@@ -821,25 +819,25 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
-      $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
+   if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
+    $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
-      // Query untuk mengambil data soal berdasarkan id
-      $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
-      $result = mysql_query($query);
+    // Query untuk mengambil data soal berdasarkan id
+    $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
+    $result = mysql_query($query);
 
-      if ($result && mysql_num_rows($result) > 0) {
+    header('Content-Type: application/json'); // Set response header ke JSON
+
+    if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
-        // Mengirim data dalam format teks
-        // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
-        return json_decode($data);
-        // var_dump($data);
-      } else {
-        echo "error=Data tidak ditemukan";
-      }
-
-      exit;
+        echo json_encode($data); // Kirimkan data sebagai JSON
+    } else {
+        echo json_encode(['error' => 'Data tidak ditemukan']); // Kirim error sebagai JSON
     }
+
+    exit; // Berhenti eksekusi setelah mengirim respons
+}
+
     ?>
 
 
