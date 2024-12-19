@@ -68,7 +68,7 @@
       echo "
       <li><a class=' ". ($_GET['view'] === 'raportuts' ? 'active' : '') ."' href='index.php?view=raportuts&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&kode_kelas={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai STS</a></li>
       <li><a class= '". ($_GET['view'] === 'raportsas' ? 'active' : '') ."' href='index.php?view=raportsas&act=listsiswa&jdwl={$idjr}&kd={$mapel[kode_pelajaran]}&kode_kelas={$mapel[kode_kelas]}&tahun={$_GET['tahun']}'>Nilai SAS</a></li>
-      <li><a href='index.php?view=soal'><i class='fa fa-users'></i><span>Quiz/Ujian Online</span></a></li>
+      <li><a href='index.php?view=soal'><span>Quiz/Ujian Online</span></a></li>
 
       ";
     } 
