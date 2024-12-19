@@ -773,27 +773,28 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <?php
-if (isset($_POST['action']) && $_POST['action'] == 'get_soal') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'get_soal') {
     $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
 
     // Koneksi ke database
-    $conn = mysql_connect("host", "username", "password");
-    mysql_select_db("database", $conn);
-
     // Query untuk mengambil data soal berdasarkan id
     $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
     $result = mysql_query($query);
 
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
+        // Pastikan output adalah JSON
+        header('Content-Type: application/json');
         echo json_encode($data); // Mengirim data dalam format JSON
     } else {
+        header('Content-Type: application/json');
         echo json_encode(array("error" => "Data tidak ditemukan"));
     }
 
     exit;
 }
 ?>
+
 
     <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -875,27 +876,33 @@ if (isset($_POST['action']) && $_POST['action'] == 'get_soal') {
 
     // Menggunakan AJAX untuk mengambil data dari database berdasarkan ID yang dipilih
     $.ajax({
-      url: '', // Halaman yang sama
-      type: 'POST',
-      data: { 
-        id_pertanyaan_objektif: id, // Mengirimkan ID ke server untuk query
+    url: '', // Halaman yang sama atau URL yang benar
+    type: 'POST',
+    data: { 
+        id_pertanyaan_objektif: id, // ID yang dipilih
         action: 'get_soal' // Menentukan action untuk mengambil data
-      },
-      success: function (response) {
-        // Asumsi response adalah JSON dengan data yang dibutuhkan
-        var data = JSON.parse(response);
+    },
+    success: function (response) {
+        try {
+            var data = JSON.parse(response);
+            // Lanjutkan proses dengan data yang diterima
+            $('#id_pertanyaan').val(data.id_pertanyaan_objektif);
+            $('#soal').val(data.soal);
+            $('#jawab_a').val(data.jawab_a);
+            $('#jawab_b').val(data.jawab_b);
+            $('#jawab_c').val(data.jawab_c);
+            $('#jawab_d').val(data.jawab_d);
+            $('#jawab_e').val(data.jawab_e);
+            $('#kunci').val(data.kunci);
+        } catch (e) {
+            console.error("Error parsing JSON response", e);
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error("AJAX request failed", error);
+    }
+});
 
-        // Mengisi form modal dengan data yang didapat
-        $('#id_pertanyaan').val(data.id_pertanyaan_objektif);
-        $('#soal').val(data.soal);
-        $('#jawab_a').val(data.jawab_a);
-        $('#jawab_b').val(data.jawab_b);
-        $('#jawab_c').val(data.jawab_c);
-        $('#jawab_d').val(data.jawab_d);
-        $('#jawab_e').val(data.jawab_e);
-        $('#kunci').val(data.kunci);
-      }
-    });
   });
 });
 
