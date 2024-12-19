@@ -393,12 +393,12 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                                               where a.kode_kelas='$_GET[kode_kelas]' ORDER BY a.nisn ASC");
                                               // echo "SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
                                               // where a.kode_kelas='$_GET[kode_kelas]' ORDER BY a.nisn ASC";
-                                              var_dump($tampil);
+                                              // var_dump($tampil);
   while ($r = mysql_fetch_array($tampil)) {
   
 
     $coba = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif"));
-      var_dump($coba);
+      // var_dump($coba);
 
     $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
                                       JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
