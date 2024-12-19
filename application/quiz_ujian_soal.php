@@ -408,7 +408,6 @@ elseif ($_GET[act] == 'semuasoal') {
                             </td>
                             <td style='width:60px'><a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
                             <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit' data-id='" . htmlspecialchars($ko['id_pertanyaan_objektif']) . "'><span class='glyphicon glyphicon-edit'></span></a></td>
-
                             </tr>";
     $noo++;
   }
