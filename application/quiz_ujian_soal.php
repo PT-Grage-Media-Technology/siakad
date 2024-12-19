@@ -482,7 +482,7 @@ elseif ($_GET[act] == 'semuasoal') {
             </div>
             <div class='modal-footer'>
               <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-              <button type='submit' name='update' class='btn btn-primary'>Update</button>
+              <button type='submit' name='update' id='update' class='btn btn-primary'>Update</button>
             </div>
           </form>
         </div>
@@ -1158,10 +1158,27 @@ echo "      </div>
             </div>
           </form>";
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $id = $_POST['id'];
+  $soal = $_POST['soal'];
+  $jawab_a = $_POST['jawab_a'];
+  $jawab_b = $_POST['jawab_b'];
+  $jawab_c = $_POST['jawab_c'];
+  $jawab_d = $_POST['jawab_d'];
+  $jawab_e = $_POST['jawab_e'];
+  $kunci = $_POST['kunci'];
+
+  // Query untuk update data
+  $query = "UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$soal',jawab_a='$jawab_a',jawab_b='$jawab_b',jawab_c='$jawab_c',jawab_d='$jawab_d'',jawab_e='$jawab_e',kunci_jawaban='$kunci' WHERE id_pertanyaan_objektif='$id'";
+  $result = mysql_query($query); // Jangan lupa gunakan library database
+
+
+}
 ?>
 
 <script>
-  $('#save-button').click(function () {
+  $('#update').click(function () {
     var id = $('#id_pertanyaan').val();
     var soal = $('#soal').val();
     var jawab_a = $('#jawab_a').val();
@@ -1204,3 +1221,4 @@ echo "      </div>
     });
   });
 </script>
+
