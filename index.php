@@ -771,6 +771,75 @@ if (isset($_SESSION['id'])) {
         </div>
       </div>
     </div>
+    <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Tambahkan edit Objektif</h4>
+          </div>
+          <form method='POST'
+            action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>'
+            class="form-horizontal">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
+                <div class="col-sm-10">
+                  <textarea rows='3' name='a' class="form-control" placeholder="Tuliskan Soal Objektif..."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab A</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='b' class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab B</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='c' class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab C</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='d' class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab D</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='e' class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Jawab E</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='f' class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Kunci</label>
+                <div class="col-sm-10">
+                  <input style='width:50%' type="text" name='g' class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" name='objektif' class="btn btn-primary">Tambahkan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 
   </html>
