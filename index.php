@@ -168,7 +168,7 @@ $(document).ready(function () {
                 action: 'get_soal'
             },
             success: function(response) {
-              console.log(response);
+              console.log(response.data);
               
                 var data = JSON.parse(response);  // Parse response sebagai JSON
               console.log(data);
@@ -837,7 +837,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     if ($result && mysql_num_rows($result) > 0) {
         $data = mysql_fetch_assoc($result);
         // Mengirim data dalam format teks
-        echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
+        // echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['pertanyaan_objektif']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
+        echo "sas";
         // var_dump($data);
     } else {
         echo "error=Data tidak ditemukan";
