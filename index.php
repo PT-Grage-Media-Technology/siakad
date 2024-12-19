@@ -784,6 +784,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
         $data = mysql_fetch_assoc($result);
         // Mengirim data dalam format teks
         echo "id_pertanyaan_objektif={$data['id_pertanyaan_objektif']}&soal={$data['soal']}&jawab_a={$data['jawab_a']}&jawab_b={$data['jawab_b']}&jawab_c={$data['jawab_c']}&jawab_d={$data['jawab_d']}&jawab_e={$data['jawab_e']}&kunci={$data['kunci']}";
+        var_dump($data);
     } else {
         echo "error=Data tidak ditemukan";
     }
