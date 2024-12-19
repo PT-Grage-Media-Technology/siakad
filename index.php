@@ -886,6 +886,8 @@ $(document).ready(function () {
                 action: 'get_soal'
             },
             success: function(response) {
+              console.log(response);
+              
                 var data = JSON.parse(response);  // Parse response sebagai JSON
 
                 // Jika ada error dalam data
