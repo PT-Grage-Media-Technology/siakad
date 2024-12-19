@@ -181,17 +181,36 @@ if ($_GET[act] == '') {
 
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
-  if (isset($_POST[tambah])) {
-    if (function_exists('date_default_timezone_set'))
+  if(isset($_POST['tambah'])){
+
+ 
+  if (function_exists('date_default_timezone_set')) {
     date_default_timezone_set('Asia/Jakarta');
-    $waktu = date("Y-m-d H:i:s");
-    $date = date_create($waktu);
-    $tjam = date_add($date, date_interval_create_from_date_string("$_POST[c] minutes"));
-    $bataswaktu = date_format($tjam, 'Y-m-d H:i:s');
-    mysql_query("INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')");
-    echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')";
+}
+
+$waktu = date("Y-m-d H:i:s");
+list($tanggal, $jam) = explode(' ', $waktu);
+list($tahun, $bulan, $hari) = explode('-', $tanggal);
+list($jam, $menit, $detik) = explode(':', $jam);
+
+// Menambahkan waktu secara manual
+$menit += (int)$_POST['c'];
+while ($menit >= 60) {
+    $menit -= 60;
+    $jam++;
+}
+while ($jam >= 24) {
+    $jam -= 24;
+    $hari++;
+}
+
+// Format ulang tanggal dan waktu
+$bataswaktu = sprintf('%04d-%02d-%02d %02d:%02d:%02d', $tahun, $bulan, $hari, $jam, $menit, $detik);
+
+// Menyimpan ke database
+mysql_query("INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')");
+echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]','$bataswaktu')";
     var_dump($_POST['tambah']);
-    exit;
     echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
