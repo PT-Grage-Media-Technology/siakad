@@ -772,9 +772,29 @@ if (isset($_SESSION['id'])) {
       </div>
     </div>
 
-<?php
-  $s = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif"))
+    <?php
+if (isset($_POST['action']) && $_POST['action'] == 'get_soal') {
+    $id_pertanyaan_objektif = $_POST['id_pertanyaan_objektif'];
+
+    // Koneksi ke database
+    $conn = mysql_connect("host", "username", "password");
+    mysql_select_db("database", $conn);
+
+    // Query untuk mengambil data soal berdasarkan id
+    $query = "SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif = '$id_pertanyaan_objektif'";
+    $result = mysql_query($query);
+
+    if ($result && mysql_num_rows($result) > 0) {
+        $data = mysql_fetch_assoc($result);
+        echo json_encode($data); // Mengirim data dalam format JSON
+    } else {
+        echo json_encode(array("error" => "Data tidak ditemukan"));
+    }
+
+    exit;
+}
 ?>
+
     <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -788,7 +808,7 @@ if (isset($_SESSION['id'])) {
             class="form-horizontal">
             <div class="modal-body">
               <div class="form-group">
-              <input type="hidden" name="pertanyaan_id" id="data-id" value="">
+              <input type="hidden" name="pertanyaan_id" id="id_pertanyaan" value="">
                 <label for="inputEmail3" class="col-sm-2 control-label">Soal</label>
                 <div class="col-sm-10">
                   <textarea rows='3' name='a' class="form-control" placeholder="Tuliskan Soal Objektif..."></textarea>
@@ -848,16 +868,38 @@ if (isset($_SESSION['id'])) {
     
 
     <script>
-      $(document).ready(function () {
-    // When the modal is triggered
-    $('#objektif-edit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);  // Button that triggered the modal
-        var id = button.data('id');  // Extract the data-id
+     $(document).ready(function () {
+  // Ketika modal dibuka
+  $('#objektif-edit').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Tombol yang memicu modal
+    var id = button.data('id'); // Mengambil data-id dari tombol
 
-        var modal = $(this);
-        modal.find('#data-id').val(id);  // Set the value of the hidden input field
+    // Menggunakan AJAX untuk mengambil data dari database berdasarkan ID yang dipilih
+    $.ajax({
+      url: '', // Halaman yang sama
+      type: 'POST',
+      data: { 
+        id_pertanyaan_objektif: id, // Mengirimkan ID ke server untuk query
+        action: 'get_soal' // Menentukan action untuk mengambil data
+      },
+      success: function (response) {
+        // Asumsi response adalah JSON dengan data yang dibutuhkan
+        var data = JSON.parse(response);
+
+        // Mengisi form modal dengan data yang didapat
+        $('#id_pertanyaan').val(data.id_pertanyaan_objektif);
+        $('#soal').val(data.soal);
+        $('#jawab_a').val(data.jawab_a);
+        $('#jawab_b').val(data.jawab_b);
+        $('#jawab_c').val(data.jawab_c);
+        $('#jawab_d').val(data.jawab_d);
+        $('#jawab_e').val(data.jawab_e);
+        $('#kunci').val(data.kunci);
+      }
     });
+  });
 });
+
     </script>
   </body>
 
