@@ -845,6 +845,20 @@ if (isset($_SESSION['id'])) {
         </div>
       </div>
     </div>
+    
+
+    <script>
+      $(document).ready(function () {
+    // When the modal is triggered
+    $('#objektif-edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);  // Button that triggered the modal
+        var id = button.data('id');  // Extract the data-id
+
+        var modal = $(this);
+        modal.find('#data-id').val(id);  // Set the value of the hidden input field
+    });
+});
+    </script>
   </body>
 
   </html>
