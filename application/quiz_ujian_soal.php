@@ -182,6 +182,7 @@ if ($_GET[act] == '') {
 } elseif ($_GET[act] == 'tambah') {
   cek_session_guru();
   if (isset($_POST[tambah])) {
+    var_dump($_POST['tambah']);
     if (function_exists('date_default_timezone_set'))
       date_default_timezone_set('Asia/Jakarta');
     $waktu = date("Y-m-d H:i:s");
