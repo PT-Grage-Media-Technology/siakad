@@ -61,7 +61,7 @@
           // isset($_GET['id']) &&
           isset($_GET['tahun']) &&
           isset($_GET['kode_kelas']) &&
-          ($_GET['view'] == 'journalguru' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
+          ($_GET['view'] == 'journalguru' || $_GET['view'] == 'soal' || $_GET['view'] == 'raportuts' || $_GET['view'] == 'raportsas' || $_GET['view'] == 'raport')
       ) {
         // $idjr = $mapel['kodejdwl'];
       
