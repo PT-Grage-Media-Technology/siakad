@@ -772,7 +772,9 @@ if (isset($_SESSION['id'])) {
       </div>
     </div>
 
-
+<?php  
+  $s = mysql_fetch_array(mysql_query("SELECT * FROM"))
+?>
     <div class="modal fade" id="objektif-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
