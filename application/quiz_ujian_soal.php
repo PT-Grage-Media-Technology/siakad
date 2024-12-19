@@ -1170,7 +1170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $kunci = $_POST['kunci'];
 
   // Query untuk update data
-  $query = "UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$soal',jawab_a='$jawab_a',jawab_b='$jawab_b',jawab_c='$jawab_c',jawab_d='$jawab_d'',jawab_e='$jawab_e',kunci_jawaban='$kunci' WHERE id_pertanyaan_objektif='$id'";
+  $query = "UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$soal',jawab_a='$jawab_a',jawab_b='$jawab_b',jawab_c='$jawab_c',jawab_d='$jawab_d',jawab_e='$jawab_e',kunci_jawaban='$kunci' WHERE id_pertanyaan_objektif='$id'";
   $result = mysql_query($query); // Jangan lupa gunakan library database
 
 
