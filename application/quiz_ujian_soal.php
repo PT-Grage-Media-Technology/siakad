@@ -389,11 +389,11 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
                     <tbody>";
 
   $no = 1;
-  $tampil = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
-                                              where a.kode_kelas='$_GET[kode_kelas]' ORDER BY a.nisn ASC"));
+  $tampil = mysql_query("SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
+                                              where a.kode_kelas='$_GET[kode_kelas]' ORDER BY a.nisn ASC");
                                               // echo "SELECT * FROM rb_siswa a JOIN rb_jenis_kelamin b ON a.id_jenis_kelamin=b.id_jenis_kelamin 
                                               // where a.kode_kelas='$_GET[kode_kelas]' ORDER BY a.nisn ASC";
-                                              // var_dump($tampil);
+                                              var_dump($tampil);
   while ($r = mysql_fetch_array($tampil)) {
   
 
