@@ -403,7 +403,7 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
     $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
                                       JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
                                         where a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'"));
-                                        var_dump($to);
+                                        // var_dump($to);
     $es = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_jawaban_essai a JOIN rb_pertanyaan_essai b 
                                               ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
                                                 AND b.id_quiz_ujian='$_GET[idsoal]'"));
