@@ -868,54 +868,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
 
     <script>
 $(document).ready(function () {
-   // Ketika modal ditampilkan
-   $('#objektif-edit').on('show.bs.modal', function (event) {
-       var button = $(event.relatedTarget);  // Tombol yang memicu modal
-       var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
-       
-       // Menyimpan id dalam input hidden atau memanipulasi form
-       var modal = $(this);
-       modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
+    // Ketika modal ditampilkan
+    $('#objektif-edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);  // Tombol yang memicu modal
+        var id = button.data('id');  // Menangkap nilai dari data-id yang dikirimkan
 
-       // AJAX untuk mengambil data dari server berdasarkan id
-       $.ajax({
-           url: '',  // Ganti dengan URL yang sesuai
-           type: 'POST',
-           data: { 
-               id_pertanyaan_objektif: id  // Kirimkan id ke server
-           },
-           success: function(response) {
-               // Proses data yang diterima dan isi form
-               var params = new URLSearchParams(response);  // Mengurai response
-               var data = {
-                   soal: params.get('soal'),
-                   jawab_a: params.get('jawab_a'),
-                   jawab_b: params.get('jawab_b'),
-                   jawab_c: params.get('jawab_c'),
-                   jawab_d: params.get('jawab_d'),
-                   jawab_e: params.get('jawab_e'),
-                   kunci: params.get('kunci')
-               };
+        // Menyimpan id dalam input hidden atau memanipulasi form
+        var modal = $(this);
+        modal.find('#id_pertanyaan').val(id);  // Menyimpan id ke dalam input hidden
 
-               // Isi form dengan data yang diterima
-               $('#soal').val(data.soal);
-               $('#jawab_a').val(data.jawab_a);
-               $('#jawab_b').val(data.jawab_b);
-               $('#jawab_c').val(data.jawab_c);
-               $('#jawab_d').val(data.jawab_d);
-               $('#jawab_e').val(data.jawab_e);
-               $('#kunci').val(data.kunci);
-           },
-           error: function(xhr, status, error) {
-               console.error("AJAX request failed", error);
-           }
-       });
-   });
+        // AJAX untuk mengambil data dari server berdasarkan id
+        $.ajax({
+            url: '',  // Ganti dengan URL yang sesuai
+            type: 'POST',
+            data: {
+                id_pertanyaan_objektif: id,  // Kirimkan id ke server
+                action: 'get_soal'
+            },
+            success: function(response) {
+                var data = JSON.parse(response);  // Parse response sebagai JSON
+
+                // Jika ada error dalam data
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Isi form dengan data yang diterima
+                    $('#soal').val(data.pertanyaan_objektif);
+                    $('#jawab_a').val(data.jawab_a);
+                    $('#jawab_b').val(data.jawab_b);
+                    $('#jawab_c').val(data.jawab_c);
+                    $('#jawab_d').val(data.jawab_d);
+                    $('#jawab_e').val(data.jawab_e);
+                    $('#kunci').val(data.kunci);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed", error);
+            }
+        });
+    });
 });
+
 </script>
 
-
-    </script>
   </body>
 
   </html>
