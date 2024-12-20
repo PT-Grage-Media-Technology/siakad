@@ -233,7 +233,7 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
   echo "</select>
                     </td></tr>
                     <tr><th scope='row'>Keterangan</th>        <td><input type='text' class='form-control' name='b'></td></tr>
-                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='text' class='pull-left form-control' name='c'> Menit</td></tr>
+                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='number' class='pull-left form-control' name='c'> Menit</td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -598,10 +598,15 @@ elseif ($_GET[act] == 'semuasoal') {
 echo "SELECT * FROM rb_pertanyaan_essai sai JOIN rb_pertanyaan_objektif obj ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif WHERE id_quiz_ujian='$_GET[idsoal]'";
 
   // var_dump('ini es',$es);
-    if ($to['total'] <= 0 && $es['total'] <= 0) {
-      $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
-    } else {
+    if ($to['total'] >= 0 && $es['total'] >= 0 && mysql_num_rows($cek) > 0) {
+
       $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
+
+    } elseif ($to['total'] >= 0 && mysql_num_rows($cek) == 0) {
+      $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
+    }else {
+      $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
+
     }
     echo "<tr bgcolor=$warna>
                             <td>$no</td>
