@@ -594,11 +594,18 @@ elseif ($_GET[act] == 'semuasoal') {
   //                                               AND b.id_quiz_ujian='$_GET[idsoal]'";
   var_dump('ini total',$to['total']);
   // var_dump('ini es',$es);
-    if ($to['total'] <= 0 or $es['total'] <= 0) {
-      $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
-    } else {
-      $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
-    }
+  if ($to['total'] <= 0 && $es['total'] <= 0) {
+    // Tidak ada soal
+    $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
+} elseif (($to['total'] > 0 && $es['total'] <= 0 && $to['answered'] > 0) || 
+          ($to['total'] > 0 && $es['total'] > 0 && $to['answered'] > 0 && $es['answered'] > 0)) {
+    // Soal Pilihan Ganda saja yang dijawab, atau kedua jenis soal dijawab
+    $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
+} else {
+    // Ada soal tapi belum semuanya dijawab
+    $statusnilai = "<i span style='color:orange'>Sebagian Dijawab</i>";
+}
+
     echo "<tr bgcolor=$warna>
                             <td>$no</td>
                             <td style='color:red'>$r[nisn]</td>
