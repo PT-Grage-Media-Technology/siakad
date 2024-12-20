@@ -439,9 +439,36 @@ elseif ($_GET[act] == 'semuasoal') {
                             <div class='form-group'>
                                 <label for='jawab_a_$noo' class='col-sm-2 control-label'>Jawab A</label>
                                 <div class='col-sm-10'>
-                                    <input style='width:50%' type='text' id='jawab_a_$noo' name='b' value='$ko[jawab_a]' class='form-control'>
+                                    <input style='width:50%' type='text' id='jawab_a_$noo' name='a' value='$ko[jawab_a]' class='form-control'>
                                 </div>
                             </div>
+
+                            <div class='form-group'>
+                                <label for='jawab_b_$noo' class='col-sm-2 control-label'>Jawab B</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' id='jawab_b_$noo' name='b' value='$ko[jawab_a]' class='form-control'>
+                                </div>
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='jawab_c_$noo' class='col-sm-2 control-label'>Jawab C</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' id='jawab_c_$noo' name='c' value='$ko[jawab_a]' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label for='jawab_d_$noo' class='col-sm-2 control-label'>Jawab D</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' id='jawab_d_$noo' name='d' value='$ko[jawab_a]' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label for='jawab_e_$noo' class='col-sm-2 control-label'>Jawab E</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' id='jawab_e_$noo' name='e' value='$ko[jawab_a]' class='form-control'>
+                                </div>
+                            </div>
+
                             <!-- Ulangi format di atas untuk Jawab B, C, D, dan E -->
                             <div class='form-group'>
                                 <label for='kunci_$noo' class='col-sm-2 control-label'>Kunci</label>
