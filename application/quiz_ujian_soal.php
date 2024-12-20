@@ -413,7 +413,7 @@ elseif ($_GET[act] == 'semuasoal') {
         </td>
         <td style='width:60px'>
         <a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
-        <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit-$noo' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'>123</span></a>
+        <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit-$noo' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'></span></a>
         </td>
     </tr>";
 
@@ -556,7 +556,7 @@ elseif ($_GET[act] == 'semuasoal') {
                         <th>NISN</th>
                         <th>Nama Siswa</th>
                         <th>Jenis Kelamin</th>
-                        <th>Status Jawaban123</th>
+                        <th>Status Jawaban</th>
                         <th>Action</th>
                       </tr>
                     </thead>
