@@ -967,7 +967,7 @@ elseif ($_GET[act] == 'semuasoal') {
 
 // Cek level pengguna
 if ($_SESSION['level'] != 'siswa') {
-echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[kode_kelas]&kd=$_GET[kd]'>Tambahkan Data</a>";
+echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]'>Tambahkan Data</a>";
 }
 
 echo "      </div>
