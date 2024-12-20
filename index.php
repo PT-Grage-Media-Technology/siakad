@@ -684,7 +684,7 @@ if (isset($_SESSION['id'])) {
             <h4 class="modal-title" id="myModalLabel">Tambahkan Soal Essai</h4>
           </div>
           <form method='POST'
-            action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[id]; ?>&kd=<?php echo $_GET[kd]; ?>'
+            action='index.php?view=soal&act=semuasoal&jdwl=<?php echo $_GET[jdwl]; ?>&idsoal=<?php echo $_GET[idsoal]; ?>&id=<?php echo $_GET[kode_kelas]; ?>&kd=<?php echo $_GET[kd]; ?>'
             class="form-horizontal">
             <div class="modal-body">
 
