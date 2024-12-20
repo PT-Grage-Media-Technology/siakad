@@ -600,12 +600,12 @@ $cek = mysql_query("SELECT * FROM rb_pertanyaan_essai sai
 // Logika untuk status
 if ($to['total'] > 0 && $es['total'] == 0) {
     // Jika hanya ada soal objektif/pilgan dan sudah dijawab
-    $statusnilai = "<i style='color:green'>Sudah Dijawab Semua</i>";
+    $statusnilai = "<i style='color:green'>Sudah Dijawab</i>";
 } elseif ($to['total'] > 0 && $es['total'] > 0) {
     // Jika ada soal objektif dan esai
     if ($to['total'] > 0 && $es['total'] > 0) {
         // Jika kedua soal sudah dijawab
-        $statusnilai = "<i style='color:green'>Sudah Dijawab</i>";
+        $statusnilai = "<i style='color:green'>Sudah Dijawab Semua</i>";
     } else {
         // Jika salah satu soal belum dijawab
         $statusnilai = "<i style='color:red'>Belum Dijawab</i>";
