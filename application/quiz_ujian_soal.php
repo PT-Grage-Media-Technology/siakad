@@ -586,6 +586,12 @@ elseif ($_GET[act] == 'semuasoal') {
   echo "SELECT count(*) as total FROM `rb_jawaban_objektif` a 
                                       JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
                                         where a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'";
+
+
+  echo "SELECT count(*) as total FROM rb_jawaban_essai a JOIN rb_pertanyaan_essai b 
+                                              ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
+ 
+                                                AND b.id_quiz_ujian='$_GET[idsoal]'";
   // var_dump($to);
   // var_dump('ini es',$es);
     if ($to['total'] <= 0 or $es['total'] <= 0) {
