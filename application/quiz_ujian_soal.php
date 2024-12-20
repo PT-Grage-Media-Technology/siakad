@@ -581,7 +581,8 @@ elseif ($_GET[act] == 'semuasoal') {
     $es = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_jawaban_essai a JOIN rb_pertanyaan_essai b 
                                               ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
                                                 AND b.id_quiz_ujian='$_GET[idsoal]'"));
-
+  var_dump($to);
+  var_dump('ini es',$es);
     if ($to['total'] <= 0 or $es['total'] <= 0) {
       $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
     } else {
