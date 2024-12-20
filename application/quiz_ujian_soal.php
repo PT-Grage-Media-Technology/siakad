@@ -510,6 +510,10 @@ elseif ($_GET[act] == 'semuasoal') {
                       kunci_jawaban='$kunci' 
                   WHERE id_pertanyaan_objektif='$id'";
         $result = mysql_query($query);
+
+        if($result){
+          echo "";
+        }
     }
 
     
@@ -1211,17 +1215,7 @@ echo "      </div>
             kunci: kunci
         },
         success: function (response) {
-            try {
-                var data = JSON.parse(response);
-                if (data.success) {
-                    alert('Data berhasil disimpan!');
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            } catch (e) {
-                $('#objektif-edit-' + no).modal('hide')
-                console.error('Invalid JSON response', response);
-            }
+            window.location.reload();
         },
         error: function (xhr, status, error) {
             console.error('AJAX error:', error);
