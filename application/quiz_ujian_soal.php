@@ -574,16 +574,7 @@ elseif ($_GET[act] == 'semuasoal') {
     // $coba = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif"));
       // var_dump($coba);
 
-    $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
-                                      JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
-                                        where a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'"));
-                                        // var_dump($to);
-    $es = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_jawaban_essai a JOIN rb_pertanyaan_essai b 
-                                              ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
- 
-                                                AND b.id_quiz_ujian='$_GET[idsoal]'"));
-  
-  // echo "SELECT count(*) as total FROM `rb_jawaban_objektif` a 
+        // echo "SELECT count(*) as total FROM `rb_jawaban_objektif` a 
   //                                     JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
   //                                       where a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'";
 
@@ -593,30 +584,41 @@ elseif ($_GET[act] == 'semuasoal') {
  
   //                                               AND b.id_quiz_ujian='$_GET[idsoal]'";
 
-  $cek = mysql_query("SELECT * FROM rb_pertanyaan_essai sai 
-                    JOIN rb_pertanyaan_objektif obj 
-                    ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif 
+  $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
+                                    JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
+                                    WHERE a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'"));
+
+$es = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM rb_jawaban_essai a 
+                                     JOIN rb_pertanyaan_essai b ON a.id_pertanyaan_essai=b.id_pertanyaan_essai 
+                                     WHERE a.nisn='$r[nisn]' AND b.id_quiz_ujian='$_GET[idsoal]'"));
+
+// Mengecek apakah ada soal essai dan objektif dalam ujian
+$cek = mysql_query("SELECT * FROM rb_pertanyaan_essai sai 
+                    JOIN rb_pertanyaan_objektif obj ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif 
                     WHERE id_quiz_ujian='$_GET[idsoal]'");
 
-echo "SELECT * FROM rb_pertanyaan_essai sai 
-       JOIN rb_pertanyaan_objektif obj 
-       ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif 
-       WHERE id_quiz_ujian='$_GET[idsoal]'";
-
-// Mengecek jika ada soal pilihan ganda dan soal esai
-if ($to['total'] > 0 && $es['total'] == 0 && $to['answered'] > 0) {
-    // Jika hanya soal pilihan ganda dan sudah dijawab
-    $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
-} elseif ($to['total'] > 0 && $es['total'] > 0 && mysql_num_rows($cek) > 0) {
-    // Jika soal pilihan ganda dan esai ada, dan keduanya sudah dijawab
-    $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
-} elseif ($to['total'] > 0 && mysql_num_rows($cek) == 0 && $to['answered'] > 0) {
-    // Jika hanya soal pilihan ganda yang ada dan sudah dijawab, tanpa soal esai
-    $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
+// Logika untuk status
+if ($to['total'] > 0 && $es['total'] == 0) {
+    // Jika hanya ada soal objektif/pilgan dan sudah dijawab
+    $statusnilai = "<i style='color:green'>Sudah Dijawab</i>";
+} elseif ($to['total'] > 0 && $es['total'] > 0) {
+    // Jika ada soal objektif dan esai
+    if ($to['total'] > 0 && $es['total'] > 0) {
+        // Jika kedua soal sudah dijawab
+        $statusnilai = "<i style='color:green'>Sudah Dijawab</i>";
+    } else {
+        // Jika salah satu soal belum dijawab
+        $statusnilai = "<i style='color:red'>Belum Dijawab</i>";
+    }
+} elseif ($to['total'] == 0 && mysql_num_rows($cek) == 0) {
+    // Jika tidak ada soal apapun (pilihan ganda dan esai)
+    $statusnilai = "<i style='color:red'>Belum Dijawab</i>";
 } else {
-    // Jika belum ada soal yang dijawab
-    $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
+    // Kondisi default jika belum ada jawaban apapun
+    $statusnilai = "<i style='color:red'>Belum Dijawab</i>";
 }
+
+// echo $statusnilai;
 
     echo "<tr bgcolor=$warna>
                             <td>$no</td>
