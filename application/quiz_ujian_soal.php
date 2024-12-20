@@ -1185,7 +1185,7 @@ echo "      </div>
 ?>
 
 <script>
-  $('.update').click(function () {
+  $('.btn-primary').click(function () {
     var no = $(this).attr('id').split('_')[1]; // Ambil nomor dari ID tombol
     var id = $('#id_pertanyaan_' + no).val();
     var soal = $('#soal_' + no).val();
