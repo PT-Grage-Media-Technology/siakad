@@ -733,7 +733,7 @@ elseif ($_GET[act] == 'semuasoal') {
       echo "<input type='radio' name='$noo'> e. $ko[jawab_e]";
     }
     if ($jo[jawaban] != '') {
-      echo "<div class='btn btn-$color btn-xs btn-block'>Jawaban Anda '$jo[jawaban]' $status $jawab</div>";
+      echo "<div class='btn btn-$color btn-xs btn-block'>Jawaban Siswa '$jo[jawaban]' $status $jawab</div>";
     }
     echo "</td>
                           </tr>";
