@@ -417,7 +417,7 @@ elseif ($_GET[act] == 'semuasoal') {
         </td>
     </tr>";
 
-    echo "<div class='modal fade' id='objektif-edit-$noo' data-no='$noo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+    echo "<div class='modal fade' id='objektif-edit-$noo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -1179,42 +1179,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <script>
-$('#update').click(function () {
-  // Cari elemen modal terkait
-  var modal = $(this).closest('.modal');
+  $('#update').click(function () {
+    var id = $('#id_pertanyaan').val();
+    var soal = $('#soal').val();
+    var jawab_a = $('#jawab_a').val();
+    var jawab_b = $('#jawab_b').val();
+    var jawab_c = $('#jawab_c').val();
+    var jawab_d = $('#jawab_d').val();
+    var jawab_e = $('#jawab_e').val();
+    var kunci = $('#kunci').val();
 
-  // Ambil data dari modal tersebut
-  var id = modal.find('#id_pertanyaan_' + modal.data('no')).val();
-  var soal = modal.find('#soal_' + modal.data('no')).val();
-  var jawab_a = modal.find('#jawab_a_' + modal.data('no')).val();
-  var jawab_b = modal.find('#jawab_b_' + modal.data('no')).val();
-  var jawab_c = modal.find('#jawab_c_' + modal.data('no')).val();
-  var jawab_d = modal.find('#jawab_d_' + modal.data('no')).val();
-  var jawab_e = modal.find('#jawab_e_' + modal.data('no')).val();
-  var kunci = modal.find('#kunci_' + modal.data('no')).val();
-
-  // Lakukan AJAX request
-  $.ajax({
-    url: '', // Sesuaikan dengan path file PHP Anda
-    type: 'POST',
-    data: { 
-      id: id,
-      soal: soal,
-      jawab_a: jawab_a,
-      jawab_b: jawab_b,
-      jawab_c: jawab_c,
-      jawab_d: jawab_d,
-      jawab_e: jawab_e,
-      kunci: kunci,
-    },
-    success: function (response) {
-      alert('Data berhasil diupdate');
-    },
-    error: function (xhr, status, error) {
-      alert('Terjadi kesalahan: ' + error);
-    }
+    // Kirim data ke PHP dengan AJAX
+    $.ajax({
+      url: '', // Path file PHP
+      type: 'POST',
+      data: { 
+        id: id,
+        soal: soal,
+        jawab_a : jawab_a,
+        jawab_b : jawab_b,
+        jawab_c : jawab_c,
+        jawab_d : jawab_d,
+        jawab_e : jawab_e,
+        kunci : kunci,
+       }, // Kirimkan data ke PHP
+      success: function (response) {
+        try {
+          var data = JSON.parse(response);
+          console.log(data);
+          if (data.success) {
+            alert('Data berhasil disimpan!');
+          } else {
+            alert('Error: ' + data.error);
+          }
+        } catch (e) {
+          console.error('Invalid JSON response', response);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('AJAX error:', error);
+      }
+    });
   });
-});
-
 </script>
 
