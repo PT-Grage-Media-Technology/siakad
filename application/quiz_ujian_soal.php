@@ -571,7 +571,7 @@ elseif ($_GET[act] == 'semuasoal') {
   while ($r = mysql_fetch_array($tampil)) {
   
 
-    $coba = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif"));
+    // $coba = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif"));
       // var_dump($coba);
 
     $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
@@ -592,20 +592,17 @@ elseif ($_GET[act] == 'semuasoal') {
   //                                             ON a.id_pertanyaan_essai=b.id_pertanyaan_essai where a.nisn='$r[nisn]' 
  
   //                                               AND b.id_quiz_ujian='$_GET[idsoal]'";
-  var_dump('ini total',$to['total']);
-  // var_dump('ini es',$es);
-  if ($to['total'] <= 0 && $es['total'] <= 0) {
-    // Tidak ada soal
-    $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
-} elseif (($to['total'] > 0 && $es['total'] <= 0 && $to['answered'] > 0) || 
-          ($to['total'] > 0 && $es['total'] > 0 && $to['answered'] > 0 && $es['answered'] > 0)) {
-    // Soal Pilihan Ganda saja yang dijawab, atau kedua jenis soal dijawab
-    $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
-} else {
-    // Ada soal tapi belum semuanya dijawab
-    $statusnilai = "<i span style='color:orange'>Sebagian Dijawab</i>";
-}
 
+  $cek = mysql_query("SELECT * FROM rb_pertanyaan_essai sai JOIN rb_pertanyaan_objektif obj ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif WHERE id_quiz_ujian='$_GET[idsoal]'");
+  // var_dump('ini total',$to['total']);
+echo "SELECT * FROM rb_pertanyaan_essai sai JOIN rb_pertanyaan_objektif obj ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif WHERE id_quiz_ujian='$_GET[idsoal]'";
+
+  // var_dump('ini es',$es);
+    if ($to['total'] <= 0 && $es['total'] <= 0) {
+      $statusnilai = "<i span style='color:red'>Belum Dijawab</i>";
+    } else {
+      $statusnilai = "<i span style='color:green'>Sudah Dijawab</i>";
+    }
     echo "<tr bgcolor=$warna>
                             <td>$no</td>
                             <td style='color:red'>$r[nisn]</td>
