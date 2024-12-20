@@ -169,7 +169,7 @@ if ($_GET[act] == '') {
 
   if (isset($_GET[hapus])) {
     mysql_query("DELETE FROM rb_quiz_ujian where id_quiz_ujian='$_GET[hapus]'");
-    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&id=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
+    echo "<script>document.location='index.php?view=soal&act=listsoal&jdwl=" . $_GET[jdwl] . "&kode_kelas=" . $_GET[kode_kelas] . "&kd=" . $_GET[kd] . "';</script>";
   }
 
   echo "</tbody>
