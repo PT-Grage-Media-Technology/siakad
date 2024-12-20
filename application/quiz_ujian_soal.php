@@ -392,105 +392,54 @@ elseif ($_GET[act] == 'semuasoal') {
   $noo = 1;
   while ($ko = mysql_fetch_array($objektif)) {
     echo "<tr>
-                            <td>$noo</td>
-                            <td>$ko[pertanyaan_objektif] <br>";
-    if (trim($ko[jawab_a]) != '') {
-      echo "<input type='radio' name='$noo'> a. $ko[jawab_a] <br>";
+        <td>$noo</td>
+        <td>$ko[pertanyaan_objektif] <br>";
+    if (trim($ko['jawab_a']) != '') {
+        echo "<input type='radio' name='$noo'> a. $ko[jawab_a] <br>";
     }
-    if (trim($ko[jawab_b]) != '') {
-      echo "<input type='radio' name='$noo'> b. $ko[jawab_b] <br>";
+    if (trim($ko['jawab_b']) != '') {
+        echo "<input type='radio' name='$noo'> b. $ko[jawab_b] <br>";
     }
-    if (trim($ko[jawab_c]) != '') {
-      echo "<input type='radio' name='$noo'> c. $ko[jawab_c] <br>";
+    if (trim($ko['jawab_c']) != '') {
+        echo "<input type='radio' name='$noo'> c. $ko[jawab_c] <br>";
     }
-    if (trim($ko[jawab_d]) != '') {
-      echo "<input type='radio' name='$noo'> d. $ko[jawab_d] <br>";
+    if (trim($ko['jawab_d']) != '') {
+        echo "<input type='radio' name='$noo'> d. $ko[jawab_d] <br>";
     }
-    if (trim($ko[jawab_e]) != '') {
-      echo "<input type='radio' name='$noo'> e. $ko[jawab_e]";
+    if (trim($ko['jawab_e']) != '') {
+        echo "<input type='radio' name='$noo'> e. $ko[jawab_e]";
     }
     echo "<div class='btn btn-default btn-xs btn-block'>Kunci Jawaban : $ko[kunci_jawaban]</div>
-                            </td>
-                            <td style='width:60px'><a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
-                            <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'>123</span></a></td>
-                            </tr>";
+        </td>
+        <td style='width:60px'>
+        <a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
+        <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit-$noo' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'>123</span></a>
+        </td>
+    </tr>";
 
-                            $soal = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif WHERE id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]'"));
-                            echo "<div class='modal fade' id='objektif-edit' name=modal[$noo] tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-      <div class='modal-dialog' role='document'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span
-                aria-hidden='true'>&times;</span></button>
-            <h4 class='modal-title' id='myModalLabel'>Tambahkan edit Objektif <?php echo $_GET[idsoal]; ?> </h4>
-          </div>
-          <form method='POST'
-            action=''
-            class='form-horizontal'>
-            <div class='modal-body'>
-              <input type='hidden' name='id_pertanyaan' value='$soal[id_pertanyaan_objektif]' id='id_pertanyaan'>
-
-              <div class='form-group'>
-                <label for='soal' class='col-sm-2 control-label'>Soal</label>
-                <div class='col-sm-10'>
-                  <textarea rows='3' name='a' id='soal' class='form-control'
-                    id='soal'>$soal[pertanyaan_objektif]</textarea>
+    echo "<div class='modal fade' id='objektif-edit-$noo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+        <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                    <h4 class='modal-title' id='myModalLabel'>Edit Objektif $ko[pertanyaan_objektif]</h4>
                 </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_a' class='col-sm-2 control-label'>Jawab A</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_a' name='b' value='$soal[jawab_a]' class='form-control' id='jawab_a'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_b' name='c' value='$soal[jawab_b]' class='form-control' id='jawab_b'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text'  id='jawab_c' name='d' value='$soal[jawab_c]' class='form-control' id='jawab_c'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_d' name='e' value='$soal[jawab_d]' class='form-control' id='jawab_d'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' id='jawab_e' value='$soal[jawab_e]' class='form-control' id='jawab_e'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' id='kunci' value='$soal[kunci_jawaban]' class='form-control'>
-                </div>
-              </div>
+                <form method='POST' action='' class='form-horizontal'>
+                    <div class='modal-body'>
+                        <!-- Form content -->
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                        <button type='submit' name='update' id='update' class='btn btn-primary'>Update</button>
+                    </div>
+                </form>
             </div>
-            <div class='modal-footer'>
-              <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-              <button type='submit' name='update' id='update' class='btn btn-primary'>Update</button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-";
+    </div>";
+
     $noo++;
-  }
+}
+
   echo "</table>
                 </div>
               </div>
