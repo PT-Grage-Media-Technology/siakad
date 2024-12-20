@@ -417,80 +417,75 @@ elseif ($_GET[act] == 'semuasoal') {
         </td>
     </tr>";
 
+    // Loop untuk menampilkan modal
     echo "<div class='modal fade' id='objektif-edit-$noo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                    <h4 class='modal-title' id='myModalLabel'>Edit Objektif $ko[pertanyaan_objektif]</h4>
-                </div>
-                <form method='POST' action='' class='form-horizontal'>
-                    <div class='modal-body'>
-                       <input type='hidden' name='id_pertanyaan' value='$ko[id_pertanyaan_objektif]' id='id_pertanyaan_$noo'> 
-
-
-              <div class='form-group'>
-                <label for='soal' class='col-sm-2 control-label'>Soal</label>
-                <div class='col-sm-10'>
-                  <textarea rows='3' name='a' id='soal' class='form-control'
-                    id='soal'>$ko[pertanyaan_objektif]</textarea>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_a' class='col-sm-2 control-label'>Jawab A</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_a' name='b' value='$ko[jawab_a]' class='form-control' id='jawab_a'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_b' name='c' value='$ko[jawab_b]' class='form-control' id='jawab_b'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text'  id='jawab_c' name='d' value='$ko[jawab_c]' class='form-control' id='jawab_c'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_d' name='e' value='$ko[jawab_d]' class='form-control' id='jawab_d'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' id='jawab_e' value='$ko[jawab_e]' class='form-control' id='jawab_e'>
-                </div>
-              </div>
-
-              <div class='form-group'>
-                <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
-                <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' id='kunci' value='$ko[kunci_jawaban]' class='form-control'>
-                </div>
-              </div>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <h4 class='modal-title' id='myModalLabel'>Edit Objektif $ko[pertanyaan_objektif]</h4>
                     </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                        <button type='submit' name='update' id='update' class='btn btn-primary'>Update</button>
-                    </div>
-                </form>
+                    <form method='POST' action='' class='form-horizontal'>
+                        <div class='modal-body'>
+                            <input type='hidden' name='id_pertanyaan' value='$ko[id_pertanyaan_objektif]' id='id_pertanyaan_$noo'> 
+    
+                            <div class='form-group'>
+                                <label for='soal_$noo' class='col-sm-2 control-label'>Soal</label>
+                                <div class='col-sm-10'>
+                                    <textarea rows='3' name='a' id='soal_$noo' class='form-control'>$ko[pertanyaan_objektif]</textarea>
+                                </div>
+                            </div>
+    
+                            <div class='form-group'>
+                                <label for='jawab_a_$noo' class='col-sm-2 control-label'>Jawab A</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' id='jawab_a_$noo' name='b' value='$ko[jawab_a]' class='form-control'>
+                                </div>
+                            </div>
+                            <!-- Ulangi format di atas untuk Jawab B, C, D, dan E -->
+                            <div class='form-group'>
+                                <label for='kunci_$noo' class='col-sm-2 control-label'>Kunci</label>
+                                <div class='col-sm-10'>
+                                    <input style='width:50%' type='text' name='g' id='kunci_$noo' value='$ko[kunci_jawaban]' class='form-control'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                            <button type='button' name='update' id='update_$noo' class='btn btn-primary'>Update</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>";
-
+        </div>";
     $noo++;
-}
+    }
+    
+    // Proses update data
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $soal = $_POST['soal'];
+        $jawab_a = $_POST['jawab_a'];
+        $jawab_b = $_POST['jawab_b'];
+        $jawab_c = $_POST['jawab_c'];
+        $jawab_d = $_POST['jawab_d'];
+        $jawab_e = $_POST['jawab_e'];
+        $kunci = $_POST['kunci'];
+    
+        // Query update
+        $query = "UPDATE rb_pertanyaan_objektif 
+                  SET pertanyaan_objektif='$soal', 
+                      jawab_a='$jawab_a', 
+                      jawab_b='$jawab_b', 
+                      jawab_c='$jawab_c', 
+                      jawab_d='$jawab_d', 
+                      jawab_e='$jawab_e', 
+                      kunci_jawaban='$kunci' 
+                  WHERE id_pertanyaan_objektif='$id'";
+        $result = mysql_query($query);
+    }
 
+    
   echo "</table>
                 </div>
               </div>
@@ -1159,67 +1154,52 @@ echo "      </div>
           </form>";
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_POST['id'];
-  $soal = $_POST['soal'];
-  $jawab_a = $_POST['jawab_a'];
-  $jawab_b = $_POST['jawab_b'];
-  $jawab_c = $_POST['jawab_c'];
-  $jawab_d = $_POST['jawab_d'];
-  $jawab_e = $_POST['jawab_e'];
-  $kunci = $_POST['kunci'];
 
-  // Query untuk update data
-  $query = "UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$soal',jawab_a='$jawab_a',jawab_b='$jawab_b',jawab_c='$jawab_c',jawab_d='$jawab_d',jawab_e='$jawab_e',kunci_jawaban='$kunci' WHERE id_pertanyaan_objektif='$id'";
-  echo "UPDATE rb_pertanyaan_objektif SET pertanyaan_objektif='$soal',jawab_a='$jawab_a',jawab_b='$jawab_b',jawab_c='$jawab_c',jawab_d='$jawab_d',jawab_e='$jawab_e',kunci_jawaban='$kunci' WHERE id_pertanyaan_objektif='$id'";
-  $result = mysql_query($query); // Jangan lupa gunakan library database
-
-
-}
 ?>
 
 <script>
-  $('#update').click(function () {
-    var id = $('#id_pertanyaan').val();
-    var soal = $('#soal').val();
-    var jawab_a = $('#jawab_a').val();
-    var jawab_b = $('#jawab_b').val();
-    var jawab_c = $('#jawab_c').val();
-    var jawab_d = $('#jawab_d').val();
-    var jawab_e = $('#jawab_e').val();
-    var kunci = $('#kunci').val();
+  $('$update').click(function () {
+    var no = $(this).attr('id').split('_')[1]; // Ambil nomor dari ID tombol
+    var id = $('#id_pertanyaan_' + no).val();
+    var soal = $('#soal_' + no).val();
+    var jawab_a = $('#jawab_a_' + no).val();
+    var jawab_b = $('#jawab_b_' + no).val();
+    var jawab_c = $('#jawab_c_' + no).val();
+    var jawab_d = $('#jawab_d_' + no).val();
+    var jawab_e = $('#jawab_e_' + no).val();
+    var kunci = $('#kunci_' + no).val();
 
     // Kirim data ke PHP dengan AJAX
     $.ajax({
-      url: '', // Path file PHP
-      type: 'POST',
-      data: { 
-        id: id,
-        soal: soal,
-        jawab_a : jawab_a,
-        jawab_b : jawab_b,
-        jawab_c : jawab_c,
-        jawab_d : jawab_d,
-        jawab_e : jawab_e,
-        kunci : kunci,
-       }, // Kirimkan data ke PHP
-      success: function (response) {
-        try {
-          var data = JSON.parse(response);
-          console.log(data);
-          if (data.success) {
-            alert('Data berhasil disimpan!');
-          } else {
-            alert('Error: ' + data.error);
-          }
-        } catch (e) {
-          console.error('Invalid JSON response', response);
+        url: '', // Path file PHP
+        type: 'POST',
+        data: { 
+            id: id,
+            soal: soal,
+            jawab_a: jawab_a,
+            jawab_b: jawab_b,
+            jawab_c: jawab_c,
+            jawab_d: jawab_d,
+            jawab_e: jawab_e,
+            kunci: kunci
+        },
+        success: function (response) {
+            try {
+                var data = JSON.parse(response);
+                if (data.success) {
+                    alert('Data berhasil disimpan!');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (e) {
+                console.error('Invalid JSON response', response);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX error:', error);
         }
-      },
-      error: function (xhr, status, error) {
-        console.error('AJAX error:', error);
-      }
     });
-  });
+});
+
 </script>
 
