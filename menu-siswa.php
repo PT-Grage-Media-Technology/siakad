@@ -19,7 +19,7 @@
     <li><a href="index.php?view=penilaiantemansiswa"><i class="fa fa-list"></i> <span>Penilaian Teman</span></a></li> -->
     <li><a href="index.php?view=bahantugas&act=listbahantugassiswa"><i class="fa fa-file"></i><span>Bahan dan
           Tugas</span></a></li>
-    <li><a href="index.php?view=soal&act=detailsiswa"><i class="fa fa-notepad"></i><span>Quiz & Ujian</span></a></li>
+    <li><a href="index.php?view=soal&act=detailsiswa"><i class="fa fa-file-text-o"></i><span>Quiz & Ujian</span></a></li>
     <!-- <li><a href="index.php?view=soal&act=detailsiswa"><i class="fa fa-users"></i><span>Quiz/Ujian Online</span></a></li> -->
     <!-- <li><a href="index.php?view=forum&act=detailsiswa"><i class="fa fa-th-list"></i> <span>Forum Diskusi</span></a></li> -->
     <!-- <li><a href=""><i class="fa fa-star"></i> <span>Rating</span></a></li> -->
