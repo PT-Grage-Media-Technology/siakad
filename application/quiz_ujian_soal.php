@@ -1042,7 +1042,7 @@ echo "      </div>
         }
       }
     }
-    echo "<script>document.location='index.php?view=soal&act=jawabsemuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=jawabsemuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   $so = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian a 
