@@ -942,7 +942,7 @@ elseif ($_GET[act] == 'semuasoal') {
                                   <td>$r[nama_ruangan]</td>
                                   <td>$r[id_tahun_akademik]</td>
                                   <td style='color:red'>$total Record</td>
-                                  <td><a class='btn btn-success btn-xs' title='List QUiz dan Ujian' href='index.php?view=soal&act=listsoalsiswa&jdwl=$r[kodejdwl]&id=$r[kode_kelas]&kd=$r[kode_pelajaran]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
+                                  <td><a class='btn btn-success btn-xs' title='List QUiz dan Ujian' href='index.php?view=soal&act=listsoalsiswa&jdwl=$r[kodejdwl]&kode_kelas=$r[kode_kelas]&kd=$r[kode_pelajaran]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
                               </tr>";
                 $no++;
               }
