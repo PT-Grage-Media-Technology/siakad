@@ -684,7 +684,7 @@ $nilaiessai = $nli['nilai_essai'];
 // Mengecek apakah ada soal esai atau tidak
 $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
 $quiz = mysql_fetch_array(mysql_query("SELECT * FROM rb_pertanyaan_objektif po JOIN rb_pertanyaan_essai pes WHERE id_quiz_ujian = '$_GET[id_soal]' "));
-var_dump($quiz);
+var_dump('ec',$quiz);
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
     $akhir = ($nilaiessai + $hasil) / 2;
