@@ -479,7 +479,7 @@ elseif ($_GET[act] == 'semuasoal') {
                         </div>
                         <div class='modal-footer'>
                             <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                            <button type='button' name='update' id='update_$noo' class='btn btn-primary'>Update</button>
+                            <button type='button' name='update' id='update_$noo' class='btn btn-primary update'>Update</button>
                         </div>
                     </form>
                 </div>
@@ -1185,7 +1185,7 @@ echo "      </div>
 ?>
 
 <script>
-  $('$update').click(function () {
+  $('.update').click(function () {
     var no = $(this).attr('id').split('_')[1]; // Ambil nomor dari ID tombol
     var id = $('#id_pertanyaan_' + no).val();
     var soal = $('#soal_' + no).val();
