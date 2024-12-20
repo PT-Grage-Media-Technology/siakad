@@ -426,7 +426,8 @@ elseif ($_GET[act] == 'semuasoal') {
                 </div>
                 <form method='POST' action='' class='form-horizontal'>
                     <div class='modal-body'>
-                       <input type='hidden' name='id_pertanyaan' value='$ko[id_pertanyaan_objektif]' id='id_pertanyaan'>
+                       <input type='hidden' name='id_pertanyaan' value='$ko[id_pertanyaan_objektif]' id='id_pertanyaan_$noo'> 
+
 
               <div class='form-group'>
                 <label for='soal' class='col-sm-2 control-label'>Soal</label>
@@ -1179,7 +1180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
   $('#update').click(function () {
-    var id = $('#id_pertanyaan').val();
+    var id = $('#id_pertanyaan_' + currentModalId).val();
     var soal = $('#soal').val();
     var jawab_a = $('#jawab_a').val();
     var jawab_b = $('#jawab_b').val();
