@@ -643,8 +643,8 @@ if ($to['total'] > 0 && $es['total'] == 0) {
                           JOIN rb_jadwal_pelajaran c ON a.kodejdwl=c.kodejdwl 
                             JOIN rb_kelas d ON c.kode_kelas=d.kode_kelas where a.id_quiz_ujian='$_GET[idsoal]'"));
   $si = mysql_fetch_array(mysql_query("SELECT * FROM rb_siswa where nisn='$_GET[noinduk]'"));
-
   if (isset($_POST[nilaiessai])) {
+
     $ce = mysql_fetch_array(mysql_query("SELECT count(*) as cek FROM rb_nilai_pertanyaan_essai where id_quiz_ujian='$_GET[idsoal]' AND nisn='$_GET[noinduk]'"));
     if ($ce[cek] >= 1) {
       mysql_query("UPDATE rb_nilai_pertanyaan_essai SET nilai_essai='$_POST[a]' where id_quiz_ujian='$_GET[idsoal]' AND nisn='$_GET[noinduk]'");
@@ -654,23 +654,46 @@ if ($to['total'] > 0 && $es['total'] == 0) {
       echo "<script>document.location='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]';</script>";
     }
   }
-  // Rumus Menghitung Total Nilai
-  $objek = mysql_query("SELECT * FROM `rb_pertanyaan_objektif` where id_quiz_ujian='$_GET[idsoal]' ORDER BY id_pertanyaan_objektif DESC");
-  $total = mysql_num_rows($objek);
-  $nilai = 100 / $total;
-  $to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
-                        JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
-                          where a.jawaban=b.kunci_jawaban AND a.nisn='$_GET[noinduk]' 
-                            AND b.id_quiz_ujian='$_GET[idsoal]'"));
-  $hasil = $nilai * $to[total];
 
-  $nli = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pertanyaan_essai where nisn='$_GET[noinduk]' AND id_quiz_ujian='$_GET[idsoal]'"));
-  if (trim($nli[nilai_essai] == '')) {
-    $nilaiessai = '0';
-  } else {
-    $nilaiessai = $nli[nilai_essai];
-  }
-  $akhir = ($nilaiessai + $hasil) / 2;
+  $cek = mysql_query("SELECT * FROM rb_pertanyaan_essai sai 
+  JOIN rb_pertanyaan_objektif obj ON sai.id_pertanyaan_essai=obj.id_pertanyaan_objektif 
+  WHERE id_quiz_ujian='$_GET[idsoal]'");
+
+// Rumus Menghitung Total Nilai
+$objek = mysql_query("SELECT * FROM `rb_pertanyaan_objektif` WHERE id_quiz_ujian='$_GET[idsoal]' ORDER BY id_pertanyaan_objektif DESC");
+$total = mysql_num_rows($objek);
+$nilai = 100 / $total;
+
+// Menghitung nilai objektif yang benar
+$to = mysql_fetch_array(mysql_query("SELECT count(*) as total FROM `rb_jawaban_objektif` a 
+                   JOIN rb_pertanyaan_objektif b ON a.id_pertanyaan_objektif=b.id_pertanyaan_objektif 
+                   WHERE a.jawaban=b.kunci_jawaban AND a.nisn='$_GET[noinduk]' 
+                   AND b.id_quiz_ujian='$_GET[idsoal]'"));
+$hasil = $nilai * $to['total'];
+
+// Mengecek nilai esai jika ada
+$nli = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_pertanyaan_essai 
+                    WHERE nisn='$_GET[noinduk]' AND id_quiz_ujian='$_GET[idsoal]'"));
+
+if (trim($nli['nilai_essai']) == '') {
+$nilaiessai = 0;
+} else {
+$nilaiessai = $nli['nilai_essai'];
+}
+
+// Mengecek apakah ada soal esai atau tidak
+$cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
+
+if (mysql_num_rows($cek_essai) > 0) {
+// Jika ada soal esai, bagi hasil dengan 2
+$akhir = ($nilaiessai + $hasil) / 2;
+} else {
+// Jika tidak ada soal esai, hanya nilai objektif yang dihitung
+$akhir = $hasil;
+}
+
+// echo "Nilai Akhir: " . $akhir;
+
 
   echo "<div class='col-xs-12'>  
               <div class='box'>
