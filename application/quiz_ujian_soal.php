@@ -1219,6 +1219,7 @@ echo "      </div>
                     alert('Error: ' + data.error);
                 }
             } catch (e) {
+                $('#objektif-edit-' + no).modal('hide')
                 console.error('Invalid JSON response', response);
             }
         },
