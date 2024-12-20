@@ -115,7 +115,7 @@ if ($_GET[act] == '') {
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Daftar Ujian dan Quiz Online</b></h3>";
   // if ($_SESSION[level] != 'siswa') {
-  //   echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&id=$_GET[kode_kelas]&kd=$_GET[kd]'>Tambahkan Data</a>";
+  //   echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]'>Tambahkan Data</a>";
   // }
  
     echo "<a class='pull-right btn btn-primary btn-sm' href='index.php?view=soal&act=tambah&jdwl=$_GET[jdwl]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&tahun=$_GET[tahun]'>Tambahkan Data</a>";
@@ -159,7 +159,7 @@ if ($_GET[act] == '') {
                             <td>$r[batas_waktu] WIB</td>";
     if ($_SESSION[level] == 'kepala') {
     } else {
-      echo "<td><a class='btn btn-primary btn-xs' title='Lihat Soal' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$r[id_quiz_ujian]&id=$_GET[kode_kelas]&kd=$_GET[kd]'><span class='glyphicon glyphicon-search'></span> Lihat Soal</a>
+      echo "<td><a class='btn btn-primary btn-xs' title='Lihat Soal' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$r[id_quiz_ujian]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]'><span class='glyphicon glyphicon-search'></span> Lihat Soal</a>
                                           <a class='btn btn-success btn-xs' title='Lihat Jawaban' href='index.php?view=soal&act=semuajawaban&jdwl=$_GET[jdwl]&idsoal=$r[id_quiz_ujian]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]'><span class='glyphicon glyphicon-th-list'></span> Jawaban Siswa</a>
                                           <a class='btn btn-danger btn-xs' title='Delete Bahan dan Tugas' href='index.php?view=soal&act=listsoal&jdwl=$_GET[jdwl]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&hapus=$r[id_quiz_ujian]'><span class='glyphicon glyphicon-remove'></span></a></td>";
     }
@@ -329,22 +329,22 @@ elseif ($_GET[act] == 'semuasoal') {
 
   if (isset($_POST[essai])) {
     mysql_query("INSERT INTO rb_pertanyaan_essai VALUES('','$_GET[idsoal]','$_POST[a]')");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   if (isset($_POST[objektif])) {
     mysql_query("INSERT INTO rb_pertanyaan_objektif VALUES('','$_GET[idsoal]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]')");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   if (isset($_GET[deleteessai])) {
     mysql_query("DELETE FROM rb_pertanyaan_essai where id_pertanyaan_essai='$_GET[deleteessai]'");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   if (isset($_GET[deleteobjektif])) {
     mysql_query("DELETE FROM rb_pertanyaan_objektif where id_pertanyaan_objektif='$_GET[deleteobjektif]'");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   echo "<div class='col-xs-12'>  
@@ -367,7 +367,7 @@ elseif ($_GET[act] == 'semuasoal') {
     echo "<tr>
                             <td>$no</td>
                             <td>$k[pertanyaan_essai]</td>
-                            <td style='width:60px'><a  class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteessai=$k[id_pertanyaan_essai]'><span class='glyphicon glyphicon-remove'></span></a></td>
+                            <td style='width:60px'><a  class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&deleteessai=$k[id_pertanyaan_essai]'><span class='glyphicon glyphicon-remove'></span></a></td>
                             </tr>";
     $no++;
   }
@@ -412,7 +412,7 @@ elseif ($_GET[act] == 'semuasoal') {
     echo "<div class='btn btn-default btn-xs btn-block'>Kunci Jawaban : $ko[kunci_jawaban]</div>
         </td>
         <td style='width:60px'>
-        <a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
+        <a class='btn btn-danger btn-xs' href='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&deleteobjektif=$ko[id_pertanyaan_objektif]'><span class='glyphicon glyphicon-remove'></span></a>
         <a href='' class='btn btn-success btn-sm pull-right btn-xs' data-toggle='modal' data-target='#objektif-edit-$noo' data-id='" . htmlspecialchars($noo) . "'><span class='glyphicon glyphicon-edit'></span></a>
         </td>
     </tr>";
@@ -605,7 +605,7 @@ elseif ($_GET[act] == 'semuasoal') {
                             <td>$r[nama]</td>
                             <td>$r[jenis_kelamin]</td>
                             <td>$statusnilai</td>
-                            <td style='width:130px'><a class='btn btn-primary btn-xs' href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]'><span class='glyphicon glyphicon-search'></span> Lihat Jawaban</a></td>
+                            <td style='width:130px'><a class='btn btn-primary btn-xs' href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]'><span class='glyphicon glyphicon-search'></span> Lihat Jawaban</a></td>
                           </tr>";
     $no++;
   }
@@ -627,10 +627,10 @@ elseif ($_GET[act] == 'semuasoal') {
     $ce = mysql_fetch_array(mysql_query("SELECT count(*) as cek FROM rb_nilai_pertanyaan_essai where id_quiz_ujian='$_GET[idsoal]' AND nisn='$_GET[noinduk]'"));
     if ($ce[cek] >= 1) {
       mysql_query("UPDATE rb_nilai_pertanyaan_essai SET nilai_essai='$_POST[a]' where id_quiz_ujian='$_GET[idsoal]' AND nisn='$_GET[noinduk]'");
-      echo "<script>document.location='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]';</script>";
+      echo "<script>document.location='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]';</script>";
     } else {
       mysql_query("INSERT INTO rb_nilai_pertanyaan_essai VALUES('','$_GET[idsoal]','$_GET[noinduk]','$_POST[a]')");
-      echo "<script>document.location='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]';</script>";
+      echo "<script>document.location='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]';</script>";
     }
   }
   // Rumus Menghitung Total Nilai
@@ -1071,7 +1071,7 @@ echo "      </div>
                             <td>$no</td>
                             <td>$k[pertanyaan_essai] <br>
                                 <b>Jabawan</b> : <pre>$je[jawaban_essai]</pre></td>
-                            <td style='width:70px'><a  class='btn btn-success btn-xs' href='index.php?view=soal&act=jawabsoalessai&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]&idp=$k[id_pertanyaan_essai]'><span class='glyphicon glyphicon-pencil'></span> Jawab</a></td>
+                            <td style='width:70px'><a  class='btn btn-success btn-xs' href='index.php?view=soal&act=jawabsoalessai&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&idp=$k[id_pertanyaan_essai]'><span class='glyphicon glyphicon-pencil'></span> Jawab</a></td>
                             </tr>";
     $no++;
   }
@@ -1170,7 +1170,7 @@ echo "      </div>
       $waktujawab = date("Y-m-d H:i:s");
       mysql_query("INSERT INTO rb_jawaban_essai VALUES('','$iden[nisn]','$_GET[idp]','$_POST[a]','$waktujawab')");
     }
-    echo "<script>document.location='index.php?view=soal&act=jawabsemuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&id=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>document.location='index.php?view=soal&act=jawabsemuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_essai where nisn='$iden[nisn]' AND id_pertanyaan_essai='$_GET[idp]'"));
