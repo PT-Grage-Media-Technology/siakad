@@ -426,55 +426,55 @@ elseif ($_GET[act] == 'semuasoal') {
                 </div>
                 <form method='POST' action='' class='form-horizontal'>
                     <div class='modal-body'>
-                       <input type='hidden' name='id_pertanyaan' value='$soal[id_pertanyaan_objektif]' id='id_pertanyaan'>
+                       <input type='hidden' name='id_pertanyaan' value='$ko[id_pertanyaan_objektif]' id='id_pertanyaan'>
 
               <div class='form-group'>
                 <label for='soal' class='col-sm-2 control-label'>Soal</label>
                 <div class='col-sm-10'>
                   <textarea rows='3' name='a' id='soal' class='form-control'
-                    id='soal'>$soal[pertanyaan_objektif]</textarea>
+                    id='soal'>$ko[pertanyaan_objektif]</textarea>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_a' class='col-sm-2 control-label'>Jawab A</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_a' name='b' value='$soal[jawab_a]' class='form-control' id='jawab_a'>
+                  <input style='width:50%' type='text' id='jawab_a' name='b' value='$ko[jawab_a]' class='form-control' id='jawab_a'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_b' class='col-sm-2 control-label'>Jawab B</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_b' name='c' value='$soal[jawab_b]' class='form-control' id='jawab_b'>
+                  <input style='width:50%' type='text' id='jawab_b' name='c' value='$ko[jawab_b]' class='form-control' id='jawab_b'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_c' class='col-sm-2 control-label'>Jawab C</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text'  id='jawab_c' name='d' value='$soal[jawab_c]' class='form-control' id='jawab_c'>
+                  <input style='width:50%' type='text'  id='jawab_c' name='d' value='$ko[jawab_c]' class='form-control' id='jawab_c'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_d' class='col-sm-2 control-label'>Jawab D</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' id='jawab_d' name='e' value='$soal[jawab_d]' class='form-control' id='jawab_d'>
+                  <input style='width:50%' type='text' id='jawab_d' name='e' value='$ko[jawab_d]' class='form-control' id='jawab_d'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='jawab_e' class='col-sm-2 control-label'>Jawab E</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='f' id='jawab_e' value='$soal[jawab_e]' class='form-control' id='jawab_e'>
+                  <input style='width:50%' type='text' name='f' id='jawab_e' value='$ko[jawab_e]' class='form-control' id='jawab_e'>
                 </div>
               </div>
 
               <div class='form-group'>
                 <label for='kunci' class='col-sm-2 control-label'>Kunci</label>
                 <div class='col-sm-10'>
-                  <input style='width:50%' type='text' name='g' id='kunci' value='$soal[kunci_jawaban]' class='form-control'>
+                  <input style='width:50%' type='text' name='g' id='kunci' value='$ko[kunci_jawaban]' class='form-control'>
                 </div>
               </div>
                     </div>
