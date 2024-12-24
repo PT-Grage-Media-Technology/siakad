@@ -717,7 +717,7 @@ $quiz = mysql_fetch_array(mysql_query("
 // exit;
 
 $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
-if($quiz){
+if($quiz && $hasil && $nilaiessai){
 
 
   $akhir = ($nilaiessai + $hasil) / 2;
