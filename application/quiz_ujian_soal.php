@@ -324,6 +324,7 @@ elseif ($_GET[act] == 'semuasoal') {
                         JOIN rb_kategori_quiz_ujian b ON a.id_kategori_quiz_ujian=b.id_kategori_quiz_ujian 
                           JOIN rb_jadwal_pelajaran c ON a.kodejdwl=c.kodejdwl 
                             JOIN rb_kelas d ON c.kode_kelas=d.kode_kelas where a.id_quiz_ujian='$_GET[idsoal]'"));
+  $data[] = $so;
 
                             
 
@@ -708,7 +709,7 @@ if (mysql_num_rows($cek_essai) > 0) {
 if($nilaiessai && $hasil){
 
   $akhir = ($nilaiessai + $hasil) / 2;
-  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
 }
 } else {
 // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
