@@ -683,7 +683,13 @@ $nilaiessai = $nli['nilai_essai'];
 }
 
 
-
+$cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
+if (mysql_num_rows($cek_essai) > 0) {
+  $akhir = ($nilaiessai + $hasil) / 2;
+} else {
+// Jika tidak ada soal esai, hanya nilai objektif yang dihitung
+$akhir = $hasil;
+}
 // echo "Nilai Akhir: " . $akhir;
 
 
