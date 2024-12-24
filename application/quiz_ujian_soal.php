@@ -749,12 +749,23 @@ $akhir = $hasil;
                         <tbody>
                           <tr><th width='120px' scope='row'>No Induk</th>  <td> : $si[nisn]</td></tr>
                           <tr><th scope='row'>Nama Siswa</th>              <td> : $si[nama]</td></tr>
-                          <tr><th scope='row'>Nilai Akhir</th>              <td> : (Nilai Essai + Nilai Objektif) : 2 = $akhir</td>
-                                                                             
-                                  <td><a class='btn btn-primary btn-xs' title='Simpan Nilai' href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
+                          <tr>
+    <th scope='row'>Nilai Akhir</th>
+    <td>
+        <div style='display: flex; align-items: center;'>
+            <span>(Nilai Essai + Nilai Objektif) : 2 = <strong>$akhir</strong></span>
+            <a 
+                class='btn btn-primary btn-xs' 
+                title='Simpan Nilai' 
+                href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]' 
+                style='margin-left: 10px;'
+            >
+                <span class='glyphicon glyphicon-th'></span> Simpan Nilai
+            </a>
+        </div>
+    </td>
+</tr>
 
-                                                                          
-                          </tr>
                         </tbody>
                     </table>
                   </div>
