@@ -191,7 +191,8 @@ cek_session_guru();
                           <td>$r[nisn]</td>
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                          <td>";
+                          <td align=center colspan='2'>
+                          ";
 
                           // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
                           $cekQuiz = mysql_fetch_array(mysql_query(
