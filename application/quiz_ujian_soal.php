@@ -233,7 +233,7 @@ echo "INSERT INTO rb_quiz_ujian VALUES ('','$_POST[a]','$_GET[jdwl]','$_POST[b]'
   echo "</select>
                     </td></tr>
                     <tr><th scope='row'>Keterangan</th>        <td><input type='text' class='form-control' name='b'></td></tr>
-                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='text' class='pull-left form-control' name='c'> Menit</td></tr>
+                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='number' class='pull-left form-control' name='c'> Menit</td></tr>
                   </tbody>
                   </table>
                 </div>
@@ -305,7 +305,7 @@ elseif ($_GET[act] == 'update') {
   echo "</select>
                     </td></tr>
                     <tr><th scope='row'>Keterangan</th>        <td><input type='text' class='form-control' name='b' value='$e[keterangan]'></td></tr>
-                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='text' class='pull-left form-control' name='c' value='0'> Menit</td></tr>
+                    <tr><th scope='row'>Batas Waktu</th>      <td><input style='width:20%' type='number' class='pull-left form-control' name='c' value='0'> Menit</td></tr>
                   </tbody>
                   </table>
                 </div>
