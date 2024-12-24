@@ -193,7 +193,7 @@ cek_session_guru();
 
                           // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
                           $cekQuiz = mysql_fetch_array(mysql_query(
-                            "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'"
+                            "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]' AND nisn = '$r[nisn]'"
                           ));
 
                           echo "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'";
