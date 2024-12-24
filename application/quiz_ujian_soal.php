@@ -718,9 +718,9 @@ $quiz = mysql_fetch_array(mysql_query("
 
 $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
 if($quiz && $hasil && $nilaiessai){
+  
 
-
-  $akhir = ($nilaiessai + $hasil) / 2;
+  $akhir = ($nilaiessai + $hasil) / 2 ;
   
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
@@ -729,7 +729,7 @@ if($quiz && $hasil && $nilaiessai){
   }else{
 
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-    // echo "<script>history.back()</script>";
+    echo "<script>history.back()</script>";
   }
 
 }else{
@@ -760,51 +760,7 @@ if(!$hasil){
 }
 
 }
-if (mysql_num_rows($cek_essai) > 0) {
-// Jika ada soal esai, bagi hasil dengan 2
 
-$data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
-if($nilaiessai && !$hasil){
-
-  $akhir = ($nilaiessai + $hasil) / 2;
-  
-  if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]' ");
-    echo "<script>history.back()</script>";
-  }else{
-
-    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-    echo "<script>history.back()</script>";
-  }
-
-
-}elseif($nilaiessai && $hasil){
-  $akhir = ($nilaiessai + $hasil) / 2;
-  // ketika datanya sudah ada
-  if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-    echo "<script>history.back()</script>";
-  }else{
-
-    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-    echo "<script>history.back()</script>";
-  }
-
-}
-
-} else {
-// Jika tidak ada soal esai, hanya nilai objektif yang dihitung
-$akhir = $hasil;
-if(mysql_num_rows($data) > 0){
-  mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-  echo "<script>history.back()</script>";
-}else{
-
-  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-  echo "<script>history.back()</script>";
-}
-
-}
 
 }
 
