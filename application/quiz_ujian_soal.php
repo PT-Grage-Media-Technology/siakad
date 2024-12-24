@@ -735,17 +735,20 @@ if($nilaiessai && $hasil == 0){
 
 }elseif($nilaiessai && $hasil){
   $akhir = ($nilaiessai + $hasil) / 2;
+  // ketika datanya sudah ada
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
     echo "<script>history.back()</script>";
-  }elseif($nilaiessai == 0 && $hasil){
+  }else{
 
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
     echo "<script>history.back()</script>";
-  }else{
-    echo "tidak ada nilai essai atau objektif";
   }
 
+}elseif($hasil && $nilaiessai == 0){
+  echo "true bosx";
+}else{
+  echo "ga true";
 }
 
 } else {
