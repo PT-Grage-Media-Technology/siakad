@@ -762,7 +762,7 @@ if (isset($_SESSION['id'])) {
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Kunci</label>
                 <div class="col-sm-10">
-                  <input style='width:50%' type="text" name='g' class="form-control">
+                  <input style='width:50%' type="text" name='g' class="form-control" placeholder="Kunci Jawaban harus menggunakan huruf kecil">
                 </div>
               </div>
             </div>
