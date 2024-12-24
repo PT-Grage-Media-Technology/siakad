@@ -757,7 +757,7 @@ $akhir = $hasil;
             <a 
                 class='btn btn-primary btn-xs' 
                 title='Simpan Nilai' 
-                href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]' 
+                href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]' 
                 style='margin-left: 10px;'
             >
                 <span class='glyphicon glyphicon-floppy-disk'></span> Simpan Nilai
