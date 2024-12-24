@@ -685,11 +685,11 @@ $nilaiessai = $nli['nilai_essai'];
 $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
 $quiz = mysql_fetch_array(mysql_query("
     SELECT 
-        rb_pertanyaan_objektif.*, 
-        rb_pertanyaan_essai.* 
+    rb_pertanyaan_objektif.*, 
+    rb_pertanyaan_essai.* 
     FROM rb_pertanyaan_objektif
     JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+    ON rb_pertanyaan_objektif.id_soal = rb_pertanyaan_essai.id_soal
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[id_soal]'
 "));
 
