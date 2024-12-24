@@ -693,7 +693,7 @@ $quiz = mysql_fetch_array(mysql_query("
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[id_soal]'
 "));
 
-// var_dump('ec',$quiz);
+var_dump($quiz);
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
     $akhir = ($nilaiessai + $hasil) / 2;
