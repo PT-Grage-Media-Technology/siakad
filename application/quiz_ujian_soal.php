@@ -733,7 +733,7 @@ $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND
 //   }
 
 // }else{
-  if(!$nilaiessai && $hasil != 0){
+  if(!$nilaiessai && $hasil != 0 && !$quiz){
 
     $akhir = $hasil;
   if(mysql_num_rows($data) > 0){
@@ -744,7 +744,7 @@ $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
     echo "<script>history.back()</script>";
   }
-} elseif(!$hasil && $nilaiessai != 0){
+} elseif(!$hasil && $nilaiessai != 0 && !$quiz){
   $akhir = $nilaiessai;
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
