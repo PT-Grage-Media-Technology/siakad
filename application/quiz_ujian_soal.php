@@ -731,6 +731,7 @@ if($nilaiessai && $hasil == 0){
   
   }
 
+  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
 }
 
 } else {
@@ -748,7 +749,12 @@ $akhir = $hasil;
                         <tbody>
                           <tr><th width='120px' scope='row'>No Induk</th>  <td> : $si[nisn]</td></tr>
                           <tr><th scope='row'>Nama Siswa</th>              <td> : $si[nama]</td></tr>
-                          <tr><th scope='row'>Nilai Akhir</th>              <td> : (Nilai Essai + Nilai Objektif) : 2 = $akhir</td></tr>
+                          <tr><th scope='row'>Nilai Akhir</th>              <td> : (Nilai Essai + Nilai Objektif) : 2 = $akhir</td>
+                                                                             
+                                  <td><a class='btn btn-primary btn-xs' title='Simpan Nilai' href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]'><span class='glyphicon glyphicon-th'></span> Tampilkan</a></td>
+
+                                                                          
+                          </tr>
                         </tbody>
                     </table>
                   </div>
