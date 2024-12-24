@@ -760,7 +760,7 @@ $akhir = $hasil;
                 href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$r[nisn]' 
                 style='margin-left: 10px;'
             >
-                <span class='glyphicon glyphicon-th'></span> Simpan Nilai
+                <span class='glyphicon glyphicon-floppy-disk'></span> Simpan Nilai
             </a>
         </div>
     </td>
