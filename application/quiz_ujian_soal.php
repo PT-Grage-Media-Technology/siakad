@@ -702,19 +702,17 @@ $quiz = mysql_fetch_array(mysql_query("
     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
 "));
-echo "
-    SELECT 
-    rb_pertanyaan_objektif.*, 
-    rb_pertanyaan_essai.* 
-    FROM rb_pertanyaan_objektif
-    JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-";
+
 
 // var_dump($quiz);
 // echo $_GET['simpannilai'];
 // exit;
+
+if($quiz){
+  echo "quiz";
+}else{
+  echo "idak quiz";
+}
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
 
