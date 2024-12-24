@@ -639,65 +639,6 @@ if ($to['total'] > 0 && $es['total'] == 0) {
             </div>";
 } elseif ($_GET[act] == 'semuajawabansiswa') {
   cek_session_guru();
-
-
-  if (isset($_GET['simpannilai'])) {
-    // Mengecek apakah ada soal esai atau tidak
-    $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
-    $quiz = mysql_fetch_array(mysql_query("
-        SELECT 
-        rb_pertanyaan_objektif.*, 
-        rb_pertanyaan_essai.* 
-        FROM rb_pertanyaan_objektif
-        JOIN rb_pertanyaan_essai 
-        ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-        WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-    "));
-    echo "
-        SELECT 
-        rb_pertanyaan_objektif.*, 
-        rb_pertanyaan_essai.* 
-        FROM rb_pertanyaan_objektif
-        JOIN rb_pertanyaan_essai 
-        ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-        WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-    ";
-
-    // var_dump($quiz);
-    if (mysql_num_rows($cek_essai) > 0) {
-        // Jika ada soal esai, bagi hasil dengan 2
-        $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
-        echo "<script>history.back();</script>";
-
-        if ($nilaiessai && $hasil == 0) {
-            $akhir = ($nilaiessai + $hasil) / 2;
-
-            if (mysql_num_rows($data) > 0) {
-                mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-                echo "<script>history.back();</script>";
-            } else {
-                $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('', '$_GET[idsoal]', '$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-                echo "<script>history.back();</script>";
-            }
-        } elseif ($nilaiessai && $hasil) {
-            $akhir = ($nilaiessai + $hasil) / 2;
-
-            if (mysql_num_rows($data) > 0) {
-                mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-                echo "<script>history.back();</script>";
-            } else {
-                $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('', '$_GET[idsoal]', '$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-                echo "<script>history.back();</script>";
-            }
-        }
-    } else {
-        // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
-        $akhir = $hasil;
-    }
-}
-
-  
-  
   $so = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian a 
                         JOIN rb_kategori_quiz_ujian b ON a.id_kategori_quiz_ujian=b.id_kategori_quiz_ujian 
                           JOIN rb_jadwal_pelajaran c ON a.kodejdwl=c.kodejdwl 
@@ -741,14 +682,63 @@ $nilaiessai = 0;
 $nilaiessai = $nli['nilai_essai'];
 }
 
-
+// Mengecek apakah ada soal esai atau tidak
 $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
+$quiz = mysql_fetch_array(mysql_query("
+    SELECT 
+    rb_pertanyaan_objektif.*, 
+    rb_pertanyaan_essai.* 
+    FROM rb_pertanyaan_objektif
+    JOIN rb_pertanyaan_essai 
+    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+"));
+echo "
+    SELECT 
+    rb_pertanyaan_objektif.*, 
+    rb_pertanyaan_essai.* 
+    FROM rb_pertanyaan_objektif
+    JOIN rb_pertanyaan_essai 
+    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+";
+
+var_dump($quiz);
 if (mysql_num_rows($cek_essai) > 0) {
+// Jika ada soal esai, bagi hasil dengan 2
+
+$data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
+if($nilaiessai && $hasil == 0){
+
   $akhir = ($nilaiessai + $hasil) / 2;
+  
+  if(mysql_num_rows($data) > 0){
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+  }else{
+
+    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  
+  }
+
+
+}elseif($nilaiessai && $hasil){
+  $akhir = ($nilaiessai + $hasil) / 2;
+  if(mysql_num_rows($data) > 0){
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+  }else{
+
+    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  
+  }
+
+  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+}
+
 } else {
 // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
 $akhir = $hasil;
 }
+
 // echo "Nilai Akhir: " . $akhir;
 
 
@@ -759,23 +749,7 @@ $akhir = $hasil;
                         <tbody>
                           <tr><th width='120px' scope='row'>No Induk</th>  <td> : $si[nisn]</td></tr>
                           <tr><th scope='row'>Nama Siswa</th>              <td> : $si[nama]</td></tr>
-                          <tr>
-    <th scope='row'>Nilai Akhir</th>
-    <td>
-        <div style='display: flex; align-items: center;'>
-            <span>(Nilai Essai + Nilai Objektif) : 2 = <strong>$akhir</strong></span>
-            <a 
-                class='btn btn-primary btn-xs' 
-                title='Simpan Nilai' 
-                href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]&simpannilai' 
-                style='margin-left: 10px;'
-            >
-                <span class='glyphicon glyphicon-floppy-disk'></span> Simpan Nilai
-            </a>
-        </div>
-    </td>
-</tr>
-
+                          <tr><th scope='row'>Nilai Akhir</th>              <td> : (Nilai Essai + Nilai Objektif) : 2 = $akhir</td></tr>
                         </tbody>
                     </table>
                   </div>
@@ -1312,9 +1286,6 @@ echo "      </div>
               </div>
             </div>
           </form>";
-}elseif($_GET[act] == 'simpannilai'){
-
-
 }
 
 
