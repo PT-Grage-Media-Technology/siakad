@@ -198,7 +198,7 @@ cek_session_guru();
 
                           echo "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'";
                           var_dump($cekQuiz['nilai']);
-                          if($cekQuiz['kategori_quiz'] == 3){
+                          if($cekQuiz){
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
