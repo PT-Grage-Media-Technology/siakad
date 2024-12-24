@@ -712,8 +712,8 @@ echo "
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
 ";
 
-var_dump($quiz);
-echo $_GET['simpannilai'];
+// var_dump($quiz);
+// echo $_GET['simpannilai'];
 // exit;
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
@@ -774,7 +774,7 @@ $akhir = $hasil;
                 href='index.php?view=soal&act=semuajawabansiswa&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]&noinduk=$_GET[noinduk]&simpannilai=true' 
                 style='margin-left: 10px;'
             >
-                <span class='glyphicon glyphicon-th'></span> Tampilkan
+                <span class='glyphicon glyphicon-th'></span> Simpan Nilai
             </a>
         </div>
     </td>
