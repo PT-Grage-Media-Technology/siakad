@@ -693,26 +693,28 @@ $akhir = $hasil;
 if(isset($_GET['simpannilai'])){
 // Mengecek apakah ada soal esai atau tidak
 $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
-$quiz = mysql_fetch_array(mysql_query("
-    SELECT 
-    rb_pertanyaan_objektif.*, 
-    rb_pertanyaan_essai.* 
-    FROM rb_pertanyaan_objektif
-    JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-"));
-
+// $quiz = mysql_fetch_array(mysql_query("
+//     SELECT 
+//     rb_pertanyaan_objektif.*, 
+//     rb_pertanyaan_essai.* 
+//     FROM rb_pertanyaan_objektif
+//     JOIN rb_pertanyaan_essai 
+//     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+//     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+// "));
+// echo "
+//     SELECT 
+//     rb_pertanyaan_objektif.*, 
+//     rb_pertanyaan_essai.* 
+//     FROM rb_pertanyaan_objektif
+//     JOIN rb_pertanyaan_essai 
+//     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+//     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+// ";
 
 // var_dump($quiz);
 // echo $_GET['simpannilai'];
 // exit;
-
-if($quiz){
-  echo "quiz";
-}else{
-  echo "idak quiz";
-}
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
 
@@ -743,15 +745,20 @@ if($nilaiessai && $hasil == 0){
     echo "<script>history.back()</script>";
   }
 
-}elseif(!$quiz && $hasil && !$nilaiessai){
-  echo "true bosx";
-}else{
-  echo "ga true";
 }
 
 } else {
 // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
 $akhir = $hasil;
+if(mysql_num_rows($data) > 0){
+  mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+  echo "<script>history.back()</script>";
+}else{
+
+  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  echo "<script>history.back()</script>";
+}
+
 }
 
 }
