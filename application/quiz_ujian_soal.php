@@ -723,7 +723,7 @@ if($quiz){
   $akhir = ($nilaiessai + $hasil) / 2;
   
   if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
     echo "<script>history.back()</script>";
   }else{
 
@@ -736,7 +736,7 @@ if($quiz){
 
     $akhir = $hasil;
   if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
     echo "<script>history.back()</script>";
   }else{
   
@@ -749,7 +749,7 @@ if($quiz){
 if(!$hasil){
   $akhir = $nilaiessai;
   if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
     echo "<script>history.back()</script>";
   }else{
   
@@ -768,7 +768,7 @@ if($nilaiessai && !$hasil){
   $akhir = ($nilaiessai + $hasil) / 2;
   
   if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]' ");
     echo "<script>history.back()</script>";
   }else{
 
