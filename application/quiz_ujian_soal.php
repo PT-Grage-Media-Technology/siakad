@@ -689,7 +689,7 @@ $quiz = mysql_fetch_array(mysql_query("
     rb_pertanyaan_essai.* 
     FROM rb_pertanyaan_objektif
     JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_soal = rb_pertanyaan_essai.id_soal
+    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[id_soal]'
 "));
 
