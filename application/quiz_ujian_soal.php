@@ -725,10 +725,11 @@ if($nilaiessai && $hasil == 0){
   
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    echo "<script>history.back()</script>";
   }else{
 
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-  
+    echo "<script>history.back()</script>";
   }
 
 
@@ -736,10 +737,11 @@ if($nilaiessai && $hasil == 0){
   $akhir = ($nilaiessai + $hasil) / 2;
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+    echo "<script>history.back()</script>";
   }else{
 
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-  
+    echo "<script>history.back()</script>";
   }
 
 }
