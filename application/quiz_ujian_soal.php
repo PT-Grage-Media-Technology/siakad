@@ -723,7 +723,14 @@ if($nilaiessai && $hasil == 0){
 
 }elseif($nilaiessai && $hasil){
   $akhir = ($nilaiessai + $hasil) / 2;
-  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  if(mysql_num_rows($data) > 0){
+    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+  }else{
+
+    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+  
+  }
+
 }
 
 } else {
