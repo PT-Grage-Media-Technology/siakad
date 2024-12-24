@@ -693,24 +693,24 @@ $akhir = $hasil;
 if(isset($_GET['simpannilai'])){
 // Mengecek apakah ada soal esai atau tidak
 $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
-// $quiz = mysql_fetch_array(mysql_query("
-//     SELECT 
-//     rb_pertanyaan_objektif.*, 
-//     rb_pertanyaan_essai.* 
-//     FROM rb_pertanyaan_objektif
-//     JOIN rb_pertanyaan_essai 
-//     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-//     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-// "));
-// echo "
-//     SELECT 
-//     rb_pertanyaan_objektif.*, 
-//     rb_pertanyaan_essai.* 
-//     FROM rb_pertanyaan_objektif
-//     JOIN rb_pertanyaan_essai 
-//     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-//     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-// ";
+$quiz = mysql_fetch_array(mysql_query("
+    SELECT 
+    rb_pertanyaan_objektif.*, 
+    rb_pertanyaan_essai.* 
+    FROM rb_pertanyaan_objektif
+    JOIN rb_pertanyaan_essai 
+    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+"));
+echo "
+    SELECT 
+    rb_pertanyaan_objektif.*, 
+    rb_pertanyaan_essai.* 
+    FROM rb_pertanyaan_objektif
+    JOIN rb_pertanyaan_essai 
+    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+";
 
 // var_dump($quiz);
 // echo $_GET['simpannilai'];
@@ -745,7 +745,7 @@ if($nilaiessai && $hasil == 0){
     echo "<script>history.back()</script>";
   }
 
-}elseif($hasil && $nilaiessai == 0){
+}elseif(!$quiz && $hasil && !$nilaiessai){
   echo "true bosx";
 }else{
   echo "ga true";
