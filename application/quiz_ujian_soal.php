@@ -706,11 +706,16 @@ echo "
 var_dump($quiz);
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
-if($nilaiessai && $hasil){
+if($nilaiessai && $hasil == 0){
 
   $akhir = ($nilaiessai + $hasil) / 2;
   $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+
+
+}elseif($nilaiessai && $hasil){
+  $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
 }
+
 } else {
 // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
 $akhir = $hasil;
