@@ -473,7 +473,7 @@ elseif ($_GET[act] == 'semuasoal') {
                             <div class='form-group'>
                                 <label for='kunci_$noo' class='col-sm-2 control-label'>Kunci</label>
                                 <div class='col-sm-10'>
-                                    <input style='width:50%' type='text' name='g' id='kunci_$noo' value='$ko[kunci_jawaban]' class='form-control'>
+                                    <input style='width:50%' type='text' name='g' id='kunci_$noo' value='$ko[kunci_jawaban]' class='form-control' placeholder='Kunci Jawaban harus huruf kecil'>
                                 </div>
                             </div>
                         </div>
