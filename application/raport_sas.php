@@ -198,9 +198,7 @@ cek_session_guru();
                           $cekQuiz = mysql_fetch_array(mysql_query(
                             "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]' AND nisn = '$r[nisn]' AND kategori_quiz = 4"
                           ));
-
-                          echo "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'";
-                          var_dump($cekQuiz['nilai']);
+                          
                           if($cekQuiz){
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
