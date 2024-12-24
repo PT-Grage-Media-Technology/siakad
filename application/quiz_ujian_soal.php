@@ -641,71 +641,61 @@ if ($to['total'] > 0 && $es['total'] == 0) {
   cek_session_guru();
 
 
-if(isset($_GET['simpannilai'])){
+  if (isset($_GET['simpannilai'])) {
     // Mengecek apakah ada soal esai atau tidak
-$cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
-$quiz = mysql_fetch_array(mysql_query("
-    SELECT 
-    rb_pertanyaan_objektif.*, 
-    rb_pertanyaan_essai.* 
-    FROM rb_pertanyaan_objektif
-    JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-"));
-echo "
-    SELECT 
-    rb_pertanyaan_objektif.*, 
-    rb_pertanyaan_essai.* 
-    FROM rb_pertanyaan_objektif
-    JOIN rb_pertanyaan_essai 
-    ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
-    WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
-";
+    $cek_essai = mysql_query("SELECT * FROM rb_pertanyaan_essai WHERE id_quiz_ujian='$_GET[idsoal]'");
+    $quiz = mysql_fetch_array(mysql_query("
+        SELECT 
+        rb_pertanyaan_objektif.*, 
+        rb_pertanyaan_essai.* 
+        FROM rb_pertanyaan_objektif
+        JOIN rb_pertanyaan_essai 
+        ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+        WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+    "));
+    echo "
+        SELECT 
+        rb_pertanyaan_objektif.*, 
+        rb_pertanyaan_essai.* 
+        FROM rb_pertanyaan_objektif
+        JOIN rb_pertanyaan_essai 
+        ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
+        WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
+    ";
 
-// var_dump($quiz);
-if (mysql_num_rows($cek_essai) > 0) {
-// Jika ada soal esai, bagi hasil dengan 2
+    // var_dump($quiz);
+    if (mysql_num_rows($cek_essai) > 0) {
+        // Jika ada soal esai, bagi hasil dengan 2
+        $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
+        echo "<script>history.back();</script>";
 
-$data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
-echo "<script>history.back();</script>";
+        if ($nilaiessai && $hasil == 0) {
+            $akhir = ($nilaiessai + $hasil) / 2;
 
-if($nilaiessai && $hasil == 0){
+            if (mysql_num_rows($data) > 0) {
+                mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+                echo "<script>history.back();</script>";
+            } else {
+                $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('', '$_GET[idsoal]', '$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+                echo "<script>history.back();</script>";
+            }
+        } elseif ($nilaiessai && $hasil) {
+            $akhir = ($nilaiessai + $hasil) / 2;
 
-  $akhir = ($nilaiessai + $hasil) / 2;
-  
-  if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-    echo "<script>history.back();</script>";
-
-  }else{
-
-    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-    echo "<script>history.back();</script>";
-
-  }
-
-
-}elseif($nilaiessai && $hasil){
-  $akhir = ($nilaiessai + $hasil) / 2;
-  if(mysql_num_rows($data) > 0){
-    mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
-    echo "<script>history.back();</script>";
-
-  }else{
-
-    $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
-    echo "<script>history.back();</script>";
-
-  }
-
+            if (mysql_num_rows($data) > 0) {
+                mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir'");
+                echo "<script>history.back();</script>";
+            } else {
+                $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('', '$_GET[idsoal]', '$so[id_kategori_quiz_ujian]', '$_GET[noinduk]', '$akhir')");
+                echo "<script>history.back();</script>";
+            }
+        }
+    } else {
+        // Jika tidak ada soal esai, hanya nilai objektif yang dihitung
+        $akhir = $hasil;
+    }
 }
 
-} else {
-// Jika tidak ada soal esai, hanya nilai objektif yang dihitung
-$akhir = $hasil;
-}
-}
   
   
   $so = mysql_fetch_array(mysql_query("SELECT * FROM rb_quiz_ujian a 
