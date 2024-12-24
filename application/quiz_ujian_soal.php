@@ -714,7 +714,7 @@ echo "
 
 var_dump($quiz);
 echo $_GET['simpannilai'];
-exit;
+// exit;
 if (mysql_num_rows($cek_essai) > 0) {
 // Jika ada soal esai, bagi hasil dengan 2
 
