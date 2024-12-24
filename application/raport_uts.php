@@ -188,7 +188,21 @@ cek_session_guru();
                           <td>$r[nisn]</td>
                           <td>$r[nama]</td>
                           <input type='hidden' name='nisn".$no."' value='$r[nisn]'>
-                          <td align=center colspan='2'><input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'></td>
+                          <td align=center colspan='2'>
+                          ";
+
+                          // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
+                          $cekQuiz = mysql_query(
+                            "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'"
+                          );
+                          if($cekQuiz['id_quiz'] == 3){
+                          echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+
+                          }else{
+
+                            echo"<input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+                          }
+                          echo"</td>
                           <td align=center colspan='3'><textarea type='text' name='deskripsi".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
                         </tr>";
                   $no++;
