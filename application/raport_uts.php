@@ -192,9 +192,9 @@ cek_session_guru();
                           ";
 
                           // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
-                          $cekQuiz = mysql_query(
+                          $cekQuiz = mysql_fetch_array(mysql_query(
                             "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]'"
-                          );
+                          ));
                           if($cekQuiz['id_quiz'] == 3){
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
