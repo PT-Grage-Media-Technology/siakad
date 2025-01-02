@@ -200,7 +200,8 @@ cek_session_guru();
                           ));
                           
                           if($cekQuiz){
-                            var_dump($cekQuiz);
+                            // var_dump($cekQuiz);
+                            echo $cekQuiz;
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
