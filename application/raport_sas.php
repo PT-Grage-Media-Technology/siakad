@@ -208,7 +208,7 @@ cek_session_guru();
                           echo"</td>";
 
                            if($cekQuiz){
-                            echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
+                            echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='sasasa' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
 
                           }else{
                              echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
