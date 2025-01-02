@@ -343,12 +343,19 @@ elseif ($_GET[act] == 'semuasoal') {
 
   if (isset($_GET[deleteessai])) {
     mysql_query("DELETE FROM rb_pertanyaan_essai where id_pertanyaan_essai='$_GET[deleteessai]'");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>
+      history.back();
+    </script>";
   }
+  
+  // echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
 
   if (isset($_GET[deleteobjektif])) {
     mysql_query("DELETE FROM rb_pertanyaan_objektif where id_pertanyaan_objektif='$_GET[deleteobjektif]'");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>
+      history.back();
+    </script>";
+    // document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';
   }
 
   echo "<div class='col-xs-12'>  
