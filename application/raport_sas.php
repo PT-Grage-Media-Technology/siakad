@@ -203,7 +203,7 @@ cek_session_guru();
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
-                            echo"<input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+                            echo"<input type='number' name='a".$no."' value='$n[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
                           }
                           echo"</td>";
 
