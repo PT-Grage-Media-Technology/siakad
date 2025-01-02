@@ -744,6 +744,7 @@ $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND
     echo "<script>history.back()</script>";
   }else{
     echo "cel";
+    echo "INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]','$_GET[jdwl]', '$_GET[noinduk]', '$akhir')";
     exit;
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]','$_GET[jdwl]', '$_GET[noinduk]', '$akhir')");
     echo "<script>history.back()</script>";
