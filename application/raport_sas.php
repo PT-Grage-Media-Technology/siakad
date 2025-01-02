@@ -203,12 +203,18 @@ cek_session_guru();
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
-
                             echo"<input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
                           }
-                          echo"</td>
-                          <td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>
-                        </tr>";
+                          echo"</td>";
+
+                           if($cekQuiz){
+                            echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
+
+                          }else{
+                             echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
+
+                           }
+                        echo"</tr>";
                   $no++;
                   }
 
