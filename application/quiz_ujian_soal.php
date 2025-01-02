@@ -1198,8 +1198,7 @@ echo "      </div>
         var_dump($cek);
         // exit;
         if ($cek[tot] > 0) {
-          echo "sudah di jawab";
-          exit;
+          echo "<script>alert('Jawaban sudah ada')</script>";
           // mysql_query("UPDATE rb_jawaban_objektif SET jawaban='$jawab' where id_pertanyaan_objektif='$pertanyaan' AND nisn='$iden[nisn]'");
         } else {
           $waktuobjektif = date("Y-m-d H:i:s");
