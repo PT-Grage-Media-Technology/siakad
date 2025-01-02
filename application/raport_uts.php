@@ -174,7 +174,7 @@ cek_session_guru();
                 $no = 1;
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[kode_kelas]' ORDER BY id_siswa");
                 $cekQuiz = mysql_fetch_array(mysql_query(
-                  "SELECT * FROM rb_quiz_ujian WHERE kodejdwl='$_GET[jdwl]'"
+                  "SELECT * FROM rb_quiz_ujian WHERE kodejdwl='$_GET[jdwl]' AND id_kategori_quiz_ujian=3"
                 ));
                 while($r=mysql_fetch_array($tampil)){
                   $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_uts where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
