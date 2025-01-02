@@ -702,6 +702,7 @@ $quiz = mysql_fetch_array(mysql_query("
     ON rb_pertanyaan_objektif.id_quiz_ujian = rb_pertanyaan_essai.id_quiz_ujian
     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
 "));
+
 // echo "
 //     SELECT 
 //     rb_pertanyaan_objektif.*, 
@@ -712,9 +713,10 @@ $quiz = mysql_fetch_array(mysql_query("
 //     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
 // ";
 
-// var_dump($quiz);
-// echo $_GET['simpannilai'];
-// exit;
+var_dump($quiz);
+echo $_GET['jdwl'];
+echo $_GET['simpannilai'];
+exit;
 
 $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
 // if($quiz && $hasil && $nilaiessai){
