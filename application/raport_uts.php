@@ -205,8 +205,7 @@ cek_session_guru();
 
                           }else{
 
-                            // echo"<input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
-                            echo"<input type='number' name='a".$no."' value='5555' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+                            echo"<input type='number' name='a".$no."' value='$n[angka_pengetahuan]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
                           }
                           echo"</td>";
 
@@ -214,7 +213,7 @@ cek_session_guru();
                             echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>";
 
                           }else{
-                             echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]123</textarea></td>";
+                             echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='$n[deskripsi]' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'>$n[deskripsi]</textarea></td>";
 
                            }
                         echo"</tr>";

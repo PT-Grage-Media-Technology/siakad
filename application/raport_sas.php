@@ -175,6 +175,9 @@ cek_session_guru();
             
                 <tbody>";
                 $no = 1;
+                $cekQuiz = mysql_fetch_array(mysql_query(
+                  "SELECT * FROM rb_quiz_ujian WHERE kodejdwl='$_GET[jdwl]' AND id_kategori_quiz_ujian=4"
+                ));
                 $tampil = mysql_query("SELECT * FROM rb_siswa where kode_kelas='$_GET[kode_kelas]' ORDER BY id_siswa");
                 while($r=mysql_fetch_array($tampil)){
                   $n = mysql_fetch_array(mysql_query("SELECT * FROM rb_nilai_sas where nisn='$r[nisn]' AND kodejdwl='$_GET[jdwl]'"));
@@ -194,22 +197,22 @@ cek_session_guru();
                           <td align=center colspan='2'>
                           ";
 
-                          // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
-                          $cekQuiz = mysql_fetch_array(mysql_query(
-                            "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz_ujian=qu.id_quiz where ni.kodejdwl = '$_GET[jdwl]' AND ni.nisn = '$r[nisn]' AND ni.kategori_quiz = 4"
-                          ));
+                          //cek apakah ada nilai sas dari quiz 
+                          $nilaiQuiz = mysql_fetch_array(mysql_query(
+                            "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]' AND nisn = '$r[nisn]' AND kategori_quiz = 4 AND id_quiz=$cekQuiz[id_quiz_ujian]"
+                          ));  
                           
-                          if($cekQuiz){
+                          if($cekQuiz && $nilaiQuiz){
                             // var_dump($cekQuiz);
                             // echo $cekQuiz;
-                          echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+                          echo"<input type='number' name='a".$no."' value='$nilaiQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
                             echo"<input type='number' name='a".$no."' value='$n[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
                           }
                           echo"</td>";
 
-                           if($cekQuiz){
+                           if($cekQuiz && $nilaiQuiz){
                             echo"<td align=center colspan='3'><textarea type='text' name='b".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2'></textarea></td>";
 
                           }else{
