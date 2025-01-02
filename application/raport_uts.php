@@ -203,7 +203,7 @@ cek_session_guru();
 
                           ));
 
-                          echo $cekQuiz;
+                          // echo $cekQuiz;
                           
                           if($cekQuiz){
                             // echo $cekQuiz;
