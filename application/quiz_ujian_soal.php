@@ -1198,7 +1198,8 @@ echo "      </div>
         var_dump($cek);
         exit;
         if ($cek[tot] > 0) {
-          mysql_query("UPDATE rb_jawaban_objektif SET jawaban='$jawab' where id_pertanyaan_objektif='$pertanyaan' AND nisn='$iden[nisn]'");
+          echo "sudah di jawab";
+          // mysql_query("UPDATE rb_jawaban_objektif SET jawaban='$jawab' where id_pertanyaan_objektif='$pertanyaan' AND nisn='$iden[nisn]'");
         } else {
           $waktuobjektif = date("Y-m-d H:i:s");
           mysql_query("INSERT INTO rb_jawaban_objektif (nisn, id_pertanyaan_objektif, jawaban, waktu_objektif) VALUES('$iden[nisn]','$pertanyaan','$jawab','$waktuobjektif')");
