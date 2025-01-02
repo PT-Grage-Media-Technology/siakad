@@ -210,6 +210,7 @@ cek_session_guru();
                           echo"</td>
                           <td align=center colspan='3'><textarea type='text' name='deskripsi".$no."' value='' style='width:350px; text-align:center; padding:20px' placeholder='-' colspan='2' value='$n[deskripsi]'>$n[deskripsi]</textarea></td>
                         </tr>";
+                        var_dump($cekQuiz);
                   $no++;
                   }
 
