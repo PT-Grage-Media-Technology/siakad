@@ -1196,7 +1196,7 @@ echo "      </div>
         $pertanyaan = $_POST['b' . $i];
         $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_jawaban_objektif where nisn='$iden[nisn]' AND id_pertanyaan_objektif='$pertanyaan'"));
         var_dump($cek);
-        exit;
+        // exit;
         if ($cek[tot] > 0) {
           echo "sudah di jawab";
           // mysql_query("UPDATE rb_jawaban_objektif SET jawaban='$jawab' where id_pertanyaan_objektif='$pertanyaan' AND nisn='$iden[nisn]'");
