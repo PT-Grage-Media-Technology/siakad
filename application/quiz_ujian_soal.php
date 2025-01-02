@@ -736,8 +736,8 @@ $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND
 
 // }else{
   if(!$nilaiessai && $hasil != 0 && !$quiz){
-    echo "ceksasas";
-    exit;
+    // echo "ceksasas";
+    // exit;
     $akhir = $hasil;
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
