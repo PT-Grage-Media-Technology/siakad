@@ -193,10 +193,11 @@ cek_session_guru();
 
                           // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
                           $cekQuiz = mysql_fetch_array(mysql_query(
-                            "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]' AND nisn = '$r[nisn]' AND kategori_quiz = 3"
+                            "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz_ujian=qu.id_quiz where ni.kodejdwl = '$_GET[jdwl]' AND ni.nisn = '$r[nisn]' AND ni.kategori_quiz = 4"
                           ));
                           
                           if($cekQuiz){
+                            var_dump($cekQuiz);
                           echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
