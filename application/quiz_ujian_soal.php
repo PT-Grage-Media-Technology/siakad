@@ -1197,7 +1197,7 @@ echo "      </div>
         $cek = mysql_fetch_array(mysql_query("SELECT count(*) as tot FROM rb_jawaban_objektif where nisn='$iden[nisn]' AND id_pertanyaan_objektif='$pertanyaan'"));
         var_dump($cek);
         exit;
-        if ($cek[tot] >= 1) {
+        if ($cek[tot] > 0) {
           mysql_query("UPDATE rb_jawaban_objektif SET jawaban='$jawab' where id_pertanyaan_objektif='$pertanyaan' AND nisn='$iden[nisn]'");
         } else {
           $waktuobjektif = date("Y-m-d H:i:s");
