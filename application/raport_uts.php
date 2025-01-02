@@ -201,7 +201,7 @@ cek_session_guru();
                           ));  
                           
                           if($cekQuiz && $nilaiQuiz ){
-                          echo"<input type='number' name='a".$no."' value='$cekQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
+                          echo"<input type='number' name='a".$no."' value='$nilaiQuiz[nilai]' style='width:90px; text-align:center; padding:0px' placeholder='-' colspan='2'>";
 
                           }else{
 
