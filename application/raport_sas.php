@@ -194,7 +194,7 @@ cek_session_guru();
                           <td align=center colspan='2'>
                           ";
 
-                          // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
+                          // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts") 
                           $cekQuiz = mysql_fetch_array(mysql_query(
                             "SELECT * FROM rb_nilai_quiz where kodejdwl = '$_GET[jdwl]' AND nisn = '$r[nisn]' AND kategori_quiz = 4"
                           ));
