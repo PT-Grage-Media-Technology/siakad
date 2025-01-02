@@ -713,10 +713,10 @@ $quiz = mysql_fetch_array(mysql_query("
 //     WHERE rb_pertanyaan_objektif.id_quiz_ujian = '$_GET[idsoal]'
 // ";
 
-var_dump($quiz);
-echo $_GET['jdwl'];
-echo $_GET['simpannilai'];
-exit;
+// var_dump($quiz);
+// echo $_GET['jdwl'];
+// echo $_GET['simpannilai'];
+// exit;
 
 $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND id_quiz = '$_GET[idsoal]'");
 // if($quiz && $hasil && $nilaiessai){
@@ -736,13 +736,15 @@ $data = mysql_query("SELECT * FROM rb_nilai_quiz WHERE nisn='$_GET[noinduk]' AND
 
 // }else{
   if(!$nilaiessai && $hasil != 0 && !$quiz){
-
+    echo "ceksasas";
+    exit;
     $akhir = $hasil;
   if(mysql_num_rows($data) > 0){
     mysql_query("UPDATE rb_nilai_quiz SET nilai='$akhir' WHERE id_quiz = '$_GET[idsoal]'");
     echo "<script>history.back()</script>";
   }else{
-  
+    echo "cel";
+    exit;
     $nilai_akhir = mysql_query("INSERT INTO rb_nilai_quiz VALUES('','$_GET[idsoal]','$so[id_kategori_quiz_ujian]','$_GET[jdwl]', '$_GET[noinduk]', '$akhir')");
     echo "<script>history.back()</script>";
   }
