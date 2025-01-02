@@ -183,7 +183,7 @@ cek_session_guru();
                     $grade1 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_pengetahuan] >=nilai_a) AND ($n[angka_pengetahuan] <= nilai_b) AND kode_kelas='0'"));
                     $grade2 = mysql_fetch_array(mysql_query("SELECT * FROM `rb_predikat` where ($n[angka_keterampilan] >=nilai_a) AND ($n[angka_keterampilan] <= nilai_b) AND kode_kelas='0'"));
                   }
-                  echo "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz_ujian=qu.id_quiz where ni.kodejdwl = '$_GET[jdwl]' AND ni.nisn = '$r[nisn]' AND ni.kategori_quiz = 4";
+                  // echo "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz_ujian=qu.id_quiz where ni.kodejdwl = '$_GET[jdwl]' AND ni.nisn = '$r[nisn]' AND ni.kategori_quiz = 4";
                     echo "<tr>
                           <td>$no</td>
                           <td>$r[nisn]</td>
@@ -194,7 +194,7 @@ cek_session_guru();
 
                           // $cekSTS = mysql_query("SELECT * FROM rb_nilai_sts")
                           $cekQuiz = mysql_fetch_array(mysql_query(
-                            "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz=qu.id_quiz_ujian"
+                            "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz=qu.id_quiz_ujian where kodejdwl='$_GET[jdwl]' AND nisn='$r[nisn]' AND kategori_quiz = 4"
                           ));
 
                           echo $cekQuiz;
