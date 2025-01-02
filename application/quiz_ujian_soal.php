@@ -1255,6 +1255,10 @@ echo "      </div>
   $objektif = mysql_query("SELECT * FROM `rb_pertanyaan_objektif` where id_quiz_ujian='$_GET[idsoal]' ORDER BY id_pertanyaan_objektif DESC");
   $noo = 1;
   while ($ko = mysql_fetch_array($objektif)) {
+    $cek_jawaban = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif where id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]' AND nisn='$iden[nisn]'"));
+    if(mysql_num_rows($cek_jawaban) > 0){
+      echo "soal sudah di jawab";      
+    }
     $ce = mysql_fetch_array(mysql_query("SELECT * FROM rb_jawaban_objektif where id_pertanyaan_objektif='$ko[id_pertanyaan_objektif]' AND nisn='$iden[nisn]'"));
     echo "<tr>
                             <td>$noo</td>
