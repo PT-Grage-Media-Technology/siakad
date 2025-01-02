@@ -133,7 +133,7 @@ cek_session_guru();
             }
           }
         }
-        echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&id=$_GET[kode_kelas]&tahun=$_GET[tahun]';</script>";
+        echo "<script>document.location='index.php?view=raportuts&act=listsiswa&jdwl=$_GET[jdwl]&kd=$_GET[kd]&kode_kelas=$_GET[kode_kelas]&tahun=$_GET[tahun]';</script>";
     }
 
     $d = mysql_fetch_array(mysql_query("SELECT * FROM rb_kelas where kode_kelas='$_GET[kode_kelas]'"));
