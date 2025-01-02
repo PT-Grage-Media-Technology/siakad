@@ -338,7 +338,10 @@ elseif ($_GET[act] == 'semuasoal') {
 
   if (isset($_POST[objektif])) {
     mysql_query("INSERT INTO rb_pertanyaan_objektif VALUES('','$_GET[idsoal]','$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]','$_POST[e]','$_POST[f]','$_POST[g]')");
-    echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
+    echo "<script>
+    history.back();
+  </script>";
+    // echo "<script>document.location='index.php?view=soal&act=semuasoal&jdwl=$_GET[jdwl]&idsoal=$_GET[idsoal]&kode_kelas=$_GET[kode_kelas]&kd=$_GET[kd]';</script>";
   }
 
   if (isset($_GET[deleteessai])) {
