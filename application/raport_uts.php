@@ -197,7 +197,7 @@ cek_session_guru();
                             "SELECT * FROM rb_nilai_quiz ni JOIN rb_quiz_ujian qu ON ni.id_quiz=qu.id_quiz_ujian"
                           ));
 
-
+                          echo $cekQuiz;
                           
                           if($cekQuiz){
                             // echo $cekQuiz;
